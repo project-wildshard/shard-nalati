@@ -25,7 +25,7 @@
     "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm check:asks"
   },
   "dependencies": {
-    "zod": "4.6.7"
+    "valibot": "1.5.0"
   },
   "devDependencies": {
     "@types/node": "24.3.1",
