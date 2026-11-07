@@ -1,17 +1,12 @@
 import { expect, test } from 'vitest';
 import { defineSpecimenCatalogue, nameSpecimenBook } from '@wildshard/sharddev/bake/specimenCatalogue';
-import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/engine/host/immutable';
-import { GEAR_BOOK, bow, arrow, sabre, spear, javelin, goldenBow, naizagai, ar15 } from '../src/shards/nalati-grasslands/generators/gear';
-import original from '../src/shards/nalati-grasslands/data/gear.json' with { type: 'json' };
+import { GEAR_BOOK } from '../src/shards/nalati-grasslands/generators/gear';
 
-const metadata = [bow, arrow, sabre, spear, javelin, goldenBow, naizagai, ar15];
-test('authored gear cards publish their metadata with content identities', () => {
-  expect(metadata).toEqual(original.catalogue.map(row => row.model));
-  const bytes = new TextEncoder().encode(encodeCanonicalJson(GEAR_BOOK));
+test('published Nalati gear bytes are admitted by the author catalogue reader', () => {
   const emitted = nameSpecimenBook('models/gear-book.json', GEAR_BOOK, { tier: 'phone', dependencies: [] });
-  expect(hashImmutableBytes(emitted.bytes)).toBe(hashImmutableBytes(bytes));
-  expect(emitted.file).toMatchObject({ name: 'models/gear-book.json', tier: 'phone', dependencies: [] });
-  expect(emitted.file.jsonSchema).toBeDefined();
+  const wire: unknown = JSON.parse(new TextDecoder().decode(emitted.bytes));
+  const catalogue = defineSpecimenCatalogue(wire);
+  expect(catalogue.model(GEAR_BOOK.rows[0]?.key ?? '')).toBeDefined();
 });
 
 test('authoring admission retains strict malformed, duplicate and missing-model refusals', () => {

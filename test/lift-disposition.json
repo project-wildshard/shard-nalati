@@ -1,0 +1,1807 @@
+[
+  {
+    "file": "test/adventure-persistence.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('Nalati adopts old saves, replays stable feat identities and reloads only declared records', () => {",
+      "test('the declared persistence id lends the same saved owner and retires with its entered scope', async () => {",
+      "test('replacing the persistence world during admission publishes no saved owner', async () => {"
+    ]
+  },
+  {
+    "file": "test/approved-encounter-contracts.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('native full and arrow data-only geometries retain their distinct complete envelopes', () => {",
+      "test('the real two-tier Titan geometry validates every scene, geometry and pose without mutating its source', () => {",
+      "test('the complete room document preserves original King, scene, portal and collider fields', () => {"
+    ]
+  },
+  {
+    "file": "test/arena-boss-script.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('admitted arena rows retain AS lifecycle, heart damage and bounded decisions', () => {",
+      "test('an orchard boss uses different health and parameters on the same boss host', () => {",
+      "test('arena script emits tells, placement and one wall hit while retaining admission', () => {"
+    ]
+  },
+  {
+    "file": "test/arena-field.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('mounted refusal borrows only its entered scope and releases on disposal', () => {",
+      "test('the arena field obeys ignition bounds and cannot rekindle spent cells', () => {",
+      "test('an unrelated orchard encounter uses a rectangular four-neighbour frost field', () => {"
+    ]
+  },
+  {
+    "file": "test/arena-fire-field.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a second shard\\'s burning cells draw as flames on its bank with smoke rolling off', () => {",
+      "test('burnt-out cells leave a bounded scorch that a reset clears', () => {",
+      "test('a fire without cell rows refuses to draw a field', () => {"
+    ]
+  },
+  {
+    "file": "test/arena-room-gpu-lifetime.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('private room uploads release fixed channels, preserving templates, picking, sand and lazy interior', async () => {",
+      "test('uploaded fixed backing collects while its room remains live', async () => {"
+    ]
+  },
+  {
+    "file": "test/arena-room-native.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the King wakes for a bot in the chamber while the lead stands outside, and his blows find that bot', () => {",
+      "test('J104: two engaged at the start make his hits count for less, the row keeps one number', () => {",
+      "test('J107: a bot that falls goes back alone, the door lets it in again and the fight keeps its progress, through a save', () => {"
+    ]
+  },
+  {
+    "file": "test/arena-whirls.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the whirl laws step as the inline view did, and the view over them shows the same funnels', () => {"
+    ]
+  },
+  {
+    "file": "test/audio-scene-binary.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('raw fields decode to their float storage and keep the surface decisions',()=>{",
+      "test('entered preparation reads all four verified files before one listener publication',async()=>{",
+      "test.each(['disposed','world replaced','player replaced','rows replaced','reader replaced','malformed suffix'])('refuses %s without publishing listeners',async reason=>{"
+    ]
+  },
+  {
+    "file": "test/audio-voice-patches.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "it('keeps sampled voices ahead of their synth and plays the release layer',()=>{",
+      "it('bounds hoof density and selects the declared ground sample',()=>{",
+      "it('keeps an unrelated fixture shard entirely row driven',()=>{"
+    ]
+  },
+  {
+    "file": "test/author-admission-readers.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('specimen declarations retain complete native material, packed and catalogue contracts', () => {",
+      "test('every original page lifetime, story, director and native-mechanics wire remains unchanged', () => {"
+    ]
+  },
+  {
+    "file": "test/boss-arena-room.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('second-shard arena owns its translated floor, gate, cover and sand', () => {",
+      "test('second-shard fire rows bound capacity, own graph ids, expire and reset', () => {",
+      "test('the reed vault portal isolates the room its player stands in', async () => {"
+    ]
+  },
+  {
+    "file": "test/bow-variant-admission.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the variant baker preserves its admitted payload without native validation',()=>{",
+      "test('baked damage columns equal the original tag law for every native target and unknown kind',()=>{"
+    ]
+  },
+  {
+    "file": "test/bow-variant.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the slot variant keeps composition, upgrade idempotence and delayed secondary contact',async()=>{",
+      "test('independent slot owners and an orchard variant do not share actors or thresholds',async()=>{",
+      "test('power admission refuses foreign identities, executable data and excess prediction before effects',()=>{"
+    ]
+  },
+  {
+    "file": "test/cell-field.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('unrelated compiled irrigation law uses its own state codes/channels and delayed generations', () => {",
+      "test('original real Titan guest preserves field state, changed order, contact results and RNG exactly', () => {",
+      "test('JSON and binding admission refuses executable/accessor/ambiguous rows before guest work', () => {"
+    ]
+  },
+  {
+    "file": "test/client-elite-construction.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('elite construction admits only finite owner selections', () => {",
+      "test('construction publishes original resources without bodies, presentation or an eager night/weather read', async () => {",
+      "test('retirement during named admission refuses before programme or publication', async () => {"
+    ]
+  },
+  {
+    "file": "test/client-plan-platform.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('entered world looks precede plan effects and release with their owner', async () => {",
+      "test('fictional shard installs unordered rows in platform phases and retains typed scene handles', async () => {",
+      "test('unknown, ordered, executable and borrowed-owner rows refuse before effects', () => {"
+    ]
+  },
+  {
+    "file": "test/client-riding-session.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('client session rejects callback ports and admits an unrelated ride profile', () => {",
+      "test('native names keep unicode graphemes, reject markup and respect the row cap', () => {",
+      "test('the session cannot bind an unbuilt or disposed equipment authority', () => {"
+    ]
+  },
+  {
+    "file": "test/cloud-rig.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the headless cloud body poses and focuses exactly as the page body', () => {"
+    ]
+  },
+  {
+    "file": "test/combat-target-rows.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('actual world rows refine prior/wildlife -> night -> arena in the same order and retain aim identity', () => {",
+      "test('wildlife readiness keeps the ray bank idle and does not gate original aim projection', () => {",
+      "test('crowd rows keep the native CrowdRoster/CrowdWeaponTarget and in-place request law', () => {"
+    ]
+  },
+  {
+    "file": "test/cosmetic-finishes.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('an unrelated orchard fixture restores each material and projects current worn rows', () => {",
+      "test('Nalati grants stay exclusive and mount geometry returns after taking off its finish', () => {",
+      "test('invalid references and reflected/executable finish fields refuse at admission', () => {"
+    ]
+  },
+  {
+    "file": "test/creature-guest.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the actual balbal binding observes native bodies at ten Hz and samples declared weak points',()=>{",
+      "test('authored weak-point query preserves yaw, body lift, scale and strict radius',()=>{",
+      "test('named creature observations retain the original bounds before native use',()=>{"
+    ]
+  },
+  {
+    "file": "test/crowd-page.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('an unrelated marsh crowd uses its own bounds, identity, material and native cadence', async () => {"
+    ]
+  },
+  {
+    "file": "test/crowd-projection-product.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('complete emitted return AND spawn admission replaces the admission witness one for one within the unchanged eight module cap',()=>{",
+      "test('the raw admission file retains the exact complete inline descriptor and selected owner',async()=>{",
+      "test('raw admission witnesses refuse missing or replaced bytes before cache publication',()=>{"
+    ]
+  },
+  {
+    "file": "test/crowd-projection-v2.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('guard cadence skips before capture; each due frame samples only its original crowd and threat roster once',()=>{",
+      "test('native rows use the original scheduled context dt, no extra clock, no sound, and no repeated descriptor admission',()=>{",
+      "test('due capture is incremental: one native straggler read, live positions, strict first-live nearest tie and no stale roster cache',()=>{"
+    ]
+  },
+  {
+    "file": "test/declared-ground-mask.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('mask and ground-only basin use the same field, clamping, live water and independent declarations', () => {",
+      "test('ordinary body order and the original first stream metadata survive intervening basins', () => {",
+      "test('all mask metadata, storage and JSON preconditions refuse before a usable ground escapes', () => {"
+    ]
+  },
+  {
+    "file": "test/elite-entry-construction.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('whole-row admission has no effects; engine constructs native kernels in original order and borrows the original controller', () => {",
+      "test('a bad borrowed suffix, missing model or native spec refuses before tell/body/program effects', () => {",
+      "test('contact mappings must cover original native damages and be unambiguous before construction', () => {"
+    ]
+  },
+  {
+    "file": "test/elite-entry-producer.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the existing elite producer declares the original ordered controllers and condition observations', () => {",
+      "test('declared page rows retain original profiles, external laws, reward presentation and order', () => {",
+      "test('native keeper bindings resolve the original specs from the declared page profile envelope', () => {"
+    ]
+  },
+  {
+    "file": "test/elite-native-conditions.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('actual native condition rows reuse the original AS owner and preserve every phase/storm gate', () => {",
+      "test('foreign player and populated core loans refuse before native registration', () => {"
+    ]
+  },
+  {
+    "file": "test/elite-native-continuation.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('whole native continuation suffix refusal performs no controller, Core or binding mutation', () => {",
+      "test('borrowed native continuation retains raw state strings, signed zero and legacy elapsed', () => {",
+      "test('prepared native continuation pins concrete scopes, members, controllers and group arrays', () => {"
+    ]
+  },
+  {
+    "file": "test/elite-native-differential.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": []
+  },
+  {
+    "file": "test/elite-native-lifecycle.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native lifecycle binds the original population late and retains receiver, boot adoption and respawn order', () => {",
+      "test('pack creation retains offset then home assignment and retirement before the body', () => {",
+      "test('whole lifecycle row suffix refuses before any kernel allocation or owner effect', () => {"
+    ]
+  },
+  {
+    "file": "test/elite-output-entered.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('actual page import and original entered owner prepare effects without publishing or retargeting a hit', () => {",
+      "test('missing/null actor suffix and foreign controller refuse the whole native bank', () => {",
+      "test('a grid entry binds its live native frame after construction without retiring the elite output owner', async () => {"
+    ]
+  },
+  {
+    "file": "test/elite-roster-page.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a marsh roster binds its own drop and identities, and wakes no lair of its own', () => {"
+    ]
+  },
+  {
+    "file": "test/encounter-schedule.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the boss schedule retains committed target and emits a strike once', () => {",
+      "test('phase and arena rules are decided in the admitted module', () => {",
+      "test('mounted field refusal consumes numeric samples in AS without a second page rule', () => {"
+    ]
+  },
+  {
+    "file": "test/field-presentation.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "it('selected grass admission retains shared aliases and strict missing-file guards for either tier',()=>{",
+      "it('gives an unrelated orchard its own field, mood and texture lifetime',()=>{",
+      "it('refuses unbounded field draws and invalid capture bounds before allocating',()=>{"
+    ]
+  },
+  {
+    "file": "test/forager-draw.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('orchard sentries project due native poses and keep the actual continuation untouched',()=>{",
+      "test('forager projection refuses callback rows and has no owner clock of its own',()=>{"
+    ]
+  },
+  {
+    "file": "test/grass-channel-files.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native bank is prepared once for the selected tier and taken once per build',async()=>{",
+      "test('missing, unsafe, inline, corrupt and truncated banks refuse without changing the old profile',()=>{"
+    ]
+  },
+  {
+    "file": "test/grass-profile-lifetime.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test(name, async () => {",
+      "test('an active grass profile shares and reloads only its disposed height texture', () => {"
+    ]
+  },
+  {
+    "file": "test/held-polearm-preparation.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('explicit spare geometry keeps admitted numeric state and native decision clocks without fetching a pool',async()=>{",
+      "test('eager default preloads the same complete pool and builds synchronously',async()=>{",
+      "test('owner retirement during first pool read prevents visual construction and publication',async()=>{"
+    ]
+  },
+  {
+    "file": "test/held-slot-authors.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('complete mounted, reward and slot types retain the defining schemas and every original wire byte', () => {",
+      "test('native registration, destination, refill, upgrade and JSON refusals still run at author admission', () => {",
+      "test('actual loadout row admission imports no native renderer or weapon service', () => {"
+    ]
+  },
+  {
+    "file": "test/held-slot-metadata.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('metadata is pinned to actual product/id/rows/file and cold lookup performs no preparation',()=>{",
+      "test('preparation retains blade then polearm then original book and one original packed decode',async()=>{",
+      "test('retirement at the first source yield refuses the rest of preparation and readiness',async()=>{"
+    ]
+  },
+  {
+    "file": "test/held-slot-native.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('finite slot construction, registration, selection and native reward ordering match the original arsenal',async()=>{",
+      "test('cold slots retain original concrete metadata and never prepare or read an asset',()=>{",
+      "test('whole registration preflight refuses a malformed suffix before any metadata effects',()=>{"
+    ]
+  },
+  {
+    "file": "test/held-weapon-laws.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "it('queues edges until the next 100 ms snapshot and covers the thrust window',()=>{",
+      "it('keeps desktop tap throws, held release and dry ammunition distinct',()=>{",
+      "it('limits lance contacts by cone, closing speed and per-target rehit',()=>{"
+    ]
+  },
+  {
+    "file": "test/isolated-shard-nalati-ground-values.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('Nalati ground source emits an isolated declaration',()=>{",
+      "test('Nalati ground declaration preserves the mutable source contract',()=>{"
+    ]
+  },
+  {
+    "file": "test/keeper-elite-page.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('independent marsh encounter binds the approved pouncer policy, body and drops from data', () => {",
+      "test('an independent marsh herd encounter adopts native bodies and follows AS tells and rewards', () => {"
+    ]
+  },
+  {
+    "file": "test/manifest-scalar-blocks.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('raw manifest declarations perform no reads and publish the original native field only after preparation',async()=>{",
+      "test('a malformed suffix or absent named block leaves every manifest sampler closed',async()=>{",
+      "test.each(['scope','ancestor','sliced','reader','hasFile','identity','intake'] as const)('raw intake refuses a retired or replaced %s after an await',async(kind)=>{"
+    ]
+  },
+  {
+    "file": "test/melee-author-base.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the complete shared melee base retains original order, rich poses and detached ownership', () => {",
+      "test('the thrown author parser retains the complete native item policy and refusal boundary', () => {",
+      "test('the actual shared author base is renderer-free in a fresh Node realm', () => {"
+    ]
+  },
+  {
+    "file": "test/model-pose-author-boundary.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('model pose owns independent matrices and the original YXZ placement convention', () => {"
+    ]
+  },
+  {
+    "file": "test/mounted-entry.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('mounted kit borrows the original prepared arsenal before ordinary kit consumers', async () => {",
+      "test('missing and retiring mounted owners refuse before registration', async () => {",
+      "test('the same arsenal can register a fresh entered kit after the old borrower leaves', async () => {"
+    ]
+  },
+  {
+    "file": "test/mounted-kit-loan.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each([false, true])('the scoped arsenal lends the SAME built kit and refuses a retiring owner (ancestor: %s)', async ancestor => {",
+      "test.each(['scope','product','source','items','game','runtime','world','app','equipment'] as const)(",
+      "test.each([false,true])('a build result cannot publish after retirement (ancestor: %s)',async ancestor=>{"
+    ]
+  },
+  {
+    "file": "test/mounted-loadout.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the entered kit retains its authored native slots and reward identities',()=>{",
+      "test('an orchard declares independent tools and cannot inject selection or constructors',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-adventure-errors.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('saved projections propagate the original quest/save listener failure', () => {",
+      "test('typed elite reads recover only read failures and do not publish flags', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-audio-data.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('Nalati audio data emits exactly the original section bytes',()=>{",
+      "test('music fallback, ordered ambience and voice effect precedence stay unchanged',()=>{",
+      "test('the original public audio parser still refuses malformed literal rows',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-author-catalogue.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('all 53 author headers retain complete runtime catalogue metadata', async () => {",
+      "test('author headers bundle without runtime specimen or product loading', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-balbal-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('native carving inputs preserve the complete original balbal catalogue and encounter sites', () => {",
+      "test('balbal declaration construction remains one config-safe author chunk', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-body-author-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('author body ports retain native rig, dimension and complete geometry-input fields', () => {",
+      "test('owned noise and RNG inputs retain all 27 original bodies and every native byte', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-boot-inventory.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('explicit authored boot paths retain every original ordered mode', () => {",
+      "test('pre-admission Nalati rows retain ordered boot and late reads for every tier and texture mode', () => {",
+      "test('offline presence preserves coat order, phone fallback and late-read timing', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-camp-containment.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the real camp owns its manual joints and preserves poses in a translated grid cell',async()=>{",
+      "test('a skin borrowing a bone from another cell is still refused',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-camp-fallback.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "it('refuses a missing prepared skin instead of publishing a substitute camp', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-camp-people-rows.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the camp card retains the original public order, labels and one atlas per person', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-channel-compaction.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('identical pure expressions share slots without changing recurrence or signed zero', () => {",
+      "test('eager invalid arithmetic still refuses without publishing the next local', () => {",
+      "test('shipping pose and weather DAGs preserve every evaluated output', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-coat-pages.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "it(`paints every ${tier} coat page exactly as the committed lossless page`, async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-complete-author-data.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('offline metadata retains complete native atlas, elite, keyed-look and course types', () => {",
+      "test('course admission keeps the complete native output and non-schema program refusals', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-contact-files.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('both POI tiers preserve every packed point and ordered origin through named binary intake',async()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-course-binary.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the course publishes its bytes through normal named-module admission', () => {",
+      "test('the raw course preserves original projections and refuses absent, foreign and retired loans', () => {",
+      "test('the raw course cache refuses inline, incomplete and changed executable contracts', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-cover-model-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the cover producer preserves every original output without public painted models or repeated authored reads', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-crag-bake.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "it('the phone bank retains every original word without desktop payload or input mutation',async()=>{",
+      "it('a tier gap or incomplete compressed crag bank refuses before publication',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-crag-provenance.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": []
+  },
+  {
+    "file": "test/nalati-data-runtime.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('Nalati compiled entry preserves original native binds, section authority, runtime cost and home retention', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-day-channels.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "it('projects authored day, golden and moon keys into the shared live palette', () => {",
+      "it('keeps twilight continuous and emits an admitted sky material graph', () => {",
+      "it('samples every day interval against the authored colour and baseline coefficients', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-decorative-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('owned decorative cold bytes and detached cache hits equal both original profile wires', async () => {",
+      "test('missing terrain and missing, empty or extra cache outputs refuse', async () => {",
+      "test('the owned decorative source bundles as one config-safe chunk', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-dressing-contract.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('all sixteen complete dressing wire grammars retain their before-edit byte pins', () => {",
+      "test('dressing admission retains native strict fields, exact optionals and tuple truncation', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-dressing-geometry.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('geometry-only construction preserves every original dressing wire byte', () => {",
+      "test('later geometry builds retain independent complete bytes', () => {",
+      "test('native geometry construction has no scene material or runtime dependency', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-dressing-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('owned native inputs preserve complete sampled and continuous dressing before any page selection', () => {",
+      "test('input binding refuses foreign terrain, missing fields and malformed pond without a page fallback', () => {",
+      "test('the complete native input binding remains one config-safe author chunk', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-dressing-placement-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('fresh and persistent placement rows retain all eighteen complete native predecessor files with detached loans', () => {",
+      "test('missing native terrain and incomplete, extra or empty placement inventories refuse', async () => {",
+      "test('the whole native placement producer stays in one publication-free author chunk', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-dressing-product.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('prepared ambient rows keep both tier populations and finite flight at 10 Hz', () => {",
+      "test('Nalati ships live scatter groups and preserves native support populations', async () => {",
+      "test('numeric dressing tables retain every authored double and reject corrupt payloads', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-dressing-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('native dressing owns complete original cold bytes and independent cache hits without file inputs', async () => {",
+      "test('missing, empty and extra owned dressing files refuse', async () => {",
+      "test('the native program stays one config-safe chunk with only its original codecs', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-dressing-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('source dressing leaves native forest and meadow inputs unchanged', () => {",
+      "test('source dressing needs no selected world or installed terrain', () => {",
+      "test('the complete dressing source is one config-safe author chunk', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-entry-construction.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the declared plan constructs the original elite and night owners once after assembly',async()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-figure-late-source.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('only individual Explorer variants defer; the live merged camp and original atlas images stay eager', () => {",
+      "test('a shared entered atlas or non-atlas card cannot defer an early-play source', () => {",
+      "test('real card registration retains every variant without resolving a skin before a view asks for it', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-flock-view.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('orchard crowd lends live poses to the shared draw and keeps prey and paused uploads authoritative', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-gear-catalogue.test.ts",
+    "disposition": "ran",
+    "reason": "Actual Nalati authored content/course crosses released format, author compiler or runtime interfaces; private parity pins removed.",
+    "evidence": [
+      "test('authored gear cards publish their metadata with content identities', () => {",
+      "test('authoring admission retains strict malformed, duplicate and missing-model refusals', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-grass-files.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native publication supplies every file declared by its grass profile',()=>{",
+      "test('raw grass profiles preserve full height and field layouts and reject missing files before texture allocation',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-grass-native.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test(`${tier} preserves all three native scene declarations`,()=>{",
+      "test(`${tier} native publication preserves every channel and metadata field without encoding`,()=>{",
+      "test('publisher mutation and failure cannot change later grass construction',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-group-derivation.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('live wildlife restores every native group byte and ordered guest declaration', () => {",
+      "test('a divergent guest programme cannot be silently removed or shadow its wildlife owner', () => {",
+      "test('the complete original group parser still refuses invalid contacts and adoption', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-held-metadata.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('explicit held program inputs reproduce both complete original documents', () => {",
+      "test('each composition and program signal owns detached source rows', () => {",
+      "test('native source admission retains complete metadata and refuses malformed executable charges', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-held-species-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test(omitted === undefined ? 'source-owned held metadata retains both complete original documents without any species publication'"
+    ]
+  },
+  {
+    "file": "test/nalati-herd-v2.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each(modes)('%s: cold native drives retain original per-member effects and continuation',mode=>{",
+      "test('a native steering effect can mutate the group before the same horse tail resumes',()=>{",
+      "test('charge contact and stampede keep same-call hurt, knockdown, sound and state barriers',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-item-adoption.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('Nalati native adoption retains old saved slots, ammo owners, presentation and profile refusal', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-king-continuation.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a victory checkpoint waits only with bounded neutral inputs for an actually live contact',()=>{",
+      "test('an unopened King remains closed without actors, entropy or encounter effects',()=>{",
+      "test('the original portal earns entry, locks the intro and lends detached observations',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-king-controls.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each([{}, {pose:4,rise:-0,cape:0,crown:0,floorY:-0}])('unbound King initialization matches the original controls (%j)',initial=>{",
+      "test('arena species initialization uses ordered alternate rows and refuses ambiguous fields',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-kokpar-binary.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('predecessor script order retains every raw compiler field and refuses metadata changes', () => {",
+      "test('the quest and bow guest names its shipped module and shares one program',()=>{",
+      "test('the original named ABI1 module ships as the build program blob, every byte unchanged',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-kokpar.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "it('matches frozen round rules at 10 Hz while carrying poses stay per frame', () => {",
+      "it('an orchard delivery uses its own shape, program profile and quest effects',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-kurgan-data.test.ts",
+    "disposition": "ran",
+    "reason": "Actual Nalati authored content/course crosses released format, author compiler or runtime interfaces; private parity pins removed.",
+    "evidence": [
+      "test('Kurgan phases descend through bounded health thresholds and share the encounter frame', () => {",
+      "test('Kurgan hazards and cuts retain finite damage, timing and their declared strike bindings', () => {",
+      "test('Kurgan keeps its named reward on the pedestal and respawns at its checkpoint', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-layout-bake.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('live profile and clearance consumers keep exact authored answers', () => {",
+      "test('all native terrain heights, including every edge, retain their bake', () => {",
+      "test('baked geography keeps bounded masks and complementary zones', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-look-graphs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test(\"Nalati's former GLSL programs validate as look graphs, compile and take their live params\", () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-map-model-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('native map models require no public painted inputs or repeated model reads', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-map-palette-contract.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the source palette retains the complete native sample/place contract', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-model-bindings.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('compiled support timing retains all published consumer aliases and source bytes',()=>{",
+      "test('desktop dressing warm excludes every shared or externally demanded named source', () => {",
+      "test('live phone annotation preserves every existing scene and catalogue field',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-model-late.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('desktop hints preserve native demand and critical dependency precedence', () => {",
+      "test('catalogue timing stays a closed data declaration with eager absence preserved',()=>{",
+      "test('painted alternative hints keep critical and shared dependency overrides', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-model-paint-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('cold and new-context cache hits retain all original bytes and detached ownership', async () => {",
+      "test('missing authored models retain a named refusal before painting', async () => {",
+      "test('selected consumers keep original bytes, detached hits and distinct cache identities', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-model-parts-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the complete part producer is one config-safe chunk with no publication services', async () => {",
+      "test('cold, detached persistent hits and changed source/program keys retain the defining complete parts', async () => {",
+      "test('invalid selection, undeclared roots, missing inputs and incomplete or altered cache files refuse', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-model-parts.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test.each(pins)('separates $file with every original geometry byte and decoded atlas pixel', async pin => {",
+      "test('refuses malformed extents, incomplete atlas declarations and a changed sampler without mutating inputs', async () => {",
+      "test('refuses shared atlas views and dangling declarations before texture compilation', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-native-creature-view.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native creature heights retain page guest arithmetic and a complete restored death suffix',async()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-native-dressing-reader.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('native Node authors preserve every original continuous-forest placement with no generated-row reads or page selection', () => {",
+      "test('the grass keep-outs read only the native lattice, never generated dressing rows', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-native-place-fixture.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('source-fenced native place loans retain all fresh bytes and isolate mutations', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-native-readings.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the elder only grants his authored introduction when the real reading completes in reach',async()=>{",
+      "test('the moving child uses his live orbit prompt and restores its actual continuation',async()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-output-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('ordered owned floors and all declared raw inputs preserve exact normal SDK intake on cold and hit', async () => {",
+      "test('missing, extra, oversized, changed and unsupported source inputs refuse', async () => {",
+      "test('the raw input author module is one config-safe chunk without file services', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-pack-group.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('pack fixture copies preserve an independent compile after caller mutation', async () => {",
+      "test('the pack program runs the original circling-pack law tick for tick', { timeout: 600_000 }, async () => {",
+      "test('drive observes terrain after its native steering barrier', { timeout: 120_000 }, async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-page-roster-product.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('proof-only native physics stays byte-exact and out of the entered warm', () => {",
+      "test('the shared assembly document retains the complete page elite roster and its contact lookup', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-painter-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('explicit native inputs retain all predecessor terrain channels, bounds, turns and blobs', () => {",
+      "test('the painter samples its supplied lattice, normal field and slab depth', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-pasture-v2.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the pasture programme keeps its exact ABI1 witness, shared by wind, fire and pasture', () => {",
+      "test('every pasture/wind/fire signal answers as the ABI1 witness on the same descriptor and borrowed RNG', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-people-loader.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": []
+  },
+  {
+    "file": "test/nalati-place-blob-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('cached held source metadata refuses a changed executable or compiled byte charge', async () => {",
+      "test('the actual output cache hit preserves all complete files without reconstructing a source', () => {",
+      "test('missing authored and owned bytes refuse before output publication', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-place-construction.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('fresh native POI keep-outs own their rows without selecting a world or retaining geometry', () => {",
+      "test('native dressing preparation does not read the old generated place rows', () => {",
+      "test('the retired dressing CLI refuses publication rather than rebuilding handoff files', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-place-parts.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('all three detached parts preserve every shipping word, geometry row and source byte', () => {",
+      "test('padding, index words and every missing/ambiguous/out-of-range part retain strict admission', () => {",
+      "test('part extraction remains one config-safe author chunk', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-place-wire.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test(`the pure ${name} wire preserves every committed geometry and metadata byte`, () => {",
+      "test('wire lanes select only the original view and preserve the source backing', () => {",
+      "test('incomplete words retain the native producer refusal', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-places-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('fresh owned places stay service-free and cache hits isolate caller mutations', () => {",
+      "test('shipping places preserve every byte with the original and memoized codecs', () => {",
+      "test('missing terrain and incomplete or extra cached outputs refuse', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-poi-paint-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('owned POI paint preserves all sixteen complete predecessor files on cold and cached loans', async () => {",
+      "test('POI cache retains native identity and all authored inputs; incomplete loans refuse', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-poi-paint.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "it('retains native fitted rock and glacier attributes, bounds and contact order', () => {",
+      "it('retains every parent vertex, normal, colour, UV, index and bound', () => {",
+      "it('keeps the two shepherd material slots and independent animated arm', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-quest-content-product.test.ts",
+    "disposition": "ran",
+    "reason": "Actual Nalati authored content/course crosses released format, author compiler or runtime interfaces; private parity pins removed.",
+    "evidence": [
+      "test('Nalati compiles its chapters, camp dialogues, placements and discovery into its product', () => {",
+      "test('compiled Nalati chapters resume old flag saves at every step and retain elder dialogue', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-quest-prop-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('computed carried-prop geometry and admitted material preserve the whole original declaration', () => {",
+      "test('supplied prop declarations retain the complete carried quest with strict refusal', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-recurve-source-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('recurve author policy retains original native tuning without the wind strategy', () => {",
+      "test('the full recurve pool and every emitted row retain their original bytes', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-reins-card.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the reins card uses its authored ribbon counts, material and standing bounds',()=>{",
+      "test('raw producer calls own detached bytes and declarations',()=>{",
+      "test('both cover books depend on their packed shapes and one shared reins binary',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-render-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the owned render cache preserves current cold bytes and isolated persistent hits', async () => {",
+      "test('missing native input and incomplete cached render publications refuse', async () => {",
+      "test('the scheduler and every original render handoff remain retired', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-render-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the terrain publication covers the native grid with current content identities', () => {",
+      "test('independent construction owns its bytes after an earlier result is mutated', async () => {",
+      "test('the shipped I3 publication is the pinned one with its L0 ground compacted', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-render-tiles.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('bakes repeatable native ground tiles with every painter channel and the unchanged collision witness', () => {",
+      "test('restores both native terrain draws with exact typed channels and index storage', async () => {",
+      "test('moves the water draw out of private JSON without changing its GPU channels', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-riding-rules.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('approach selects the closest eligible live stallion and spends trust from observations', () => {",
+      "test('native binding completes five rounds, adopts once, and restricts the second bond to Argymaq', () => {",
+      "test('throwing applies health and trust effects; mid-round numeric state reconnects without spawning', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-rig-group-author-ports.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('pack and hull author ports retain complete native mutable types and original wires', () => {",
+      "test('all eighteen rig reads retain their original tier URLs and require one declared source', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-road-signs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('native sign anchors retain every original coordinate, label and bearing in order', () => {",
+      "test('sites and boards detach while ground calls retain authored order', () => {",
+      "test('the native paint producer preserves every original output without reading places metadata', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-row-author-ports.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('Nalati author ports retain complete native types and defining schema identities', () => {",
+      "test('actor admission retains JSON, ABI2 and declared signal/field/channel refusals', () => {",
+      "test('all four complete original author wires retain their bytes and order', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-runtime-fixture.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('native test metadata retains the complete original runtime wire', () => {",
+      "test('frozen shape and floor oracles retain every original writer byte', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-runtime-values.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('frozen placement metadata retains both complete original file hashes', () => {",
+      "test('source values retain every predecessor metadata field and complete floor byte', () => {",
+      "test('separate source builds own their metadata and floor backing', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-sabre-pool.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('re-entry rehydrates an evicted real blade pool before synchronous consumers',async()=>{",
+      "test('baked sabre preserves every move, contact, mounted coefficient and mutable geometry channel', async () => {",
+      "test('Nalati gear rows decode all eight cards and independent bow paints', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-scatter-pages.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('all sixteen full native lists reconstruct byte-exact; both numeric files stay identical', () => {",
+      "test('every original row grammar remains authoritative before native page packing', () => {",
+      "test('bounded whole pages refuse duplicates, wrong members and malformed unused lists', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-senses.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native and page probes preserve the original sensory boundaries in Nalati AS', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-setup-scalars-dom.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('DOM setup retains native filesystem scalar construction and every source byte', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-setup-scalars.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('shared setup retains every byte of a fresh current scalar construction', async () => {",
+      "test('separate scalar loans own their bytes after another caller mutates its result', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-sheep-product.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "it('keeps every frozen sheep vertex, rig weight, index and animation bound exactly', async () => {",
+      "it('refuses truncated product bytes before a flock can build', async () => {",
+      "it('keeps the Explorer sheep setup draws, wool and pose on the declared owner', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-sky-author-ports.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('sky authors use the exact defining metadata object and complete channel port', () => {",
+      "test('every original day, initial, schema and channel program byte remains unchanged', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-spear-pool.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('baked spear retains all geometry channels, poses, coefficients and independent copies', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-species-body-packing.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('pure packing preserves all 27 bodies, complete metadata and original compressed bytes with detached results',()=>{",
+      "test('pairing a 65-part list widens rebased indices and retains both material groups',()=>{",
+      "test('truncated bytes, incomplete layouts, fractional counts and corrupt indices refuse',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-species-boot-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('authored pose rows retain the entire original serialized graph and parsed header channels', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-species-look-preparation.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('source look preparation preserves the complete original metadata and JSON assignment order', () => {",
+      "test('metadata loans own every nested input and rebuild without sharing authored state', () => {",
+      "test('the actual source constructor preserves all five complete original files', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-species-preparation.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('explicit source composition reproduces all five complete original files and both original modules', async () => {",
+      "test('rebuilding has no shared byte or metadata loan after a prior result is mutated', async () => {",
+      "test('missing supplied AS refuses before a guest can be admitted despite complete original files on disk', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-species-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('cold, persistent and rebuilt species preserve all five original files and detached loans', () => {",
+      "test('empty, partial, extra and empty-byte persistent species inventories refuse before admission', async () => {",
+      "test('the species reader author bundle has no compiler or filesystem dependency', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-state-intake.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the shipped world assembly King intake retains its attack owner before weather is published',async()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-strike-assembly.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('Nalati admitted elite contacts retain every original shape and cover refusal', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-strike-data.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('strike data retains every original ordered key, exact f64 value and emitted row',()=>{",
+      "test('native strike admission keeps strict shape and damage refusals',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-taming-pose.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('numeric horse rows draw finite rear, buck, mane and wind overlays on native joints', () => {",
+      "test('legacy transforms refuse missing, reordered and invalid joints without changing the pose', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-terrain-source-contract.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the author field retains the complete mutable native terrain port and bounds', () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-titan-binary.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the standard named-file reader ships that exact admitted module',async()=>{",
+      "test('attack and rules borrow one selected module from the original live owner',()=>{",
+      "test('raw witnesses retain hash and ABI1 admission before selected construction',()=>{"
+    ]
+  },
+  {
+    "file": "test/nalati-titan-fire-view.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each(['direct', 'prepared'] as const)('the fire module draws the original flames, rolls smoke, appends scorch and clears on a reset (%s memory)', async mode => {"
+    ]
+  },
+  {
+    "file": "test/nalati-titan-graph.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test(\"the Storm Titan's cloud, flame and smoke graphs validate, compile and take their live params\", () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-titan-whirls-view.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the whirl module draws the funnels and their debris as the original update did', async () => {"
+    ]
+  },
+  {
+    "file": "test/nalati-weather-shelters.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native weather admits current camp shelters without a physics-bake field',()=>{",
+      "test('owned collider rows preserve original shelter order and detach every circle',()=>{",
+      "test('shelter bounds and strict square deduplication retain the original boundary behavior',()=>{"
+    ]
+  },
+  {
+    "file": "test/named-json-arena-script.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('real arena payloads have one defining schema at production and product read',async()=>{",
+      "test('timed encounter admission bounds rosters before native owners allocate',async()=>{",
+      "test('cloud specimen file admission refuses invalid materials and puff capacity',async()=>{"
+    ]
+  },
+  {
+    "file": "test/named-json-nalati-dressing.test.ts",
+    "disposition": "engine",
+    "reason": "Engine named-JSON reader refusal paired with an authored schema; preserve for engine admission port.",
+    "evidence": [
+      "test('Nalati dressing schemas reject a corrupt field and an unregistered producer', async () => {"
+    ]
+  },
+  {
+    "file": "test/native-elite-assembly.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('actual native elite declarations construct, bind and install the same engine owners in order', () => {"
+    ]
+  },
+  {
+    "file": "test/native-elite-save-schema.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native member admission preserves strict pack fields and original continuation bytes',()=>{"
+    ]
+  },
+  {
+    "file": "test/native-ground-block.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('raw floor admission is explicit, strict and bounded; original callers retain their grammar',()=>{",
+      "test('the same native reader owns copied raw f32 bytes and retains memoized output',()=>{",
+      "test('missing, mismatched, malformed and short floor blocks publish no decoded result',()=>{"
+    ]
+  },
+  {
+    "file": "test/native-riding.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('G478 orchard native fixture owns and restores its actual mounted capsule', async () => {",
+      "test('a bot takes its own seat: its own horse, reins, save and fall, and the lead stays on foot', async () => {",
+      "test('a player who leaves mid-ride lets their horse go', async () => {"
+    ]
+  },
+  {
+    "file": "test/open-arena-lifecycle.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('shared open lifecycle preserves original native owners, input barrier and reward order',()=>{"
+    ]
+  },
+  {
+    "file": "test/open-arena-room.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a page that steps no fight draws what this one says', () => {",
+      "test('the Titan\\'s contacts land on the bot past the wall, not the lead standing off', () => {",
+      "test('J104: the players past the wall at the start set the heart\\'s curve, and a contact shares from five', () => {"
+    ]
+  },
+  {
+    "file": "test/painted-world-stages.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a fixed-draws stage loads the world\\'s one original library once a page and lends it by id', async () => {",
+      "test('a world retired at entry, or retiring through an ancestor\\'s steps, loads nothing and publishes nothing', async () => {",
+      "test('a world that leaves or swaps its library during the load publishes nothing', async () => {"
+    ]
+  },
+  {
+    "file": "test/painted-world.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a painted world refuses executable or malformed rows', () => {",
+      "test('a level builds its painted world once a page and its world wiring reads the same parts by slug', () => {",
+      "test('product look awaits every selected grass file through its original receiver before publishing',async()=>{"
+    ]
+  },
+  {
+    "file": "test/population-bake.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('named metadata and stock bake intake retain values and own decoded terrain buffers',async()=>{",
+      "test('stock intake refuses broken native rosters and the retired metadata selector',()=>{",
+      "test('Product.json refuses canopy count, nonnumeric, unknown and forager metadata errors',async()=>{"
+    ]
+  },
+  {
+    "file": "test/projected-trail.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('an unrelated prediction ribbon pads its endpoint and follows its own fade row',()=>{",
+      "test('the held variant declares the existing ribbon topology and brightness',()=>{"
+    ]
+  },
+  {
+    "file": "test/quest-chapter-view.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each(['figures', 'taming', 'arena', 'fight'])('replacing %s during admission refuses before constructing figures or chapter views', async slot => {",
+      "test('chapter policy admits only bounded finite observation sources and clocks', () => {",
+      "test('embedded original figures use the same admission and concrete entered loans', async () => {"
+    ]
+  },
+  {
+    "file": "test/quest-reading-roster.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the W3 camp roster can borrow its actual page talks and clock without a native save owner', () => {"
+    ]
+  },
+  {
+    "file": "test/rein-ribbon.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each([['steppe', rows], ['orchard mule', orchard]] as const)('%s rows draw camera-attached straps, drop and release', (_name, profile) => {",
+      "test('the strap follows all three Catmull-Rom spans and keeps its authored width', () => {",
+      "test('orchard mount rows sample their own skeleton and weighted muzzle without a view hook',()=>{"
+    ]
+  },
+  {
+    "file": "test/reins-geometry-bake.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "test('the geometry-only reins bake retains native channels and detached ownership', () => {",
+      "test('rein policy and anchor admission retain the native finite and bounded refusals', () => {"
+    ]
+  },
+  {
+    "file": "test/return-program-v2-owner.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('selected attack/rules share the original module owner and instantiate only v2',()=>{",
+      "test('owned snapshots leave cached caller bindings detached and mutable',()=>{",
+      "test('containing return admission retains every V2 cross-field refusal',()=>{"
+    ]
+  },
+  {
+    "file": "test/return-projection-v2.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('Titan dual port retains exact public ABI1 bytes and admits a project-only candidate',()=>{",
+      "test('the full hostile output bank refuses atomically and rewinds for the next call',()=>{",
+      "test('every original Titan signal preserves f64 outputs, candidate order and borrowed RNG',()=>{"
+    ]
+  },
+  {
+    "file": "test/riding-course.test.ts",
+    "disposition": "ran",
+    "reason": "Actual Nalati authored content/course crosses released format, author compiler or runtime interfaces; private parity pins removed.",
+    "evidence": [
+      "test('course admission refuses executable fields and an invalid guest before drawing',()=>{"
+    ]
+  },
+  {
+    "file": "test/riding-platform.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each([",
+      "test('mount presentation uses the owned clock and cosmetic stream', () => {",
+      "test('idle mount grazing advances with simulation time and stays fixed when paused', () => {"
+    ]
+  },
+  {
+    "file": "test/scene-dressing-bake-file.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each(['valid','missing','truncated','corrupt','address'] as const)('logical lane bakes preserve geometry and refuse invalid input before publication (%s)',async failure=>{"
+    ]
+  },
+  {
+    "file": "test/scene-dressing-owner.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a welded dressing row installs under its declared owner after await instead of borrowing the ambient owner', async () => {"
+    ]
+  },
+  {
+    "file": "test/scene-dressing-rows.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('tier-specific crag transport changes only the phone file binding',()=>{",
+      "test('a cold baked bank settles before dressing and its Explorer clone are published',async()=>{",
+      "test.each([['geometry','world'],['geometry','retire'],['geometry','length'],['lettering','world'],['lettering','retire'],['lettering','length']]as const)('raw %s refuses %s changes"
+    ]
+  },
+  {
+    "file": "test/scene-numeric-table.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('numeric tables retain exact float64 values, key order and refusal bounds', () => {",
+      "test('sliced binary scatter retains selection and rejects a late excluded invalid row before drawing', async () => {",
+      "test('direct scatter decode preserves canonical fields, float64 values and strict refusals', () => {"
+    ]
+  },
+  {
+    "file": "test/shards/nalati-grasslands/model-paint.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private geometry/byte/grammar parity, generator/cache inventory, validator identity, source/type shape or original ordering pins.",
+    "evidence": [
+      "it('owns all 43 original GLBs in one publication-free author bundle', async () => {",
+      "it('prefetches creature rigs while painted near and far models use product files', () => {",
+      "it.each(MODEL_FILES)('roundtrips exact channels, fitted paint and atlas: %s', async file => {"
+    ]
+  },
+  {
+    "file": "test/slot-heights.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a dying body\\'s sink carries through a save, and a live body saves nothing',async()=>{"
+    ]
+  },
+  {
+    "file": "test/spawn-script-v2.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('production PAGE SpawnScript executes compiled v2 on the SAME adopted native body and staged authority', async () => {",
+      "test('frame observation refusals keep the prior complete input and read ignored getters once', async () => {",
+      "test('old SpawnScript saves migrate pending inputs at their old tick and v2 re-saves are byte-exact', async () => {"
+    ]
+  },
+  {
+    "file": "test/species-look-book.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('orchard creature data owns body copies and look identities without control hooks',async()=>{"
+    ]
+  },
+  {
+    "file": "test/stealth-sources.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('native rosters preserve original bounds, order, ties, missing flags and f64 positions',()=>{",
+      "test('an unrelated source row changes ordering, limits and native exclusions without code',()=>{",
+      "test('mount and taming observations preserve false and zero-valued trust exactly',()=>{"
+    ]
+  },
+  {
+    "file": "test/taming-script-admission.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('mounted ABI2 replaces one executable in the complete return/spawn inventory and names its ABI1 witness',async()=>{"
+    ]
+  },
+  {
+    "file": "test/titan-clock-frame.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('joint schedule retains the original ABI1 witness bytes',()=>{",
+      "test('every mask, phase and spear mode preserves ordered schedule state and RNG including signed zero',()=>{",
+      "test.each([{capacity:1,every:100},{capacity:2,every:.1},{capacity:8,every:.1}])('original irregular slots, resets, full/empty trail and first-free landings remain exact (%j)',({cap"
+    ]
+  },
+  {
+    "file": "test/titan-whirl-gate.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test.each([[1.2,3],[4,2],[0,1],[-1,2]])('same-slot AS gate preserves original laws, shared cooldown and ground order (ease %s, count %s)',(ease,count)=>{",
+      "test('signed-zero gate operands and sparse arm frames keep their exact original arithmetic',()=>{",
+      "test('retention maps output channels to distinct native state slots',()=>{"
+    ]
+  },
+  {
+    "file": "test/weather-every-player.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('one bolt hurts each player it lands on, not the lead by name', async () => {",
+      "test('each player has their own shelter and a bolt close by but overhead misses', async () => {",
+      "test('the storm turns to each player in join order and saves whose turn it is', async () => {"
+    ]
+  },
+  {
+    "file": "test/weather-port.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a view reads the server sky off the wire, and hears its bolts', async () => {"
+    ]
+  },
+  {
+    "file": "test/wild-every-player.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('a forager answers to the watcher beside it, not the one the frame names', () => {",
+      "test('a creature reads the pace of the player it deals with, and a room saves every pace', async () => {",
+      "test('alone, the pace saves as it always did', async () => {"
+    ]
+  },
+  {
+    "file": "test/world-arena-script-stage.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('the arena stage admits finite ids and files without a callback, phase or extra slice', () => {",
+      "test('missing original context, point or published storm refuses before either named read', async () => {",
+      "test('the real original constructor, storm, air, point, AS state and random continuation stay exact', async () => {"
+    ]
+  },
+  {
+    "file": "test/world-update-inputs.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "evidence": [
+      "test('audio rows retain the exact original event, numeric reads, doubles and system order',()=>{",
+      "test('skin grants retain original initial tick, reset cadence, set order and frame order',()=>{",
+      "test('missing suffix loans refuse before any system or event publication',()=>{"
+    ]
+  }
+]

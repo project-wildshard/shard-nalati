@@ -1,55 +1,19 @@
 import { expect, test } from 'vitest';
-import { parseChapterStoryPresentation } from '@wildshard/format/questStory';
-import { Flags } from '../src/shared/engine/world/interact/flags';
-import { QuestState, lineFor } from '../src/shared/engine/quest/core';
-import { preparedProductEnvelope } from './fixtures/prepared-product-envelope';
+import { parseQuestData } from '@wildshard/format/quests';
+import { Flags } from '@wildshard/engine/world/interact/flags';
+import { QuestState, lineFor } from '@wildshard/engine/quest/core';
 import feats from '../src/shards/nalati-grasslands/data/feats.json' with { type: 'json' };
 import content from '../src/shards/nalati-grasslands/data/questContent.json' with { type: 'json' };
-import { NALATI_KOKPAR as kokpar } from './fixtures/nalati-kokpar';
-import source from './fixtures/nalati-product-source';
-import chapters from '../src/shards/nalati-grasslands/data/chapterStory.json' with { type: 'json' };
-import view from '../src/shards/nalati-grasslands/data/chapterView.json' with { type: 'json' };
-import { peopleRows as figures } from '../src/shards/nalati-grasslands/generators/peopleRows.mjs';
+const quests = parseQuestData({ ...content.quests, achievements: feats });
 
-// The normal prepare compiled the source; keep the complete verified index and
-// original assertion bytes without rebuilding the author during collection.
-const nalatiEnvelope=await preparedProductEnvelope('nalati-grasslands', name=>name==='quests/content.json'||name==='quests/chapters.json');
-
-test('Nalati compiles its chapters, camp dialogues, placements and discovery into its product', () => {
-  const { achievements, ...quests } = source.quests;
-  expect(quests).toEqual(content.quests);
-  expect(achievements).toEqual(feats);
-  expect(content.quests.quests.length).toBeGreaterThan(0);
-  expect(Object.keys(content.people).length).toBeGreaterThan(0);
-  expect(content.places.length).toBeGreaterThan(0);
-  for (const npc of Object.values(content.npcs)) expect(npc.dialogue.length).toBeGreaterThan(0);
-  const loaded=nalatiEnvelope;
-  expect(loaded.shard.quests).toEqual(source.quests);
-  const file = loaded.output.namedFiles?.find(row => row.name === 'quests/content.json');
-  const bytes = file === undefined ? undefined : loaded.assets.get(file.hash);
-  if (bytes === undefined) throw new Error('Missing compiled Nalati quest content');
-  // the camp's figures (their atlas frames) ride with the chapter view since C5 closed (253419b72e)
-  expect(Object.keys(figures).length).toBeGreaterThan(0);
-  expect(JSON.parse(new TextDecoder().decode(bytes))).toEqual({ figures, npcs: content.npcs, places: content.places, program: kokpar.program, view });
-  const module = loaded.output.namedFiles?.find(row => row.name === 'behaviour/nalati.kokpar.wasm');
-  expect(module?.hash).toBe(kokpar.program.script.module.split('/').at(-1)?.slice(0, -5));
-  expect(module?.critical).toBe(true);
-  const chapterFile = loaded.output.namedFiles?.find(row => row.name === 'quests/chapters.json');
-  const chapterBytes = chapterFile === undefined ? undefined : loaded.assets.get(chapterFile.hash);
-  if (chapterBytes === undefined) throw new Error('Missing compiled chapter presentation');
-  const { decision, ...display } = parseChapterStoryPresentation(JSON.parse(new TextDecoder().decode(chapterBytes)));
-  const { decision: authoredDecision, ...authoredDisplay } = chapters;
-  expect(display).toEqual(authoredDisplay);
-  expect(decision).toEqual(authoredDecision);
-  const readings = Object.values(decision?.actions ?? {}).flat().filter(effect => effect.kind === 'reading');
-  expect(readings.map(reading => reading.lines)).toEqual(content.carvings);
-  const eliteReads = Object.values(decision?.observations ?? {}).filter(row => 'saved' in row.source && row.source.saved.record === 'elites').map(row => 'saved' in row.source ? row.source.saved.id : '');
-  expect(eliteReads).toEqual(content.featherElites.map(elite => elite.id));
-}, 30_000);
+test('authored Nalati quest content crosses public admission', () => {
+  expect(quests.quests.length).toBeGreaterThan(0);
+  expect(() => parseQuestData({ ...quests, quests: [{ id: 42 }] })).toThrow();
+});
 
 test('compiled Nalati chapters resume old flag saves at every step and retain elder dialogue', () => {
   const flags = new Flags('compiled-nalati-story', false);
-  for (const row of source.quests.quests) {
+  for (const row of quests.quests) {
     for (const flag of row.startWhen?.all ?? []) flags.set(flag);
     const quest = new QuestState(row, flags);
     try {

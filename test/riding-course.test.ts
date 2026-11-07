@@ -1,11 +1,19 @@
 import { expect, test } from 'vitest';
-import { NALATI_KOKPAR } from './fixtures/nalati-kokpar';
-import { ProjectedState, ReturnProgram } from '../src/shared/game/population/returnProgram';
+// oxlint-disable-next-line import/no-nodejs-modules -- Compile the same committed behaviour inputs as the author program.
+import { readFileSync, readdirSync } from 'node:fs';
+import courseSource from '@wildshard/sharddev/commons/scripts/course.as?raw';
+import { compileDecisionScripts } from '@wildshard/sharddev/buildDecisionScripts';
+import { nalatiKokparRows } from '../src/shards/nalati-grasslands/generators/kokparRows';
+const root = 'src/shards/nalati-grasslands/behaviour';
+const authored = new Map(readdirSync(root).filter(name => name.endsWith('.as')).map(name => [`behaviour/${name}`, readFileSync(`${root}/${name}`, 'utf8')]));
+const built = await nalatiKokparRows(compileDecisionScripts, authored, courseSource);
+const course = { ...built.rows.course, bytes: Buffer.from(built.courseWasm).toString('base64') };
+import { ProjectedState, ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
 import { parseRidingPractice } from '@wildshard/format/practiceCourseRows';
 import { horseCourseRows } from '../src/shards/nalati-grasslands/generators/courseScene';
 import { parseDecisionScripts } from '@wildshard/format/decisionScripts';
 
-const original = horseCourseRows(NALATI_KOKPAR.course);
+const original = horseCourseRows(course);
 const originalScript = parseDecisionScripts([original.program.script])[0];
 if(originalScript===undefined)throw new Error('Missing mounted course guest');
 // An unrelated orchard shard declares its own room, mount and guest parameters.

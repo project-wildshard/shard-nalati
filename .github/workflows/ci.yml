@@ -54,4 +54,5 @@ jobs:
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - run: pnpm test:shards
       - run: pnpm test:hooks
