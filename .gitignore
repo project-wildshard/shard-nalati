@@ -10,3 +10,11 @@ blob-report/
 .env.*
 # No worktrees here (D27); ignored so a stray one never gets committed.
 .claude/worktrees/
+
+# Lifted from singleplayer (P5).
+out/
+tmp/
+.cache/
+/public/assets/nalati-grasslands/map/top.webp
+/public/assets/nalati-grasslands/entry-reads.json
+/src/shards/nalati-grasslands/discovery.generated.ts
