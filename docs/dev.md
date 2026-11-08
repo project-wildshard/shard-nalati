@@ -54,3 +54,21 @@ goes in `tmp/<task>/` and is deleted when done.
 
 Bypasses are for the case they name, never for a red gate: fix the code,
 not the gate.
+
+## J198 prepared publications
+
+Builds emit drafts. Before publishing new bytes, run the packing recipe
+through the engine browser lane with the exact preparation preview:
+
+```sh
+WILDSHARD_PREPARATION_URL=http://127.0.0.1:<preview-port> \
+  ../engine/scripts/browser-lane.sh pnpm pack:shards
+```
+
+The recipe refuses an unprepared draft without that URL, or measures the
+draft in a fresh phone WebKit context before packing. The candidate must
+be the one admitted by that preview. Already prepared products can be
+packed again. Final engine cook refuses a different renderer. Format and
+SDK are immutable Git pins; generic legacy archive repair is separate.
+An API revision is published only after its validator accepts this SDK
+version. A local prepared tar is not a new published head.
