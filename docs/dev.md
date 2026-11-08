@@ -11,6 +11,9 @@ Run from the repo root.
 - `pnpm check`: typecheck + lint + format:check + unit tests + asks. The pre-push hook runs it.
 - `pnpm test`: `node:test` on `src/**/*.test.ts`, run as .ts by Node's type stripping.
 - `pnpm test:hooks`: the `.githooks/` suite (CI, and pre-commit when hooks change).
+- `node --test test/ci/navigation-ground.test.mjs`: after a real shard
+  build, prove all 65,536 wet samples match authored geography and that
+  shipped navigation keeps actual trails. CI only, outside hooks.
 - `pnpm lint:fix` / `pnpm format`: the hooks only check; these fix.
 - `node src/cli/main.ts --help`: the CLI without installing it.
 - `pnpm md:wrap`: rewraps Markdown prose to ~72 columns.

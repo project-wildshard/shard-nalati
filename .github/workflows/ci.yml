@@ -88,6 +88,8 @@ jobs:
       - run: pnpm test:shards
       - name: Admit the complete publishable product
         run: node --test test/ci/package-products.test.mjs
+      - name: Prove authored wet ground and shipped navigation
+        run: node --test test/ci/navigation-ground.test.mjs
       - if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: pnpm test:hooks
       - name: Name the commits this verdict covers
