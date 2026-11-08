@@ -4,18 +4,30 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      engine:
+        description: Exact candidate engine commit (empty keeps the pin)
+        type: string
+        default: ''
+      sharddev:
+        description: Exact candidate sharddev commit (empty keeps the pin)
+        type: string
+        default: ''
+  repository_dispatch:
+    types: [engine-candidate]
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.ref }}-${{ github.event_name }}-${{ inputs.engine || github.event.client_payload.engine }}-${{ inputs.sharddev || github.event.client_payload.sharddev }}
   cancel-in-progress: true
 
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch') && 5 || 15 }}
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
@@ -52,9 +64,28 @@ jobs:
           git config --global url."$base".insteadOf "https://github.com/"
           git config --global --add url."$base".insteadOf "git@github.com:"
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
-      - run: pnpm install --frozen-lockfile
+      - name: Select exact Ring 3 candidate
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine || github.event.client_payload.engine }}
+          CANDIDATE_SHARDDEV: ${{ inputs.sharddev || github.event.client_payload.sharddev }}
+        run: node scripts/select-candidate.mjs
+      - name: Install pinned or candidate dependency graph
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine || github.event.client_payload.engine }}
+          CANDIDATE_SHARDDEV: ${{ inputs.sharddev || github.event.client_payload.sharddev }}
+        run: |
+          if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
+            pnpm install --no-frozen-lockfile
+          else
+            pnpm install --frozen-lockfile
+          fi
       - run: pnpm check
+      - name: Keep the cleared queue and public imports honest
+        run: node scripts/check-test-boundary.mjs
       - name: Build shard products on the runner
         run: pnpm build:shards
       - run: pnpm test:shards
-      - run: pnpm test:hooks
+      - name: Boot, play and resume every built product
+        run: node --test --test-concurrency=1 test/ci/product-play.test.mjs test/ci/package-products.test.mjs
+      - if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run: pnpm test:hooks
