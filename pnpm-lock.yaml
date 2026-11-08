@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@wildshard/engine':
-        specifier: github:project-wildshard/engine#v0.1.0
-        version: https://codeload.github.com/project-wildshard/engine/tar.gz/23b21c86896bde7449c4206ee8cf022be433e984(typescript@7.0.2)
+        specifier: github:project-wildshard/engine#80d5cc0d8d5faa1336708eeee10359f30a715204
+        version: https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(typescript@7.0.2)
       '@wildshard/format':
         specifier: github:project-wildshard/shardfile#4f8280c
         version: https://codeload.github.com/project-wildshard/shardfile/tar.gz/4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3(typescript@7.0.2)
       '@wildshard/sharddev':
-        specifier: github:project-wildshard/sharddev#75dbd28
-        version: https://codeload.github.com/project-wildshard/sharddev/tar.gz/75dbd2804e5f85a6c3bec3600db8696ef200cff0(@types/node@24.3.1)(typescript@7.0.2)
+        specifier: github:project-wildshard/sharddev#8647263
+        version: https://codeload.github.com/project-wildshard/sharddev/tar.gz/864726310fa6818abe2858a8fc53f335f7bec93f(@types/node@24.3.1)(typescript@7.0.2)
       playwright:
         specifier: 1.65.0
         version: 1.65.0
@@ -550,9 +550,9 @@ packages:
   '@vitest/spy@5.0.1':
     resolution: {integrity: sha512-rbto/mF/SGERxEgYOek7Xm6B9b+y+mVoo+f4b2LymYO8zM1b7uB5nHuhVMTP2hxdzgxvGiZYGxGIaMvL5y180Q==}
 
-  '@wildshard/engine@https://codeload.github.com/project-wildshard/engine/tar.gz/23b21c86896bde7449c4206ee8cf022be433e984':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/project-wildshard/engine/tar.gz/23b21c86896bde7449c4206ee8cf022be433e984}
-    version: 0.1.0
+  '@wildshard/engine@https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204':
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204}
+    version: 0.1.2
     engines: {node: '>=24.18.0'}
     hasBin: true
 
@@ -562,14 +562,8 @@ packages:
     engines: {node: '>=24.18.0'}
     hasBin: true
 
-  '@wildshard/format@https://codeload.github.com/project-wildshard/shardfile/tar.gz/c0227f48f5dfaf43c8e71aca9968725ca942ec50':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/project-wildshard/shardfile/tar.gz/c0227f48f5dfaf43c8e71aca9968725ca942ec50}
-    version: 0.4.2
-    engines: {node: '>=24.18.0'}
-    hasBin: true
-
-  '@wildshard/sharddev@https://codeload.github.com/project-wildshard/sharddev/tar.gz/75dbd2804e5f85a6c3bec3600db8696ef200cff0':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/project-wildshard/sharddev/tar.gz/75dbd2804e5f85a6c3bec3600db8696ef200cff0}
+  '@wildshard/sharddev@https://codeload.github.com/project-wildshard/sharddev/tar.gz/864726310fa6818abe2858a8fc53f335f7bec93f':
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/project-wildshard/sharddev/tar.gz/864726310fa6818abe2858a8fc53f335f7bec93f}
     version: 0.1.0
     engines: {node: '>=24.18.0'}
     hasBin: true
@@ -1656,13 +1650,13 @@ snapshots:
 
   '@vitest/spy@5.0.1': {}
 
-  '@wildshard/engine@https://codeload.github.com/project-wildshard/engine/tar.gz/23b21c86896bde7449c4206ee8cf022be433e984(typescript@7.0.2)':
+  '@wildshard/engine@https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(typescript@7.0.2)':
     dependencies:
       '@dimforge/rapier3d-simd': 0.21.0
       '@hono/node-server': 2.1.5(hono@4.13.13)
       '@sentry/browser': 11.0.0
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@7.0.2))
-      '@wildshard/format': https://codeload.github.com/project-wildshard/shardfile/tar.gz/c0227f48f5dfaf43c8e71aca9968725ca942ec50(typescript@7.0.2)
+      '@wildshard/format': https://codeload.github.com/project-wildshard/shardfile/tar.gz/4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3(typescript@7.0.2)
       ajv: 6.15.0
       fflate: 0.8.3
       hono: 4.13.13
@@ -1683,14 +1677,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@wildshard/format@https://codeload.github.com/project-wildshard/shardfile/tar.gz/c0227f48f5dfaf43c8e71aca9968725ca942ec50(typescript@7.0.2)':
-    dependencies:
-      meshoptimizer: 1.2.0
-      valibot: 1.5.0(typescript@7.0.2)
-    transitivePeerDependencies:
-      - typescript
-
-  '@wildshard/sharddev@https://codeload.github.com/project-wildshard/sharddev/tar.gz/75dbd2804e5f85a6c3bec3600db8696ef200cff0(@types/node@24.3.1)(typescript@7.0.2)':
+  '@wildshard/sharddev@https://codeload.github.com/project-wildshard/sharddev/tar.gz/864726310fa6818abe2858a8fc53f335f7bec93f(@types/node@24.3.1)(typescript@7.0.2)':
     dependencies:
       '@dimforge/rapier3d-simd': 0.21.0
       '@gltf-transform/core': 4.5.0
@@ -1703,7 +1690,7 @@ snapshots:
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@7.0.2))
       '@vercel/blob': 2.8.0
-      '@wildshard/engine': https://codeload.github.com/project-wildshard/engine/tar.gz/23b21c86896bde7449c4206ee8cf022be433e984(typescript@7.0.2)
+      '@wildshard/engine': https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(typescript@7.0.2)
       '@wildshard/format': https://codeload.github.com/project-wildshard/shardfile/tar.gz/4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3(typescript@7.0.2)
       ajv: 6.15.0
       assemblyscript: 0.28.20
