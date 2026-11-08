@@ -19,6 +19,17 @@ Run from the repo root.
 - `pnpm md:wrap`: rewraps Markdown prose to ~72 columns.
 - `src/scripts/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
 
+The explicit CI-only route proof runs after a real build:
+
+```sh
+node --experimental-transform-types --test test/ci/owned-journey.test.mjs
+```
+
+It drives 1,800 actual input ticks, checks waypoint progress and grounded
+settling, disposes the real runtime and refuses a later tick. Routes live
+in this repo; no quest flags, poses or host state are forced. Each case
+keeps a 9.5 s limit and stays outside commit/push hooks.
+
 ## Layout
 
 The root stays thin: README.md and AGENTS.md (humans only), CLAUDE.md
