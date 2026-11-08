@@ -85,7 +85,7 @@ jobs:
       - name: Build shard products on the runner
         run: pnpm build:shards
       - run: pnpm test:shards
-      - name: Boot, play and resume every built product
-        run: node --test --test-concurrency=1 test/ci/product-play.test.mjs test/ci/package-products.test.mjs
+      - name: Admit the complete publishable product
+        run: node --test test/ci/package-products.test.mjs
       - if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: pnpm test:hooks

@@ -6,11 +6,16 @@ Status: in progress 2026-11-08: installed product coverage.
 
 | Row | State |
 | --- | --- |
-| Installed product admission, boot, walk and save continuation | CI-only outer-edge proof; 9.5 second cap per product |
+| Installed product admission, boot, walk and save continuation | Ring 2: two complete live-herd worlds and restore cost 22.7 s on Linux |
 | Ring 3 candidate | Full commit dispatch overrides all engine dependency edges and runs build plus own tests |
-| Cook and size check | Open: pinned engine has no public cook command or export |
+| Cook and size check | Open: integrate exported game/shardCook with the real pack boot |
 | Client title to play | Open: requires the installed dev-client path, not this server proof |
 | Authored quest, fight and traversal tapes | Open: walking does not prove sleeping hosts |
 | Goldens and GPU | Existing graphical owner and Mac mini; outside this lane |
 
 New coverage stays outside hooks under J186. Nothing uploads or deploys.
+
+The full 240-tick live-herd walk measured 22.7 seconds on hosted Linux.
+It now runs in Ring 2, with that reason in its file. The quick lane uses
+package admission only. Even a 30-tick walk costs 8.2 s locally; both
+complete worlds and the full 240-tick continuation proof run in Ring 2.

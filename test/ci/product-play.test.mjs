@@ -31,7 +31,11 @@ async function play(runtime, plan, declared) {
   return { report, commit };
 }
 
-for (const { name: slug } of products) test(`${slug}: boot, walk and resume on the installed engine`, { timeout: 9_500 }, async () => {
+// Ring 2: admitting two complete live-herd worlds plus walking and restoring
+// costs 22.7 s on hosted Linux. Even a 30-tick walk costs 8.2 s locally.
+// This actual product path belongs outside the quick candidate leg/hooks.
+const legTicks = 120;
+for (const { name: slug } of products) test(`${slug}: boot, walk and resume on the installed engine`, { timeout: 60_000 }, async () => {
   const directory = resolve('out', slug), product = await loadHeadlessProduct(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard);
   assert.ok(descriptor, 'The built shard must pass admission');
@@ -61,11 +65,11 @@ for (const { name: slug } of products) test(`${slug}: boot, walk and resume on t
     }
     const plan = { version: 1, observe: [], segments: [
       { id: 'spawn', ticks: 1, commands: [] },
-      { id: 'walk', ticks: 120, commands: [{ kind: 'player', moveX: 0, moveZ: -1, yaw: 0 }] },
-      { id: 'turn', ticks: 120, commands: [{ kind: 'player', moveX: 1, moveZ: 0, yaw: Math.PI / 2 }] },
+      { id: 'walk', ticks: legTicks, commands: [{ kind: 'player', moveX: 0, moveZ: -1, yaw: 0 }] },
+      { id: 'turn', ticks: legTicks, commands: [{ kind: 'player', moveX: 1, moveZ: 0, yaw: Math.PI / 2 }] },
     ] };
     const { report, commit: checkpoint } = await play(runtime, plan, declared);
-    assert.equal(report.ticks, 241);
+    assert.equal(report.ticks, 1 + 2 * legTicks);
     const [spawn, walk, turn] = report.observations;
     assert.ok([spawn, walk, turn].every(row => row.position.every(Number.isFinite)));
     assert.ok(Math.hypot(walk.position[0] - spawn.position[0], walk.position[2] - spawn.position[2]) > 0.25, 'Walking must move the real player');
