@@ -79,3 +79,5 @@ jobs:
       - run: pnpm build:shards
       - name: Complete live-herd walk and continuation
         run: node --test test/ci/nalati-walk.test.mjs
+      - name: Cook and play only served live-herd files
+        run: node --test test/ci/cook-play.test.mjs
