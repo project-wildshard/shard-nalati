@@ -1,13 +1,14 @@
 [
   {
     "file": "test/adventure-persistence.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 19 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('Nalati adopts old saves, replays stable feat identities and reloads only declared records', () => {",
       "test('the declared persistence id lends the same saved owner and retires with its entered scope', async () => {",
       "test('replacing the persistence world during admission publishes no saved owner', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/approved-encounter-contracts.test.ts",
@@ -21,80 +22,90 @@
   },
   {
     "file": "test/arena-boss-script.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('admitted arena rows retain AS lifecycle, heart damage and bounded decisions', () => {",
       "test('an orchard boss uses different health and parameters on the same boss host', () => {",
       "test('arena script emits tells, placement and one wall hit while retaining admission', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/arena-field.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('mounted refusal borrows only its entered scope and releases on disposal', () => {",
       "test('the arena field obeys ignition bounds and cannot rekindle spent cells', () => {",
       "test('an unrelated orchard encounter uses a rectangular four-neighbour frost field', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/arena-fire-field.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('a second shard\\'s burning cells draw as flames on its bank with smoke rolling off', () => {",
       "test('burnt-out cells leave a bounded scorch that a reset clears', () => {",
       "test('a fire without cell rows refuses to draw a field', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/arena-room-gpu-lifetime.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 7 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('private room uploads release fixed channels, preserving templates, picking, sand and lazy interior', async () => {",
       "test('uploaded fixed backing collects while its room remains live', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/arena-room-native.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Run the real host, wire, physics or durable-store flow against engine and admitted pin data; remove imports of retired shard author modules.",
     "evidence": [
       "test('the King wakes for a bot in the chamber while the lead stands outside, and his blows find that bot', () => {",
       "test('J104: two engaged at the start make his hits count for less, the row keeps one number', () => {",
       "test('J107: a bot that falls goes back alone, the door lets it in again and the fight keeps its progress, through a save', () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/arena-room-native.test.ts",
+    "ring": 1
   },
   {
     "file": "test/arena-whirls.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('the whirl laws step as the inline view did, and the view over them shows the same funnels', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/audio-scene-binary.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 12 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('raw fields decode to their float storage and keep the surface decisions',()=>{",
       "test('entered preparation reads all four verified files before one listener publication',async()=>{",
       "test.each(['disposed','world replaced','player replaced','rows replaced','reader replaced','malformed suffix'])('refuses %s without publishing listeners',async reason=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/audio-voice-patches.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 9 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "it('keeps sampled voices ahead of their synth and plays the release layer',()=>{",
       "it('bounds hoof density and selects the declared ground sample',()=>{",
       "it('keeps an unrelated fixture shard entirely row driven',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/author-admission-readers.test.ts",
@@ -107,13 +118,14 @@
   },
   {
     "file": "test/boss-arena-room.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 7 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('second-shard arena owns its translated floor, gate, cover and sand', () => {",
       "test('second-shard fire rows bound capacity, own graph ids, expire and reset', () => {",
       "test('the reed vault portal isolates the room its player stands in', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/bow-variant-admission.test.ts",
@@ -126,53 +138,58 @@
   },
   {
     "file": "test/bow-variant.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 30 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('the slot variant keeps composition, upgrade idempotence and delayed secondary contact',async()=>{",
       "test('independent slot owners and an orchard variant do not share actors or thresholds',async()=>{",
       "test('power admission refuses foreign identities, executable data and excess prediction before effects',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/cell-field.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('unrelated compiled irrigation law uses its own state codes/channels and delayed generations', () => {",
       "test('original real Titan guest preserves field state, changed order, contact results and RNG exactly', () => {",
       "test('JSON and binding admission refuses executable/accessor/ambiguous rows before guest work', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/client-elite-construction.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 16 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('elite construction admits only finite owner selections', () => {",
       "test('construction publishes original resources without bodies, presentation or an eager night/weather read', async () => {",
       "test('retirement during named admission refuses before programme or publication', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/client-plan-platform.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 38 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('entered world looks precede plan effects and release with their owner', async () => {",
       "test('fictional shard installs unordered rows in platform phases and retains typed scene handles', async () => {",
       "test('unknown, ordered, executable and borrowed-owner rows refuse before effects', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/client-riding-session.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 4 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('client session rejects callback ports and admits an unrelated ride profile', () => {",
       "test('native names keep unicode graphemes, reject markup and respect the row cap', () => {",
       "test('the session cannot bind an unbuilt or disposed equipment authority', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/cloud-rig.test.ts",
@@ -184,81 +201,89 @@
   },
   {
     "file": "test/combat-target-rows.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 17 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('actual world rows refine prior/wildlife -> night -> arena in the same order and retain aim identity', () => {",
       "test('wildlife readiness keeps the ray bank idle and does not gate original aim projection', () => {",
       "test('crowd rows keep the native CrowdRoster/CrowdWeaponTarget and in-place request law', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/cosmetic-finishes.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('an unrelated orchard fixture restores each material and projects current worn rows', () => {",
       "test('Nalati grants stay exclusive and mount geometry returns after taking off its finish', () => {",
       "test('invalid references and reflected/executable finish fields refuse at admission', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/creature-guest.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 9 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('the actual balbal binding observes native bodies at ten Hz and samples declared weak points',()=>{",
       "test('authored weak-point query preserves yaw, body lift, scale and strict radius',()=>{",
       "test('named creature observations retain the original bounds before native use',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/crowd-page.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 3 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('an unrelated marsh crowd uses its own bounds, identity, material and native cadence', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/crowd-projection-product.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('complete emitted return AND spawn admission replaces the admission witness one for one within the unchanged eight module cap',()=>{",
       "test('the raw admission file retains the exact complete inline descriptor and selected owner',async()=>{",
       "test('raw admission witnesses refuse missing or replaced bytes before cache publication',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/crowd-projection-v2.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 9 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('guard cadence skips before capture; each due frame samples only its original crowd and threat roster once',()=>{",
       "test('native rows use the original scheduled context dt, no extra clock, no sound, and no repeated descriptor admission',()=>{",
       "test('due capture is incremental: one native straggler read, live positions, strict first-live nearest tie and no stale roster cache',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/declared-ground-mask.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('mask and ground-only basin use the same field, clamping, live water and independent declarations', () => {",
       "test('ordinary body order and the original first stream metadata survive intervening basins', () => {",
       "test('all mask metadata, storage and JSON preconditions refuse before a usable ground escapes', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/elite-entry-construction.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 54 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('whole-row admission has no effects; engine constructs native kernels in original order and borrows the original controller', () => {",
       "test('a bad borrowed suffix, missing model or native spec refuses before tell/body/program effects', () => {",
       "test('contact mappings must cover original native damages and be unambiguous before construction', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/elite-entry-producer.test.ts",
@@ -272,113 +297,125 @@
   },
   {
     "file": "test/elite-native-conditions.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('actual native condition rows reuse the original AS owner and preserve every phase/storm gate', () => {",
       "test('foreign player and populated core loans refuse before native registration', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/elite-native-continuation.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 6 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('whole native continuation suffix refusal performs no controller, Core or binding mutation', () => {",
       "test('borrowed native continuation retains raw state strings, signed zero and legacy elapsed', () => {",
       "test('prepared native continuation pins concrete scopes, members, controllers and group arrays', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/elite-native-differential.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
-    "evidence": []
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 9 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
+    "evidence": [],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/elite-native-lifecycle.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 8 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('native lifecycle binds the original population late and retains receiver, boot adoption and respawn order', () => {",
       "test('pack creation retains offset then home assignment and retirement before the body', () => {",
       "test('whole lifecycle row suffix refuses before any kernel allocation or owner effect', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/elite-output-entered.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 39 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('actual page import and original entered owner prepare effects without publishing or retargeting a hit', () => {",
       "test('missing/null actor suffix and foreign controller refuse the whole native bank', () => {",
       "test('a grid entry binds its live native frame after construction without retiring the elite output owner', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/elite-roster-page.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 16 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('a marsh roster binds its own drop and identities, and wakes no lair of its own', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/encounter-schedule.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('the boss schedule retains committed target and emits a strike once', () => {",
       "test('phase and arena rules are decided in the admitted module', () => {",
       "test('mounted field refusal consumes numeric samples in AS without a second page rule', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/field-presentation.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "it('selected grass admission retains shared aliases and strict missing-file guards for either tier',()=>{",
       "it('gives an unrelated orchard its own field, mood and texture lifetime',()=>{",
       "it('refuses unbounded field draws and invalid capture bounds before allocating',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/forager-draw.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('orchard sentries project due native poses and keep the actual continuation untouched',()=>{",
       "test('forager projection refuses callback rows and has no owner clock of its own',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/grass-channel-files.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('native bank is prepared once for the selected tier and taken once per build',async()=>{",
       "test('missing, unsafe, inline, corrupt and truncated banks refuse without changing the old profile',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/grass-profile-lifetime.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test(name, async () => {",
       "test('an active grass profile shares and reloads only its disposed height texture', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/held-polearm-preparation.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 15 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('explicit spare geometry keeps admitted numeric state and native decision clocks without fetching a pool',async()=>{",
       "test('eager default preloads the same complete pool and builds synchronously',async()=>{",
       "test('owner retirement during first pool read prevents visual construction and publication',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/held-slot-authors.test.ts",
@@ -392,33 +429,36 @@
   },
   {
     "file": "test/held-slot-metadata.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 16 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('metadata is pinned to actual product/id/rows/file and cold lookup performs no preparation',()=>{",
       "test('preparation retains blade then polearm then original book and one original packed decode',async()=>{",
       "test('retirement at the first source yield refuses the rest of preparation and readiness',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/held-slot-native.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 81 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('finite slot construction, registration, selection and native reward ordering match the original arsenal',async()=>{",
       "test('cold slots retain original concrete metadata and never prepare or read an asset',()=>{",
       "test('whole registration preflight refuses a malformed suffix before any metadata effects',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/held-weapon-laws.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186, re-judged from source: nine cases are pure law tests, not mocked integration tests. They pin HeldDecision scalar frames, projected channels, cadence and ABI/module identity. The tenth builds GLTFs and fabricated Player/AnimalManager dependencies and spies on GLTFLoader.loadAsync (the three heuristic matches). Delete those internal pins; retain the lance cone and rehit rule through actual mounted commands, live targets, combat and a fresh-host save/resume in engine-rule-successors.test.ts. Mock count alone was an inaccurate file-wide reason.",
     "evidence": [
       "it('queues edges until the next 100 ms snapshot and covers the thrust window',()=>{",
       "it('keeps desktop tap throws, held release and dry ammunition distinct',()=>{",
       "it('limits lance contacts by cone, closing speed and per-target rehit',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/isolated-shard-nalati-ground-values.test.ts",
@@ -431,22 +471,24 @@
   },
   {
     "file": "test/keeper-elite-page.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 12 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('independent marsh encounter binds the approved pouncer policy, body and drops from data', () => {",
       "test('an independent marsh herd encounter adopts native bodies and follows AS tells and rewards', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/manifest-scalar-blocks.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('raw manifest declarations perform no reads and publish the original native field only after preparation',async()=>{",
       "test('a malformed suffix or absent named block leaves every manifest sampler closed',async()=>{",
       "test.each(['scope','ancestor','sliced','reader','hasFile','identity','intake'] as const)('raw intake refuses a retired or replaced %s after an await',async(kind)=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/melee-author-base.test.ts",
@@ -468,41 +510,45 @@
   },
   {
     "file": "test/mounted-entry.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 19 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('mounted kit borrows the original prepared arsenal before ordinary kit consumers', async () => {",
       "test('missing and retiring mounted owners refuse before registration', async () => {",
       "test('the same arsenal can register a fresh entered kit after the old borrower leaves', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/mounted-kit-loan.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 39 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each([false, true])('the scoped arsenal lends the SAME built kit and refuses a retiring owner (ancestor: %s)', async ancestor => {",
       "test.each(['scope','product','source','items','game','runtime','world','app','equipment'] as const)(",
       "test.each([false,true])('a build result cannot publish after retirement (ancestor: %s)',async ancestor=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/mounted-loadout.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('the entered kit retains its authored native slots and reward identities',()=>{",
       "test('an orchard declares independent tools and cannot inject selection or constructors',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-adventure-errors.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('saved projections propagate the original quest/save listener failure', () => {",
       "test('typed elite reads recover only read failures and do not publish flags', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-audio-data.test.ts",
@@ -553,20 +599,22 @@
   },
   {
     "file": "test/nalati-camp-containment.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 9 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('the real camp owns its manual joints and preserves poses in a translated grid cell',async()=>{",
       "test('a skin borrowing a bone from another cell is still refused',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-camp-fallback.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 10 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "it('refuses a missing prepared skin instead of publishing a substitute camp', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-camp-people-rows.test.ts",
@@ -613,13 +661,14 @@
   },
   {
     "file": "test/nalati-course-binary.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Pins private encoding/compilation representation, byte equality, cached object identity, generated arrays or predecessor guest arithmetic. These are implementation units rather than an outer-edge operation.",
     "evidence": [
       "test('the course publishes its bytes through normal named-module admission', () => {",
       "test('the raw course preserves original projections and refuses absent, foreign and retired loans', () => {",
       "test('the raw course cache refuses inline, incomplete and changed executable contracts', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-cover-model-source.test.ts",
@@ -713,13 +762,14 @@
   },
   {
     "file": "test/nalati-dressing-product.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('prepared ambient rows keep both tier populations and finite flight at 10 Hz', () => {",
       "test('Nalati ships live scatter groups and preserves native support populations', async () => {",
       "test('numeric dressing tables retain every authored double and reject corrupt payloads', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-dressing-program.test.ts",
@@ -743,29 +793,32 @@
   },
   {
     "file": "test/nalati-entry-construction.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('the declared plan constructs the original elite and night owners once after assembly',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-figure-late-source.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('only individual Explorer variants defer; the live merged camp and original atlas images stay eager', () => {",
       "test('a shared entered atlas or non-atlas card cannot defer an early-play source', () => {",
       "test('real card registration retains every variant without resolving a skin before a view asks for it', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-flock-view.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 3 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('orchard crowd lends live poses to the shared draw and keeps prey and paused uploads authoritative', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-gear-catalogue.test.ts",
@@ -778,12 +831,13 @@
   },
   {
     "file": "test/nalati-grass-files.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('native publication supplies every file declared by its grass profile',()=>{",
       "test('raw grass profiles preserve full height and field layouts and reject missing files before texture allocation',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-grass-native.test.ts",
@@ -825,40 +879,44 @@
   },
   {
     "file": "test/nalati-herd-v2.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 4 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each(modes)('%s: cold native drives retain original per-member effects and continuation',mode=>{",
       "test('a native steering effect can mutate the group before the same horse tail resumes',()=>{",
       "test('charge contact and stampede keep same-call hurt, knockdown, sound and state barriers',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-item-adoption.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('Nalati native adoption retains old saved slots, ammo owners, presentation and profile refusal', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-king-continuation.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Constructs a handwritten King kernel harness and checks detached private observations, exact clocks and callback sequences at internal phase boundaries. Real room death, checkpoint, portal and reward behavior runs in arena-room-native.",
     "evidence": [
       "test('a victory checkpoint waits only with bounded neutral inputs for an actually live contact',()=>{",
       "test('an unopened King remains closed without actors, entropy or encounter effects',()=>{",
       "test('the original portal earns entry, locks the intro and lends detached observations',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-king-controls.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test.each([{}, {pose:4,rise:-0,cape:0,crown:0,floorY:-0}])('unbound King initialization matches the original controls (%j)',initial=>{",
       "test('arena species initialization uses ordered alternate rows and refuses ambiguous fields',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-kokpar-binary.test.ts",
@@ -872,12 +930,13 @@
   },
   {
     "file": "test/nalati-kokpar.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 15 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "it('matches frozen round rules at 10 Hz while carrying poses stay per frame', () => {",
       "it('an orchard delivery uses its own shape, program profile and quest effects',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-kurgan-data.test.ts",
@@ -925,23 +984,25 @@
   },
   {
     "file": "test/nalati-model-bindings.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('compiled support timing retains all published consumer aliases and source bytes',()=>{",
       "test('desktop dressing warm excludes every shared or externally demanded named source', () => {",
       "test('live phone annotation preserves every existing scene and catalogue field',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-model-late.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('desktop hints preserve native demand and critical dependency precedence', () => {",
       "test('catalogue timing stays a closed data declaration with eager absence preserved',()=>{",
       "test('painted alternative hints keep critical and shared dependency overrides', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-model-paint-program.test.ts",
@@ -975,11 +1036,12 @@
   },
   {
     "file": "test/nalati-native-creature-view.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Compares private creature view arithmetic and exact death-sink suffixes to the predecessor guest, with no player input or product admission boundary.",
     "evidence": [
       "test('native creature heights retain page guest arithmetic and a complete restored death suffix',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-native-dressing-reader.test.ts",
@@ -1000,12 +1062,15 @@
   },
   {
     "file": "test/nalati-native-readings.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Run the real host, wire, physics or durable-store flow against engine and admitted pin data; remove imports of retired shard author modules.",
     "evidence": [
       "test('the elder only grants his authored introduction when the real reading completes in reach',async()=>{",
       "test('the moving child uses his live orbit prompt and restores its actual continuation',async()=>{"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/nalati-native-readings.test.ts",
+    "ring": 1
   },
   {
     "file": "test/nalati-output-inputs.test.ts",
@@ -1019,13 +1084,14 @@
   },
   {
     "file": "test/nalati-pack-group.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 4 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('pack fixture copies preserve an independent compile after caller mutation', async () => {",
       "test('the pack program runs the original circling-pack law tick for tick', { timeout: 600_000 }, async () => {",
       "test('drive observes terrain after its native steering barrier', { timeout: 120_000 }, async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-page-roster-product.test.ts",
@@ -1047,18 +1113,20 @@
   },
   {
     "file": "test/nalati-pasture-v2.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Pins private encoding/compilation representation, byte equality, cached object identity, generated arrays or predecessor guest arithmetic. These are implementation units rather than an outer-edge operation.",
     "evidence": [
       "test('the pasture programme keeps its exact ABI1 witness, shared by wind, fire and pasture', () => {",
       "test('every pasture/wind/fire signal answers as the ABI1 witness on the same descriptor and borrowed RNG', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-people-loader.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
-    "evidence": []
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 4 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
+    "evidence": [],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-place-blob-program.test.ts",
@@ -1198,13 +1266,16 @@
   },
   {
     "file": "test/nalati-riding-rules.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Removed direct arbitrary-angle projection/fuel units; kept closest-horse admission, real bonding/throwing and buck continuation.",
     "evidence": [
       "test('approach selects the closest eligible live stallion and spends trust from observations', () => {",
       "test('native binding completes five rounds, adopts once, and restricts the second bond to Argymaq', () => {",
       "test('throwing applies health and trust effects; mid-round numeric state reconnects without spawning', () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/nalati-riding-rules.test.ts",
+    "ring": 1
   },
   {
     "file": "test/nalati-rig-group-author-ports.test.ts",
@@ -1256,13 +1327,14 @@
   },
   {
     "file": "test/nalati-sabre-pool.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 12 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('re-entry rehydrates an evicted real blade pool before synchronous consumers',async()=>{",
       "test('baked sabre preserves every move, contact, mounted coefficient and mutable geometry channel', async () => {",
       "test('Nalati gear rows decode all eight cards and independent bow paints', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-scatter-pages.test.ts",
@@ -1276,11 +1348,12 @@
   },
   {
     "file": "test/nalati-senses.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 2 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('native and page probes preserve the original sensory boundaries in Nalati AS', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-setup-scalars-dom.test.ts",
@@ -1376,19 +1449,21 @@
   },
   {
     "file": "test/nalati-state-intake.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 12 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('the shipped world assembly King intake retains its attack owner before weather is published',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-strike-assembly.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('Nalati admitted elite contacts retain every original shape and cover refusal', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-strike-data.test.ts",
@@ -1401,12 +1476,13 @@
   },
   {
     "file": "test/nalati-taming-pose.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('numeric horse rows draw finite rear, buck, mane and wind overlays on native joints', () => {",
       "test('legacy transforms refuse missing, reordered and invalid joints without changing the pose', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-terrain-source-contract.test.ts",
@@ -1418,21 +1494,23 @@
   },
   {
     "file": "test/nalati-titan-binary.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Pins private encoding/compilation representation, byte equality, cached object identity, generated arrays or predecessor guest arithmetic. These are implementation units rather than an outer-edge operation.",
     "evidence": [
       "test('the standard named-file reader ships that exact admitted module',async()=>{",
       "test('attack and rules borrow one selected module from the original live owner',()=>{",
       "test('raw witnesses retain hash and ABI1 admission before selected construction',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-titan-fire-view.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each(['direct', 'prepared'] as const)('the fire module draws the original flames, rolls smoke, appends scorch and clears on a reset (%s memory)', async mode => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-titan-graph.test.ts",
@@ -1444,160 +1522,183 @@
   },
   {
     "file": "test/nalati-titan-whirls-view.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('the whirl module draws the funnels and their debris as the original update did', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/nalati-weather-shelters.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('native weather admits current camp shelters without a physics-bake field',()=>{",
       "test('owned collider rows preserve original shelter order and detach every circle',()=>{",
       "test('shelter bounds and strict square deduplication retain the original boundary behavior',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/named-json-arena-script.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Replaced author compiler/schema registry fixtures with the published arena/timed-encounter schemas and real host-file reader; removed private cloud specimen material-shape checks.",
     "evidence": [
       "test('real arena payloads have one defining schema at production and product read',async()=>{",
       "test('timed encounter admission bounds rosters before native owners allocate',async()=>{",
       "test('cloud specimen file admission refuses invalid materials and puff capacity',async()=>{"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/named-json-arena-script.test.ts",
+    "ring": 1
   },
   {
     "file": "test/named-json-nalati-dressing.test.ts",
-    "disposition": "engine",
-    "reason": "Engine named-JSON reader refusal paired with an authored schema; preserve for engine admission port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('Nalati dressing schemas reject a corrupt field and an unregistered producer', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/native-elite-assembly.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 6 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('actual native elite declarations construct, bind and install the same engine owners in order', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/native-elite-save-schema.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 3 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('native member admission preserves strict pack fields and original continuation bytes',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/native-ground-block.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('raw floor admission is explicit, strict and bounded; original callers retain their grammar',()=>{",
       "test('the same native reader owns copied raw f32 bytes and retains memoized output',()=>{",
       "test('missing, mismatched, malformed and short floor blocks publish no decoded result',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/native-riding.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Removed exact always-species cadence, private group-collection and driver-noise parity cases; kept real mounted players, leave, death, taming, wildlife, population and wet-mask restore flows. Removed the direct spy replacement of the private wildlife projection; the real wildlife/trample flow remains.",
     "evidence": [
       "test('G478 orchard native fixture owns and restores its actual mounted capsule', async () => {",
       "test('a bot takes its own seat: its own horse, reins, save and fall, and the lead stays on foot', async () => {",
       "test('a player who leaves mid-ride lets their horse go', async () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/native-riding.test.ts",
+    "ring": 1
   },
   {
     "file": "test/open-arena-lifecycle.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 28 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('shared open lifecycle preserves original native owners, input barrier and reward order',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/open-arena-room.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Removed the direct presentation look-word mirror; kept actual Titan combat, scaling, death/reset and each player taking their own heart.",
     "evidence": [
       "test('a page that steps no fight draws what this one says', () => {",
       "test('the Titan\\'s contacts land on the bot past the wall, not the lead standing off', () => {",
       "test('J104: the players past the wall at the start set the heart\\'s curve, and a contact shares from five', () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/open-arena-room.test.ts",
+    "ring": 1
   },
   {
     "file": "test/painted-world-stages.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 20 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('a fixed-draws stage loads the world\\'s one original library once a page and lends it by id', async () => {",
       "test('a world retired at entry, or retiring through an ancestor\\'s steps, loads nothing and publishes nothing', async () => {",
       "test('a world that leaves or swaps its library during the load publishes nothing', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/painted-world.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('a painted world refuses executable or malformed rows', () => {",
       "test('a level builds its painted world once a page and its world wiring reads the same parts by slug', () => {",
       "test('product look awaits every selected grass file through its original receiver before publishing',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/population-bake.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Pins private encoding/compilation representation, byte equality, cached object identity, generated arrays or predecessor guest arithmetic. These are implementation units rather than an outer-edge operation.",
     "evidence": [
       "test('named metadata and stock bake intake retain values and own decoded terrain buffers',async()=>{",
       "test('stock intake refuses broken native rosters and the retired metadata selector',()=>{",
       "test('Product.json refuses canopy count, nonnumeric, unknown and forager metadata errors',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/projected-trail.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('an unrelated prediction ribbon pads its endpoint and follows its own fade row',()=>{",
       "test('the held variant declares the existing ribbon topology and brightness',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/quest-chapter-view.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 42 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each(['figures', 'taming', 'arena', 'fight'])('replacing %s during admission refuses before constructing figures or chapter views', async slot => {",
       "test('chapter policy admits only bounded finite observation sources and clocks', () => {",
       "test('embedded original figures use the same admission and concrete entered loans', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/quest-reading-roster.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private row/factory/owner representation or an internal callback projection against a copied fixture. Its asserted contract is the implementation layout or projection, including direct guards for that layout.",
     "evidence": [
       "test('the W3 camp roster can borrow its actual page talks and clock without a native save owner', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/rein-ribbon.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 2 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each([['steppe', rows], ['orchard mule', orchard]] as const)('%s rows draw camera-attached straps, drop and release', (_name, profile) => {",
       "test('the strap follows all three Catmull-Rom spans and keeps its authored width', () => {",
       "test('orchard mount rows sample their own skeleton and weighted muzzle without a view hook',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/reins-geometry-bake.test.ts",
@@ -1610,23 +1711,25 @@
   },
   {
     "file": "test/return-program-v2-owner.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Pins borrowed executable identity, cache publication, witness bytes and private owner-construction order. Native guest execution and fresh-host restore run in the migrated host flows.",
     "evidence": [
       "test('selected attack/rules share the original module owner and instantiate only v2',()=>{",
       "test('owned snapshots leave cached caller bindings detached and mutable',()=>{",
       "test('containing return admission retains every V2 cross-field refusal',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/return-projection-v2.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Compares private ABI projection records, borrowed memory and predecessor byte/clock behavior, without a player-facing operation.",
     "evidence": [
       "test('Titan dual port retains exact public ABI1 bytes and admits a project-only candidate',()=>{",
       "test('the full hostile output bank refuses atomically and rewinds for the next call',()=>{",
       "test('every original Titan signal preserves f64 outputs, candidate order and borrowed RNG',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/riding-course.test.ts",
@@ -1638,49 +1741,54 @@
   },
   {
     "file": "test/riding-platform.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 28 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each([",
       "test('mount presentation uses the owned clock and cosmetic stream', () => {",
       "test('idle mount grazing advances with simulation time and stays fixed when paused', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/scene-dressing-bake-file.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 12 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each(['valid','missing','truncated','corrupt','address'] as const)('logical lane bakes preserve geometry and refuse invalid input before publication (%s)',async failure=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/scene-dressing-owner.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 12 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('a welded dressing row installs under its declared owner after await instead of borrowing the ambient owner', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/scene-dressing-rows.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 35 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('tier-specific crag transport changes only the phone file binding',()=>{",
       "test('a cold baked bank settles before dressing and its Explorer clone are published',async()=>{",
       "test.each([['geometry','world'],['geometry','retire'],['geometry','length'],['lettering','world'],['lettering','retire'],['lettering','length']]as const)('raw %s refuses %s changes"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/scene-numeric-table.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 4 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('numeric tables retain exact float64 values, key order and refusal bounds', () => {",
       "test('sliced binary scatter retains selection and rejects a late excluded invalid row before drawing', async () => {",
       "test('direct scatter decode preserves canonical fields, float64 values and strict refusals', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/shards/nalati-grasslands/model-paint.test.ts",
@@ -1694,114 +1802,132 @@
   },
   {
     "file": "test/slot-heights.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Directly drives SlotHeights and compares private yOffset and serialized view-state suffixes against an unsaved peer; this pins the renderer guest implementation rather than a player boundary.",
     "evidence": [
       "test('a dying body\\'s sink carries through a save, and a live body saves nothing',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/spawn-script-v2.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Builds synthetic compiler/actor fixtures and pins ABI slots, getter counts, exact save bytes and private adoption order. Admitted spawn lifecycle, multiplayer choice and restore run in pine-night-emits and native-riding.",
     "evidence": [
       "test('production PAGE SpawnScript executes compiled v2 on the SAME adopted native body and staged authority', async () => {",
       "test('frame observation refusals keep the prior complete input and read ignored getters once', async () => {",
       "test('old SpawnScript saves migrate pending inputs at their old tick and v2 re-saves are byte-exact', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/species-look-book.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('orchard creature data owns body copies and look identities without control hooks',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/stealth-sources.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 19 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('native rosters preserve original bounds, order, ties, missing flags and f64 positions',()=>{",
       "test('an unrelated source row changes ordering, limits and native exclusions without code',()=>{",
       "test('mount and taming observations preserve false and zero-valued trust exactly',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/taming-script-admission.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Pins private encoding/compilation representation, byte equality, cached object identity, generated arrays or predecessor guest arithmetic. These are implementation units rather than an outer-edge operation.",
     "evidence": [
       "test('mounted ABI2 replaces one executable in the complete return/spawn inventory and names its ABI1 witness',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/titan-clock-frame.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('joint schedule retains the original ABI1 witness bytes',()=>{",
       "test('every mask, phase and spear mode preserves ordered schedule state and RNG including signed zero',()=>{",
       "test.each([{capacity:1,every:100},{capacity:2,every:.1},{capacity:8,every:.1}])('original irregular slots, resets, full/empty trail and first-free landings remain exact (%j)',({cap"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/titan-whirl-gate.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 2 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test.each([[1.2,3],[4,2],[0,1],[-1,2]])('same-slot AS gate preserves original laws, shared cooldown and ground order (ease %s, count %s)',(ease,count)=>{",
       "test('signed-zero gate operands and sparse arm frames keep their exact original arithmetic',()=>{",
       "test('retention maps output channels to distinct native state slots',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/weather-every-player.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Run the real host, wire, physics or durable-store flow against engine and admitted pin data; remove imports of retired shard author modules.",
     "evidence": [
       "test('one bolt hurts each player it lands on, not the lead by name', async () => {",
       "test('each player has their own shelter and a bolt close by but overhead misses', async () => {",
       "test('the storm turns to each player in join order and saves whose turn it is', async () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/weather-every-player.test.ts",
+    "ring": 1
   },
   {
     "file": "test/weather-port.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Run the real host, wire, physics or durable-store flow against engine and admitted pin data; remove imports of retired shard author modules.",
     "evidence": [
       "test('a view reads the server sky off the wire, and hears its bolts', async () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/weather-port.test.ts",
+    "ring": 1
   },
   {
     "file": "test/wild-every-player.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "moved-engine",
+    "reason": "Run the real host, wire, physics or durable-store flow against engine and admitted pin data; remove imports of retired shard author modules.",
     "evidence": [
       "test('a forager answers to the watcher beside it, not the one the frame names', () => {",
       "test('a creature reads the pace of the player it deals with, and a room saves every pace', async () => {",
       "test('alone, the pace saves as it always did', async () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/wild-every-player.test.ts",
+    "ring": 1
   },
   {
     "file": "test/world-arena-script-stage.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 12 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('the arena stage admits finite ids and files without a callback, phase or extra slice', () => {",
       "test('missing original context, point or published storm refuses before either named read', async () => {",
       "test('the real original constructor, storm, air, point, AS state and random continuation stay exact', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/world-update-inputs.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime, multiplayer, lifecycle, save, preparation or resource admission behavior; preserve unchanged for its in-flight port.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 23 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('audio rows retain the exact original event, numeric reads, doubles and system order',()=>{",
       "test('skin grants retain original initial tick, reset cadence, set order and frame order',()=>{",
       "test('missing suffix loans refuse before any system or event publication',()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   }
 ]
