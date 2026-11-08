@@ -8,11 +8,10 @@
     "src/shards/nalati-grasslands/generators/nalatiGroundSource.ts": 1,
     "src/shards/nalati-grasslands/generators/nalatiWorldRows.ts": 1,
     "src/shards/nalati-grasslands/generators/output.ts": 13,
-    "src/shards/nalati-grasslands/generators/places.ts": 2,
+    "src/shards/nalati-grasslands/generators/places.ts": 1,
     "src/shards/nalati-grasslands/generators/stormTitanRows.mjs": 2,
     "src/shards/nalati-grasslands/generators/titanFireView.ts": 2,
     "src/shards/nalati-grasslands/generators/titanWhirlsView.ts": 2,
-    "src/shards/nalati-grasslands/generators/yard.ts": 1,
     "src/shards/nalati-grasslands/generators/yurt.ts": 1
   },
   "wildshard/no-runtime-in-build": {
@@ -22,8 +21,7 @@
   "wildshard/shard-engine-imports": {
     "src/shards/nalati-grasslands/generators/campProps.ts": 1,
     "src/shards/nalati-grasslands/generators/kunesBridge.ts": 1,
-    "src/shards/nalati-grasslands/generators/places.ts": 2,
-    "src/shards/nalati-grasslands/generators/yard.ts": 1,
+    "src/shards/nalati-grasslands/generators/places.ts": 1,
     "src/shards/nalati-grasslands/generators/yurt.ts": 1
   }
 }
