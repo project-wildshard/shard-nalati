@@ -54,5 +54,7 @@ jobs:
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - name: Build shard products on the runner
+        run: pnpm build:shards
       - run: pnpm test:shards
       - run: pnpm test:hooks
