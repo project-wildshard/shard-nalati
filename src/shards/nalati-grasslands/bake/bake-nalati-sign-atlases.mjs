@@ -1,3 +1,4 @@
+import { KEYCHAIN_ARGS } from '../../../../scripts/chromium-keychain.mjs';
 // A standalone asset tool (GR6, D2: it needs a browser), outside the generation scheduler; its three outputs are committed
 // authored inputs. Run it by hand through browser-lane.sh when the sign text changes: it keeps the exact canvas raster,
 // with no runtime canvas or font dependency.
@@ -15,7 +16,7 @@ const specimen = read('campCatalogue.json').find(row => row.key === 'signpostBak
 const labels = { roads: roads.flatMap(post => post.boards.map(board => board.text)), specimen: specimen.boards.map(board => board.text) };
 const writer = byteWriter(process.argv.includes('--check'), 'nalati-sign-atlases');
 const atlases = {};
-const browser = await chromium.launch({ headless: true, args: ['--use-angle=metal', '--mute-audio'] });
+const browser = await chromium.launch({ headless: true, args: [...KEYCHAIN_ARGS, '--use-angle=metal', '--mute-audio'] });
 try {
   const context = await browser.newContext(devices['iPhone 16 Pro']);
   const page = await context.newPage();

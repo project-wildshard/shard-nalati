@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { KEYCHAIN_ARGS } from './chromium-keychain.mjs';
 // nalati-chunk-views.mjs — the whole Nalati chunk from god-mode cameras (+ a few first-person views), for the
 // world-redesign mockup round (docs/tasks/asks/N9.md). Free camera through window.__wildshard?.world (like nalati-camp9.mjs),
 // desktop tier 1600×900, HUD hidden, clock frozen, clear weather.
@@ -57,7 +58,7 @@ const SZ = flag('size', '').split('x').map(Number);   // --size=WxH (e.g. 1024x1
 const SIZE = SZ.length === 2 && SZ.every((v) => v > 0) ? { width: SZ[0], height: SZ[1] } : TIER === 'phone' ? { width: 390, height: 844 } : { width: 1600, height: 900 };
 const DPR = Number(flag('dpr', '1')) || 1;
 
-const browser = await chromium.launch({ args: ['--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
+const browser = await chromium.launch({ args: [...KEYCHAIN_ARGS, '--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
 try {
   const page = await (await browser.newContext({ viewport: SIZE, deviceScaleFactor: DPR })).newPage();
   const errors = []; page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));

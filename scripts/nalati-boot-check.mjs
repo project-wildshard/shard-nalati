@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { KEYCHAIN_ARGS } from './chromium-keychain.mjs';
 // nalati-boot-check.mjs — boot each shard headless (muted), wait for the world, report page errors + a screenshot each.
 // For the Nalati ⇄ main merges (project/archive/2026-09-24-nalati-merge.md): every shard must still boot clean after a merge.
 //
@@ -17,7 +18,7 @@ const SHARDS = flag('shards', manifests.filter((m) => m.status === 'live' || m.s
 const TOUCH = argv.includes('--touch');
 mkdirSync(OUT, { recursive: true });
 
-const browser = await chromium.launch({ args: ['--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
+const browser = await chromium.launch({ args: [...KEYCHAIN_ARGS, '--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
 let failed = 0;
 try {
   for (const shard of SHARDS) {

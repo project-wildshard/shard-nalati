@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { KEYCHAIN_ARGS } from './chromium-keychain.mjs';
 // nalati-camp9.mjs — the Nalati camp 9-angle measurement (art/nalati-grasslands/round-4-camp-9angle, poses.json).
 //
 // Re-shoots the nine fixed cameras round the nomad camp — 4 first-person at the phone tier (390×844 @1.5, touch HUD)
@@ -45,7 +46,7 @@ const query = (touch) => [
   `x=${P.x}`, `z=${P.z}`, 'yaw=-0.95', 'pitch=-0.1', EXTRA,
 ].filter(Boolean).join('&');
 
-const browser = await chromium.launch({ args: ['--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
+const browser = await chromium.launch({ args: [...KEYCHAIN_ARGS, '--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
 const rows = [];
 try {
   const groups = [

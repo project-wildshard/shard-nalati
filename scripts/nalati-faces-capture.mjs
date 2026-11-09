@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { KEYCHAIN_ARGS } from './chromium-keychain.mjs';
 // nalati-faces-capture.mjs — NALATI-FINISH B5 / E302: every Nalati human's face, close up, as the iPhone draws it.
 //
 // For each face variant (pause ▸ Settings ▸ Debug ▸ Creatures & NPCs ▸ Camp faces, the `nalatiFaces` option) it boots the
@@ -27,7 +28,7 @@ mkdirSync(OUT, { recursive: true });
 const NOSHADOW = argv.includes('--noshadow'), TAG = NOSHADOW ? '-noshadow' : '';
 const sleep = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
 
-const browser = await chromium.launch({ args: ['--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
+const browser = await chromium.launch({ args: [...KEYCHAIN_ARGS, '--mute-audio', '--use-angle=metal', '--ignore-gpu-blocklist'] });
 try {
   for (const v of VARIANTS) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, hasTouch: true, isMobile: true });

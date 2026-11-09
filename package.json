@@ -22,7 +22,7 @@
     "check:asks": "node src/scripts/asks.mjs check",
     "md:wrap": "node src/scripts/md-wrap.mjs",
     "test:hooks": "node --test '.githooks/*.test.mjs'",
-    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test:kit && pnpm check:asks",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test:kit && pnpm check:asks && node --check scripts/chromium-keychain-check.mjs && node --test test/tooling/chrome-keychain.test.mjs",
     "build:shards": "node scripts/publish-public.mjs && wildshard build-shards",
     "pack:shards": "node scripts/pack-all.mjs",
     "test:kit": "node --test 'src/cli/*.test.ts' 'src/test/**/*.test.ts'",
