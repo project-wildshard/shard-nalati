@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { defineConfig } from 'vitest/config';
+import { viteTmpRoot } from './scripts/vite-tmp.mjs';
 
 const engine = path.dirname(createRequire(import.meta.url).resolve('@wildshard/engine/package.json'));
 const rapierAlias = [
@@ -10,6 +11,7 @@ const rapierAlias = [
 ];
 
 export default defineConfig({
+  plugins: [viteTmpRoot()],
   resolve: { alias: rapierAlias, dedupe: ['three', 'valibot'] },
   test: {
     execArgv: ['--import', path.resolve('node_modules/@wildshard/sharddev/src/sharddev/bake/format-hook.mjs')],
