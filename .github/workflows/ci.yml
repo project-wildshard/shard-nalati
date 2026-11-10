@@ -42,7 +42,9 @@ jobs:
         with:
           node-version-file: package.json
           cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            pnpm-workspace.yaml
       # Private org git dependencies (github:project-wildshard/...): mint a
       # read-only token from the org app (meta repo P0.2, J34) and point
       # every github.com URL form at it. pnpm-lock.yaml records them as
@@ -76,10 +78,12 @@ jobs:
           CANDIDATE_SHARDDEV: ${{ inputs.sharddev || github.event.client_payload.sharddev }}
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
-            pnpm install --no-frozen-lockfile
+            pnpm install --no-frozen-lockfile --config.ci=false --config.enableGlobalVirtualStore=true
           else
-            pnpm install --frozen-lockfile
+            pnpm install --frozen-lockfile --config.ci=false --config.enableGlobalVirtualStore=true
           fi
+      - name: Prove the installed global store
+        run: node scripts/assert-store-layout.mjs
       - run: pnpm check
       - name: Keep the cleared queue and public imports honest
         run: node scripts/check-test-boundary.mjs

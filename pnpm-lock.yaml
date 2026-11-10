@@ -9,13 +9,15 @@ overrides:
   assemblyscript>binaryen: npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1
   '@wildshard/format': github:project-wildshard/shardfile#4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3
 
+packageExtensionsChecksum: sha256-hIGzLngqi02QCnI1+poqA+IJ5qiTApGWRh6uj7XH9ek=
+
 importers:
 
   .:
     dependencies:
       '@wildshard/engine':
         specifier: github:project-wildshard/engine#80d5cc0d8d5faa1336708eeee10359f30a715204
-        version: https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(typescript@7.0.2)
+        version: https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(@types/node@24.3.1)(typescript@7.0.2)
       '@wildshard/format':
         specifier: github:project-wildshard/shardfile#4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3
         version: https://codeload.github.com/project-wildshard/shardfile/tar.gz/4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3(typescript@7.0.2)
@@ -1657,11 +1659,12 @@ snapshots:
 
   '@vitest/spy@5.0.1': {}
 
-  '@wildshard/engine@https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(typescript@7.0.2)':
+  '@wildshard/engine@https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(@types/node@24.3.1)(typescript@7.0.2)':
     dependencies:
       '@dimforge/rapier3d-simd': 0.21.0
       '@hono/node-server': 2.1.5(hono@4.13.13)
       '@sentry/browser': 11.0.0
+      '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@7.0.2))
       '@wildshard/format': https://codeload.github.com/project-wildshard/shardfile/tar.gz/4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3(typescript@7.0.2)
       ajv: 6.15.0
@@ -1671,11 +1674,25 @@ snapshots:
       navcat: 0.4.1(three@0.186.0)
       postprocessing: 6.39.5(three@0.186.0)
       preact: 11.1.1
+      sharp: 0.35.5(@types/node@24.3.1)
       three: 0.186.0
       valibot: 1.5.0(typescript@7.0.2)
+      vite: 8.3.0(@types/node@24.3.1)
     transitivePeerDependencies:
+      - '@types/node'
+      - '@vitejs/devtools'
+      - esbuild
+      - jiti
+      - less
       - preact-render-to-string
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+      - tsx
       - typescript
+      - yaml
 
   '@wildshard/format@https://codeload.github.com/project-wildshard/shardfile/tar.gz/4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3(typescript@7.0.2)':
     dependencies:
@@ -1697,7 +1714,7 @@ snapshots:
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@7.0.2))
       '@vercel/blob': 2.8.0
-      '@wildshard/engine': https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(typescript@7.0.2)
+      '@wildshard/engine': https://codeload.github.com/project-wildshard/engine/tar.gz/80d5cc0d8d5faa1336708eeee10359f30a715204(@types/node@24.3.1)(typescript@7.0.2)
       '@wildshard/format': https://codeload.github.com/project-wildshard/shardfile/tar.gz/4f8280c58ab6e527aa9735eaa80fccf1f34ab6d3(typescript@7.0.2)
       ajv: 6.15.0
       assemblyscript: 0.28.20

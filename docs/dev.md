@@ -98,3 +98,14 @@ packed again. Final engine cook refuses a different renderer. Format and
 SDK are immutable Git pins; generic legacy archive repair is separate.
 An API revision is published only after its validator accepts this SDK
 version. A local prepared tar is not a new published head.
+
+## Global-store trial
+
+The root default remains off until the ordered GVS rollout.
+An isolated trial uses `pnpm install --frozen-lockfile
+--config.ci=false --config.enableGlobalVirtualStore=true`.
+Hosted CI installs the real store and configures its cache; runner CI stays true.
+The engine0.1.2 extension declares its installed author-tool dependencies;
+source pins and package resolution records stay unchanged.
+The bounded literal dev smoke has not established author-client readiness.
+A successful build or headless route is not a browser-boot proof.
