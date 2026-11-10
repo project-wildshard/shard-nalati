@@ -32,6 +32,18 @@ keeps a 9.5 s limit and stays outside commit/push hooks.
 
 ## Layout
 
+The explicit CI-only native collider proof runs without a full cook:
+
+```sh
+node --import @wildshard/engine/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
+```
+
+Five cases retain exact raw f32/u32 copies, signed zero, ownership,
+invalid-range recovery, every shipped hull byte in authored order and
+both source hashes through standard named binary admission. Each case
+has a 9.5-second timeout and an elapsed assertion that also covers
+synchronous work. No source, product, engine pin or runtime changes.
+
 The root stays thin: README.md and AGENTS.md (humans only), CLAUDE.md
 (`@AGENTS.md`), package.json, pnpm-lock.yaml, .npmrc, .gitignore,
 .editorconfig, `docs/`, `project/`, `src/` and the dot dirs. Scratch

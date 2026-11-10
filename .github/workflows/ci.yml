@@ -83,6 +83,8 @@ jobs:
       - run: pnpm check
       - name: Keep the cleared queue and public imports honest
         run: node scripts/check-test-boundary.mjs
+      - name: Native collider bytes and owned recovery
+        run: node --import @wildshard/engine/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
       - name: Build shard products on the runner
         run: pnpm build:shards
       - name: Walk the owned 1800-tick authored route
