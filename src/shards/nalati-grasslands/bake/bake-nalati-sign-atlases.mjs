@@ -14,7 +14,10 @@ const read = file => JSON.parse(readFileSync(resolve(root, 'src/shards/nalati-gr
 const roads = nalatiRoadSignSites();
 const specimen = read('campCatalogue.json').find(row => row.key === 'signpostBaked').model.defaults;
 const labels = { roads: roads.flatMap(post => post.boards.map(board => board.text)), specimen: specimen.boards.map(board => board.text) };
-const writer = byteWriter(process.argv.includes('--check'), 'nalati-sign-atlases');
+const destination = process.argv.find(arg => arg.startsWith('--output-root='))?.slice('--output-root='.length);
+if (destination === '') throw new Error('Pass a directory to --output-root');
+const outputRoot = destination === undefined ? resolve(root, 'src/shards/nalati-grasslands') : resolve(destination);
+const writer = byteWriter(process.argv.includes('--check'), 'nalati-sign-atlases', destination === undefined ? root : outputRoot);
 const atlases = {};
 const browser = await chromium.launch({ headless: true, args: [...KEYCHAIN_ARGS, '--use-angle=metal', '--mute-audio'] });
 try {
@@ -36,10 +39,10 @@ try {
       return { pixels: Array.from(pixels), width: canvas.width, height: canvas.height };
     }, { paintLabels: boardLabels, hasReference: referencePath !== undefined });
     const source=`data/sign-atlas-${key}.bin`,file=`textures/sign-atlas-${key}.rgba`;
-    writer.put(resolve(root,'src/shards/nalati-grasslands',source),new Uint8Array(result.pixels));
+    writer.put(resolve(outputRoot,source),new Uint8Array(result.pixels));
     atlases[key] = { width: result.width, height: result.height, file,source };
     console.log(`${key}: ${result.width}x${result.height}, RGBA ${outputHash(new Uint8Array(result.pixels))}, ${referencePath === undefined ? 'no parent reference' : 'exact parent pixels'}`);
   }
 } finally { await browser.close(); }
-writer.put(resolve(root, 'src/shards/nalati-grasslands/data/signAtlases.json'), jsonBytes(atlases));
+writer.put(resolve(outputRoot, 'data/signAtlases.json'), jsonBytes(atlases));
 writer.finish();

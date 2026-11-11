@@ -98,6 +98,10 @@ jobs:
           fi
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
+      - name: Install the headless authoring browser
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run the three Nalati author commands
+        run: node --test test/ci/nalati-author-tools.test.mjs
       - run: pnpm build:shards
       - name: Complete live-herd walk and continuation
         run: node --test test/ci/nalati-walk.test.mjs
