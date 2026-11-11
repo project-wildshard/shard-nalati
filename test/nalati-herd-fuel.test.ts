@@ -11,6 +11,7 @@ import { ScriptModuleV2 } from '@wildshard/engine/script/moduleV2';
 import { Scope } from '@wildshard/engine/app/scope';
 import { Rng } from '@wildshard/engine/core/rng';
 import herdRows from '../src/shards/nalati-grasslands/data/herdGroup.json' with { type: 'json' };
+import herdGuest from '../src/shards/nalati-grasslands/data/herdGuest.json' with { type: 'json' };
 import { readDecisionSources } from '@wildshard/sharddev/buildDecisionScripts';
 import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
 import { nalatiTitanRows } from '../src/shards/nalati-grasslands/generators/stormTitanRows.mjs';
@@ -27,15 +28,16 @@ type Owners = Input['members'][number];
 interface Internals { readonly profiles: readonly { readonly bank: { encode: (values: Prepared['values'], group: string, refs: Input['references']) => Float64Array };
   readonly columns: { captureNumeric: (owners: Owners, selected: unknown, destination: Float64Array) => Float64Array } }[] }
 
-const FUEL = herdRows.fuel, bankNames = herdRows.bank.map(row => row.name), columnNames = herdRows.columns.map(row => row.name);
+const FUEL = herdRows.fuel, DECLARED = new Set(herdGuest.resume.values), bankNames = herdRows.bank.map(row => row.name), columnNames = herdRows.columns.map(row => row.name);
 const at = (name: string): number => { const index = bankNames.indexOf(name); if (index < 0) throw new Error(`No herd bank field ${name}`); return index; };
 const column = (name: string): number => { const index = columnNames.indexOf(name); if (index < 0) throw new Error(`No herd column ${name}`); return index; };
 
 interface Scene { readonly members: number; readonly seed: number; readonly bounds: number; readonly calm: (frame: number) => boolean;
   readonly player: (frame: number) => readonly [number, number] }
 
-/** One group host over the pasture module. Each member's numeric row is loaned as is (no live actor behind it); the
- *  sense replies say the player is seen and heard, so a near player raises awareness, alarms and flights. */
+/** One group host over the pasture module. Each member's numeric row is loaned without a live actor behind it: memory
+ *  writes land in it, and the sense replies say the player is seen and heard, so a near player raises awareness, alarms
+ *  and flights. Bodies don't move. */
 function herdHost(scene: Scene) {
   const row = parseReturnProjectionV2(PASTURE_ROW), layout = returnProjectionV2Layout(row.fields.length, row.artifact.pages, row.outputCapacity, row.groups);
   const scope = new Scope('herd-fuel');
@@ -47,7 +49,7 @@ function herdHost(scene: Scene) {
   if (profile === undefined) throw new Error('Missing herd profile');
   const values = new WeakMap<object, Float64Array>(), random = new Rng(scene.seed);
   profile.columns.captureNumeric = (owners, _selected, destination) => { destination.set(values.get(owners) ?? []); return destination; };
-  const references: Input['references'][number][] = [];
+  const references: Input['references'][number][] = [], rows: Float64Array[] = [];
   const owners: Owners[] = Array.from({ length: scene.members }, (_, slot) => {
     const actor = { entityId: `horse-${slot}` }, identity = `horse-${slot}`;
     const loan = { scope, self: { group: 'herd', slot, actor, identity }, player: { position: { x: 0, z: 0 } }, observed: new Map(), t: 0, dt: 0.1 } as unknown as Owners;
@@ -57,7 +59,7 @@ function herdHost(scene: Scene) {
     numbers[column('foal')] = slot >= scene.members - 3 ? 1 : 0; numbers[column('grazing')] = slot % 2;
     numbers[column('x')] = (slot % 4) * 3 + random.next(); numbers[column('z')] = Math.floor(slot / 4) * 3 + random.next(); numbers[column('yaw')] = random.next() * 6;
     numbers[column('zzSeen')] = 1; numbers[column('zzHeard')] = 30;
-    values.set(loan, numbers);
+    values.set(loan, numbers); rows.push(numbers);
     references.push({ group: 'herd', slot, identity, wire: identity, handle: slot + 1, body: actor } as never);
     return loan;
   });
@@ -78,7 +80,14 @@ function herdHost(scene: Scene) {
         most = Math.max(most, spent.at(-1) ?? 0);
         prepared.validate(); prepared.accept();
         state = profile.bank.encode(prepared.values, 'herd', references);
+        for (const operation of prepared.operations) {
+          const native = operation.native as { readonly kind: string; readonly key?: string } | undefined, [slot, value] = operation.values;
+          const row = slot === undefined ? undefined : rows[slot];
+          if (native?.kind === 'memory' && native.key !== undefined && row !== undefined && value !== undefined) row[column(native.key)] = value;
+        }
       } finally { prepared.discard(); }
+      // `GroupBrain.runGuest` refuses a continuation the guest binding doesn't declare
+      if (!DECLARED.has(state[continuation] ?? -1)) throw new Error(`Undeclared herd continuation ${String(state[continuation])}`);
       if (state[continuation] === 0) return most;
     }
     throw new Error('Herd tick exceeded its 256 segments');
