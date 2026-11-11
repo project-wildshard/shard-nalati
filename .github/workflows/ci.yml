@@ -78,9 +78,9 @@ jobs:
           CANDIDATE_SHARDDEV: ${{ inputs.sharddev || github.event.client_payload.sharddev }}
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
-            pnpm install --no-frozen-lockfile --config.ci=false --config.enableGlobalVirtualStore=true
+            pnpm install --no-frozen-lockfile --config.ci=false
           else
-            pnpm install --frozen-lockfile --config.ci=false --config.enableGlobalVirtualStore=true
+            pnpm install --frozen-lockfile --config.ci=false
           fi
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
