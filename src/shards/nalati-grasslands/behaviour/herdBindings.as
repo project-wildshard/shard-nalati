@@ -11,22 +11,24 @@ import * as bank from '../sdk/as/groupBankV2.herd';
 import * as slots from '../sdk/as/groupStepV2.herd';
 export class Read{
  @noInline static state(key:i32):f64{return bank.value(key);}
+ // S3 (WILDSHARD-GAME-82): the v2 meter charges an acyclic function's whole body on entry, so a context read that inlined
+ // every member-backed branch cost about 11,500 fuel whatever key it asked for. A plain key now pays for one bank read;
+ // only the member-backed keys (the reply, target, threat and sense reply columns) enter the helper below.
  @noInline static context(key:i32):f64{
-  if(key==C.reply)return slots.member(0,M.reply);
-  // one segment's sense queries answer on their own result channels (visibility, hearing, downwind, mounted); their
-  // columns are named zz* so they sort after the existing ones and every M index keeps its place
-  if(key==C.seenReply)return slots.member(0,M.zzSeen);
-  if(key==C.heardReply)return slots.member(0,M.zzHeard);
-  if(key==C.downwindReply)return slots.member(0,M.zzDownwind);
-  if(key==C.mountedReply)return slots.member(0,M.zzMounted);
-  if(key==C.targetHandle)return slots.member(0,M.targetHandle);
-  if(key==C.targetAlive)return slots.member(0,M.targetAlive);
-  if(key==C.targetX)return slots.member(0,M.targetAlive)==0?bank.value(73+C.px):slots.member(0,M.targetX);
-  if(key==C.targetZ)return slots.member(0,M.targetAlive)==0?bank.value(73+C.pz):slots.member(0,M.targetZ);
-  if(key==C.threatX)return slots.member(0,M.threatX);
-  if(key==C.threatY)return slots.member(0,M.threatY);
-  if(key==C.threatZ)return slots.member(0,M.threatZ);
+  if(key==C.reply||key>=C.targetAlive&&key<=C.threatZ||key>=C.seenReply)return Read.memberContext(key);
   return bank.value(73+key);
+ }
+ // one segment's sense queries answer on their own result channels (visibility, hearing, downwind, mounted); their
+ // columns are named zz* so they sort after the existing ones and every M index keeps its place
+ @noInline static memberContext(key:i32):f64{
+  if((key==C.targetX||key==C.targetZ)&&slots.member(0,M.targetAlive)==0)return bank.value(73+(key==C.targetX?C.px:C.pz));
+  let column:i32=M.reply;
+  if(key==C.seenReply)column=M.zzSeen;else if(key==C.heardReply)column=M.zzHeard;
+  else if(key==C.downwindReply)column=M.zzDownwind;else if(key==C.mountedReply)column=M.zzMounted;
+  else if(key==C.targetHandle)column=M.targetHandle;else if(key==C.targetAlive)column=M.targetAlive;
+  else if(key==C.targetX)column=M.targetX;else if(key==C.targetZ)column=M.targetZ;
+  else if(key==C.threatX)column=M.threatX;else if(key==C.threatY)column=M.threatY;else if(key==C.threatZ)column=M.threatZ;
+  return slots.member(0,column);
  }
  @noInline static member(slot:i32,key:i32):f64{return slots.member(slot,key);}
  @noInline static members():i32{return slots.memberCount();}
