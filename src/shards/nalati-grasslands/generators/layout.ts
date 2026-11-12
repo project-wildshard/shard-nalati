@@ -48,6 +48,12 @@ export const EAGLE_ROCK = { x: 180, z: 85, top: 65 };
 export const HORSE_PLAINS = { x: 65, z: 36, r: 60 };
 /** the kokpar field: an oval of trodden earth (semi-axes rx / rz, turned by rot) */
 export const KOKPAR = { x: -61, z: 36, rx: 34, rz: 22, rot: 0.25 };
+/** a tai-qazan's mound radius: its collider and painted base (campProps), so a horse stops this far from the centre */
+export const KOKPAR_GOAL_RIM = 2.6;
+/** a tai-qazan scores the goat this far from its centre: the rim plus a galloping horse's reach over it. A horse
+ *  ridden straight in stops 3.61 m out (the rim plus 1.01 m of horse), so a narrower drop never scores (KOK-1);
+ *  the other ~0.5 m is headroom for the horse's body and angle, not slack to tighten back */
+export const KOKPAR_GOAL_REACH = KOKPAR_GOAL_RIM + 1.5;
 /** kurgan mounds; `great` = the Golden King's dungeon mound (B13) */
 export const KURGANS: { x: number; z: number; r: number; h: number; great?: boolean }[] = [
   { x: -191, z: 75, r: 19, h: 6.5, great: true },

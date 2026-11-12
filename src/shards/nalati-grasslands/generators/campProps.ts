@@ -10,6 +10,7 @@ import type { SignpostParams, BarrelParams, CorralParams, HitchingRailParams, Pa
 import { ribbonPole, eaglePerch, stove, campBench, rugRack, feltRug, cart, barrel, hitchingRail, waterTrough, saddleRack, corral, hayPile, feedTrough, rugLine, choppingBlock, milkCans, tetherLine, kurtBoard, ribbonPost, fallenLog, stump, ovoo, viewpointPole, skyGateway, campClutter, fence, graniteOutcrop, roundedBoulder, kokparGoal, kokparPost, stoneStep, signpostBaked as signpost } from './catalogue';
 import { type Box, prism, supportHull } from './solid';
 import { graniteBlock } from './granite';
+import { KOKPAR_GOAL_RIM } from './layout';
 
 /** Optional author streams have exactly the factory kit's native continuation type. */
 type Rng = Kit['rng'];
@@ -991,9 +992,9 @@ const EARTH = new THREE.Color('#6f5a3a');
 
 const paintKokparGoal: Paint<object> = (kit, at) => {
   const gy = at.y;
-  kit.add(new THREE.CylinderGeometry(2.2, 2.6, 0.9, 18, 1), EARTH, { matrix: M(at.x, gy + 0.2, at.z), brush: 0.1 });
+  kit.add(new THREE.CylinderGeometry(2.2, KOKPAR_GOAL_RIM, 0.9, 18, 1), EARTH, { matrix: M(at.x, gy + 0.2, at.z), brush: 0.1 });
   kit.add(new THREE.TorusGeometry(2.25, 0.28, 6, 18).rotateX(Math.PI / 2), PC.stone, { matrix: M(at.x, gy + 0.68, at.z), brush: 0.1 });
-  return { descs: [prism(at.x, at.z, gy - 1, gy + 0.72, 2.6, 18, 0, 'earth', 2.3)] };
+  return { descs: [prism(at.x, at.z, gy - 1, gy + 0.72, KOKPAR_GOAL_RIM, 18, 0, 'earth', 2.3)] };
 };
 
 export const kokparGoalPainted: ModelDef<object> = { ...kokparGoal, build: painted(paintKokparGoal, { seed: 0x60ba }) };

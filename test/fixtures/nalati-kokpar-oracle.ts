@@ -18,7 +18,7 @@ export function kokparOval(t: number, k: number): { x: number; z: number } {
 /** the two tai-qazan (Bowl.ts: onOval(0 | π, 0.82)) */
 export const KOKPAR_GOALS = [kokparOval(0, 0.82), kokparOval(Math.PI, 0.82)];
 
-const PICK_R = 3.6, GOAL_R = 3.6, FIELD_R = Math.max(KOKPAR.rx, KOKPAR.rz) + 22, ROUND_T = 45, SLOW_T = 2.5;
+const PICK_R = 3.6, GOAL_R = layoutRows.KOKPAR_GOAL_REACH, FIELD_R = Math.max(KOKPAR.rx, KOKPAR.rz) + 22, ROUND_T = 45, SLOW_T = 2.5;
 
 export interface KokparMount {
   readonly mounted: boolean;

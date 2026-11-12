@@ -95,7 +95,7 @@
               "id": "nalati.kokpar",
               "abi": "1.0",
               "side": "sim",
-              "module": "blobs/wasm/9b537d68433363e0ab4e432ef35f73fcd799638b31be7c83d0a499042ef3557f.wasm",
+              "module": "blobs/wasm/73c2e912d77bdf05bf9af2479c288576ab79216ca22c9195c42a435ebacaf15a.wasm",
               "source": "behaviour/kokpar.as",
               "binding": {
                 "shard": true
@@ -226,9 +226,10 @@
                 "goal0X": -33.98672168270723,
                 "goal0Z": 29.1023776159839,
                 "goal1X": -88.01327831729277,
-                "goal1Z": 42.8976223840161
+                "goal1Z": 42.8976223840161,
+                "goalReach": 4.1
               },
-              "sourceHash": "0ca1c3007c145cb8ff9f9af92b730aaf9dbc33e69157c2076d68df283f701431"
+              "sourceHash": "6212bc311694b8f8e90264d7f62ed432b3bd99cd2cca7a9bd101e5cd65f992f1"
             },
             "bytes": ""
           },

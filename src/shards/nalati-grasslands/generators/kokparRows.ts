@@ -1,6 +1,6 @@
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 import { courseProgramInputs } from '@wildshard/sharddev/commons/courseProgram';
-import { KOKPAR } from './layout';
+import { KOKPAR, KOKPAR_GOAL_REACH } from './layout';
 import { OVAL, LINE_X, HORSE_START, RIDER_START, FIELD_AT, RIDER_PITCH, SHOULDER } from './horseCourse';
 import quest from '../data/questContent.json' with { type: 'json' };
 
@@ -41,7 +41,7 @@ export async function nalatiKokparRows(compile: DecisionCompiler, authored: Read
   const row = { id: 'nalati.kokpar', abi: '1.0', side: 'sim', module: `blobs/wasm/${'0'.repeat(64)}.wasm`, source: 'behaviour/kokpar.as',
     binding: { shard: true }, pages: 1, onFail: 'hold', on: ['signal'], tick: null, stateVersion: 1, state: [],
     params: { clues: quest.clueFlags.length, elites: quest.featherElites.length, feathers: quest.featherFlags.length, homeX: k.x, homeZ: k.z, fieldRadius: Math.max(k.rx, k.rz) + 22,
-      goal0X: goals[0]?.x ?? 0, goal0Z: goals[0]?.z ?? 0, goal1X: goals[1]?.x ?? 0, goal1Z: goals[1]?.z ?? 0 },
+      goal0X: goals[0]?.x ?? 0, goal0Z: goals[0]?.z ?? 0, goal1X: goals[1]?.x ?? 0, goal1Z: goals[1]?.z ?? 0, goalReach: KOKPAR_GOAL_REACH },
     reads: ['field'], commands: ['channel'], fields: aliases(fields), channels: aliases(channels), signals: aliases(signals) };
   const built = await compile([row], { fields: registry(fields), channels: registry(channels), signals: registry(signals) }, authored, { asLineCeiling: 3184, singleSignal: true });
   const script = built.rows[0], blob = built.blobs[0];

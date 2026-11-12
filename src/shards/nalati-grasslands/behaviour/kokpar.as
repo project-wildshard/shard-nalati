@@ -36,8 +36,9 @@ export function onSignal(signal:i32,value:f64,source:i32):void {
           else {
             pose=2;
             const x=get(Field.horseX),z=get(Field.horseZ);
-            if(distance(x,z,Params.goal0X,Params.goal0Z)<3.6) {goal=0;event=7;}
-            else if(distance(x,z,Params.goal1X,Params.goal1Z)<3.6) {goal=1;event=7;}
+            // goalReach (generators/layout.ts) reaches past the tai-qazan's rim, which stops a horse 3.61 m out
+            if(distance(x,z,Params.goal0X,Params.goal0Z)<Params.goalReach) {goal=0;event=7;}
+            else if(distance(x,z,Params.goal1X,Params.goal1Z)<Params.goalReach) {goal=1;event=7;}
             if(event==7) {carrying=0;cheer=4;pose=3;}
           }
         }
