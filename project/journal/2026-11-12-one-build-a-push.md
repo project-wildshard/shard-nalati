@@ -19,3 +19,9 @@ split (TS16d): `pnpm check` is short here, so a hand-off would only
 queue a second setup in front of the cook. The job runs check's walks
 in series with the cook, so the wall grows by about their length while
 a push saves one build and one setup.
+
+The first run (43282532284) took 649 s against 456 s before: build
+245 s, then 115 s of check steps, the walk and a 209 s cook in series.
+The cook reads `out/` and writes only its own temp folder, so it now
+starts right after the build and runs beside check's steps; the last
+step waits for its verdict and prints its log.

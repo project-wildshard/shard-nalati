@@ -226,6 +226,15 @@ jobs:
         run: node --test test/ci/nalati-author-tools.test.mjs
       - name: Build shard products on the runner
         run: pnpm build:shards
+      # The cook is the long pole. It reads out/ and writes only its own
+      # temp folder, so it starts now beside check's steps, and the last
+      # step waits for its verdict.
+      - name: Start the live-herd cook beside check's steps
+        if: steps.ring2.outputs.play == 'true'
+        run: |
+          (code=0
+           node --test test/ci/cook-play.test.mjs > "$RUNNER_TEMP/cook.log" 2>&1 || code=$?
+           echo "$code" > "$RUNNER_TEMP/cook.exit") &
       - name: Walk the owned 1800-tick authored route
         run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
       - name: Tame the plains stallion on real inputs
@@ -242,4 +251,8 @@ jobs:
         run: node --test test/ci/nalati-walk.test.mjs
       - name: Cook and play only served live-herd files
         if: steps.ring2.outputs.play == 'true'
-        run: node --test test/ci/cook-play.test.mjs
+        timeout-minutes: 10
+        run: |
+          until [ -f "$RUNNER_TEMP/cook.exit" ]; do sleep 2; done
+          cat "$RUNNER_TEMP/cook.log"
+          exit "$(cat "$RUNNER_TEMP/cook.exit")"
