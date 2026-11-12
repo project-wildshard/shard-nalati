@@ -111,6 +111,9 @@ jobs:
       - name: Hide in the feather grass and be seen by the herd
         if: github.event_name != 'push'
         run: node --experimental-transform-types --test test/ci/stealth-journey.test.mjs
+      - name: Fell Aqbars in her lair on real inputs
+        if: github.event_name != 'push'
+        run: node --experimental-transform-types --test test/ci/aqbars-journey.test.mjs
       - if: github.event_name != 'push'
         run: pnpm test:shards
       - name: Admit the complete publishable product
@@ -246,6 +249,8 @@ jobs:
         run: node --experimental-transform-types --test test/ci/taming-journey.test.mjs
       - name: Hide in the feather grass and be seen by the herd
         run: node --experimental-transform-types --test test/ci/stealth-journey.test.mjs
+      - name: Fell Aqbars in her lair on real inputs
+        run: node --experimental-transform-types --test test/ci/aqbars-journey.test.mjs
       - run: pnpm test:shards
       - name: Admit the complete publishable product
         run: node --test test/ci/package-products.test.mjs
