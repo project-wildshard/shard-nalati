@@ -1,0 +1,4 @@
+{
+  "about": "shard-nalati's land settings (meta WORKTREE-LAND-STANDARD WL4; keys in scripts/land.mjs). shard-nalati is public, so its hosted Actions run: land waits for the exact plan/<slug> SHA's `ci` push run (its check and ring-2-content jobs; ring-2-content.yml is nightly and dispatch only, not a land gate). pnpm's frozen install after a dependency rebase; no TS10 flaky quarantine.",
+  "workflows": ["ci"]
+}
