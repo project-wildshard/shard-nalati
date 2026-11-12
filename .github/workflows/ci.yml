@@ -23,7 +23,8 @@ permissions:
 
 concurrency:
   group: ci-${{ github.ref }}-${{ github.event_name }}-${{ inputs.engine || github.event.client_payload.engine }}-${{ inputs.sharddev || github.event.client_payload.sharddev }}
-  # A plan branch's rerun after land's rebase supersedes the old SHA's run.
+  # A newer push to a plan branch cancels its older run; land reads a
+  # cancelled run as red and stops, so push a plan branch only via land.
   cancel-in-progress: ${{ github.event_name == 'pull_request' || startsWith(github.ref, 'refs/heads/plan/') }}
 
 jobs:
@@ -202,9 +203,10 @@ jobs:
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
       # The paths ring-2-content.yml's push trigger watched, plus ci.yml.
-      # An unknown base (first push, failed compare, 300+ files) plays.
       # A plan/** push compares against main, not the branch's last tip, so
       # land never fast-forwards a branch whose watched change skipped Ring 2.
+      # An unknown base (a main branch's first push, failed compare, 300+
+      # files) plays.
       - name: Decide whether this push plays Ring 2
         id: ring2
         env:
