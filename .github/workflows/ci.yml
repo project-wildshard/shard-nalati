@@ -98,17 +98,24 @@ jobs:
       - name: Native collider bytes and owned recovery
         run: node --import @wildshard/engine/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
       - name: Build shard products on the runner
+        if: github.event_name != 'push'
         run: pnpm build:shards
       - name: Walk the owned 1800-tick authored route
+        if: github.event_name != 'push'
         run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
       - name: Tame the plains stallion on real inputs
+        if: github.event_name != 'push'
         run: node --experimental-transform-types --test test/ci/taming-journey.test.mjs
       - name: Hide in the feather grass and be seen by the herd
+        if: github.event_name != 'push'
         run: node --experimental-transform-types --test test/ci/stealth-journey.test.mjs
-      - run: pnpm test:shards
+      - if: github.event_name != 'push'
+        run: pnpm test:shards
       - name: Admit the complete publishable product
+        if: github.event_name != 'push'
         run: node --test test/ci/package-products.test.mjs
       - name: Prove authored wet ground and shipped navigation
+        if: github.event_name != 'push'
         run: node --test test/ci/navigation-ground.test.mjs
       - if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: pnpm test:hooks
@@ -128,3 +135,111 @@ jobs:
             printf '\n### Included commits since %s\n\n~~~text\n%s\n~~~\n' "$previous" "$commits"
             echo 'The checks target the final tree; intermediate SHAs were not executed separately.'
           } >> "$GITHUB_STEP_SUMMARY"
+
+  # TEST-SPEED TS16e (repo-kit docs/shard-ci.md): on a push this job builds
+  # once, runs check's build-dependent steps on that out/, then plays Ring 2
+  # when the push touches what ring-2-content.yml's push trigger watched.
+  # ring-2-content.yml keeps the nightly run and dispatches; check still
+  # builds for pull requests and candidates.
+  ring-2-content:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          package_json_file: package.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            pnpm-workspace.yaml
+      # Private org git dependencies (github:project-wildshard/...): mint a
+      # read-only token from the org app (meta repo P0.2, J34) and point
+      # every github.com URL form at it. pnpm-lock.yaml records them as
+      # git@github.com:..., and git clones them, so the rewrite covers it.
+      # Skipped where the secrets don't reach (fork PRs, Dependabot).
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        if: env.APP_CLIENT_ID != ''
+        with:
+          client-id: ${{ env.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: project-wildshard
+          permission-contents: read
+      - name: Read private org repos with the app token
+        if: steps.app-token.outputs.token != ''
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          base="https://x-access-token:${TOKEN}@github.com/"
+          git config --global url."$base".insteadOf "https://github.com/"
+          git config --global --add url."$base".insteadOf "git@github.com:"
+          git config --global --add url."$base".insteadOf "ssh://git@github.com/"
+      - name: Select exact Ring 3 candidate
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine || github.event.client_payload.engine }}
+          CANDIDATE_SHARDDEV: ${{ inputs.sharddev || github.event.client_payload.sharddev }}
+        run: node scripts/select-candidate.mjs
+      - name: Install pinned or candidate dependency graph
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine || github.event.client_payload.engine }}
+          CANDIDATE_SHARDDEV: ${{ inputs.sharddev || github.event.client_payload.sharddev }}
+        run: |
+          if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
+            pnpm install --no-frozen-lockfile --config.ci=false
+          else
+            pnpm install --frozen-lockfile --config.ci=false
+          fi
+      - name: Prove the installed global store
+        run: node scripts/assert-store-layout.mjs
+      # The paths ring-2-content.yml's push trigger watched, plus ci.yml.
+      # An unknown base (first push, failed compare, 300+ files) plays.
+      - name: Decide whether this push plays Ring 2
+        id: ring2
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          watched='^(\.github/workflows/(ci|ring-2-content)\.yml$|\.github/actions/|src/|test/|scripts/|public/|lint/|package\.json$|pnpm-lock\.yaml$|pnpm-workspace\.yaml$|tsconfig[^/]*\.json$|vitest\.config\.[^/]*$|\.npmrc$|\.gitattributes$|\.oxlintrc\.author\.json$)'
+          play=true
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != 0000000000000000000000000000000000000000 ] &&
+            files=$(gh api "repos/$GITHUB_REPOSITORY/compare/$BEFORE...$GITHUB_SHA" --jq '.files[].filename') &&
+            [ "$(printf '%s\n' "$files" | grep -c .)" -lt 300 ] &&
+            ! printf '%s\n' "$files" | grep -Eq "$watched"; then
+            play=false
+          fi
+          echo "play=$play" >> "$GITHUB_OUTPUT"
+          echo "Ring 2 play on this push: $play"
+      - name: Install the headless authoring browser
+        if: steps.ring2.outputs.play == 'true'
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run the three Nalati author commands
+        if: steps.ring2.outputs.play == 'true'
+        run: node --test test/ci/nalati-author-tools.test.mjs
+      - name: Build shard products on the runner
+        run: pnpm build:shards
+      - name: Walk the owned 1800-tick authored route
+        run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
+      - name: Tame the plains stallion on real inputs
+        run: node --experimental-transform-types --test test/ci/taming-journey.test.mjs
+      - name: Hide in the feather grass and be seen by the herd
+        run: node --experimental-transform-types --test test/ci/stealth-journey.test.mjs
+      - run: pnpm test:shards
+      - name: Admit the complete publishable product
+        run: node --test test/ci/package-products.test.mjs
+      - name: Prove authored wet ground and shipped navigation
+        run: node --test test/ci/navigation-ground.test.mjs
+      - name: Complete live-herd walk and continuation
+        if: steps.ring2.outputs.play == 'true'
+        run: node --test test/ci/nalati-walk.test.mjs
+      - name: Cook and play only served live-herd files
+        if: steps.ring2.outputs.play == 'true'
+        run: node --test test/ci/cook-play.test.mjs
