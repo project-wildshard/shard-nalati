@@ -101,6 +101,8 @@ jobs:
         run: pnpm build:shards
       - name: Walk the owned 1800-tick authored route
         run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
+      - name: Tame the plains stallion on real inputs
+        run: node --experimental-transform-types --test test/ci/taming-journey.test.mjs
       - run: pnpm test:shards
       - name: Admit the complete publishable product
         run: node --test test/ci/package-products.test.mjs
