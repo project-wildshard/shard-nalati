@@ -6,6 +6,11 @@
 // offer hold, lean and the mount press). No flag, pose, trust or taming state
 // is written; the rider reads where the stallion stands and the HUD's alert
 // and balance gauges, as a player's eyes do. About 6,500 ticks.
+// The mounted leg goes on from the same saddle (meta BUILD-MAX NAL-2): the
+// bonded tulpar is galloped west to the kokpar field on the reins alone, the
+// goat snatched from the middle at speed and carried into a tai-qazan. The
+// round is the shard's own chapter story, installed on the host as the
+// standalone server's cell world installs it.
 import '@wildshard/engine/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -19,6 +24,9 @@ const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/ga
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
 const { nativeTamingOf } = await import('@wildshard/engine/game/riding/nativeTaming');
 const { mountedPlayerOf } = await import('@wildshard/engine/game/riding/native');
+const { installServerChapters } = await import('@wildshard/engine/game/quest/serverChapters');
+const { questBooks } = await import('@wildshard/engine/quest/players');
+const { shardRows } = await import('@wildshard/engine/sim/shardRows');
 const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
 
 // The taming controls the page sends (server/taming.json inputs): hold offer, lean, press mount at the prompt.
@@ -34,8 +42,11 @@ const BANK = [[1, 146], [23, 146], [27, 142], [29, 142], [30, 141], [39, 141], [
 const TAMING_TICKS = 12_000;
 // Crouch inside this range of the stallion, and stand still while its alert reads above HOLD.
 const CREEP = 25, HOLD = 40;
+// The kokpar round's allowance, and how far beside a tai-qazan's centre the rider passes: its rim stops a horse ridden
+// straight in 3.61 m out, just short of the program's 3.6 m drop (behaviour/kokpar.as; product-coverage row KOK-1).
+const KOKPAR_TICKS = 4_000, SIDE = 3.1;
 
-test('nalati-grasslands: a stallion tamed on real inputs', { timeout: 60_000 }, async () => {
+test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpar win', { timeout: 90_000 }, async t => {
   const started = performance.now(), directory = resolve('out/nalati-grasslands'), product = await loadHeadlessProduct(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard); assert.ok(descriptor, 'The built shard must pass admission');
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
@@ -44,8 +55,9 @@ test('nalati-grasslands: a stallion tamed on real inputs', { timeout: 60_000 }, 
   const resident = await createTrustedHeadlessResident({ shard, assets, product, rapier }), { host } = resident;
   try {
     const taming = nativeTamingOf(host), mounted = mountedPlayerOf(host); assert.ok(taming); assert.ok(mounted);
-    const stallion = [...host.entities.values()].find(actor => actor.kind === 'horse' && actor.variant === 'stallion'); assert.ok(stallion, 'The plains must hold a wild stallion');
     const player = [...host.players.values()][0]; assert.ok(player);
+    await t.test('taming', () => {
+    const stallion = [...host.entities.values()].find(actor => actor.kind === 'horse' && actor.variant === 'stallion'); assert.ok(stallion, 'The plains must hold a wild stallion');
     assert.ok(Math.hypot(player.position.x - shard.spawn.x, player.position.z - shard.spawn.z) < 0.5, 'The journey starts at the shard spawn');
     // Run (the page's sprint) to each point in turn; a point not reached in its allowance fails the route there.
     for (const [x, z] of [...BRIDGE, ...BANK]) {
@@ -96,5 +108,50 @@ test('nalati-grasslands: a stallion tamed on real inputs', { timeout: 60_000 }, 
     const flags = [...host.flags.all];
     for (const flag of ['tamed:horse', 'quest:tulpar']) assert.ok(!flags.includes(flag), `Taming alone never grants ${flag}`);
     console.log(`taming-journey ${JSON.stringify({ walkTicks, promptTick, breakingTick, bondedTick: host.state.tick, throws, elapsedMs: Math.round(performance.now() - started) })}`);
+    });
+    await t.test('mounted: the tulpar wins a kokpar round', async () => {
+      assert.equal(taming.phase, 'bonded', 'The mounted leg rides the bonded tulpar');
+      const begun = performance.now(), filed = [];
+      assert.equal(await installServerChapters(host, product, shard, (fact, entity) => { filed.push([fact, entity]); }), true, 'Nalati runs its story and kokpar on the server');
+      const book = questBooks(host).lead, carried = await product.json((await product.json('quests/content.json')).view.carried);
+      const [home, goals] = [carried.home, carried.goals];
+      // The reins: stick forward to go, stick sideways to turn, sprint to gallop; the yaw is the camera behind the horse.
+      const reins = (forward, turn, sprint) => ({ kind: 'player', moveX: 0, moveZ: 0, yaw: mounted.body.heading - Math.PI, commandVersion: 1, sprint,
+        steer: { keyX: 0, keyY: 0, stickX: Math.max(-1, Math.min(1, turn)), stickY: forward } });
+      const toward = (x, z, brakes) => {
+        const p = player.position, target = Math.atan2(x - p.x, z - p.z), delta = Math.atan2(Math.sin(mounted.body.heading - target), Math.cos(mounted.body.heading - target));
+        const brake = brakes && Math.abs(delta) > .9 && mounted.body.speed > 4;
+        return { distance: Math.hypot(x - p.x, z - p.z), command: reins(brake ? -.3 : Math.abs(delta) > .9 ? 0 : 1, brake ? 0 : delta * 2.5, !brake) };
+      };
+      // The field is a line: one tai-qazan, the goat in the middle, the other tai-qazan. Line up beyond the near one, then
+      // gallop the line through the goat into the far one without slowing: a slow rider has the goat snatched back.
+      const [near, far] = goals.toSorted((a, b) => Math.hypot(a.x - player.position.x, a.z - player.position.z) - Math.hypot(b.x - player.position.x, b.z - player.position.z));
+      const lineUp = { x: home.x + (near.x - home.x) * 1.6, z: home.z + (near.z - home.z) * 1.6 };
+      // A tai-qazan's rim stops a horse ridden straight at it short of the drop; ride on past its side, close enough to drop.
+      const along = Math.hypot(far.x - home.x, far.z - home.z), dx = (far.x - home.x) / along, dz = (far.z - home.z) / along;
+      const past = { x: far.x - dz * SIDE + dx * 8, z: far.z + dx * SIDE + dz * 8 };
+      // Where the goat stands for this rider, as the page reads it off the owned rows: 0 home, 1 carried, 2 + a goal.
+      const goat = () => { const out = new Map(); shardRows(host).owned.get('story')?.(player.id, out); return out.get('story.prop') ?? 0; };
+      const start = host.state.tick;
+      let pickupTick = -1, wonTick = -1, topSpeed = 0, lined = false, snatched = 0;
+      for (let tick = 0; tick < KOKPAR_TICKS && wonTick < 0; tick++) {
+        assert.equal(mounted.mounted, true, 'The rider stays in the saddle');
+        assert.equal(mounted.horse, taming.companion, 'The bonded tulpar carries the rider throughout');
+        const held = goat();
+        if (!lined) { const leg = toward(lineUp.x, lineUp.z, true); lined = leg.distance < 4; resident.step([leg.command]); }
+        else resident.step([toward(past.x, past.z, false).command]);
+        assert.deepEqual(resident.effects, [], 'The ride invents no quest facts');
+        topSpeed = Math.max(topSpeed, mounted.body.speed);
+        const now = goat();
+        if (now === 1 && held !== 1 && pickupTick < 0) pickupTick = host.state.tick;
+        if (now === 0 && held === 1) { snatched++; lined = false; }
+        if (book.flags.has('won:kokpar')) wonTick = host.state.tick;
+      }
+      assert.ok(pickupTick > start, `The tulpar must reach the goat and snatch it: ${player.position.x}, ${player.position.z}`);
+      assert.ok(wonTick > pickupTick, `The goat must land in a tai-qazan within ${KOKPAR_TICKS} ticks: ${player.position.x}, ${player.position.z}`);
+      assert.ok(topSpeed >= 11, 'The kokpar is won at a gallop');
+      assert.ok(goat() >= 2, 'The goat rests in a tai-qazan'); assert.equal(snatched, 0, 'No rider snatches the goat back');
+      console.log(`kokpar ${JSON.stringify({ startTick: start, pickupTick, wonTick, topSpeed: Math.round(topSpeed * 10) / 10, snatched, goat: goat(), filed, elapsedMs: Math.round(performance.now() - begun) })}`);
+    });
   } finally { resident.dispose(); }
 });

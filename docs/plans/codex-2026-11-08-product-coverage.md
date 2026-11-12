@@ -13,6 +13,7 @@ Status: in progress 2026-11-08: installed product coverage.
 | Client title to play | Open: requires the installed dev-client path, not this server proof |
 | Authored quest, fight and traversal tapes | Open: walking does not prove sleeping hosts |
 | Goldens and GPU | Existing graphical owner and Mac mini; outside this lane |
+| KOK-1 tai-qazan rim (Claude, 2026-11-12, opus-nal2) | Open bug. Galloping the goat straight at a tai-qazan never scores: the rim stops the horse 3.61 m from the goal centre, just outside `behaviour/kokpar.as`'s 3.6 m drop, and 2.5 s later a rider snatches the goat back (event 5). Repro: `test/ci/taming-journey.test.mjs` with `SIDE = 0` (the far goal, -88.0, 42.9). The mounted leg scores by riding past the goal's side, 3.1 m off its centre |
 
 New coverage stays outside hooks under J186. Nothing uploads or deploys.
 
