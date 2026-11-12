@@ -31,7 +31,10 @@ const CAPSULE = 2;
 
 const flag = (name, fallback) => process.argv.find(arg => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback;
 
-/** engine src/client/engine/world/forest/Forest.ts `trunkCapsule`: centre above the foot, half straight length, radius. */
+/** engine src/client/engine/world/forest/Forest.ts `trunkCapsule`: centre above the foot, half straight length, radius.
+ *  A copy, not an import (this script runs outside the engine's TS loader). What guards both this copy and drift in the
+ *  page's planting is engine's test/side-parity.test.ts on the pinned product: a page trunk with no server capsule is a
+ *  `forest (wood)` finding there, and CI fails until this script is run again and the product re-pinned. */
 export function trunkCapsule(tree) {
   const h = Math.max(1, tree.height);
   return { y: h / 2, halfHeight: Math.max(0.05, h / 2 - tree.r), radius: tree.r };
@@ -42,7 +45,7 @@ export function withTrees(rows, trees) {
   const forest = rows.pieces[0];
   if (forest?.id !== 'forest') throw new Error('physicsRows: pieces[0] is not the forest');
   const old = rows.solids.slice(FIRST_TRUNK, FIRST_TRUNK + forest.colliders);
-  if (old.length !== forest.colliders || old.some(s => s.shape !== CAPSULE)) {
+  if (forest.colliders === 0 || old.length !== forest.colliders || old.some(s => s.shape !== CAPSULE)) {
     throw new Error('physicsRows: the forest capsules are not where pieces[0] says');
   }
   const f = Math.fround;
@@ -79,5 +82,8 @@ if (process.argv[1] !== undefined && resolve(process.argv[1]) === fileURLToPath(
   const same = JSON.stringify(next) === JSON.stringify(rows);
   console.error(`forest-trunks: page ${trees.length} trees, bake ${rows.pieces[0].colliders}${same ? ', same' : ', drifted'}`);
   if (process.argv.includes('--check')) process.exit(same ? 0 : 1);
-  if (!same) writeFileSync(FILE, `${JSON.stringify(next)}\n`);
+  if (!same) {
+    writeFileSync(FILE, `${JSON.stringify(next)}\n`);
+    console.error('forest-trunks: wrote physicsRows.json; refresh physicsRows.d.json.ts (see the header)');
+  }
 }

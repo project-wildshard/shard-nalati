@@ -18,3 +18,7 @@
 - Not yet computed at build time: the page's planting needs the whole
   installed level (forest rows, mask lattice, baked ground), which the
   physics generator does not run.
+- Uploaded as revision 2 (`77b77fcc`) and pinned by engine. Review
+  (claude -p): no MUST. Folded: the script names engine's side-parity
+  test as the gate that catches the next drift, refuses an empty forest
+  clearly, and reminds to refresh the declaration file.
