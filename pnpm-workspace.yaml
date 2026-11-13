@@ -6,7 +6,7 @@ enableGlobalVirtualStore: true
 confirmModulesPurge: false
 
 packageExtensions:
-  '@wildshard/engine@0.1.2':
+  '@wildshard/engine':
     dependencies:
       '@typescript/typescript6': '6.0.2'
       vite: '8.3.0'

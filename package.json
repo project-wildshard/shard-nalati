@@ -35,7 +35,7 @@
     "lint:shards": "WILDSHARD_RATCHET_FILE=lint/ratchet.json oxlint -c .oxlintrc.author.json --deny-warnings src/shards"
   },
   "dependencies": {
-    "@wildshard/engine": "github:project-wildshard/engine#80d5cc0d8d5faa1336708eeee10359f30a715204",
+    "@wildshard/engine": "github:project-wildshard/engine#867f3b968429d8b90ae33b363dae3f15f16f6b84",
     "@wildshard/format": "github:project-wildshard/shardfile#0786a04b8f824578d4346e735ccc2a6c56c2a094",
     "@wildshard/sharddev": "github:project-wildshard/sharddev#d14580c10413562b136f1aef8cd652dc8f319b10",
     "playwright": "1.65.0",

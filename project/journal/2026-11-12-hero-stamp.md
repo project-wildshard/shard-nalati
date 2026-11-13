@@ -15,3 +15,9 @@ content change needs a capture:
 
 sharddev main needs shardfile `0786a04` (`featureSides`), so the format
 pin and its override move with it, to sharddev's own pair. Engine stays.
+
+Engine also moves to `867f3b9`, the engine sharddev pins: Driftwood's
+Ring 2 could not play a new-sharddev product on engine `80d5cc0`, so
+the pair stays together here too. The `packageExtensions` selector
+named `@wildshard/engine@0.1.2`, which the new engine (0.1.13) does not
+match, so it now names the package, as sharddev's does.
