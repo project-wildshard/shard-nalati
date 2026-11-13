@@ -20,7 +20,7 @@ import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
 const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessProduct');
-const { createTrustedHeadlessResident } = await import('@wildshard/engine/host/headlessRuntime');
+const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
 const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
@@ -54,7 +54,7 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
   const elites = await product.json('server/elites.json'), at = elites.rows.findIndex(row => row.def.id === 'aqbars');
   const def = elites.rows[at]?.def, swipe = elites.kernels.find(kernel => kernel.id === 'aqbars')?.profile.spec.swipe;
   assert.ok(def && swipe, 'The product declares Aqbars and her swipe');
-  const resident = await createTrustedHeadlessResident({ shard, assets, product, rapier }, undefined, { room: true }), { host } = resident;
+  const { resident } = await openWorld({ shard, assets, product, rapier }, { room: true }), { host } = resident;
   try {
     const player = [...host.players.values()][0]; assert.ok(player);
     assert.ok(Math.hypot(player.position.x - shard.spawn.x, player.position.z - shard.spawn.z) < 0.5, 'The journey starts at the shard spawn');
@@ -65,8 +65,9 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
     const health = () => player.health.attributes.health, full = player.health.attributes.maxHealth;
     assert.equal(cat.alive, true); assert.equal(cat.hp, cat.maxHp, 'She is unhurt before the walk'); assert.equal(health(), full);
     assert.equal(record().kills, 0, 'No kill is filed before the fight'); assert.equal(entry().state, 'idle', 'She waits in her lair');
-    let effects = 0;
-    const step = commands => { resident.step(commands); effects += resident.effects.length; };
+    // HS1: the room's world files feats (data/feats.json) as Ledger facts; Aqbars pays no coins.
+    const effects = [];
+    const step = commands => { resident.step(commands); effects.push(...resident.effects); };
     const frame = (fields = {}) => ({ kind: 'player', moveX: 0, moveZ: 0, yaw: 0, commandVersion: 1, steer: { keyX: 0, keyY: 0, stickX: 0, stickY: 0 }, ...fields });
 
     // Run (the page's sprint) to each point in turn; a point not reached in its allowance fails the route there.
@@ -140,7 +141,7 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
     assert.equal(filed.kills, 1, 'The kill is filed once'); assert.equal(filed.discovered, true);
     assert.equal(settled.state, 'dead', 'Her lair is empty');
     assert.ok(filed.timer > def.respawnMin * 60 - 60 && filed.timer <= def.respawnMin * 60, `Her lair waits ${def.respawnMin} minutes to wake again: ${filed.timer}`);
-    assert.equal(effects, 0, 'Aqbars pays no coins or Ledger facts');
+    assert.deepEqual(effects.map(effect => effect.kind === 'fact' ? effect.name : effect.kind), ['nalati.feat.aqbars'], 'Aqbars pays no coins; the room files her feat once');
     console.log(`aqbars-journey ${JSON.stringify({ walkTicks, engagedTick, killTick, fightTicks: killTick - fightStart, taps, hurtTicks, swipes: swipes.length, perchTicks,
       lairDistance: Math.round(lairDistance), respawn: Math.round(filed.timer), ticks: host.state.tick, elapsedMs: Math.round(performance.now() - started) })}`);
   } finally { resident.dispose(); }

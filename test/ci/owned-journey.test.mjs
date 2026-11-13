@@ -9,7 +9,7 @@ import { test } from 'node:test';
 const { questSource } = await import('./quest-source.mjs');
 
 const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessProduct');
-const { createTrustedHeadlessAdapter } = await import('@wildshard/engine/host/headlessRuntime');
+const { openWorldAdapter } = await import('@wildshard/engine/host/openWorld');
 const { HeadlessSimulation } = await import('@wildshard/engine/host/headless');
 const { productHeadlessSections } = await import('@wildshard/engine/host/headlessSections');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
@@ -39,7 +39,7 @@ for (const slug of products) test(`${slug}: enters and walks 1800 actual authore
   const rapier = declared ? undefined : await loadRapier(readFileSync(engineRequire.resolve('@dimforge/rapier3d-simd/rapier_wasm3d_bg.wasm')));
   const runtime = declared
     ? await HeadlessSimulation.create(shard,assets,undefined,{deadline:'advisory',sections:productHeadlessSections(product)})
-    : await createTrustedHeadlessAdapter({shard,assets,product,rapier});
+    : await openWorldAdapter({shard,assets,product,rapier});
   try {
     const route = routeFor(slug,shard.spawn), report = await runtime.journey({ticks:1800,points:route.points});
     assert.equal(report.ticks,1800); assert.equal(report.settledTicks,60);

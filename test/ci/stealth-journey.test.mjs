@@ -19,7 +19,7 @@ import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
 const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessProduct');
-const { createTrustedHeadlessResident } = await import('@wildshard/engine/host/headlessRuntime');
+const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
 const { nativeTamingOf } = await import('@wildshard/engine/game/riding/nativeTaming');
@@ -48,7 +48,7 @@ test('nalati-grasslands: hidden in the feather grass, then seen by the herd, on 
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
     .map(file => [file.commons === true ? `commons:${file.hash}` : file.hash, readFileSync(join(directory, file.path))]));
   const rapier = await loadRapier(readFileSync(engineRequire.resolve('@dimforge/rapier3d-simd/rapier_wasm3d_bg.wasm')));
-  const resident = await createTrustedHeadlessResident({ shard, assets, product, rapier }), { host } = resident;
+  const { resident } = await openWorld({ shard, assets, product, rapier }, { room: true }), { host } = resident;
   try {
     const rows = product.section('player/stealth'), sources = rows.observations; assert.ok(sources, 'Nalati declares its stealth observation sources');
     const groups = nativeGroupCollection(host, 'nalati.groups'), grass = groups?.environment, mounted = mountedPlayerOf(host), taming = nativeTamingOf(host);
