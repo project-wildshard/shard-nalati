@@ -243,13 +243,6 @@
       }
     },
     {
-      // sdk v0.2.4's generator-imports reads the `?raw` query as part of the subpath, so the exported
-      // ./commons/scripts/course.as reads as unexported. Editing the generator would stale the hero; drop this
-      // block once sharddev's rule strips the query.
-      "files": ["src/shards/nalati-grasslands/generators/kokparProgram.ts"],
-      "rules": { "wildshard-sdk/generator-imports": "off" }
-    },
-    {
       "files": ["vite.config.ts", "vitest.config.ts", "capacitor.config.ts", "drafts/vite.config.ts", "admin/vite.config.ts"],
       "rules": { "import/no-default-export": "off" } // Vite / Vitest / the Capacitor CLI read the default export
     },
