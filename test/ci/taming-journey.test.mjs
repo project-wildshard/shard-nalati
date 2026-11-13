@@ -45,7 +45,8 @@ const CREEP = 25, HOLD = 40;
 // rim stops the horse 3.61 m out, so the drop must reach past the rim (behaviour/kokpar.as; product-coverage KOK-1).
 const KOKPAR_TICKS = 4_000;
 
-test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpar win', { timeout: 90_000 }, async t => {
+// The room's world (HS1) ticks Nalati's king, patrols and every solid: the tame takes about 110 s on a CI runner.
+test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpar win', { timeout: 240_000 }, async t => {
   const started = performance.now(), directory = resolve('out/nalati-grasslands'), product = await loadHeadlessProduct(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard); assert.ok(descriptor, 'The built shard must pass admission');
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
