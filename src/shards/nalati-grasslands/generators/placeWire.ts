@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 
 /** Original four-byte lane order, without compression or filesystem publication. */
 export function shuffleNalatiWords(bin:Uint8Array):Uint8Array {

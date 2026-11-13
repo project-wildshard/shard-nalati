@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- The frozen fixture codec preserves the complete original GLB.
 import { inflateSync } from 'node:zlib';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
 import type { ProjectOutput } from '@wildshard/sharddev/projectOutput';
 import pins from './nalati-render-source-files.json' with { type: 'json' };

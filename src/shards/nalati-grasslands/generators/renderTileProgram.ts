@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 import { nalatiRenderTileSources } from './renderTileSources';
 

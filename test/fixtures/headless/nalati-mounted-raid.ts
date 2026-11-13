@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {runSnapshot} from '../runSnapshot';
-import {hashImmutableBytes} from '@wildshard/engine/host/immutable';
+import {hashImmutableBytes} from '@wildshard/format/immutable';
 import {snapshotSimHost,serializeSimSnapshot} from '../../../src/shared/engine/sim/snapshot';
 import {canonicalSimDigest} from '../../fake/simState';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read only the admitted product and shipped physics bytes.

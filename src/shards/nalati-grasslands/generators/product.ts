@@ -10,7 +10,7 @@ import type { NalatiCharge } from './chargeRows';
 import { NALATI_ECOLOGY as ecology } from './ecology.mjs';
 import { peoplePrograms } from './peopleMotion';
 import { emptyShardfile } from '@wildshard/sharddev/author';
-import { parseShardfile } from '@wildshard/engine/host/shardfile';
+import { parseShardfile } from '@wildshard/format/shardSchema';
 import type { BakedQueryTerrain } from '@wildshard/sharddev/bake/terrain';
 import { nalatiAudioRows } from './audioRows';
 import { NALATI_EDGES } from './edges';

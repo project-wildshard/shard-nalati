@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { nativeProgramFixture } from './native-program';
 import pins from './nalati-place-wires.json' with { type: 'json' };
 

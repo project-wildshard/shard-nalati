@@ -1,4 +1,4 @@
 import { nalatiNativeBootInputs } from './nalati-native-boot-inputs.ts';
-import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson } from '@wildshard/format/immutable';
 
 console.log(encodeCanonicalJson(nalatiNativeBootInputs()));

@@ -1,7 +1,7 @@
 import { Box3, Mesh, Vector3, type BufferGeometry, type Object3D } from 'three';
 import { readNativeTerrain } from '@wildshard/sharddev/bake/terrain';
 import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import type { Board } from './campParams';
 import { riderGeometry } from './ghostFigure';
 import { shepherdBody, shepherdArm } from './shepherd';

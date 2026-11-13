@@ -2,7 +2,7 @@
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Keep fixture preparation and atomic publication beneath its owned directory.
 import { resolve } from 'node:path';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-place-wires.json' with { type: 'json' };
 
 const pin = pins.find(row => row.path === 'public/assets/nalati/baked/places.bin');

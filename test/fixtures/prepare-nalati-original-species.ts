@@ -6,7 +6,7 @@ import * as v from 'valibot';
 import { CreatureGuestSchema } from '@wildshard/format/speciesBookRows';
 import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
 import { compileDecisionScripts } from '@wildshard/sharddev/buildDecisionScripts';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { nalatiSpeciesProgram } from '../../src/shards/nalati-grasslands/generators/speciesProgram';
 import pins from './nalati-species-files.json' with { type: 'json' };
 

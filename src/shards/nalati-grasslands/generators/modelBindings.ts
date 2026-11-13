@@ -1,5 +1,5 @@
 import { MODEL_FILES } from './modelPaint.mjs';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 
 const publicPrefix = '/assets/nalati/baked/painted-models/';
 const productPrefix = 'models/painted/';

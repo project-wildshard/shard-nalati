@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { inflateSync } from 'node:zlib';
 import * as v from 'valibot';
 import { nativePlaceFile } from './nalati-native-place-files';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { unshuffle } from '../../src/shards/nalati-grasslands/generators/bake-nalati-places.mjs';
 
 const stamp = v.looseObject({ bin: v.string(), bytes: v.number(), rows: v.array(v.unknown()) });

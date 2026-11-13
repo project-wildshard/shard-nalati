@@ -6,7 +6,7 @@ import { nalatiCragRows } from './nalati-crags';
 import { SceneDressingSchema, type SceneDressingRows } from '@wildshard/format/sceneDressing';
 import { parse } from 'valibot';
 import { nameBlob } from '@wildshard/sharddev/blobs';
-import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson } from '@wildshard/format/immutable';
 
 // Independent historical wire transport; production always publishes named byte loans.
 const encoded = (raw: Uint8Array): string => {

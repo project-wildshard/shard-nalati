@@ -1,6 +1,6 @@
 import { declareNavigation } from '@wildshard/sharddev/bake/navigationAsset';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import type { Shardfile } from '@wildshard/engine/host/shardfile';
+import type { Shardfile } from '@wildshard/format/shardSchema';
 import source from '../data/navigationSource.json' with { type: 'json' };
 
 const HASH = '223ce1ab45d736c5fb526308cb86bc6d61bdeb482ac886a7d47306fd5a8c41b5';

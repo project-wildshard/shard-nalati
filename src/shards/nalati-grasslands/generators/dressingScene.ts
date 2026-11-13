@@ -10,7 +10,7 @@ import * as THREE from 'three';
 import { encodePortableBytes } from '@wildshard/sharddev/bake/portableBytes';
 import { authorFormatSchema, registeredJsonSchema, defineNamedRows, type NamedRows, type NamedRowValue } from '@wildshard/sharddev/formatJsonSchema';
 import { nameBlob } from '@wildshard/sharddev/blobs';
-import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/format/immutable';
 import { writeGeometry, join } from './geometryWriter';
 import {shuffleNalatiWords} from './placeWire';
 import { nalatiPoiScenes } from './poiScenes';

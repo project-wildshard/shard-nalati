@@ -7,7 +7,7 @@ import weather from './nalati-weatherChannels-original.json' with { type: 'json'
 import herd from './nalati-herdChannels-original.json' with { type: 'json' };
 import { parseClientChannels } from '@wildshard/sharddev/rows';
 import { parseDecisionScripts } from '@wildshard/sharddev/decisionScripts';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import type { NalatiWeather } from '../../src/shards/nalati-grasslands/generators/weatherProgram';
 import { originalScriptOrder } from './original-script-order';
 

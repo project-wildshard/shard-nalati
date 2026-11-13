@@ -1,7 +1,7 @@
 // Reconstruct the same complete original source once per verified input/host key.
 import { readFileSync } from 'node:fs';
 import { nalatiPlacesProgram } from '../../src/shards/nalati-grasslands/generators/placesProgram.ts';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-place-wires.json' with { type: 'json' };
 
 const inputs = new Map([

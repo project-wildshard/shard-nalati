@@ -1,5 +1,5 @@
 import { nalatiNativeAssemblyInputs } from './nalati-native-assembly-inputs';
-import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/format/immutable';
 import { originalNalatiScriptSections } from './nalati-script-inventory';
 import { NALATI_ADMISSION } from './nalati-admission';
 import { NALATI_WEATHER } from './nalati-weather';

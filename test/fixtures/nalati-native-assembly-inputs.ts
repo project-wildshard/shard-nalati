@@ -7,7 +7,7 @@ import { NALATI_PASTURE } from './nalati-titan';
 import { NALATI_ADMISSION } from './nalati-admission';
 // oxlint-disable-next-line import/no-nodejs-modules -- The parent retains independent original collider expectations.
 import { readFileSync } from 'node:fs';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { canonicalNativeOracleInput } from './native-oracle';
 
 /** Original independent native facts, including policy and expectation rows.

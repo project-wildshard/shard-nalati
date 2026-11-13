@@ -6,7 +6,7 @@ import { promisify } from 'node:util';
 import { existsSync, readFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Keep the frozen oracle beneath repository tmp.
 import { resolve } from 'node:path';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-species-files.json' with { type: 'json' };
 
 const names = ['species.json', 'bodies.bin', 'boot.json', 'held-weapons.wasm', 'held-witness.bin'];

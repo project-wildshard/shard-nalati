@@ -1,7 +1,7 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Read only the independently authored model inputs for the frozen oracle.
 import { readFileSync } from 'node:fs';
 import { bakeModelPaint } from '../../src/shards/nalati-grasslands/generators/modelPaint.mjs';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import originals from './nalati-model-paint.json' with { type: 'json' };
 
 const prepared = new Map<string, Promise<Uint8Array>>();

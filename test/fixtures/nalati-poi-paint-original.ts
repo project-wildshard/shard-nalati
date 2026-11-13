@@ -1,6 +1,6 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Independent full predecessor files captured before writer retirement.
 import { readFileSync } from 'node:fs';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { nalatiMountedFigure } from '../../src/shards/nalati-grasslands/generators/mountedFigure';
 import paint from './nalati-poi-paint-original.json' with { type: 'json' };
 import pins from './nalati-poi-paint-files.json' with { type: 'json' };

@@ -4,7 +4,7 @@ import type {AnimalSim} from '../../src/shared/engine/entities/AnimalSim';
 import {ViewLane} from '../../src/shared/engine/script/viewLane';
 import {admitScriptV2} from '@wildshard/format/scriptAdmissionV2';
 import {ViewProgramSchema} from '@wildshard/format/viewProgram';
-import {hashImmutableBytes} from '@wildshard/engine/host/immutable';
+import {hashImmutableBytes} from '@wildshard/format/immutable';
 
 const natural=v.pipe(v.number(),v.integer(),v.minValue(0));
 const Saved=v.strictObject({version:v.literal(1),source:v.string(),recipe:v.string(),frames:v.pipe(natural,v.maxValue(60_000)),

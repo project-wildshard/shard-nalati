@@ -1,6 +1,6 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Complete original scalar publication captured before retirement.
 import { readFileSync } from 'node:fs';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
 import type { ProjectOutput } from '@wildshard/sharddev/projectOutput';
 import pins from './nalati-geography-files.json' with { type: 'json' };

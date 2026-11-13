@@ -1,6 +1,6 @@
 import { object, parse } from 'valibot';
 import { CreatureGuestSchema } from '@wildshard/format/speciesBookRows';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { TREE_SET } from '../../src/shards/nalati-grasslands/generators/treeSet';
 import { nalatiMountedFigure } from '../../src/shards/nalati-grasslands/generators/mountedFigure';
 import { nalatiRidingSession } from '../../src/shards/nalati-grasslands/generators/clientRiding';

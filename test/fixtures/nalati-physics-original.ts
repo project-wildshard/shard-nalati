@@ -1,6 +1,6 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Read the complete independently retained original metadata for native proof controls.
 import { readFileSync } from 'node:fs';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 
 /** Original 763,286-byte metadata, independent of the replacement source constructor. */
 export function originalNalatiPhysics(): unknown {

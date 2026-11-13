@@ -1,6 +1,6 @@
 import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
 import { defineNamedRows, type NamedRows } from '@wildshard/sharddev/formatJsonSchema';
-import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson } from '@wildshard/format/immutable';
 import { packDressingTable } from './dressingTable';
 
 const number = { kind: 'number' } as const, xz = { x: number, z: number };

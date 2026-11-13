@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { expect, test } from 'vitest';
 import { postChainRows } from '../src/shards/nalati-grasslands/generators/postChain';
 

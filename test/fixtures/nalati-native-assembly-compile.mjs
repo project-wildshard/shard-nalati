@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-place-wires.json' with { type: 'json' };
 
 // Build independent full source facts concurrently within this fenced child.

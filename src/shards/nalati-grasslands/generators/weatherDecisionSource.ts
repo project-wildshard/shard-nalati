@@ -1,5 +1,5 @@
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { parseDecisionScripts, type DecisionScriptRow } from '@wildshard/sharddev/decisionScripts';
 import { NALATI_DECISION_SOURCES } from './decisionSourceInventory';
 
