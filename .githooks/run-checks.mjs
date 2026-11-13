@@ -5,12 +5,15 @@
 //           in parallel under a budget (silent < 5 s, warn 5-8 s, BLOCK
 //           > 8 s; SKIP_BUDGET=1). Skipped when no code or JSON is staged.
 //   push:   the full `check` script (adds knip and the unit tests).
+//   both:   .githooks/pinned-links.mjs first (commit warns, push refuses;
+//           SKIP_CHECK does not skip it).
 // The hooks only check; `pnpm lint:fix` / `pnpm format` fix.
 // Bypass a lane: SKIP_CHECK=1 (last resort; CI still runs it).
 import { spawn } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { git } from './lib.mjs';
+import { guardPinnedLinks } from './pinned-links.mjs';
 
 const lane = process.argv[2];
 const root = git(['rev-parse', '--show-toplevel']).trim();
@@ -19,10 +22,6 @@ const HARD = Number(process.env.PRECOMMIT_HARD_S ?? 8);
 const LINTABLE = /\.(?:ts|tsx|js|mjs|cjs)$/;
 const FORMATTABLE = /\.(?:ts|tsx|js|mjs|cjs|json|jsonc)$/;
 
-if (process.env.SKIP_CHECK === '1') {
-  console.error(`  - SKIP_CHECK=1: ${lane} lane skipped (CI still runs it)`);
-  process.exit(0);
-}
 // A push that only deletes plan/* branches (`git push --delete origin plan/<slug>`
 // after a landing, J240) sends no commit, so there is nothing to check. Any
 // other deleted ref, or any update pushed alongside, keeps the gate.
@@ -33,7 +32,15 @@ if (lane === 'push') {
     process.exit(0);
   }
 }
-// The package is at the repo root; its configs live in src/.
+// Pinned links: a node_modules/@wildshard/* alias on a live checkout tests
+// another lane's edits, not the pin CI uses. Commit warns, push refuses.
+// It runs before SKIP_CHECK: a lane that links on purpose writes a receipt.
+if (!guardPinnedLinks(root, lane)) process.exit(1);
+if (process.env.SKIP_CHECK === '1') {
+  console.error(`  - SKIP_CHECK=1: ${lane} lane skipped (CI still runs it)`);
+  process.exit(0);
+}
+// The package is at the repo root; its kit configs live in kit/ (J329).
 const pkgDir = root;
 const pkgPath = join(pkgDir, 'package.json');
 const scripts = existsSync(pkgPath) ? (JSON.parse(readFileSync(pkgPath, 'utf8')).scripts ?? {}) : {};
@@ -41,10 +48,10 @@ const scripts = existsSync(pkgPath) ? (JSON.parse(readFileSync(pkgPath, 'utf8'))
 /** @type {{ name: string, args: string[] }[]} */
 const jobs = [];
 if (lane === 'commit') {
-  // Staged code under src/, passed relative to the repo root (the
-  // package root). Code outside src/ (.githooks, docs) has its own checks.
+  // Staged code under src/ and kit/ (J329), passed relative to the
+  // repo root (the package root). Code outside them (.githooks, docs) has its own checks.
   const staged = git(['diff', '--cached', '--name-only', '-z', '--diff-filter=ACMR']).split('\0').filter(Boolean)
-    .filter((path) => path.startsWith('src/'));
+    .filter((path) => /^(?:src|kit)\//u.test(path));
   const lint = staged.filter((path) => LINTABLE.test(path));
   const format = staged.filter((path) => FORMATTABLE.test(path));
   if (scripts.lint && lint.length) jobs.push({ name: 'lint', args: ['lint', ...lint] });

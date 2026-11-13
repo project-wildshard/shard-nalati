@@ -15,9 +15,9 @@ Run from the repo root.
   build, prove all 65,536 wet samples match authored geography and that
   shipped navigation keeps actual trails. CI only, outside hooks.
 - `pnpm lint:fix` / `pnpm format`: the hooks only check; these fix.
-- `node src/cli/main.ts --help`: the CLI without installing it.
+- `node kit/cli/main.ts --help`: the CLI without installing it.
 - `pnpm md:wrap`: rewraps Markdown prose to ~72 columns.
-- `src/scripts/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
+- `kit/scripts/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
 
 The explicit CI-only route proof runs after a real build:
 
@@ -49,8 +49,8 @@ The root stays thin: README.md and AGENTS.md (humans only), CLAUDE.md
 .editorconfig, `docs/`, `project/`, `src/` and the dot dirs. Scratch
 goes in `tmp/<task>/` and is deleted when done.
 
-- `src/cli/`: the CLI (`--version`, `--help`; commands arrive with the import).
-- `src/test/helpers/`: shared test helpers; `git.ts` makes real git repos in temp dirs.
+- `kit/cli/`: the CLI (`--version`, `--help`; commands arrive with the import).
+- `kit/test/helpers/`: shared test helpers; `git.ts` makes real git repos in temp dirs.
 - `src/scripts/`: repo tooling (asks, md-wrap), plain JS.
 - `docs/`: living docs. `docs/plans/` is the queue, `docs/tasks/asks/`
   the receipts.
@@ -60,7 +60,7 @@ goes in `tmp/<task>/` and is deleted when done.
 ## Code rules
 
 - TypeScript only, imports with explicit `.ts`/`.tsx` extensions.
-- Every function has an explicit return type. `src/.oxlintrc.json` denies
+- Every function has an explicit return type. `kit/.oxlintrc.json` denies
   every category (D28); disable a rule only with a one-line reason beside it.
 - Pin dependencies exactly (`.npmrc` has `save-exact=true`).
 - Other Wildshard repos are git dependencies pinned by tag
