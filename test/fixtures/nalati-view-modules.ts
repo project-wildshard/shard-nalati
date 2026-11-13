@@ -2,7 +2,7 @@ import * as v from 'valibot';
 import { nalatiNativeProgram } from './nalati-native-program';
 import type { NamedBlob } from '@wildshard/sharddev/blobs';
 import { SCRIPT_V2_REVISIONS } from '@wildshard/format/scriptAdmissionV2';
-import { NALATI_VIEW_MODULES, nalatiViewModules } from '../../src/shards/nalati-grasslands/generators/viewPrograms';
+import { NALATI_VIEW_MODULES, nalatiViewModules } from '../../src/generators/viewPrograms';
 
 /** GR6: Nalati's five view modules compiled from their authored sources (the retired jobs' generated wasm no longer
  *  exists): once per source/host-keyed native construction (`nalati-view-compile.mjs`; happy-dom cannot feed the

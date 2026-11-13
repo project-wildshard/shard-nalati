@@ -4,7 +4,7 @@
 import { resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { byteWriter } from './bake-output.mjs';
-import { nalatiCragRock } from '../src/shards/nalati-grasslands/generators/cragRockProgram.ts';
+import { nalatiCragRock } from '../src/generators/cragRockProgram.ts';
 
 const root = resolve(import.meta.dirname, '..');
 const made = nalatiCragRock(readFileSync(resolve(root, 'public/assets/baked/nalati-grasslands/terrain.bin')));

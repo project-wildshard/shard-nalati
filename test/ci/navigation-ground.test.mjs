@@ -12,8 +12,8 @@ const { ScalarLatticeBindings } = await import('@wildshard/engine/world/scalarCh
 const { parseNavmesh } = await import('@wildshard/engine/physics/navmesh');
 const { navmeshGroundExclusion } = await import('@wildshard/sharddev/scripts/bake/navmeshGround.ts');
 const { decodePortableBytes } = await import('@wildshard/sharddev/bake/portableBytes');
-const { TERRAIN } = await import('../../src/shards/nalati-grasslands/generators/terrainRecipe.ts');
-const { nalatiWetAt } = await import('../../src/shards/nalati-grasslands/generators/wetRecipe.ts');
+const { TERRAIN } = await import('../../src/generators/terrainRecipe.ts');
+const { nalatiWetAt } = await import('../../src/generators/wetRecipe.ts');
 
 test('Nalati ships its authored wet field and preserves dry trails in real navigation', { timeout: 9500 }, async () => {
   const directory = resolve('out/nalati-grasslands'), product = await loadHeadlessProduct(directory);

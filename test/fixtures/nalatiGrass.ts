@@ -1,7 +1,7 @@
 import * as v from 'valibot';
 import {GrassPresentationSchema,type GrassPayload,type GrassPresentationRows} from '@wildshard/format/fieldPresentation';
 import {zlibSync} from 'fflate';
-import {grassRows,grassChannelBytes} from '../../src/shards/nalati-grasslands/generators/grassRows';
+import {grassRows,grassChannelBytes} from '../../src/generators/grassRows';
 import {nalatiGrass,nalatiGrassJson} from './nalati-grass-bake';
 
 const sources=v.parse(v.object({sources:v.array(v.object({name:v.string(),source:v.string()}))}),nalatiGrassJson()).sources;

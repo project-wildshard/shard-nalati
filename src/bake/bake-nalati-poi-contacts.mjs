@@ -8,10 +8,10 @@ import { bakeModelPaint } from '../generators/modelPaint.mjs';
 import { fitRock } from '../generators/fittedRock.ts';
 import { hullCandidates, hullAt } from '../generators/solid.ts';
 import { nativeNalatiDressingPlacements } from '../generators/nativeDressingPlacements.mjs';
-import { byteWriter, jsonBytes } from '../../../../scripts/bake-output.mjs';
+import { byteWriter, jsonBytes } from '../../scripts/bake-output.mjs';
 
 if (!process.argv.includes('--rebake-contacts')) throw new Error('Contact authoring requires --rebake-contacts');
-const root = resolve(import.meta.dirname, '../../../..');
+const root = resolve(import.meta.dirname, '../..');
 const placements = await nativeNalatiDressingPlacements(file => readFileSync(resolve(root, file)));
 const placementRows = key => {
   const bytes = placements.get(`dressing-${key}.json`);
@@ -39,7 +39,7 @@ for (const tier of ['phone', 'desktop']) {
     });
     const points = Float32Array.from(hulls.flatMap(hull => Array.from(hull.points)));
     const blockPath = `data/poi-contacts-${tier}-${name}.bin`, blobName = `models/contacts/${tier}-${name}.bin`;
-    writer.put(resolve(root, 'src/shards/nalati-grasslands', blockPath), deflateSync(Buffer.from(points.buffer), { level: 9 }));
+    writer.put(resolve(root, 'src', blockPath), deflateSync(Buffer.from(points.buffer), { level: 9 }));
     sources.push({ name: blobName, kind: 'bin', source: blockPath, options: { decoded: points.byteLength } });
     layers[name] = { origins: hulls.map(hull => [hull.x, hull.y, hull.z, hull.points.length]), file: blobName };
     geometry.dispose();
@@ -47,5 +47,5 @@ for (const tier of ['phone', 'desktop']) {
   }
   contacts[tier] = layers;
 }
-writer.put(resolve(root, 'src/shards/nalati-grasslands/data/poiContacts.json'), jsonBytes({ contacts, sources }));
+writer.put(resolve(root, 'src/data/poiContacts.json'), jsonBytes({ contacts, sources }));
 writer.finish();

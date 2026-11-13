@@ -1,7 +1,7 @@
 import { expectTypeOf, test } from 'vitest';
 import * as v from 'valibot';
 import { SpecimenCatalogueSchema, PackedSpecimenSchema, SpecimenMaterialSchema, SpecimenAssetSchema } from '@wildshard/format/specimenCatalogue';
-import type { nalatiDressingSpecimens } from '../src/shards/nalati-grasslands/generators/dressingScene';
+import type { nalatiDressingSpecimens } from '../src/generators/dressingScene';
 
 test('dressing specimens retain the complete native mutable object and record contract', () => {
   const original = v.object({ catalogue: SpecimenCatalogueSchema, packed: PackedSpecimenSchema,

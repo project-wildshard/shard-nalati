@@ -1,5 +1,5 @@
 import { zlibSync } from 'fflate';
-import { dressingScene as scene, dressingSceneBlobs as blobs } from '../../src/shards/nalati-grasslands/generators/dressingScene';
+import { dressingScene as scene, dressingSceneBlobs as blobs } from '../../src/generators/dressingScene';
 import paint from './nalati-poi-paint-original.json' with { type: 'json' };
 import { nalatiPredecessorCoverRows } from './nalati-cover';
 import { nalatiCragRows } from './nalati-crags';
@@ -24,8 +24,8 @@ export function currentDressingScene(tier: 'phone' | 'desktop', input: unknown, 
 function predecessorCragSource(rows: SceneDressingRows): SceneDressingRows {
   const models = rows.staticModels.filter(row => row.model.id === 'nalati-grasslands/crag-rock');
   const row = models[0];
-  if (models.length !== 1 || row?.model.file !== 'src/shards/nalati-grasslands/generators/cragRockProgram.ts') throw new Error('Crag producer provenance differs');
-  row.model.file = 'src/shards/nalati-grasslands/generators/bake-crag-rock.mjs';
+  if (models.length !== 1 || row?.model.file !== 'src/generators/cragRockProgram.ts') throw new Error('Crag producer provenance differs');
+  row.model.file = 'src/generators/bake-crag-rock.mjs';
   return rows;
 }
 /** Supply immutable predecessor inputs and the historical pointer to original complete-scene oracles. */

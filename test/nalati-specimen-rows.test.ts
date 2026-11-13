@@ -5,12 +5,12 @@ import { resolve } from 'node:path';
 import { expect, test } from 'vitest';
 import { build } from 'vite';
 import * as v from 'valibot';
-import { nalatiSpecimenRows } from '../src/shards/nalati-grasslands/generators/specimenRows';
+import { nalatiSpecimenRows } from '../src/generators/specimenRows';
 import { SpecimenCatalogueSchema, SpecimenMaterialSchema } from '@wildshard/format/specimenCatalogue';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
-import { NALATI_MAP_INPUTS, nalatiMapPixels } from '../src/shards/nalati-grasslands/generators/mapProgram';
+import { NALATI_MAP_INPUTS, nalatiMapPixels } from '../src/generators/mapProgram';
 
-const project = 'src/shards/nalati-grasslands/';
+const project = 'src/';
 // This schema only validates values. Keep original key order for the complete historical wire pin.
 function originalCatalogue(input:unknown):input is v.InferOutput<typeof SpecimenCatalogueSchema>{return v.is(SpecimenCatalogueSchema,input);}
 const catalogue:unknown = JSON.parse(readFileSync(`${project}data/campCatalogue.json`, 'utf8'));

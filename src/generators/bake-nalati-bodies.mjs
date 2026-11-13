@@ -3,22 +3,22 @@
 // rebuild them): run it by hand when a body changes. public/assets/nalati/baked/bodies.bin and data/bodies.json are
 // committed authored inputs; `--check` reports a stale pair.
 // SHARD-PLATFORM M3 (Nalati's 80/20, the species bodies bake): the horse-family and canid lofts built offline. The generator
-// (src/shards/nalati-grasslands/generators/bodies.ts) runs here only and writes every body's attribute and index bytes, its
+// (src/generators/bodies.ts) runs here only and writes every body's attribute and index bytes, its
 // 4-byte words' bytes in four lanes and zlib-compressed, to public/assets/nalati/baked/bodies.bin and its rows (the binary's
-// hash and size, each body's bones, dims and geometry layout) to src/shards/nalati-grasslands/data/bodies.json, which the
+// hash and size, each body's bones, dims and geometry layout) to src/data/bodies.json, which the
 // page reads (the hull book's packed bodies, game/looks/speciesBook `SpeciesCatalogue.preload`).
 // The stale gate: `--check` (bake-check.mjs's node baker `nalati-bodies`, cached on its inputs at the push gate) rebakes
 // every body and fails on any byte that differs from the committed rows and binary. The lofts' Math.sin / hypot are
 // byte-exact where the bake was made (macOS), so elsewhere --check says so and passes. test/shards/nalati-grasslands/
 // bodies-bake.test.ts rebakes a representative pair of bodies and proves the page reads every one back bit-exact.
-// Usage: node --experimental-transform-types --import ./scripts/bake-loader.mjs src/shards/nalati-grasslands/generators/bake-nalati-bodies.mjs [--check]
+// Usage: node --experimental-transform-types --import ./scripts/bake-loader.mjs src/generators/bake-nalati-bodies.mjs [--check]
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { deflateSync, inflateSync } from 'node:zlib';
 import { bakeNalatiBodies } from './bodies.ts';
 
-const root = resolve(import.meta.dirname, '../../../..');
+const root = resolve(import.meta.dirname, '../..');
 
 /** The binary in four byte lanes (every word's first bytes, then its second …): floats compress better so. */
 export function shuffleBodyLanes(bin) {
@@ -42,14 +42,14 @@ function unshuffleBodyLanes(lanes) {
 }
 
 if (import.meta.main) {
-  const out = resolve(root, 'public/assets/nalati/baked'), rowsPath = resolve(root, 'src/shards/nalati-grasslands/data/bodies.json');
+  const out = resolve(root, 'public/assets/nalati/baked'), rowsPath = resolve(root, 'src/data/bodies.json');
   if (process.argv.includes('--check')) {
     if (process.platform !== 'darwin') { console.info('bake-nalati-bodies: --check skipped (the lofts are byte-exact on macOS, where the bake is made)'); process.exit(0); }
     const { rows, bin } = bakeBodyRows();
     const committed = readFileSync(rowsPath, 'utf8'), shipped = unshuffleBodyLanes(new Uint8Array(inflateSync(readFileSync(resolve(out, 'bodies.bin')))));
     const sameBin = shipped.length === bin.length && shipped.every((v, i) => v === bin[i]);
     if (committed !== `${JSON.stringify(rows)}\n` || !sameBin) {
-      console.error('bake-nalati-bodies: the committed bodies bake is stale (rerun src/shards/nalati-grasslands/generators/bake-nalati-bodies.mjs)');
+      console.error('bake-nalati-bodies: the committed bodies bake is stale (rerun src/generators/bake-nalati-bodies.mjs)');
       process.exit(1);
     }
     console.info(`bake-nalati-bodies: ${String(rows.bodies.length)} bodies byte-exact (${rows.bin.slice(0, 12)})`);

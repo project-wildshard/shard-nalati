@@ -1,8 +1,8 @@
 import { PageTamingBindingSchema } from '@wildshard/format/riding';
 import * as v from 'valibot';
-import { nalatiNativeAssemblyRows } from '../../src/shards/nalati-grasslands/generators/nativeServer';
-import { nalatiNativeGroupWire } from '../../src/shards/nalati-grasslands/generators/nativeGroupWire';
-import { nalatiNativeShelters } from '../../src/shards/nalati-grasslands/generators/shelters';
+import { nalatiNativeAssemblyRows } from '../../src/generators/nativeServer';
+import { nalatiNativeGroupWire } from '../../src/generators/nativeGroupWire';
+import { nalatiNativeShelters } from '../../src/generators/shelters';
 import { NALATI_PASTURE } from './nalati-titan';
 import { NALATI_ADMISSION } from './nalati-admission';
 // oxlint-disable-next-line import/no-nodejs-modules -- The parent retains independent original collider expectations.

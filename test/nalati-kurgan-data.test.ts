@@ -2,7 +2,7 @@ import { expect, test } from 'vitest';
 import * as v from 'valibot';
 import { ArenaFightPageSchema } from '@wildshard/engine/game/boss/arenaRoomRows';
 import { ArenaBossProfileSchema } from '@wildshard/format/bossProfiles';
-import { nalatiGoldenKingRows } from '../src/shards/nalati-grasslands/generators/kurganRows';
+import { nalatiGoldenKingRows } from '../src/generators/kurganRows';
 
 test('the authored Golden King page crosses runtime fight admission', () => {
   const wire: unknown = JSON.parse(JSON.stringify(nalatiGoldenKingRows().page));

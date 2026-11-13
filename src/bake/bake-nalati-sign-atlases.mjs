@@ -1,4 +1,4 @@
-import { KEYCHAIN_ARGS } from '../../../../scripts/chromium-keychain.mjs';
+import { KEYCHAIN_ARGS } from '../../scripts/chromium-keychain.mjs';
 // A standalone asset tool (GR6, D2: it needs a browser), outside the generation scheduler; its three outputs are committed
 // authored inputs. Run it by hand through browser-lane.sh when the sign text changes: it keeps the exact canvas raster,
 // with no runtime canvas or font dependency.
@@ -7,16 +7,16 @@ import { resolve } from 'node:path';
 import { chromium, devices } from 'playwright';
 import { paintSignAtlas } from '../generators/signLettering.ts';
 import { nalatiRoadSignSites } from '../generators/roadSigns.ts';
-import { byteWriter, outputHash, jsonBytes } from '../../../../scripts/bake-output.mjs';
+import { byteWriter, outputHash, jsonBytes } from '../../scripts/bake-output.mjs';
 
-const root = resolve(import.meta.dirname, '../../../..');
-const read = file => JSON.parse(readFileSync(resolve(root, 'src/shards/nalati-grasslands/data', file), 'utf8'));
+const root = resolve(import.meta.dirname, '../..');
+const read = file => JSON.parse(readFileSync(resolve(root, 'src/data', file), 'utf8'));
 const roads = nalatiRoadSignSites();
 const specimen = read('campCatalogue.json').find(row => row.key === 'signpostBaked').model.defaults;
 const labels = { roads: roads.flatMap(post => post.boards.map(board => board.text)), specimen: specimen.boards.map(board => board.text) };
 const destination = process.argv.find(arg => arg.startsWith('--output-root='))?.slice('--output-root='.length);
 if (destination === '') throw new Error('Pass a directory to --output-root');
-const outputRoot = destination === undefined ? resolve(root, 'src/shards/nalati-grasslands') : resolve(destination);
+const outputRoot = destination === undefined ? resolve(root, 'src') : resolve(destination);
 const writer = byteWriter(process.argv.includes('--check'), 'nalati-sign-atlases', destination === undefined ? root : outputRoot);
 const atlases = {};
 const browser = await chromium.launch({ headless: true, args: [...KEYCHAIN_ARGS, '--use-angle=metal', '--mute-audio'] });

@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import { nalatiHeldSource, type NalatiHeldRows } from '../../src/shards/nalati-grasslands/generators/heldMetadata';
+import { nalatiHeldSource, type NalatiHeldRows } from '../../src/generators/heldMetadata';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { originalSpeciesJson } from './nalati-original-species';
 import pins from './nalati-held-files.json' with { type: 'json' };

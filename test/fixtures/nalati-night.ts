@@ -1,4 +1,4 @@
-import { nalatiNightRows } from '../../src/shards/nalati-grasslands/generators/nightRows';
+import { nalatiNightRows } from '../../src/generators/nightRows';
 import { NALATI_WEATHER } from './nalati-weather';
 
 /** GR6: the night roster rows as the product builds them (nightRows.ts) around the compiled weather decision; the retired

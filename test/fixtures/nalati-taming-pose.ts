@@ -1,16 +1,16 @@
-import { SPECIES_POSES } from '../../src/shards/nalati-grasslands/generators/speciesPoses';
+import { SPECIES_POSES } from '../../src/generators/speciesPoses';
 // Frozen pre-migration oracle for saved transforms and horse-head observations.
 import { Bone, Group, type Vector3 } from 'three';
 import * as v from 'valibot';
 import type { AnimalSim } from '@wildshard/engine/entities/AnimalSim';
 import { AnimalPoseLaw } from '@wildshard/engine/entities/animalPose';
 import { QuadrupedRigPose, applyAnimalRoot, type AnimalRigContext } from '@wildshard/engine/entities/animalRig';
-import { bodySpecies } from '../../src/shards/nalati-grasslands/generators/speciesRows';
+import { bodySpecies } from '../../src/generators/speciesRows';
 import { poseRidingEnvelopes } from '../../src/shared/game/riding/presentation';
 import { numericCreaturePose } from '../../src/shared/game/plugin/channelPrograms';
-import envelopes from '../../src/shards/nalati-grasslands/data/horsePresentation.json' with { type: 'json' };
-import { bodyKey } from '../../src/shards/nalati-grasslands/generators/bodyKey';
-import rows from '../../src/shards/nalati-grasslands/data/bodies.json' with { type: 'json' };
+import envelopes from '../../src/data/horsePresentation.json' with { type: 'json' };
+import { bodyKey } from '../../src/generators/bodyKey';
+import rows from '../../src/data/bodies.json' with { type: 'json' };
 
 const HORSE_SPECIES = bodySpecies('horse');
 const drawHorse = numericCreaturePose(SPECIES_POSES.horse);

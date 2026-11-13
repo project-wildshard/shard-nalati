@@ -3,7 +3,7 @@ import { nalatiSpecimens as specimenData } from './nalati-specimens';
 // Frozen shipping round before the AS projection (2026-10-18).
 import * as THREE from 'three';
 import { SHAPES } from './nalatiShapes';
-import * as layoutRows from '../../src/shards/nalati-grasslands/generators/layout';
+import * as layoutRows from '../../src/generators/layout';
 import { practiceRoom } from '@wildshard/engine/core/practiceRoom';
 import type { SkyRig as Sky } from '@wildshard/engine/world/skyRig';
 

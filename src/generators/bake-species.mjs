@@ -24,7 +24,7 @@ const outputSchema = defineNamedRows({ kind: 'object', mode: 'loose', entries: {
 export async function nalatiSpeciesSource(readSource) {
   const files = await nalatiSpeciesProgram({ compileDecisionRows: compileDecisionScripts, compileReturnProjection: compileReturnProjectionV2, cached: (step, make) => {
     const inputs = new Map(step.inputs?.map(name => [name, Uint8Array.from(readSource(
-      new URL(name.startsWith('/') ? `../../../../public${name}` : `../${name}`, import.meta.url)))]));
+      new URL(name.startsWith('/') ? `../../public${name}` : `../${name}`, import.meta.url)))]));
     return Promise.resolve(make(inputs));
   } }, input => {
     if (!inputSchema.accepts(input)) throw new Error('Invalid species CLI source metadata');

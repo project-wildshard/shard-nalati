@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import * as THREE from 'three';
-import { writeGeometry } from '../src/shards/nalati-grasslands/generators/geometryWriter';
+import { writeGeometry } from '../src/generators/geometryWriter';
 
 it('keeps distinct colliding vertices and the first occurrence of every exact row', () => {
   // These different finite positions share a candidate bucket. Identity is all bits.
