@@ -4,11 +4,11 @@ import { annulus } from '@wildshard/sharddev/bake/annulus';
 import { finGeometry, ribGeometry, towerGeometry, type CragKind } from './cragGeometry';
 import type { DressPlan } from './dressingPlan';
 import * as THREE from 'three';
-import { paramsOf, type ModelDef, type ModelBuild, type ModelContext, type Placement } from '@wildshard/engine/models/model';
+import { paramsOf, type ModelSource } from './modelSource';
 import { readNativeTerrain } from '@wildshard/sharddev/bake/terrain';
 import { PaintKit, M, v3 } from './paint';
 import { pole, lathe, blob, mergeVerticesByPos } from './smoothGeometry';
-import { specimenKey, type ColliderDesc, type Draw, type BoxSpec as Collider } from '@wildshard/sharddev/bake/placement';
+import { specimenKey, type AuthorPlacement as Placement, type ColliderDesc, type Draw, type BoxSpec as Collider } from '@wildshard/sharddev/bake/placement';
 import { graniteBlock } from './granite';
 import { painted, paintedSpecimen, isPainted, rememberPainted, type Paint, type PaintCtx, type Made, type Kit, type PaintAt } from './painted';
 import { cragLedgeFloor, leopardCaveFloor, kurganEntranceFloor, generatedBounds, instanceTris, type MemberData, type InstanceData, type GeneratedSpec } from './placement';
@@ -50,9 +50,9 @@ function generated<P extends object>(spec: GeneratedSpec<P>): (() => never) & { 
   return Object.assign((): never => { throw new Error('Placement bake markers cannot build live specimens'); }, { gen: spec });
 }
 
-type Build<P> = (ctx: ModelContext, p: P, rng: Rng) => ModelBuild;
-interface GeneratedBuild<P> { (ctx: ModelContext, p: P, rng: Rng): ModelBuild; readonly gen: GeneratedSpec<P> }
-const isGenerated = <P>(b: Build<P>): b is GeneratedBuild<P> => 'gen' in b;
+type Build = (...args: never[]) => unknown;
+interface GeneratedBuild<P> { (...args: never[]): unknown; readonly gen: GeneratedSpec<P> }
+const isGenerated = <P>(b: Build): b is GeneratedBuild<P> => 'gen' in b;
 const _box = new THREE.Box3(), _part = new THREE.Box3(), _pt = new THREE.Vector3();
 
 export class NalatiSet {
@@ -93,7 +93,7 @@ export class NalatiSet {
   /** paint into `kit` from now on (its rng is the painters' stream): each dressing prop is a kit of its own */
   into(kit: PaintKit): this { this.current = kit; return this; }
 
-  private member<P extends object>(def: ModelDef<P>, draw: Draw, inKit: boolean): MemberData {
+  private member<P extends object>(def: ModelSource<P>, draw: Draw, inKit: boolean): MemberData {
     let m = this.members.get(def.id);
     if (!m) {
       const mm: MemberData = {
@@ -116,7 +116,7 @@ export class NalatiSet {
   }
 
   /** paint one copy of a painted model into the place's kit, now; returns what it made */
-  paint<P extends object>(def: ModelDef<P>, at: PaintAt, p: NoInfer<P>): Made {
+  paint<P extends object>(def: ModelSource<P>, at: PaintAt, p: NoInfer<P>): Made {
     const b = def.build;
     if (!isPainted(b)) throw new Error(`NalatiSet.paint: ${def.id} is not a painted model`);
     _box.makeEmpty();
@@ -129,7 +129,7 @@ export class NalatiSet {
   }
 
   /** one copy of a generated model, instanced with the place's others of it when its GLB lands; returns what it collides with */
-  instance<P extends object>(def: ModelDef<P>, at: ModelPlacement, p: NoInfer<P>): Made {
+  instance<P extends object>(def: ModelSource<P>, at: ModelPlacement, p: NoInfer<P>): Made {
     const b = def.build;
     if (!isGenerated(b)) throw new Error(`NalatiSet.instance: ${def.id} is not a generated model`);
     const pose = b.gen.pose?.(at, p) ?? at;
@@ -145,7 +145,7 @@ export class NalatiSet {
    * Copies of a generated model the place draws and moves itself (the kokpar's galloping riders, the grazing herds):
    * counted and boxed where they start; nothing collides.
    */
-  moving<P extends object>(def: ModelDef<P>, at: readonly ModelPlacement[]): void {
+  moving<P extends object>(def: ModelSource<P>, at: readonly ModelPlacement[]): void {
     const b = def.build;
     if (!isGenerated(b)) throw new Error(`NalatiSet.moving: ${def.id} is not a generated model`);
     const m = this.member(def, 'instanced', false);
@@ -173,49 +173,49 @@ export class NalatiSet {
 const CHUNK_HALF = 250;
 const FLIP = Math.PI;
 const towerSize = generatedBounds('watchtower').getSize(new THREE.Vector3());
-const kazanPlaced: ModelDef<object> = { ...kazan, build: generated({
+const kazanPlaced: ModelSource<object> = { ...kazan, build: generated({
     id: 'nalati-grasslands/kazan', name: 'cauldron',
     pose: (at) => ({ x: at.x, y: at.y - 0.04, z: at.z, rot: at.rot ?? 0.4, scale: 1.05 }),
     collide: (at) => ({ boxes: [{ x: at.x, z: at.z, hw: 0.7, hd: 0.7, rot: 0, yBottom: at.y - 1, yTop: at.y + 0.95 }] }),
   }),
 };
-const chestPlaced: ModelDef<object> = { ...chest, build: generated({
+const chestPlaced: ModelSource<object> = { ...chest, build: generated({
     id: 'nalati-grasslands/chest', name: 'chest',
     pose: (at) => ({ x: at.x, y: at.y - 0.02, z: at.z, rot: (at.rot ?? 0) + FLIP, scale: 1.2 }),
     collide: (at) => ({ boxes: [{ x: at.x, z: at.z, hw: 0.55, hd: 0.3, rot: -(at.rot ?? 0), yBottom: at.y - 1, yTop: at.y + 0.75 }] }),
   }),
 };
-const firewoodPlaced: ModelDef<FirewoodParams> = { ...firewood, build: generated<FirewoodParams>({
+const firewoodPlaced: ModelSource<FirewoodParams> = { ...firewood, build: generated<FirewoodParams>({
     id: 'nalati-grasslands/firewood', name: 'firewood',
     pose: (at, p) => ({ x: at.x, y: at.y - 0.03, z: at.z, rot: (at.rot ?? 0) + FLIP + p.dy, scale: 1.45 }),
     collide: (_at, p) => (p.pile === undefined ? {} : { boxes: [p.pile] }),
   }),
 };
-const kumisChurnPlaced: ModelDef<ChurnParams> = { ...kumisChurn, build: generated<ChurnParams>({
+const kumisChurnPlaced: ModelSource<ChurnParams> = { ...kumisChurn, build: generated<ChurnParams>({
     id: 'nalati-grasslands/kumis-churn', name: 'kumis-churn',
     pose: (at) => ({ x: at.x, y: at.y - 0.02, z: at.z, rot: at.rot ?? 0, scale: at.scale ?? 1 }),
     collide: (at, p) => ({ boxes: [{ x: at.x, z: at.z, hw: p.hw, hd: p.hw, rot: 0, yBottom: at.y - 1, yTop: at.y + p.h }] }),
   }),
 };
-const groundSaddlePlaced: ModelDef<object> = { ...groundSaddle, build: generated({
+const groundSaddlePlaced: ModelSource<object> = { ...groundSaddle, build: generated({
     id: 'nalati-grasslands/ground-saddle', name: 'saddle',
     pose: (at) => ({ x: at.x, y: at.y - 0.02, z: at.z, rot: (at.rot ?? 0) + FLIP, scale: 1.25 }),
   }),
 };
-const perchedEaglePlaced: ModelDef<object> = { ...perchedEagle, build: generated({
+const perchedEaglePlaced: ModelSource<object> = { ...perchedEagle, build: generated({
     id: 'nalati-grasslands/perched-eagle', name: 'eagle',
     pose: (at) => ({ x: at.x, y: at.y - 0.02, z: at.z, rot: (at.rot ?? 0) + FLIP, scale: 0.85 / generatedBounds('eagle').max.y }),
   }),
 };
-const watchtowerPlaced: ModelDef<object> = { ...watchtower, build: generated({
+const watchtowerPlaced: ModelSource<object> = { ...watchtower, build: generated({
     id: 'nalati-grasslands/watchtower', name: 'watchtower', look: { rim: 0.3, bands: 0.8 },
     pose: (at) => ({ x: at.x, y: at.y - 0.4, z: at.z, rot: at.rot ?? 0 }),
     collide: (at) => ({ boxes: [{ x: at.x, z: at.z, hw: towerSize.x * 0.36, hd: towerSize.z * 0.36, rot: -(at.rot ?? 0), yBottom: at.y - 2, yTop: at.y + towerSize.y * 0.85 }] }),
   }),
 };
-const saddledHorsePlaced: ModelDef<object> = { ...saddledHorse, build: generated({ id: 'nalati-grasslands/saddled-horse', name: 'horse-saddled', look: { rim: 0.8, bands: 0.85 } }),
+const saddledHorsePlaced: ModelSource<object> = { ...saddledHorse, build: generated({ id: 'nalati-grasslands/saddled-horse', name: 'horse-saddled', look: { rim: 0.8, bands: 0.85 } }),
 };
-const kokparRiderPlaced: ModelDef<object> = { ...kokparRider, build: generated({ id: 'nalati-grasslands/kokpar-rider', name: 'kokpar-rider', look: { rim: 0.8, bands: 0.85 } }),
+const kokparRiderPlaced: ModelSource<object> = { ...kokparRider, build: generated({ id: 'nalati-grasslands/kokpar-rider', name: 'kokpar-rider', look: { rim: 0.8, bands: 0.85 } }),
 };
 
 function finishBuild(steps: Generator<void, BuiltPlace>): BuiltPlace { for (;;) { const step = steps.next(); if (step.done === true) return step.value; } }
@@ -543,7 +543,7 @@ const torPaint: Paint<object> = (kit, at, _p, c) => {
   // its floor (placement): the scramble's slabs and the summit, as data (../world/placeBake.ts `torFloor`)
   return { boxes: colliders, descs, floor: torFloor({ cx, cz, a0, da, w: W, slabs: slabs.map((s) => [s.rIn, s.y] as const), rTop, top }) };
 };
-const eagleRockPainted: ModelDef<object> = { ...eagleRock, build: painted(torPaint, { seed: 0xea61, fitted: true, finish: { aoH: 1.4 } }) };
+const eagleRockPainted: ModelSource<object> = { ...eagleRock, build: painted(torPaint, { seed: 0xea61, fitted: true, finish: { aoH: 1.4 } }) };
 
 /**
  * The Wind Cairn (E306 / E315 M3; Jel Ata the Storm Titan's threshold, B14): an ovoo-style heap of fieldstones round a
@@ -652,7 +652,7 @@ const cairnPaint: Paint<object> = (kit, at, _p, c) => {
   }
   return { boxes: colliders, descs };
 };
-const windCairnPainted: ModelDef<object> = { ...windCairn, build: painted(cairnPaint, { seed: 0xca19, fitted: true }) };
+const windCairnPainted: ModelSource<object> = { ...windCairn, build: painted(cairnPaint, { seed: 0xca19, fitted: true }) };
 
 /** Eagle Rock (its offline painter): the tor on B0's knoll, painted into its own mesh */
 function eagleRockPlace(ctx: PaintCtx, effects: EffectRow[]): BuiltPlace {
@@ -687,7 +687,7 @@ export const paintFieldstone: Paint<FieldstoneParams> = (kit, at, p) => {
   return {};
 };
 
-const fieldstonePainted: ModelDef<FieldstoneParams> = { ...fieldstoneBaked, build: painted(paintFieldstone, { seed: 0x4b62 }) };
+const fieldstonePainted: ModelSource<FieldstoneParams> = { ...fieldstoneBaked, build: painted(paintFieldstone, { seed: 0x4b62 }) };
 
 const CRAG_LEDGE_C = { graniteDark: new THREE.Color('#6e675f'), snow: new THREE.Color('#f1f4f8') };
 const CRAG_LEDGE_TH = 1.6;
@@ -703,7 +703,7 @@ const paintCragLedge: Paint<CragLedgeParams> = (kit, at, p) => {
   };
 };
 
-const cragLedgePainted: ModelDef<CragLedgeParams> = { ...cragLedge, build: painted(paintCragLedge, { seed: 0xc4a6, finish: { aoH: 1.2 } }) };
+const cragLedgePainted: ModelSource<CragLedgeParams> = { ...cragLedge, build: painted(paintCragLedge, { seed: 0xc4a6, finish: { aoH: 1.2 } }) };
 
 const LEOPARD_CAVE_C = {
   granite: new THREE.Color('#9a8f80'),
@@ -774,7 +774,7 @@ const paintLeopardCave: Paint<LeopardCaveParams> = (kit, at, p, c) => {
   return { boxes: colliders, descs, floor };
 };
 
-const leopardCavePainted: ModelDef<LeopardCaveParams> = { ...leopardCave, build: painted(paintLeopardCave, { seed: 0xc4a6, fitted: true, finish: { aoH: 1.2 } }) };
+const leopardCavePainted: ModelSource<LeopardCaveParams> = { ...leopardCave, build: painted(paintLeopardCave, { seed: 0xc4a6, fitted: true, finish: { aoH: 1.2 } }) };
 
 const KURGAN_ENTRANCE_C = {
   kerb: new THREE.Color('#948f86'),
@@ -880,7 +880,7 @@ const paintKurganEntrance: Paint<KurganEntranceParams> = (kit, at, p, c) => {
   return { boxes: colliders, descs, floor: kurganEntranceFloor({ kind: 'entrance', x: front.x, z: front.z, fx, fz, cw, len, lintelY, dep, floorY, nSteps, rise }) };
 };
 
-const kurganEntrancePainted: ModelDef<KurganEntranceParams> = { ...kurganEntrance, build: painted(paintKurganEntrance, { seed: 0x4b62, fitted: true }) };
+const kurganEntrancePainted: ModelSource<KurganEntranceParams> = { ...kurganEntrance, build: painted(paintKurganEntrance, { seed: 0x4b62, fitted: true }) };
 
 const KURGAN_KERB_C = { kerb: new THREE.Color('#948f86'), kerbDark: new THREE.Color('#77736c'), lichen: new THREE.Color('#b9a45a') };
 
@@ -892,7 +892,7 @@ const paintKurganKerb: Paint<KurganKerbParams> = (kit, at, p) => {
   return {};
 };
 
-const kurganKerbPainted: ModelDef<KurganKerbParams> = { ...kurganKerb, build: painted(paintKurganKerb, { seed: 0x4b62 }) };
+const kurganKerbPainted: ModelSource<KurganKerbParams> = { ...kurganKerb, build: painted(paintKurganKerb, { seed: 0x4b62 }) };
 
 function kurgansPlace(ctx: PaintCtx): BuiltPlace {
   const { ground } = ctx;
@@ -1020,7 +1020,7 @@ const memberRow = (m: MemberData, headings?: readonly (readonly [number, number]
 
 /** every painted model the places paint, for its Explorer specimens (its defaults, then each variant) */
 function specimenJobs(ground: Ground, compact = false): ((blocks: Uint8Array[]) => SpecimenRow[])[] {
-  const job = <P extends object>(def: ModelDef<P>) => (blocks: Uint8Array[]): SpecimenRow[] => [undefined, ...(def.variants ?? []).map((v) => v.id)].map((variant) => {
+  const job = <P extends object>(def: ModelSource<P>) => (blocks: Uint8Array[]): SpecimenRow[] => [undefined, ...(def.variants ?? []).map((v) => v.id)].map((variant) => {
     const params = paramsOf(def, variant, undefined);
     const parts = paintedSpecimen(def, params, ground).map(({ geometry, layer }, slot): PlaceMeshRow => ({ name: '', material: layer ?? 'poi', slot, geometry: writeGeometry(geometry, blocks, `${def.id} specimen`, compact) }));
     return { key: specimenKey(def.id, params), parts };

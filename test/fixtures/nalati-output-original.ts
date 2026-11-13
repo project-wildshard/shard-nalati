@@ -16,10 +16,12 @@ import { nalatiCover } from './nalati-cover';
 import { nalatiGrass } from './nalati-grass-bake';
 import { nalatiSpear } from './nalati-spear';
 import { NALATI_VIEW_BLOBS } from './nalati-view-modules';
+import { readFileSync } from 'node:fs';
 const rows = v.parse(v.object({ crackBytes: v.array(v.number()), looks: v.unknown(), presentation: v.unknown(), hullBook: v.unknown() }),
   originalSpeciesJson('species.json'));
 /** Existing predecessor template only; source/cache product tests call prepareOutput directly. */
-const source = nalatiOutputRows(rows, originalHeldMetadata(), paint, nalatiCover, nalatiGrass, nalatiSpear.rows, NALATI_VIEW_BLOBS, NALATI_KOKPAR, NALATI_RIDING_PROGRAMS, NALATI_TITAN_PROGRAMS, NALATI_WEATHER, NALATI_ADMISSION, NALATI_CHARGE.rows, nalatiNativeAssemblyInputs().constants.nativeShelters);
+const source = nalatiOutputRows(rows, originalHeldMetadata(), paint, nalatiCover, nalatiGrass, nalatiSpear.rows, NALATI_VIEW_BLOBS, NALATI_KOKPAR, NALATI_RIDING_PROGRAMS, NALATI_TITAN_PROGRAMS, NALATI_WEATHER, NALATI_ADMISSION, NALATI_CHARGE.rows, nalatiNativeAssemblyInputs().constants.nativeShelters,
+  JSON.parse(readFileSync(new URL('../../public/assets/nalati/baked/recurve-pool.json', import.meta.url), 'utf8')));
 
 // Preserve the complete predecessor section, independently of the new course admission.
 const originalSections = originalNalatiScriptSections(originalHeldMetadata().held.program.v2, NALATI_KOKPAR, NALATI_RIDING_PROGRAMS,

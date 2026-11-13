@@ -1,6 +1,6 @@
 import { logPainter } from './campProps';
 import * as THREE from 'three';
-import type { ModelDef } from '@wildshard/engine/models/model';
+import type { ModelSource } from './modelSource';
 import { kunesBridge } from './catalogue';
 import type { KunesBridgeParams } from './campParams';
 import { deckFloor } from './placeRows';
@@ -145,4 +145,4 @@ const paint: Paint<KunesBridgeParams> = (kit, at, p, c) => {
 };
 
 /** the bridge's def with its painter (generators/places.ts) */
-export const kunesBridgePainted: ModelDef<KunesBridgeParams> = { ...kunesBridge, build: painted(paint, { seed: 0xb21d, fitted: true, finish: { aoH: 0.6 } }) };
+export const kunesBridgePainted: ModelSource<KunesBridgeParams> = { ...kunesBridge, build: painted(paint, { seed: 0xb21d, fitted: true, finish: { aoH: 0.6 } }) };

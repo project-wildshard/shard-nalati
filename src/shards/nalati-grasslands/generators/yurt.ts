@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type { ModelDef } from '@wildshard/engine/models/model';
+import type { ModelSource } from './modelSource';
 import { yurt } from './catalogue';
 import type { YurtParams } from './campParams';
 import type { ColliderDesc } from '@wildshard/sharddev/bake/placement';
@@ -274,4 +274,4 @@ const paint: Paint<YurtParams> = (kit, at, p, c) => {
 };
 
 /** the yurt's def with its painter (generators/places.ts) */
-export const yurtPainted: ModelDef<YurtParams> = { ...yurt, build: painted(paint, { seed: 0x7a17, layers: ['felt'] }) };
+export const yurtPainted: ModelSource<YurtParams> = { ...yurt, build: painted(paint, { seed: 0x7a17, layers: ['felt'] }) };

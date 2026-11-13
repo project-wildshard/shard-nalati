@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import type { ModelDef } from '@wildshard/engine/models/model';
+import type { ModelSource } from './modelSource';
 import type { BoxSpec as Collider, ColliderDesc } from '@wildshard/sharddev/bake/placement';
 import { M, v3, type ColorLike, type Painter, type PaintOpts } from './paint';
 import { pole, lathe, blob } from './smoothGeometry';
@@ -523,7 +523,7 @@ const milkCansPaint: Paint<object> = (kit, at, _p, c) => { const boxes: Box[] = 
 
 const TIMBER = { layers: ['rock'] } as const;
 /** a camp prop's def with its painter: what the places bake paints (generators/places.ts) */
-const withPaint = <P extends object>(def: ModelDef<P>, paint: Paint<P>, spec: Parameters<typeof painted>[1]): ModelDef<P> => ({ ...def, build: painted(paint, spec) });
+const withPaint = <P extends object>(def: ModelSource<P>, paint: Paint<P>, spec: Parameters<typeof painted>[1]): ModelSource<P> => ({ ...def, build: painted(paint, spec) });
 
 export const ribbonPolePainted = withPaint(ribbonPole, ribbonPolePaint, { seed: 0xa101 });
 
@@ -814,12 +814,12 @@ function clutter(kit: Kit, rng: Rng, ground: Ground, kind: number, x: number, y:
 
 // ── the models ────────────────────────────────────────────────────────────────────────────────────────────────────
 
-export const fallenLogPainted: ModelDef<LogParams> = { ...fallenLog, build: painted(logPaint, { seed: 0xd701, finish: { aoH: 0.3, aoMin: 0.6, ao: false } }) };
-export const stumpPainted: ModelDef<StumpParams> = { ...stump, build: painted(stumpPaint, { seed: 0xd702, finish: { aoH: 0.35, ao: false } }) };
-export const ovooPainted: ModelDef<OvooParams> = { ...ovoo, build: painted(ovooPaint, { seed: 0xd703, finish: { aoH: 0.4, ao: { strength: 0.5 } } }) };
-export const viewpointPolePainted: ModelDef<Streamed> = { ...viewpointPole, build: painted(viewpointPolePaint, { seed: 0xd704, finish: { aoH: 0.3, ao: false } }) };
-export const skyGatewayPainted: ModelDef<Streamed> = { ...skyGateway, build: painted(gatewayPaint, { seed: 0xd705, finish: { aoH: 0.4, ao: false } }) };
-export const campClutterPainted: ModelDef<ClutterParams> = { ...campClutter, build: painted(clutterPaint, { seed: 0xc1a8, finish: { aoH: 0.35, ao: { strength: 0.45 } } }) };
+export const fallenLogPainted: ModelSource<LogParams> = { ...fallenLog, build: painted(logPaint, { seed: 0xd701, finish: { aoH: 0.3, aoMin: 0.6, ao: false } }) };
+export const stumpPainted: ModelSource<StumpParams> = { ...stump, build: painted(stumpPaint, { seed: 0xd702, finish: { aoH: 0.35, ao: false } }) };
+export const ovooPainted: ModelSource<OvooParams> = { ...ovoo, build: painted(ovooPaint, { seed: 0xd703, finish: { aoH: 0.4, ao: { strength: 0.5 } } }) };
+export const viewpointPolePainted: ModelSource<Streamed> = { ...viewpointPole, build: painted(viewpointPolePaint, { seed: 0xd704, finish: { aoH: 0.3, ao: false } }) };
+export const skyGatewayPainted: ModelSource<Streamed> = { ...skyGateway, build: painted(gatewayPaint, { seed: 0xd705, finish: { aoH: 0.4, ao: false } }) };
+export const campClutterPainted: ModelSource<ClutterParams> = { ...campClutter, build: painted(clutterPaint, { seed: 0xc1a8, finish: { aoH: 0.35, ao: { strength: 0.45 } } }) };
 
 /**
  * The split-rail fence (E306 / E315 second pass; was src/shards/nalati-grasslands/world/props.ts `addFence`): a run of weathered larch
@@ -891,7 +891,7 @@ export function fenceRun(pts: readonly (readonly [number, number])[], o: { h?: n
   return { at: { x: ax, z: az }, params: { pts: pts.map(([x, z]) => [x - ax, z - az] as const), h: o.h ?? 1.15, spacing: o.spacing ?? 2.4 } };
 }
 
-export const fencePainted: ModelDef<FenceParams> = { ...fence, build: painted(paintFence, { seed: 0xfe9c, layers: ['rock'] }) };
+export const fencePainted: ModelSource<FenceParams> = { ...fence, build: painted(paintFence, { seed: 0xfe9c, layers: ['rock'] }) };
 
 /**
  * The escarpment's rock (E306 / E315 second pass; the per-rock drawing of src/shards/nalati-grasslands/outcrops.ts, verbatim):
@@ -979,8 +979,8 @@ const boulderPaint: Paint<RoundedBoulderParams> = (kit, at, p) => {
   return { descs };
 };
 
-export const graniteOutcropPainted: ModelDef<GraniteOutcropParams> = { ...graniteOutcrop, build: painted(outcropPaint, { seed: 0x0c7, finish: { ao: false, aoH: 0.8, aoMin: 0.6 } }) };
-export const roundedBoulderPainted: ModelDef<RoundedBoulderParams> = { ...roundedBoulder, build: painted(boulderPaint, { seed: 0x0c8, finish: { ao: false, aoH: 0.8, aoMin: 0.6 } }) };
+export const graniteOutcropPainted: ModelSource<GraniteOutcropParams> = { ...graniteOutcrop, build: painted(outcropPaint, { seed: 0x0c7, finish: { ao: false, aoH: 0.8, aoMin: 0.6 } }) };
+export const roundedBoulderPainted: ModelSource<RoundedBoulderParams> = { ...roundedBoulder, build: painted(boulderPaint, { seed: 0x0c8, finish: { ao: false, aoH: 0.8, aoMin: 0.6 } }) };
 
 /**
  * The kokpar goal (E306 / E315 M3; the tai-kazan): a raised ring of trodden turf with a stone rim, where a rider throws
@@ -997,7 +997,7 @@ const paintKokparGoal: Paint<object> = (kit, at) => {
   return { descs: [prism(at.x, at.z, gy - 1, gy + 0.72, KOKPAR_GOAL_RIM, 18, 0, 'earth', 2.3)] };
 };
 
-export const kokparGoalPainted: ModelDef<object> = { ...kokparGoal, build: painted(paintKokparGoal, { seed: 0x60ba }) };
+export const kokparGoalPainted: ModelSource<object> = { ...kokparGoal, build: painted(paintKokparGoal, { seed: 0x60ba }) };
 
 /**
  * The kokpar marker post (E306 / E315 M3): a weathered larch post 1.25 m tall ringing the kokpar field's trodden oval
@@ -1010,7 +1010,7 @@ const paintKokparPost: Paint<object> = (kit, at) => {
   return {};
 };
 
-export const kokparPostPainted: ModelDef<object> = { ...kokparPost, build: painted(paintKokparPost, { seed: 0x60ba }) };
+export const kokparPostPainted: ModelSource<object> = { ...kokparPost, build: painted(paintKokparPost, { seed: 0x60ba }) };
 
 /**
  * The stone step (E306 / E315 M3): one flat granite block of a stone stair — a rough block a touch wider than its tread,
@@ -1037,7 +1037,7 @@ const paintStoneStep: Paint<StoneStepParams> = (kit, at, p) => {
   return { descs: [{ kind: 'box', x: at.x, y: at.y + h / 2, z: at.z, hx: p.width / 2, hy: h / 2, hz: p.depth / 2 + 0.01, yaw: at.yaw, surface: 'stone' }] };
 };
 
-export const stoneStepPainted: ModelDef<StoneStepParams> = { ...stoneStep, build: painted(paintStoneStep, { seed: 0x70e7 }) };
+export const stoneStepPainted: ModelSource<StoneStepParams> = { ...stoneStep, build: painted(paintStoneStep, { seed: 0x70e7 }) };
 
 /** The signpost's physical geometry; the canvas lettering stays view code. */
 const paintSignpost: Paint<SignpostParams> = (kit, at, p, c) => {
@@ -1054,4 +1054,4 @@ const paintSignpost: Paint<SignpostParams> = (kit, at, p, c) => {
   return { boxes: [{ x: s.x, z: s.z, hw: 0.14, hd: 0.14, rot: 0, yBottom: gy - 1, yTop: gy + H }] };
 };
 
-export const signpostPainted: ModelDef<SignpostParams> = { ...signpost, build: painted(paintSignpost, { seed: 0x5197, layers: ['rock'] }) };
+export const signpostPainted: ModelSource<SignpostParams> = { ...signpost, build: painted(paintSignpost, { seed: 0x5197, layers: ['rock'] }) };
