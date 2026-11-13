@@ -29,6 +29,7 @@
     "test:hooks": "node --test '.githooks/*.test.mjs'",
     "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test:kit && pnpm check:asks && pnpm check:agents && pnpm check:agent-sync && pnpm test:agent-hooks && pnpm check:parity && node --check scripts/chromium-keychain-check.mjs && node --test test/tooling/chrome-keychain.test.mjs test/tooling/worktree-guard.test.mjs",
     "build:shards": "node scripts/publish-public.mjs && wildshard build-shards",
+    "check:build-twice": "node scripts/build-twice.mjs",
     "pack:shards": "node scripts/pack-all.mjs",
     "test:kit": "node --test 'src/cli/*.test.ts' 'src/test/**/*.test.ts'",
     "test:shards": "vitest run",
