@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, readdirSync, statSync, readFileSync, writeFileS
 // oxlint-disable-next-line import/no-nodejs-modules -- Cache paths stay inside this fixture's private repository scratch root.
 import { resolve, dirname } from 'node:path';
 import { createProjectGeneration, type ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import { prepareOutput } from '../../src/generators/output';
+import { prepareOutput } from '../../src/shards/nalati-grasslands/generators/output';
 import { projectCompilerIdentity } from '@wildshard/sharddev/projectCompilerIdentity';
 import { runNativeCacheSnapshot } from './native-cache-snapshot';
 
@@ -14,8 +14,8 @@ export const coldOutputFixture = await (async () => {
   const requested: string[] = [], steps: string[] = [], constructions = new Map<string, number>();
   let nativeSpecimens: Uint8Array | undefined, nativePlaces: Uint8Array | undefined, nativeRender: Uint8Array | undefined;
   const context = (): ProjectGenerationContext => {
-    const ctx = createProjectGeneration(resolve('src'), 'a'.repeat(64), new Map(), cache,
-      [{ prefix: '/src/shards/nalati-grasslands/', directory: resolve('src') },
+    const ctx = createProjectGeneration(resolve('src/shards/nalati-grasslands'), 'a'.repeat(64), new Map(), cache,
+      [{ prefix: '/src/shards/nalati-grasslands/', directory: resolve('src/shards/nalati-grasslands') },
         { prefix: '/assets/', directory: resolve('public/assets') }]);
     return { ...ctx, cached: (step: Parameters<typeof ctx.cached>[0], make: Parameters<typeof ctx.cached>[1]) => {
       requested.push(...(step.inputs ?? [])); steps.push(step.id);

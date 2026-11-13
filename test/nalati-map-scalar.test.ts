@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { readNalatiMapScalar } from '../src/generators/mapAssembly.mjs';
+import { readNalatiMapScalar } from '../src/shards/nalati-grasslands/generators/mapAssembly.mjs';
 
 test('inline and malformed sources refuse before file access', () => {
   for (const source of ['AA==', null, 0, {}, [], { file: 3 }])

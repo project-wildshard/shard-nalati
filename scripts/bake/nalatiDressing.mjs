@@ -11,7 +11,7 @@ export async function prepareNalatiDressing(forestMask, scalarBlocks) {
 
 
   try {
-    const { MANIFEST: NALATI_GRASSLANDS } = await import('../../src/discovery.generated.ts');
+    const { MANIFEST: NALATI_GRASSLANDS } = await import('../../src/shards/nalati-grasslands/discovery.generated.ts');
     if (forestMask !== undefined && NALATI_GRASSLANDS.forest === undefined) throw new Error('Missing Nalati forest definition');
     const definition = forestMask === undefined ? NALATI_GRASSLANDS : { ...NALATI_GRASSLANDS, forest: { ...NALATI_GRASSLANDS.forest, mask: forestMask } };
     if (scalarBlocks !== undefined) {
@@ -19,11 +19,11 @@ export async function prepareNalatiDressing(forestMask, scalarBlocks) {
       definition.scalarBlocks.prepare(scalarBlocks);
     }
     await prepareNativeTerrain(definition, { root, bytes: readFileSync(resolve(root, 'public/assets/baked/nalati-grasslands/terrain.bin')) });
-    const { default: NALATI_GRASS_LAYOUT } = await import('../../src/data/grassFieldLayout.json', { with: { type: 'json' } });
-    const { RIVER } = await import('../../src/generators/terrainRecipe.ts');
+    const { default: NALATI_GRASS_LAYOUT } = await import('../../src/shards/nalati-grasslands/data/grassFieldLayout.json', { with: { type: 'json' } });
+    const { RIVER } = await import('../../src/shards/nalati-grasslands/generators/terrainRecipe.ts');
     const [{ bakeForestPlacements }, { SPRUCE_SPECS }, { bakeNalatiDressingSource }] = await Promise.all([
-      import('@wildshard/sharddev/bake/forest'), import('../../src/generators/spruceGeometry.ts'),
-      import('../../src/generators/dressingSource.ts'),
+      import('@wildshard/sharddev/bake/forest'), import('../../src/shards/nalati-grasslands/generators/spruceGeometry.ts'),
+      import('../../src/shards/nalati-grasslands/generators/dressingSource.ts'),
     ]);
     const [heightfield, { bakeMeadowField }, { terrainHeight: heightAt }] = await Promise.all([
       import('@wildshard/engine/world/Heightfield'), import('@wildshard/sharddev/bake/meadow'),

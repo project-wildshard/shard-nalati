@@ -9,7 +9,7 @@ import { WorldPhysicsSchema } from '@wildshard/format/worldPhysics';
 import { createNativeBakeReader } from '@wildshard/engine/game/population/nativeBake';
 import { readNamedBlob } from '@wildshard/sharddev/blobs';
 import { originalNalatiPhysics } from '../fixtures/nalati-physics-original.ts';
-import { nalatiPhysicsSources } from '../../src/generators/physics.ts';
+import { nalatiPhysicsSources } from '../../src/shards/nalati-grasslands/generators/physics.ts';
 
 const options = { label: 'Orchard', resolution: 2, size: 4, parked: false, rig: 'segments', provenance: 'piece', shapes: [1, 2, 6, 9] };
 const file = 'data/colliders.bin';
@@ -96,7 +96,7 @@ function assertRange(actual, range, blocks, Type) {
 }
 
 timed('every original Nalati hull comes from the actual shipped blocks in order', () => {
-  const directory = 'src/data/';
+  const directory = 'src/shards/nalati-grasslands/data/';
   const first = readFileSync(directory + 'physics-colliders-0.bin');
   const second = readFileSync(directory + 'physics-colliders-1.bin');
   const blocks = [{ file: 'data/physics-colliders-0.bin', bytes: first }, { file: 'data/physics-colliders-1.bin', bytes: second }];
@@ -130,7 +130,7 @@ timed('both original hull files survive standard named binary admission', async 
   assert.deepEqual(sources.map(row => row.name), ['data/physics-colliders-0.bin', 'data/physics-colliders-1.bin']);
   const hashes = [];
   for (const source of sources) {
-    const blob = await readNamedBlob('src', source.name, source.source, source.kind, source.options);
+    const blob = await readNamedBlob('src/shards/nalati-grasslands', source.name, source.source, source.kind, source.options);
     assert.equal(blob.file.decoded, blob.bytes.length);
     const digest = hash(blob.bytes);
     assert.equal(blob.file.name, source.name);

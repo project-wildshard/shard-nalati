@@ -1,7 +1,7 @@
 import { NALATI_ADMISSION } from './nalati-admission';
 import { NALATI_WEATHER } from './nalati-weather';
 import { NALATI_CHARGE } from './nalati-charge';
-import { nalatiScriptSections } from '../../src/generators/scriptInventory';
+import { nalatiScriptSections } from '../../src/shards/nalati-grasslands/generators/scriptInventory';
 import { NALATI_TITAN_PROGRAMS } from './nalati-titan';
 import { NALATI_RIDING_PROGRAMS } from './nalati-riding';
 import { NALATI_KOKPAR } from './nalati-kokpar';

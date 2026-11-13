@@ -1,4 +1,4 @@
-import type { PlaceRuntimeRows } from '../../src/generators/placeRuntimeSource.mjs';
+import type { PlaceRuntimeRows } from '../../src/shards/nalati-grasslands/generators/placeRuntimeSource.mjs';
 import { jsonBytes } from '../../scripts/bake-output.mjs';
 
 /** Reconstruct the retired publication envelope only for immutable predecessor byte oracles. */

@@ -1,5 +1,5 @@
 import { parseManifestMetadata } from '@wildshard/format/minimap';
-import metadata from '../src/manifest.json' with { type: 'json' };
+import metadata from '../src/shards/nalati-grasslands/manifest.json' with { type: 'json' };
 import { expect,test } from 'vitest';
 
 test('authored declared entry keeps its exact platform and refuses unknown fields',()=>{

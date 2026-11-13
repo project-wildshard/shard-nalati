@@ -7,7 +7,7 @@ import * as v from 'valibot';
  * import, including loose source inventory, plus actual installed tool versions.
  * The fixture adapters/parsers and cold product tests remain independent. */
 const inputs = ['src/engine', 'src/game', 'src/sdk', 'src/sharddev', 'src/commons',
-  'src', 'package.json', 'pnpm-lock.yaml',
+  'src/shards/nalati-grasslands', 'package.json', 'pnpm-lock.yaml',
   'node_modules/assemblyscript/package.json', 'node_modules/binaryen/package.json',
   'node_modules/@typescript/typescript6/package.json', 'scripts/bake-loader.mjs',
   'test/fixtures/native-program.ts', 'test/fixtures/nalati-native-program.ts'];

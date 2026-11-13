@@ -1,9 +1,9 @@
 import { expect, test } from 'vitest';
 import original from './fixtures/nalati-weatherChannels-original.json' with { type: 'json' };
 import { parseClientChannels } from '@wildshard/sharddev/rows';
-import { visualExpression } from '../src/generators/visualExpression';
-import { visualPack, weatherFxChannels } from '../src/generators/weatherFxChannels';
-import { skyChannels } from '../src/generators/skyPresentation';
+import { visualExpression } from '../src/shards/nalati-grasslands/generators/visualExpression';
+import { visualPack, weatherFxChannels } from '../src/shards/nalati-grasslands/generators/weatherFxChannels';
+import { skyChannels } from '../src/shards/nalati-grasslands/generators/skyPresentation';
 
 test('weather and sky expression lowering retains every original numeric node and binding', () => {
   const rows = parseClientChannels(original.clientChannels);

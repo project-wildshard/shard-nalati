@@ -12,7 +12,7 @@ interface OriginalDeclaration {
 /** Only the five frozen historical species publications are source-built oracle inputs.
  * Other declarations retain their ordinary strict raw-file reader; no failed read falls back here. */
 export function originalSpeciesBlob(row: OriginalDeclaration): NamedBlob | undefined {
-  const pin = pins.find(value => value.path === `src/${row.source}`);
+  const pin = pins.find(value => value.path === `src/shards/nalati-grasslands/${row.source}`);
   if (pin === undefined) return undefined;
   return nameBlob(row.name, row.kind, originalSpeciesOutput(pin.path), row.options);
 }

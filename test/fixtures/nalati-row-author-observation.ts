@@ -1,10 +1,10 @@
 import { object, parse } from 'valibot';
 import { CreatureGuestSchema } from '@wildshard/format/speciesBookRows';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
-import { TREE_SET } from '../../src/generators/treeSet';
-import { nalatiMountedFigure } from '../../src/generators/mountedFigure';
-import { nalatiRidingSession } from '../../src/generators/clientRiding';
-import { actorProjection } from '../../src/generators/actorProjection';
+import { TREE_SET } from '../../src/shards/nalati-grasslands/generators/treeSet';
+import { nalatiMountedFigure } from '../../src/shards/nalati-grasslands/generators/mountedFigure';
+import { nalatiRidingSession } from '../../src/shards/nalati-grasslands/generators/clientRiding';
+import { actorProjection } from '../../src/shards/nalati-grasslands/generators/actorProjection';
 import { originalSpeciesJson } from './nalati-original-species';
 import { NALATI_RIDING_PROGRAMS } from './nalati-riding';
 import paint from './nalati-poi-paint-original.json' with { type: 'json' };

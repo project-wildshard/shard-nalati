@@ -1,4 +1,4 @@
-// Nalati's coat pages in plain Node, for scripts/bake-coats.mjs: the painter (src/generators/coats.ts)
+// Nalati's coat pages in plain Node, for scripts/bake-coats.mjs: the painter (src/shards/nalati-grasslands/generators/coats.ts)
 // over the committed rigged hulls, with the shipping species rows' palettes and tints. No page, renderer or registry.
 //   node --import ./scripts/bake-loader.mjs scripts/bake/nalatiCoats.mjs <phone|desktop> <out.json>
 import { readFileSync } from 'node:fs';
@@ -6,9 +6,9 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { writeCoatFiles } from './coatFiles.mjs';
 
-import horseRows from '../../src/species/horse.json' with { type: 'json' };
+import horseRows from '../../src/shards/nalati-grasslands/species/horse.json' with { type: 'json' };
 
-const SHARD = '../../src';
+const SHARD = '../../src/shards/nalati-grasslands';
 
 /** The recoloured hulls use the same admitted variant facts as the body bake. */
 export async function nalatiCoatInputs() {

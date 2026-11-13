@@ -7,7 +7,7 @@ import { NALATI_RIDING_PROGRAMS } from './nalati-riding';
 import { NALATI_KOKPAR } from './nalati-kokpar';
 import navigation from './nalati-navigation-original.json' with { type: 'json' };
 import { parseShardfileField } from '@wildshard/format/shardSchema';
-import { nalatiProductRows } from '../../src/generators/product';
+import { nalatiProductRows } from '../../src/shards/nalati-grasslands/generators/product';
 
 type Inputs = Parameters<typeof nalatiProductRows>;
 const terrain = parseShardfileField('terrain', query.terrain);

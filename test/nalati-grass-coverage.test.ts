@@ -1,7 +1,7 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert complete numeric equivalence over independent geometric samples.
 import assert from 'node:assert/strict';
 import {expect,test} from 'vitest';
-import {nalatiGrassCoverage} from '../src/generators/grassBake.mjs';
+import {nalatiGrassCoverage} from '../src/shards/nalati-grasslands/generators/grassBake.mjs';
 
 const groups=[['boulder',.9],['slab',1.1],['juniper',.85],['rose',.5],['willow',.4]] as const;
 interface Placement {x:number;z:number;sx:number;sz:number}

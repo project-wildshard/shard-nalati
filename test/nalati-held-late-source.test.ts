@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { parseHeldSlots } from '@wildshard/format/heldArms';
-import slots from '../src/boot/mountedLoadout.json' with { type: 'json' };
-import { nalatiLateHeldNames } from '../src/generators/modelBindings';
+import slots from '../src/shards/nalati-grasslands/boot/mountedLoadout.json' with { type: 'json' };
+import { nalatiLateHeldNames } from '../src/shards/nalati-grasslands/generators/modelBindings';
 
 const file = 'weapons/spear.json', pool = 'models/held/spear.glb';
 const pools = new Map([[file, pool]]);

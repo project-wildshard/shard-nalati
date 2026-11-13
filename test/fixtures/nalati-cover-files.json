@@ -1,5 +1,5 @@
 {
-  "src/boot/cover.generated.json": {
+  "src/shards/nalati-grasslands/boot/cover.generated.json": {
     "bytes": 170572,
     "hash": "39965ad2f287ec2377451f9d6203deb4f9773b0306d70c2c64f9dc3228649500"
   },
@@ -23,7 +23,7 @@
     "bytes": 45078,
     "hash": "cee4ac036776d555d5fe457af2922e41ea8f294ee517d145b095a9d199e08caf"
   },
-  "src/data/cover.generated.json": {
+  "src/shards/nalati-grasslands/data/cover.generated.json": {
     "bytes": 170572,
     "hash": "39965ad2f287ec2377451f9d6203deb4f9773b0306d70c2c64f9dc3228649500"
   }

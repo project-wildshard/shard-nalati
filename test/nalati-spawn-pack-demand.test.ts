@@ -1,6 +1,6 @@
 import {expect,test} from 'vitest';
-import observed from '../src/data/spawnPackDemand.json' with {type:'json'};
-import {nalatiSpawnPackLateNames} from '../src/generators/spawnPackDemand';
+import observed from '../src/shards/nalati-grasslands/data/spawnPackDemand.json' with {type:'json'};
+import {nalatiSpawnPackLateNames} from '../src/shards/nalati-grasslands/generators/spawnPackDemand';
 
 const files=observed.groups.flatMap(group=>group.members.map(row=>({hash:row.hash,compressed:row.bytes,critical:false,...row.name===null?{}:{name:row.name}})));
 const spruce=(()=>{const file=files.find(row=>row.name==='models/trees/spruce.glb');

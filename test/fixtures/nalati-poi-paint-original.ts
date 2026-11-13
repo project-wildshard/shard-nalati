@@ -1,7 +1,7 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Independent full predecessor files captured before writer retirement.
 import { readFileSync } from 'node:fs';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
-import { nalatiMountedFigure } from '../../src/generators/mountedFigure';
+import { nalatiMountedFigure } from '../../src/shards/nalati-grasslands/generators/mountedFigure';
 import paint from './nalati-poi-paint-original.json' with { type: 'json' };
 import pins from './nalati-poi-paint-files.json' with { type: 'json' };
 
@@ -18,7 +18,7 @@ export function originalPoiPaintFiles(): ReadonlyMap<string, Uint8Array> {
   }
   if (offset !== bank.length) throw new Error('Original POI bank extent differs');
   for (const pin of pins) {
-    const file = pin.path.slice('src/'.length), bytes = files.get(file);
+    const file = pin.path.slice('src/shards/nalati-grasslands/'.length), bytes = files.get(file);
     if (bytes === undefined || bytes.length !== pin.bytes || hashImmutableBytes(bytes) !== pin.sha256) {
       throw new Error(`Original POI paint differs ${file}`);
     }

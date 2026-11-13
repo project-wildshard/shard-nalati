@@ -4,9 +4,9 @@ import { expect, test } from 'vitest';
 
 test('native product ownership retires both part jobs and every original physical handoff', () => {
   for (const file of ['questProp.generated.json', 'quest-prop.generated.bin', 'balbalSpecimen.generated.json', 'balbal-carving-0.generated.bin', 'balbal-carving-1.generated.bin']) {
-    expect(existsSync(`src/data/${file}`), file).toBe(false);
+    expect(existsSync(`src/shards/nalati-grasslands/data/${file}`), file).toBe(false);
   }
   for (const file of ['bake-balbal-specimen.mjs', 'bake-quest-prop.mjs']) {
-    expect(existsSync(`src/generators/${file}`), file).toBe(false);
+    expect(existsSync(`src/shards/nalati-grasslands/generators/${file}`), file).toBe(false);
   }
 });

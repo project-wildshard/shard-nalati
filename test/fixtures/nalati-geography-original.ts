@@ -7,7 +7,7 @@ import pins from './nalati-geography-files.json' with { type: 'json' };
 
 /** Fresh complete predecessor loans, checked against all fifteen original file pins. */
 export function originalGeographyFiles(): ReadonlyMap<string, Uint8Array> {
-  const prefix = 'src/', files = new Map<string, Uint8Array>();
+  const prefix = 'src/shards/nalati-grasslands/', files = new Map<string, Uint8Array>();
   const bank = new Uint8Array(readFileSync('test/fixtures/nalati-geography-original.bin'));
   let offset = 0;
   for (const pin of pins) {

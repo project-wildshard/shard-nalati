@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { defineSpecimenCatalogue, nameSpecimenBook } from '@wildshard/sharddev/bake/specimenCatalogue';
-import { GEAR_BOOK } from '../src/generators/gear';
+import { GEAR_BOOK } from '../src/shards/nalati-grasslands/generators/gear';
 
 test('published Nalati gear bytes are admitted by the author catalogue reader', () => {
   const emitted = nameSpecimenBook('models/gear-book.json', GEAR_BOOK, { tier: 'phone', dependencies: [] });

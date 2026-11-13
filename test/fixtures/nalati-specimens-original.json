@@ -7,7 +7,7 @@
         "name": "Yard ribbon pole",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -22,7 +22,7 @@
         "name": "Eagle's perch",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -37,7 +37,7 @@
         "name": "Camp stove",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -52,7 +52,7 @@
         "name": "Camp bench",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -67,7 +67,7 @@
         "name": "Rug drying rack",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {
           "pals": [
@@ -88,7 +88,7 @@
         "name": "Felt rug (syrmak)",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {
           "w": 1.5,
@@ -137,7 +137,7 @@
         "name": "Cart (arba)",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -152,7 +152,7 @@
         "name": "Barrel",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {
           "s": 1
@@ -169,7 +169,7 @@
         "name": "Hitching rail",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {
           "length": 6.5,
@@ -187,7 +187,7 @@
         "name": "Water trough",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -202,7 +202,7 @@
         "name": "Saddle rack",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -217,7 +217,7 @@
         "name": "Pole corral",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {
           "r": 9,
@@ -235,7 +235,7 @@
         "name": "Hay pile",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -250,7 +250,7 @@
         "name": "Feed trough",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -265,7 +265,7 @@
         "name": "Rug line",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {
           "dx": 4.4,
@@ -288,7 +288,7 @@
         "name": "Chopping block",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -303,7 +303,7 @@
         "name": "Milk cans",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -318,7 +318,7 @@
         "name": "Tether line",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {
           "dx": 0,
@@ -336,7 +336,7 @@
         "name": "Kurt drying board",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -351,7 +351,7 @@
         "name": "Ribbon post",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -366,7 +366,7 @@
         "name": "Eagle Rock",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "rock",
         "defaults": {}
       },
@@ -381,7 +381,7 @@
         "name": "Wind Cairn",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "stone",
         "defaults": {}
       },
@@ -396,7 +396,7 @@
         "name": "Crag ledge",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "rock",
         "defaults": {
           "w": 5,
@@ -415,7 +415,7 @@
         "name": "Leopard's cave",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "rock",
         "defaults": {
           "snowLine": 60
@@ -432,7 +432,7 @@
         "name": "Kurgan entrance",
         "category": "buildings",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {
           "footY": -0.9
@@ -449,7 +449,7 @@
         "name": "Kurgan kerb stone",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "stone",
         "defaults": {
           "s": 0.45,
@@ -481,7 +481,7 @@
         "name": "Fieldstone",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/campProps.ts",
+        "file": "src/shards/nalati-grasslands/generators/campProps.ts",
         "surface": "stone",
         "defaults": {
           "s": 0.3,
@@ -520,7 +520,7 @@
         "name": "Fallen log",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {
           "ax": 0,
@@ -557,7 +557,7 @@
         "name": "Spruce stump",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {
           "s": 0.3
@@ -574,7 +574,7 @@
         "name": "Ovoo cairn",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "stone",
         "defaults": {
           "s": 1
@@ -591,7 +591,7 @@
         "name": "Viewpoint ribbon pole",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -606,7 +606,7 @@
         "name": "Sky road gateway",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -621,7 +621,7 @@
         "name": "Camp clutter",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {
           "kind": 0
@@ -689,7 +689,7 @@
         "name": "Split-rail fence",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {
           "pts": [
@@ -721,7 +721,7 @@
         "name": "Granite outcrop",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "rock",
         "defaults": {
           "w": 4.2,
@@ -765,7 +765,7 @@
         "name": "Rounded boulder",
         "category": "nature",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "rock",
         "defaults": {
           "r": 0.9,
@@ -816,7 +816,7 @@
         "name": "Kokpar goal",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "earth",
         "defaults": {}
       },
@@ -831,7 +831,7 @@
         "name": "Kokpar marker post",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -846,7 +846,7 @@
         "name": "Stone step",
         "category": "props",
         "pipeline": "code",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "stone",
         "defaults": {
           "width": 1.8,
@@ -866,7 +866,7 @@
         "name": "Carved signpost",
         "category": "props",
         "pipeline": "code",
-        "file": "src/models/signpost.ts",
+        "file": "src/shards/nalati-grasslands/models/signpost.ts",
         "surface": "wood",
         "defaults": {
           "boards": [
@@ -896,7 +896,7 @@
         "name": "Kazan on its tripod",
         "category": "props",
         "pipeline": "trellis",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -927,7 +927,7 @@
         "name": "Sandyq chest",
         "category": "props",
         "pipeline": "trellis",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -958,7 +958,7 @@
         "name": "Firewood stack",
         "category": "props",
         "pipeline": "trellis",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {
           "dy": 0
@@ -991,7 +991,7 @@
         "name": "Kumis churn",
         "category": "props",
         "pipeline": "trellis",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {
           "hw": 0.28,
@@ -1025,7 +1025,7 @@
         "name": "Saddle on the grass",
         "category": "props",
         "pipeline": "trellis",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -1056,7 +1056,7 @@
         "name": "Golden eagle on its perch",
         "category": "props",
         "pipeline": "trellis",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "wood",
         "defaults": {}
       },
@@ -1087,7 +1087,7 @@
         "name": "Watchtower",
         "category": "buildings",
         "pipeline": "hunyuan",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "stone",
         "defaults": {}
       },
@@ -1120,7 +1120,7 @@
         "name": "Saddled horse (standing)",
         "category": "props",
         "pipeline": "hunyuan",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "flesh",
         "defaults": {}
       },
@@ -1153,7 +1153,7 @@
         "name": "Kokpar rider",
         "category": "people",
         "pipeline": "hunyuan",
-        "file": "src/generators/places.ts",
+        "file": "src/shards/nalati-grasslands/generators/places.ts",
         "surface": "flesh",
         "defaults": {}
       },
@@ -1186,7 +1186,7 @@
         "name": "Yurt",
         "category": "buildings",
         "pipeline": "code",
-        "file": "src/generators/yurt.ts",
+        "file": "src/shards/nalati-grasslands/generators/yurt.ts",
         "surface": "felt",
         "defaults": {
           "r": 3,
@@ -1236,7 +1236,7 @@
         "name": "Kunes bridge",
         "category": "buildings",
         "pipeline": "code",
-        "file": "src/generators/kunesBridge.ts",
+        "file": "src/shards/nalati-grasslands/generators/kunesBridge.ts",
         "surface": "wood",
         "defaults": {
           "width": 4.4,
@@ -1254,7 +1254,7 @@
         "name": "Herd horse (far)",
         "category": "props",
         "pipeline": "hunyuan",
-        "file": "src/data/campCatalogue.json",
+        "file": "src/shards/nalati-grasslands/data/campCatalogue.json",
         "surface": "flesh",
         "defaults": {}
       },
@@ -1286,7 +1286,7 @@
         "name": "Snow lotus",
         "category": "nature",
         "pipeline": "trellis",
-        "file": "src/data/campCatalogue.json",
+        "file": "src/shards/nalati-grasslands/data/campCatalogue.json",
         "surface": "grass",
         "defaults": {}
       },

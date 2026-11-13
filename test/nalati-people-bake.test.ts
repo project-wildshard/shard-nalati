@@ -5,10 +5,10 @@ import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
-import frames from '../src/data/peopleFrames.json' with { type: 'json' };
+import frames from '../src/shards/nalati-grasslands/data/peopleFrames.json' with { type: 'json' };
 // The original conditioned skins (game figureRig fitNpcFigure + mergeNpcFigures over the source GLBs), frozen
 import FROZEN from './fixtures/legacy-oracles/nalati-people.json' with { type: 'json' };
-import { nalatiPeopleBlobs } from '../src/generators/peopleBake';
+import { nalatiPeopleBlobs } from '../src/shards/nalati-grasslands/generators/peopleBake';
 
 type Key = keyof typeof frames;
 const keys = Object.keys(frames) as Key[];

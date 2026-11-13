@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
-const root = 'src';
+const root = 'src/shards/nalati-grasslands';
 const commands = [
   ['crag bank', 'scripts/bake-nalati-crags.mjs'],
   ['POI contact banks', `${root}/bake/bake-nalati-poi-contacts.mjs`, '--rebake-contacts'],

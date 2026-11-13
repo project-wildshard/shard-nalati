@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // forest-trunks.mjs: re-capture Nalati's spruce trunks into the server bake (meta SERVER-PARITY SS10b).
 //
-// The room's tree colliders are rows in src/data/physicsRows.json: one capsule solid per tree,
+// The room's tree colliders are rows in src/shards/nalati-grasslands/data/physicsRows.json: one capsule solid per tree,
 // right after the four outer walls, counted by `pieces[0]` (`forest`). The page plants its forest
 // at boot (engine `placeForest` over the product's forest rows, `Forest.colliderDescs` builds the capsules). When the
 // page's planting moves, the frozen rows drift and room players walk through the page's trees. This reads the page's
@@ -24,7 +24,7 @@ import { chromium, devices } from 'playwright';
 import { KEYCHAIN_ARGS } from './chromium-keychain.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const FILE = resolve(ROOT, 'src/data/physicsRows.json');
+const FILE = resolve(ROOT, 'src/shards/nalati-grasslands/data/physicsRows.json');
 /** The bake's first four solids are the outer walls; the forest's capsules follow them (`pieces[0]` is `forest`). */
 const FIRST_TRUNK = 4;
 const CAPSULE = 2;

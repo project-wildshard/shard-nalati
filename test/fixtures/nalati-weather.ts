@@ -8,7 +8,7 @@ import herd from './nalati-herdChannels-original.json' with { type: 'json' };
 import { parseClientChannels } from '@wildshard/sharddev/rows';
 import { parseDecisionScripts } from '@wildshard/sharddev/decisionScripts';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
-import type { NalatiWeather } from '../../src/generators/weatherProgram';
+import type { NalatiWeather } from '../../src/shards/nalati-grasslands/generators/weatherProgram';
 import { originalScriptOrder } from './original-script-order';
 
 const binary = Uint8Array.from(readFileSync(resolve('test/fixtures', 'nalati-weather-original.wasm')));

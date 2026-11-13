@@ -24,5 +24,5 @@ Only the scaffold exists:
 
 ## Coming with the import
 
-- `src/`
+- `src/shards/nalati-grasslands/`
 - `public/assets/nalati-grasslands/`

@@ -1,7 +1,7 @@
 import { nalatiNativeProgram } from './nalati-native-program';
 import * as v from 'valibot';
-import { nalatiKokparWire } from '../../src/generators/kokparProgram';
-import type { NalatiKokpar } from '../../src/generators/kokparRows';
+import { nalatiKokparWire } from '../../src/shards/nalati-grasslands/generators/kokparProgram';
+import type { NalatiKokpar } from '../../src/shards/nalati-grasslands/generators/kokparRows';
 
 /** GR6: Nalati's kokpar round and course rows and round module bytes, as the product builds them (kokparRows.ts),
  *  compiled once in a plain Node child (`nalati-kokpar-compile.mjs`); the retired job's generated files no longer exist. */

@@ -4,7 +4,7 @@ import type { AuthorMapPalette } from '@wildshard/sharddev/bake/mapRaster';
 import type { MapPaletteRow } from '@wildshard/format/minimap';
 import type { GroundRows } from '@wildshard/format/terrain';
 import type { ScalarLatticeRows, ScalarTripletRows } from '@wildshard/format/scalarChannel';
-import type { GeographyRows } from '../src/data/geographyTypes';
+import type { GeographyRows } from '../src/shards/nalati-grasslands/data/geographyTypes';
 import { toonHeldArmsRows } from '@wildshard/sharddev/rows';
 import { HeldArmsSchema } from '@wildshard/format/heldArms';
 

@@ -9,22 +9,22 @@ it('retires species and held publishers while the source entry owns native const
  for(const pin of [...speciesOriginals,...heldOriginals]){
   expect(existsSync(pin.path),pin.path).toBe(false);
  }
- expect(readFileSync('src/generators/bake-species.mjs','utf8')).not.toMatch(/\bbyteWriter\b/u);
+ expect(readFileSync('src/shards/nalati-grasslands/generators/bake-species.mjs','utf8')).not.toMatch(/\bbyteWriter\b/u);
 });
 
 it('retires public painted publication while cover and map use defining authored producers',()=>{
- expect(readFileSync('src/generators/coverBake.mjs','utf8')).toContain("from './modelPaint.mjs'");
- expect(readFileSync('src/generators/mapAssembly.mjs','utf8')).toContain("from './modelPaintProgram.ts'");
+ expect(readFileSync('src/shards/nalati-grasslands/generators/coverBake.mjs','utf8')).toContain("from './modelPaint.mjs'");
+ expect(readFileSync('src/shards/nalati-grasslands/generators/mapAssembly.mjs','utf8')).toContain("from './modelPaintProgram.ts'");
  expect(originals).toHaveLength(43);
  for(const pin of originals)expect(existsSync(`public/assets/nalati/baked/painted-models/${pin.file}`),pin.file).toBe(false);
 });
 
 it('owns grass keep-outs through the build-time native placements',()=>{
- expect(readFileSync('src/generators/output.ts','utf8')).toContain('nalatiGrassBake(bytes, await nalatiDressingPlacementProgram(ctx))');
+ expect(readFileSync('src/shards/nalati-grasslands/generators/output.ts','utf8')).toContain('nalatiGrassBake(bytes, await nalatiDressingPlacementProgram(ctx))');
 });
 
 it('retires the dressing publisher and all eighteen physical row handoffs',()=>{
  const groups=['boulder','slab','stone','juniper','rose','willow','lupin','daisy','reed','logs','stumps','ovoos','poles','fences','gates','drifts','colliders','clutter'];
  expect(groups).toHaveLength(18);
- for(const group of groups)expect(existsSync(`src/data/dressing-${group}.generated.json`),group).toBe(false);
+ for(const group of groups)expect(existsSync(`src/shards/nalati-grasslands/data/dressing-${group}.generated.json`),group).toBe(false);
 });

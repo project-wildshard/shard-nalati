@@ -2,8 +2,8 @@ import { expect, test } from 'vitest';
 import { parseQuestData } from '@wildshard/format/quests';
 import { Flags } from '@wildshard/engine/world/interact/flags';
 import { QuestState, lineFor } from '@wildshard/engine/quest/core';
-import feats from '../src/data/feats.json' with { type: 'json' };
-import content from '../src/data/questContent.json' with { type: 'json' };
+import feats from '../src/shards/nalati-grasslands/data/feats.json' with { type: 'json' };
+import content from '../src/shards/nalati-grasslands/data/questContent.json' with { type: 'json' };
 const quests = parseQuestData({ ...content.quests, achievements: feats });
 
 test('authored Nalati quest content crosses public admission', () => {

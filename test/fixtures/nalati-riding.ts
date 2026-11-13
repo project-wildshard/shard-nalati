@@ -1,7 +1,7 @@
 import { nalatiNativeProgram } from './nalati-native-program';
 import * as v from 'valibot';
-import type { NalatiRidingPrograms } from '../../src/generators/ridingRows.mjs';
-import { nalatiRidingWire } from '../../src/generators/ridingProgram';
+import type { NalatiRidingPrograms } from '../../src/shards/nalati-grasslands/generators/ridingRows.mjs';
+import { nalatiRidingWire } from '../../src/shards/nalati-grasslands/generators/ridingProgram';
 
 /** GR6: Nalati's riding rows, module and witness bytes as the product builds them (ridingRows.mjs), compiled once in a
  *  plain Node child (`nalati-riding-compile.mjs`); the retired job's generated files no longer exist. */

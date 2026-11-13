@@ -3,7 +3,7 @@
   "model": {
     "id": "nalati-grasslands/kokpar-goat",
     "name": "Kokpar goat",
-    "file": "src/generators/carriedQuest.ts",
+    "file": "src/shards/nalati-grasslands/generators/carriedQuest.ts",
     "category": "props",
     "pipeline": "code",
     "defaults": {}

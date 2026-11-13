@@ -1,7 +1,7 @@
 import { parseAudioData } from '@wildshard/sharddev/audio';
 import {NALATI_PHRASES} from './originalNalatiAudioPhrases';
-import patches from '../../src/data/voicePatches.json' with {type:'json'};
-import scene from '../../src/data/audioScene.json' with {type:'json'};
+import patches from '../../src/shards/nalati-grasslands/data/voicePatches.json' with {type:'json'};
+import scene from '../../src/shards/nalati-grasslands/data/audioScene.json' with {type:'json'};
 
 
 const PANS = [['river', 'riverPan'], ['camp', 'campPan'], ['meltwater', 'meltPan']];

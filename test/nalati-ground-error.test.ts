@@ -2,7 +2,7 @@ import { expect, test } from 'vitest';
 // oxlint-disable-next-line import/no-nodejs-modules -- Exercise the unchanged committed native terrain source in the offline writer.
 import { readFileSync } from 'node:fs';
 import { Mesh } from 'three';
-import { bakeNalatiGround, nalatiGroundSource } from '../src/generators/nalatiGroundSource';
+import { bakeNalatiGround, nalatiGroundSource } from '../src/shards/nalati-grasslands/generators/nalatiGroundSource';
 import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
 
 test('Nalati ground error bounds every actual Float64-to-Float32 position conversion', async () => {

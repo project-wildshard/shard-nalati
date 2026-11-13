@@ -1,6 +1,6 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Supply only the defining native terrain/scalar reads to the source-owned fixture.
 import { readFileSync } from 'node:fs';
-import { nativeNalatiDressingPlacements } from '../../src/generators/nativeDressingPlacements.mjs';
+import { nativeNalatiDressingPlacements } from '../../src/shards/nalati-grasslands/generators/nativeDressingPlacements.mjs';
 
 let prepared: Promise<ReadonlyMap<string, Uint8Array>> | undefined;
 

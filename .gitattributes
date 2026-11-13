@@ -1,2 +1,2 @@
 public/** -whitespace
-src/**/*.json -whitespace
+src/shards/**/*.json -whitespace

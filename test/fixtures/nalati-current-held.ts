@@ -5,10 +5,10 @@ import { resolve } from 'node:path';
 import { afterAll } from 'vitest';
 import { build } from 'vite';
 import { createProjectGeneration } from '@wildshard/sharddev/projectGeneration';
-import { prepareSpecies } from '../../src/generators/output';
+import { prepareSpecies } from '../../src/shards/nalati-grasslands/generators/output';
 
 const cache = mkdtempSync(resolve('tmp/nalati-current-held-'));
-const base = createProjectGeneration(resolve('src'), 'c'.repeat(64), new Map(), cache,
+const base = createProjectGeneration(resolve('src/shards/nalati-grasslands'), 'c'.repeat(64), new Map(), cache,
   [{ prefix: '/assets/nalati/baked/', directory: resolve('public/assets/nalati/baked') }]);
 export const currentHeldInputs: string[] = [];
 const context = { ...base, cached: (step: Parameters<typeof base.cached>[0], make: Parameters<typeof base.cached>[1]) => {
@@ -29,7 +29,7 @@ export function currentHeldEntryWithout(input: string): ReturnType<typeof build>
   return build({ configFile: false, logLevel: 'silent', plugins: [{ name: 'omit-defining-held-source',
     load(id) { if (id.endsWith(input)) throw new Error('Defining held source helper omitted'); return null; },
   }], build: { write: false, minify: false,
-    lib: { entry: 'src/shard.config.ts', formats: ['es'] },
+    lib: { entry: 'src/shards/nalati-grasslands/shard.config.ts', formats: ['es'] },
     rolldownOptions: { external: [/^node:/u], output: { codeSplitting: false } },
   } });
 }

@@ -1,7 +1,7 @@
 import { nalatiNativeProgram } from './nalati-native-program';
 import * as v from 'valibot';
-import type { NalatiTitanProgram, NalatiTitanPrograms } from '../../src/generators/stormTitanRows.mjs';
-import { nalatiTitanWire, type NalatiTitan } from '../../src/generators/stormTitanProgram';
+import type { NalatiTitanProgram, NalatiTitanPrograms } from '../../src/shards/nalati-grasslands/generators/stormTitanRows.mjs';
+import { nalatiTitanWire, type NalatiTitan } from '../../src/shards/nalati-grasslands/generators/stormTitanProgram';
 
 /** GR6: Nalati's Storm Titan and pasture rows, module and witness bytes as the product builds them (stormTitanRows.mjs),
  *  compiled once in a plain Node child (`nalati-titan-compile.mjs`); the retired job's generated files no longer exist. */
