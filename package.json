@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@wildshard/engine": "github:project-wildshard/engine#867f3b968429d8b90ae33b363dae3f15f16f6b84",
-    "@wildshard/format": "github:project-wildshard/shard-format#0786a04b8f824578d4346e735ccc2a6c56c2a094",
+    "@wildshard/format": "github:project-wildshard/shard-format#17539ea88a9b56449d6cf9af7739b7f298be112e",
     "@wildshard/sharddev": "github:project-wildshard/sharddev#efbdc256b95bb5a438be984acfc920db5edf0bc1",
     "playwright": "1.65.0",
     "three": "0.186.0",
@@ -138,7 +138,7 @@
     "overrides": {
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
-      "@wildshard/format": "github:project-wildshard/shard-format#0786a04b8f824578d4346e735ccc2a6c56c2a094"
+      "@wildshard/format": "github:project-wildshard/shard-format#17539ea88a9b56449d6cf9af7739b7f298be112e"
     }
   }
 }
