@@ -109,6 +109,9 @@ jobs:
       - name: Build shard products on the runner
         if: github.event_name != 'push'
         run: pnpm build:shards
+      - name: Check the shard source as an author would (TS21)
+        if: github.event_name != 'push'
+        run: pnpm exec wildshard check . tmp/ci/check
       - name: Walk the owned 1800-tick authored route
         if: github.event_name != 'push'
         run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
@@ -241,6 +244,8 @@ jobs:
         run: node --test test/ci/nalati-author-tools.test.mjs
       - name: Build shard products on the runner
         run: pnpm build:shards
+      - name: Check the shard source as an author would (TS21)
+        run: pnpm exec wildshard check . tmp/ci/check
       # The cook is the long pole. It reads out/ and writes only its own
       # temp folder, so it starts now beside check's steps, and the last
       # step waits for its verdict.
