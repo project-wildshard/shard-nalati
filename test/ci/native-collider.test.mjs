@@ -8,7 +8,6 @@ import { NativeArraySliceSchema, nativeColliderRecordSchema } from '@wildshard/f
 import { WorldPhysicsSchema } from '@wildshard/format/worldPhysics';
 import { createNativeBakeReader } from '@wildshard/engine/game/population/nativeBake';
 import { readNamedBlob } from '@wildshard/sharddev/blobs';
-import { schemaInventory } from '@wildshard/sharddev/scripts/docs/schema-reference.mjs';
 import { originalNalatiPhysics } from '../fixtures/nalati-physics-original.ts';
 import { nalatiPhysicsSources } from '../../src/shards/nalati-grasslands/generators/physics.ts';
 
@@ -44,7 +43,9 @@ timed('raw collider ranges remain opt-in, aligned, strict and admitted by world 
     { byteOffset: 2 }, { byteLength: 3 }, { byteLength: Number.NaN }, { byteOffset: 2_147_483_648 }, { extra: true }]) {
     assert.throws(() => v.parse(NativeArraySliceSchema, { ...solid.vertices, ...changed }));
   }
-  assert.ok(schemaInventory(NativeArraySliceSchema).find(row => row.path === '$.byteOffset')?.constraints.includes('multiple_of 4'));
+  // sharddev's package no longer ships scripts/docs (fd986e8), so read the
+  // byteOffset pipe itself for its declared 4-byte alignment.
+  assert.ok(NativeArraySliceSchema.entries.byteOffset.pipe.some(part => part.type === 'multiple_of' && part.requirement === 4));
 });
 
 timed('the reader owns exact f32 and u32 copies and publishes only its complete bake', () => {
