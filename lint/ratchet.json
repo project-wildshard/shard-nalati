@@ -3,11 +3,5 @@
   "wildshard/no-runtime-in-build": {
     "src/shards/nalati-grasslands/generators/bake-nalati-bodies.d.mts": 1,
     "src/shards/nalati-grasslands/generators/horseBody.ts": 1
-  },
-  "wildshard/shard-engine-imports": {
-    "src/shards/nalati-grasslands/generators/campProps.ts": 1,
-    "src/shards/nalati-grasslands/generators/kunesBridge.ts": 1,
-    "src/shards/nalati-grasslands/generators/places.ts": 1,
-    "src/shards/nalati-grasslands/generators/yurt.ts": 1
   }
 }

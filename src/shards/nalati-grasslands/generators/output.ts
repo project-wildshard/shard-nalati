@@ -265,7 +265,6 @@ async function nalatiGrassProgram(ctx: ProjectGenerationContext): Promise<Nalati
   const bytes = files.get('lattice.bin'); if (bytes === undefined) throw new Error('Missing Nalati native lattice');
   return nalatiGrassBake(bytes, await nalatiDressingPlacementProgram(ctx));
 }
-/** Own the existing scene binaries through the injected build reader, with unchanged admission costs. */
 /** The recurve's held-bow page, baked beside its pool GLB; a declared input of the build (SA6), shipped as it is. */
 async function nalatiBowPage(ctx: ProjectGenerationContext): Promise<unknown> {
   const page = '/assets/nalati/baked/recurve-pool.json';
@@ -277,6 +276,7 @@ async function nalatiBowPage(ctx: ProjectGenerationContext): Promise<unknown> {
   return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
 }
 
+/** Own the existing scene binaries through the injected build reader, with unchanged admission costs. */
 export async function prepareOutput(ctx: ProjectGenerationContext): Promise<NalatiOutputRows> {
   const { rows: speciesRows, files: species, held: heldRows } = await prepareSpecies(ctx);
   const speciesFile = (name: string): Uint8Array => {
