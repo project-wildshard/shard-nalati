@@ -36,9 +36,9 @@
     "lint:shards": "WILDSHARD_RATCHET_FILE=lint/ratchet.json oxlint -c .oxlintrc.author.json --deny-warnings src/shards"
   },
   "dependencies": {
-    "@wildshard/engine": "github:project-wildshard/engine#0238dc7e76bd6acfacdb54c31448dd93a792b640",
-    "@wildshard/format": "github:project-wildshard/shard-format#8c506e15b03635237c1962bbd380f66db9985b47",
-    "@wildshard/sharddev": "github:project-wildshard/sharddev#0a8e1e1ae8b11f5a1d78c20f9d54bfc006fcbbc9",
+    "@wildshard/engine": "0.1.17",
+    "@wildshard/format": "npm:@wildshard/shard-format@0.4.9",
+    "@wildshard/sharddev": "npm:@wildshard/sdk@0.2.10",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0"
@@ -137,10 +137,10 @@
       "@typescript/typescript-win32-x64"
     ],
     "overrides": {
-      "@wildshard/engine": "github:project-wildshard/engine#0238dc7e76bd6acfacdb54c31448dd93a792b640",
+      "@wildshard/engine": "0.1.17",
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
-      "@wildshard/format": "github:project-wildshard/shard-format#8c506e15b03635237c1962bbd380f66db9985b47"
+      "@wildshard/format": "npm:@wildshard/shard-format@0.4.9"
     }
   }
 }
