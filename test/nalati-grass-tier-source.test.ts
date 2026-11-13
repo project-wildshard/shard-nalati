@@ -2,7 +2,7 @@ import {expect,test} from 'vitest';
 import {parse} from 'valibot';
 import {GrassPresentationSchema,grassPresentationFiles} from '@wildshard/format/fieldPresentation';
 import {nalatiGrassJson} from './fixtures/nalati-grass-bake';
-import {nalatiLateGrassNames} from '../src/shards/nalati-grasslands/generators/modelBindings';
+import {nalatiLateGrassNames} from '../src/generators/modelBindings';
 
 test('only exclusive desktop grass files defer; original phone and shared channels stay eager',()=>{
   const rows=parse(GrassPresentationSchema,nalatiGrassJson()),before=structuredClone(rows);

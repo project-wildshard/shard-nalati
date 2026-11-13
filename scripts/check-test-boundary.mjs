@@ -7,9 +7,9 @@ import ts from '@typescript/typescript6';
 
 const pending = JSON.parse(readFileSync('test/lift-pending.json', 'utf8'));
 assert.deepEqual(pending, [], 'The cleared lift queue must stay empty; new coverage must run');
-const root = resolve('.'), sourceRoot = resolve('src/shards');
+const root = resolve('.'), sourceRoot = resolve('src/shards'); // multi-shard only: a single-shard src/ has no other shard to import
 const problems = [];
-const owned = new Set(readdirSync(sourceRoot, { withFileTypes: true }).filter(row => row.isDirectory()).map(row => row.name));
+const owned = new Set((existsSync(sourceRoot) ? readdirSync(sourceRoot, { withFileTypes: true }) : []).filter(row => row.isDirectory()).map(row => row.name));
 function walk(directory) {
   if (!existsSync(directory)) return;
   for (const row of readdirSync(directory, { withFileTypes: true })) {
@@ -39,6 +39,6 @@ function walk(directory) {
     visit(source);
   }
 }
-walk(resolve('src/shards')); walk(resolve('test'));
+walk(resolve('src')); walk(resolve('test'));
 assert.deepEqual(problems, [], problems.join('\n'));
 console.log('Cleared test queue and installed engine exports verified');

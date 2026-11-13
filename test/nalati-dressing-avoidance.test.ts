@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { dressingPoiColliders } from '../src/shards/nalati-grasslands/generators/dressingPlan';
+import { dressingPoiColliders } from '../src/generators/dressingPlan';
 
 test('native dressing keeps POI order and original scaled statue footprints over caller ground', () => {
   const box = { x: 1, z: 2, hw: 3, hd: 4, rot: .5, yBottom: 6, yTop: 7 };

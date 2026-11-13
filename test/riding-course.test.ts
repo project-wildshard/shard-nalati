@@ -3,14 +3,14 @@ import { expect, test } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import courseSource from '@wildshard/sharddev/commons/scripts/course.as?raw';
 import { compileDecisionScripts } from '@wildshard/sharddev/buildDecisionScripts';
-import { nalatiKokparRows } from '../src/shards/nalati-grasslands/generators/kokparRows';
-const root = 'src/shards/nalati-grasslands/behaviour';
+import { nalatiKokparRows } from '../src/generators/kokparRows';
+const root = 'src/behaviour';
 const authored = new Map(readdirSync(root).filter(name => name.endsWith('.as')).map(name => [`behaviour/${name}`, readFileSync(`${root}/${name}`, 'utf8')]));
 const built = await nalatiKokparRows(compileDecisionScripts, authored, courseSource);
 const course = { ...built.rows.course, bytes: Buffer.from(built.courseWasm).toString('base64') };
 import { ProjectedState, ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
 import { parseRidingPractice } from '@wildshard/format/practiceCourseRows';
-import { horseCourseRows } from '../src/shards/nalati-grasslands/generators/courseScene';
+import { horseCourseRows } from '../src/generators/courseScene';
 import { parseDecisionScripts } from '@wildshard/format/decisionScripts';
 
 const original = horseCourseRows(course);

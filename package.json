@@ -14,10 +14,10 @@
   "scripts": {
     "prepare": "git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git config core.hooksPath .githooks || true",
     "typecheck": "tsc -p kit/tsconfig.json",
-    "lint": "pnpm lint:shards && oxlint -c kit/.oxlintrc.json --type-aware --deny-warnings --ignore-pattern '.githooks/**' --ignore-pattern '.agents/**' --ignore-pattern 'scripts/agent-parity.mjs' --ignore-pattern 'scripts/agent-sync.mjs' --ignore-pattern 'tmp/**' --ignore-pattern 'src/shards/**' --ignore-pattern 'test/**' --ignore-pattern 'public/**' --ignore-pattern 'scripts/**' --ignore-pattern 'vitest.config.ts' --no-error-on-unmatched-pattern",
+    "lint": "pnpm lint:shards && oxlint -c kit/.oxlintrc.json --type-aware --deny-warnings --ignore-pattern '.githooks/**' --ignore-pattern '.agents/**' --ignore-pattern 'scripts/agent-parity.mjs' --ignore-pattern 'scripts/agent-sync.mjs' --ignore-pattern 'tmp/**' --ignore-pattern 'src/**' --ignore-pattern 'test/**' --ignore-pattern 'public/**' --ignore-pattern 'scripts/**' --ignore-pattern 'vitest.config.ts' --no-error-on-unmatched-pattern",
     "lint:fix": "oxlint -c kit/.oxlintrc.json --type-aware --fix --ignore-pattern '.githooks/**' --ignore-pattern '.agents/**' --ignore-pattern 'scripts/agent-parity.mjs' --ignore-pattern 'scripts/agent-sync.mjs' --ignore-pattern 'tmp/**'",
-    "format": "oxfmt -c kit/.oxfmtrc.json kit '!src/shards/**' '!test/**' '!.oxlintrc.author.json'",
-    "format:check": "oxfmt -c kit/.oxfmtrc.json --check kit '!src/shards/**' '!test/**' '!.oxlintrc.author.json'",
+    "format": "oxfmt -c kit/.oxfmtrc.json kit '!src/**' '!test/**' '!.oxlintrc.author.json'",
+    "format:check": "oxfmt -c kit/.oxfmtrc.json --check kit '!src/**' '!test/**' '!.oxlintrc.author.json'",
     "test": "pnpm test:kit && pnpm test:shards",
     "check:asks": "node kit/scripts/asks.mjs check",
     "check:agents": "node .githooks/agents-md.mjs lint",
@@ -33,12 +33,12 @@
     "pack:shards": "node scripts/pack-all.mjs",
     "test:kit": "node --test 'kit/cli/*.test.ts' 'kit/test/**/*.test.ts'",
     "test:shards": "vitest run",
-    "lint:shards": "WILDSHARD_RATCHET_FILE=lint/ratchet.json oxlint -c .oxlintrc.author.json --deny-warnings src/shards"
+    "lint:shards": "WILDSHARD_RATCHET_FILE=lint/ratchet.json oxlint -c .oxlintrc.author.json --deny-warnings src"
   },
   "dependencies": {
-    "@wildshard/engine": "github:project-wildshard/engine#0238dc7e76bd6acfacdb54c31448dd93a792b640",
+    "@wildshard/engine": "github:project-wildshard/engine#dbc3f7cc50a2d9378f0679f1615484e320b39ec1",
     "@wildshard/format": "github:project-wildshard/shard-format#8c506e15b03635237c1962bbd380f66db9985b47",
-    "@wildshard/sharddev": "github:project-wildshard/sharddev#0a8e1e1ae8b11f5a1d78c20f9d54bfc006fcbbc9",
+    "@wildshard/sharddev": "github:project-wildshard/sharddev#7681ecb024cfc025a86d523ba45e79b25c87af5e",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0"
@@ -137,7 +137,7 @@
       "@typescript/typescript-win32-x64"
     ],
     "overrides": {
-      "@wildshard/engine": "github:project-wildshard/engine#0238dc7e76bd6acfacdb54c31448dd93a792b640",
+      "@wildshard/engine": "github:project-wildshard/engine#dbc3f7cc50a2d9378f0679f1615484e320b39ec1",
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
       "@wildshard/format": "github:project-wildshard/shard-format#8c506e15b03635237c1962bbd380f66db9985b47"

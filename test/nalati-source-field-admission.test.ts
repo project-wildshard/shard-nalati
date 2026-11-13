@@ -3,7 +3,7 @@ import * as v from 'valibot';
 import { manifestFieldRows } from '@wildshard/sharddev/rows';
 import { specimenShapeSources } from '@wildshard/sharddev/bake/specimenCatalogue';
 import { ManifestMetadataSchema } from '@wildshard/format/minimap';
-import manifest from '../src/shards/nalati-grasslands/data/manifestRows.json' with { type: 'json' };
+import manifest from '../src/data/manifestRows.json' with { type: 'json' };
 
 test('selected manifest fields retain native types, order, defaults and exact issue paths', () => {
   const keys = ['sky', 'grade', 'atmosphere'] as const;

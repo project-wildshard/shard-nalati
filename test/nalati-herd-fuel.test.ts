@@ -10,16 +10,16 @@ import { GroupStepV2 } from '@wildshard/engine/script/groupStepV2';
 import { ScriptModuleV2 } from '@wildshard/engine/script/moduleV2';
 import { Scope } from '@wildshard/engine/app/scope';
 import { Rng } from '@wildshard/engine/core/rng';
-import herdRows from '../src/shards/nalati-grasslands/data/herdGroup.json' with { type: 'json' };
-import herdGuest from '../src/shards/nalati-grasslands/data/herdGuest.json' with { type: 'json' };
+import herdRows from '../src/data/herdGroup.json' with { type: 'json' };
+import herdGuest from '../src/data/herdGuest.json' with { type: 'json' };
 import { readDecisionSources } from '@wildshard/sharddev/buildDecisionScripts';
 import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
-import { nalatiTitanRows } from '../src/shards/nalati-grasslands/generators/stormTitanRows.mjs';
+import { nalatiTitanRows } from '../src/generators/stormTitanRows.mjs';
 
 // the pasture module and its rows, compiled from this checkout's behaviour/*.as the way the build does
 const built = await nalatiTitanRows((input: unknown, registries: unknown, authored: unknown, options: object) =>
   compileReturnProjectionV2(input as never, registries as never, authored as never, options as never),
-readDecisionSources('src/shards/nalati-grasslands'));
+readDecisionSources('src'));
 const PASTURE_ROW: unknown = (built.programs.wind as { v2: unknown }).v2, PASTURE_WASM = built.pasture.wasm as Uint8Array;
 
 type Prepared = ReturnType<GroupStepV2['prepare']>;

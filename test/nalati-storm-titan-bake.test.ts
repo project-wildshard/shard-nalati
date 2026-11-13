@@ -2,8 +2,8 @@
 import { createHash } from 'node:crypto';
 import { BufferGeometryLoader, type BufferGeometry } from 'three';
 import { expect, it } from 'vitest';
-import { titanGeometryRows } from '../src/shards/nalati-grasslands/generators/stormTitanGeometry';
-import * as authored from '../src/shards/nalati-grasslands/generators/stormTitanFight';
+import { titanGeometryRows } from '../src/generators/stormTitanGeometry';
+import * as authored from '../src/generators/stormTitanFight';
 import baseline from './fixtures/nalati-storm-titan.json' with { type: 'json' };
 
 const geometry = titanGeometryRows();

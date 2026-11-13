@@ -10,7 +10,7 @@ import { NALATI_RIDING_PROGRAMS } from './nalati-riding';
 import { NALATI_KOKPAR } from './nalati-kokpar';
 import { originalSpeciesJson } from './nalati-original-species';
 import * as v from 'valibot';
-import { nalatiOutputRows } from '../../src/shards/nalati-grasslands/generators/output';
+import { nalatiOutputRows } from '../../src/generators/output';
 import { originalHeldMetadata } from './nalati-held-original';
 import { nalatiCover } from './nalati-cover';
 import { nalatiGrass } from './nalati-grass-bake';

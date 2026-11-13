@@ -6,7 +6,7 @@ export function checkNalatiSpeciesSource(): void {
   const source = `
     import assert from 'node:assert/strict';
     import {readFileSync} from 'node:fs';
-    import {nalatiSpeciesSource} from './src/shards/nalati-grasslands/generators/bake-species.mjs';
+    import {nalatiSpeciesSource} from './src/generators/bake-species.mjs';
     import {hashImmutableBytes} from './src/sdk/immutable.ts';
     import {originalSpeciesOutput} from './test/fixtures/nalati-original-species.ts';
     const pins=JSON.parse(readFileSync('test/fixtures/nalati-species-files.json','utf8'));

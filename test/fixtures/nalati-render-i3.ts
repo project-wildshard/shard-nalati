@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Compare metadata bytes natively.
 import { Buffer } from 'node:buffer';
-import { nalatiRenderTileSources } from '../../src/shards/nalati-grasslands/generators/renderTileSources';
+import { nalatiRenderTileSources } from '../../src/generators/renderTileSources';
 
 /** iPhone downloads I3's predecessor layer (as T8's in nalati-render-header.ts): the shipped Nalati render metadata is the
  *  pinned pre-I3 one with some L0 ground tiles in phone geometry. Every row equals the pre-I3 row but for a compacted L0

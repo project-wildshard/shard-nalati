@@ -1,6 +1,6 @@
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { expect, test } from 'vitest';
-import { postChainRows } from '../src/shards/nalati-grasslands/generators/postChain';
+import { postChainRows } from '../src/generators/postChain';
 
 test('the relocated Nalati post declaration retains the original bytes', () => {
   const bytes = new TextEncoder().encode(JSON.stringify(postChainRows()));

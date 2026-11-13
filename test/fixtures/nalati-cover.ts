@@ -1,6 +1,6 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- The cover's committed inputs feed its build-time construction.
 import { readFileSync } from 'node:fs';
-import { COVER_INPUTS, nalatiCoverBake, type NalatiCover } from '../../src/shards/nalati-grasslands/generators/coverBake.mjs';
+import { COVER_INPUTS, nalatiCoverBake, type NalatiCover } from '../../src/generators/coverBake.mjs';
 
 /** The cover as the product builds it (GR6), over the committed inputs. */
 const inputs = new Map(COVER_INPUTS.map(url => [url, new Uint8Array(readFileSync(`public${url}`))]));

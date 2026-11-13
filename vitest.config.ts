@@ -18,7 +18,7 @@ export default defineConfig({
     testTimeout: 30_000,
     environment: 'node',
     server: { deps: { inline: [/@wildshard\//u] } },
-    include: ['src/shards/**/*.test.ts', 'test/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'test/**/*.test.ts'],
     exclude: ['**/node_modules/**', ...JSON.parse(readFileSync('test/lift-pending.json', 'utf8'))],
     passWithNoTests: true,
   },

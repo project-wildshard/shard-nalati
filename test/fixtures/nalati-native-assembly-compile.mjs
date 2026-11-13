@@ -6,7 +6,7 @@ import pins from './nalati-place-wires.json' with { type: 'json' };
 // The assembly's parent still supplies its separately pinned original metadata.
 const [source, files] = await Promise.all([
   import('./nalati-native-assembly-inputs.ts'),
-  import('../../src/shards/nalati-grasslands/generators/placesProgram.ts').then(({ nalatiPlacesProgram }) => {
+  import('../../src/generators/placesProgram.ts').then(({ nalatiPlacesProgram }) => {
     const inputs = new Map([
       ['/assets/baked/nalati-grasslands/terrain.bin', readFileSync('public/assets/baked/nalati-grasslands/terrain.bin')],
     ]);

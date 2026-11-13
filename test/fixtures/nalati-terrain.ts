@@ -1,5 +1,5 @@
 import {originalGeographyFiles} from './nalati-geography-original';
-import nalati from '../../src/shards/nalati-grasslands/discovery.generated';
+import nalati from '../../src/discovery.generated';
 import type { ShardManifest,ChunkTerrain } from '../../src/client/game/shard/manifest';
 import type { MinimapPalette } from '../../src/client/engine/ui/Minimap';
 
