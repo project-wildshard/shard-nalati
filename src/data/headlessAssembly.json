@@ -225,7 +225,7 @@
       "$call": [
         {
           "$ref": [
-            "@wildshard/engine/core/noise",
+            "host",
             "clamp"
           ]
         },
@@ -255,7 +255,7 @@
       "$call": [
         {
           "$ref": [
-            "@wildshard/engine/game/plugin/mover",
+            "host",
             "proveTerrainEntries"
           ]
         },
