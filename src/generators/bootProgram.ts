@@ -3,7 +3,7 @@ import { readNativeTerrain } from '@wildshard/sharddev/bake/terrain';
 import { nalatiNavigationSource, NALATI_NAVIGATION_INPUT, NALATI_NAVIGATION_URL } from './navigation';
 import { nalatiGeographyRows } from './geographySource';
 import { nalatiBootInventory } from './bootInventory';
-import { nalatiBootAssets, nalatiGpuTable, nalatiPhoneAliases } from './bootFiles';
+import { nalatiBootAssets, nalatiGpuTable } from './bootFiles';
 import discovery from '../data/discovery.json' with { type: 'json' };
 import budgetInputs from '../data/budgetInputs.json' with { type: 'json' };
 import ceilings from '../data/budgetCeilings.json' with { type: 'json' };
@@ -29,7 +29,8 @@ export async function nalatiBootProgram(ctx: Pick<ProjectGenerationContext, 'cac
   });
   const terrain = files.get('terrain.bin'), navigationBytes = files.get('navigation.bin');
   if (terrain === undefined || navigationBytes === undefined || files.size !== 2) throw new Error('Missing cached Nalati boot inputs');
-  const astc = nalatiPhoneAliases(Object.keys(listed));
+  // S12d: no hand-made phone overlay; the cook makes the phone's 6×6 files from the desktop table (engine phoneTier).
+  const astc: Readonly<Record<string, string>> = {};
   const inventory = nalatiBootInventory(nalatiBootAssets(), listed, astc);
   const { heightAt } = readNativeTerrain(terrain), geography = nalatiGeographyRows();
   const { assets: _navigationAssets, ...navigationRows } = nalatiNavigationSource(navigationBytes);

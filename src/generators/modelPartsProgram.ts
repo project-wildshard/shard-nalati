@@ -5,9 +5,10 @@ import { MODEL_FILES, bakeModelPaint } from './modelPaint.mjs';
 import { nalatiModelSourceParts } from './modelSourceParts';
 
 const inputPrefix = '/assets/nalati/models/';
-/** S4 on Nalati: a phone atlas is committed UASTC with its mip chain (scripts/bake-astc6.mjs), half the raw RGBA's wire.
+/** S4 on Nalati: a phone atlas is committed UASTC with its mip chain (sharddev scripts/bake-astc6.mjs), half the raw RGBA's wire.
+ *  It is a product blob, which the cook's phone tier can't size, so it stays in source (S12d moved it out of `astc6/`).
  *  UASTC, not raw 6×6: a product blob has no image route, so a phone-tier GPU with no ASTC must still transcode it. */
-const phoneAtlasPrefix = '/assets/nalati/astc6/atlas/';
+const phoneAtlasPrefix = '/assets/nalati/phone-atlas/';
 const phoneAtlas = (file: string): string => `${phoneAtlasPrefix}${file.replace(/\.glb$/u, '.ktx2')}`;
 const hasPhoneAtlas = (file: string): boolean => file.endsWith('.phone.glb');
 

@@ -1,12 +1,10 @@
-import { bootFilePolicy as filePolicy, phoneOverlayRows, sharedBootTextures, type BootSources as ChunkFiles, type BootTier as Tier, type BootTextures as TexMode } from '@wildshard/sharddev/bootInventory';
+import { bootFilePolicy as filePolicy, sharedBootTextures, type BootSources as ChunkFiles, type BootTier as Tier, type BootTextures as TexMode } from '@wildshard/sharddev/bootInventory';
 import { GPU_FILES } from '../ktx2.generated';
 import declared from '../data/bootAssets.json' with { type: 'json' };
 
 /** S4 on Nalati: the phone's ASTC 6×6 aliases over the table; a desktop is never overlaid. */
 type Aliases = Readonly<Record<string, string>>;
 export const nalatiGpuTable = (astc: Aliases): { phone: Aliases; desktop: Aliases } => ({ phone: { ...GPU_FILES.phone, ...astc }, desktop: GPU_FILES.desktop });
-/** The overlay the public inventory holds. */
-export const nalatiPhoneAliases = (listed: readonly string[]): Aliases => phoneOverlayRows(GPU_FILES.phone, listed.filter(url => url.startsWith('/assets/nalati/astc6/nalati/')), 'nalati');
 
 /** Public boot inputs. Omit bodies when an admitted product file owns their read. */
 export interface NalatiBootAssets { coats: string; bodies?: string }
