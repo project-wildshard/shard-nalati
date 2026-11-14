@@ -51,7 +51,8 @@ export function withTrees(rows, trees) {
   const f = Math.fround;
   const solids = trees.map(t => {
     const c = trunkCapsule(t);
-    return { shape: CAPSULE, groups: old[0].groups, friction: old[0].friction, body: null, at: [f(t.x), f(t.y + c.y), f(t.z)], rot: [0, 0, 0, 1], halfHeight: f(c.halfHeight), radius: f(c.radius) };
+    // named rows (scripts/solid-owners.mjs): the forest's piece and material
+    return { shape: CAPSULE, groups: old[0].groups, friction: old[0].friction, body: null, at: [f(t.x), f(t.y + c.y), f(t.z)], rot: [0, 0, 0, 1], halfHeight: f(c.halfHeight), radius: f(c.radius), ownerId: `piece:${forest.id}`, material: forest.surface };
   });
   return {
     ...rows,
