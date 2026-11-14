@@ -2,7 +2,7 @@ import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGenera
 import { NALATI_RIDING_SOURCES, nalatiRidingRows, type NalatiRidingPrograms } from './ridingRows.mjs';
 import { NALATI_ECOLOGY } from './ecology.mjs';
 
-/** The product names the riding module and its witness ship under. */
+/** The shard file names the riding module and its witness ship under. */
 export const NALATI_RIDING_MODULE = 'behaviour/nalati.mounts.wasm', NALATI_RIDING_WITNESS = 'behaviour/riding-witness.bin';
 /** The riding program's rows and its compiled module (an ABI-2 project lane depending on its ABI-1 module) and witness bytes. */
 export interface NalatiRiding { readonly programs: NalatiRidingPrograms; readonly wasm: Uint8Array; readonly witness: Uint8Array }

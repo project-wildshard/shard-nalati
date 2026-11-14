@@ -12,7 +12,7 @@ const LATTICE = '/assets/baked/nalati-grasslands/terrain.bin';
 /**
  * GR6: Nalati's native terrain draws at build time (the retired nalati-terrain-scene job's bytes): the painted ground and
  * its slab over the native lattice, and the river and brook strips' water mesh, as `world/terrain/ground.glb`,
- * `world/terrain/slab.glb` and `world/water.glb`. The product ships the slab and the water; the map paints all three.
+ * `world/terrain/slab.glb` and `world/water.glb`. The shard file ships the slab and the water; the map paints all three.
  */
 export function nalatiTerrainScene(lattice: Uint8Array): NamedBlob[] {
   const { grid, ...samplers } = readNativeTerrain(lattice), terrain = TERRAIN_PAINT_SOURCE.terrain;

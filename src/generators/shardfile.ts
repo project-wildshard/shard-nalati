@@ -75,7 +75,7 @@ function renderRows(value: unknown): { files: readonly unknown[]; tiles: readonl
 
 /** Compose the complete header with caller-owned byte lengths; retain module deduplication and page charges.
  * Named source programs carry empty inline bytes; historical fixture transport is measured by its fixture owner. */
-export function nalatiProductRows(species: NalatiSpeciesProgramCosts, held: NalatiHeldProgramCosts, render: unknown,
+export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: NalatiHeldProgramCosts, render: unknown,
   queryTerrain: Omit<BakedQueryTerrain, 'assets'>, navigation: Awaited<ReturnType<typeof nalatiNavigationProgram>>, kokpar: Pick<NalatiKokpar, 'program' | 'course' | 'compiled'>, ridingPrograms: Pick<NalatiRidingPrograms, 'approach' | 'breaking' | 'riding' | 'compiled'>, titanProgram: NalatiTitanPrograms, weather: Pick<NalatiWeather, 'rows' | 'channels'>, admission: NalatiAdmission, charge: Pick<NalatiCharge, 'script' | 'bytes' | 'compiled'>, programByteLength: (program: NalatiSpeciesProgramCosts['program']) => number): ReturnType<typeof parseShardfile> {
   const weatherDecision = weather.rows, weatherChannels = weather.channels.weather, herdChannels = weather.channels.herd;
   const pasture = titanProgram.wind;
@@ -118,4 +118,4 @@ export function nalatiProductRows(species: NalatiSpeciesProgramCosts, held: Nala
 }
 
 // oxlint-disable-next-line import/no-default-export -- Offline callers supply the same explicit admitted species costs.
-export default nalatiProductRows;
+export default nalatiShardfileRows;

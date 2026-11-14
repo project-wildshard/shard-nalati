@@ -2,13 +2,13 @@ import { MODEL_FILES } from './modelPaint.mjs';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 
 const publicPrefix = '/assets/nalati/baked/painted-models/';
-const productPrefix = 'models/painted/';
-/** Equal atlas bytes have one logical product name, so shared images never create forbidden content aliases. */
-export function nalatiPaintedAtlasFile(bytes: Uint8Array): string { return `${productPrefix}atlas-${hashImmutableBytes(bytes)}.ktx2`; }
+const paintedPrefix = 'models/painted/';
+/** Equal atlas bytes have one logical shard file name, so shared images never create forbidden content aliases. */
+export function nalatiPaintedAtlasFile(bytes: Uint8Array): string { return `${paintedPrefix}atlas-${hashImmutableBytes(bytes)}.ktx2`; }
 
 /** Near tier geometry may be identical after stripping its atlas; retain the existing untextured far names. */
 export function nalatiPaintedGeometryFile(name: string, bytes: Uint8Array): string {
-  return name.endsWith('.far.glb') ? `${productPrefix}${name}` : `${productPrefix}geometry-${hashImmutableBytes(bytes)}.glb`;
+  return name.endsWith('.far.glb') ? `${paintedPrefix}${name}` : `${paintedPrefix}geometry-${hashImmutableBytes(bytes)}.glb`;
 }
 
 function modelName(path: string, prefix: string): string {
@@ -25,7 +25,7 @@ export function nalatiPaintedModelNames(input: unknown): readonly string[] {
     else if (Array.isArray(value)) { for (const item of value) visit(item); }
     else if (value !== null && typeof value === 'object') {
       const file: unknown = Reflect.get(value, 'file');
-      if (typeof file === 'string' && file.startsWith(productPrefix)) names.add(modelName(file, productPrefix));
+      if (typeof file === 'string' && file.startsWith(paintedPrefix)) names.add(modelName(file, paintedPrefix));
       for (const item of Object.values(value)) visit(item);
     }
   };

@@ -1,5 +1,5 @@
 // J186 Ring 2, CI only, never a hook. The Nalati stealth leg on the built
-// product (meta BUILD-MAX NAL-3): from spawn through the camp gate into the
+// output (meta BUILD-MAX NAL-3): from spawn through the camp gate into the
 // feather-grass field, where the one-time TALL GRASS hint shows and the
 // crouch disc lights; the disc latches, a jump drops the latch, holding
 // crouch sinks the rider out of sight until the HUD reads Hidden, standing

@@ -7,9 +7,9 @@ import { NALATI_RIDING_PROGRAMS } from './nalati-riding';
 import { NALATI_KOKPAR } from './nalati-kokpar';
 import navigation from './nalati-navigation-original.json' with { type: 'json' };
 import { parseShardfileField } from '@wildshard/format/shardSchema';
-import { nalatiProductRows } from '../../src/generators/product';
+import { nalatiShardfileRows } from '../../src/generators/shardfile';
 
-type Inputs = Parameters<typeof nalatiProductRows>;
+type Inputs = Parameters<typeof nalatiShardfileRows>;
 const terrain = parseShardfileField('terrain', query.terrain);
 const navigationRows = parseShardfileField('navigation', navigation.navigation);
 if (terrain === null || navigationRows === null) throw new Error('Missing original Nalati spatial inputs');
@@ -17,6 +17,6 @@ const queryRows = { terrain, files: parseShardfileField('files', query.files), c
 const nav = { navigation: navigationRows, files: parseShardfileField('files', navigation.files), critical: parseShardfileField('critical', navigation.critical) };
 
 /** Original complete spatial inputs for unchanged header/cost controls; never a live source fallback. */
-export function originalNalatiProductRows(species: Inputs[0], held: Inputs[1], render: Inputs[2]): ReturnType<typeof nalatiProductRows> {
-  return nalatiProductRows(species, held, render, queryRows, nav, NALATI_KOKPAR, NALATI_RIDING_PROGRAMS, NALATI_TITAN_PROGRAMS, NALATI_WEATHER, NALATI_ADMISSION, NALATI_CHARGE.rows, program => atob(program.bytes).length);
+export function originalNalatiShardfileRows(species: Inputs[0], held: Inputs[1], render: Inputs[2]): ReturnType<typeof nalatiShardfileRows> {
+  return nalatiShardfileRows(species, held, render, queryRows, nav, NALATI_KOKPAR, NALATI_RIDING_PROGRAMS, NALATI_TITAN_PROGRAMS, NALATI_WEATHER, NALATI_ADMISSION, NALATI_CHARGE.rows, program => atob(program.bytes).length);
 }

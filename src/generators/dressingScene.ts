@@ -70,7 +70,7 @@ export const DRESSING_CONTACT_SOURCES: { name: string; kind: 'bin'; source: stri
   options:{ kind: 'object', mode: 'strip', entries: {decoded:{ kind: 'number', integer: true, min: 0 }} }} } }).schema, contactInput.sources);
 /** Both exact sign rasters enter through the same named binary source path; two base planes bound the rectangular mip chain. */
 export const DRESSING_ATLAS_SOURCES: { name: string; kind: 'bin'; source: string; options: { gpu: number } }[]=parseSectionValue(defineNamedRows({ kind: 'array', item: { kind: 'object', mode: 'strip', entries: {name:text,kind:{ kind: 'literal', value: 'bin' },source:text,options:{ kind: 'object', mode: 'strip', entries: {gpu:number} }} } }).schema, Object.values(atlases).map(row=>({name:row.file,kind:'bin',source:row.source,options:{gpu:row.width*row.height*8}})));
-/** Exact existing compressed byte lanes, admitted under logical product names before client decoding: the crag bank's
+/** Exact existing compressed byte lanes, admitted under logical shard file names before client decoding: the crag bank's
  *  decoded size over both tiers' shapes. */
 export function dressingCragDecoded(cragRows:NalatiCragRows):number{return Math.max(...[cragRows.phone,cragRows.desktop].flatMap(tier=>tier.meshes.map(part=>{
   const row=parseSectionValue(SceneBakedGeometrySchema, part.row);

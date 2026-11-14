@@ -5,7 +5,7 @@ import * as v from 'valibot';
 
 /** Every executable/declaration layer the native compiler/scalar helpers can
  * import, including loose source inventory, plus actual installed tool versions.
- * The fixture adapters/parsers and cold product tests remain independent. */
+ * The fixture adapters/parsers and cold shard file tests remain independent. */
 const inputs = ['src/engine', 'src/game', 'src/sdk', 'src/sharddev', 'src/commons',
   'src', 'package.json', 'pnpm-lock.yaml',
   'node_modules/assemblyscript/package.json', 'node_modules/binaryen/package.json',

@@ -21,7 +21,7 @@ function signBoards(input: unknown): readonly Board[] {
   });
 }
 
-/** Explicit input inventory shared by the product cache and offline map author. */
+/** Explicit input inventory shared by the shard file cache and offline map author. */
 export const POI_PAINT_INPUTS: readonly string[] = [terrain, ...POI_PAINT_MODELS.map(name => `${modelPrefix}${name}`)];
 
 /** Source-owned paint publication: native cache identity includes the terrain and

@@ -3,7 +3,7 @@ import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
 
 /** The script compiler / admission revisions a view module is admitted under (the caller's SCRIPT_V2_REVISIONS). */
 export interface NalatiViewRevisions { readonly compiler: 1; readonly admission: 1 }
-/** One view module's authored source, product name and fixed-page ABI-2 bounds. */
+/** One view module's authored source, shard file name and fixed-page ABI-2 bounds. */
 export interface NalatiViewModule {
   readonly id: string; readonly source: string; readonly name: string; readonly pages: number; readonly ioBytes: number;
 }

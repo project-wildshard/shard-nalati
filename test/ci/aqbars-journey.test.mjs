@@ -1,4 +1,4 @@
-// J186 Ring 2, CI only, never a hook. The Nalati elite leg on the built product
+// J186 Ring 2, CI only, never a hook. The Nalati elite leg on the built output
 // (meta TEST-COVERAGE SHARD-REPOS SH-nalati-1..5, HOW-WE-BUILD NAL-4): from
 // spawn over the Kunes bridge, down the south bank's shelves and across the
 // horse plains to the foot of the crags, where Aqbars the Pale sees the
@@ -11,7 +11,7 @@
 // leaves her staggered. Up on a ledge she is out of reach, so the player
 // stands off and circles until she comes down; her pounces are not dodged.
 // Nothing writes her health, state or record: the elite core files the kill
-// once and starts her lair's respawn clock. Her rows are read from the product.
+// once and starts her lair's respawn clock. Her rows are read from the shard file.
 import '@wildshard/engine/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -53,7 +53,7 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
   // Her declared rows: the lair she leashes to and the swipe whose contacts the player's blows must beat.
   const elites = await product.json('server/elites.json'), at = elites.rows.findIndex(row => row.def.id === 'aqbars');
   const def = elites.rows[at]?.def, swipe = elites.kernels.find(kernel => kernel.id === 'aqbars')?.profile.spec.swipe;
-  assert.ok(def && swipe, 'The product declares Aqbars and her swipe');
+  assert.ok(def && swipe, 'The shard file declares Aqbars and her swipe');
   const { resident } = await openWorld({ shard, assets, product, rapier }, { room: true }), { host } = resident;
   try {
     const player = [...host.players.values()][0]; assert.ok(player);

@@ -6,7 +6,7 @@ import type {SimHost} from '../../src/server/engine/sim';
 import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
 import {prepareHeadlessRuntime as prepareCompanions} from './nalati-companions-native';
 
-/** The product's arms on a tape's world. */
+/** The shard file's arms on a tape's world. */
 export type NalatiWeaponRay=HeldRay;
 export type NalatiArrowTargets=HeldArrowTargets;
 export type NativeNalatiWeapons=Pick<HeldSeat,'setEnabled'|'refill'|'look'>;

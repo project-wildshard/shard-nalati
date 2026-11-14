@@ -1,5 +1,5 @@
 // GR6: compile Nalati's mounts / taming / riding program in plain Node (a happy-dom test environment cannot feed the
-// compiler) through the product's own builder, and print { programs, wasm, witness } (base64) as one JSON line.
+// compiler) through the shard's own builder, and print { programs, wasm, witness } (base64) as one JSON line.
 import { readFileSync } from 'node:fs';
 import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
 import { memoAssemblyScript } from '@wildshard/sharddev/bake/assemblyscriptMemo';

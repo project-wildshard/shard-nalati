@@ -6,7 +6,7 @@ import declared from '../data/bootAssets.json' with { type: 'json' };
 type Aliases = Readonly<Record<string, string>>;
 export const nalatiGpuTable = (astc: Aliases): { phone: Aliases; desktop: Aliases } => ({ phone: { ...GPU_FILES.phone, ...astc }, desktop: GPU_FILES.desktop });
 
-/** Public boot inputs. Omit bodies when an admitted product file owns their read. */
+/** Public boot inputs. Omit bodies when an admitted file in the shard file owns their read. */
 export interface NalatiBootAssets { coats: string; bodies?: string }
 export function nalatiBootAssets(bodyFile?: string): NalatiBootAssets {
   if (bodyFile !== undefined && !/^\/assets\/nalati\/baked\/bodies-[a-f0-9]{64}\.bin$/u.test(bodyFile)) throw new Error('Invalid declared species body locator');
@@ -29,15 +29,15 @@ export function bootSources(tier: Tier, assets: NalatiBootAssets, tex: TexMode, 
   const { gpu } = filePolicy(tier, tex, nalatiGpuTable(astc), inventory);
   return {
     sky: [], baked: [...Object.keys(inventory).filter((url) => url.startsWith(declared.bakedTexturesRoot) && !url.includes('.phone.')).map(gpu), ...sharedBootTextures(inventory)],
-    // the ground's lattice is the shardfile's admitted query terrain (G384), read once from the product, never the pack
+    // the ground's lattice is the shardfile's admitted query terrain (G384), read once from the shard file, never the pack
     terrain: [], trees: [],
-    // the creatures' navigation is the shardfile's admitted WSNM file (G384), read once from the product, never navmesh.bin
+    // the creatures' navigation is the shardfile's admitted WSNM file (G384), read once from the shard file, never navmesh.bin
     physics: declared.physics, cabins: [],
     props: worldFiles(tier, assets, inventory).map(gpu), art: [], music: [], sfx: [],
   };
 }
-/** Camp people's authored sources keep their original late-read timing and order; their prepared skins are product
- *  files the camp reads when it builds (GR6). */
+/** Camp people's authored sources keep their original late-read timing and order; their prepared skins are files in the
+ *  shard file the camp reads when it builds (GR6). */
 export function lateReads(tier: Tier, tex: TexMode, inventory: Readonly<Record<string, number | true>>, astc: Aliases = {}): string[] {
   const { gpu } = filePolicy(tier, tex, nalatiGpuTable(astc), inventory);
   return declared.people[tier].map(gpu).filter((url) => url in inventory);

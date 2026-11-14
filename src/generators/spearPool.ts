@@ -6,7 +6,7 @@ import { installPortableMath } from '@wildshard/sharddev/commons/bake/portableMa
 import { merge } from './meleeGeo';
 import { buildSpear, buildJavelin, SPEAR_PROFILE, SPEAR_VIEW } from './spear';
 
-/** The spear's rest pool's product name: the held polearm reads it through `product.url` (GR6; it was a hashed public
+/** The spear's rest pool's shard file name: the held polearm reads it through `product.url` (GR6; it was a hashed public
  *  GLB). */
 export const SPEAR_POOL_NAME = 'models/held/spear.glb';
 

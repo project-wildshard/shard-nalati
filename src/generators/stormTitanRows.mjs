@@ -9,7 +9,7 @@ import { groupStepSourceV2 } from '@wildshard/sharddev/as/groupStepV2';
 import { parseGroupStepV2 } from '@wildshard/format/scriptGroupStepV2';
 import { titanWhirlGate } from './stormTitanFight.ts';
 
-/** The product names the two selected ABI-2 modules ship under. */
+/** The shard file names the two selected ABI-2 modules ship under. */
 export const NALATI_TITAN_MODULE = 'behaviour/nalati.titan.attack.v2.wasm', NALATI_PASTURE_MODULE = 'behaviour/nalati.pasture.wasm';
 const fields = ['chainRadius','spearAim','spearLock','spearRadius','spearT','bend','raise','rewardDistance','respawnDistance','bodyX','bodyZ','fullHp','share','victoryT','immuneT','introBolt','spearMode','chainLeft','radius','land','dt','phase','mode','t','cd','x','z','px','pz','chain','aim','lock','stuck','ax','az','x0','z0','x1','z1','theta','hit','lane','flank','broke','index','cy','wx','wz','vx','vz','cx','cz','count','spread','burn','hp','chip','invuln','stun','fullDraw','fullDrawMul','amount','open','fighting','tied','mounted','storm','engaged','sealed','armed','victory','wall','ex','ey','ez','facing','inside','volume','corridor','sand','floor','y'];
 const channels = ['chainRadius','chainAlpha','tell','ringRadius','ringAlpha','forkRadius','forkAlpha','bend','bendRate','raise','raiseRate','castL','struck','weapon','dome','yaw','shield','phase','invuln','fighting','victoryT','tied','sealed','immuneT','introBolt','flash','rise','kneel','active','land','spread','radius','left','mode','t','cd','x','z','strike','stuck','theta','hit','speed','turn','alpha','show','hurt','mask','burn','hp','open','broke','index','x0','z0','x1','z1','vx','vz','wall','arm','disarm','clear','label','enter','exit','slow'];

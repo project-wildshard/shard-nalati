@@ -7,7 +7,7 @@ import view from '../data/worldView.json' with { type: 'json' };
 import * as layout from './layout';
 import * as terrain from './terrainRecipe';
 
-/** One build's explicit native observations, before any page or product reader binds them. */
+/** One build's explicit native observations, before any page or shard file reader binds them. */
 export interface NativeDressingSource {
   readonly heightAt: (x: number, z: number) => number;
   readonly normalAt: (x: number, z: number, epsilon?: number) => [number, number, number];

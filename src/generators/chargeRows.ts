@@ -2,7 +2,7 @@ import type { compileDecisionScripts } from '@wildshard/sharddev/buildDecisionSc
 import { parseSpawnScript, spawnRegistries, type SpawnScript } from '@wildshard/sharddev/rows';
 import { charge } from './eliteCharge';
 
-/** The product name the Qara Batyr charge module ships under. */
+/** The shard file name the Qara Batyr charge module ships under. */
 export const NALATI_CHARGE_MODULE = 'behaviour/nalati.qara-charge.wasm';
 /** The charge spawn script as the retired `nalati-elite-charge` job's eliteCharge.generated.json held it: the admitted
  *  rows with the compiled ABI-1 script, empty inline bytes and the module's size. */

@@ -1,5 +1,5 @@
 // GR6: Nalati's ambient cover at build time (the retired nalati-cover job's construction): the small models' packed
-// shapes, catalogue and life rows per tier, and the boulder atlases. The client borrows the packed shapes as product files.
+// shapes, catalogue and life rows per tier, and the boulder atlases. The client borrows the packed shapes as files in the shard file.
 import * as THREE from 'three';
 import { encodeBuildBytes } from '@wildshard/sharddev/bake/byteCodec';
 import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
@@ -23,11 +23,11 @@ const ATLASES = { 'boulder-1': '/assets/nalati/baked/cover-boulder-1.webp', 'bou
 export const COVER_FLOCKS = { butterflies: { phone: 14, desktop: 30 }, raptors: 3 };
 /** Every committed input the cover reads, for the build cache. */
 export const COVER_INPUTS = [...Object.values(ROCKS).flatMap(row => [row.desktop, row.phone]), ...Object.values(ATLASES)];
-/** The packed shapes' product file per tier: lane-shuffled level-9 deflate, as the specimen pack reader inflates it. */
+/** The packed shapes' file in the shard file per tier: lane-shuffled level-9 deflate, as the specimen pack reader inflates it. */
 export const coverBinName = tier => `models/cover-${tier}.bin`;
 
 /** Build the cover from its committed inputs (`read(url)` returns one of COVER_INPUTS): `rows` (the tier profiles,
- *  materials and flock facts) and `bins` (each tier's packed shapes by product name). */
+ *  materials and flock facts) and `bins` (each tier's packed shapes by shard file name). */
 export async function nalatiCoverBake(read) {
 const paintedModels = new Map();
 async function paintedModelBytes(name, phone = false) {

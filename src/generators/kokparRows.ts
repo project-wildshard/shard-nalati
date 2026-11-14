@@ -16,7 +16,7 @@ export interface NalatiKokpar {
   readonly goals: readonly { readonly x: number; readonly z: number }[];
   readonly messages: Readonly<Record<string, string>>;
 }
-/** The product name the round module ships under. */
+/** The shard file name the round module ships under. */
 export const NALATI_KOKPAR_MODULE = 'behaviour/nalati.kokpar.wasm';
 /** The unchanged oval controller, admitted beside the existing return policies. */
 export const NALATI_COURSE_MODULE = 'behaviour/nalati.course.wasm';

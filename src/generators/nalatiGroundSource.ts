@@ -78,7 +78,7 @@ export function bakeNalatiGround(source: NativeLatticeSource, staticTiles: reado
 
 /** Offline L1 candidate, never a live default. Preserve L0, native collision and all surviving painterly channels.
  * Ratio is a target; the shared tool locks tile/hole boundaries and returns its actual appearance-error estimate.
- * Rendering-owner fidelity review remains required before selecting a candidate for the live product.
+ * Rendering-owner fidelity review remains required before selecting a candidate for the live shard file.
  */
 export async function bakeNalatiGroundLod(source: NativeLatticeSource, policy: { targetRatio: number; maxErrorMetres: number }, staticTiles: readonly NalatiStaticTile[] = []): Promise<NalatiGroundTile[]> {
   const lod1: NativeLatticeLod[] = [];
@@ -91,7 +91,7 @@ export async function bakeNalatiGroundLod(source: NativeLatticeSource, policy: {
  * at its seams). Pairs, not quads: a quad of four squares is over the repo's 1 MB blob limit. */
 export interface NalatiGroundQuad { x: number; z: number; bytes: Uint8Array; geometricError: number }
 
-/** The L1 ground as eight pair GLBs (named product files, not tile rows, so they spend no envelope node budget). */
+/** The L1 ground as eight pair GLBs (named files in the shard file, not tile rows, so they spend no envelope node budget). */
 export async function bakeNalatiGroundQuads(source: NativeLatticeSource, policy: { targetRatio: number; maxErrorMetres: number }): Promise<NalatiGroundQuad[]> {
   const lod1: NativeLatticeLod[] = [];
   for (const tile of sliceNativeLattice(source, 1)) lod1.push(await simplifyNativeLatticeTile(tile, policy.targetRatio, policy.maxErrorMetres));

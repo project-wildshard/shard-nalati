@@ -19,7 +19,7 @@ import { nalatiNativeShelters } from './shelters';
 import { nalatiRuntimeRows } from './runtimeRows';
 import { nalatiDecorativeProgram } from './decorativeProgram';
 import { nalatiDressingProgram } from './dressingProgram';
-import {AUDIO_SCENE as audioSceneInput} from './product';
+import {AUDIO_SCENE as audioSceneInput} from './shardfile';
 import { nalatiPhysicsSources } from './physics';
 import { nalatiPopulationMetadataBlob } from './populationMetadata';
 import { nalatiScriptSections } from './scriptInventory';
@@ -234,7 +234,7 @@ function admitSpeciesInput(input: unknown): NalatiSpeciesSourceInputs {
   return input;
 }
 
-/** Share the defining species cache between the header and output through one product context. */
+/** Share the defining species cache between the header and output through one shard file context. */
 export async function prepareSpecies(ctx: ProjectGenerationContext): Promise<{
   readonly rows: v.InferOutput<typeof speciesOutputSchema>;
   readonly files: ReadonlyMap<string, Uint8Array>;
@@ -330,7 +330,7 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<Nala
   const cover = await nalatiCoverProgram(ctx), grass = await nalatiGrassProgram(ctx), spear = nalatiSpearPool(), kokpar = await nalatiKokparProgram(ctx), riding = await nalatiRidingProgram(ctx), charge = await nalatiChargeProgram(ctx), titan = await nalatiTitanProgram(ctx), freshEmission = emitSpeciesOutput(speciesRows, heldRows, nalatiMountedFigure(paintRows), cover, grass, spear.rows, kokpar.rows, riding.programs, titan.programs, weather, admissionBank.program, nativeShelters, await nalatiBowPage(ctx));
   // GR6: the riding module and witness ship as the build program's blobs (ridingProgram.ts)
   const ridingModules = nalatiRidingBlobs(riding), taming = tamingOf();
-  // GR6: the grass lattices and scenes are built here; their blocks ship as named product files
+  // GR6: the grass lattices and scenes are built here; their blocks ship as named files in the shard file
   const grassBlobs = grass.rows.sources.map(row => { const bytes = grass.files.get(row.name); if (bytes === undefined) throw new Error(`Missing grass block ${row.name}`); return nameBlob(row.name, 'bin', bytes, row.options); });
   // GR6: the five view modules compile from their authored sources (viewPrograms.ts) before the template names them
   const views = await nalatiViewModules(ctx, SCRIPT_V2_REVISIONS);

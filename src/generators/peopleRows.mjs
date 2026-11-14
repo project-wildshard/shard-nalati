@@ -4,8 +4,8 @@ import motions from '../data/peopleMotion.json' with { type: 'json' };
 
 const keys = Object.keys(frames);
 const atlas = (selection, phone) => ({
-  // the prepared skin's product name (peopleBake.ts `peopleSkinName`: the build makes it, GR6); both tiers bake the
-  // same bytes, so the product holds one file for both
+  // the prepared skin's shard file name (peopleBake.ts `peopleSkinName`: the build makes it, GR6); both tiers bake the
+  // same bytes, so the shard file holds one file for both
   url: `models/people/${selection.length === 1 ? selection[0] : 'camp'}.glb`,
   name: 'nalati-camp-people-gen', skeleton: 'npc.figures.v1', columns: 3, rows: 2,
   cell: phone ? 256 : 512, rim: 0.35, bands: 0.8,

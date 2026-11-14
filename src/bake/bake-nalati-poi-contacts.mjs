@@ -1,4 +1,4 @@
-// Explicit physics authoring only. Normal product construction never invokes this command.
+// Explicit physics authoring only. Normal shard construction never invokes this command.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { deflateSync } from 'node:zlib';

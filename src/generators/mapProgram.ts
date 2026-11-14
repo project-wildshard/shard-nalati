@@ -39,7 +39,7 @@ export async function nalatiMapPixels(inputs: ReadonlyMap<string, Uint8Array>): 
   return (await rasterSceneMap(settings, { input: read, bytes: read, json, model: url => repo(`public${url}`) })).pixels;
 }
 
-/** GR6: the map lattice through the build cache (the source-owned map, published by the SDK as the product map). */
+/** GR6: the map lattice through the build cache (the source-owned map, published by the SDK as the shard file map). */
 export async function nalatiMap(ctx: Pick<ProjectGenerationContext, 'cached'>): Promise<Uint8Array> {
   const files = await ctx.cached({ id: 'world-map', native: true, inputs: NALATI_MAP_INPUTS }, async inputs =>
     new Map([['map.rgba', await nalatiMapPixels(inputs)]]));

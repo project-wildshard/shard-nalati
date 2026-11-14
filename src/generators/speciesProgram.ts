@@ -49,7 +49,7 @@ const names = ['species.json', 'boot.json', 'bodies.bin', 'held-weapons.wasm', '
 type GuestAdmission = Parameters<typeof prepareNalatiSpecies>[3];
 
 /** Construct and persist original species outputs through explicit build inputs, never a generated species fallback.
- * Schema admission and the retained public body locator belong to the existing product adapter. */
+ * Schema admission and the retained public body locator belong to the existing shard file adapter. */
 export async function nalatiSpeciesProgram(ctx: Pick<ProjectGenerationContext, 'cached' | 'compileReturnProjection' | 'compileDecisionRows'>,
   admitInput: (input: unknown) => NalatiSpeciesSourceInputs, admitGuest: GuestAdmission,
   bodyFile: (hash: string) => string): Promise<ReadonlyMap<string, Uint8Array>> {

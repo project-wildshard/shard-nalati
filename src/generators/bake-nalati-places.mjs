@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Retained native terrain input and independent original-bake comparisons.
-// Publication belongs to the source product; no source/public handoff is written.
+// Publication belongs to the source program; no source/public handoff is written.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 

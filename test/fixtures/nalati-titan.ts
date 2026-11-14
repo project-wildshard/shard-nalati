@@ -3,7 +3,7 @@ import * as v from 'valibot';
 import type { NalatiTitanProgram, NalatiTitanPrograms } from '../../src/generators/stormTitanRows.mjs';
 import { nalatiTitanWire, type NalatiTitan } from '../../src/generators/stormTitanProgram';
 
-/** GR6: Nalati's Storm Titan and pasture rows, module and witness bytes as the product builds them (stormTitanRows.mjs),
+/** GR6: Nalati's Storm Titan and pasture rows, module and witness bytes as the shard build makes them (stormTitanRows.mjs),
  *  compiled once in a plain Node child (`nalati-titan-compile.mjs`); the retired job's generated files no longer exist. */
 const Module = v.object({ wasm: v.string(), witness: v.string() });
 const compiled = v.parse(v.object({ programs: v.unknown(), titan: Module, pasture: Module }),

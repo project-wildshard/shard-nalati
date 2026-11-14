@@ -7,10 +7,10 @@ import { parseGlb } from '@wildshard/sharddev/assets';
 import { emptyShardfile } from '@wildshard/sharddev/author';
 
 /** Compile ordinary render rows, with one combined ground/props GLB per address and the unchanged critical WSTR.
- * This is an offline assembly seam, not product admission: the caller supplies the real catalogue/textures,
- * authored static placement output and the trusted runtime's native-ground witness before publishing a product.
+ * This is an offline assembly seam, not shard file admission: the caller supplies the real catalogue/textures,
+ * authored static placement output and the trusted runtime's native-ground witness before publishing a shard file.
  * Named packing retains the catalogue's already encoded texture bytes and charges each tile's own dependencies.
- * An omitted catalogue is the geometry-only witness path, not a material-complete production product.
+ * An omitted catalogue is the geometry-only witness path, not a material-complete production shard file.
  * `lods` keeps only those levels' tiles (the live ground draws the L0 tiles: the painter mesh, cut at the tile seams).
  */
 export function bakeNalatiWorldRows(nativeTerrain: Uint8Array, staticTiles: readonly NalatiStaticTile[], family: string, catalogue?: Pick<StaticMaterialCatalogue, 'snapshot' | 'dependencies'>, lods: readonly (0 | 1)[] = [0, 1]): BakedWorldRows & { nativeGround: NativeGround } {

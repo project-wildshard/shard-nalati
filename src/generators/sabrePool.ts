@@ -5,7 +5,7 @@ import { buildSabre, SABRE_MOVES, PASS_LEFT, PASS_RIGHT } from './sabre';
 type SabreKey = typeof SABRE_MOVES.rest;
 type SabreMove = typeof PASS_LEFT;
 
-/** The sabre's rest pool's product name: the held blade reads it through `product.url` (GR6; it was a hashed public GLB). */
+/** The sabre's rest pool's shard file name: the held blade reads it through `product.url` (GR6; it was a hashed public GLB). */
 export const SABRE_POOL_NAME = 'models/held/sabre.glb';
 
 interface KeyRow { t: number; pos: number[]; q: number[] }
@@ -24,7 +24,7 @@ const move = (row: SabreMove): MoveRow =>
 
 /**
  * GR6: Nalati's sabre at build time (the retired nalati-sabre-pool job's bytes): the sword, arms and steel guard as one rest
- * pool GLB, and the blade page rows (`weapons/sabre.json`): the pool by its product name, the blade's reach and the moves.
+ * pool GLB, and the blade page rows (`weapons/sabre.json`): the pool by its shard file name, the blade's reach and the moves.
  */
 export function nalatiSabrePool(): { glb: Uint8Array; rows: SabrePoolRows } {
   const material = new MeshBasicMaterial(), rig = buildSabre(material, material), steel = rig.extras?.[0]?.geometry;

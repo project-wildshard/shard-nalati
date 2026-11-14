@@ -15,9 +15,9 @@ const sourceUrl = (key: FigureKey, phone: boolean): string => {
   if (url === undefined) throw new Error(`Missing camp figure source for ${key}`);
   return url;
 };
-/** A selection's prepared skin's product name (GR6; peopleRows.mjs names the same file as its atlas `url`): the camp's
+/** A selection's prepared skin's shard file name (GR6; peopleRows.mjs names the same file as its atlas `url`): the camp's
  *  merged figures, or one figure alone for its Explorer card. One name for both tiers: they bake the same bytes, and a
- *  product holds one file per payload (a second name for the same bytes would not exist in it). */
+ *  shard file holds one file per payload (a second name for the same bytes would not exist in it). */
 export const peopleSkinName = (keys: readonly string[]): string =>
   `models/people/${keys.length === 1 ? keys[0] ?? '' : 'camp'}.glb`;
 
@@ -56,7 +56,7 @@ export async function bakePeople(keys: readonly FigureKey[], phone: boolean, rea
 }
 
 /** GR6: the camp's prepared skins at build time (the retired nalati-people job's bytes), both tiers, the camp merged and
- *  each figure alone, as named product files over the authored sources read through the build cache. */
+ *  each figure alone, as named files in the shard file over the authored sources read through the build cache. */
 export async function nalatiPeopleBlobs(ctx: Pick<ProjectGenerationContext, 'cached'>): Promise<NamedBlob[]> {
   const inputs = [false, true].flatMap(phone => KEYS.map(key => sourceUrl(key, phone)));
   const files = await ctx.cached({ id: 'people-sources', inputs }, read => new Map(inputs.map(url => {

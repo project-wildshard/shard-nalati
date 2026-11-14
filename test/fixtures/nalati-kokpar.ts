@@ -3,7 +3,7 @@ import * as v from 'valibot';
 import { nalatiKokparWire } from '../../src/generators/kokparProgram';
 import type { NalatiKokpar } from '../../src/generators/kokparRows';
 
-/** GR6: Nalati's kokpar round and course rows and round module bytes, as the product builds them (kokparRows.ts),
+/** GR6: Nalati's kokpar round and course rows and round module bytes, as the shard build makes them (kokparRows.ts),
  *  compiled once in a plain Node child (`nalati-kokpar-compile.mjs`); the retired job's generated files no longer exist. */
 const compiled = v.parse(v.object({ rows: v.unknown(), wasm: v.string(), courseWasm: v.string() }), JSON.parse(await nalatiNativeProgram('kokpar')));
 export const NALATI_CURRENT_KOKPAR: NalatiKokpar = nalatiKokparWire(JSON.stringify(compiled.rows));

@@ -1,5 +1,5 @@
 // J186 Ring 2, CI only, never a hook. The Nalati taming leg on the built
-// product: from spawn over the Kunes bridge and down the south bank's
+// output: from spawn over the Kunes bridge and down the south bank's
 // shelves to the horse plains, then the stallion stalked, offered to,
 // mounted at its own prompt and ridden through its five bucking rounds until
 // it bonds. Only the inputs the page sends drive it (running, crouch, the
@@ -113,14 +113,14 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
     assert.ok(flags.includes('tamed:horse'), 'The bond files tamed:horse'); assert.ok(!flags.includes('quest:tulpar'), `Taming alone never grants quest:tulpar: ${flags}`);
     console.log(`taming-journey ${JSON.stringify({ walkTicks, promptTick, breakingTick, bondedTick: host.state.tick, throws, elapsedMs: Math.round(performance.now() - started) })}`);
     });
-    await t.test('every program row names a module the product ships', () => {
+    await t.test('every program row names a module the shard file ships', () => {
       // The held bow carries a frozen copy of the kokpar row (boot/mountedLoadout.json, boot/bowVariant.json): a kokpar
-      // change that leaves it behind ships a bow naming a module the product no longer has (KOK-1 review).
+      // change that leaves it behind ships a bow naming a module the shard file no longer has (KOK-1 review).
       const json = readdirSync(directory, { recursive: true }).filter(name => name.endsWith('.json')).map(name => readFileSync(join(directory, name), 'utf8'));
       // By hash: the Titan's combined row names its module under wasm/ while the bytes ship as a bin blob.
       const named = new Set(json.flatMap(text => [...text.matchAll(/blobs\/wasm\/([0-9a-f]{64})\.wasm/gu)].map(match => match[1])));
       const shipped = new Set(descriptor.index.files.map(file => file.hash));
-      assert.ok(named.size > 0, 'The product names its program modules');
+      assert.ok(named.size > 0, 'The shard file names its program modules');
       for (const hash of named) assert.ok(shipped.has(hash), `module ${hash} is named but not shipped`);
     });
     await t.test('mounted: the tulpar wins a kokpar round', async () => {

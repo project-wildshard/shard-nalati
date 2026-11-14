@@ -69,7 +69,7 @@ export const NALATI_ELITE_CONDITIONS = { rules: { always: { rule: 0, phase: fals
 const GOLDEN_KING_DIMS = { bodyY: 0.95, bodyHalfLen: 0.5, bodyRadius: 0.3, headRadius: 0.16, legLen: 0.87, feet: [[0.12, 0.05], [-0.12, 0.05], [0.12, -0.05], [-0.12, -0.05]], halfWidth: 0.3, capsuleAxis: 'y' };
 const BALBAL_DIMS = { bodyY: 0.9, bodyHalfLen: 0.6, bodyRadius: 0.4, headRadius: 0.26, legLen: 0.82, feet: [[0.16, 0.05], [-0.16, 0.05], [0.16, -0.05], [-0.16, -0.05]], halfWidth: 0.38, capsuleAxis: 'y' };
 
-/** Nalati's native assembly (P1-E3.1b, J90): its hosts in install order, as data over its product files. */
+/** Nalati's native assembly (P1-E3.1b, J90): its hosts in install order, as data over the files in its shard file. */
 function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['bake']>['reader'] & { readonly size: number; readonly resolution: number }, rows: { readonly herds: string; readonly groups: string; readonly external: readonly unknown[] }): NativeAssemblyPlan {
   return { kind: 'native-assembly', level: { speed: 5, authorCap: true, ground: { size: nativeBake.size, height: 0 } }, terrain: { kind: 'shard-tile', resolution: 256, size: 500 }, navigation: 'shard',
     bake: { rows: { file: 'server/physics.json' }, reader: nativeBake, ground: 'data/physics-ground.bin', colliders: ['data/physics-colliders-0.bin', 'data/physics-colliders-1.bin'], read: 'bake',
@@ -91,7 +91,7 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
         input: { use: 'nalati.titan.use', skip: 'nalati.titan.skip' }, target: 'encounter:storm-titan:heart', grants: [{ item: 'naizagai', count: 1 }, { item: 'sky-marked-saddle', count: 1 }] }] };
 }
 
-/** Nalati's server-class files (J91), built from the same programs the product ships: a client never fetches one. */
+/** Nalati's server-class files (J91), built from the same programs the shard file ships: a client never fetches one. */
 export function nalatiServerFiles(pasture: NalatiTitanProgram, admission: NalatiAdmission, riding: NalatiRidingPrograms, nativeShelters: [number, number, number][]): ServerBlob[] {
   const bootFile = nalatiNativeBootRows(pasture, admission, riding), { constants } = nalatiNativeAssemblyRows(pasture, admission, nativeShelters);
   const strike = (at: number) => declared(constants.pageElites.strikes[at], 'Missing elite strikes').strike;

@@ -8,7 +8,7 @@ import { kokparModuleOptions, nalatiKokparRows, NALATI_KOKPAR_MODULE, NALATI_COU
 const PREFIX = '/src/shards/nalati-grasslands/';
 const decode = new TextDecoder('utf-8', { fatal: true }), encode = new TextEncoder();
 /** GR6: the kokpar round and course compiled in the build (G783) from every declared behaviour source, cached under the
- *  author program; the round module ships as a product blob. */
+ *  author program; the round module ships as a shard file blob. */
 export async function nalatiKokparProgram(ctx: Pick<ProjectGenerationContext, 'cached' | 'inputFiles' | 'compileDecisionRows'>): Promise<{ rows: NalatiKokpar; blob: NamedBlob; courseBlob: NamedBlob }> {
   const compile = ctx.compileDecisionRows, list = ctx.inputFiles;
   if (compile === undefined || list === undefined) throw new Error('Nalati kokpar needs decision-row compilation and its input inventory');

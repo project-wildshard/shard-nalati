@@ -2,7 +2,7 @@
 import { existsSync } from 'node:fs';
 import { expect, test } from 'vitest';
 
-test('native product ownership retires both part jobs and every original physical handoff', () => {
+test('native shard file ownership retires both part jobs and every original physical handoff', () => {
   for (const file of ['questProp.generated.json', 'quest-prop.generated.bin', 'balbalSpecimen.generated.json', 'balbal-carving-0.generated.bin', 'balbal-carving-1.generated.bin']) {
     expect(existsSync(`src/data/${file}`), file).toBe(false);
   }

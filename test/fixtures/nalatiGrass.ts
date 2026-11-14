@@ -5,7 +5,7 @@ import {grassRows,grassChannelBytes} from '../../src/generators/grassRows';
 import {nalatiGrass,nalatiGrassJson} from './nalati-grass-bake';
 
 const sources=v.parse(v.object({sources:v.array(v.object({name:v.string(),source:v.string()}))}),nalatiGrassJson()).sources;
-/** The same raw named blocks read by the product, with no substitute geometry or texture. */
+/** The same raw named blocks read by the shard file, with no substitute geometry or texture. */
 export const GRASS_FILES=new Map<string,Uint8Array>([
   ...sources.map((row):readonly [string,Uint8Array]=>{
     const bytes=nalatiGrass.files.get(row.name);if(bytes===undefined)throw new Error(`Missing grass block ${row.name}`);

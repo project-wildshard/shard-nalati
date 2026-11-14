@@ -4,12 +4,12 @@ import type { Shardfile } from '@wildshard/format/shardSchema';
 import source from '../data/navigationSource.json' with { type: 'json' };
 
 const HASH = '223ce1ab45d736c5fb526308cb86bc6d61bdeb482ac886a7d47306fd5a8c41b5';
-/** Tracked native source consumed by the product and boot metadata publishers. */
+/** Tracked native source consumed by the shard file and boot metadata publishers. */
 export const NALATI_NAVIGATION_INPUT = `assets/navigation-${HASH}`;
 /** Original public native navigation URL used by discovery. */
 export const NALATI_NAVIGATION_URL = source.url;
 
-/** Explicit spatial fields consumed by the source-built product header. */
+/** Explicit spatial fields consumed by the source-built shard file header. */
 export interface NalatiNavigationRows {
   navigation: ReturnType<typeof declareNavigation>['navigation'];
   files: Shardfile['files'];
@@ -23,7 +23,7 @@ export function nalatiNavigationSource(bytes: Uint8Array): ReturnType<typeof dec
   return rows;
 }
 
-/** Product-owned navigation preserves the original charged file and publishes its immutable bytes.
+/** Shard-file-owned navigation preserves the original charged file and publishes its immutable bytes.
  * The cache reads only the tracked project-relative source; no generated metadata or copied asset is read. */
 export async function nalatiNavigationProgram(ctx: Pick<ProjectGenerationContext, 'cached' | 'asset'>): Promise<NalatiNavigationRows> {
   const files = await ctx.cached({ id: 'navigation', inputs: [NALATI_NAVIGATION_INPUT] }, inputs => {

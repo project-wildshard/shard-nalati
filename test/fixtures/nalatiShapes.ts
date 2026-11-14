@@ -2,7 +2,7 @@ import { originalPoiPaintFiles } from './nalati-poi-paint-original';
 import { fixedDraws } from '../../src/client/game/models/fixedDraws';
 import shapeRows from './nalati-shape-book-original.json' with { type: 'json' };
 
-/** Nalati's frozen original shape book (the product's models/shape-book.json) as one fixed-draw library,
+/** Nalati's frozen original shape book (the shard file's models/shape-book.json) as one fixed-draw library,
  *  loaded once by test/setup.ts. */
 const originals = originalPoiPaintFiles();
 export const SHAPE_BYTES = new Map(shapeRows.sources.map(row => {
