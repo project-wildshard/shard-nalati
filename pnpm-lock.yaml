@@ -21,8 +21,8 @@ importers:
         specifier: npm:@wildshard/shard-format@0.4.9
         version: '@wildshard/shard-format@0.4.9(typescript@7.0.2)'
       '@wildshard/sharddev':
-        specifier: npm:@wildshard/sdk@0.2.10
-        version: '@wildshard/sdk@0.2.10(@types/node@24.3.1)(typescript@7.0.2)'
+        specifier: npm:@wildshard/sdk@0.2.12
+        version: '@wildshard/sdk@0.2.12(@types/node@24.3.1)(typescript@7.0.2)'
       playwright:
         specifier: 1.65.0
         version: 1.65.0
@@ -562,8 +562,8 @@ packages:
       sharp:
         optional: true
 
-  '@wildshard/sdk@0.2.10':
-    resolution: {integrity: sha512-oBKl+7NA/v2fsDqOZxn29HFwnMchFCdQ88vBp832OJwajmkw+YxgGVmB2WhZ98ftcflm+G2G2SigWf0K39iqfg==}
+  '@wildshard/sdk@0.2.12':
+    resolution: {integrity: sha512-UH3/pnXytqpc9mvpcqsF2OHlBCCjSfj7zjgBdnepj5aH85y84GyjaCxTuo5w1ziMpuHw4+0Ew0e3OOMaXyTrjw==}
     engines: {node: '>=24.18.0'}
     hasBin: true
 
@@ -1630,7 +1630,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@wildshard/sdk@0.2.10(@types/node@24.3.1)(typescript@7.0.2)':
+  '@wildshard/sdk@0.2.12(@types/node@24.3.1)(typescript@7.0.2)':
     dependencies:
       '@dimforge/rapier3d-simd': 0.21.0
       '@gltf-transform/core': 4.5.0
