@@ -14,6 +14,7 @@ const files = [
   'nalati-geography-original.json',
   'nalati-goldenKing-original.json',
   'nalati-held-files.json',
+  'nalati-poi-paint-original.d.json.ts',
   'nalati-poi-paint-original.json',
   'nalati-poi-shapes-original.bin',
   'nalati-population-field-original.json',

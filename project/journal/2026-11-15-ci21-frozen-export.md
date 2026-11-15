@@ -5,3 +5,6 @@ importing this shard's test source. The exporter writes selected source fixture
 bytes into engine's frozen fixture boundary and records this source commit plus
 the byte hash of every output. Engine consumers reconstruct only the narrow
 data shape they need.
+
+Where the engine's JSON declaration gate requires it, the export also carries
+the generated declaration companion beside the copied JSON fixture.
