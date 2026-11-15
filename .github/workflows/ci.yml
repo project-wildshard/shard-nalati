@@ -268,6 +268,9 @@ jobs:
         run: node --test test/ci/package-products.test.mjs
       - name: Prove authored wet ground and shipped navigation
         run: node --test test/ci/navigation-ground.test.mjs
+      - name: Enter the real kurgan and resume its intro
+        if: steps.ring2.outputs.play == 'true'
+        run: node --test test/ci/kurgan-journey.test.mjs
       - name: Complete live-herd walk and continuation
         if: steps.ring2.outputs.play == 'true'
         run: node --test test/ci/nalati-walk.test.mjs
