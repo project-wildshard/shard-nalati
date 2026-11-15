@@ -23,6 +23,7 @@ const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessPro
 const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
 const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
 
 // Over the Kunes on the timber bridge, the south bank's shelves to the horse plains (the taming journey's route,
@@ -55,6 +56,7 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
   const def = elites.rows[at]?.def, swipe = elites.kernels.find(kernel => kernel.id === 'aqbars')?.profile.spec.swipe;
   assert.ok(def && swipe, 'The shard file declares Aqbars and her swipe');
   const { resident } = await openWorld({ shard, assets, product, rapier }, { room: true }), { host } = resident;
+  let pending = null, continuations = 0;
   try {
     const player = [...host.players.values()][0]; assert.ok(player);
     assert.ok(Math.hypot(player.position.x - shard.spawn.x, player.position.z - shard.spawn.z) < 0.5, 'The journey starts at the shard spawn');
@@ -67,8 +69,31 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
     assert.equal(record().kills, 0, 'No kill is filed before the fight'); assert.equal(entry().state, 'idle', 'She waits in her lair');
     // HS1: the room's world files feats (data/feats.json) as Ledger facts; Aqbars pays no coins.
     const effects = [];
-    const step = commands => { resident.step(commands); effects.push(...resident.effects); };
+    const step = commands => {
+      resident.step(commands); effects.push(...resident.effects);
+      if (pending === null) return;
+      pending.world.resident.step(commands);
+      assert.deepEqual(pending.world.resident.effects, resident.effects, `${pending.label}: restored effects`);
+      if (++pending.ticks < 5) return;
+      assert.equal(pending.writer.serialize(snapshotSimHostBytes(pending.world.host)), pending.writer.serialize(snapshotSimHostBytes(host)),
+        `${pending.label}: five real fight inputs continue identically`);
+      pending.world.dispose(); pending.writer.dispose(); pending = null; continuations++;
+    };
     const frame = (fields = {}) => ({ kind: 'player', moveX: 0, moveZ: 0, yaw: 0, commandVersion: 1, steer: { keyX: 0, keyY: 0, stickX: 0, stickY: 0 }, ...fields });
+
+    // Feed each resumed world the next five actual inputs of the original
+    // fight. The control keeps its ordinary combat and swipe observations;
+    // capturing a save adds no idle ticks or hand-written owner fields.
+    const beginContinuation = async label => {
+      assert.equal(pending, null);
+      const writer = createSimSnapshotSerializer();
+      let world;
+      try {
+        const snapshot = writer.serialize(snapshotSimHostBytes(host));
+        world = await openWorld({ shard, assets, product, rapier }, { room: true, snapshot });
+        pending = { label, writer, world, ticks: 0 };
+      } catch (error) { world?.dispose(); writer.dispose(); throw error; }
+    };
 
     // Run (the page's sprint) to each point in turn; a point not reached in its allowance fails the route there.
     for (const [x, z] of ROUTE) {
@@ -90,7 +115,7 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
 
     // The fight: close on her, hold heavy swings and tap the sabre, the camera pitched at her head.
     const fightStart = host.state.tick, head = cat.position.clone(), swipes = [];
-    let engagedTick = -1, killTick = -1, perchTicks = 0, taps = 0, hurtTicks = 0, lowest = health(), swiping = null, lastHp = cat.hp, lastSwing = -Infinity;
+    let engagedTick = -1, killTick = -1, perchTicks = 0, taps = 0, hurtTicks = 0, resumedFight = false, lowest = health(), swiping = null, lastHp = cat.hp, lastSwing = -Infinity;
     for (let tick = 0; tick < FIGHT_TICKS && cat.alive; tick++) {
       if (engagedTick < 0 && entry().state === 'engaged') engagedTick = host.state.tick;
       const dx = cat.position.x - player.position.x, dz = cat.position.z - player.position.z, d = Math.hypot(dx, dz);
@@ -114,6 +139,9 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
       // Every blow she takes lands while a swing the player pressed or held in reach plays out.
       if (swinging) lastSwing = host.state.tick;
       if (cat.hp < lastHp) { hurtTicks++; assert.ok(host.state.tick - lastSwing <= SWING_TICKS, `She is hurt only by the player's swings: tick ${host.state.tick}, last swing ${lastSwing}`); }
+      if (!resumedFight && cat.alive && cat.hp < cat.maxHp) {
+        await beginContinuation('Aqbars wounded'); resumedFight = true;
+      }
       lastHp = cat.hp;
       // Her swipes, as her body plays them: each one's furthest phase and whether she is staggered when it stops.
       const phase = cat.attackPhase;
@@ -122,6 +150,8 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
       lowest = Math.min(lowest, health());
       if (!cat.alive) killTick = host.state.tick;
     }
+    assert.equal(resumedFight, true, 'A wounded, living Aqbars save was admitted');
+    assert.equal(continuations, 1, 'The wounded checkpoint completed five identical ticks');
     assert.ok(engagedTick > walkTicks, 'She comes down and engages the player');
     assert.equal(cat.alive, false, `The player fells Aqbars: ${cat.hp} hp left after ${taps} taps`);
     assert.ok(hurtTicks > 0);
@@ -136,7 +166,9 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
     }
     assert.equal(lowest, full, 'No swipe lands'); assert.equal(host.flags.has('dead:actor.player'), false, 'The player wins without dying');
     // The elite core files the kill once and starts the lair's respawn clock; playing on files nothing more.
+    await beginContinuation('Aqbars defeated and her lair respawning');
     for (let tick = 0; tick < SETTLE_TICKS; tick++) step([frame()]);
+    assert.equal(continuations, 2, 'The defeated checkpoint completed five identical ticks');
     const filed = record(), settled = entry();
     assert.equal(filed.kills, 1, 'The kill is filed once'); assert.equal(filed.discovered, true);
     assert.equal(settled.state, 'dead', 'Her lair is empty');
@@ -144,5 +176,5 @@ test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { 
     assert.deepEqual(effects.map(effect => effect.kind === 'fact' ? effect.name : effect.kind), ['nalati.feat.aqbars'], 'Aqbars pays no coins; the room files her feat once');
     console.log(`aqbars-journey ${JSON.stringify({ walkTicks, engagedTick, killTick, fightTicks: killTick - fightStart, taps, hurtTicks, swipes: swipes.length, perchTicks,
       lairDistance: Math.round(lairDistance), respawn: Math.round(filed.timer), ticks: host.state.tick, elapsedMs: Math.round(performance.now() - started) })}`);
-  } finally { resident.dispose(); }
+  } finally { try { pending?.world.dispose(); } finally { pending?.writer.dispose(); resident.dispose(); } }
 });
