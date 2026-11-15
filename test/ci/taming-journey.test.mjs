@@ -46,7 +46,7 @@ const CREEP = 25, HOLD = 40;
 const KOKPAR_TICKS = 4_000;
 
 // The room's world (HS1) ticks Nalati's king, patrols and every solid: the tame takes about 110 s on a CI runner.
-test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpar win', { timeout: 240_000 }, async t => {
+test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpar win and the Titan', { timeout: 240_000 }, async t => {
   const started = performance.now(), directory = resolve('out/nalati-grasslands'), product = await loadHeadlessProduct(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard); assert.ok(descriptor, 'The built shard must pass admission');
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
@@ -170,6 +170,65 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
       assert.ok(topSpeed >= 11, 'The kokpar is won at a gallop');
       assert.ok(goat() >= 2, 'The goat rests in a tai-qazan'); assert.equal(snatched, 0, 'No rider snatches the goat back');
       console.log(`kokpar ${JSON.stringify({ startTick: start, pickupTick, wonTick, topSpeed: Math.round(topSpeed * 10) / 10, closest: Math.round(closest * 100) / 100, snatched, goat: goat(), elapsedMs: Math.round(performance.now() - begun) })}`);
+    });
+    await t.test('mounted: the earned tulpar wakes the Storm Titan', async () => {
+      const { openArenaOf } = await import('@wildshard/engine/game/boss/openArenaNative');
+      const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
+      const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+      const arena = openArenaOf(host); assert.ok(arena);
+      const state = () => JSON.parse(host.adapters.get('nalati.titan').snapshot());
+      const toward = (x, z) => {
+        const dx = x - player.position.x, dz = z - player.position.z, distance = Math.hypot(dx, dz);
+        const target = Math.atan2(dx, dz), delta = Math.atan2(Math.sin(mounted.body.heading - target), Math.cos(mounted.body.heading - target));
+        const brake = Math.abs(delta) > .9 && mounted.body.speed > 4;
+        return { distance, command: { kind: 'player', moveX: 0, moveZ: 0, yaw: mounted.body.heading - Math.PI,
+          commandVersion: 1, sprint: !brake && distance > 12,
+          steer: { keyX: 0, keyY: 0, stickX: brake ? 0 : Math.max(-1, Math.min(1, delta * 2.5)), stickY: brake ? -.3 : Math.abs(delta) > .9 ? 0 : 1 } } };
+      };
+      // From the real kokpar goal, the bowl's west side and the walkable
+      // west approach to the cairn pad. Slow for turns and the final prompt.
+      for (const [x, z] of [[-70, 30], [-50, 25], [-40, 0], [-40, -15], [-40, -25], [-35, -25], [-30, -25], [-28, -35], [-26.4, -42]]) {
+        let reached = false;
+        for (let tick = 0; tick < 2000; tick++) {
+          const leg = toward(x, z);
+          if (leg.distance < (z === -42 ? 2 : 5)) { reached = true; break; }
+          resident.step([leg.command]);
+          assert.equal(mounted.mounted, true, 'The earned tulpar carries the rider to the cairn');
+        }
+        assert.ok(reached, `Mounted approach blocked at ${x}, ${z}: ${player.position.toArray()}`);
+      }
+      const stop = () => ({ kind: 'player', moveX: 0, moveZ: 0, yaw: mounted.body.heading - Math.PI,
+        commandVersion: 1, steer: { keyX: 0, keyY: 0, stickX: 0, stickY: -.3 } });
+      for (let tick = 0; tick < 120; tick++) resident.step([stop()]);
+      assert.equal(state().boss.state, 'dormant');
+      // The single-player page's Storm setting, through its installed
+      // climate input route. The first natural storm is 12–18 game minutes
+      // away; the test sets no private weather, flags or encounter fields.
+      const routes = actRoutes(host); assert.ok(routes.climate);
+      routes.climate({ op: 'mode', name: 'storm', at: -1 });
+      for (let tick = 0; tick < 600 && !arena.storm(); tick++) resident.step([stop()]);
+      assert.equal(arena.storm(), true, 'The admitted Storm setting produces actual storm weather');
+      resident.step([stop(), { kind: 'script', actorId: 'nalati.titan.use', value: 1 }]);
+      assert.equal(routes.tied(), true, 'The mounted prompt earns the tied encounter');
+      for (let tick = 0; tick < 120 && state().boss.state === 'armed'; tick++) resident.step([stop()]);
+      assert.equal(state().boss.state, 'intro', 'The real strip press starts the Titan intro');
+      assert.ok(state().toasts.includes('The strip snaps in the wind — JEL ATA wakes'));
+      assert.equal(state().boss.saved.defeated, false);
+      assert.equal(state().boss.saved.rewardTaken, false, 'Waking the Titan does not grant Naizagai or the saddle');
+      // Record an actual uninterrupted checkpoint/suffix for the separate
+      // engine diagnostic, on request. The normal test keeps every input
+      // and assertion; recording never makes a failing restore pass.
+      const writer = createSimSnapshotSerializer();
+      try {
+        const start = writer.serialize(snapshotSimHostBytes(host)), commands = [], effects = [];
+        for (let tick = 0; tick < 5; tick++) { const input = [stop()]; commands.push(input); resident.step(input); effects.push([...resident.effects]); }
+        assert.equal(state().boss.state, 'intro');
+        if (process.env.TITAN_CHECKPOINT) {
+          const { writeFileSync } = await import('node:fs');
+          writeFileSync(process.env.TITAN_CHECKPOINT, JSON.stringify({ start, commands, effects, expected: writer.serialize(snapshotSimHostBytes(host)) }));
+        }
+      } finally { writer.dispose(); }
+      console.log(`titan mounted: intro earned at tick ${host.state.tick}`);
     });
   } finally { resident.dispose(); }
 });
