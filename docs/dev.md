@@ -14,6 +14,11 @@ Run from the repo root.
 - `node --test test/ci/navigation-ground.test.mjs`: after a real shard
   build, prove all 65,536 wet samples match authored geography and that
   shipped navigation keeps actual trails. CI only, outside hooks.
+- `node test/mini/herd-tick.mjs`: Mac mini only, after a real shard
+  build. Times every server tick of the room world while the player
+  chases the plains herd, and compares the near-herd p95 with this
+  machine's line in `test/mini/herd-tick-baselines.json` (exit 2 when
+  over 1.25x). `--record` writes that line. A report, never CI or a hook.
 - `pnpm lint:fix` / `pnpm format`: the hooks only check; these fix.
 - `node kit/cli/main.ts --help`: the CLI without installing it.
 - `pnpm md:wrap`: rewraps Markdown prose to ~72 columns.
