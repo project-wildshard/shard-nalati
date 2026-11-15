@@ -8,11 +8,15 @@ type Splat = readonly [number, number, number, number];
 const smooth = (a: number, b: number, t: number): number => { const k = Math.min(1, Math.max(0, (t - a) / (b - a))); return k * k * (3 - 2 * k); };
 export const farLook = {
   family: 'painterly',
-  colourAt: (x: number, z: number, h: number, _slope: number, w: Splat): [number, number, number] => {
+  colourAt: (x: number, z: number, h: number, slope: number, w: Splat): [number, number, number] => {
     if (h < -9.6) return [0.12, 0.26, 0.32];
     const patch = 0.5 + 0.5 * Math.sin(x * 0.019 + Math.sin(z * 0.023) * 1.7) * Math.cos(z * 0.017 - x * 0.006), gold = smooth(12, 30, h) * (0.4 + 0.6 * patch);
     const grass: [number, number, number] = [0.16 + 0.2 * gold + 0.04 * patch, 0.33 + 0.08 * gold + 0.05 * patch, 0.07 + 0.02 * patch];
-    return [grass[0] * w[0] + 0.4 * w[1] + 0.33 * w[2] + 0.88 * w[3], grass[1] * w[0] + 0.37 * w[1] + 0.33 * w[2] + 0.91 * w[3], grass[2] * w[0] + 0.3 * w[1] + 0.34 * w[2] + 0.97 * w[3]];
+    // ZONE-ENTRY ZE7: snow does not hold on a crag. The splat's snow weight on a steep face (slope = 1 - normal y: 0.2 is
+    // ~37°, 0.4 is ~53°) turns to the rock's grey, so the snow ring's cliffs read as granite with white crowns on top, not
+    // as snow-white walls seen from the road
+    const snow = w[3] * (1 - smooth(0.2, 0.4, slope)), rock = w[2] + w[3] - snow;
+    return [grass[0] * w[0] + 0.4 * w[1] + 0.33 * rock + 0.88 * snow, grass[1] * w[0] + 0.37 * w[1] + 0.33 * rock + 0.91 * snow, grass[2] * w[0] + 0.3 * w[1] + 0.34 * rock + 0.97 * snow];
   },
   // G222: its exposed boundary is the native slab's granite (look/terrainPainter.ts rockMid → deep), not the snow ring's
   // white, scaled to how this painterly proxy draws in the grid's daylight: a sun-facing face renders ~4× its colour
