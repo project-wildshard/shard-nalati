@@ -18,7 +18,9 @@ export function originalPoiPaintFiles(): ReadonlyMap<string, Uint8Array> {
   }
   if (offset !== bank.length) throw new Error('Original POI bank extent differs');
   for (const pin of pins) {
-    const file = pin.path.slice('src/'.length), bytes = files.get(file);
+    const prefix = 'src/shards/nalati-grasslands/';
+    if (!pin.path.startsWith(prefix)) throw new Error('Original POI pin belongs to another shard');
+    const file = pin.path.slice(prefix.length), bytes = files.get(file);
     if (bytes === undefined || bytes.length !== pin.bytes || hashImmutableBytes(bytes) !== pin.sha256) {
       throw new Error(`Original POI paint differs ${file}`);
     }

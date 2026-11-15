@@ -1,10 +1,10 @@
 import * as v from 'valibot';
-import type { Scope } from '../../src/shared/engine/app/scope';
+import type { Scope } from '@wildshard/engine/app/scope';
 import { parseDecisionScripts } from '@wildshard/format/decisionScripts';
 import { ReturnProgramSchema } from '@wildshard/format/namedJsonContracts';
 import { ReturnProjectionV2Schema } from '@wildshard/format/returnProjectionV2';
 import { ReturnModulesSchema } from '@wildshard/format/scriptContract';
-import { ReturnProgram } from '../../src/shared/game/population/returnProgram';
+import { ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
 import { NALATI_RIDING_PROGRAMS, NALATI_RIDING_WASM, NALATI_RIDING_WITNESS_BYTES } from './nalati-riding';
 
 const mounts = v.parse(v.object({ approach: v.strictObject({ ...ReturnProgramSchema.entries, v2: ReturnProjectionV2Schema }) }),

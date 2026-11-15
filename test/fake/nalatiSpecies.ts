@@ -1,4 +1,4 @@
-import type { SpeciesCatalogue } from '../../src/client/game/looks/speciesBook';
+import type { SpeciesCatalogue } from '@wildshard/engine/game/looks/speciesBook';
 
 let catalogue: SpeciesCatalogue | null = null;
 export function prepareNalatiSpecies(species: SpeciesCatalogue): void { catalogue ??= species; }

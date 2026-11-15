@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import type {SimStateAdapter} from '../../src/server/engine/sim';
+import type {SimStateAdapter} from '@wildshard/engine/sim';
 
 const Observation=v.object({version:v.literal(1),slot:v.string(),
   bolts:v.pipe(v.number(),v.finite(),v.integer(),v.minValue(0)),enabled:v.optional(v.boolean(),true)});
