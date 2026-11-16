@@ -13,7 +13,7 @@ import { nativeNalatiDressingPlacements } from './nativeDressingPlacements.mjs';
 import { nalatiPoiPaintFromInputs, POI_PAINT_INPUTS } from './poiPaintProgram.ts';
 import { nalatiGeographySources, nalatiGeographyRows } from './geographySource.ts';
 import * as layoutRows from './layout.ts';
-import { nalatiCragRock } from './cragRockProgram.ts';
+import { nalatiCragRock } from './cragRockRows.ts';
 import { nalatiSprucePool, SPRUCE_REST } from './sprucePool.ts';
 import { nalatiModelPaintProgram } from './modelPaintProgram.ts';
 import { nalatiRuntimeRows } from './runtimeRows.ts';

@@ -3,8 +3,8 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import ts from '@typescript/typescript6';
 const root=new URL('../',import.meta.url);
-const record=JSON.parse(readFileSync(new URL('test/ci21-wire-ports.json',root),'utf8'));
-const compiler=JSON.parse(readFileSync(new URL('test/tsconfig.json',root),'utf8'));
+const record=JSON.parse(readFileSync(new URL(process.argv[2] ?? 'test/ci21-wire-ports.json',root),'utf8'));
+const compiler=JSON.parse(readFileSync(new URL(process.argv[3] ?? 'test/tsconfig.json',root),'utf8'));
 const expected=[...record.files.map(row=>row.targetPath),...record.files.flatMap(row=>row.compilerSupport??[])].map(path=>path.replace(/^test\//u,''));
 if(JSON.stringify(compiler.files)!==JSON.stringify(expected))throw new Error('CI21 golden compiler files differ from retained cases');
 function testRoot(node){
@@ -53,6 +53,10 @@ for(const row of record.files){
   if(row.observationHelper!==undefined){
     const helper=readFileSync(new URL(row.observationHelper.targetPath,root));
     if(createHash('sha1').update(`blob ${helper.length}\0`).update(helper).digest('hex')!==row.observationHelper.targetBlob)throw new Error(`CI21 original observation helper changed: ${row.observationHelper.targetPath}`);
+  }
+  for(const fixture of row.additionalFixtures??[]){
+    const bytes=readFileSync(new URL(fixture.targetPath,root));
+    if(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==fixture.targetBlob)throw new Error(`CI21 additional original fixture changed: ${fixture.targetPath}`);
   }
   const bytes=readFileSync(new URL(row.fixturePath,root));
   if(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==row.fixtureBlob)throw new Error(`CI21 original golden fixture changed: ${row.fixturePath}`);

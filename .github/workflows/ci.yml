@@ -84,6 +84,11 @@ jobs:
           else
             pnpm install --frozen-lockfile --config.ci=false
           fi
+      - name: Match the candidate engine's declared format dependency
+        if: inputs.engine != '' || github.event.client_payload.engine != ''
+        run: |
+          node scripts/candidate-format.mjs
+          pnpm install --no-frozen-lockfile --config.ci=false
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
       # The agent hook scripts are shellchecked in pnpm check, at this exact
@@ -213,6 +218,11 @@ jobs:
           else
             pnpm install --frozen-lockfile --config.ci=false
           fi
+      - name: Match the candidate engine's declared format dependency
+        if: inputs.engine != '' || github.event.client_payload.engine != ''
+        run: |
+          node scripts/candidate-format.mjs
+          pnpm install --no-frozen-lockfile --config.ci=false
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
       # The paths ring-2-content.yml's push trigger watched, plus ci.yml.
@@ -264,6 +274,9 @@ jobs:
       - name: Fell Aqbars in her lair on real inputs
         run: node --experimental-transform-types --test test/ci/aqbars-journey.test.mjs
       - run: pnpm test:shards
+      - name: Admit complete CI21 ports against the candidate engine
+        if: inputs.engine != '' || github.event.client_payload.engine != ''
+        run: pnpm check:ci21-candidate
       - name: Admit the complete publishable product
         run: node --test test/ci/package-products.test.mjs
       - name: Prove authored wet ground and shipped navigation
@@ -346,6 +359,11 @@ jobs:
           else
             pnpm install --frozen-lockfile --config.ci=false
           fi
+      - name: Match the candidate engine's declared format dependency
+        if: inputs.engine != '' || github.event.client_payload.engine != ''
+        run: |
+          node scripts/candidate-format.mjs
+          pnpm install --no-frozen-lockfile --config.ci=false
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
       - name: Build the shards twice and compare every product byte

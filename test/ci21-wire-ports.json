@@ -234,6 +234,18 @@
       "compilerSupport": [
         "test/fixtures/nalati-runtime.ts"
       ]
+    },
+    {
+      "sourcePath": "test/mounted-specimen-admission.test.ts",
+      "sourceBlob": "ea8312c7f4a81fe1f94ec60e3c8808e15cae4f06",
+      "targetPath": "test/nalati-mounted-specimen-admission.test.ts",
+      "targetBlob": "ea1ac0784298f893a72e08587de80ee66505df19",
+      "originalTests": [
+        "the actual mounted figure keeps every clip and rejects invalid seats before native construction"
+      ],
+      "fixturePath": "test/fixtures/nalati-poi-paint-original.json",
+      "fixtureBlob": "b7d2b9828941c94af4353f06502b04402160887f",
+      "changes": "Whole original cases and every assertion retained. Public package imports only; helpers and original immutable inputs unchanged. Real compiler/lint and default owner suite admission required before source removal."
     }
   ]
 }

@@ -14,8 +14,10 @@
       "DOM.Iterable"
     ],
     "types": [
-      "node"
-    ]
+      "node",
+      "vite/client"
+    ],
+    "allowArbitraryExtensions": true
   },
   "files": [
     "nalati-ecology-wire.test.ts",
@@ -28,6 +30,7 @@
     "nalati-decorative-native.test.ts",
     "nalati-place-runtime-source.test.ts",
     "nalati-poi-scenes.test.ts",
+    "nalati-mounted-specimen-admission.test.ts",
     "fixtures/nalati-original-species.ts",
     "fixtures/nalati-native-place-files.ts",
     "fixtures/nalati-original-place-binary.ts",

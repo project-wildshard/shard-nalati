@@ -1,0 +1,155 @@
+{
+  "sourceRepository": "project-wildshard/engine",
+  "sourceRevision": "ed510f99ccd8dcd4d2dc45bd8cc5b63935d61827",
+  "state": "Candidate-engine qualification; original files stay pending until publication admits these into default owner discovery. J373/C11.",
+  "files": [
+    {
+      "sourcePath": "test/nalati-cloth-publication.test.ts",
+      "sourceBlob": "143d8b3e20a10c45a12b6272d84a556e2a94578d",
+      "targetPath": "test/ci21-candidate/nalati-cloth-publication.test.ts",
+      "targetBlob": "caad450454a3dbe20323d7225d3916a70ca55cce",
+      "originalTests": [
+        "both cloth tiers borrow one compressed file with every original geometry byte and declaration"
+      ],
+      "fixturePath": "test/fixtures/nalati-balbal-original.json",
+      "fixtureBlob": "7b4ac4951b7cd098a54ce79a79e48a8bfb668af0",
+      "changes": "Whole original assertions and cases retained. Public defining engine byte codec and geometry imports; fixtures relocated only, explicit Node globals and equivalent property spelling for typed lint. No source removal or default-suite qualification before C11 publication.",
+      "preparationHelper": {
+        "targetPath": "test/fixtures/nalati-dressing-scene.ts",
+        "targetBlob": "ce9e818cc72be6aa1306f9db7022e4f324eb6452"
+      },
+      "observationHelper": {
+        "targetPath": "test/fixtures/nalati-contact-transport.ts",
+        "targetBlob": "053f4b793478d31cd740d9d0972b7cb5dc71fff5"
+      },
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/nalati-specimens-original.json",
+          "targetBlob": "267c154ab44c8f229e3de834a7ed7643105340bf"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-decorative.json",
+          "targetBlob": "4a19fa3532a876b4d3a388401663090b0744e62e"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-places-original.json",
+          "targetBlob": "79261a64617da74fb9f6a9090632dace7a815777"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-poi-paint-original.json",
+          "targetBlob": "b7d2b9828941c94af4353f06502b04402160887f"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/nalati-contact-publication.test.ts",
+      "sourceBlob": "e9f2f9b1977d2d11ba2c01c483fe92515b803af5",
+      "targetPath": "test/ci21-candidate/nalati-contact-publication.test.ts",
+      "targetBlob": "2ef51e2b900c32aa13d0fb29a0fe952a252e5033",
+      "originalTests": [
+        "both shipping dressing tiers lend every packed hull through exact named compressed bytes"
+      ],
+      "fixturePath": "test/fixtures/nalati-balbal-original.json",
+      "fixtureBlob": "7b4ac4951b7cd098a54ce79a79e48a8bfb668af0",
+      "changes": "Whole original assertions and cases retained. Public defining engine byte codec and geometry imports; fixtures relocated only, explicit Node globals and equivalent property spelling for typed lint. No source removal or default-suite qualification before C11 publication.",
+      "preparationHelper": {
+        "targetPath": "test/fixtures/nalati-dressing-scene.ts",
+        "targetBlob": "ce9e818cc72be6aa1306f9db7022e4f324eb6452"
+      },
+      "observationHelper": {
+        "targetPath": "test/fixtures/nalati-contact-transport.ts",
+        "targetBlob": "053f4b793478d31cd740d9d0972b7cb5dc71fff5"
+      },
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/nalati-specimens-original.json",
+          "targetBlob": "267c154ab44c8f229e3de834a7ed7643105340bf"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-decorative.json",
+          "targetBlob": "4a19fa3532a876b4d3a388401663090b0744e62e"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-places-original.json",
+          "targetBlob": "79261a64617da74fb9f6a9090632dace7a815777"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-poi-paint-original.json",
+          "targetBlob": "b7d2b9828941c94af4353f06502b04402160887f"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/nalati-decorative-scene.test.ts",
+      "sourceBlob": "303ee6574f2ef969879829ccfde776a9dfa8a2e3",
+      "targetPath": "test/ci21-candidate/nalati-decorative-scene.test.ts",
+      "targetBlob": "4f98426274dac56d505ae2c2d0c08266df8f6b93",
+      "originalTests": [
+        "the two observed Linux outcrop input values reconstruct both complete scene wires exactly",
+        "supplied incomplete decorative profiles refuse without falling back to the retained copy",
+        "missing or malformed supplied runtime metadata refuses without a retained fallback",
+        "supplied place addresses drive both tier wires without mutating their source",
+        "scene construction requires the supplied balbal catalogue and encounter owner",
+        "scene compilation requires supplied specimen ownership and retains its packed byte count"
+      ],
+      "fixturePath": "test/fixtures/nalati-balbal-original.json",
+      "fixtureBlob": "7b4ac4951b7cd098a54ce79a79e48a8bfb668af0",
+      "changes": "Whole original assertions and cases retained. Public defining engine byte codec and geometry imports; fixtures relocated only, explicit Node globals and equivalent property spelling for typed lint. No source removal or default-suite qualification before C11 publication.",
+      "preparationHelper": {
+        "targetPath": "test/fixtures/nalati-dressing-scene.ts",
+        "targetBlob": "ce9e818cc72be6aa1306f9db7022e4f324eb6452"
+      },
+      "observationHelper": {
+        "targetPath": "test/fixtures/nalati-contact-transport.ts",
+        "targetBlob": "053f4b793478d31cd740d9d0972b7cb5dc71fff5"
+      },
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/nalati-specimens-original.json",
+          "targetBlob": "267c154ab44c8f229e3de834a7ed7643105340bf"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-decorative.json",
+          "targetBlob": "4a19fa3532a876b4d3a388401663090b0744e62e"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-places-original.json",
+          "targetBlob": "79261a64617da74fb9f6a9090632dace7a815777"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-poi-paint-original.json",
+          "targetBlob": "b7d2b9828941c94af4353f06502b04402160887f"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/mounted-firearm-admission.test.ts",
+      "sourceBlob": "507e32171cbff5c5b2509f0aab2a688ea55d03d2",
+      "targetPath": "test/ci21-candidate/nalati-firearm-admission.test.ts",
+      "targetBlob": "5533e3d3a133eefd97168c9f4fe713c2c129a6e2",
+      "originalTests": [
+        "baked firearm admission preserves every feel and playback row and refuses invalid products"
+      ],
+      "fixturePath": "test/fixtures/nalati-rifle-original.json",
+      "fixtureBlob": "62eba12424ca750565f26405f4e379daf4033036",
+      "observationHelper": {
+        "targetPath": "test/fixtures/productFile.ts",
+        "targetBlob": "37dcf503cd865ad60349932b0549a40848d7ae81"
+      },
+      "changes": "Whole original firearm case, every row and all three original invalid-product refusals retained. Only public owner import rewrites; real defining native schema validator export. No source removal until C11 published admission."
+    },
+    {
+      "sourcePath": "test/nalati-weapon-observation.test.ts",
+      "sourceBlob": "2c4de808399f1b3a7991e1c9416968e57cbbcfb3",
+      "targetPath": "test/ci21-candidate/nalati-weapon-observation.test.ts",
+      "targetBlob": "3e9e7606c62a2cc8983ac5591ef9f0eb44db1117",
+      "originalTests": [
+        "native weapon observations read fresh detached values from the real string envelope",
+        "native weapon observation keeps the original enabled default and refuses foreign envelopes"
+      ],
+      "fixturePath": "test/fixtures/nalati-weapon-observation.ts",
+      "fixtureBlob": "135d39ace1d7075ae4603a3ca568785c99d71091",
+      "changes": "Whole original two cases, every invalid envelope and immutable detached observation retained. Test unchanged; helper only imports the actual defining state-adapter contract instead of the full host implementation. No invented substitute type or ignored errors; engine SimHost consumes that same extracted contract."
+    }
+  ]
+}

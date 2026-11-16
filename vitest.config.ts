@@ -22,7 +22,7 @@ export default defineConfig({
     environment: 'node',
     server: { deps: { inline: [/@wildshard\//u] } },
     include: ['src/**/*.test.ts', 'test/**/*.test.ts'],
-    exclude: ['**/node_modules/**', ...JSON.parse(readFileSync('test/lift-pending.json', 'utf8'))],
+    exclude: ['**/node_modules/**', 'test/ci21-candidate/**', ...JSON.parse(readFileSync('test/lift-pending.json', 'utf8'))],
     passWithNoTests: true,
   },
 });

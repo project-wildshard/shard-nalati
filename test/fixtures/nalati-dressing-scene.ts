@@ -24,7 +24,7 @@ export function currentDressingScene(tier: 'phone' | 'desktop', input: unknown, 
 function predecessorCragSource(rows: SceneDressingRows): SceneDressingRows {
   const models = rows.staticModels.filter(row => row.model.id === 'nalati-grasslands/crag-rock');
   const row = models[0];
-  if (models.length !== 1 || row?.model.file !== 'src/generators/cragRockProgram.ts') throw new Error('Crag producer provenance differs');
+  if (models.length !== 1 || row?.model.file !== 'src/generators/cragRockRows.ts') throw new Error('Crag producer provenance differs');
   row.model.file = 'src/generators/bake-crag-rock.mjs';
   return rows;
 }
