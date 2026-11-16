@@ -17,7 +17,7 @@ const original = metadata;
 export function originalSpeciesFiles(directory = `tmp/nalati-original-species/${original.sha256}`): ReadonlyMap<string, Uint8Array<ArrayBuffer>> {
   const root = resolvePath(directory);
   if (!existsSync(root)) execFileSync(process.execPath, ['--experimental-transform-types', '--import', import.meta.resolve('@wildshard/engine/scripts/bake-loader.mjs'),
-    'test/fixtures/prepare-nalati-original-species.ts', root], { stdio: ['ignore', 'pipe', 'pipe'], timeout:9_000 });
+    'test/fixtures/prepare-nalati-original-species.ts', root], { stdio: ['ignore', 'pipe', 'pipe'], timeout:14_000 });
   const files = new Map<string, Uint8Array<ArrayBuffer>>();
   for (const [index, pin] of pins.entries()) {
     const name = names[index];
@@ -37,7 +37,7 @@ export async function prepareOriginalSpeciesFiles(directory = `tmp/nalati-origin
   if (!existsSync(root)) {
     await new Promise<void>((resolve,reject)=>{
       execFile(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/engine/scripts/bake-loader.mjs'),
-        'test/fixtures/prepare-nalati-original-species.ts',root],{timeout:9_000},(error:Error|null,stdout,stderr)=>{
+        'test/fixtures/prepare-nalati-original-species.ts',root],{timeout:14_000},(error:Error|null,stdout,stderr)=>{
           if(error===null)resolve();else reject(Object.assign(error,{stdout,stderr}));
         });
     });

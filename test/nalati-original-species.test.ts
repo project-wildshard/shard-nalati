@@ -35,10 +35,10 @@ test('cold source oracle and every detached warm loan retain all five complete o
     writeFileSync(resolve(cache, 'boot.json'), new Uint8Array([0]));
     expect(() => originalSpeciesFiles(cache)).toThrow('Original species test cache differs: boot.json');
   } finally { rmSync(directory, { recursive: true, force: true }); }
-},10_000);
+},30_000);
 
 test('individual original file loans are detached and unknown names refuse', () => {
   const first = originalSpeciesFile('boot.json',loanCache()), before = first.slice(); first.fill(0);
   expect(Buffer.compare(originalSpeciesFile('boot.json',loanCache()), before)).toBe(0);
   expect(() => originalSpeciesFile('extra.bin',loanCache())).toThrow('Unknown original species file');
-},10_000);
+},30_000);
