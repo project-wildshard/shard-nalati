@@ -82,7 +82,9 @@
         "targetPath": "test/terrain-field-author-port.test.ts",
         "originalTests": [
           "native field and planting metadata retain complete signatures, mandatory dimensions and identity"
-        ]
+        ],
+        "revision": "6dcadb3d48524f9a68879920246b0990507fd2d6",
+        "targetBlob": "85ec5ba9e392465170eafdefca3392d99566d6ad"
       },
       "observationHelper": {
         "sourcePath": "test/fixtures/spruce-author-observation.ts",

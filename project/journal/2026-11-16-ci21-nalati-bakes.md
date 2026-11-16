@@ -32,3 +32,10 @@ compiler ownership, and scope engine renderer-guard claims to engine
 imports. Original engine default was30s; both restored cases cap at10s
 (child9s), actual under1s, so no deadline is widened. No geometry or stream
 field is dropped or normalized by the observation transport.
+
+The complete field-author file now pairs its original SDK terrain/forest
+case at 6dcadb3d48 with its unchanged twenty-spruce golden here. Both
+case names, signatures, identity/policy assertions and all25 height/normal/
+trail probes remain. The entire source file closes only with both owners;
+SDK15 recorded tests includes this NAL-BAKE supplement, so SDK24 remains
+14/24. Pin each complete source/helper/fixture blob before removal.
