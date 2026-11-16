@@ -1,11 +1,9 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Native compilation stays outside DOM workers and their globals.
 import { execFile, execFileSync } from 'node:child_process';
-// oxlint-disable-next-line import/no-nodejs-modules -- Observe native oracle preparation without blocking independent compilation.
-import { promisify } from 'node:util';
 // oxlint-disable-next-line import/no-nodejs-modules -- Every immutable test cache loan is checked against complete original pins.
 import { existsSync, readFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Keep the frozen oracle beneath repository tmp.
-import { resolve } from 'node:path';
+import { resolve as resolvePath } from 'node:path';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-species-files.json' with { type: 'json' };
 
@@ -17,14 +15,14 @@ const original = metadata;
 /** Source-built immutable predecessor oracle; never evidence for the current producer's correctness.
  * The cold construction uses the real compiler in Node. Every hit checks all five complete original pins. */
 export function originalSpeciesFiles(directory = `tmp/nalati-original-species/${original.sha256}`): ReadonlyMap<string, Uint8Array<ArrayBuffer>> {
-  const root = resolve(directory);
-  if (!existsSync(root)) execFileSync(process.execPath, ['--experimental-transform-types', '--import', './scripts/bake-loader.mjs',
-    'test/fixtures/prepare-nalati-original-species.ts', root], { stdio: ['ignore', 'pipe', 'pipe'] });
+  const root = resolvePath(directory);
+  if (!existsSync(root)) execFileSync(process.execPath, ['--experimental-transform-types', '--import', import.meta.resolve('@wildshard/engine/scripts/bake-loader.mjs'),
+    'test/fixtures/prepare-nalati-original-species.ts', root], { stdio: ['ignore', 'pipe', 'pipe'], timeout:9_000 });
   const files = new Map<string, Uint8Array<ArrayBuffer>>();
   for (const [index, pin] of pins.entries()) {
     const name = names[index];
     if (name === undefined) throw new Error('Unknown original species file');
-    const bytes = Uint8Array.from(readFileSync(resolve(root, name)));
+    const bytes = Uint8Array.from(readFileSync(resolvePath(root, name)));
     if (bytes.length !== pin.bytes || hashImmutableBytes(bytes) !== pin.sha256) throw new Error(`Original species test cache differs: ${name}`);
     files.set(name, bytes);
   }
@@ -35,20 +33,30 @@ export function originalSpeciesFiles(directory = `tmp/nalati-original-species/${
  * cold candidate. Every hit still reads and checks the complete five files;
  * failed preparation never falls back to another child or unchecked bytes. */
 export async function prepareOriginalSpeciesFiles(directory = `tmp/nalati-original-species/${original.sha256}`): Promise<ReadonlyMap<string, Uint8Array<ArrayBuffer>>> {
-  const root = resolve(directory);
+  const root = resolvePath(directory);
   if (!existsSync(root)) {
-    await promisify(execFile)(process.execPath, ['--experimental-transform-types', '--import', './scripts/bake-loader.mjs',
-      'test/fixtures/prepare-nalati-original-species.ts', root]);
+    await new Promise<void>((resolve,reject)=>{
+      execFile(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/engine/scripts/bake-loader.mjs'),
+        'test/fixtures/prepare-nalati-original-species.ts',root],{timeout:9_000},(error:Error|null,stdout,stderr)=>{
+          if(error===null)resolve();else reject(Object.assign(error,{stdout,stderr}));
+        });
+    });
     if (!existsSync(root)) throw new Error('Original species preparation did not publish');
   }
   return originalSpeciesFiles(root);
 }
 
 let prepared: ReadonlyMap<string, Uint8Array<ArrayBuffer>> | undefined;
+const privateLoans=new Map<string,ReadonlyMap<string,Uint8Array<ArrayBuffer>>>();
 /** Each legacy fixture borrows detached bytes from the same full pinned source oracle. */
-export function originalSpeciesFile(name: string): Uint8Array<ArrayBuffer> {
-  prepared ??= originalSpeciesFiles();
-  const bytes = prepared.get(name);
+export function originalSpeciesFile(name: string, directory?: string): Uint8Array<ArrayBuffer> {
+  const root=directory===undefined?undefined:resolvePath(directory);
+  let files=root===undefined?prepared:privateLoans.get(root);
+  if(files===undefined){
+    files=originalSpeciesFiles(root);
+    if(root===undefined)prepared=files;else privateLoans.set(root,files);
+  }
+  const bytes = files.get(name);
   if (bytes === undefined) throw new Error(`Unknown original species file: ${name}`);
   return bytes.slice();
 }
@@ -65,3 +73,6 @@ export function originalSpeciesOutput(path: string): Uint8Array<ArrayBuffer> {
   if (name === undefined) throw new Error(`Unknown original species output: ${path}`);
   return originalSpeciesFile(name);
 }
+
+/** Release only the caller-owned memoized loans when its fixture ends. */
+export function forgetOriginalSpeciesLoans(directory:string):void{privateLoans.delete(resolvePath(directory));}

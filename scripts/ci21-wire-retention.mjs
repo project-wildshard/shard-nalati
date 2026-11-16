@@ -5,7 +5,7 @@ import ts from '@typescript/typescript6';
 const root=new URL('../',import.meta.url);
 const record=JSON.parse(readFileSync(new URL('test/ci21-wire-ports.json',root),'utf8'));
 const compiler=JSON.parse(readFileSync(new URL('test/tsconfig.json',root),'utf8'));
-const expected=record.files.map(row=>row.targetPath.replace(/^test\//u,''));
+const expected=[...record.files.map(row=>row.targetPath),...record.files.flatMap(row=>row.compilerSupport??[])].map(path=>path.replace(/^test\//u,''));
 if(JSON.stringify(compiler.files)!==JSON.stringify(expected))throw new Error('CI21 golden compiler files differ from retained cases');
 function testRoot(node){
   if(ts.isIdentifier(node))return ['test','it','describe'].includes(node.text)?node.text:null;
@@ -42,6 +42,10 @@ for(const row of record.files){
   };
   visit(source);
   if(JSON.stringify(titles)!==JSON.stringify(row.originalTests))throw new Error(`CI21 original golden case missing: ${row.targetPath}`);
+  if(row.preparationHelper!==undefined){
+    const prep=readFileSync(new URL(row.preparationHelper.targetPath,root));
+    if(createHash('sha1').update(`blob ${prep.length}\0`).update(prep).digest('hex')!==row.preparationHelper.targetBlob)throw new Error(`CI21 original preparation helper changed: ${row.preparationHelper.targetPath}`);
+  }
   if(row.observationHelper!==undefined){
     const helper=readFileSync(new URL(row.observationHelper.targetPath,root));
     if(createHash('sha1').update(`blob ${helper.length}\0`).update(helper).digest('hex')!==row.observationHelper.targetBlob)throw new Error(`CI21 original observation helper changed: ${row.observationHelper.targetPath}`);

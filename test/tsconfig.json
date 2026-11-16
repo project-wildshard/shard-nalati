@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2024",
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
@@ -9,7 +9,7 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "lib": [
-      "ES2022",
+      "ES2024",
       "DOM",
       "DOM.Iterable"
     ],
@@ -22,7 +22,9 @@
     "nalati-view-wires.test.ts",
     "nalati-loft-author.test.ts",
     "nalati-geometry-cache-ports.test.ts",
-    "nalati-field-author-ports.test.ts"
+    "nalati-field-author-ports.test.ts",
+    "nalati-original-species.test.ts",
+    "fixtures/nalati-original-species.ts"
   ],
   "include": []
 }
