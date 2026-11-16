@@ -42,6 +42,10 @@ for(const row of record.files){
   };
   visit(source);
   if(JSON.stringify(titles)!==JSON.stringify(row.originalTests))throw new Error(`CI21 original golden case missing: ${row.targetPath}`);
+  if(row.cacheHelper!==undefined){
+    const cache=readFileSync(new URL(row.cacheHelper.targetPath,root));
+    if(createHash('sha1').update(`blob ${cache.length}\0`).update(cache).digest('hex')!==row.cacheHelper.targetBlob)throw new Error(`CI21 original cache helper changed: ${row.cacheHelper.targetPath}`);
+  }
   if(row.preparationHelper!==undefined){
     const prep=readFileSync(new URL(row.preparationHelper.targetPath,root));
     if(createHash('sha1').update(`blob ${prep.length}\0`).update(prep).digest('hex')!==row.preparationHelper.targetBlob)throw new Error(`CI21 original preparation helper changed: ${row.preparationHelper.targetPath}`);

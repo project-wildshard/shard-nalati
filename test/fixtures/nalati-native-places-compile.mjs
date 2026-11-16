@@ -1,5 +1,6 @@
-// Reconstruct the same complete original source once per verified input/host key.
-import { readFileSync } from 'node:fs';
+// Reconstruct the complete original source once per importing test realm, without a disk-cache fallback.
+import { readFileSync, writeFileSync } from 'node:fs';
+import { serialize } from 'node:v8';
 import { nalatiPlacesProgram } from '../../src/generators/placesProgram.ts';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-place-wires.json' with { type: 'json' };
@@ -13,4 +14,6 @@ for (const name of ['places', 'specimens']) {
   if (pin === undefined || bytes === undefined || bytes.byteLength !== pin.bytes || hashImmutableBytes(bytes) !== pin.hash)
     throw new Error(`Original native ${name} binary differs`);
 }
-process.stdout.write(`${JSON.stringify([...files].map(([name, bytes]) => [name, Buffer.from(bytes).toString('base64')]))}\n`);
+const output = process.argv[2];
+if (output === undefined) throw new Error('Missing private native place output');
+writeFileSync(output, serialize([...files]));

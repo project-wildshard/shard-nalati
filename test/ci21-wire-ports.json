@@ -132,6 +132,43 @@
       "compilerSupport": [
         "test/fixtures/nalati-original-species.ts"
       ]
+    },
+    {
+      "sourcePath": "test/nalati-original-place-binary.test.ts",
+      "sourceBlob": "0ecca6401607c661c49ebf400bc51582af2a82cf",
+      "targetPath": "test/nalati-original-place-binary.test.ts",
+      "targetBlob": "38d187e2ca27641fd7f5a108b3005bef78766da8",
+      "originalTests": [
+        "cold and warm originals retain every byte without a warm producer call",
+        "corrupt originals refuse without invoking a replacement producer",
+        "concurrent first readers publish only the complete original bank"
+      ],
+      "fixturePath": "test/fixtures/nalati-place-wires.json",
+      "fixtureBlob": "78726c5d158da04249ccc95495c7d9c8af711474",
+      "observationHelper": {
+        "sourcePath": "test/fixtures/nalati-native-place-files.ts",
+        "sourceRepository": "project-wildshard/shard-nalati",
+        "sourceRevision": "020c7a7ecefea0c0e128df9f972df81bb580f0f6",
+        "sourceBlob": "4624d9be45fdde06ad4aa31c0c5d0b5653aaca2e",
+        "targetPath": "test/fixtures/nalati-native-place-files.ts",
+        "targetBlob": "ff87ebf608a57bcb2d980868fb3fb67888c7a6a6",
+        "changes": "Missing monorepo native-program dependency replaced with one fresh actual source build at module load, public bake-loader/native realm,14s child fence, complete8file inventory and unchanged full places/specimens pins. V8 transports exact bytes, private disk output removed in finally, caller always receives slice loans. No cache fallback, synthetic fixture or producer changes. Shared nativePlaceFile consumers pay the same cold source cost once per importing realm; no persistent source cache remains."
+      },
+      "preparationHelper": {
+        "targetPath": "test/fixtures/nalati-native-places-compile.mjs",
+        "targetBlob": "cb1704278644cb1cfb71833765f4d40499676728"
+      },
+      "compilerSupport": [
+        "test/fixtures/nalati-native-place-files.ts",
+        "test/fixtures/nalati-original-place-binary.ts"
+      ],
+      "changes": "Every original assertion/title retained. Source fixture prepares once cold per test realm and checks complete original binary pins (11,547,006places bytes +2,342,425specimens). Source construction is independent of the three original cold/warm/corrupt/concurrent cache admissions. No producer call occurs on warm or corrupt original-cache reads. Actual3cases/file4.20s; existing30s case cap retained,14s child. No original engine removal before verified destination land. J186 Ring2 fixture reason: fresh full14MB native geography/placement source at collection time, which is outside case timeout. Prior species9s hosted failure makes a9s new fence unqualified. Use the already proven14s original-source child fence; no production or existing case budget changes, no faster source cache or fallback.",
+      "cacheHelper": {
+        "targetPath": "test/fixtures/nalati-original-place-binary.ts",
+        "targetBlob": "cf147154c229ff619c2f9c6180b3b2ae8e92118d",
+        "sourceBlob": "cf147154c229ff619c2f9c6180b3b2ae8e92118d",
+        "changes": "Unchanged actual original-cache implementation. Retention now binds its exact Git blob as well as compiler admission."
+      }
     }
   ]
 }

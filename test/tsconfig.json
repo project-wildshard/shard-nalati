@@ -24,7 +24,10 @@
     "nalati-geometry-cache-ports.test.ts",
     "nalati-field-author-ports.test.ts",
     "nalati-original-species.test.ts",
-    "fixtures/nalati-original-species.ts"
+    "nalati-original-place-binary.test.ts",
+    "fixtures/nalati-original-species.ts",
+    "fixtures/nalati-native-place-files.ts",
+    "fixtures/nalati-original-place-binary.ts"
   ],
   "include": []
 }
