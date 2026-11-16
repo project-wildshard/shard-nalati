@@ -75,9 +75,9 @@ export async function earnTameKokparTitan(t, finish) {
     if (pending === null) return;
     pending.world.resident.step(commands);
     assert.deepEqual(pending.world.resident.effects, resident.effects, `${pending.label}: effects continue exactly`);
-    if (--pending.left !== 0) return;
     assert.equal(serializer.serialize(snapshotSimHostBytes(pending.world.host)) === serializer.serialize(snapshotSimHostBytes(host)), true,
-      `${pending.label}: five actual input ticks continue exactly`);
+      `${pending.label}: every actual suffix continues exactly`);
+    if (--pending.left !== 0) return;
     continuations.push({ label: pending.label, tick: pending.tick, suffix: 5, immediateWholeSave: true, suffixWholeSave: true, effectsExact: true });
     pending.world.dispose(); pending = null;
   };

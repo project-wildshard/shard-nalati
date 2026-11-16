@@ -35,3 +35,8 @@ Installed8f0e3ab7 King acceptance passes46.2s. The first mounted entry
 refused static format TypeScript before its own loader could register;
 preload the candidate's public sim-node-loader for both workflow entry
 points. This is module admission only; the mounted test is rerunning.
+
+Both installed rewards pass on8f0e3ab7 (King44.8s, Titan85.4s). Make
+the original carried-goat and mounted-intro checks compare whole state
+after each of their five inputs too, matching all11reward checkpoints.
+The original stage assertions and240-second allowance stay intact.
