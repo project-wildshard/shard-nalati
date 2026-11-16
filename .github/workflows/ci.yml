@@ -1,5 +1,5 @@
 name: ci
-run-name: ${{ inputs.ci21_source && format('CI21 source originals, engine {0}', inputs.engine) || format('ci {0} {1}', github.event_name, github.ref_name) }}
+run-name: ${{ inputs.ci21_source && format('CI21 source originals, engine {0}', inputs.engine) || 'ci' }}
 
 on:
   push:
