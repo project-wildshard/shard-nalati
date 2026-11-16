@@ -1,4 +1,5 @@
 name: ci
+run-name: ${{ inputs.ci21_source && format('CI21 source originals, engine {0}', inputs.engine) || format('ci {0} {1}', github.event_name, github.ref_name) }}
 
 on:
   push:
@@ -26,7 +27,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: ci-${{ github.ref }}-${{ github.event_name }}-${{ inputs.engine || github.event.client_payload.engine }}-${{ inputs.sharddev || github.event.client_payload.sharddev }}
+  group: ci-${{ github.ref }}-${{ github.event_name }}-${{ inputs.engine || github.event.client_payload.engine }}-${{ inputs.sharddev || github.event.client_payload.sharddev }}-${{ inputs.ci21_source || false }}
   # A newer push to a plan branch cancels its older run; land reads a
   # cancelled run as red and stops, so push a plan branch only via land.
   cancel-in-progress: ${{ github.event_name == 'pull_request' || startsWith(github.ref, 'refs/heads/plan/') }}
@@ -35,6 +36,7 @@ jobs:
   # Pinned/product jobs and full Ring 3 dispatch keep all existing gates.
   # C3 source proof never stands in for C11 product compatibility.
   check:
+    name: ${{ inputs.ci21_source && 'product (not requested)' || 'check' }}
     if: inputs.ci21_source != true
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -117,8 +119,25 @@ jobs:
       # J186: new tooling controls soak for one week outside local hooks.
       # CI21 C10 promotes this step after 2026-11-23; retain real raw results.
       - name: Soak candidate-boundary controls (J186, until Nov 23)
+        if: ${{ !cancelled() }}
         continue-on-error: true
-        run: pnpm test:ci21-boundary
+        run: |
+          mkdir -p tmp/ci21-boundary
+          set +e
+          pnpm test:ci21-boundary > tmp/ci21-boundary/raw.log 2>&1
+          result=$?
+          set -e
+          cat tmp/ci21-boundary/raw.log
+          printf '{"advisory":true,"exitCode":%s,"promoteAfter":"2026-11-23"}\n' "$result" > tmp/ci21-boundary/result.json
+          exit "$result"
+      - name: Retain actual boundary soak results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ci21-boundary-soak-${{ github.run_id }}
+          path: tmp/ci21-boundary/
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Keep the cleared queue and public imports honest
         run: node scripts/check-test-boundary.mjs
       - name: Native collider bytes and owned recovery
@@ -423,11 +442,15 @@ jobs:
           git config --global url."$base".insteadOf "https://github.com/"
           git config --global --add url."$base".insteadOf "git@github.com:"
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
-      - name: Select exact Ring 3 candidate
+      # Source proof currently supports an engine source candidate only.
+      - name: Validate and select the exact engine source
         env:
           CANDIDATE_ENGINE: ${{ inputs.engine }}
-          CANDIDATE_SHARDDEV: ''
-        run: node scripts/select-candidate.mjs
+          CANDIDATE_SHARDDEV: ${{ inputs.sharddev }}
+        run: |
+          test -n "$CANDIDATE_ENGINE"
+          test -z "$CANDIDATE_SHARDDEV"
+          node scripts/select-candidate.mjs
       - name: Install pinned or candidate dependency graph
         env:
           CANDIDATE_ENGINE: ${{ inputs.engine }}
