@@ -449,6 +449,19 @@
       "fixturePath": "test/fixtures/nalati-view-modules.ts",
       "fixtureBlob": "6f7fa7b2714eebc4138546d983fe8a4ccfb8cc23",
       "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. Expand the original hard-coded five-row test.each table into five direct cases through its unchanged assertion body; no dynamic module inventory was replaced."
+    },
+    {
+      "sourcePath": "test/nalati-wind-projection.test.ts",
+      "sourceRevision": "dfd9f739cd5dff2f313da8e971ebf90df12a0a2d",
+      "sourceBlob": "0c960006a0ed0288f51b8d216b93594e25b96096",
+      "targetPath": "test/ci21-candidate/nalati-wind-projection.test.ts",
+      "targetBlob": "c41887d70d44fc95f3b3e3ba4354c05bcc7bbb2c",
+      "originalTests": [
+        "packed wind preserves the existing native trajectory and hit clock"
+      ],
+      "fixturePath": "test/fixtures/titanInlineWitness.ts",
+      "fixtureBlob": "30d17e5b11a1250785ade2137ee93300127ed37b",
+      "changes": "Whole original case and numerical oracle retained; public Scope/ReturnProgram imports and one extra fixture path segment only. Uses existing actual owner module loans, raw wind witness and unchanged compiled programme. Original stays pending until published/default admission. C4source first file."
     }
   ],
   "supportFixtures": [
@@ -1186,6 +1199,7 @@
     "test/ci21-candidate/nalati-species-product-inputs.test.ts",
     "test/ci21-candidate/nalati-view-binary.test.ts",
     "test/ci21-candidate/nalati-weapon-observation.test.ts",
+    "test/ci21-candidate/nalati-wind-projection.test.ts",
     "test/fake/bossArena.ts",
     "test/fake/nalatiSpecies.ts",
     "test/fixtures/kurgan-oracle/dungeon.ts",

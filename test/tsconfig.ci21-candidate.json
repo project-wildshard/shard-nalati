@@ -37,7 +37,8 @@
     "ci21-candidate/nalati-shape-files.test.ts",
     "ci21-candidate/nalati-shape-product-lanes.test.ts",
     "ci21-candidate/nalati-species-product-inputs.test.ts",
-    "ci21-candidate/nalati-view-binary.test.ts"
+    "ci21-candidate/nalati-view-binary.test.ts",
+    "ci21-candidate/nalati-wind-projection.test.ts"
   ],
   "include": []
 }
