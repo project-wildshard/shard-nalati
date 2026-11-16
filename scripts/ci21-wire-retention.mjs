@@ -13,7 +13,9 @@ function testRoot(node){
   return ts.isCallExpression(node)?testRoot(node.expression):null;
 }
 for(const row of record.files){
-  const source=ts.createSourceFile(row.targetPath,readFileSync(new URL(row.targetPath,root),'utf8'),ts.ScriptTarget.Latest,true),titles=[];
+  const text=readFileSync(new URL(row.targetPath,root));
+  if(createHash('sha1').update(`blob ${text.length}\0`).update(text).digest('hex')!==row.targetBlob)throw new Error(`CI21 reviewed test binding changed: ${row.targetPath}`);
+  const source=ts.createSourceFile(row.targetPath,text.toString('utf8'),ts.ScriptTarget.Latest,true),titles=[];
   let imported=false;
   for(const statement of source.statements)if(ts.isImportDeclaration(statement)&&ts.isStringLiteral(statement.moduleSpecifier)&&statement.moduleSpecifier.text==='vitest'){
     const names=statement.importClause?.namedBindings;
@@ -35,6 +37,10 @@ for(const row of record.files){
   };
   visit(source);
   if(JSON.stringify(titles)!==JSON.stringify(row.originalTests))throw new Error(`CI21 original golden case missing: ${row.targetPath}`);
+  if(row.observationHelper!==undefined){
+    const helper=readFileSync(new URL(row.observationHelper.targetPath,root));
+    if(createHash('sha1').update(`blob ${helper.length}\0`).update(helper).digest('hex')!==row.observationHelper.targetBlob)throw new Error(`CI21 original observation helper changed: ${row.observationHelper.targetPath}`);
+  }
   const bytes=readFileSync(new URL(row.fixturePath,root));
   if(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==row.fixtureBlob)throw new Error(`CI21 original golden fixture changed: ${row.fixturePath}`);
 }

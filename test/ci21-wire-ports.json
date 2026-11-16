@@ -13,7 +13,8 @@
         "ecology"
       ],
       "fixturePath": "test/fixtures/species-barrel-author-original.json",
-      "fixtureBlob": "62009c0307777eddf73066575f68f7730e03d67a"
+      "fixtureBlob": "62009c0307777eddf73066575f68f7730e03d67a",
+      "targetBlob": "fc9e4eb70f2663779703b3a78d310d97d6016e5f"
     },
     {
       "sourcePath": "test/view-author-metadata.test.ts",
@@ -27,7 +28,70 @@
         "elite"
       ],
       "fixturePath": "test/fixtures/view-author-original.json",
-      "fixtureBlob": "723fd5778f4428b752956b6fe12be0b77cd3ffd0"
+      "fixtureBlob": "723fd5778f4428b752956b6fe12be0b77cd3ffd0",
+      "targetBlob": "a0574b944d85f83d2b6389a87caeea8f9fea0b7c"
+    },
+    {
+      "sourcePath": "test/nalati-loft-author.test.ts",
+      "sourceBlob": "eb86b560e89c2e0498b7213457c4b8ebbeec9ec9",
+      "targetPath": "test/nalati-loft-author.test.ts",
+      "originalTests": [
+        "the owned loft compiler retains every original ambient channel, bound and topology bit"
+      ],
+      "fixturePath": "test/fixtures/nalati-ambient-original.json",
+      "fixtureBlob": "4de13fb18556107c236d01eb8614076da5da560a",
+      "observationHelper": {
+        "sourcePath": "test/fixtures/nalati-ambient-observation.ts",
+        "sourceBlob": "8e6f7ca0bf50765eb0ce59ce1642bee9124e0bfe",
+        "targetPath": "test/fixtures/nalati-ambient-observation.ts",
+        "changes": "Only owner imports rewritten; original observation/byte/hash/bound/topology/disposal logic unchanged. Actual module runner executes offline author code without a simulation-closure claim.",
+        "targetBlob": "190f8de06f5659bbebf346acc81687a2c2b6ed1b"
+      },
+      "targetBlob": "82fbd4bee7cce7a823070038d9e14b2aa2c939e4"
+    },
+    {
+      "sourcePath": "test/nalati-geometry-cache-ports.test.ts",
+      "sourceBlob": "4adac6a1b4d4cc8dd94addc59298018d4252d90f",
+      "targetPath": "test/nalati-geometry-cache-ports.test.ts",
+      "originalTests": [
+        "granite and ordinary/scrambled blobs retain all original geometry bits and stream state"
+      ],
+      "fixturePath": "test/fixtures/geometry-cache-author-original.json",
+      "fixtureBlob": "091fea54db11679ebdc852c0a241033bca4fc752",
+      "observationHelper": {
+        "sourcePath": "test/fixtures/geometry-cache-author-observation.ts",
+        "sourceBlob": "701c2b37b486ef87ce8f2396400511457b7ca457",
+        "targetPath": "test/fixtures/geometry-cache-author-observation.ts",
+        "changes": "Only owner imports rewritten. Original observation/byte/hash/bound/topology/stream/disposal logic unchanged; native V8 transport preserves signed zero and typed arrays.",
+        "targetBlob": "73419896a3b706aba683b2a36f07d5ff3883bf8f"
+      },
+      "targetBlob": "a50234ba9a9eecd72d68062901833df7b088164c"
+    },
+    {
+      "sourcePath": "test/nalati-field-author-ports.test.ts",
+      "sourceBlob": "b5c5e58bfb85e8b232102843819f853700acea16",
+      "targetPath": "test/nalati-field-author-ports.test.ts",
+      "originalTests": [
+        "all twenty original spruce geometries retain every channel bit, group and bound"
+      ],
+      "fixturePath": "test/fixtures/spruce-author-original.json",
+      "fixtureBlob": "e54ca209f7640eeb2c15ee93a69c5bf17112f88e",
+      "caseCompanion": {
+        "repository": "project-wildshard/sharddev",
+        "branch": "plan/ci21sdk-tail",
+        "targetPath": "test/terrain-field-author-port.test.ts",
+        "originalTests": [
+          "native field and planting metadata retain complete signatures, mandatory dimensions and identity"
+        ]
+      },
+      "observationHelper": {
+        "sourcePath": "test/fixtures/spruce-author-observation.ts",
+        "sourceBlob": "4b4f09f880bf28034ee3a66f7cf346096ac09d93",
+        "targetPath": "test/fixtures/spruce-author-observation.ts",
+        "targetBlob": "38b56cf3abdb3b6198e8362bcd088cef06236d3a",
+        "changes": "Owner imports only, exact original full geometry/channel/index/group/bounds observation and disposal logic retained."
+      },
+      "targetBlob": "79cc35d19ac69d154e911d4df92c6b7707064a13"
     }
   ]
 }

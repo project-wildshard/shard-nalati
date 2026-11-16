@@ -19,7 +19,10 @@
   },
   "files": [
     "nalati-ecology-wire.test.ts",
-    "nalati-view-wires.test.ts"
+    "nalati-view-wires.test.ts",
+    "nalati-loft-author.test.ts",
+    "nalati-geometry-cache-ports.test.ts",
+    "nalati-field-author-ports.test.ts"
   ],
   "include": []
 }
