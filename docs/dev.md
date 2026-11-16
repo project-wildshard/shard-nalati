@@ -86,6 +86,21 @@ goes in `tmp/<task>/` and is deleted when done.
 Bypasses are for the case they name, never for a red gate: fix the code,
 not the gate.
 
+## Publishing from Actions
+
+Ship a revision from GitHub, with no key on a laptop (meta
+SHARD-PUBLISH-ACTIONS, J369/J371). Commit and push the hero, wait for
+main's `ci` to go green, then:
+
+```sh
+gh workflow run publish.yml -R project-wildshard/shard-nalati -f channel=staging
+```
+
+It refuses a red main or an sdk below 0.2.13, then builds, checks,
+prepares and uploads with the org secrets. The run summary prints
+`committed:`, the grid line and the engine `shard-pin.yml` command.
+`-f rehearse=true` on any branch stops before upload.
+
 ## J198 prepared publications
 
 Builds emit drafts. Before publishing new bytes, run the packing recipe
