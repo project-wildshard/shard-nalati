@@ -27,7 +27,7 @@ jobs:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
       NALATI_JOURNEY_DIR: tmp/nalati-journeys-contract
       NALATI_FULL_REWARDS: '1'
-      NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '837ae0cdff088f444316e9129c2e81fca61b4b96' }}
+      NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '8f0e3ab7aac0833f448b3dea32764f870a9aec34' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

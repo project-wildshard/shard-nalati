@@ -23,3 +23,10 @@ per-tick Titan continuation exposes one intro yaw difference on the first
 bow input. The candidate report remains incomplete until repaired. No
 row is claimed done, no release pin or gameplay assertion is weakened.
 The original mounted journey keeps its 240-second budget and its stages.
+
+Engine main8f0e3ab7 now repairs the previous-frame intro heart and the
+paid reward's authoritative boss record. Native zero-frame/five-frame
+intro controls, real earned claim with duplicate refusal, full compiler
+and focused lint pass. The workflow now selects this immutable runtime.
+Fresh installed-graph full reward qualification is running against the
+existing admitted producer product; hosted source build remains separate.
