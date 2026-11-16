@@ -36,10 +36,10 @@ on:
         type: boolean
         default: false
       runner:
-        description: Where prepare's phone WebKit runs (SP5 measured both)
+        description: Where prepare's phone WebKit runs (SP5 measured both; hosted macOS arm64 is capacity-limited)
         type: choice
-        options: [macos-15, ubuntu-24.04]
-        default: macos-15
+        options: [ubuntu-24.04, macos-15]
+        default: ubuntu-24.04
 
 permissions:
   contents: read
