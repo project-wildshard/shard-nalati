@@ -14,3 +14,9 @@ runtimeRows and the retained fixture use it. The cached program adapter
 still has the same implementation and SDK context, with no fake type.
 Focused4/4, full compiler and typed lint pass. No original removal or
 whole C3 credit until hosted qualification and destination land.
+
+Relay continuation: refresh curated hero content with the supported
+`pnpm exec wildshard hero src --stamp-existing` flow named by TS21.
+The POI extraction moves the same implementation without changing the
+rendered scene; every existing image hash remains unchanged. The stamp
+now binds those curated images to the extracted source tree.
