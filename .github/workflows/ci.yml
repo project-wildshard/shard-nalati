@@ -6,6 +6,10 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
+      ci21_source:
+        description: Run only the exact-source C3 test proof (product rollout remains C11)
+        type: boolean
+        default: false
       engine:
         description: Exact candidate engine commit (empty keeps the pin)
         type: string
@@ -28,7 +32,10 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' || startsWith(github.ref, 'refs/heads/plan/') }}
 
 jobs:
+  # Pinned/product jobs and full Ring 3 dispatch keep all existing gates.
+  # C3 source proof never stands in for C11 product compatibility.
   check:
+    if: inputs.ci21_source != true
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -373,3 +380,74 @@ jobs:
         run: node scripts/assert-store-layout.mjs
       - name: Build the shards twice and compare every product byte
         run: pnpm check:build-twice
+
+  ci21-source:
+    if: inputs.ci21_source == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          package_json_file: package.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            pnpm-workspace.yaml
+      # Private org git dependencies (github:project-wildshard/...): mint a
+      # read-only token from the org app (meta repo P0.2, J34) and point
+      # every github.com URL form at it. pnpm-lock.yaml records them as
+      # git@github.com:..., and git clones them, so the rewrite covers it.
+      # Skipped where the secrets don't reach (fork PRs, Dependabot).
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        if: env.APP_CLIENT_ID != ''
+        with:
+          client-id: ${{ env.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: project-wildshard
+          permission-contents: read
+      - name: Read private org repos with the app token
+        if: steps.app-token.outputs.token != ''
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          base="https://x-access-token:${TOKEN}@github.com/"
+          git config --global url."$base".insteadOf "https://github.com/"
+          git config --global --add url."$base".insteadOf "git@github.com:"
+          git config --global --add url."$base".insteadOf "ssh://git@github.com/"
+      - name: Select exact Ring 3 candidate
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine }}
+          CANDIDATE_SHARDDEV: ''
+        run: node scripts/select-candidate.mjs
+      - name: Install pinned or candidate dependency graph
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine }}
+          CANDIDATE_SHARDDEV: ''
+        run: |
+          if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
+            pnpm install --no-frozen-lockfile --config.ci=false
+          else
+            pnpm install --frozen-lockfile --config.ci=false
+          fi
+      - name: Match the candidate engine's declared format dependency
+        if: inputs.engine != ''
+        run: |
+          node scripts/candidate-format.mjs
+          pnpm install --no-frozen-lockfile --config.ci=false
+      - name: Prove the installed global store
+        run: node scripts/assert-store-layout.mjs
+      - name: Compile, type-lint and run every complete original
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine }}
+        run: |
+          test -n "$CANDIDATE_ENGINE"
+          pnpm check:ci21-candidate
