@@ -1,0 +1,234 @@
+name: publish
+
+# SHARD-PUBLISH-ACTIONS (meta J369, J371): ship one shard revision from
+# Actions, with no key on any laptop. Kit-owned (repo-kit files/): edit it
+# there, never in a shard repo. From any machine or a phone:
+#   gh workflow run publish.yml -R project-wildshard/shard-nalati -f channel=staging
+#   (-f slug=<slug> when the repo builds more than one; -f version=X.Y.Z)
+# `build` gates, checks, builds and prepares with no secret in reach; only
+# `upload` reads the org secrets, inside the channel's environment.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: Slug to publish (empty when the repo builds only one)
+        type: string
+        default: ''
+      channel:
+        description: staging moves preview and staging; prod moves all three
+        type: choice
+        options: [staging, prod]
+        default: staging
+      version:
+        description: X.Y.Z, or auto (the catalogue's version, patch + 1)
+        type: string
+        default: auto
+      engine:
+        description: Exact candidate engine commit (empty keeps the pin)
+        type: string
+        default: ''
+      sharddev:
+        description: Exact candidate sharddev commit (empty keeps the pin)
+        type: string
+        default: ''
+      rehearse:
+        description: Run every gate, the build and prepare; never upload
+        type: boolean
+        default: false
+      runner:
+        description: Where prepare's phone WebKit runs (SP5 measured both)
+        type: choice
+        options: [macos-15, ubuntu-24.04]
+        default: macos-15
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: publish-${{ inputs.slug || github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ${{ inputs.runner }}
+    timeout-minutes: 45
+    env:
+      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+      CANDIDATE_ENGINE: ${{ inputs.engine }}
+      CANDIDATE_SHARDDEV: ${{ inputs.sharddev }}
+    outputs:
+      slug: ${{ steps.product.outputs.slug }}
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+      - name: Refuse anything but main's green tip
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISH_REHEARSE: ${{ inputs.rehearse }}
+        run: node scripts/publish-shard.mjs gate
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          package_json_file: package.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            pnpm-workspace.yaml
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        if: env.APP_CLIENT_ID != ''
+        with:
+          client-id: ${{ env.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: project-wildshard
+          permission-contents: read
+      - name: Read private org repos with the app token
+        if: steps.app-token.outputs.token != ''
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          base="https://x-access-token:${TOKEN}@github.com/"
+          git config --global url."$base".insteadOf "https://github.com/"
+          git config --global --add url."$base".insteadOf "git@github.com:"
+          git config --global --add url."$base".insteadOf "ssh://git@github.com/"
+      - name: Install the pinned, or the named candidate, sdk graph
+        run: |
+          if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
+            test -f scripts/select-candidate.mjs || { echo '::error::this repo has no scripts/select-candidate.mjs: publish its pins'; exit 1; }
+            node scripts/select-candidate.mjs
+            pnpm install --no-frozen-lockfile --config.ci=false
+          else
+            pnpm install --frozen-lockfile --config.ci=false
+          fi
+      - name: Check the shard source as an author would
+        run: pnpm exec wildshard check . tmp/publish/check
+      - name: Build, and name the product
+        id: product
+        run: node scripts/publish-shard.mjs build "${{ inputs.slug }}"
+      - name: The version upload sends
+        id: version
+        run: node scripts/publish-shard.mjs version "${{ steps.product.outputs.slug }}" "${{ inputs.version }}"
+      - name: Install phone WebKit for prepare
+        run: |
+          pw="$(node -e "const {dirname}=require('node:path');const sdk=dirname(require.resolve('@wildshard/sharddev/package.json'));console.log(dirname(require.resolve('playwright/package.json',{paths:[sdk]})))")"
+          if [ "$RUNNER_OS" = Linux ]; then node "$pw/cli.js" install --with-deps webkit; else node "$pw/cli.js" install webkit; fi
+      - name: Prepare in phone WebKit
+        env:
+          PRODUCT: ${{ steps.product.outputs.product }}
+        run: |
+          start=$(date +%s)
+          pnpm exec wildshard prepare "$PRODUCT"
+          echo "prepare: $(( $(date +%s) - start )) s on $RUNNER_OS/$RUNNER_ARCH" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Write the prepared shard file
+        env:
+          PRODUCT: ${{ steps.product.outputs.product }}
+          SLUG: ${{ steps.product.outputs.slug }}
+        run: |
+          pnpm exec wildshard build "$PRODUCT" "tmp/publish/$SLUG.shardfile"
+          test -z "$(git status --porcelain --untracked-files=no)" || { git status --short --untracked-files=no; echo '::error::the build changed tracked files: commit what it writes'; exit 1; }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: shardfile
+          path: tmp/publish/${{ steps.product.outputs.slug }}.shardfile
+          if-no-files-found: error
+          retention-days: 7
+
+  upload:
+    needs: build
+    if: ${{ !inputs.rehearse && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    environment: ${{ inputs.channel }}
+    env:
+      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+      CANDIDATE_ENGINE: ${{ inputs.engine }}
+      CANDIDATE_SHARDDEV: ${{ inputs.sharddev }}
+      SLUG: ${{ needs.build.outputs.slug }}
+      VERSION: ${{ needs.build.outputs.version }}
+      CHANNEL: ${{ inputs.channel }}
+      NIGHTLY_APP_CLIENT_ID: ${{ secrets.NIGHTLY_APP_CLIENT_ID }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          package_json_file: package.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            pnpm-workspace.yaml
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        if: env.APP_CLIENT_ID != ''
+        with:
+          client-id: ${{ env.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: project-wildshard
+          permission-contents: read
+      - name: Read private org repos with the app token
+        if: steps.app-token.outputs.token != ''
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          base="https://x-access-token:${TOKEN}@github.com/"
+          git config --global url."$base".insteadOf "https://github.com/"
+          git config --global --add url."$base".insteadOf "git@github.com:"
+          git config --global --add url."$base".insteadOf "ssh://git@github.com/"
+      - name: Install the same graph the build used
+        run: |
+          if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
+            node scripts/select-candidate.mjs
+            pnpm install --no-frozen-lockfile --config.ci=false
+          else
+            pnpm install --frozen-lockfile --config.ci=false
+          fi
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: shardfile
+          path: tmp/publish
+      # The keys come from org secrets (SHARD-PUBLISH-ACTIONS SP3); Actions
+      # masks them, and nothing here prints them or the account's email.
+      - name: Upload
+        env:
+          WILDSHARD_API_URL: https://api.wildshard.io
+          WILDSHARD_API_KEY: ${{ secrets.WILDSHARD_API_KEY }}
+          WILDSHARD_CREATOR_PRIVATE_KEY: ${{ secrets.WILDSHARD_CREATOR_PRIVATE_KEY }}
+        run: |
+          test -n "$WILDSHARD_API_KEY" || { echo '::error::no WILDSHARD_API_KEY org secret reaches this repo'; exit 1; }
+          set -o pipefail
+          pnpm exec wildshard upload "tmp/publish/$SLUG.shardfile" --channel "$CHANNEL" --version "$VERSION" 2>&1 | tee tmp/publish/upload.log
+      - name: Committed revision and grid line
+        id: report
+        run: node scripts/publish-shard.mjs summary "$SLUG" "$CHANNEL" tmp/publish/upload.log
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: nightly
+        if: env.NIGHTLY_APP_CLIENT_ID != '' && steps.report.outputs.revision != ''
+        with:
+          client-id: ${{ env.NIGHTLY_APP_CLIENT_ID }}
+          private-key: ${{ secrets.NIGHTLY_APP_PRIVATE_KEY }}
+          owner: project-wildshard
+          repositories: engine
+          permission-contents: write
+      - name: Ask engine for the pin bump
+        if: steps.nightly.outputs.token != ''
+        env:
+          GH_TOKEN: ${{ steps.nightly.outputs.token }}
+          REVISION: ${{ steps.report.outputs.revision }}
+          HASH: ${{ steps.report.outputs.hash }}
+        run: |
+          gh api repos/project-wildshard/engine/dispatches -f event_type=shard-published \
+            -F "client_payload[slug]=$SLUG" -F "client_payload[revision]=$REVISION" \
+            -F "client_payload[hash]=$HASH" -F "client_payload[channel]=$CHANNEL"
+          echo "engine shard-pin dispatched for $SLUG rev $REVISION" >> "$GITHUB_STEP_SUMMARY"
