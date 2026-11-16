@@ -30,3 +30,8 @@ intro controls, real earned claim with duplicate refusal, full compiler
 and focused lint pass. The workflow now selects this immutable runtime.
 Fresh installed-graph full reward qualification is running against the
 existing admitted producer product; hosted source build remains separate.
+
+Installed8f0e3ab7 King acceptance passes46.2s. The first mounted entry
+refused static format TypeScript before its own loader could register;
+preload the candidate's public sim-node-loader for both workflow entry
+points. This is module admission only; the mounted test is rerunning.
