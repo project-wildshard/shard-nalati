@@ -34,7 +34,7 @@
     "test:kit": "node --test 'kit/cli/*.test.ts' 'kit/test/**/*.test.ts'",
     "test:shards": "vitest run",
     "lint:shards": "WILDSHARD_RATCHET_FILE=lint/ratchet.json oxlint -c .oxlintrc.author.json --deny-warnings src",
-    "lint:ci21": "node scripts/ci21-wire-retention.mjs && oxlint --type-aware --tsconfig test/tsconfig.json -c .oxlintrc.author.json --deny-warnings test/nalati-ecology-wire.test.ts test/nalati-view-wires.test.ts test/nalati-loft-author.test.ts test/nalati-geometry-cache-ports.test.ts test/nalati-field-author-ports.test.ts test/nalati-original-species.test.ts test/fixtures/nalati-original-species.ts test/nalati-original-place-binary.test.ts test/fixtures/nalati-native-place-files.ts test/fixtures/nalati-original-place-binary.ts test/nalati-decorative-native.test.ts"
+    "lint:ci21": "node scripts/ci21-wire-retention.mjs && oxlint --type-aware --tsconfig test/tsconfig.json -c .oxlintrc.author.json --deny-warnings test/nalati-ecology-wire.test.ts test/nalati-view-wires.test.ts test/nalati-loft-author.test.ts test/nalati-geometry-cache-ports.test.ts test/nalati-field-author-ports.test.ts test/nalati-original-species.test.ts test/fixtures/nalati-original-species.ts test/nalati-original-place-binary.test.ts test/fixtures/nalati-native-place-files.ts test/fixtures/nalati-original-place-binary.ts test/nalati-decorative-native.test.ts test/nalati-place-runtime-source.test.ts test/fixtures/nalati-runtime-wire.ts"
   },
   "dependencies": {
     "@wildshard/engine": "0.1.18",

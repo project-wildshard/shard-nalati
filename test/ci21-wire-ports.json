@@ -182,6 +182,32 @@
       "fixturePath": "test/fixtures/nalati-decorative.json",
       "fixtureBlob": "4a19fa3532a876b4d3a388401663090b0744e62e",
       "changes": "Only defining owner imports rewritten: local src/generators, public SDK terrain/portableMath, format immutable, public engine scripts/bake-output.mjs. All original assertions and complete original wire pin unchanged. Direct actual source generator and terrain adapter cross-compare, full original length/hash, untouched input bytes, separate/nested result ownership, post-mutation repeat and malformed terrain refusal remain. Actual source closure now admitted to real compiler via explicit pinned @types/three0.186.0 dev dependency; no copied producer, fake type/any/ignore or new helper. Whole2case file758ms locally. No original engine removal before verified destination land."
+    },
+    {
+      "sourcePath": "test/nalati-place-runtime-source.test.ts",
+      "sourceBlob": "b1ede5e371f8a9cfb2a11ca0a55f7e8547b13856",
+      "targetPath": "test/nalati-place-runtime-source.test.ts",
+      "targetBlob": "c92ee7aa2d3e62f70017cb0e07a35d5a3ffcd180",
+      "originalTests": [
+        "pure runtime preparation preserves all seven complete output pins and input records",
+        "structured preparation keeps metadata and independent owned floor bytes",
+        "original asset and binary coverage refusals remain",
+        "the preparation source bundles as one config-safe chunk"
+      ],
+      "fixturePath": "test/fixtures/nalati-place-runtime-files.json",
+      "fixtureBlob": "44a10e909c74f0bdaae109cb22e555bd75c2b2a9",
+      "observationHelper": {
+        "sourceRepository": "project-wildshard/shard-nalati",
+        "sourceRevision": "020c7a7ecefea0c0e128df9f972df81bb580f0f6",
+        "sourcePath": "test/fixtures/nalati-runtime-wire.ts",
+        "sourceBlob": "5513d18d56e8a2b79b5bf1beee85438251b163ee",
+        "targetPath": "test/fixtures/nalati-runtime-wire.ts",
+        "targetBlob": "63d5d0e55c418064c91776d3634b5f620fd7dab6",
+        "changes": "One import rewritten from local untyped reexport shim to its defining public typed engine bake-output module; same function and full seven-output envelope. All other bytes unchanged from approved020c7a7. Engine original currently imports a missing lifted helper; no runnable current engine baseline claimed."
+      },
+      "changes": "All four original cases/assertions and seven exact full output pins retained. Owner imports, physical source input/bundle paths relocated. Historical publication prefix remains in inventory keys and pinned fixture JSON; no hash/path key normalized. Both original full floor binary loans retained byte for byte, complete shapeBook and input immutability, independent mutation/rebuild, original refusal checks and actual single config-safe chunk remain.",
+      "fixtureSourceRepository": "project-wildshard/shard-nalati",
+      "fixtureSourceRevision": "3ce897a77e401bf2dd5c3f74bc6a84dc7eb67872"
     }
   ]
 }
