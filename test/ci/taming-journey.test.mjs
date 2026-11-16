@@ -13,7 +13,7 @@
 // standalone server's cell world installs it.
 import '@wildshard/engine/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
@@ -26,6 +26,8 @@ const { nativeTamingOf } = await import('@wildshard/engine/game/riding/nativeTam
 const { mountedPlayerOf } = await import('@wildshard/engine/game/riding/native');
 const { questBooks } = await import('@wildshard/engine/quest/players');
 const { shardRows } = await import('@wildshard/engine/sim/shardRows');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+const exactEngine = process.env.NALATI_ENGINE_CANDIDATE;
 const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
 
 // The taming controls the page sends (server/taming.json inputs): hold offer, lean, press mount at the prompt.
@@ -52,7 +54,33 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
     .map(file => [file.commons === true ? `commons:${file.hash}` : file.hash, readFileSync(join(directory, file.path))]));
   const rapier = await loadRapier(readFileSync(engineRequire.resolve('@dimforge/rapier3d-simd/rapier_wasm3d_bg.wasm')));
-  const { resident } = await openWorld({ shard, assets, product, rapier }, { room: true }), { host } = resident;
+  const runtimeInput = { shard, assets, product, rapier }, world = await openWorld(runtimeInput, { room: true }), { resident } = world, { host } = resident;
+  if (exactEngine) assert.match(exactEngine, /^[a-f0-9]{40}$/u);
+  const stages = { tame: false, programs: false, kokpar: false, titan: false }, continuations = [];
+  const serializer = exactEngine ? createSimSnapshotSerializer() : null;
+  const report = { complete: false, engine: exactEngine, scope: 'earned-mounted-continuation', fullRewardsQualified: false, stages, continuations };
+  let pending = null;
+  const beginContinuation = async (label, saved) => {
+    if (!exactEngine) return;
+    assert.equal(pending, null, 'Every prior continuation must finish');
+    const wire = saved ?? serializer.serialize(snapshotSimHostBytes(host));
+    const back = await openWorld(runtimeInput, { room: true, snapshot: wire });
+    try {
+      assert.equal(serializer.serialize(snapshotSimHostBytes(back.host)) === wire, true, `${label}: immediate whole save is exact`);
+      pending = { label, world: back, left: 5, tick: host.state.tick };
+    } catch (error) { back.dispose(); throw error; }
+  };
+  const step = commands => {
+    resident.step(commands);
+    if (pending === null) return;
+    pending.world.resident.step(commands);
+    assert.deepEqual(pending.world.resident.effects, resident.effects, `${pending.label}: effects continue exactly`);
+    if (--pending.left !== 0) return;
+    assert.equal(serializer.serialize(snapshotSimHostBytes(pending.world.host)) === serializer.serialize(snapshotSimHostBytes(host)), true,
+      `${pending.label}: five actual input ticks continue exactly`);
+    continuations.push({ label: pending.label, tick: pending.tick, suffix: 5, immediateWholeSave: true, suffixWholeSave: true, effectsExact: true });
+    pending.world.dispose(); pending = null;
+  };
   try {
     const taming = nativeTamingOf(host), mounted = mountedPlayerOf(host); assert.ok(taming); assert.ok(mounted);
     const player = [...host.players.values()][0]; assert.ok(player);
@@ -66,7 +94,7 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
       for (let tick = 0; tick < allowance && !reached; tick++) {
         const dx = x - player.position.x, dz = z - player.position.z, distance = Math.hypot(dx, dz);
         if (distance < 0.25) { reached = true; break; }
-        resident.step([{ kind: 'player', moveX: dx / distance, moveZ: dz / distance, yaw: Math.atan2(-dx, -dz), commandVersion: 1, sprint: true,
+        step([{ kind: 'player', moveX: dx / distance, moveZ: dz / distance, yaw: Math.atan2(-dx, -dz), commandVersion: 1, sprint: true,
           steer: { keyX: 0, keyY: 1, stickX: 0, stickY: 0 } }]);
       }
       assert.ok(reached, `The walk to the plains is blocked at ${x}, ${z}: ${player.position.x}, ${player.position.z}`);
@@ -94,7 +122,7 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
       const prompt = taming.interactable.radius > 0;
       if (prompt && promptTick < 0) promptTick = host.state.tick;
       if (taming.phase === 'breaking' && breakingTick < 0) breakingTick = host.state.tick;
-      resident.step([{ kind: 'player', moveX, moveZ, yaw: 0, commandVersion: 1, crouch, steer: { keyX: moveX, keyY: -moveZ, stickX: 0, stickY: 0 } },
+      step([{ kind: 'player', moveX, moveZ, yaw: 0, commandVersion: 1, crouch, steer: { keyX: moveX, keyY: -moveZ, stickX: 0, stickY: 0 } },
         { kind: 'script', actorId: OFFER, value: 1 }, { kind: 'script', actorId: LEAN, value: lean },
         ...(prompt ? [{ kind: 'script', actorId: MOUNT, value: 1 }] : [])]);
       tamed.push(...resident.effects);
@@ -111,6 +139,7 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
     // HS1: the room's world runs the story, so the bond itself files `tamed:horse` (chapterStory qBonded); the tulpar quest
     // still waits for its giver.
     assert.ok(flags.includes('tamed:horse'), 'The bond files tamed:horse'); assert.ok(!flags.includes('quest:tulpar'), `Taming alone never grants quest:tulpar: ${flags}`);
+    stages.tame = true;
     console.log(`taming-journey ${JSON.stringify({ walkTicks, promptTick, breakingTick, bondedTick: host.state.tick, throws, elapsedMs: Math.round(performance.now() - started) })}`);
     });
     await t.test('every program row names a module the shard file ships', () => {
@@ -122,6 +151,7 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
       const shipped = new Set(descriptor.index.files.map(file => file.hash));
       assert.ok(named.size > 0, 'The shard file names its program modules');
       for (const hash of named) assert.ok(shipped.has(hash), `module ${hash} is named but not shipped`);
+      stages.programs = true;
     });
     await t.test('mounted: the tulpar wins a kokpar round', async () => {
       assert.equal(taming.phase, 'bonded', 'The mounted leg rides the bonded tulpar');
@@ -155,13 +185,13 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
         assert.equal(mounted.mounted, true, 'The rider stays in the saddle');
         assert.equal(mounted.horse, taming.companion, 'The bonded tulpar carries the rider throughout');
         const held = goat();
-        if (stage < 2) { const at = stage === 0 ? runUp : lineUp, leg = toward(at.x, at.z, true); if (leg.distance < 4) stage++; resident.step([leg.command]); }
-        else resident.step([toward(past.x, past.z, false).command]);
+        if (stage < 2) { const at = stage === 0 ? runUp : lineUp, leg = toward(at.x, at.z, true); if (leg.distance < 4) stage++; step([leg.command]); }
+        else step([toward(past.x, past.z, false).command]);
         assert.deepEqual(resident.effects, [], 'The ride invents no quest facts');
         topSpeed = Math.max(topSpeed, mounted.body.speed);
         const horse = taming.companion.position; closest = Math.min(closest, Math.hypot(horse.x - far.x, horse.z - far.z));
         const now = goat();
-        if (now === 1 && held !== 1 && pickupTick < 0) pickupTick = host.state.tick;
+        if (now === 1 && held !== 1 && pickupTick < 0) { pickupTick = host.state.tick; await beginContinuation('kokpar goat carried'); }
         if (now === 0 && held === 1) { snatched++; stage = 0; }
         if (book.flags.has('won:kokpar')) wonTick = host.state.tick;
       }
@@ -169,6 +199,7 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
       assert.ok(wonTick > pickupTick, `The goat must land in a tai-qazan within ${KOKPAR_TICKS} ticks: ${player.position.x}, ${player.position.z}, horse ${closest.toFixed(2)} m from the far centre at closest`);
       assert.ok(topSpeed >= 11, 'The kokpar is won at a gallop');
       assert.ok(goat() >= 2, 'The goat rests in a tai-qazan'); assert.equal(snatched, 0, 'No rider snatches the goat back');
+      stages.kokpar = true;
       console.log(`kokpar ${JSON.stringify({ startTick: start, pickupTick, wonTick, topSpeed: Math.round(topSpeed * 10) / 10, closest: Math.round(closest * 100) / 100, snatched, goat: goat(), elapsedMs: Math.round(performance.now() - begun) })}`);
     });
     await t.test('mounted: the earned tulpar wakes the Storm Titan', async () => {
@@ -192,25 +223,25 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
         for (let tick = 0; tick < 2000; tick++) {
           const leg = toward(x, z);
           if (leg.distance < (z === -42 ? 2 : 5)) { reached = true; break; }
-          resident.step([leg.command]);
+          step([leg.command]);
           assert.equal(mounted.mounted, true, 'The earned tulpar carries the rider to the cairn');
         }
         assert.ok(reached, `Mounted approach blocked at ${x}, ${z}: ${player.position.toArray()}`);
       }
       const stop = () => ({ kind: 'player', moveX: 0, moveZ: 0, yaw: mounted.body.heading - Math.PI,
         commandVersion: 1, steer: { keyX: 0, keyY: 0, stickX: 0, stickY: -.3 } });
-      for (let tick = 0; tick < 120; tick++) resident.step([stop()]);
+      for (let tick = 0; tick < 120; tick++) step([stop()]);
       assert.equal(state().boss.state, 'dormant');
       // The single-player page's Storm setting, through its installed
       // climate input route. The first natural storm is 12–18 game minutes
       // away; the test sets no private weather, flags or encounter fields.
       const routes = actRoutes(host); assert.ok(routes.climate);
       routes.climate({ op: 'mode', name: 'storm', at: -1 });
-      for (let tick = 0; tick < 600 && !arena.storm(); tick++) resident.step([stop()]);
+      for (let tick = 0; tick < 600 && !arena.storm(); tick++) step([stop()]);
       assert.equal(arena.storm(), true, 'The admitted Storm setting produces actual storm weather');
-      resident.step([stop(), { kind: 'script', actorId: 'nalati.titan.use', value: 1 }]);
+      step([stop(), { kind: 'script', actorId: 'nalati.titan.use', value: 1 }]);
       assert.equal(routes.tied(), true, 'The mounted prompt earns the tied encounter');
-      for (let tick = 0; tick < 120 && state().boss.state === 'armed'; tick++) resident.step([stop()]);
+      for (let tick = 0; tick < 120 && state().boss.state === 'armed'; tick++) step([stop()]);
       assert.equal(state().boss.state, 'intro', 'The real strip press starts the Titan intro');
       assert.ok(state().toasts.includes('The strip snaps in the wind — JEL ATA wakes'));
       assert.equal(state().boss.saved.defeated, false);
@@ -221,14 +252,29 @@ test('nalati-grasslands: a stallion tamed on real inputs, then ridden to a kokpa
       const writer = createSimSnapshotSerializer();
       try {
         const start = writer.serialize(snapshotSimHostBytes(host)), commands = [], effects = [];
-        for (let tick = 0; tick < 5; tick++) { const input = [stop()]; commands.push(input); resident.step(input); effects.push([...resident.effects]); }
+        await beginContinuation('mounted Titan intro', start);
+        for (let tick = 0; tick < 5; tick++) { const input = [stop()]; commands.push(input); step(input); effects.push([...resident.effects]); }
         assert.equal(state().boss.state, 'intro');
         if (process.env.TITAN_CHECKPOINT) {
-          const { writeFileSync } = await import('node:fs');
           writeFileSync(process.env.TITAN_CHECKPOINT, JSON.stringify({ start, commands, effects, expected: writer.serialize(snapshotSimHostBytes(host)) }));
         }
       } finally { writer.dispose(); }
+      stages.titan = true;
       console.log(`titan mounted: intro earned at tick ${host.state.tick}`);
     });
-  } finally { resident.dispose(); }
+    if (exactEngine) {
+      assert.equal(pending, null, 'The final continuation finishes');
+      assert.equal(continuations.length, 2, 'Both genuinely earned mounted checkpoints resume');
+      assert.ok(Object.values(stages).every(Boolean), 'Every original stage passes');
+      report.complete = true;
+    }
+  } catch (error) { report.error = error instanceof Error ? error.message : String(error); throw error;
+  } finally {
+    try {
+      if (exactEngine) {
+        const receiptDirectory = process.env.NALATI_JOURNEY_DIR ?? 'tmp/nalati-journeys'; mkdirSync(receiptDirectory, { recursive: true });
+        writeFileSync(join(receiptDirectory, 'mounted-continuation.json'), JSON.stringify({ ...report, seconds: (performance.now() - started) / 1000 }, null, 2) + '\n');
+      }
+    } finally { pending?.world.dispose(); serializer?.dispose(); world.dispose(); }
+  }
 });

@@ -33,3 +33,31 @@ trace reproduces on dc0a043e. No engine source change is made here.
 All probe logs, earned checkpoints and compact diffs remain in owned
 tmp/codex-shards-nalati. The source API/cold-cook group is still in
 hosted acceptance; this branch is preparation for the next group.
+
+## Installed exact continuation candidate,2026-11-16
+
+The candidate report keeps every original tame, module, kokpar and
+mounted-Titan check. Only the exact candidate job adds two genuine
+save points: the goat carried and the mounted Titan intro. A second
+actual openWorld must preserve the immediate whole snapshot, receive
+the same next five ordinary commands, repeat effects and preserve the
+whole suffix. No pose, health, flags or progress are written by the
+rider. The existing240s allowance stays unchanged.
+
+Installed enginec29912d0 is verified by resolved immutable tarball
+and Node's actual imported package. All five checks and both exact
+continuations pass42.587s locally against existing frozen output.
+Producer manifests/lockfile and installation are restored afterward.
+The workflow builds its frozen producer first, then selects and
+verifies the runtime. Its three raw receipts remain report-only;
+complete:true applies only to earned mounted continuation, with
+fullRewardsQualified:false. Full King/Titan reward journeys still
+owe acceptance, and no row/main land is claimed here. Normal hooks
+remain enabled; prior TC40/Pine/ALL5 lands gate this plan.
+
+The bounded read-only J206 review is CLEAR, no MUST or SHOULD. The
+review checked original assertions, actual installed-world restores,
+receipt completion and producer/runtime order. Claude quota remains
+unverified; the documented read-only Codex fallback uses Python's
+timeout because the standard helper's timeout binary is absent. No
+hook escape hatch is used.
