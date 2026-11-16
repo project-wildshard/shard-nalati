@@ -70,6 +70,23 @@ export function gateVerdict({ ref, sha, mainSha, ci, ring2, rehearse }) {
   return { refuse: relaxed ? [] : problems, warn: relaxed ? problems : [] };
 }
 
+/** The oldest sdk whose `wildshard prepare` finishes with no `--base` (0.2.11 and 0.2.12 time out at 240 s). */
+export const SDK_FLOOR = '0.2.13';
+
+/** A refusal when package.json pins an exact sdk below SDK_FLOOR; a range or a missing pin passes. */
+export function sdkPinProblem(pkg) {
+  const deps = { ...pkg.devDependencies, ...pkg.dependencies };
+  for (const name of ['@wildshard/sharddev', '@wildshard/sdk']) {
+    const spec = deps[name];
+    if (typeof spec !== 'string') continue;
+    const version = /^(?:npm:@wildshard\/sdk@)?(\d+\.\d+\.\d+)$/u.exec(spec)?.[1];
+    if (version && compareVersions(version, SDK_FLOOR) < 0) {
+      return `${name} is ${version}: its wildshard prepare times out with no --base; pin @wildshard/sdk ${SDK_FLOOR} or newer, pnpm install, commit, push`;
+    }
+  }
+  return undefined;
+}
+
 /** The product a dispatch names: the given slug, else the only one built. */
 export function pickProduct(slugs, wanted) {
   if (wanted) {
@@ -129,7 +146,8 @@ async function gate() {
   }
   const verdict = gateVerdict({ ref, sha, mainSha: main.sha, ci: runs.workflow_runs, ring2, rehearse: process.env.PUBLISH_REHEARSE === 'true' });
   for (const line of verdict.warn) console.log(`::warning::rehearsal, not a refusal: ${line}`);
-  if (verdict.refuse.length) throw new Refusal(verdict.refuse.join('; '));
+  const sdk = sdkPinProblem(JSON.parse(readFileSync('package.json', 'utf8')));
+  if (verdict.refuse.length || sdk) throw new Refusal([...verdict.refuse, ...(sdk ? [sdk] : [])].join('; '));
   summary(`gate: ${sha.slice(0, 10)} is ${ref.replace('refs/heads/', '')}'s tip, its ci is green, ${ring2.length} ring-2 workflow(s) green on main`);
 }
 
