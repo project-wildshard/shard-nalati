@@ -14,7 +14,8 @@
       ],
       "fixturePath": "test/fixtures/species-barrel-author-original.json",
       "fixtureBlob": "62009c0307777eddf73066575f68f7730e03d67a",
-      "targetBlob": "fc9e4eb70f2663779703b3a78d310d97d6016e5f"
+      "targetBlob": "fc9e4eb70f2663779703b3a78d310d97d6016e5f",
+      "compilerSupport": []
     },
     {
       "sourcePath": "test/view-author-metadata.test.ts",
@@ -245,7 +246,21 @@
       ],
       "fixturePath": "test/fixtures/nalati-poi-paint-original.json",
       "fixtureBlob": "b7d2b9828941c94af4353f06502b04402160887f",
-      "changes": "Whole original cases and every assertion retained. Public package imports only; helpers and original immutable inputs unchanged. Real compiler/lint and default owner suite admission required before source removal."
+      "changes": "Whole original cases and every assertion retained. Public package imports only; helpers and original immutable inputs unchanged. Real compiler/lint and default owner suite admission required before source removal.",
+      "compilerSupport": [
+        "test/nalati-weapon-grammar.test.ts",
+        "test/fixtures/nalati-weapon-observation.ts"
+      ],
+      "additionalFixtures": [
+        {
+          "targetPath": "test/nalati-weapon-grammar.test.ts",
+          "targetBlob": "2a156e95036492dbfe777216dd519c71a5a7d84b"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-weapon-observation.ts",
+          "targetBlob": "0928e9ce0042954fa9381e924d1419e99c04e64e"
+        }
+      ]
     }
   ]
 }

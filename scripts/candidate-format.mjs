@@ -10,8 +10,10 @@ const format = engine.dependencies?.['@wildshard/format'];
 if (typeof format !== 'string' || !/^npm:@wildshard\/shard-format@\^?\d+\.\d+\.\d+$/u.test(format)) {
   throw new Error('Candidate engine must declare its published format dependency');
 }
+// Qualify the declared minimum exactly so the candidate graph cannot drift.
+const exact = format.replace('@^', '@');
 const file = new URL('package.json', root), pkg = JSON.parse(readFileSync(file, 'utf8'));
 pkg.pnpm ??= {}; pkg.pnpm.overrides ??= {};
-pkg.pnpm.overrides['@wildshard/engine>@wildshard/format'] = format;
+pkg.pnpm.overrides['@wildshard/engine>@wildshard/format'] = exact;
 writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`);
-console.log(`Candidate engine uses its defining format dependency: ${format}`);
+console.log(`Candidate engine uses its defining format dependency: ${exact}`);

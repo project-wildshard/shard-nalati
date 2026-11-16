@@ -57,8 +57,50 @@ and a JSON declaration resolution error. Report this hook mismatch in
 mini QA; keep full push/hosted gates and qualification requirements.
 The new candidate checkpoint still needs J206 review before landing.
 
+J206 relay review found three real gaps. Retarget the missed crag bake
+tool to its defining source. Give the observation parser only the
+snapshot operation it consumes, returning unknown to its existing
+validator; no engine type dependency or copied engine contract remains.
+Strictly admit its existing default grammar control, while the other
+proof-kit dynamic-import smoke stays in its original discovery. Add
+explicit candidate helper typed lint and pin every transform/loader.
+
+Fix staged lint routing by ending lint in lint:shards; forwarded src
+paths now reach their own author lint. The old J381 checkpoint reason
+was production source forwarded to the normal test compiler, not source
+inside the candidate test directory. Keep every normal push gate.
+Crag source provenance now names cragRockRows.ts, changing authored
+scene metadata bytes; geometry and curated art remain unchanged.
+
+Candidate CLI dispatch runs check, while ring-2-content is push-only.
+Move the conditional candidate gate to check so a candidate dispatch
+actually executes it; the earlier Ring 2 placement was unreachable.
+Pin the engine's declared format minimum exactly for reproducibility.
+The author pin remains separate; C11 must qualify the shipped graph.
+Normal40files95cases and strict candidate5files11cases/compiler/lint
+pass after the review fixes. All helper transforms retain Git hashes.
+
+The shared hook also forwards kit paths. A small lint driver now runs
+each existing full source gate without forwarding staged paths into
+another compiler/ruleset. Source selection and all three gates remain
+complete. This fixes QA33 locally without a hook bypass or weaker lint.
+The candidate ledger additionally binds cover/crag/runtime loaders and
+all original paint/specimen inputs; the default grammar control has a
+pinned blob alongside its observation helper.
+
+Final review's remaining MUST (unpinned/unlinted cover, crag, runtime
+and paint/specimen inputs) is resolved explicitly in the ledger and
+candidate lint command. Final5files11cases/compiler/typed lint/retention
+pass8.47s against the retained exact source artifact; normal full check
+passes. Engine0.7.0/author0.4.9 both resolve as declared. No candidate
+hosted credit or engine source removal is claimed by this checkpoint.
+
 Relay continuation: refresh curated hero content with the supported
 `pnpm exec wildshard hero src --stamp-existing` flow named by TS21.
 The POI extraction moves the same implementation without changing the
 rendered scene; every existing image hash remains unchanged. The stamp
 now binds those curated images to the extracted source tree.
+
+Rebase onto landed POI a11085f preserved the source and image hashes;
+resolve overlapping own ledger, lint command, hero and journal edits.
+Fresh branch hosted CI must qualify the rebased tree.

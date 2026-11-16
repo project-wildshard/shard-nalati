@@ -15,3 +15,9 @@ or default-suite equivalence is claimed.
 The current local proof used a packed engine with the uncommitted source
 patch at `tmp/codex-tc48/terrain-source.patch`; hosted proof remains owed.
 No shim, invented engine type, ignored compiler error or changed oracle.
+
+The candidate graph deliberately keeps two format generations: the author's
+existing pin and the candidate engine's exact declared minimum. The installed
+engine source and that resolved dependency are the qualification target; C11
+must qualify the final published dependency graph again. Every extraction
+helper and provenance transform is hash-pinned and explicitly type-linted.

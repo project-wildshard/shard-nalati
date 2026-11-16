@@ -34,7 +34,9 @@
     "fixtures/nalati-original-species.ts",
     "fixtures/nalati-native-place-files.ts",
     "fixtures/nalati-original-place-binary.ts",
-    "fixtures/nalati-runtime.ts"
+    "fixtures/nalati-runtime.ts",
+    "nalati-weapon-grammar.test.ts",
+    "fixtures/nalati-weapon-observation.ts"
   ],
   "include": []
 }
