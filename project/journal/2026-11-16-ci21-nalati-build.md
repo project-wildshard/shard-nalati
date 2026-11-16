@@ -104,3 +104,23 @@ now binds those curated images to the extracted source tree.
 Rebase onto landed POI a11085f preserved the source and image hashes;
 resolve overlapping own ledger, lint command, hero and journal edits.
 Fresh branch hosted CI must qualify the rebased tree.
+
+Hosted checkpoint check failed correctly: the whole-tree import guard
+checked source-only tests/helpers against the published engine pin.
+Split only public-import resolution by actual local dependency reach:
+all production files, default TypeScript/Node tests and default compiler
+roots always require published exports. Only retained candidate roots
+and their exclusive helpers await the candidate engine gate. Shared
+helpers cannot hide missing exports; orphan helpers and every cross-
+shard check keep the original whole-tree rule. Candidate membership
+must exactly match its ledger and the explicit default exclusion.
+The candidate gate runs the same guard with every export required.
+Seven fault controls cover shared reach, orphan imports, queue changes,
+actual public imports, candidate discovery and cross-shard refusal.
+
+Boundary J206 has no MUST. Address the concrete latent edges too:
+seed the two existing variable/native observation modules as normal
+roots, and trace scripts/hooks as conservative default importers.
+Additional controls prove these paths cannot hide a shared import.
+The full normal check now runs this boundary guard locally as well,
+so the hosted-only omission cannot repeat.
