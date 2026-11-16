@@ -19,3 +19,13 @@ sources/fixture bytes are restored exactly. Golden generator processes
 finish within one second on this mini, with a nine-second child fence.
 The test process boundary is compiled; installed legacy client sources
 are exercised at runtime rather than falsely claimed compiler-clean.
+
+J206 has no MUSTs and confirms every original assertion and six exact
+original wire identities. Follow-ups add a shard-owned retained-case and
+fixture-blob record, direct/default discovery guard and compiler files
+list. Missing/renamed/skipped cases and changed golden bytes refuse.
+Native SHA-256 over UTF-8 JSON replaces the equivalent engine hash helper;
+actual values still match the original immutable hashes. Product generator
+source typechecking is not claimed: original CI21 files were excluded at
+engine de22e1a170, and broad source compiler repair/consumer rollout stays
+TEST-COVERAGE row36/H4. All original SDK expectTypeOf contracts compile.

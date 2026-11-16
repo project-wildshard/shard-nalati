@@ -8,8 +8,18 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["node"]
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "node"
+    ]
   },
-  "include": ["nalati-ecology-wire.test.ts", "nalati-view-wires.test.ts"]
+  "files": [
+    "nalati-ecology-wire.test.ts",
+    "nalati-view-wires.test.ts"
+  ],
+  "include": []
 }

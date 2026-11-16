@@ -34,7 +34,7 @@
     "test:kit": "node --test 'kit/cli/*.test.ts' 'kit/test/**/*.test.ts'",
     "test:shards": "vitest run",
     "lint:shards": "WILDSHARD_RATCHET_FILE=lint/ratchet.json oxlint -c .oxlintrc.author.json --deny-warnings src",
-    "lint:ci21": "oxlint --type-aware --tsconfig test/tsconfig.json -c .oxlintrc.author.json --deny-warnings test/nalati-ecology-wire.test.ts test/nalati-view-wires.test.ts"
+    "lint:ci21": "node scripts/ci21-wire-retention.mjs && oxlint --type-aware --tsconfig test/tsconfig.json -c .oxlintrc.author.json --deny-warnings test/nalati-ecology-wire.test.ts test/nalati-view-wires.test.ts"
   },
   "dependencies": {
     "@wildshard/engine": "0.1.18",
