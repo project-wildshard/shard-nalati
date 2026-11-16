@@ -15,16 +15,29 @@
     ],
     "types": [
       "node",
-      "vite/client"
+      "vite/client",
+      "@wildshard/engine/game/types"
     ],
-    "allowArbitraryExtensions": true
+    "allowArbitraryExtensions": true,
+    "exactOptionalPropertyTypes": true
   },
   "files": [
     "ci21-candidate/nalati-cloth-publication.test.ts",
     "ci21-candidate/nalati-contact-publication.test.ts",
     "ci21-candidate/nalati-decorative-scene.test.ts",
     "ci21-candidate/nalati-firearm-admission.test.ts",
-    "ci21-candidate/nalati-weapon-observation.test.ts"
+    "ci21-candidate/nalati-weapon-observation.test.ts",
+    "ci21-candidate/held-bow-product.test.ts",
+    "ci21-candidate/nalati-herd-binary.test.ts",
+    "ci21-candidate/nalati-king-pose.test.ts",
+    "ci21-candidate/nalati-kurgan-fabric.test.ts",
+    "ci21-candidate/nalati-place-binary.test.ts",
+    "ci21-candidate/nalati-quest-prop-binary.test.ts",
+    "ci21-candidate/nalati-script-sections-source.test.ts",
+    "ci21-candidate/nalati-shape-files.test.ts",
+    "ci21-candidate/nalati-shape-product-lanes.test.ts",
+    "ci21-candidate/nalati-species-product-inputs.test.ts",
+    "ci21-candidate/nalati-view-binary.test.ts"
   ],
   "include": []
 }

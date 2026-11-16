@@ -4,12 +4,9 @@ import { runTextSnapshot } from './runSnapshot';
 import * as v from 'valibot';
 
 /** Every executable/declaration layer the native compiler/scalar helpers can
- * import, including loose source inventory, plus actual installed tool versions.
+ * import, including loose source inventory and the exact installed dependency lock.
  * The fixture adapters/parsers and cold shard file tests remain independent. */
-const inputs = ['src/engine', 'src/game', 'src/sdk', 'src/sharddev', 'src/commons',
-  'src', 'package.json', 'pnpm-lock.yaml',
-  'node_modules/assemblyscript/package.json', 'node_modules/binaryen/package.json',
-  'node_modules/@typescript/typescript6/package.json', 'scripts/bake-loader.mjs',
+const inputs = ['src', 'package.json', 'pnpm-lock.yaml',
   'test/fixtures/native-program.ts', 'test/fixtures/nalati-native-program.ts'];
 
 /** The defining source/tool/host specification, shared with the CI input publisher. */

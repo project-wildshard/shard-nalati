@@ -299,6 +299,937 @@
           "targetBlob": "0928e9ce0042954fa9381e924d1419e99c04e64e"
         }
       ]
+    },
+    {
+      "sourcePath": "test/held-bow-product.test.ts",
+      "sourceBlob": "8644d00a7045d8cae9abbd8d483980bb7337ec7b",
+      "targetPath": "test/ci21-candidate/held-bow-product.test.ts",
+      "targetBlob": "a9fbdd81f33ccce91b8ebe05845de50fe12b511c",
+      "originalTests": [
+        "the named bow retains the original bytes, pool channels and borrowed arrays",
+        "actual named admission rejects malformed bow and pool bytes",
+        "the product input recorder sees the raw bow and its existing producer"
+      ],
+      "fixturePath": "public/assets/nalati/baked/recurve-pool.json",
+      "fixtureBlob": "d51c3a43677323a7cb9717bee1a640f1c31cd878",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11."
+    },
+    {
+      "sourcePath": "test/nalati-herd-binary.test.ts",
+      "sourceBlob": "a00a36db161c33f23bfdd82e4558af35cfe84c08",
+      "targetPath": "test/ci21-candidate/nalati-herd-binary.test.ts",
+      "targetBlob": "382f9e110dda0855fe8b3bc4b1abae40b372ee6e",
+      "originalTests": [
+        "the generated programme stays binary through the existing project reader and original scope"
+      ],
+      "fixturePath": "test/fixtures/nalati-titan.ts",
+      "fixtureBlob": "4e7808f0192aec9a547fea17a1b96a8878d2ea73",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. OS scratch moves into repo-owned tmp; actual project reader, module bytes and scoped owner stay."
+    },
+    {
+      "sourcePath": "test/nalati-king-pose.test.ts",
+      "sourceBlob": "c01a321d861edeb5529c19684016343ba9a9cd96",
+      "targetPath": "test/ci21-candidate/nalati-king-pose.test.ts",
+      "targetBlob": "a7a05d960ede8ad9dda7fdb7126a8c1806bd94bc",
+      "originalTests": [
+        "King pose rows retain every joint through the full fight and its reset",
+        "species channels drive the original joints without writing actor memory",
+        "balbal decisions rise, strike once, return and sink on the bounded guest tick",
+        "packed species bodies lend owned indexed geometry for every family"
+      ],
+      "fixturePath": "test/fixtures/nalati-king-pose.ts",
+      "fixtureBlob": "ca7be61517811d36cfb5f6a0322b2676db735e3e",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. Frozen pose oracle moves unchanged apart from public imports; equivalent property spelling satisfies typed lint."
+    },
+    {
+      "sourcePath": "test/nalati-kurgan-fabric.test.ts",
+      "sourceBlob": "7822fdd73d90e71c5c02f64b1f36e470423666a2",
+      "targetPath": "test/ci21-candidate/nalati-kurgan-fabric.test.ts",
+      "targetBlob": "07c2792846950958caab945dfdca98f9db82d0f5",
+      "originalTests": [
+        "baked Kurgan fabric preserves shipping geometry, lighting, colliders and sand"
+      ],
+      "fixturePath": "test/fixtures/kurgan-oracle/dungeon.ts",
+      "fixtureBlob": "84b29de742e18099e434a9fd75a65cc664f292b2",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. Original setup narrows to the exact original shape-bank and registry needed by every unchanged mesh/collider/floor/sand assertion."
+    },
+    {
+      "sourcePath": "test/nalati-place-binary.test.ts",
+      "sourceBlob": "1e525accef9551ad4b7f5fbd5e4e1d1c7ce019fa",
+      "targetPath": "test/ci21-candidate/nalati-place-binary.test.ts",
+      "targetBlob": "7b9776d30822c9ccf7f7ea5363f11ff3f9826ace",
+      "originalTests": [
+        "the two named floor rasters read their exact blocks, NaN words included"
+      ],
+      "fixturePath": "test/fixtures/nalati-floor-original-0.bin",
+      "fixtureBlob": "c940b7112e08c6c4395b6fcfcf44286888d74343",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11."
+    },
+    {
+      "sourcePath": "test/nalati-quest-prop-binary.test.ts",
+      "sourceBlob": "cd95c70fa3d4a9c97e4165cddb774af6995f8a4b",
+      "targetPath": "test/ci21-candidate/nalati-quest-prop-binary.test.ts",
+      "targetBlob": "a543226373895f38d56193a9a456fd53bd0c6386",
+      "originalTests": [
+        "the carried specimen prepares the exact original geometry through its named product file"
+      ],
+      "fixturePath": "test/fixtures/nalati-quest-prop-original.bin",
+      "fixtureBlob": "b758f49acff0c77b1f4dd2ab36e4d9627ab33b6a",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11."
+    },
+    {
+      "sourcePath": "test/nalati-script-sections-source.test.ts",
+      "sourceBlob": "385022695cb3a035bcea5107d3ca65ddb7d883c8",
+      "targetPath": "test/ci21-candidate/nalati-script-sections-source.test.ts",
+      "targetBlob": "f009459438cf2cee21332cf46d53ec8da4f663a8",
+      "originalTests": [
+        "only the selected held executable consumes supplied artifact fields",
+        "owned result mutations cannot change another construction or retained default"
+      ],
+      "fixturePath": "test/fixtures/nalati-script-inventory.ts",
+      "fixtureBlob": "11bb066e2a0ec4862d9aa034066888a2981ec31e",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11."
+    },
+    {
+      "sourcePath": "test/nalati-shape-files.test.ts",
+      "sourceBlob": "8ff2c48ec8204f22444027b655c35d7639cc6a4b",
+      "targetPath": "test/ci21-candidate/nalati-shape-files.test.ts",
+      "targetBlob": "9c7bc5221ab1b5876c76e1f3035fdfffbac86171",
+      "originalTests": [
+        "all named shape blocks preserve the original raw bytes and geometry metadata",
+        "the product owner restores every original painted shape through file intake"
+      ],
+      "fixturePath": "test/fixtures/nalati-shape-blocks.json",
+      "fixtureBlob": "14201dec2c71429fbb2469cc3ed8a545794e3d43",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11."
+    },
+    {
+      "sourcePath": "test/nalati-shape-product-lanes.test.ts",
+      "sourceBlob": "8994b1959adbab362387979312373c912f6b924b",
+      "targetPath": "test/ci21-candidate/nalati-shape-product-lanes.test.ts",
+      "targetBlob": "2df63ce1d9a3aebad6eccfb8bad62a77c261fd6f",
+      "originalTests": [
+        "all 36 original actor shapes use the admitted bank with complete geometry parity"
+      ],
+      "fixturePath": "test/fixtures/nalati-shape-book-original.json",
+      "fixtureBlob": "f1acf901705ff2d1b04e4e0cf90b91603717656b",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. Explicit undefined guards admit the original JSON union to the strict compiler; valid original lanes and comparisons stay unchanged."
+    },
+    {
+      "sourcePath": "test/nalati-species-product-inputs.test.ts",
+      "sourceBlob": "1e5390eb46623c5627b049abd8e9310394f47b64",
+      "targetPath": "test/ci21-candidate/nalati-species-product-inputs.test.ts",
+      "targetBlob": "105f9038576297a1d2138ed0db1056c58db04ee6",
+      "originalTests": [
+        "witness bytes and species pages retain their separate original budget charges",
+        "original module deduplication prevents charging an existing module payload twice",
+        "separate headers own their admitted file rows and budget storage",
+        "invalid explicit species page and witness costs refuse before composition",
+        "explicit held inputs retain the complete original header and separate compiled/page charges",
+        "held and stealth legacy pages remain separately charged while duplicate payloads stay deduplicated",
+        "invalid explicit held compiled and executable costs refuse before composition",
+        "render rows must be explicit and schema-admitted before header composition"
+      ],
+      "fixturePath": "test/fixtures/nalati-render-rows.json",
+      "fixtureBlob": "ff47d33c4519ef879eb2b90aac0f48aa6f8e60e3",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. Use the existing SA11-renamed shardfile-inputs helper; the defining header/cost producer is the same."
+    },
+    {
+      "sourcePath": "test/nalati-view-binary.test.ts",
+      "sourceBlob": "d35e46e4612c85f039da3d0cbff78acc65082090",
+      "targetPath": "test/ci21-candidate/nalati-view-binary.test.ts",
+      "targetBlob": "0c27ff2362b2373fb7b64bdbd0af86d60c34f250",
+      "originalTests": [
+        "raw creatureViews names its shipped bytes and passes view admission",
+        "raw eliteViews names its shipped bytes and passes view admission",
+        "raw titanView names its shipped bytes and passes view admission",
+        "raw titanFireView names its shipped bytes and passes view admission",
+        "raw titanWhirlsView names its shipped bytes and passes view admission"
+      ],
+      "fixturePath": "test/fixtures/nalati-view-modules.ts",
+      "fixtureBlob": "6f7fa7b2714eebc4138546d983fe8a4ccfb8cc23",
+      "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. Expand the original hard-coded five-row test.each table into five direct cases through its unchanged assertion body; no dynamic module inventory was replaced."
     }
+  ],
+  "supportFixtures": [
+    {
+      "targetPath": "test/fake/bossArena.ts",
+      "targetBlob": "fa1defa030e1ddc0153a75736a441c868526ad99"
+    },
+    {
+      "targetPath": "test/fake/nalatiSpecies.ts",
+      "targetBlob": "91a1c98ec491bfa4c76d52bbf8d25dd078f044fc"
+    },
+    {
+      "targetPath": "test/fixtures/check-nalati-species-source.ts",
+      "targetBlob": "da0354a8d472ec05b6d970627a81e12755fffb5f"
+    },
+    {
+      "targetPath": "test/fixtures/geometry-cache-author-observation.ts",
+      "targetBlob": "73419896a3b706aba683b2a36f07d5ff3883bf8f"
+    },
+    {
+      "targetPath": "test/fixtures/geometry-cache-author-original.json",
+      "targetBlob": "091fea54db11679ebdc852c0a241033bca4fc752"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-mounted-raid-snapshot.ts",
+      "targetBlob": "d06ecfb51e7210ffcd3fdcf67dd2819ca34ac1e0"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-mounted-raid.ts",
+      "targetBlob": "be90c0be6f7ebd216dbdce575f1738650c410ce6"
+    },
+    {
+      "targetPath": "test/fixtures/kurgan-oracle/dungeon.ts",
+      "targetBlob": "84b29de742e18099e434a9fd75a65cc664f292b2"
+    },
+    {
+      "targetPath": "test/fixtures/kurgan-oracle/source.json",
+      "targetBlob": "13fc02a145daa40c31ff95bf7480c68d0f073a64"
+    },
+    {
+      "targetPath": "test/fixtures/legacy-oracles/nalati-people.d.json.ts",
+      "targetBlob": "8d55b137cec66b42ebb848071010fdc9148c6186"
+    },
+    {
+      "targetPath": "test/fixtures/legacy-oracles/nalati-people.json",
+      "targetBlob": "53def98d9dde4291ad0360b588fb36e9d6cd63ec"
+    },
+    {
+      "targetPath": "test/fixtures/legacy-oracles/nalati-sheep.json",
+      "targetBlob": "a2af2dfff66928146d37efba399f8f8d1ca28c6f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-admission-loan.ts",
+      "targetBlob": "350dfa81b1cd51031c319f4c80036cb367327659"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-admission-original.json",
+      "targetBlob": "0916ee13d64abc00431a961eba7c0a3fcfc5fe9e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-admission-original.wasm",
+      "targetBlob": "f24dd5c0e3a3255da07f1501a669ea2fce16dba3"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-admission-witness-original.bin",
+      "targetBlob": "eb461b6a3619d1bc6cf11fd1971c161ea93a1e7d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-admission.ts",
+      "targetBlob": "c789c8cf86045c2e1876157543504c55f1557615"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-ambient-observation.ts",
+      "targetBlob": "190f8de06f5659bbebf346acc81687a2c2b6ed1b"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-ambient-original.json",
+      "targetBlob": "4de13fb18556107c236d01eb8614076da5da560a"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-balbal-original.json",
+      "targetBlob": "7b4ac4951b7cd098a54ce79a79e48a8bfb668af0"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-balbal.ts",
+      "targetBlob": "533a0d5ecd8f5600192e1973c489898f385add67"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-boot-original.json",
+      "targetBlob": "d78e95d463c0552fdc1e9df4c3c682cddfac007a"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-carried-quest.ts",
+      "targetBlob": "a2baa419ff70e0ae0891cba8ea60031219bb268b"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-charge-compile.mjs",
+      "targetBlob": "bb6606a937b075e52e313a4818f5bcb93c2a1f18"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-charge.ts",
+      "targetBlob": "3e312e5fa413aaf01d7b8c982778c85d6c4cf658"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-committed-places.ts",
+      "targetBlob": "131de4e743b1caee1156a4715557f86a1e9ae4c7"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-contact-blocks.json",
+      "targetBlob": "e71681c8a7d2c63e13e3144e6f5826d84543dfa9"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-contact-transport.ts",
+      "targetBlob": "053f4b793478d31cd740d9d0972b7cb5dc71fff5"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-cover-files.json",
+      "targetBlob": "4766549d96f99a30d5bb72db877c6f7b2a2814be"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-cover.ts",
+      "targetBlob": "0cd852ae75b44a63e98d7d13360d2b29f35c7339"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-crag-bake.json",
+      "targetBlob": "13f1eeace83524c0372443d4e13150aa3d85f440"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-crag-blob.json",
+      "targetBlob": "6a429625e6f222f78fc389c1afc07b07d7cdd235"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-crags.ts",
+      "targetBlob": "1b7cbf257851bdfb952f5165a44c65825e88044d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-creature-view-native.ts",
+      "targetBlob": "6ca59105a0a2e9ee4f319a647e5f6b2571baba70"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-current-held.ts",
+      "targetBlob": "19dff43b14521cc0e6198a03efef8205bbdb40e6"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-decorative.json",
+      "targetBlob": "4a19fa3532a876b4d3a388401663090b0744e62e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-decorative.ts",
+      "targetBlob": "6369686085582cf61d817dce1aebde4f5244bf84"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-dressing-geos.json",
+      "targetBlob": "2c772eb628bfd51b6625b41ded5797e720180725"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-dressing-placements.ts",
+      "targetBlob": "76c62b2cc4af8ed4bf2dadb7c46c64aa24975093"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-dressing-scene.ts",
+      "targetBlob": "ce9e818cc72be6aa1306f9db7022e4f324eb6452"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-dressing-schema-original.json",
+      "targetBlob": "54621287df46fdc766ee14f1c4ae3568f44f7681"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-dressing.bin",
+      "targetBlob": "29011de9ee1237cd3cc2de09d9261d4d7af8b7f5"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-fabric-world.ts",
+      "targetBlob": "5d6c01548506ea3fde43ead11d24b7376fb61865"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-floor-original-0.bin",
+      "targetBlob": "c940b7112e08c6c4395b6fcfcf44286888d74343"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-floor-original-1.bin",
+      "targetBlob": "0cb78f0594b967035c1e1df18d90b71982f03e47"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-geography-blocks.json",
+      "targetBlob": "8050265741a3852e28e72f9394409e75abac9321"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-geography-files.json",
+      "targetBlob": "45de08fe6b0c21cd67fa4eeb446a548882380fd1"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-geography-original.bin",
+      "targetBlob": "b8de08b4c34a34e705fc9a555430a72f33dd5f29"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-geography-original.json",
+      "targetBlob": "e1512a64fcaff1a57b3c6a30f87cf5327ce01913"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-geography-original.ts",
+      "targetBlob": "116c5a4b7db384e152916c7101fac026aedfbcbc"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-goldenKing-original.json",
+      "targetBlob": "8cbec553d7c3433636f1b087f38ff7016e5e1646"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-goldenKingPose-original.json",
+      "targetBlob": "cb3a1700ef1db9492b45e1668dbc4b4b45912411"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-grass-bake.ts",
+      "targetBlob": "4b6c74dadb97e9c700faf7611c07ad9864e06271"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-group-inputs.ts",
+      "targetBlob": "c1cb4e3fce3b77dde3b9152598339bb9a8685971"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-headless-assembly.ts",
+      "targetBlob": "d2dfea5017677836f19c367769072a32eba49c33"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-held-files.json",
+      "targetBlob": "a31f323af84df41ac6184e5d13c2a4113b363769"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-held-loan.ts",
+      "targetBlob": "7c43b9d0b6fc5a5fdc3b4925c7e5db378b2a3186"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-held-original.ts",
+      "targetBlob": "97bb83940725fdf6669c1e80864fd108c46af3d5"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-herdChannels-original.d.json.ts",
+      "targetBlob": "a69dd657f64fa2df084b4e66b23a6f7d9921c053"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-herdChannels-original.json",
+      "targetBlob": "be2a4fed4022c72a1998db9ea3b84e83c4a402d0"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-king-continuation.ts",
+      "targetBlob": "13da3c3be47f3128b90fbe46634f7da15278ee38"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-king-data.ts",
+      "targetBlob": "bfec7a8cb932801bfee64f5a7c9744b2f525c93e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-king-pose.ts",
+      "targetBlob": "ca7be61517811d36cfb5f6a0322b2676db735e3e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-kokpar-compile.mjs",
+      "targetBlob": "29183649ef0dd352f89ce7d3c7a695e532408c2f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-kokpar-loan.ts",
+      "targetBlob": "b10f689ee0d5561b08a327de77daebdd73546ed1"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-kokpar-oracle.ts",
+      "targetBlob": "d916fb4bf952421fb4a3a285bbd42a7cfd557c13"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-kokpar.ts",
+      "targetBlob": "01f9bb170c1f68b8045d4bd0ed1555e688cb1b78"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-kurganLayout-original.json",
+      "targetBlob": "56003837c7ffd6814660d74258657aa10dd1422d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-model-paint.json",
+      "targetBlob": "7e1302ecd787fc12f96eac6250ab2be5ffde0d1d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-model-parts.json",
+      "targetBlob": "927e0452f75aa2e4eef9144b1b1402db7b089b77"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-assembly-compile.mjs",
+      "targetBlob": "276ac4520a4835f8cc8f3ec1b32075b645737a6f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-assembly-inputs.ts",
+      "targetBlob": "8e5fcc182bec0c53068d8f162bef22b003d1f43e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-assembly.ts",
+      "targetBlob": "54f0389fb689cb386fc8441056bd5d6d54c4b8bc"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-boot-compile.mjs",
+      "targetBlob": "3921d06b50d12d087d34501b846a90b3421f8e39"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-boot-inputs.ts",
+      "targetBlob": "830778861d3456e20ade508b9aa05d6c99300cf5"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-boot.ts",
+      "targetBlob": "e1b502aec1ca4795bb5c8e7b9f99426e7af8e781"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-place-files.ts",
+      "targetBlob": "ff87ebf608a57bcb2d980868fb3fb67888c7a6a6"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-places-compile.mjs",
+      "targetBlob": "cb1704278644cb1cfb71833765f4d40499676728"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-program.ts",
+      "targetBlob": "730ec8b1111eb49823f3f60b246945c5cd2a2037"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-navigation-original.json",
+      "targetBlob": "c90079e8149b74958a279bc10fd7f631b0509e8f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-night.ts",
+      "targetBlob": "00dda09173a8d2360ae02987faf145a272194dec"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-original-place-binary.ts",
+      "targetBlob": "cf147154c229ff619c2f9c6180b3b2ae8e92118d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-original-render-blob.ts",
+      "targetBlob": "2c045802f230b0ec88df2d472c7e67ccdb6756f6"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-original-species-blob.ts",
+      "targetBlob": "a76aa0e4aec528e4ae9936d2414bc9698ef1d88e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-original-species.ts",
+      "targetBlob": "e1bf905559a65f78370d78765ef47773f2bcfc57"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-output-cache.ts",
+      "targetBlob": "30d4668646fdc33a5ca2acea03bfc5141849c3ee"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-output-original.ts",
+      "targetBlob": "1e93ed827c0c6961711d0dfd87679487c622c157"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-owned-models.ts",
+      "targetBlob": "45e91612cf08e7361eb5b092af03c3ef1785fbed"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-packed-specimens-original.json",
+      "targetBlob": "9e5dac9163196a833f4c310d7fa9fcc9c48a87b5"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-painted-models.ts",
+      "targetBlob": "b8dba06ea129d07bc4ca5fa4b6bdc2dcf7a72bae"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-painter-inputs.json",
+      "targetBlob": "a45706e8479e8856fdfb2c2abdc05f475009378c"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-persistence-original.json",
+      "targetBlob": "03c7f77873633efa269e374db052e898efbef615"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-physics-original.d.json.ts",
+      "targetBlob": "4a72242fb8b2ba92a42eff89fbef43d9a4e28e29"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-physics-original.json",
+      "targetBlob": "74a390994ad8c7d40571cd6f11dc572b8b3441d9"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-physics-original.ts",
+      "targetBlob": "70c3be609813eed9f2bb960dcb8f90063b27f82c"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-place-runtime-files.json",
+      "targetBlob": "44a10e909c74f0bdaae109cb22e555bd75c2b2a9"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-place-wires.json",
+      "targetBlob": "78726c5d158da04249ccc95495c7d9c8af711474"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-places-original.json",
+      "targetBlob": "79261a64617da74fb9f6a9090632dace7a815777"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-poi-paint-files.json",
+      "targetBlob": "8e1a38282a9eccd41a9730b39d762f6ab3272af7"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-poi-paint-original.d.json.ts",
+      "targetBlob": "898f68e67172bc021cc45f3d24fc0df1b4a5c6f2"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-poi-paint-original.json",
+      "targetBlob": "b7d2b9828941c94af4353f06502b04402160887f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
+      "targetBlob": "e2d872a4ada05ea62792a369b49899ea36673a71"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-poi-paint.json",
+      "targetBlob": "8e63acc1ce3a60e8e928023bfb39ccc172e2758d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-poi-scenes.json",
+      "targetBlob": "bef28f5274b891faff7884e4cc69b9480e55c03a"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-poi-shapes-original.bin",
+      "targetBlob": "b25530cf4a29189190aa2f797b1ad74ae5e2bf25"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-population-field-original.json",
+      "targetBlob": "521353cf849462ff86ddae1b9c81dc83ae773e9c"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-predators-native.ts",
+      "targetBlob": "035dead09fd2b6cec25ff4370eca9b66b525494a"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-project.ts",
+      "targetBlob": "31c69ec43f0979d32ae5e7746dfd83f983df5c20"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-query-terrain-original.json",
+      "targetBlob": "9ddfab3b7a9dcd7ed01840e8ec23a379b0139736"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-quest-prop-original.bin",
+      "targetBlob": "b758f49acff0c77b1f4dd2ab36e4d9627ab33b6a"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-quest-prop-original.json",
+      "targetBlob": "f5de3286160051451868dbc136ca0f4b6fc582b8"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-recurve-source-original.json",
+      "targetBlob": "e1fd88b4a472591ac8268e22df2d03c6097c28e2"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-i3.ts",
+      "targetBlob": "8405b12175c9c4b8f24a9add2aceb08623a5f3d3"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-0-0.bin",
+      "targetBlob": "414eb4f64f9308ec4e87feb732f65fa3e933c848"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-0-1.bin",
+      "targetBlob": "b10551fe39043ed269331081543c60e5120477f6"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-0-2.bin",
+      "targetBlob": "426fc083d72c6f4083edd5a80f6a86379be7a479"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-0-3.bin",
+      "targetBlob": "683915d3233ce94b426d2760b70f126ccfc2c5cc"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-1-0.bin",
+      "targetBlob": "5c8ea601fa35911aebc15e3c5f178cf412e65bcc"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-1-1.bin",
+      "targetBlob": "ad753036a0b277e1a803c29ab55546e6a686145f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-1-2.bin",
+      "targetBlob": "7ebe69ee9919ab0df956bb0dc6e971288b5b389e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-l1/ground-l1-1-3.bin",
+      "targetBlob": "f372f2341122836236907477307f9bd8cb68a69f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-rows.json",
+      "targetBlob": "ff47d33c4519ef879eb2b90aac0f48aa6f8e60e3"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-render-source-files.json",
+      "targetBlob": "ab802b044b16617f85d9cd884aaa6b5ba9a3275f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-return-modules.ts",
+      "targetBlob": "bc8b8a13bf5dc12de76d8aa05c48437a93343cb0"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-riding-compile.mjs",
+      "targetBlob": "751f723e9238e33cc65690910f00f27738880b4f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-riding-loan.ts",
+      "targetBlob": "59b3b25df9240e8981445229650ce27510bd57f4"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-riding.ts",
+      "targetBlob": "6a45323812d333e4210217f42a950d7373736d18"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-rifle-original.json",
+      "targetBlob": "62eba12424ca750565f26405f4e379daf4033036"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-rig-group-author-original.json",
+      "targetBlob": "df70e4b11a25afc0e0f1b0a3ce9873001db2ce2b"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-row-author-observation.ts",
+      "targetBlob": "4bf204da178cbb80b7589f76cd4729e637cef7a1"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-row-author-original.json",
+      "targetBlob": "05e880e49940576072f1566b9e452114233d372d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-runtime-wire.ts",
+      "targetBlob": "63d5d0e55c418064c91776d3634b5f620fd7dab6"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-runtime.ts",
+      "targetBlob": "979aab8989aa495a9e944d5e91f4fc2043c4da09"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-scalar-blocks.ts",
+      "targetBlob": "80c81d181eb583ff5bd15c51d7a5b4f9be5e7e05"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-scene-provenance.ts",
+      "targetBlob": "01032b07caced0548e1baa00d1e23c3bdde0b9ac"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-script-inventory.ts",
+      "targetBlob": "11bb066e2a0ec4862d9aa034066888a2981ec31e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-shape-blocks.json",
+      "targetBlob": "14201dec2c71429fbb2469cc3ed8a545794e3d43"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-shape-book-original.json",
+      "targetBlob": "f1acf901705ff2d1b04e4e0cf90b91603717656b"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-shardfile-inputs.ts",
+      "targetBlob": "e7e88034c65bdeda4962c50919062baf59ed50a4"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-shardfile-source.ts",
+      "targetBlob": "4d9c83cacc3cb3b42aee1c92742dcc4755be31bd"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-sky-ports-original.json",
+      "targetBlob": "3309098205385ef3426bf0eef7bffdb9693db456"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-spear.ts",
+      "targetBlob": "22e17b1a455dbfdd3ed8cf276b4b472c0be8bd3c"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-species-files.json",
+      "targetBlob": "17924d4f6b5bb91a750ddd69699b1745dffa61a0"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-species-world.ts",
+      "targetBlob": "25b4a85d95b61a259b4ab6ca565b6246db95e55e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-specimens-original.json",
+      "targetBlob": "267c154ab44c8f229e3de834a7ed7643105340bf"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-specimens.ts",
+      "targetBlob": "220861bf2328a702659aae2e7c7c3faae66996ef"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-static-contacts.json",
+      "targetBlob": "79d4b6a2cbfd1ac55f412451a909f0fc8f96743d"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-storm-titan.json",
+      "targetBlob": "caab407cd72f69511ecf47ca82d973d6fd71c585"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-strikeProfiles-original.json",
+      "targetBlob": "c2d6d686332088bb31fb17b3c48a78be7e1078b4"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-strikes.ts",
+      "targetBlob": "daf931b7494647af1fca9a97f1c50412479b992c"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-taming-pose.ts",
+      "targetBlob": "44b10ed520eb63714cf6c01ce525f373d05ef79b"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-terrain.ts",
+      "targetBlob": "54c99e493ad44a8789aa4d002dd834634772fd43"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-titan-compile.mjs",
+      "targetBlob": "124fe3f05846e99a6418b6b083bc14b2a3e43eb4"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-titan.ts",
+      "targetBlob": "4e7808f0192aec9a547fea17a1b96a8878d2ea73"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-view-compile.mjs",
+      "targetBlob": "e2af0bd779084e90061cd839013eb632d853f47e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-view-modules.ts",
+      "targetBlob": "6f7fa7b2714eebc4138546d983fe8a4ccfb8cc23"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-weapon-observation.ts",
+      "targetBlob": "0928e9ce0042954fa9381e924d1419e99c04e64e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-weapons-native.ts",
+      "targetBlob": "75d63fce2901ab10b76e4377106fb71a44e222f4"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-weather-original.json",
+      "targetBlob": "bb05687dfded1913f22bad7fa0b299ebad1856ff"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-weather-original.wasm",
+      "targetBlob": "5b6e72e08d0f946542922facc906ab8ae5551be2"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-weather.ts",
+      "targetBlob": "dc968f0aca1b3e1a30597ee54076a3de87549669"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-weatherChannels-original.d.json.ts",
+      "targetBlob": "730ddd1329609e7d54b9485f9aadea56a17da22f"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-weatherChannels-original.json",
+      "targetBlob": "c139eacef2432f14b8171a830bb5c4bda09dc69e"
+    },
+    {
+      "targetPath": "test/fixtures/nalatiGrass.ts",
+      "targetBlob": "a09809e1c033e307e2c4ed5755cb9ffc173a07b5"
+    },
+    {
+      "targetPath": "test/fixtures/nalatiShapes.ts",
+      "targetBlob": "bfca1115ff5fa74a120e8766c8b8e7c1ef7fdeaf"
+    },
+    {
+      "targetPath": "test/fixtures/native-oracle.ts",
+      "targetBlob": "c0e6e2cd002af17281106b61dd0a468ba0606c15"
+    },
+    {
+      "targetPath": "test/fixtures/native-program.ts",
+      "targetBlob": "88a08adaa8af328739194193b1c36b39cc731ad7"
+    },
+    {
+      "targetPath": "test/fixtures/original-script-order.ts",
+      "targetBlob": "75bc554b5f4eb6d0222c5a526c81098b0d3901fa"
+    },
+    {
+      "targetPath": "test/fixtures/originalNalatiAudio.ts",
+      "targetBlob": "f7f56aa509182f7222a10fdba343cffcc8e4fa78"
+    },
+    {
+      "targetPath": "test/fixtures/originalNalatiAudioPhrases.ts",
+      "targetBlob": "1cd89f9cfccf90fb3cb3924c0a35df33a997ded6"
+    },
+    {
+      "targetPath": "test/fixtures/originalNalatiStrikeRows.ts",
+      "targetBlob": "740b9baa726d9e04fb2527768366ec9bf6d47db4"
+    },
+    {
+      "targetPath": "test/fixtures/prepare-nalati-original-species.ts",
+      "targetBlob": "78ade7c29e8a0081d7333e46ea7bdb112b80fb96"
+    },
+    {
+      "targetPath": "test/fixtures/productFile.ts",
+      "targetBlob": "37dcf503cd865ad60349932b0549a40848d7ae81"
+    },
+    {
+      "targetPath": "test/fixtures/runSnapshot.ts",
+      "targetBlob": "4ce8e4da8c4cc45375bbcdf4e10ac049bac24c0c"
+    },
+    {
+      "targetPath": "test/fixtures/species-barrel-author-original.json",
+      "targetBlob": "62009c0307777eddf73066575f68f7730e03d67a"
+    },
+    {
+      "targetPath": "test/fixtures/spruce-author-observation.ts",
+      "targetBlob": "38b56cf3abdb3b6198e8362bcd088cef06236d3a"
+    },
+    {
+      "targetPath": "test/fixtures/spruce-author-original.json",
+      "targetBlob": "e54ca209f7640eeb2c15ee93a69c5bf17112f88e"
+    },
+    {
+      "targetPath": "test/fixtures/titanInlineWitness.ts",
+      "targetBlob": "30d17e5b11a1250785ade2137ee93300127ed37b"
+    },
+    {
+      "targetPath": "test/fixtures/view-author-original.json",
+      "targetBlob": "723fd5778f4428b752956b6fe12be0b77cd3ffd0"
+    }
+  ],
+  "typedLintFiles": [
+    "test/ci21-candidate/held-bow-product.test.ts",
+    "test/ci21-candidate/nalati-cloth-publication.test.ts",
+    "test/ci21-candidate/nalati-contact-publication.test.ts",
+    "test/ci21-candidate/nalati-decorative-scene.test.ts",
+    "test/ci21-candidate/nalati-firearm-admission.test.ts",
+    "test/ci21-candidate/nalati-herd-binary.test.ts",
+    "test/ci21-candidate/nalati-king-pose.test.ts",
+    "test/ci21-candidate/nalati-kurgan-fabric.test.ts",
+    "test/ci21-candidate/nalati-place-binary.test.ts",
+    "test/ci21-candidate/nalati-quest-prop-binary.test.ts",
+    "test/ci21-candidate/nalati-script-sections-source.test.ts",
+    "test/ci21-candidate/nalati-shape-files.test.ts",
+    "test/ci21-candidate/nalati-shape-product-lanes.test.ts",
+    "test/ci21-candidate/nalati-species-product-inputs.test.ts",
+    "test/ci21-candidate/nalati-view-binary.test.ts",
+    "test/ci21-candidate/nalati-weapon-observation.test.ts",
+    "test/fake/bossArena.ts",
+    "test/fake/nalatiSpecies.ts",
+    "test/fixtures/kurgan-oracle/dungeon.ts",
+    "test/fixtures/nalati-admission.ts",
+    "test/fixtures/nalati-balbal.ts",
+    "test/fixtures/nalati-carried-quest.ts",
+    "test/fixtures/nalati-charge.ts",
+    "test/fixtures/nalati-contact-transport.ts",
+    "test/fixtures/nalati-cover.ts",
+    "test/fixtures/nalati-crags.ts",
+    "test/fixtures/nalati-decorative.ts",
+    "test/fixtures/nalati-dressing-scene.ts",
+    "test/fixtures/nalati-fabric-world.ts",
+    "test/fixtures/nalati-grass-bake.ts",
+    "test/fixtures/nalati-held-loan.ts",
+    "test/fixtures/nalati-held-original.ts",
+    "test/fixtures/nalati-king-pose.ts",
+    "test/fixtures/nalati-kokpar.ts",
+    "test/fixtures/nalati-native-assembly-inputs.ts",
+    "test/fixtures/nalati-native-place-files.ts",
+    "test/fixtures/nalati-native-program.ts",
+    "test/fixtures/nalati-original-place-binary.ts",
+    "test/fixtures/nalati-original-species.ts",
+    "test/fixtures/nalati-output-original.ts",
+    "test/fixtures/nalati-poi-paint-original.ts",
+    "test/fixtures/nalati-return-modules.ts",
+    "test/fixtures/nalati-riding.ts",
+    "test/fixtures/nalati-runtime.ts",
+    "test/fixtures/nalati-scene-provenance.ts",
+    "test/fixtures/nalati-script-inventory.ts",
+    "test/fixtures/nalati-shardfile-inputs.ts",
+    "test/fixtures/nalati-spear.ts",
+    "test/fixtures/nalati-species-world.ts",
+    "test/fixtures/nalati-specimens.ts",
+    "test/fixtures/nalati-titan.ts",
+    "test/fixtures/nalati-view-modules.ts",
+    "test/fixtures/nalati-weapon-observation.ts",
+    "test/fixtures/nalati-weather.ts",
+    "test/fixtures/nalatiShapes.ts",
+    "test/fixtures/native-oracle.ts",
+    "test/fixtures/native-program.ts",
+    "test/fixtures/original-script-order.ts",
+    "test/fixtures/productFile.ts",
+    "test/fixtures/runSnapshot.ts",
+    "test/fixtures/titanInlineWitness.ts"
   ]
 }

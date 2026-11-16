@@ -10,6 +10,8 @@ overrides:
   assemblyscript>binaryen: npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1
   '@wildshard/format': npm:@wildshard/shard-format@0.4.9
 
+packageExtensionsChecksum: sha256-op0MFULzVAvilfo1RFw2RpCuLNkXV7DMJABjx+iQj58=
+
 importers:
 
   .:
@@ -1867,6 +1869,7 @@ snapshots:
 
   navcat@0.4.1(three@0.186.0):
     dependencies:
+      '@types/three': 0.186.0
       mathcat: 0.0.12
     optionalDependencies:
       three: 0.186.0
@@ -1977,6 +1980,7 @@ snapshots:
 
   postprocessing@6.39.5(three@0.186.0):
     dependencies:
+      '@types/three': 0.186.0
       three: 0.186.0
 
   preact@11.1.1: {}

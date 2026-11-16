@@ -23,7 +23,7 @@ weapon observation. Actual compiler, typed lint, retained source/input
 bindings and all11 cases pass8.65s against a real packed engine source
 candidate. That artifact adds the prepared terrain-contract/state-
 adapter extraction and defining native schema export; its exact patch
-is tmp/codex-tc48/terrain-source.patch. These engine changes are NOT on
+is tmp/codex-tc48/engine-c3-source.patch. These engine changes are NOT on
 the active engine land. No candidate hosted or default-suite credit.
 
 The added candidate CI leg is separate from default owner admission:
@@ -105,6 +105,47 @@ Rebase onto landed POI a11085f preserved the source and image hashes;
 resolve overlapping own ledger, lint command, hero and journal edits.
 Fresh branch hosted CI must qualify the rebased tree.
 
+C3 final source group: sixteen complete candidate originals retain40
+cases, adding all remaining eleven build/product/script/render files.
+Every original assertion and frozen byte oracle stays. The full King
+pose and Kurgan geometry/light/collider/sand controls pass unchanged;
+fabric setup loads the same original lane bank and registry without
+installing unrelated Pine/Driftwood fixtures.
+
+The candidate compiler includes the engine's defining declaration
+merges and globals through a prepared public export, and turns on
+exactOptionalPropertyTypes to match the defining engine project. It
+uses actual @types/three0.186.0 for postprocessing/navcat in the isolated
+pnpm graph. No invented ambient type or ignored compiler error.
+
+Restore the missing native fixture utilities through public engine
+cache/loader entries and real SDK compilation entries. Three child
+programs call the production charge, kokpar/course and view builders.
+The optional private raw-compiler memo is omitted; complete compiled
+outputs still use the existing source/tool/host cache with all authored
+src, package/lock, job and helper bytes fenced. Installed packages are
+immutable and bind by the actual lock integrity; paths outside the
+consumer root never enter the local-source hash reader.
+
+Retain179 complete fixture/fake inputs, with strict compilation and
+typed lint over61 test/helper files. The dispatch job needs its normal
+15-minute build/journey budget (the POI hosted Ring2 already took over
+five active minutes), while every individual test budget stays. No
+original removal or C3 tick before hosted exact source qualification.
+
+Final tracked-source qualification uses engine4f6b7e69, including real
+contracts and the public declaration entry, not a prepared uncommitted
+copy. All16originals40cases, strict compiler, complete61-file typed lint,
+179-file retained fixture inventory and candidate public-import guard
+pass (37.59s suite). The exact source patch/path/hash and original
+source diffs are in tmp/codex-tc48/qualification.json and its pointers.
+The J206 record/path MUST is resolved; all16 engine source blobs and
+the original fixed five-row view table were independently verified.
+Default40files95cases/full normal check also pass on unchanged pins.
+No original removal/default admission or whole C3 tick before hosted
+exact-source proof. The legacy geography snapshot fixture belongs to
+the remaining C4/full-world work and is not claimed by these ports.
+
 Hosted checkpoint check failed correctly: the whole-tree import guard
 checked source-only tests/helpers against the published engine pin.
 Split only public-import resolution by actual local dependency reach:
@@ -124,3 +165,7 @@ roots, and trace scripts/hooks as conservative default importers.
 Additional controls prove these paths cannot hide a shared import.
 The full normal check now runs this boundary guard locally as well,
 so the hosted-only omission cannot repeat.
+
+Rebase onto landed6a35c57 retains every checkpoint fix and the
+complete final candidate group; original duplicate51f8a70 was skipped
+because main already contains it. Fresh exact branch CI is required.

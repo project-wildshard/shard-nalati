@@ -2,11 +2,28 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import ts from '@typescript/typescript6';
+import { fileURLToPath } from 'node:url';
+import { dirname, relative } from 'node:path';
 const root=new URL('../',import.meta.url);
 const record=JSON.parse(readFileSync(new URL(process.argv[2] ?? 'test/ci21-wire-ports.json',root),'utf8'));
+for(const fixture of record.supportFixtures??[]){
+ const bytes=readFileSync(new URL(fixture.targetPath,root));
+ if(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==fixture.targetBlob)throw new Error(`CI21 retained support fixture changed: ${fixture.targetPath}`);
+}
 const compiler=JSON.parse(readFileSync(new URL(process.argv[3] ?? 'test/tsconfig.json',root),'utf8'));
 const expected=[...record.files.map(row=>row.targetPath),...record.files.flatMap(row=>row.compilerSupport??[])].map(path=>path.replace(/^test\//u,''));
 if(JSON.stringify(compiler.files)!==JSON.stringify(expected))throw new Error('CI21 golden compiler files differ from retained cases');
+if(record.typedLintFiles!==undefined){
+ const configFile=fileURLToPath(new URL(process.argv[3]??'test/tsconfig.json',root));
+ const parsed=ts.parseJsonConfigFileContent(compiler,ts.sys,dirname(configFile));
+ const program=ts.createProgram(parsed.fileNames,parsed.options);
+ const files=program.getSourceFiles().map(file=>relative(fileURLToPath(root),file.fileName)).filter(file=>file.startsWith('test/')&&file.endsWith('.ts')&&!file.endsWith('.d.ts')&&!file.endsWith('.d.json.ts')).sort();
+ if(JSON.stringify(files)!==JSON.stringify(record.typedLintFiles))throw new Error('CI21 typed lint must cover the complete actual compiler helper closure');
+ const pkg=JSON.parse(readFileSync(new URL('package.json',root),'utf8'));
+ const lint=pkg.scripts['check:ci21-candidate'].split('--deny-warnings ')[1]?.split(' && vitest')[0]?.trim().split(/\s+/u);
+ if(JSON.stringify(lint)!==JSON.stringify(files))throw new Error('CI21 candidate lint command differs from the admitted compiler closure');
+}
+
 function testRoot(node){
   if(ts.isIdentifier(node))return ['test','it','describe'].includes(node.text)?node.text:null;
   if(ts.isPropertyAccessExpression(node))return testRoot(node.expression);
