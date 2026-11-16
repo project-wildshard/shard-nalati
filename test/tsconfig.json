@@ -30,7 +30,8 @@
     "nalati-poi-scenes.test.ts",
     "fixtures/nalati-original-species.ts",
     "fixtures/nalati-native-place-files.ts",
-    "fixtures/nalati-original-place-binary.ts"
+    "fixtures/nalati-original-place-binary.ts",
+    "fixtures/nalati-runtime.ts"
   ],
   "include": []
 }

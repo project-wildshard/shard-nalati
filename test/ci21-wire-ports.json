@@ -222,7 +222,18 @@
       ],
       "fixturePath": "test/fixtures/nalati-poi-scenes.json",
       "fixtureBlob": "bef28f5274b891faff7884e4cc69b9480e55c03a",
-      "changes": "Complete original assertions and both metadata inputs retained; two loop registrations expanded to direct test calls through the unchanged assertion body. Owner source imports and physical bundle entry rewritten only. Real source compiler/lint admission."
+      "changes": "Complete original assertions and both metadata inputs retained; two loop registrations expanded to direct test calls through the unchanged assertion body. Owner source imports and physical bundle entry rewritten only. Real source compiler/lint admission. Equivalent property-access spelling changed for typed lint; no assertion or oracle changed. Root verifies actual engine main source and fixture Git blobs after reviewer Git access refusal.",
+      "sourceRepository": "project-wildshard/engine",
+      "sourceRevision": "ed510f99ccd8dcd4d2dc45bd8cc5b63935d61827",
+      "fixtureSourceRepository": "project-wildshard/engine",
+      "fixtureSourceRevision": "ed510f99ccd8dcd4d2dc45bd8cc5b63935d61827",
+      "preparationHelper": {
+        "targetPath": "test/fixtures/nalati-runtime.ts",
+        "targetBlob": "979aab8989aa495a9e944d5e91f4fc2043c4da09"
+      },
+      "compilerSupport": [
+        "test/fixtures/nalati-runtime.ts"
+      ]
     }
   ]
 }
