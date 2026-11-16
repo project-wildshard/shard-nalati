@@ -28,3 +28,11 @@ this port restores its actual owner, not a runnable engine baseline.
 Both oracle JSON and original terrain bytes are byte-identical to the
 Nalati lift3ce897a, verified directly from their historical Git blobs.
 Full default Ring2 suite passes36files86cases12.72s.
+
+Hosted CI43865845104 static/build-twice green, but content collection hit
+existing14s child fences: the new place compile and both existing species
+compiles competed with other files beside the workflow's background cook.
+Serialize Vitest file workers; retain all36 files/86cases,14s cold-child
+fences,30s cases, full original bytes and every ownership assertion. Local
+default suite now passes37.64s. The unchanged cook remains hosted-only;
+exact corrected hosted CI must qualify this scheduling change before land.
