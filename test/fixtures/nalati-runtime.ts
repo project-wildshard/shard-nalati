@@ -1,7 +1,7 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Prepare native test metadata without a generated runtime handoff.
 import { readFileSync } from 'node:fs';
 import { placeRuntimeRows } from '../../src/generators/placeRuntimeSource.mjs';
-import { buildDressingWire } from '../../src/generators/dressingProgram';
+import { buildDressingWire } from '../../src/generators/dressingWire';
 import specimens from './nalati-specimens-original.json' with {type:'json'};
 
 const places: unknown = JSON.parse(readFileSync('test/fixtures/nalati-places-original.json', 'utf8'));

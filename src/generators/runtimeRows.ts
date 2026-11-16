@@ -3,7 +3,7 @@ import view from '../data/worldView.json' with { type: 'json' };
 import metrics from '../data/modelMetrics.json' with { type: 'json' };
 import capture from '../data/staticCapture.json' with { type: 'json' };
 import { placeRuntimeRows, type PlaceRuntimeRows } from './placeRuntimeSource.mjs';
-import { buildDressingWire } from './dressingProgram';
+import { buildDressingWire } from './dressingWire';
 
 const inputs = {
   'data/campCatalogue.json': catalogue,

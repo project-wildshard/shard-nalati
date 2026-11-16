@@ -208,6 +208,21 @@
       "changes": "All four original cases/assertions and seven exact full output pins retained. Owner imports, physical source input/bundle paths relocated. Historical publication prefix remains in inventory keys and pinned fixture JSON; no hash/path key normalized. Both original full floor binary loans retained byte for byte, complete shapeBook and input immutability, independent mutation/rebuild, original refusal checks and actual single config-safe chunk remain.",
       "fixtureSourceRepository": "project-wildshard/shard-nalati",
       "fixtureSourceRevision": "3ce897a77e401bf2dd5c3f74bc6a84dc7eb67872"
+    },
+    {
+      "sourcePath": "test/nalati-poi-scenes.test.ts",
+      "sourceBlob": "076231c8462c331b4d1bd11c0aaa464bdc660005",
+      "targetPath": "test/nalati-poi-scenes.test.ts",
+      "targetBlob": "936f6a75bbbc75448c85c3e8b233b2239371e101",
+      "originalTests": [
+        "owned places.json metadata retains every original POI scene wire byte",
+        "owned native runtime metadata retains every original POI scene wire byte",
+        "scene nodes preserve actor omissions, slot order and detached material/child arrays",
+        "the POI scene source is one config-safe author chunk"
+      ],
+      "fixturePath": "test/fixtures/nalati-poi-scenes.json",
+      "fixtureBlob": "bef28f5274b891faff7884e4cc69b9480e55c03a",
+      "changes": "Complete original assertions and both metadata inputs retained; two loop registrations expanded to direct test calls through the unchanged assertion body. Owner source imports and physical bundle entry rewritten only. Real source compiler/lint admission."
     }
   ]
 }

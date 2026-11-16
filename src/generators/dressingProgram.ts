@@ -1,12 +1,5 @@
-import { encodeBuildBytes } from '@wildshard/sharddev/bake/byteCodec';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import { bakeDressing } from './dressingGeometryRows';
-import { encodeNalatiPart } from './placeWire';
-
-/** Construct the original native wire once for source and retained CLI readers, without publication. */
-export function buildDressingWire(): ReturnType<typeof encodeNalatiPart> {
-  return encodeNalatiPart(bakeDressing(), bytes => encodeBuildBytes(bytes, 'deflate', 9, 'native'));
-}
+import { buildDressingWire } from './dressingWire';
 
 /** Own the original native dressing geometry and metadata; no public/source file is read or published. */
 export async function nalatiDressingProgram(ctx: Pick<ProjectGenerationContext, 'cached'>): Promise<ReadonlyMap<string, Uint8Array>> {
