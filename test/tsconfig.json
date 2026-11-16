@@ -25,6 +25,7 @@
     "nalati-field-author-ports.test.ts",
     "nalati-original-species.test.ts",
     "nalati-original-place-binary.test.ts",
+    "nalati-decorative-native.test.ts",
     "fixtures/nalati-original-species.ts",
     "fixtures/nalati-native-place-files.ts",
     "fixtures/nalati-original-place-binary.ts"
