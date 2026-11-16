@@ -1,0 +1,8 @@
+{
+  "state": "Full rewards require the repaired candidate engine; the released producer keeps its normal journeys.",
+  "workflow": ".github/workflows/nalati-journeys-contract.yml",
+  "files": [
+    "test/reward-candidate/king-reward.test.mjs",
+    "test/reward-candidate/mounted-rewards.test.mjs"
+  ]
+}

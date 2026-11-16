@@ -12,4 +12,7 @@ for (const [name, sha] of choices) {
   pkg.pnpm ??= {}; pkg.pnpm.overrides ??= {};
   pkg.pnpm.overrides[`@wildshard/${name}`] = spec;
 }
+// A shard's old global format override must not replace the candidate
+// engine's own schema dependency: newer engine exports require its version.
+if (choices[0][1]) delete pkg.pnpm.overrides['@wildshard/format'];
 if (choices.some(([, value]) => value)) writeFileSync('package.json', `${JSON.stringify(pkg, null, 2)}\n`);

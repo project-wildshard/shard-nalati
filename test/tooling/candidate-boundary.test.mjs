@@ -70,3 +70,21 @@ test('a normal external script importer keeps a shared helper on the published b
   put('test/ci21-candidate/held.test.ts', "import '../fixtures/shared';");
   assert.throws(() => checkTestBoundary(root), /engine does not export/u);
 }));
+
+test('reward candidates require their explicit installed runtime verdict', () => fixture((root, put) => {
+  put('test/reward-candidate.json', JSON.stringify({files:['test/reward-candidate/reward.test.mjs']}));
+  put('test/reward-candidate/reward.test.mjs', "import '@wildshard/engine/__reward_missing_export__';");
+  assert.doesNotThrow(() => checkTestBoundary(root));
+  assert.throws(() => checkTestBoundary(root, {rewards:true}), /engine does not export/u);
+  assert.throws(() => checkTestBoundary(root, {candidate:true}), /engine does not export/u);
+}));
+test('a default importer cannot hide behind reward candidate membership', () => fixture((root, put) => {
+  put('test/reward-candidate.json', JSON.stringify({files:['test/reward-candidate/reward.test.mjs']}));
+  put('test/reward-candidate/reward.test.mjs', "import '@wildshard/engine/__reward_missing_export__';");
+  put('test/default.test.ts', "import './reward-candidate/reward.test.mjs';");
+  assert.throws(() => checkTestBoundary(root), /engine does not export/u);
+}));
+test('every reward candidate has exactly one declared entry', () => fixture((root, put) => {
+  put('test/reward-candidate/reward.test.mjs', 'export const wholeReward = true;');
+  assert.throws(() => checkTestBoundary(root), /Every reward candidate/u);
+}));

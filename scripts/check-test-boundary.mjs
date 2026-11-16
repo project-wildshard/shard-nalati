@@ -6,7 +6,7 @@ import { resolve, relative, dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from '@typescript/typescript6';
 
-export function checkTestBoundary(directory = '.', { candidate = false } = {}) {
+export function checkTestBoundary(directory = '.', { candidate = false, rewards = false } = {}) {
   const root = resolve(directory), sourceRoot = resolve(root, 'src/shards');
   const read = name => JSON.parse(readFileSync(resolve(root, name), 'utf8'));
   assert.deepEqual(read('test/lift-pending.json'), [], 'The cleared lift queue must stay empty; new coverage must run');
@@ -50,6 +50,10 @@ export function checkTestBoundary(directory = '.', { candidate = false } = {}) {
     }
     visit(config); assert(excluded, 'Source candidates must remain excluded from default discovery until publication');
   }
+  const rewardPrefix = 'test/reward-candidate/';
+  const rewardRoots = existsSync(resolve(root, 'test/reward-candidate.json')) ? read('test/reward-candidate.json').files.map(file => resolve(root, file)) : [];
+  assert(rewardRoots.every(file => relative(root,file).startsWith(rewardPrefix)), 'Reward candidates must stay in their explicit directory');
+  assert.deepEqual([...rewardRoots].sort(), files.filter(file => relative(root,file).startsWith(rewardPrefix) && /\.test\.mjs$/u.test(file)).sort(), 'Every reward candidate must be declared');
   function localFile(file, specifier) {
     if (!specifier.startsWith('.')) return undefined;
     const target = ts.resolveModuleName(specifier.split('?')[0], file,
@@ -66,17 +70,18 @@ export function checkTestBoundary(directory = '.', { candidate = false } = {}) {
     return found;
   }
   const defaults = reachable([...files.filter(file => {
-      const name = relative(root, file), helper = name.startsWith('test/fixtures/') || name.startsWith('test/fake/') || name.startsWith(candidatePrefix);
-      return !helper || /\.test\.(?:tsx?|m?js)$/u.test(file) && !name.startsWith(candidatePrefix);
+      const name = relative(root, file), helper = name.startsWith('test/fixtures/') || name.startsWith('test/fake/') || name.startsWith(candidatePrefix) || name.startsWith(rewardPrefix);
+      return !helper || /\.test\.(?:tsx?|m?js)$/u.test(file) && !name.startsWith(candidatePrefix) && !name.startsWith(rewardPrefix);
     }),
     ...(read('test/tsconfig.json').files ?? []).map(file => resolve(root, 'test', file)),
     // These existing normal proofs execute their observation module through a
     // variable import/native child; keep their roots explicit and conservative.
     resolve(root, 'test/fixtures/spruce-author-observation.ts'),
     resolve(root, 'test/fixtures/nalati-ambient-observation.ts')]);
-  const candidateOnly = new Set([...reachable(candidateRoots)].filter(file => !defaults.has(file)));
+  const rewardOnly = reachable(rewardRoots);
+  const candidateOnly = new Set([...reachable([...candidateRoots,...rewardRoots])].filter(file => !defaults.has(file)));
   for (const file of checked) for (const specifier of imports.get(file)) {
-    if (specifier.startsWith('@wildshard/engine/') && (candidate || !candidateOnly.has(file))) {
+    if (specifier.startsWith('@wildshard/engine/') && (candidate || rewards && rewardOnly.has(file) || !candidateOnly.has(file))) {
       try { createRequire(file).resolve(specifier); }
       catch { problems.push(`${relative(root, file)}: engine does not export ${specifier}`); }
     }
@@ -90,6 +95,6 @@ export function checkTestBoundary(directory = '.', { candidate = false } = {}) {
   return { candidateOnly: candidateOnly.size };
 }
 if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const result = checkTestBoundary('.', { candidate: process.argv.includes('--candidate') });
+  const result = checkTestBoundary('.', { candidate: process.argv.includes('--candidate'), rewards: process.argv.includes('--rewards') });
   console.log(`Cleared queue and installed engine exports verified; ${result.candidateOnly} source-only files require the candidate gate`);
 }
