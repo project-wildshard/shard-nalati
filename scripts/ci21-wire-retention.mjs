@@ -13,6 +13,11 @@ function testRoot(node){
   return ts.isCallExpression(node)?testRoot(node.expression):null;
 }
 for(const row of record.files){
+  if(row.caseCompanion!==undefined){
+    const pair=row.caseCompanion;
+    if(pair.repository!=='project-wildshard/sharddev'||!/^test\/[a-z-]+\.test\.ts$/u.test(pair.targetPath??'')||!/^[a-f0-9]{40}$/u.test(pair.revision??'')||!/^[a-f0-9]{40}$/u.test(pair.targetBlob??'')||!Array.isArray(pair.originalTests)||!Array.isArray(row.sourceTests)||JSON.stringify([...pair.originalTests,...row.originalTests])!==JSON.stringify(row.sourceTests)||new Set(row.sourceTests).size!==row.sourceTests.length)throw new Error('CI21 paired SDK cases must pin and retain the complete source partition');
+  }
+
   const text=readFileSync(new URL(row.targetPath,root));
   if(createHash('sha1').update(`blob ${text.length}\0`).update(text).digest('hex')!==row.targetBlob)throw new Error(`CI21 reviewed test binding changed: ${row.targetPath}`);
   const source=ts.createSourceFile(row.targetPath,text.toString('utf8'),ts.ScriptTarget.Latest,true),titles=[];

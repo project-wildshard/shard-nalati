@@ -39,3 +39,8 @@ case names, signatures, identity/policy assertions and all25 height/normal/
 trail probes remain. The entire source file closes only with both owners;
 SDK15 recorded tests includes this NAL-BAKE supplement, so SDK24 remains
 14/24. Pin each complete source/helper/fixture blob before removal.
+
+Field-pair J206 also has no MUSTs and confirms both exact original cases.
+Record test-boundary/time-limit changes at case level. Nalati retention
+now validates its immutable SDK companion shape and exact complete source
+case partition too; the branch name is informational, SHA is the binding.

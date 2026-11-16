@@ -47,7 +47,8 @@
         "changes": "Only owner imports rewritten; original observation/byte/hash/bound/topology/disposal logic unchanged. Actual module runner executes offline author code without a simulation-closure claim.",
         "targetBlob": "190f8de06f5659bbebf346acc81687a2c2b6ed1b"
       },
-      "targetBlob": "82fbd4bee7cce7a823070038d9e14b2aa2c939e4"
+      "targetBlob": "82fbd4bee7cce7a823070038d9e14b2aa2c939e4",
+      "changes": "Original complete toEqual(original) assertion; actual helper executes through the normal module runner or native V8 process boundary. Test compiler/lint checks the boundary; legacy producer/helper closure stays row36/H4. New cap10s replaces original engine default30s; geometry child cap9s. No oracle or result field normalized."
     },
     {
       "sourcePath": "test/nalati-geometry-cache-ports.test.ts",
@@ -65,7 +66,8 @@
         "changes": "Only owner imports rewritten. Original observation/byte/hash/bound/topology/stream/disposal logic unchanged; native V8 transport preserves signed zero and typed arrays.",
         "targetBlob": "73419896a3b706aba683b2a36f07d5ff3883bf8f"
       },
-      "targetBlob": "a50234ba9a9eecd72d68062901833df7b088164c"
+      "targetBlob": "a50234ba9a9eecd72d68062901833df7b088164c",
+      "changes": "Original complete toEqual(original) assertion; actual helper executes through the normal module runner or native V8 process boundary. Test compiler/lint checks the boundary; legacy producer/helper closure stays row36/H4. New cap10s replaces original engine default30s; geometry child cap9s. No oracle or result field normalized."
     },
     {
       "sourcePath": "test/nalati-field-author-ports.test.ts",
@@ -93,7 +95,12 @@
         "targetBlob": "38b56cf3abdb3b6198e8362bcd088cef06236d3a",
         "changes": "Owner imports only, exact original full geometry/channel/index/group/bounds observation and disposal logic retained."
       },
-      "targetBlob": "79cc35d19ac69d154e911d4df92c6b7707064a13"
+      "targetBlob": "79cc35d19ac69d154e911d4df92c6b7707064a13",
+      "changes": "Original complete toEqual(original) assertion; actual helper executes through the normal module runner or native V8 process boundary. Test compiler/lint checks the boundary; legacy producer/helper closure stays row36/H4. New cap10s replaces original engine default30s; geometry child cap9s. No oracle or result field normalized.",
+      "sourceTests": [
+        "native field and planting metadata retain complete signatures, mandatory dimensions and identity",
+        "all twenty original spruce geometries retain every channel bit, group and bound"
+      ]
     }
   ]
 }
