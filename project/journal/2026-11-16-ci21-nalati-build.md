@@ -169,3 +169,9 @@ so the hosted-only omission cannot repeat.
 Rebase onto landed6a35c57 retains every checkpoint fix and the
 complete final candidate group; original duplicate51f8a70 was skipped
 because main already contains it. Fresh exact branch CI is required.
+
+J186: the eleven new boundary controls run only in a hosted advisory
+soak through2026-11-23, outside local hooks. The actual import guard
+stays in normal check, and existing original candidate cases keep
+their source-qualification gate. C10 owns promotion after the soak;
+no guard assertion, original case or normal gate is removed.

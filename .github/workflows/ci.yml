@@ -107,6 +107,11 @@ jobs:
           tar -xJf "$RUNNER_TEMP/shellcheck.tar.xz" -C "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/shellcheck-v0.11.0" >> "$GITHUB_PATH"
       - run: pnpm check
+      # J186: new tooling controls soak for one week outside local hooks.
+      # CI21 C10 promotes this step after 2026-11-23; retain real raw results.
+      - name: Soak candidate-boundary controls (J186, until Nov 23)
+        continue-on-error: true
+        run: pnpm test:ci21-boundary
       - name: Keep the cleared queue and public imports honest
         run: node scripts/check-test-boundary.mjs
       - name: Native collider bytes and owned recovery
