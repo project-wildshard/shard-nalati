@@ -163,6 +163,19 @@ jobs:
       - name: Build shard products on the runner
         if: github.event_name != 'push'
         run: pnpm build:shards
+      - name: Preserve CI21 grid eviction and restore assertions
+        if: ${{ !cancelled() && (github.job != 'check' || github.event_name != 'push') }}
+        run: |
+          mkdir -p tmp/ci21-grid
+          node --test test/ci21-grid-reentry.test.mjs > tmp/ci21-grid/raw.tap
+          cat tmp/ci21-grid/raw.tap
+      - name: Keep actual grid owner results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ci21-grid-owner-${{ github.job }}-${{ github.run_id }}
+          path: tmp/ci21-grid/
+          if-no-files-found: ignore
       - name: Check the shard source as an author would (TS21)
         if: github.event_name != 'push'
         run: pnpm exec wildshard check . tmp/ci/check
@@ -306,6 +319,19 @@ jobs:
         run: node --test test/ci/nalati-author-tools.test.mjs
       - name: Build shard products on the runner
         run: pnpm build:shards
+      - name: Preserve CI21 grid eviction and restore assertions
+        if: ${{ !cancelled() && (github.job != 'check' || github.event_name != 'push') }}
+        run: |
+          mkdir -p tmp/ci21-grid
+          node --test test/ci21-grid-reentry.test.mjs > tmp/ci21-grid/raw.tap
+          cat tmp/ci21-grid/raw.tap
+      - name: Keep actual grid owner results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ci21-grid-owner-${{ github.job }}-${{ github.run_id }}
+          path: tmp/ci21-grid/
+          if-no-files-found: ignore
       - name: Check the shard source as an author would (TS21)
         run: pnpm exec wildshard check . tmp/ci/check
       # The cook is the long pole. It reads out/ and writes only its own
