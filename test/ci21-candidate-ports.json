@@ -638,6 +638,33 @@
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
+      "sourcePath": "test/nalati-chapter-one.test.ts",
+      "sourceBlob": "9de24c0ef3ca98d8859b89d12272d0434555c864",
+      "targetPath": "test/ci21-candidate/nalati-chapter-one.test.ts",
+      "targetBlob": "661c756af4f9e9e0f4bef7accac031b0a3b1c2d0",
+      "originalTests": [
+        "chapter one earns its horse-plains arrival through the real elder talk and bank walk",
+        "the earned plains continuation approaches its real stallion and earns the first bucking round",
+        "the earned first bucking round tames its stallion through all five real rounds",
+        "the earned horse wins and exactly replays the actual Kokpar pickup and delivery",
+        "the earned Kokpar winner rides back to the real graded-road bend",
+        "the earned road return crosses the bridge and finishes the real elder reading once",
+        "the completed first chapter accepts the next story and rides to the real graded-road rim",
+        "the earned rim continuation rides to the real balbal field and dismounts",
+        "three real balbal deaths earn and exactly replay all three chapter carvings",
+        "the earned three carvings enter and replay the actual King portal and intro",
+        "the entered King earns and exactly replays its first real health checkpoint",
+        "the earned first King checkpoint fights through the real shield adds and second health threshold",
+        "the earned second King checkpoint wins through real inputs and the original chapter poll"
+      ],
+      "compilerSupport": [
+        "test/fixtures/headless/nalati-chapter-one-run.ts"
+      ],
+      "fixturePath": "test/fixtures/headless/nalati-chapter-one-run.ts",
+      "fixtureBlob": "c2083cce38013cd3598a250d4c4b24dcbb5feeb8",
+      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+    },
+    {
       "sourcePath": "test/nalati-flock-verbs.test.ts",
       "sourceBlob": "7ccdd3e59f50fab747e3391f847c4564a06307e5",
       "targetPath": "test/ci21-candidate/nalati-flock-verbs.test.ts",
@@ -651,6 +678,46 @@
       "fixturePath": "test/fixtures/headless/nalati-flock-run.ts",
       "fixtureBlob": "b8aedaf3c9fc95d28ef554ddaf51569480383996",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
+    },
+    {
+      "sourcePath": "test/nalati-headless-assembly.test.ts",
+      "sourceBlob": "1dd945f9d6cbbf359bbfd10687f364c709af9833",
+      "targetPath": "test/ci21-candidate/nalati-headless-assembly.test.ts",
+      "targetBlob": "3e15114252a05aa7837aa91a3562e6dc5be2d82a",
+      "originalTests": [
+        "Nalati declared assembly retains its native 100 + 30 tick continuation",
+        "Nalati chapter landing retains native actor order, codec and strict suffix",
+        "Nalati chapter landing retains the native taming adoption suffix"
+      ],
+      "compilerSupport": [],
+      "fixturePath": "test/proof/nalati-grasslands/witness.ts",
+      "fixtureBlob": "56faa15d0403c4c615f1a517714f014c5e824573",
+      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal.",
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/nalati-owned-collision-oracle.ts",
+          "targetBlob": "9ba22e49e2c197c1baee18bea576bf4ad63629d9"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-physics-owned-capture.json",
+          "targetBlob": "b1af7f030dc1acf331716c3fa023b972b912e7d7"
+        }
+      ],
+      "caseAdaptations": [
+        {
+          "case": "Nalati chapter landing retains native actor order, codec and strict suffix",
+          "decision": "J232 same intent; J352 platform owns grid walls",
+          "legacy": "Complete original physics metadata hash1d74aa8e and2694solid decoder control retained; all35actors, byte-exact codec and complete60tick suffix remain",
+          "ownerCapture": {
+            "repository": "project-wildshard/shard-nalati",
+            "revision": "eb64606172a30293a17876ae82e4f531b449d69b",
+            "path": "src/data/physicsRows.json",
+            "bytes": 927527,
+            "sha256": "0d12eb488b74af64c6cc56356c3511e244d53d8a152df0d3e6663df789199f85"
+          },
+          "liveFloor": "Independent owned2685solids less only4edge walls (J352) =2681; no product/installer-derived oracle. Whole capture hash and mutation-refusal control bind the input."
+        }
+      ]
     },
     {
       "sourcePath": "test/nalati-javelin-contact-verbs.test.ts",
@@ -680,7 +747,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-kokpar-run.ts",
       "fixtureBlob": "e942a8520cd002faab59f16ec5cdd2f3930e7813",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-mounted-chain-verbs.test.ts",
@@ -695,7 +762,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-mounted-chain-run.ts",
       "fixtureBlob": "5e7808f815b53d7eb7e88a378145d83c26555486",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-mounted-lance-verbs.test.ts",
@@ -710,7 +777,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-mounted-lance-run.ts",
       "fixtureBlob": "6247dd3d3c93cdf9da3643836a61d6dbe77fa3da",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-patrol-verbs.test.ts",
@@ -725,6 +792,24 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-patrol-run.ts",
       "fixtureBlob": "6e77f20c64b3c109adbfe5e65562f8e672121924",
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
+    },
+    {
+      "sourcePath": "test/nalati-qara-verbs.test.ts",
+      "sourceBlob": "3163ce865f209ba184842bd8285f71bb924f80cb",
+      "targetPath": "test/ci21-candidate/nalati-qara-verbs.test.ts",
+      "targetBlob": "7297af1b0bcaf99f7af50552c6e67271b874ca6b",
+      "originalTests": [
+        "camp travel and natural night earn the original checkpoint",
+        "five real night kills earn the checked captain unlock",
+        "the checked captain unlock continues the original bow inputs until the quiver is empty",
+        "the exact earned continuation swaps to sabre and replays the complete victory"
+      ],
+      "compilerSupport": [
+        "test/fixtures/headless/nalati-qara-run.ts"
+      ],
+      "fixturePath": "test/fixtures/headless/nalati-qara-run.ts",
+      "fixtureBlob": "5481418e14fb664b11c94751cd4ca2201146c6ef",
       "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
     },
     {
@@ -788,7 +873,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-weapons-run.ts",
       "fixtureBlob": "d033ad977ef5995464243cead45f91672835f2d8",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-wolf-fight-verbs.test.ts",
@@ -819,6 +904,19 @@
       "fixturePath": "test/fixtures/headless/nalati-wolf-howl-run.ts",
       "fixtureBlob": "5b20d8fae1f4664a3ee48df6bf3b57336dfcd67a",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
+    },
+    {
+      "sourcePath": "test/net-titan-saddle.test.ts",
+      "sourceBlob": "edf9870cf385ce75ef608936f7d7c5087d07979c",
+      "targetPath": "test/ci21-candidate/net-titan-saddle.test.ts",
+      "targetBlob": "99356ebf2b6448232e877a9b83e6f36358ccecfc",
+      "originalTests": [
+        "a rider at a gallop takes the Titan's heart to his next phase with real arrows"
+      ],
+      "compilerSupport": [],
+      "fixturePath": "test/proof/nalati-grasslands/titanCombat.ts",
+      "fixtureBlob": "70f0a709b77d29aa6d1169a9243d275ca4e36c42",
+      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
     }
   ],
   "supportFixtures": [
@@ -1693,6 +1791,62 @@
     {
       "targetPath": "test/proof/nalati-grasslands/verbTape.ts",
       "targetBlob": "fc461dae937fd5426afa3b6036a888d796e6b4e5"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-chapter-one-run.ts",
+      "targetBlob": "c2083cce38013cd3598a250d4c4b24dcbb5feeb8"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-qara-run.ts",
+      "targetBlob": "5481418e14fb664b11c94751cd4ca2201146c6ef"
+    },
+    {
+      "targetPath": "test/fixtures/headless/qaraHandoff.ts",
+      "targetBlob": "7a24234ee0b43d0824b6b57c8b1a7242f22a9cb2"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-king-native.ts",
+      "targetBlob": "ecd06835f5e502af626ef0bd2a12e370f924db7e"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-owned-collision-oracle.ts",
+      "targetBlob": "9ba22e49e2c197c1baee18bea576bf4ad63629d9"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-qara-native.ts",
+      "targetBlob": "bbfa9e082d61d9794e03a6942e3b452722803bbb"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/chapterOne.ts",
+      "targetBlob": "46e8412744d21a6f2f00bf3e87753371c5c0b6cf"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/chapterTwo.ts",
+      "targetBlob": "daba2f0c32980a6c44eb73f5edbd62e99bc64dbd"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/horsePlainsWalk.ts",
+      "targetBlob": "b036f7ac5bc73eeb89557dc8e7856997750b3e88"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/king.ts",
+      "targetBlob": "36fde56cfde4551392369b753dc91ff2d3d478d3"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/nativeAssets.ts",
+      "targetBlob": "66e440e5cace671fe060c547bdaaa5e051409d2b"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/taming.ts",
+      "targetBlob": "58b9272c51786631ccd0977a7a4c566b35a82ea8"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/tamingPilot.ts",
+      "targetBlob": "d5637391d62d7cbf4a3dd8975fb88e00d72e1584"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/witness.ts",
+      "targetBlob": "56faa15d0403c4c615f1a517714f014c5e824573"
     }
   ],
   "typedLintFiles": [
@@ -1700,12 +1854,14 @@
     "test/ci21-candidate/encounter-slots.test.ts",
     "test/ci21-candidate/held-bow-product.test.ts",
     "test/ci21-candidate/nalati-chapter-binding.test.ts",
+    "test/ci21-candidate/nalati-chapter-one.test.ts",
     "test/ci21-candidate/nalati-cloth-publication.test.ts",
     "test/ci21-candidate/nalati-contact-publication.test.ts",
     "test/ci21-candidate/nalati-decorative-scene.test.ts",
     "test/ci21-candidate/nalati-elite-admission.test.ts",
     "test/ci21-candidate/nalati-firearm-admission.test.ts",
     "test/ci21-candidate/nalati-flock-verbs.test.ts",
+    "test/ci21-candidate/nalati-headless-assembly.test.ts",
     "test/ci21-candidate/nalati-herd-binary.test.ts",
     "test/ci21-candidate/nalati-javelin-contact-verbs.test.ts",
     "test/ci21-candidate/nalati-king-pose.test.ts",
@@ -1716,6 +1872,7 @@
     "test/ci21-candidate/nalati-night-decisions.test.ts",
     "test/ci21-candidate/nalati-patrol-verbs.test.ts",
     "test/ci21-candidate/nalati-place-binary.test.ts",
+    "test/ci21-candidate/nalati-qara-verbs.test.ts",
     "test/ci21-candidate/nalati-quest-prop-binary.test.ts",
     "test/ci21-candidate/nalati-roster-decisions.test.ts",
     "test/ci21-candidate/nalati-sabre-contact-verbs.test.ts",
@@ -1732,6 +1889,7 @@
     "test/ci21-candidate/nalati-wind-projection.test.ts",
     "test/ci21-candidate/nalati-wolf-fight-verbs.test.ts",
     "test/ci21-candidate/nalati-wolf-howl-verbs.test.ts",
+    "test/ci21-candidate/net-titan-saddle.test.ts",
     "test/fake/bossArena.ts",
     "test/fake/nalatiSpecies.ts",
     "test/fixtures/builtProduct.ts",
@@ -1740,6 +1898,7 @@
     "test/fixtures/headless/chapterObservation.ts",
     "test/fixtures/headless/chapterReportCodec.ts",
     "test/fixtures/headless/nalati-chapter-binding-run.ts",
+    "test/fixtures/headless/nalati-chapter-one-run.ts",
     "test/fixtures/headless/nalati-flock-run.ts",
     "test/fixtures/headless/nalati-kokpar-run.ts",
     "test/fixtures/headless/nalati-mounted-chain-run.ts",
@@ -1748,11 +1907,13 @@
     "test/fixtures/headless/nalati-pasture-session.ts",
     "test/fixtures/headless/nalati-patrol-run.ts",
     "test/fixtures/headless/nalati-polearm-contact-run.ts",
+    "test/fixtures/headless/nalati-qara-run.ts",
     "test/fixtures/headless/nalati-sabre-contact-run.ts",
     "test/fixtures/headless/nalati-weapons-run.ts",
     "test/fixtures/headless/nalati-wolf-fight-run.ts",
     "test/fixtures/headless/nalati-wolf-howl-run.ts",
     "test/fixtures/headless/productSession.ts",
+    "test/fixtures/headless/qaraHandoff.ts",
     "test/fixtures/headless/titanHandoff.ts",
     "test/fixtures/kurgan-oracle/dungeon.ts",
     "test/fixtures/nalati-admission-loan.ts",
@@ -1777,6 +1938,7 @@
     "test/fixtures/nalati-king-continuation.ts",
     "test/fixtures/nalati-king-data.ts",
     "test/fixtures/nalati-king-host.ts",
+    "test/fixtures/nalati-king-native.ts",
     "test/fixtures/nalati-king-pose.ts",
     "test/fixtures/nalati-king-seal.ts",
     "test/fixtures/nalati-kokpar-native.ts",
@@ -1791,16 +1953,19 @@
     "test/fixtures/nalati-original-species-blob.ts",
     "test/fixtures/nalati-original-species.ts",
     "test/fixtures/nalati-output-original.ts",
+    "test/fixtures/nalati-owned-collision-oracle.ts",
     "test/fixtures/nalati-patrol-native.ts",
     "test/fixtures/nalati-physics-original.ts",
     "test/fixtures/nalati-poi-paint-original.ts",
     "test/fixtures/nalati-predators-native.ts",
+    "test/fixtures/nalati-qara-native.ts",
     "test/fixtures/nalati-return-modules.ts",
     "test/fixtures/nalati-riding.ts",
     "test/fixtures/nalati-runtime.ts",
     "test/fixtures/nalati-scene-provenance.ts",
     "test/fixtures/nalati-script-inventory.ts",
     "test/fixtures/nalati-shardfile-inputs.ts",
+    "test/fixtures/nalati-shardfile-source.ts",
     "test/fixtures/nalati-spear.ts",
     "test/fixtures/nalati-species-world.ts",
     "test/fixtures/nalati-specimens.ts",
@@ -1824,7 +1989,15 @@
     "test/fixtures/runSnapshot.ts",
     "test/fixtures/titanInlineWitness.ts",
     "test/fixtures/weatherInlineWitness.ts",
+    "test/proof/nalati-grasslands/chapterOne.ts",
+    "test/proof/nalati-grasslands/chapterTwo.ts",
+    "test/proof/nalati-grasslands/horsePlainsWalk.ts",
+    "test/proof/nalati-grasslands/king.ts",
+    "test/proof/nalati-grasslands/nativeAssets.ts",
+    "test/proof/nalati-grasslands/taming.ts",
+    "test/proof/nalati-grasslands/tamingPilot.ts",
     "test/proof/nalati-grasslands/titanCombat.ts",
-    "test/proof/nalati-grasslands/verbTape.ts"
+    "test/proof/nalati-grasslands/verbTape.ts",
+    "test/proof/nalati-grasslands/witness.ts"
   ]
 }

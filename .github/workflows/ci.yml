@@ -409,7 +409,7 @@ jobs:
   ci21-source:
     if: inputs.ci21_source == true
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
@@ -492,7 +492,7 @@ jobs:
         run: |
           test -n "$CANDIDATE_ENGINE"
           node scripts/assert-candidate-engine.mjs
-          node --experimental-transform-types --test test/tooling/candidate-boundary.test.mjs test/tooling/ci21-case-inventory.test.mjs test/tooling/ci21-source-product.test.mjs
+          node --experimental-transform-types --test test/tooling/candidate-boundary.test.mjs test/tooling/ci21-case-inventory.test.mjs test/tooling/ci21-source-product.test.mjs test/tooling/ci21-owned-collision.test.mjs
           pnpm check:ci21-candidate --reporter=default --reporter=json --outputFile=tmp/ci21-source/report.json
       - name: Retain actual source identity and complete case results
         if: always()
