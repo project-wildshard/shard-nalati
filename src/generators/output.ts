@@ -122,6 +122,7 @@ import worldAssembly from '../data/worldAssembly.json' with { type: 'json' };
 import { FixedDrawRowsSchema } from '@wildshard/format/fixedDraws';
 import { postChainRows } from './postChain';
 import { PANO_RIDGE_V } from './panoramaData';
+import { nalatiNamedPlaceDraw } from './placeWire';
 import { NALATI_PAINTED } from './paintedRows';
 import { nalatiBootProgram } from './bootProgram';
 import campCatalogue from '../data/campCatalogue.json' with { type: 'json' };
@@ -369,7 +370,7 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<Nala
   const costs = v.parse(v.object({ places: v.object({ bytes: byteCount }), dressing: v.object({ bytes: byteCount }) }), runtime.runtime);
   const places = nameBlob('world/places.bin', 'bin', placeBytes, { decoded: costs.places.bytes });
   const shapeBook = v.parse(v.object({ draws: FixedDrawRowsSchema, sources: shapeSourcesSchema }), runtime.shapeBook);
-  const shapeDraws = shapeBook.draws.map(row => 'lane' in row ? { ...row, lane: { file: 'world/places.bin', offset: row.lane.offset } } : row);
+  const shapeDraws = shapeBook.draws.map(row => 'lane' in row ? nalatiNamedPlaceDraw(row) : row);
   const ownedMetadata = emitNamedBlobs([nameBlob('models/shape-book.json', 'json', new TextEncoder().encode(encodeCanonicalJson(shapeDraws)),
     { jsonSchema: registeredJsonSchema('models/shape-book.json') })]);
   const cragRows = await nalatiCragRockProgram(ctx), crags = await nalatiBakeBlob(ctx, 'crags', dressingCragDecoded(cragRows)), people = await nalatiPeopleBlobs(ctx);

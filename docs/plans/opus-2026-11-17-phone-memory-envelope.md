@@ -2,7 +2,7 @@
 
 > Written by: Claude (lane mini-zonemem)
 
-> **State:** draft, 2026-11-17. One cut row, unclaimed. Opened by meta
+> **State:** in progress, 2026-11-17. NM1 is open with codex-nalati. Opened by meta
 > `docs/plans/MEMORY-GATES-PLAN.md` MG11 (J410, Jake 2026-11-17 ~17:05
 > Cancún: *"all the zones should be optimized for memory"*). The
 > phone's target is engine `PHONE_PLAYING_BYTES`, 1.0 GB; J408's
@@ -46,3 +46,14 @@ refuse Nalati: the phone would load it and could be killed.
 | Row | Work | Done when |
 | --- | --- | --- |
 | NM1 | Cut the load transient and the shipped extras. Drop the `compare-*` images from the product if nothing in play shows them; stream or split `places.bin`; find what the 486 MB load-time JS heap holds (sampling heap profile with collected objects) and release it before control. | `wildshard memory` on the prepared product predicts at most 1,000 MB (loading renderer x2.0) and the epoch-2 worst loading is at most 1,000 MB. Record shard and engine SHAs. Then lower the CI ratchet (MG11) to the new peak + 10%. |
+
+The body bank shares exact parts. The Kurgan interior stays indexed,
+which cuts 13.29 MB from the scene geometry measured in the loading heap.
+The geometry-bank split was abandoned after its paired boot reading rose.
+The latest epoch-2 worst loading estimate is 1,408 MB, and the paired Low
+phone reading has a 2,134 MB median. The engine allocation buckets are
+in the lane receipt for mini-ninemem2. Keep the ship row held until the
+re-measurement qualifies.
+
+[Paired Low measurements and spawn captures](../../project/journal/2026-11-17-nalati-memory-cuts.md)
+· [Loading allocation census](../../project/journal/2026-11-17-nalati-peak-allocation.md)

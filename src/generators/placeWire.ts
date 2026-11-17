@@ -1,4 +1,17 @@
 import { hashImmutableBytes } from '@wildshard/format/immutable';
+import type { FixedDrawRowsSchema } from '@wildshard/format/fixedDraws';
+import type { InferOutput } from 'valibot';
+
+type PlaceDraw = Extract<InferOutput<typeof FixedDrawRowsSchema>[number], { lane: unknown }>;
+
+/** The chamber's static vertex-colour material draws the exact welded corners. */
+export function nalatiNamedPlaceDraw(row: PlaceDraw): PlaceDraw {
+  return {
+    ...row,
+    lane: { file: 'world/places.bin', offset: row.lane.offset },
+    baked: row.slot === 'dungeon:interior' ? { ...row.baked, expand: false } : row.baked,
+  };
+}
 
 /** Original four-byte lane order, without compression or filesystem publication. */
 export function shuffleNalatiWords(bin:Uint8Array):Uint8Array {

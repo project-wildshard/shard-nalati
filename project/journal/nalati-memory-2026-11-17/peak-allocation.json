@@ -1,0 +1,352 @@
+{
+  "baseline": "96618d353d948c162bb9b9b6e4c66706d7ec87d458f191a6b62a217f86dc98b5",
+  "indexed": "8521b15098656a1ad34a2b09e4a6eadcfb9982176e0ec447c651b6bf75faf2d6",
+  "engine": "8af8cb7379",
+  "calibration": "3cd2dd8737",
+  "format": "52f184e",
+  "heapSnapshot": {
+    "phase": "finish",
+    "nativeRendererBytes": 1059164072,
+    "jsUsedBytes": 101129852,
+    "backingBytes": 318533903,
+    "survivingBytes": 309616414,
+    "retainedArrayBufferGroups": {
+      "other or shared across owners": 104062361,
+      "product wire cache": 31689181,
+      "decoded texture or image": 5389968,
+      "draw geometry": 61739588
+    }
+  },
+  "detailedNative": {
+    "capture": {
+      "step": "finish",
+      "loading": true,
+      "ready": false,
+      "failure": null,
+      "atMs": 5629,
+      "renderer": 1025789912,
+      "heap": {
+        "usedSize": 104397660,
+        "totalSize": 156270592,
+        "embedderHeapUsedSize": 7787344,
+        "backingStorageSize": 317485201
+      }
+    },
+    "laterLoadingPeak": {
+      "step": "readyFrame",
+      "loading": true,
+      "ready": false,
+      "failure": null,
+      "atMs": 5862,
+      "renderer": 1118818456,
+      "heap": {
+        "usedSize": 105274372,
+        "totalSize": 156270592,
+        "embedderHeapUsedSize": 8083240,
+        "backingStorageSize": 319839873
+      }
+    },
+    "allocations": {
+      "partition_alloc": {
+        "path": "partition_alloc",
+        "bytes": 515686549,
+        "sizeBytes": 515751936
+      },
+      "partition_alloc/partitions/array_buffer": {
+        "path": "partition_alloc/partitions/array_buffer",
+        "bytes": 3204479,
+        "sizeBytes": 467353600,
+        "allocatedObjectsBytes": 464125668
+      },
+      "v8": {
+        "path": "v8",
+        "bytes": 461220744,
+        "sizeBytes": 461220744
+      },
+      "v8/main": {
+        "path": "v8/main",
+        "bytes": 205107512,
+        "sizeBytes": 205107512
+      },
+      "v8/main/heap": {
+        "path": "v8/main/heap",
+        "bytes": 156270592,
+        "sizeBytes": 156270592
+      },
+      "v8/workers": {
+        "path": "v8/workers",
+        "bytes": 253983312,
+        "sizeBytes": 253983312
+      },
+      "v8/workers/heap": {
+        "path": "v8/workers/heap",
+        "bytes": 117161984,
+        "sizeBytes": 117161984
+      },
+      "v8/workers/malloc": {
+        "path": "v8/workers/malloc",
+        "bytes": 136640776,
+        "sizeBytes": 136640776
+      },
+      "malloc": {
+        "path": "malloc",
+        "bytes": 168682816,
+        "sizeBytes": 354542134,
+        "allocatedObjectsBytes": 129159208
+      }
+    }
+  },
+  "sampledAllocationTotalByArea": [
+    [
+      "engine",
+      209125540
+    ],
+    [
+      "parsing",
+      184170764
+    ],
+    [
+      "scene",
+      153803652
+    ],
+    [
+      "native and third party",
+      122090232
+    ],
+    [
+      "admissions",
+      73102256
+    ],
+    [
+      "runtimeDecode",
+      51175736
+    ],
+    [
+      "diagnostic",
+      34948796
+    ]
+  ],
+  "sampledAllocationByFile": [
+    [
+      "valibot/dist/index.mjs",
+      139362448
+    ],
+    [
+      "three/build/three.core.js",
+      57600912
+    ],
+    [
+      "format/scriptModuleV2.ts",
+      37651616
+    ],
+    [
+      "format/json.ts",
+      36529852
+    ],
+    [
+      "shared/engine/boot/timeline.ts",
+      34325648
+    ],
+    [
+      "shared/engine/core/portableMath.ts",
+      31662300
+    ],
+    [
+      "client/game/shardfile/sceneDressing.ts",
+      26296180
+    ],
+    [
+      "client/engine/render/scatterInstances.ts",
+      24716776
+    ],
+    [
+      "format/scriptFuelV2.ts",
+      22665936
+    ],
+    [
+      "format/colliders.ts",
+      20789468
+    ],
+    [
+      "format/materialGraph.ts",
+      19241768
+    ],
+    [
+      "three/build/three.module.js",
+      17213788
+    ],
+    [
+      "client/engine/world/Horizon.ts",
+      16049704
+    ],
+    [
+      "format/scalarChannel.ts",
+      13601208
+    ],
+    [
+      "client/engine/models/colliders.ts",
+      12909192
+    ],
+    [
+      "navcat/dist/index.js",
+      12320036
+    ],
+    [
+      "client/engine/models/place.ts",
+      12275356
+    ],
+    [
+      "client/engine/world/skyBackdrop.ts",
+      10946520
+    ],
+    [
+      "format/navigationBytes.ts",
+      9292716
+    ],
+    [
+      "client/engine/render/graph/glsl.ts",
+      9132884
+    ],
+    [
+      "client/engine/models/staticSets.ts",
+      8685128
+    ],
+    [
+      "shared/game/shardfile/shardFolder.ts",
+      7752592
+    ],
+    [
+      "?mute=1&skipintro=1&nolock=1&sw=0",
+      6753540
+    ],
+    [
+      "format/noise.ts",
+      6653188
+    ],
+    [
+      "client/game/looks/painterlyLook.ts",
+      6496064
+    ],
+    [
+      "client/engine/models/ownedGeometry.ts",
+      6293076
+    ],
+    [
+      "client/game/plugin/geometry.ts",
+      6130412
+    ],
+    [
+      "client/engine/render/precompile.ts",
+      5592856
+    ],
+    [
+      "format/scriptAdmissionV2.ts",
+      5083776
+    ],
+    [
+      "format/forest-placement.ts",
+      4994892
+    ]
+  ],
+  "geometry": {
+    "bankHash": "5b4d2f8ddf99da39e9bd2d13f30d393f2dc444b8d0177324413f47c140198437",
+    "slot": "dungeon:interior",
+    "originalCorners": 333948,
+    "weldedVertices": 112276,
+    "perCopyBefore": 12022128,
+    "perCopyAfter": 5377728,
+    "bytesSavedAcrossTwoCopies": 13288800,
+    "arenaBefore": {
+      "retainedBytes": 12022128,
+      "vertices": 333948,
+      "corners": 333948,
+      "indexed": false
+    },
+    "arenaAfter": {
+      "retainedBytes": 5377728,
+      "vertices": 112276,
+      "corners": 333948,
+      "indexed": true
+    }
+  },
+  "epoch2": {
+    "before": {
+      "playing": 1320355282,
+      "loading": 1408355282,
+      "accounted": 881271425,
+      "location": [
+        -270,
+        -270
+      ]
+    },
+    "after": {
+      "playing": 1320355283,
+      "loading": 1408355283,
+      "accounted": 881271426,
+      "location": [
+        -270,
+        -270
+      ]
+    }
+  },
+  "phoneProbe": {
+    "before": [
+      {
+        "phoneBytes": 2304583680,
+        "rendererPeak": {
+          "bytes": 1152291840,
+          "step": "audio",
+          "atMs": 5267
+        },
+        "errors": []
+      },
+      {
+        "phoneBytes": 2089822208,
+        "rendererPeak": {
+          "bytes": 1044911104,
+          "step": "finish",
+          "atMs": 6026
+        },
+        "errors": []
+      },
+      {
+        "phoneBytes": 1979850752,
+        "rendererPeak": {
+          "bytes": 989925376,
+          "step": "firstFrame",
+          "atMs": 5027
+        },
+        "errors": []
+      }
+    ],
+    "after": [
+      {
+        "phoneBytes": 1795792896,
+        "rendererPeak": {
+          "bytes": 897896448,
+          "step": "firstFrame",
+          "atMs": 4759
+        },
+        "errors": []
+      },
+      {
+        "phoneBytes": 2182424576,
+        "rendererPeak": {
+          "bytes": 1091212288,
+          "step": "audio",
+          "atMs": 5774
+        },
+        "errors": []
+      },
+      {
+        "phoneBytes": 2133764096,
+        "rendererPeak": {
+          "bytes": 1066882048,
+          "step": "audio",
+          "atMs": 5266
+        },
+        "errors": []
+      }
+    ]
+  }
+}
