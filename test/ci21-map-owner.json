@@ -1,0 +1,7 @@
+{
+  "schema": "ci21-map-owner/1",
+  "sourceOriginal": "engine:test/map-source-inputs.test.ts",
+  "slug": "nalati-grasslands",
+  "source": "src",
+  "program": "generators/mapProgram.ts"
+}

@@ -122,6 +122,18 @@ jobs:
           tar -xJf "$RUNNER_TEMP/shellcheck.tar.xz" -C "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/shellcheck-v0.11.0" >> "$GITHUB_PATH"
       - run: pnpm check
+      - name: Retain CI21 owned map input assertions
+        run: |
+          mkdir -p tmp/ci21-map
+          node --test test/ci21-map-owner.test.mjs > tmp/ci21-map/raw.tap
+          cat tmp/ci21-map/raw.tap
+      - name: Keep actual map-input owner verdict
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ci21-map-owner-${{ github.run_id }}
+          path: tmp/ci21-map/
+          if-no-files-found: ignore
       # J186: new tooling controls soak for one week outside local hooks.
       # CI21 C10 promotes this step after 2026-11-23; retain real raw results.
       - name: Soak candidate-boundary controls (J186, until Nov 23)
