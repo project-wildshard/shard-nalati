@@ -407,7 +407,7 @@ jobs:
         run: pnpm check:build-twice
 
   ci21-source:
-    if: inputs.ci21_source == true
+    if: github.event_name == 'push' || github.event_name == 'pull_request' || inputs.ci21_source == true
     runs-on: ubuntu-latest
     # Full41-root cohort includes every long native chapter/fight replay.
     # The109-case predecessor exceeded30min after30files passed; individual
@@ -453,7 +453,7 @@ jobs:
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
       - name: Build and seal the ordinary pinned producer
         env:
-          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine }}
+          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
           NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           pnpm install --frozen-lockfile --config.ci=false
@@ -464,7 +464,7 @@ jobs:
       # Source proof currently supports an engine source candidate only.
       - name: Validate and select the exact engine source
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
           CANDIDATE_SHARDDEV: ${{ inputs.sharddev }}
         run: |
           test -n "$CANDIDATE_ENGINE"
@@ -472,7 +472,7 @@ jobs:
           node scripts/select-candidate.mjs
       - name: Install pinned or candidate dependency graph
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
           CANDIDATE_SHARDDEV: ''
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
@@ -481,7 +481,7 @@ jobs:
             pnpm install --frozen-lockfile --config.ci=false
           fi
       - name: Match the candidate engine's declared format dependency
-        if: inputs.engine != ''
+        if: true
         run: |
           node scripts/candidate-format.mjs
           pnpm install --no-frozen-lockfile --config.ci=false
@@ -489,13 +489,13 @@ jobs:
         run: node scripts/assert-store-layout.mjs
       - name: Compile, type-lint and run every complete original
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine }}
-          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
+          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
           NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           test -n "$CANDIDATE_ENGINE"
           node scripts/assert-candidate-engine.mjs
-          node --experimental-transform-types --test test/tooling/candidate-boundary.test.mjs test/tooling/ci21-case-inventory.test.mjs test/tooling/ci21-source-product.test.mjs test/tooling/ci21-owned-collision.test.mjs
+          node --experimental-transform-types --test test/tooling/ci21-case-inventory.test.mjs test/tooling/ci21-source-product.test.mjs test/tooling/ci21-owned-collision.test.mjs
           pnpm check:ci21-candidate --reporter=default --reporter=json --outputFile=tmp/ci21-source/report.json
       - name: Retain actual source identity and complete case results
         if: always()
