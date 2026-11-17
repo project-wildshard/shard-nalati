@@ -1,3 +1,5 @@
+import { hashImmutableBytes } from '@wildshard/format/immutable';
+
 /** Authored layout of the existing unshuffled creature body binary. Bones and dimensions stay opaque and exact. */
 export interface SpeciesBodySource {
   readonly bytes: number;
@@ -30,7 +32,7 @@ function concat(blocks: readonly Uint8Array[]): Uint8Array<ArrayBuffer> {
 }
 
 /** Pair only lists exceeding the existing 64-part limit, preserving every channel byte, group and index operation. */
-export function packNalatiSpeciesBodies(input: SpeciesBodySource, raw: Uint8Array): SpeciesBodyPacking {
+export function packNalatiSpeciesBodies(input: SpeciesBodySource, raw: Uint8Array, shareParts = false): SpeciesBodyPacking {
   if (!Number.isSafeInteger(input.bytes) || input.bytes !== raw.byteLength || raw.byteLength % 4 !== 0)
     throw new Error('Creature body source byte length differs');
   const source = structuredClone(input);
@@ -54,19 +56,41 @@ export function packNalatiSpeciesBodies(input: SpeciesBodySource, raw: Uint8Arra
   });
   if (offset !== source.bytes) throw new Error('Creature body offsets do not cover the existing bake');
   let packedSize = 0; const blocks: Uint8Array[] = [];
-  const block = (bytes: Uint8Array): number => {
-    const at = packedSize, pad = (4 - bytes.length % 4) % 4;
-    blocks.push(bytes, new Uint8Array(pad)); packedSize += bytes.length + pad; return at;
+  // Runtime copies each part's attributes and indices. Distinct variants can
+  // read identical bytes at one offset while retaining their own materials.
+  const shared = shareParts ? new Map<string, number>() : undefined;
+  const storePart = (channels: readonly Uint8Array[]): number[] => {
+    let size = 0;
+    const offsets = channels.map(bytes => {
+      const at = size;
+      size += Math.ceil(bytes.length / 4) * 4;
+      return at;
+    });
+    const part = new Uint8Array(size);
+    let at = 0;
+    for (const bytes of channels) {
+      part.set(bytes, at);
+      at += Math.ceil(bytes.length / 4) * 4;
+    }
+    const hash = shared === undefined ? undefined : hashImmutableBytes(part);
+    let start = hash === undefined ? undefined : shared?.get(hash);
+    if (start === undefined) {
+      start = packedSize;
+      blocks.push(part);
+      packedSize += size;
+      if (hash !== undefined) shared?.set(hash, start);
+    }
+    return offsets.map(relative => relative + start);
   };
   const pack = (parts: readonly Part[]): Part[] => {
     const result: Part[] = [];
     for (let i = 0; i < parts.length; i += parts.length > 64 ? 2 : 1) {
       const group = parts.slice(i, i + (parts.length > 64 ? 2 : 1));
       const count = group.reduce((n, part) => n + part.row.count, 0), indexCount = group.reduce((n, part) => n + part.row.indexCount, 0);
-      const offsets = attrs.map(([,type,width], attribute) => block(concat(group.map(part => {
+      const channels = attrs.map(([,type,width], attribute) => concat(group.map(part => {
         const at = part.offsets[attribute]; if (at === undefined) throw new Error('Missing creature channel offset');
         return raw.slice(at, at + part.row.count * width * (type === 'u16' ? 2 : 4));
-      }))));
+      })));
       const indices = count > 65535 ? new Uint32Array(indexCount) : new Uint16Array(indexCount);
       let vertex = 0, index = 0; const groups: number[][] = [];
       for (const chunk of group) {
@@ -83,7 +107,7 @@ export function packNalatiSpeciesBodies(input: SpeciesBodySource, raw: Uint8Arra
         }
         vertex += chunk.row.count; index += chunk.row.indexCount;
       }
-      offsets.push(block(new Uint8Array(indices.buffer)));
+      const offsets = storePart([...channels, new Uint8Array(indices.buffer)]);
       result.push({ offsets, groups, indexEncoding: 'raw', row: { attrs, count, index: count > 65535 ? 'u32' : 'u16', indexCount, box: false } });
     }
     return result;

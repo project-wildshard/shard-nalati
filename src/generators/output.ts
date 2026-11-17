@@ -241,7 +241,7 @@ export async function prepareSpecies(ctx: ProjectGenerationContext): Promise<{
   readonly files: ReadonlyMap<string, Uint8Array>;
   readonly held: NalatiHeldRows;
 }> {
-  const files = await nalatiSpeciesProgram(ctx, admitSpeciesInput, input => v.parse(CreatureGuestSchema, input), () => 'actors/bodies.bin');
+  const files = await nalatiSpeciesProgram(ctx, admitSpeciesInput, input => v.parse(CreatureGuestSchema, input), () => 'actors/bodies.bin', true);
   const metadata = files.get('species.json'), witness = files.get('held-witness.bin');
   if (metadata === undefined || witness === undefined) throw new Error('Missing owned species metadata or witness');
   const metadataRows: unknown = JSON.parse(new TextDecoder().decode(metadata));

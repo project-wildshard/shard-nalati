@@ -1,0 +1,236 @@
+{
+  "client": "8af8cb7379",
+  "probeCalibration": "3cd2dd8737",
+  "epoch2Format": "52f184e",
+  "rendererMultiplier": 2,
+  "viewportCssPixels": [
+    402,
+    874
+  ],
+  "devicePixelRatio": 3,
+  "graphics": "low",
+  "products": {
+    "baseline": {
+      "sourceHash": "55e0db371d2271672f5961dcb2cb6ea19a04642b544fca99d27c1dab1f2bb0c5",
+      "preparedIndexHash": "1103e566bf04127fe8e7f141ed8825b7e623feb6ddd22c567cb3feac7a1df239",
+      "validator": "9dacf43f1d0a6e58079b5243845c514bca157d88ecde3626346b95e483e7a547",
+      "epoch2Memory": {
+        "playing": 1323949345,
+        "loading": 1411949345,
+        "accounted": 884509319,
+        "location": [
+          -270,
+          -270
+        ]
+      },
+      "epoch2Boot": {
+        "heldSpawnParts": 41388663,
+        "largestDecode": 22425540,
+        "shaderCompile": 168000000,
+        "farSlabIndices": 0,
+        "paintArrayGpu": 0,
+        "paintArrayStaging": 0
+      }
+    },
+    "split": {
+      "sourceHash": "ef36c0f4b76f45cdb0a2ed4275e6932af38e0b8277a48b2a934ff06dca372cf6",
+      "preparedIndexHash": "f04a487bdeb4ec5ff310204bf923f6fbb7f54822365dc9e79a974c27c12781b7",
+      "validator": "9dacf43f1d0a6e58079b5243845c514bca157d88ecde3626346b95e483e7a547",
+      "epoch2Memory": {
+        "playing": 1323949572,
+        "loading": 1411949572,
+        "accounted": 884509524,
+        "location": [
+          -270,
+          -270
+        ]
+      },
+      "epoch2Boot": {
+        "heldSpawnParts": 41374385,
+        "largestDecode": 13430176,
+        "shaderCompile": 168000000,
+        "farSlabIndices": 0,
+        "paintArrayGpu": 0,
+        "paintArrayStaging": 0
+      }
+    },
+    "body": {
+      "sourceHash": "96618d353d948c162bb9b9b6e4c66706d7ec87d458f191a6b62a217f86dc98b5",
+      "preparedIndexHash": "6284181c3d1de457837bd976b7c03fad8c5e4d6d507a975b528f03bee73e74fb",
+      "validator": "9dacf43f1d0a6e58079b5243845c514bca157d88ecde3626346b95e483e7a547",
+      "epoch2Memory": {
+        "playing": 1320355282,
+        "loading": 1408355282,
+        "accounted": 881271425,
+        "location": [
+          -270,
+          -270
+        ]
+      },
+      "epoch2Boot": {
+        "heldSpawnParts": 40504184,
+        "largestDecode": 22425540,
+        "shaderCompile": 168000000,
+        "farSlabIndices": 0,
+        "paintArrayGpu": 0,
+        "paintArrayStaging": 0
+      }
+    }
+  },
+  "geometryPair": {
+    "baseline": [
+      {
+        "trial": 1,
+        "elapsedMs": 21083,
+        "errors": [],
+        "predictedPhoneBytes": 2082285568,
+        "loadingRendererPeak": {
+          "bytes": 1041142784,
+          "step": "audio",
+          "atMs": 5281
+        },
+        "jsHeapPeakBytes": 483880211
+      },
+      {
+        "trial": 2,
+        "elapsedMs": 22220,
+        "errors": [],
+        "predictedPhoneBytes": 2270996480,
+        "loadingRendererPeak": {
+          "bytes": 1135498240,
+          "step": "finish",
+          "atMs": 5518
+        },
+        "jsHeapPeakBytes": 474245661
+      },
+      {
+        "trial": 3,
+        "elapsedMs": 19330,
+        "errors": [],
+        "predictedPhoneBytes": 2144282624,
+        "loadingRendererPeak": {
+          "bytes": 1072141312,
+          "step": "finish",
+          "atMs": 5783
+        },
+        "jsHeapPeakBytes": 438347600
+      }
+    ],
+    "split": [
+      {
+        "trial": 1,
+        "elapsedMs": 20791,
+        "errors": [],
+        "predictedPhoneBytes": 2134517760,
+        "loadingRendererPeak": {
+          "bytes": 1067258880,
+          "step": "finish",
+          "atMs": 5773
+        },
+        "jsHeapPeakBytes": 500534081
+      },
+      {
+        "trial": 2,
+        "elapsedMs": 20747,
+        "errors": [],
+        "predictedPhoneBytes": 2242488320,
+        "loadingRendererPeak": {
+          "bytes": 1121244160,
+          "step": "finish",
+          "atMs": 6026
+        },
+        "jsHeapPeakBytes": 501784987
+      },
+      {
+        "trial": 3,
+        "elapsedMs": 19580,
+        "errors": [],
+        "predictedPhoneBytes": 2268211200,
+        "loadingRendererPeak": {
+          "bytes": 1134105600,
+          "step": "finish",
+          "atMs": 6029
+        },
+        "jsHeapPeakBytes": 482877559
+      }
+    ]
+  },
+  "bodyPair": {
+    "baseline": [
+      {
+        "trial": 1,
+        "elapsedMs": 20728,
+        "errors": [],
+        "predictedPhoneBytes": 2127210496,
+        "loadingRendererPeak": {
+          "bytes": 1063605248,
+          "step": "finish",
+          "atMs": 6022
+        },
+        "jsHeapPeakBytes": 436510884
+      },
+      {
+        "trial": 2,
+        "elapsedMs": 20664,
+        "errors": [],
+        "predictedPhoneBytes": 2082056192,
+        "loadingRendererPeak": {
+          "bytes": 1041028096,
+          "step": "firstFrame",
+          "atMs": 5022
+        },
+        "jsHeapPeakBytes": 485651124
+      },
+      {
+        "trial": 3,
+        "elapsedMs": 20798,
+        "errors": [],
+        "predictedPhoneBytes": 2107189248,
+        "loadingRendererPeak": {
+          "bytes": 1053594624,
+          "step": "audio",
+          "atMs": 5260
+        },
+        "jsHeapPeakBytes": 430705723
+      }
+    ],
+    "differentPartsShared": [
+      {
+        "trial": 1,
+        "elapsedMs": 20836,
+        "errors": [],
+        "predictedPhoneBytes": 2286888960,
+        "loadingRendererPeak": {
+          "bytes": 1143444480,
+          "step": "finish",
+          "atMs": 6030
+        },
+        "jsHeapPeakBytes": 485404471
+      },
+      {
+        "trial": 2,
+        "elapsedMs": 19450,
+        "errors": [],
+        "predictedPhoneBytes": 2088935424,
+        "loadingRendererPeak": {
+          "bytes": 1044467712,
+          "step": "firstFrame",
+          "atMs": 5012
+        },
+        "jsHeapPeakBytes": 466509173
+      },
+      {
+        "trial": 3,
+        "elapsedMs": 20119,
+        "errors": [],
+        "predictedPhoneBytes": 1961893888,
+        "loadingRendererPeak": {
+          "bytes": 980946944,
+          "step": "firstFrame",
+          "atMs": 5025
+        },
+        "jsHeapPeakBytes": 480328597
+      }
+    ]
+  }
+}

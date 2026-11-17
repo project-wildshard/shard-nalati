@@ -29,7 +29,7 @@ export interface NalatiSpeciesPreparation {
 }
 
 /** Construct from explicit source inputs. The adapter owns guest admission and publication naming. */
-export async function prepareNalatiSpecies(raw: Uint8Array, sources: ReadonlyMap<string, string>, input: NalatiSpeciesSourceInputs, admitGuest: (candidate: unknown) => Guest, bodyFile: (hash: string) => string, compileProjection: typeof compileReturnProjectionV2): Promise<NalatiSpeciesPreparation> {
+export async function prepareNalatiSpecies(raw: Uint8Array, sources: ReadonlyMap<string, string>, input: NalatiSpeciesSourceInputs, admitGuest: (candidate: unknown) => Guest, bodyFile: (hash: string) => string, compileProjection: typeof compileReturnProjectionV2, shareParts = false): Promise<NalatiSpeciesPreparation> {
   const authored = new Map(sources), weak = speciesRows.weak, radius = speciesRows.balbalGuest.radius;
   // Preserve the original finite triplets, 32-point ceiling and nonnegative radius before compiling.
   if (weak.length > 32 || weak.some(row => row.length !== 3 || row.some(value => !Number.isFinite(value)))
@@ -54,7 +54,7 @@ export async function prepareNalatiSpecies(raw: Uint8Array, sources: ReadonlyMap
   if (crackBody === undefined) throw new Error('Missing species program or skeleton');
   const cracks = buildCracks(crackBody.bones);
   try {
-    const { bytes: packedBytes, attrs, bodies, skeletons, rows } = packNalatiSpeciesBodies(input.body, raw);
+    const { bytes: packedBytes, attrs, bodies, skeletons, rows } = packNalatiSpeciesBodies(input.body, raw, shareParts);
     const compressed = encodeBuildBytes(packedBytes, 'deflate', 9, 'native');
     const file = bodyFile(hashImmutableBytes(compressed));
     const packedBodies = { file, bytes: packedBytes.length, bodies };

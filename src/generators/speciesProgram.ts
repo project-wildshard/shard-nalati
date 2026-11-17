@@ -52,9 +52,9 @@ type GuestAdmission = Parameters<typeof prepareNalatiSpecies>[3];
  * Schema admission and the retained public body locator belong to the existing shard file adapter. */
 export async function nalatiSpeciesProgram(ctx: Pick<ProjectGenerationContext, 'cached' | 'compileReturnProjection' | 'compileDecisionRows'>,
   admitInput: (input: unknown) => NalatiSpeciesSourceInputs, admitGuest: GuestAdmission,
-  bodyFile: (hash: string) => string): Promise<ReadonlyMap<string, Uint8Array>> {
+  bodyFile: (hash: string) => string, shareParts = false): Promise<ReadonlyMap<string, Uint8Array>> {
   const admission = (await nalatiAdmissionProgram(ctx)).program;
-  const files = await ctx.cached({ id: 'species', native: true, inputs: [body, ...metadata, ...authored] }, async inputs => {
+  const files = await ctx.cached({ id: shareParts ? 'species-shared-parts' : 'species', native: true, inputs: [body, ...metadata, ...authored] }, async inputs => {
     const required = (name: string): Uint8Array => {
       const bytes = inputs.get(name);
       if (bytes === undefined || bytes.length === 0) throw new Error(`Missing original species input: ${name}`);
@@ -73,7 +73,7 @@ export async function nalatiSpeciesProgram(ctx: Pick<ProjectGenerationContext, '
     const { prepareNalatiSpecies: construct } = await import('./speciesPreparation');
     const compile = ctx.compileReturnProjection;
     if (compile === undefined) throw new Error('Species source requires injected projection compilation');
-    const made = await construct(raw, sources, input, admitGuest, bodyFile, compile);
+    const made = await construct(raw, sources, input, admitGuest, bodyFile, compile, shareParts);
     const encode = (value: unknown): Uint8Array => new TextEncoder().encode(`${JSON.stringify(value, null, 2)}\n`);
     return new Map([['species.json', encode(made.data)], ['boot.json', encode(made.boot)],
       ['bodies.bin', made.body.bytes], ['held-weapons.wasm', made.selected], ['held-witness.bin', made.witness]]);
