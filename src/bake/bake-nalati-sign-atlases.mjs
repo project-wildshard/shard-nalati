@@ -4,7 +4,7 @@ import { KEYCHAIN_ARGS } from '../../scripts/chromium-keychain.mjs';
 // with no runtime canvas or font dependency.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { chromium, devices } from 'playwright';
+import { chromium, devices } from "../../scripts/browser-playwright.mjs";
 import { paintSignAtlas } from '../generators/signLettering.ts';
 import { nalatiRoadSignSites } from '../generators/roadSigns.ts';
 import { byteWriter, outputHash, jsonBytes } from '../../scripts/bake-output.mjs';

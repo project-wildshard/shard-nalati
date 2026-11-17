@@ -20,7 +20,7 @@ import { resolve as resolvePath } from 'node:path';
 import { jpegImageRoutes } from './parity/image-routes.mjs';
 import { saveJpegBlob } from './parity/canvas-bytes.mjs';
 
-const { chromium } = await import('playwright');
+const { chromium } = await import("./browser-playwright.mjs");
 
 const ROOT = resolvePath(new URL('..', import.meta.url).pathname);
 const SET = resolvePath(ROOT, 'art/nalati-grasslands/round-4-camp-9angle');

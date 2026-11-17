@@ -8,7 +8,7 @@ import { readShards } from './shards.mjs';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
 
-const { chromium } = await import('playwright');
+const { chromium } = await import("./browser-playwright.mjs");
 const argv = process.argv.slice(2);
 const flag = (n, d) => { const a = argv.find((x) => x.startsWith(`--${n}=`)); return a ? a.slice(n.length + 3) : d; };
 const URL_BASE = flag('url', 'http://127.0.0.1:5188');

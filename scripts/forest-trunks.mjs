@@ -20,7 +20,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium, devices } from 'playwright';
+import { chromium, devices } from "./browser-playwright.mjs";
 import { KEYCHAIN_ARGS } from './chromium-keychain.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
