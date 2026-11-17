@@ -117,6 +117,10 @@ jobs:
         run: node scripts/publish-shard.mjs build "${{ inputs.slug }}"
       - name: Check the shard source as an author would
         run: pnpm exec wildshard check . tmp/publish/check
+      - name: Check the offline phone memory limit
+        env:
+          PRODUCT: ${{ steps.product.outputs.product }}
+        run: pnpm exec shard-format validate "$PRODUCT"
       - name: The version upload sends
         id: version
         run: node scripts/publish-shard.mjs version "${{ steps.product.outputs.slug }}" "${{ inputs.version }}"

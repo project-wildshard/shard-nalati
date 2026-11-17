@@ -163,6 +163,9 @@ jobs:
       - name: Build shard products on the runner
         if: github.event_name != 'push'
         run: pnpm build:shards
+      - name: Check the offline phone memory limit
+        if: github.event_name != 'push'
+        run: pnpm exec shard-format validate out/nalati-grasslands
       - name: Preserve CI21 grid eviction and restore assertions
         if: ${{ !cancelled() && (github.job != 'check' || github.event_name != 'push') }}
         run: |
@@ -319,6 +322,8 @@ jobs:
         run: node --test test/ci/nalati-author-tools.test.mjs
       - name: Build shard products on the runner
         run: pnpm build:shards
+      - name: Check the offline phone memory limit
+        run: pnpm exec shard-format validate out/nalati-grasslands
       - name: Preserve CI21 grid eviction and restore assertions
         if: ${{ !cancelled() && (github.job != 'check' || github.event_name != 'push') }}
         run: |
@@ -519,7 +524,6 @@ jobs:
             pnpm install --frozen-lockfile --config.ci=false
           fi
       - name: Match the candidate engine's declared format dependency
-        if: true
         run: |
           node scripts/candidate-format.mjs
           pnpm install --no-frozen-lockfile --config.ci=false
