@@ -407,7 +407,7 @@
       "sourcePath": "test/nalati-shape-product-lanes.test.ts",
       "sourceBlob": "8994b1959adbab362387979312373c912f6b924b",
       "targetPath": "test/ci21-candidate/nalati-shape-product-lanes.test.ts",
-      "targetBlob": "2df63ce1d9a3aebad6eccfb8bad62a77c261fd6f",
+      "targetBlob": "fb9096b82780b1b85a0060fbbed642ad41433775",
       "originalTests": [
         "all 36 original actor shapes use the admitted bank with complete geometry parity"
       ],
@@ -683,7 +683,7 @@
       "sourcePath": "test/nalati-headless-assembly.test.ts",
       "sourceBlob": "1dd945f9d6cbbf359bbfd10687f364c709af9833",
       "targetPath": "test/ci21-candidate/nalati-headless-assembly.test.ts",
-      "targetBlob": "3e15114252a05aa7837aa91a3562e6dc5be2d82a",
+      "targetBlob": "6b809af4e5a599590cf26170c254c7258aa5598c",
       "originalTests": [
         "Nalati declared assembly retains its native 100 + 30 tick continuation",
         "Nalati chapter landing retains native actor order, codec and strict suffix",
@@ -691,7 +691,7 @@
       ],
       "compilerSupport": [],
       "fixturePath": "test/proof/nalati-grasslands/witness.ts",
-      "fixtureBlob": "56faa15d0403c4c615f1a517714f014c5e824573",
+      "fixtureBlob": "f32c7570d8be01fdb9edced91cf76984fbf393fb",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass.",
       "additionalFixtures": [
         {
@@ -1888,7 +1888,7 @@
     },
     {
       "targetPath": "test/proof/nalati-grasslands/taming.ts",
-      "targetBlob": "58b9272c51786631ccd0977a7a4c566b35a82ea8"
+      "targetBlob": "49328cf4909e19c4bcbb1cd963d2da83c494652a"
     },
     {
       "targetPath": "test/proof/nalati-grasslands/tamingPilot.ts",
@@ -1896,7 +1896,7 @@
     },
     {
       "targetPath": "test/proof/nalati-grasslands/witness.ts",
-      "targetBlob": "56faa15d0403c4c615f1a517714f014c5e824573"
+      "targetBlob": "f32c7570d8be01fdb9edced91cf76984fbf393fb"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-titan-run.ts",
