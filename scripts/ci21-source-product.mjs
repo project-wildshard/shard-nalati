@@ -4,11 +4,23 @@ import {createHash} from 'node:crypto';
 import {mkdirSync,readFileSync,readdirSync,writeFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {join} from 'node:path';
+function files(root,prefix=''){
+ try{return readdirSync(prefix?`${root}/${prefix}`:root,{withFileTypes:true}).flatMap(entry=>{
+  const path=prefix?`${prefix}/${entry.name}`:entry.name;assert(!entry.isSymbolicLink(),'Producer paths contain no foreign symlink');
+  return entry.isDirectory()?files(root,path):[`${root}/${path}`];
+ });}catch(error){if(error.code==='ENOENT')return [];throw error;}
+}
 const hash=path=>createHash('sha256').update(readFileSync(path)).digest('hex');
 const directory='tmp/ci21-source';mkdirSync(directory,{recursive:true});
 function inputs(){
  const git=spawnSync('git',['ls-files','-z','--','src','public'],{encoding:'utf8'});assert.equal(git.status,0,git.stderr);
- return git.stdout.split('\0').filter(Boolean).sort().map(path=>({path,sha256:hash(path)}));
+ const paths=git.stdout.split('\0').filter(Boolean).sort();
+ // publish-public copies only this tracked tree to its generated public aliases.
+ const aliases=new Map(paths.filter(path=>path.startsWith('src/assets/public/')).map(path=>[path.replace('src/assets/public/','public/assets/nalati-grasslands/'),path]));
+ const actual=[...files('src'),...files('public')].sort();
+ assert.deepEqual(actual.filter(path=>!aliases.has(path)),paths,'Producer source inventory differs');
+ for(const [alias,source] of aliases)if(actual.includes(alias))assert.equal(hash(alias),hash(source),'Generated public alias differs from its tracked source');
+ return paths.map(path=>({path,sha256:hash(path)}));
 }
 function productFiles(root,prefix=''){
  return readdirSync(join(root,prefix),{withFileTypes:true}).flatMap(entry=>{
