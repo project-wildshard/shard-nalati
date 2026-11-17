@@ -22,3 +22,8 @@ titles; four refusal/retention controls pass.
 Source CI retains actual installed graph identity and raw JSON case
 results. Existing product jobs remain separate. Default promotion and
 paired engine removals remain C10/C11.
+
+The first hosted attempt43986320847 stopped before any test because
+the reused installed-graph checker requires NALATI_ENGINE_CANDIDATE,
+not the selector variable CANDIDATE_ENGINE. Pass the same immutable SHA
+under both names; retain its strict resolved-tarball/path assertions.

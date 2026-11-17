@@ -477,6 +477,7 @@ jobs:
       - name: Compile, type-lint and run every complete original
         env:
           CANDIDATE_ENGINE: ${{ inputs.engine }}
+          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine }}
           NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           test -n "$CANDIDATE_ENGINE"
