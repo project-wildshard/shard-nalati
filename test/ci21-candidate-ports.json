@@ -462,6 +462,165 @@
       "fixturePath": "test/fixtures/titanInlineWitness.ts",
       "fixtureBlob": "30d17e5b11a1250785ade2137ee93300127ed37b",
       "changes": "Whole original case and numerical oracle retained; public Scope/ReturnProgram imports and one extra fixture path segment only. Uses existing actual owner module loans, raw wind witness and unchanged compiled programme. Original stays pending until published/default admission. C4source first file."
+    },
+    {
+      "sourcePath": "test/encounter-slots.test.ts",
+      "sourceBlob": "53c034f70b40ca545f76824695f2d50fe613eaa6",
+      "targetPath": "test/ci21-candidate/encounter-slots.test.ts",
+      "targetBlob": "b6b9cb5aaa11a6d38b8c7459e1bee1d729f2f2b7",
+      "originalTests": [
+        "authored slot cycles wake once, rotate nights and release corpses during daylight",
+        "authored slot members publish one break, retirement and a living home return"
+      ],
+      "fixturePath": "test/fixtures/nalati-night.ts",
+      "fixtureBlob": "00dda09173a8d2360ae02987faf145a272194dec",
+      "changes": "Whole original numerical cases, loops, seeds, refusals and oracles retained. Only public engine imports, owner fixture paths and equivalent typed dot notation. Existing actual owner fixtures; weather witness reads exact frozen bytes with the original hash check. No default admission or engine removal before C10/C11.",
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/weatherInlineWitness.ts",
+          "targetBlob": "0a18a670922b6af578e9d0f9db255d2949e1996c"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-weather-original.json",
+          "targetBlob": "bb05687dfded1913f22bad7fa0b299ebad1856ff"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-weather-original.wasm",
+          "targetBlob": "5b6e72e08d0f946542922facc906ab8ae5551be2"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/nalati-elite-admission.test.ts",
+      "sourceBlob": "1b987286addf687faa7388a548b3567a87f7eb04",
+      "targetPath": "test/ci21-candidate/nalati-elite-admission.test.ts",
+      "targetBlob": "36cd547dc75161c5f377c089ee6a95c5aabda467",
+      "originalTests": [
+        "AS owns named-elite gates, captain support and herd display/adoption decisions",
+        "motion observations hold their scalar between ten-Hz AS projections"
+      ],
+      "fixturePath": "test/fixtures/nalati-admission.ts",
+      "fixtureBlob": "c789c8cf86045c2e1876157543504c55f1557615",
+      "changes": "Whole original numerical cases, loops, seeds, refusals and oracles retained. Only public engine imports, owner fixture paths and equivalent typed dot notation. Existing actual owner fixtures; weather witness reads exact frozen bytes with the original hash check. No default admission or engine removal before C10/C11.",
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/nalati-admission-loan.ts",
+          "targetBlob": "350dfa81b1cd51031c319f4c80036cb367327659"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/nalati-night-decisions.test.ts",
+      "sourceBlob": "c6e50f3d2d26dcafcb4be292949854e4a3ddb1ef",
+      "targetPath": "test/ci21-candidate/nalati-night-decisions.test.ts",
+      "targetBlob": "6a6e947a7e680bebe6038fbfca6df04fee2e8d3f",
+      "originalTests": [
+        "ridge slots wrap and the night line engages and retreats with hysteresis",
+        "roster holds, rider death and warrior retirement publish once",
+        "dusk selection handles empty rings and rotates the crown",
+        "firing policy rejects quiet and distant riders and admits a finite ballistic aim",
+        "weather policy holds the titan storm and restores calm after its wind ends",
+        "the actual return-script catalogue admits the shared weather/night module once"
+      ],
+      "fixturePath": "test/fixtures/nalati-night.ts",
+      "fixtureBlob": "00dda09173a8d2360ae02987faf145a272194dec",
+      "changes": "Whole original numerical cases, loops, seeds, refusals and oracles retained. Only public engine imports, owner fixture paths and equivalent typed dot notation. Existing actual owner fixtures; weather witness reads exact frozen bytes with the original hash check. No default admission or engine removal before C10/C11.",
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/weatherInlineWitness.ts",
+          "targetBlob": "0a18a670922b6af578e9d0f9db255d2949e1996c"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-weather-original.json",
+          "targetBlob": "bb05687dfded1913f22bad7fa0b299ebad1856ff"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-weather-original.wasm",
+          "targetBlob": "5b6e72e08d0f946542922facc906ab8ae5551be2"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/nalati-roster-decisions.test.ts",
+      "sourceBlob": "5e301c9ca8c56a27bd85d7cffbb8ef786baa0890",
+      "targetPath": "test/ci21-candidate/nalati-roster-decisions.test.ts",
+      "targetBlob": "f74bdd44de777b29654ff94531b73de784264ffb",
+      "originalTests": [
+        "native alarm decisions retain strict radii and capped awareness",
+        "wild speed projection caps teleports and handles a stationary clock",
+        "raid setup borrows precisely two native stream draws",
+        "owned and stallion damage floors remain bounded at native contact",
+        "dispatch chooses the elite before a group and holds owned horses",
+        "existing sheepdog decision still fits the unchanged return fuel budget"
+      ],
+      "fixturePath": "test/fixtures/nalati-admission.ts",
+      "fixtureBlob": "c789c8cf86045c2e1876157543504c55f1557615",
+      "changes": "Whole original numerical cases, loops, seeds, refusals and oracles retained. Only public engine imports, owner fixture paths and equivalent typed dot notation. Existing actual owner fixtures; weather witness reads exact frozen bytes with the original hash check. No default admission or engine removal before C10/C11.",
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/nalati-admission-loan.ts",
+          "targetBlob": "350dfa81b1cd51031c319f4c80036cb367327659"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/nalati-titan-decisions.test.ts",
+      "sourceBlob": "5aceb3b6dec8788acd618c6afd6188d9f620af8c",
+      "targetPath": "test/ci21-candidate/nalati-titan-decisions.test.ts",
+      "targetBlob": "5c613e7c5d910fd0e5dfd5a8d1cefd24a11109da",
+      "originalTests": [
+        "selected Titan spear retains the frozen 10 Hz trace, lock point, strike window and borrowed RNG",
+        "storm riders complete circle, committed charge and open flank without a second state owner",
+        "chain storms schedule seven tells and land only inside their contact radius",
+        "fire decisions expire cells, preserve burnt neighbours and stay within the v1 fuel budget",
+        "rider coupling removes dead slots once and commits a single live charge",
+        "the native world receives bounded wind positions and doorway decisions"
+      ],
+      "fixturePath": "test/fixtures/nalati-titan.ts",
+      "fixtureBlob": "4e7808f0192aec9a547fea17a1b96a8878d2ea73",
+      "changes": "Whole original numerical cases, loops, seeds, refusals and oracles retained. Only public engine imports, owner fixture paths and equivalent typed dot notation. Existing actual owner fixtures; weather witness reads exact frozen bytes with the original hash check. No default admission or engine removal before C10/C11.",
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/titanInlineWitness.ts",
+          "targetBlob": "30d17e5b11a1250785ade2137ee93300127ed37b"
+        },
+        {
+          "targetPath": "test/fixtures/nalati-return-modules.ts",
+          "targetBlob": "bc8b8a13bf5dc12de76d8aa05c48437a93343cb0"
+        }
+      ]
+    },
+    {
+      "sourcePath": "test/balbal-v2.test.ts",
+      "sourceBlob": "fb4e968f7b038400297f027d3bbc6f7fc655ea23",
+      "targetPath": "test/ci21-candidate/balbal-v2.test.ts",
+      "targetBlob": "b637c0b7cdb4e8abb710519a08982ae742baf475",
+      "originalTests": [
+        "Balbal ABI2 preserves the frozen callback trace, twenty defaults and original memory continuation",
+        "ABI2 retains same-call native Wedge contact, reach refusal and both ordered sounds",
+        "the selected creature artifact is admitted in the complete emitted inventory and leaves held ABI1 intact",
+        "selected Balbal capture refuses missing fields and retired owners without native memory or effects",
+        "every shared held, power, stealth and creature signal matches its unchanged ABI1 witness",
+        "retirement from native contact reach cannot publish hurt or either sound",
+        "AS request-tag policy retains legacy equipment fallback, visibility and stow precedence"
+      ],
+      "fixturePath": "test/fixtures/balbal-projection-original.json",
+      "fixtureBlob": "49204ed246bcc68b3ecfee11351f89ed8014f05d",
+      "changes": "All seven original cases, 3000 callback frames, complete ABI1 oracle, signals and native retirement/refusal checks retained. Public engine/SDK imports, fixture path depth and typed property spelling only. Real ActorProjectionV2 consumes the same original frozen author JSON, now pinned at the owner. No engine removal/default admission before C10/C11.",
+      "additionalFixtures": [
+        {
+          "targetPath": "test/fixtures/projectedCreature.ts",
+          "targetBlob": "9236901b051ce9fd3abfd495e3b219b1b0789857"
+        },
+        {
+          "targetPath": "test/fixtures/originalBalbal.ts",
+          "targetBlob": "7584e22776253882681ce755a72ea84b077236fc"
+        },
+        {
+          "targetPath": "test/fixtures/originalBalbalRows.json",
+          "targetBlob": "cef40a07693ed779d1de0ff645c555fe60d75f28"
+        }
+      ]
     }
   ],
   "supportFixtures": [
@@ -799,7 +958,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-original-species-blob.ts",
-      "targetBlob": "a76aa0e4aec528e4ae9936d2414bc9698ef1d88e"
+      "targetBlob": "9151ebe77830a0838c3bf13571b9d090cd64f248"
     },
     {
       "targetPath": "test/fixtures/nalati-original-species.ts",
@@ -1183,26 +1342,33 @@
     }
   ],
   "typedLintFiles": [
+    "test/ci21-candidate/balbal-v2.test.ts",
+    "test/ci21-candidate/encounter-slots.test.ts",
     "test/ci21-candidate/held-bow-product.test.ts",
     "test/ci21-candidate/nalati-cloth-publication.test.ts",
     "test/ci21-candidate/nalati-contact-publication.test.ts",
     "test/ci21-candidate/nalati-decorative-scene.test.ts",
+    "test/ci21-candidate/nalati-elite-admission.test.ts",
     "test/ci21-candidate/nalati-firearm-admission.test.ts",
     "test/ci21-candidate/nalati-herd-binary.test.ts",
     "test/ci21-candidate/nalati-king-pose.test.ts",
     "test/ci21-candidate/nalati-kurgan-fabric.test.ts",
+    "test/ci21-candidate/nalati-night-decisions.test.ts",
     "test/ci21-candidate/nalati-place-binary.test.ts",
     "test/ci21-candidate/nalati-quest-prop-binary.test.ts",
+    "test/ci21-candidate/nalati-roster-decisions.test.ts",
     "test/ci21-candidate/nalati-script-sections-source.test.ts",
     "test/ci21-candidate/nalati-shape-files.test.ts",
     "test/ci21-candidate/nalati-shape-product-lanes.test.ts",
     "test/ci21-candidate/nalati-species-product-inputs.test.ts",
+    "test/ci21-candidate/nalati-titan-decisions.test.ts",
     "test/ci21-candidate/nalati-view-binary.test.ts",
     "test/ci21-candidate/nalati-weapon-observation.test.ts",
     "test/ci21-candidate/nalati-wind-projection.test.ts",
     "test/fake/bossArena.ts",
     "test/fake/nalatiSpecies.ts",
     "test/fixtures/kurgan-oracle/dungeon.ts",
+    "test/fixtures/nalati-admission-loan.ts",
     "test/fixtures/nalati-admission.ts",
     "test/fixtures/nalati-balbal.ts",
     "test/fixtures/nalati-carried-quest.ts",
@@ -1221,7 +1387,9 @@
     "test/fixtures/nalati-native-assembly-inputs.ts",
     "test/fixtures/nalati-native-place-files.ts",
     "test/fixtures/nalati-native-program.ts",
+    "test/fixtures/nalati-night.ts",
     "test/fixtures/nalati-original-place-binary.ts",
+    "test/fixtures/nalati-original-species-blob.ts",
     "test/fixtures/nalati-original-species.ts",
     "test/fixtures/nalati-output-original.ts",
     "test/fixtures/nalati-poi-paint-original.ts",
@@ -1242,8 +1410,11 @@
     "test/fixtures/native-oracle.ts",
     "test/fixtures/native-program.ts",
     "test/fixtures/original-script-order.ts",
+    "test/fixtures/originalBalbal.ts",
     "test/fixtures/productFile.ts",
+    "test/fixtures/projectedCreature.ts",
     "test/fixtures/runSnapshot.ts",
-    "test/fixtures/titanInlineWitness.ts"
+    "test/fixtures/titanInlineWitness.ts",
+    "test/fixtures/weatherInlineWitness.ts"
   ]
 }

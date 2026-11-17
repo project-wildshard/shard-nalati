@@ -38,7 +38,13 @@
     "ci21-candidate/nalati-shape-product-lanes.test.ts",
     "ci21-candidate/nalati-species-product-inputs.test.ts",
     "ci21-candidate/nalati-view-binary.test.ts",
-    "ci21-candidate/nalati-wind-projection.test.ts"
+    "ci21-candidate/nalati-wind-projection.test.ts",
+    "ci21-candidate/encounter-slots.test.ts",
+    "ci21-candidate/nalati-elite-admission.test.ts",
+    "ci21-candidate/nalati-night-decisions.test.ts",
+    "ci21-candidate/nalati-roster-decisions.test.ts",
+    "ci21-candidate/nalati-titan-decisions.test.ts",
+    "ci21-candidate/balbal-v2.test.ts"
   ],
   "include": []
 }

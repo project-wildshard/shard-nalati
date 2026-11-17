@@ -12,7 +12,10 @@ interface OriginalDeclaration {
 /** Only the five frozen historical species publications are source-built oracle inputs.
  * Other declarations retain their ordinary strict raw-file reader; no failed read falls back here. */
 export function originalSpeciesBlob(row: OriginalDeclaration): NamedBlob | undefined {
-  const pin = pins.find(value => value.path === `src/${row.source}`);
+  // Owner output declarations are now relative to the Nalati source root.
+  // Admit only a retained exact historical path; never read an unpinned file.
+  const paths = [`src/${row.source}`, `src/shards/nalati-grasslands/${row.source}`];
+  const pin = pins.find(value => paths.includes(value.path));
   if (pin === undefined) return undefined;
   return nameBlob(row.name, row.kind, originalSpeciesOutput(pin.path), row.options);
 }
