@@ -88,3 +88,27 @@ test('every reward candidate has exactly one declared entry', () => fixture((roo
   put('test/reward-candidate/reward.test.mjs', 'export const wholeReward = true;');
   assert.throws(() => checkTestBoundary(root), /Every reward candidate/u);
 }));
+
+test('explicit native child compiler roots retain their candidate engine boundary', () => fixture((root, put) => {
+  put('test/ci21-candidate/held.test.ts', 'export const childProof = true;');
+  put('test/fixtures/headless/native-run.ts', "import '@wildshard/engine/__ci21_missing_export__';");
+  put('test/ci21-candidate-ports.json', JSON.stringify({files:[{targetPath:'test/ci21-candidate/held.test.ts',compilerSupport:['test/fixtures/headless/native-run.ts']}]}));
+  assert.doesNotThrow(() => checkTestBoundary(root));
+  assert.throws(() => checkTestBoundary(root,{candidate:true}), /engine does not export/u);
+  put('test/default.test.ts', "import './fixtures/headless/native-run';");
+  assert.throws(() => checkTestBoundary(root), /engine does not export/u);
+}));
+test('candidate native compiler support cannot hide production or arbitrary test roots', () => fixture((root, put) => {
+  put('src/hidden.ts', "import '@wildshard/engine/__ci21_missing_export__';");
+  put('test/ci21-candidate-ports.json', JSON.stringify({files:[{targetPath:'test/ci21-candidate/held.test.ts',compilerSupport:['src/hidden.ts']}]}));
+  assert.throws(() => checkTestBoundary(root), /explicit maintained fixture modules/u);
+}));
+
+test('native proof helpers inherit their callers and stay guarded when unused', () => fixture((root, put) => {
+  put('test/proof/native.ts', "import '@wildshard/engine/__ci21_missing_export__';");
+  assert.throws(() => checkTestBoundary(root), /engine does not export/u);
+  put('test/ci21-candidate/held.test.ts', "import '../proof/native';");
+  assert.doesNotThrow(() => checkTestBoundary(root));
+  put('test/default.test.ts', "import './proof/native';");
+  assert.throws(() => checkTestBoundary(root), /engine does not export/u);
+}));

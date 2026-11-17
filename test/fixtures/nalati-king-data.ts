@@ -7,9 +7,9 @@ import {CreatureStrikeSchema} from '@wildshard/format/creatures';
 import {ReturnProgramSchema} from '@wildshard/format/namedJsonContracts';
 import {SpeciesActorsFileSchema,type ArenaRoomSpeciesControlRows} from '@wildshard/format/speciesBookRows';
 import {parseRuntimeSpawns,type RuntimeBossRow} from '@wildshard/format/runtimeSpawns';
-import type {CombatTag} from '../../src/shared/engine/combat/pipeline';
-import type {ShardProduct} from '../../src/shared/game/shardfile/shardProduct';
-import {readEncounterIntake,readEncounterPoses} from '../../src/server/game/population/encounterBook';
+import type {CombatTag} from '@wildshard/engine/combat/pipeline';
+import type {ShardProduct} from '@wildshard/engine/game/shardfile/shardProduct';
+import {readEncounterIntake,readEncounterPoses} from '@wildshard/engine/game/population/encounterBook';
 
 const finite=v.pipe(v.number(),v.finite()),positive=v.pipe(finite,v.minValue(Number.MIN_VALUE));
 const id=v.pipe(v.string(),v.minLength(1),v.maxLength(512)),xz=v.object({x:finite,z:finite});

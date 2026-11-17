@@ -1,8 +1,8 @@
 import { nalatiNativeAssembly } from './nalati-native-assembly';
 import * as v from 'valibot';
 import {installCombatMotion} from '@wildshard/engine/game/shardfile/nativeRuntimeLoans';
-import {heldArmsOf,prepareHeldArms,type HeldArrowTargets,type HeldRay,type HeldSeat} from '../../src/server/game/weapons/nativeHeld';
-import type {SimHost} from '../../src/server/engine/sim';
+import {heldArmsOf,prepareHeldArms,type HeldArrowTargets,type HeldRay,type HeldSeat} from '@wildshard/engine/game/weapons/nativeHeld';
+import type {SimHost} from '@wildshard/engine/sim';
 import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
 import {prepareHeadlessRuntime as prepareCompanions} from './nalati-companions-native';
 

@@ -1,9 +1,9 @@
 import * as v from 'valibot';
-import {nativePopulationOf} from '../../src/server/game/riding/nativePopulation';
-import {PastureCues} from '../../src/shared/game/riding/pastureCues';
+import {nativePopulationOf} from '@wildshard/engine/game/riding/nativePopulation';
+import {PastureCues} from '@wildshard/engine/game/riding/pastureCues';
 import {PastureActorSchema} from '@wildshard/format/wildlifePopulation';
 import {PopulationEffectsSchema} from '@wildshard/format/creatures';
-import {GroupNotices} from '../../src/server/game/population/groupNotices';
+import {GroupNotices} from '@wildshard/engine/game/population/groupNotices';
 import {prepareNalatiWorld} from './nalati-world';
 import {withNalatiCompanions} from './nalati-companions-native';
 import {withNalatiWeapons} from './nalati-weapons-native';
