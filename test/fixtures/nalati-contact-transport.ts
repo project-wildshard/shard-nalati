@@ -12,7 +12,7 @@ export function originalDressingClothTransport(blobs:readonly NamedBlob[],origin
   const output=blobs.filter(row=>!row.file.name?.startsWith('world/dressing-cloth/')).map(blob=>{
     const before=blob.file.name===undefined?undefined:originals.get(blob.file.name);if(before===undefined)return blob;
     const scene=v.parse(SceneDressingSchema,JSON.parse(new TextDecoder().decode(blob.bytes)));
-    const oldCloth=before.geometry['cloth'],cloth=scene.geometry['cloth'];
+    const oldCloth=before.geometry.cloth,cloth=scene.geometry.cloth;
     if(oldCloth?.kind==='inline'){
       if(cloth?.kind!=='baked-file')throw new Error('Expected named cloth loan');
       const {kind:_beforeKind,data,...metadata}=oldCloth,{kind:_kind,file,address,...actual}=cloth,loan=files.get(file),raw=unzlibSync(base64Bytes(data)),offset=files.get(address.file)?.bytes;
@@ -20,7 +20,7 @@ export function originalDressingClothTransport(blobs:readonly NamedBlob[],origin
         ||new DataView(offset.buffer,offset.byteOffset,offset.byteLength).getUint32(address.word*4,true)!==0)throw new Error('Original cloth metadata or address changed');
       const decoded=unshuffleLanes(unzlibSync(loan.bytes));
       if(decoded.length!==raw.length||!decoded.every((byte,at)=>byte===raw[at]))throw new Error('Original cloth bytes changed');
-      used.add(file);addresses.add(address.file);scene.geometry['cloth']=oldCloth;
+      used.add(file);addresses.add(address.file);scene.geometry.cloth=oldCloth;
     }
     return nameBlob(blob.file.name??'','json',new TextEncoder().encode(encodeCanonicalJson(scene)),
       blob.file.jsonSchema===undefined?{}:{jsonSchema:blob.file.jsonSchema});
@@ -37,7 +37,7 @@ export function originalPebbleMaterial(blobs:readonly NamedBlob[]):NamedBlob[]{
   return blobs.map(blob=>{
     if(blob.file.name!=='world/dressing-phone.json'&&blob.file.name!=='world/dressing-desktop.json')return blob;
     const scene=v.parse(SceneDressingSchema,JSON.parse(new TextDecoder().decode(blob.bytes)));
-    if(scene.materials['pebble']===undefined)return blob;
+    if(scene.materials.pebble===undefined)return blob;
     const {pebble:_pebble,...materials}=scene.materials;
     const layers=scene.layers.map(row=>row.material==='pebble'?{...row,material:'rock'}:row);
     return nameBlob(blob.file.name??'','json',new TextEncoder().encode(encodeCanonicalJson({...scene,materials,layers})),

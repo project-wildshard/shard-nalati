@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import type { AnimalRigContext as RigAnimCtx } from '@wildshard/engine/entities/animalRig';
 import { lookAngles, smooth01, bump, step, clamp } from '@wildshard/engine/entities/species/rigs';
 import { terrainHeight as heightAt } from '@wildshard/engine/world/terrainHeight';
+
 type Side = 'L' | 'R';
 type KingBones = Record<'body' | 'spine' | 'chest' | 'head' | 'crown' | 'cape' | `arm${Side}_${'sh' | 'el' | 'hand'}` | `leg${Side}_${'hip' | 'knee' | 'foot'}`, THREE.Bone>;
 interface KingMem extends Record<string, number | undefined> {

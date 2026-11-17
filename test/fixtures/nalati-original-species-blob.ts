@@ -14,8 +14,8 @@ interface OriginalDeclaration {
 export function originalSpeciesBlob(row: OriginalDeclaration): NamedBlob | undefined {
   // Owner output declarations are now relative to the Nalati source root.
   // Admit only a retained exact historical path; never read an unpinned file.
-  const paths = [`src/${row.source}`, `src/shards/nalati-grasslands/${row.source}`];
-  const pin = pins.find(value => paths.includes(value.path));
+  const paths = new Set([`src/${row.source}`, `src/shards/nalati-grasslands/${row.source}`]);
+  const pin = pins.find(value => paths.has(value.path));
   if (pin === undefined) return undefined;
   return nameBlob(row.name, row.kind, originalSpeciesOutput(pin.path), row.options);
 }

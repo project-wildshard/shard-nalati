@@ -3,10 +3,9 @@ import { execFile } from 'node:child_process';
 // oxlint-disable-next-line import/no-nodejs-modules -- Copy only verified native cache output while holding its read lease.
 import { readFileSync, statSync, writeFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- All compiler inputs remain repository-relative.
-import { resolve } from 'node:path';
+import { resolve as resolvePath } from 'node:path';
 import { bakeInputHashes, InputHashMemo } from '@wildshard/engine/scripts/bake-input-hashes.mjs';
-import type { RecorderTask } from '@wildshard/engine/scripts/native-recorder-cache.mjs';
-import { runNativeRecorder } from '@wildshard/engine/scripts/native-recorder-cache.mjs';
+import { runNativeRecorder, type RecorderTask } from '@wildshard/engine/scripts/native-recorder-cache.mjs';
 
 const memos = new Map<string, InputHashMemo>();
 const MAX_BYTES = 1 << 26;
@@ -26,7 +25,7 @@ export interface NativeProgramSpec {
 export function nativeProgramJob(spec: NativeProgramSpec): {
   root: string; memo: InputHashMemo; paths: string[]; inventory: () => string[]; job: RecorderTask;
 } {
-  const root = resolve(spec.root ?? '.'), memo = memos.get(root) ?? new InputHashMemo(root);
+  const root = resolvePath(spec.root ?? '.'), memo = memos.get(root) ?? new InputHashMemo(root);
   memos.set(root, memo);
   // Data-only proof constructors need no app identity or discovery-table preload.
   // The stricter simulation loader still fences its renderer admission rules.
@@ -36,7 +35,7 @@ export function nativeProgramJob(spec: NativeProgramSpec): {
   const command = [process.execPath, ...(spec.transformTypes === true ? ['--experimental-transform-types'] : []), '--import', `./${loader}`, '--', spec.script];
   return { root, memo, paths, inventory, job: {
     id: `fixture-${spec.id}`, inputs, command, outputs: ['fixture.json'], platform: 'native',
-    tools: { cwd: memo.root, nodeOptions: process.env['NODE_OPTIONS'] ?? '' },
+    tools: { cwd: memo.root, nodeOptions: process.env.NODE_OPTIONS ?? '' },
   } };
 }
 
@@ -48,20 +47,20 @@ export async function nativeProgramFixture(spec: NativeProgramSpec): Promise<str
   const result = await runNativeRecorder(root, job, {
     inputHashes: memo, ...(spec.cacheDir === undefined ? {} : { cacheDir: spec.cacheDir }),
     generate: async directory => {
-      const text = await new Promise<string>((done, fail) => {
-        execFile(process.execPath, command.slice(1), { cwd: root, encoding: 'utf8', maxBuffer: MAX_BYTES }, (error, stdout) => {
-          if (error !== null) fail(error);
-          else done(stdout);
+      const text = await new Promise<string>((resolve, reject) => {
+        execFile(process.execPath, command.slice(1), { cwd: root, encoding: 'utf8', maxBuffer: MAX_BYTES }, (error: Error | null, stdout) => {
+          if (error !== null) reject(error);
+          else resolve(stdout);
         });
       });
       const value: unknown = JSON.parse(text);
       if (value === null || typeof value !== 'object') throw new Error('Missing native compiler envelope');
       if (JSON.stringify(inventory()) !== JSON.stringify(paths)) throw new Error('Native compiler input inventory changed');
-      writeFileSync(resolve(directory, output), text);
+      writeFileSync(resolvePath(directory, output), text);
     },
   });
   try {
-    const file = resolve(result.directory, output);
+    const file = resolvePath(result.directory, output);
     if (statSync(file).size > MAX_BYTES) throw new Error('Native compiler envelope exceeds limit');
     return readFileSync(file, 'utf8');
   } finally { result.release(); }

@@ -1,3 +1,4 @@
+// oxlint-disable-next-line import/no-nodejs-modules -- Native witness integrity reads the exact committed WASM bytes.
 import { readFileSync } from 'node:fs';
 import { NALATI_NIGHT } from './nalati-night';
 import weatherOriginal from './nalati-weather-original.json';
@@ -8,7 +9,7 @@ import {sha256} from '@wildshard/engine/game/plugin/moduleHash';
 
 const raw=v.parse(v.object({...WeatherReactionsSchema.entries,script:DecisionScriptsSchema.pipe[2].item}),
   weatherOriginal);
-export const weatherModuleBytes=new Uint8Array(readFileSync(new URL('./nalati-weather-original.wasm', import.meta.url)));
+export const weatherModuleBytes=new Uint8Array(readFileSync(new URL('nalati-weather-original.wasm', import.meta.url)));
 if(raw.script.module!==`blobs/wasm/${sha256(weatherModuleBytes)}.wasm`)throw new Error('Weather witness hash mismatch');
 export const weatherRaw=raw;
 export const weatherWitness={...raw,bytes:Buffer.from(weatherModuleBytes).toString('base64')};

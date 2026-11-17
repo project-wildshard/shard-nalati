@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       ci21_source:
-        description: Run only the exact-source C3 test proof (product rollout remains C11)
+        description: Run only the exact-source CI21 test proof (product rollout remains C11)
         type: boolean
         default: false
       engine:
@@ -477,6 +477,15 @@ jobs:
       - name: Compile, type-lint and run every complete original
         env:
           CANDIDATE_ENGINE: ${{ inputs.engine }}
+          NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           test -n "$CANDIDATE_ENGINE"
-          pnpm check:ci21-candidate
+          node scripts/assert-candidate-engine.mjs
+          pnpm check:ci21-candidate --reporter=default --reporter=json --outputFile=tmp/ci21-source/report.json
+      - name: Retain actual source identity and complete case results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ci21-source-${{ github.run_id }}
+          path: tmp/ci21-source/
+          if-no-files-found: error

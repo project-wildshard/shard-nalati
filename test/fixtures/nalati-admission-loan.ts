@@ -25,9 +25,10 @@ afterEach(() => { for (const owner of owners.splice(0)) owner.dispose(); });
 /** Same admitted program, scoped raw loan and per-case retirement as the full
  * bank, without constructing unrelated held, riding, Kokpar or Titan programs. */
 export function admissionPage(owner?: Scope): ReturnProgram {
-  if (owner === undefined) { owner = new Scope('admission.fixture'); owners.push(owner); }
-  lendNalatiAdmission(owner);
-  return ReturnProgram.page(admission, owner);
+  const scope = owner ?? new Scope('admission.fixture');
+  if (owner === undefined) owners.push(scope);
+  lendNalatiAdmission(scope);
+  return ReturnProgram.page(admission, scope);
 }
 
 /** Existing explicit-scope callers retain the same raw module ownership. */

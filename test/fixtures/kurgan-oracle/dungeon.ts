@@ -822,9 +822,9 @@ export class ShippingKurganDungeon {
     this.lid.position.set(COFFIN.x + slide * (COFFIN.wid * 0.85), COFFIN.plinthH + COFFIN.h + 0.09 - tip * 0.75, COFFIN.z + slide * 0.2);
     this.lid.rotation.set(0, 0.06 * slide, -tip * 1.15);
   }
-  setNicheStatue(i: number, on: boolean): void { const s = this.statues[i]; if (s) s.visible = on; }
+  setNicheStatue(i: number, on: boolean): void { const s = this.statues[i]; if (s !== undefined) s.visible = on; }
   /** 0 = the looter's-hole shaft, 1 = the pedestal shaft; strength 0..1.5 (eased) */
-  setShaft(i: number, strength: number): void { const s = this.shafts[i]; if (s) s.target = strength; }
+  setShaft(i: number, strength: number): void { const s = this.shafts[i]; if (s !== undefined) s.target = strength; }
   showHeap(on: boolean, lx = COFFIN.x + 1.8, lz = COFFIN.z + 2.6): void { this.heap.visible = on; this.heap.position.set(lx, this.sandAt(lx, lz), lz); }
   /** show / hide the whole interior (it lives in the sky — see the header) */
   setVisible(on: boolean): void { this.group.visible = on; }

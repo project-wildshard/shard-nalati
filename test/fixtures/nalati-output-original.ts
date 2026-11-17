@@ -16,7 +16,9 @@ import { nalatiCover } from './nalati-cover';
 import { nalatiGrass } from './nalati-grass-bake';
 import { nalatiSpear } from './nalati-spear';
 import { NALATI_VIEW_BLOBS } from './nalati-view-modules';
+// oxlint-disable-next-line import/no-nodejs-modules -- The native predecessor oracle reads its exact committed pool bytes.
 import { readFileSync } from 'node:fs';
+
 const rows = v.parse(v.object({ crackBytes: v.array(v.number()), looks: v.unknown(), presentation: v.unknown(), hullBook: v.unknown() }),
   originalSpeciesJson('species.json'));
 /** Existing predecessor template only; source/cache output tests call prepareOutput directly. */
@@ -28,7 +30,8 @@ const originalSections = originalNalatiScriptSections(originalHeldMetadata().hel
   NALATI_TITAN_PROGRAMS, NALATI_WEATHER.rows, NALATI_ADMISSION, NALATI_CHARGE.rows);
 const name = 'actors/return-scripts', path = `sections/${name}.json`;
 const bytes = new TextEncoder().encode(encodeCanonicalJson(originalSections.get(name)));
+const originalSection = (row: typeof source.platform.sections[number]) => row.name === name ? { ...row, hash: hashImmutableBytes(bytes), bytes: bytes.byteLength } : row;
 export const output: ReturnType<typeof nalatiOutputRows> = { ...source, platform: { ...source.platform,
   files: new Map([...source.platform.files, [path, bytes]]),
-  sections: source.platform.sections.map(row => row.name === name ? { ...row, hash: hashImmutableBytes(bytes), bytes: bytes.byteLength } : row),
+  sections: source.platform.sections.map(originalSection),
 } };

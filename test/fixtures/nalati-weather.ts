@@ -10,6 +10,13 @@ import { parseDecisionScripts } from '@wildshard/sharddev/decisionScripts';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 import type { NalatiWeather } from '../../src/generators/weatherProgram';
 import { originalScriptOrder } from './original-script-order';
+import * as v from 'valibot';
+
+// Native typed admission retains every original field while making the
+// declaration-only JSON boundary explicit to the pinned lint compiler.
+const channelInput = v.looseObject({ clientChannels: v.unknown(), presentation: v.looseObject({}), sky: v.looseObject({}) });
+const weatherInput: unknown = weather, herdInput: unknown = herd;
+const weatherRows = v.parse(channelInput, weatherInput), herdRows = v.parse(channelInput, herdInput);
 
 const binary = Uint8Array.from(readFileSync(resolve('test/fixtures', 'nalati-weather-original.wasm')));
 const script = parseDecisionScripts([rows.script])[0];
@@ -19,7 +26,7 @@ if (script === undefined || script.module !== `blobs/wasm/${hashImmutableBytes(b
 export const NALATI_WEATHER: NalatiWeather = {
   binary, rows: { ...rows, bytes: '', script: originalScriptOrder(rows.script, script) },
   channels: {
-    weather: { ...weather, clientChannels: parseClientChannels(weather.clientChannels) },
-    herd: { ...herd, clientChannels: parseClientChannels(herd.clientChannels) },
+    weather: { ...weatherRows, clientChannels: parseClientChannels(weatherRows.clientChannels) },
+    herd: { ...herdRows, clientChannels: parseClientChannels(herdRows.clientChannels) },
   },
 };

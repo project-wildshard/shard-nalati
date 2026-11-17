@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import ts from '@typescript/typescript6';
 import { fileURLToPath } from 'node:url';
 import { dirname, relative } from 'node:path';
+import { caseInventory } from './ci21-case-inventory.mjs';
 const root=new URL('../',import.meta.url);
 const record=JSON.parse(readFileSync(new URL(process.argv[2] ?? 'test/ci21-wire-ports.json',root),'utf8'));
 for(const fixture of record.supportFixtures??[]){
@@ -20,15 +21,9 @@ if(record.typedLintFiles!==undefined){
  const files=program.getSourceFiles().map(file=>relative(fileURLToPath(root),file.fileName)).filter(file=>file.startsWith('test/')&&file.endsWith('.ts')&&!file.endsWith('.d.ts')&&!file.endsWith('.d.json.ts')).sort();
  if(JSON.stringify(files)!==JSON.stringify(record.typedLintFiles))throw new Error('CI21 typed lint must cover the complete actual compiler helper closure');
  const pkg=JSON.parse(readFileSync(new URL('package.json',root),'utf8'));
- const lint=pkg.scripts['check:ci21-candidate'].split('--deny-warnings ')[1]?.split(' && vitest')[0]?.trim().split(/\s+/u);
- if(JSON.stringify(lint)!==JSON.stringify(files))throw new Error('CI21 candidate lint command differs from the admitted compiler closure');
+ if(!pkg.scripts['check:ci21-candidate'].includes(' && node scripts/ci21-candidate-lint.mjs && vitest'))throw new Error('CI21 candidate command must run native lint over the complete admitted compiler closure');
 }
 
-function testRoot(node){
-  if(ts.isIdentifier(node))return ['test','it','describe'].includes(node.text)?node.text:null;
-  if(ts.isPropertyAccessExpression(node))return testRoot(node.expression);
-  return ts.isCallExpression(node)?testRoot(node.expression):null;
-}
 for(const row of record.files){
   if(row.caseCompanion!==undefined){
     const pair=row.caseCompanion;
@@ -37,27 +32,7 @@ for(const row of record.files){
 
   const text=readFileSync(new URL(row.targetPath,root));
   if(createHash('sha1').update(`blob ${text.length}\0`).update(text).digest('hex')!==row.targetBlob)throw new Error(`CI21 reviewed test binding changed: ${row.targetPath}`);
-  const source=ts.createSourceFile(row.targetPath,text.toString('utf8'),ts.ScriptTarget.Latest,true),titles=[];
-  let imported=false;
-  for(const statement of source.statements)if(ts.isImportDeclaration(statement)&&ts.isStringLiteral(statement.moduleSpecifier)&&statement.moduleSpecifier.text==='vitest'){
-    const names=statement.importClause?.namedBindings;
-    if(names!==undefined&&ts.isNamedImports(names))for(const entry of names.elements){
-      const name=entry.propertyName?.text??entry.name.text;
-      if(['test','it','describe'].includes(name)){
-        if(name!=='test'||entry.name.text!=='test')throw new Error('CI21 wire cases require direct test imports');
-        imported=true;
-      }
-    }
-  }
-  const visit=node=>{
-    if(ts.isVariableDeclaration(node)&&node.initializer!==undefined&&testRoot(node.initializer)!==null)throw new Error('CI21 wire test aliases refuse');
-    if(ts.isCallExpression(node)&&testRoot(node.expression)!==null){
-      if(!imported||!ts.isIdentifier(node.expression)||node.expression.text!=='test'||!ts.isStringLiteral(node.arguments[0])||![node.arguments[1],node.arguments[2]].some(body=>body!==undefined&&(ts.isArrowFunction(body)||ts.isFunctionExpression(body))))throw new Error('CI21 wire cases must run directly in default discovery');
-      titles.push(node.arguments[0].text);
-    }
-    ts.forEachChild(node,visit);
-  };
-  visit(source);
+  const titles=caseInventory(text.toString('utf8'),row.targetPath);
   if(JSON.stringify(titles)!==JSON.stringify(row.originalTests))throw new Error(`CI21 original golden case missing: ${row.targetPath}`);
   if(row.cacheHelper!==undefined){
     const cache=readFileSync(new URL(row.cacheHelper.targetPath,root));

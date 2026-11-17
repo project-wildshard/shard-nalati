@@ -19,7 +19,7 @@ function originalPlaces(): unknown {
   return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
 }
 
-export function nalatiNativeAssemblyInputs(placed: unknown = originalPlaces()) {
+function buildNativeAssemblyInputs(placed: unknown = originalPlaces()) {
   const places = v.parse(v.object({ rows: v.array(v.object({ colliders: v.array(v.object({
     hw: v.number(), hd: v.number(), yTop: v.number(), yBottom: v.number(), x: v.number(), z: v.number(),
   })) })) }), placed);
@@ -27,10 +27,17 @@ export function nalatiNativeAssemblyInputs(placed: unknown = originalPlaces()) {
   const { pageWildlife, pageGroups: _pageGroups, groupAdmission: _groupAdmission, nativeField: _nativeField,
     nativeDayClock: _nativeDayClock, nativeKnockdown: _nativeKnockdown, ...constants } = assembly.constants;
   const riding = constants.nativePopulation;
+  const variantRows = (variant: typeof riding.variants[number]['rows'][number]) => ({ ...variant, scale: v.parse(v.tuple([v.number(), v.number()]), variant.scale) });
+  const groupRows = (row: typeof riding.variants[number]) => ({ ...row, rows: row.rows.map(variantRows) });
   return canonicalNativeOracleInput({ ...assembly, constants: { ...constants,
     groupRows: nalatiNativeGroupWire(constants.groupRows, pageWildlife.pasture),
     nativeTaming: { ...constants.nativeTaming, binding: v.parse(PageTamingBindingSchema, constants.nativeTaming.binding) },
     nativePopulation: { ...riding, shepherdOffset: v.parse(v.tuple([v.number(), v.number()]), riding.shepherdOffset),
-      variants: riding.variants.map(row => ({ ...row, rows: row.rows.map(variant => ({ ...variant, scale: v.parse(v.tuple([v.number(), v.number()]), variant.scale) })) })) },
+      variants: riding.variants.map(groupRows) },
   } });
+}
+
+/** Preserve the complete inferred constructor contract at the exported boundary. */
+export function nalatiNativeAssemblyInputs(placed: unknown = originalPlaces()): ReturnType<typeof buildNativeAssemblyInputs> {
+  return buildNativeAssemblyInputs(placed);
 }

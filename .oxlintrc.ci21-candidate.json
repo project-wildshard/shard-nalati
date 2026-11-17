@@ -1,0 +1,4 @@
+{
+  "extends": ["./.oxlintrc.author.json"],
+  "ignorePatterns": []
+}

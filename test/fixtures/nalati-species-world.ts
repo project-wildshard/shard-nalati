@@ -6,7 +6,7 @@ import { originalSpeciesJson, originalSpeciesFile } from './nalati-original-spec
 
 let installed: Promise<void> | undefined;
 /** Lend the complete original species and packed bodies without unrelated world setup. */
-export function installNalatiSpeciesFixture(): Promise<void> { return installed ??= prepare(); }
+export function installNalatiSpeciesFixture(): Promise<void> { installed ??= prepare(); return installed; }
 
 async function prepare(): Promise<void> {
   const { registerSpecies } = await import('@wildshard/engine/entities/species/registry');

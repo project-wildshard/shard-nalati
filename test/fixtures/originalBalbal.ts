@@ -33,7 +33,7 @@ function nativeStrike():ReturnType<typeof strikeFromData>{strike??=strikeFromDat
 function weakPoint(actor:Animal,point:THREE.Vector3):boolean{
     const yaw=-actor.yaw;
     return program().project('weakPoint',{x:actor.position.x,ay:actor.position.y,z:actor.position.z,
-      cos:Math.cos(yaw),sin:Math.sin(yaw),scale:actor.scale,yOffset:actor.yOffset,hitX:point.x,hitY:point.y,hitZ:point.z})['weakPoint']===1;
+      cos:Math.cos(yaw),sin:Math.sin(yaw),scale:actor.scale,yOffset:actor.yOffset,hitX:point.x,hitY:point.y,hitZ:point.z}).weakPoint===1;
   }
 function think(actor:Animal,context:ThinkCtx):void{
     const row=guestRows(),memory=actor.mem,previous=memory[row.clock],dt=previous===undefined?context.dt:context.t-previous;
@@ -41,13 +41,13 @@ function think(actor:Animal,context:ThinkCtx):void{
     const observed:Record<string,number>={};
     for(const [key,field]of Object.entries(row.memory))observed[key]=memory[key]??(field.when!==undefined&&memory[field.when.field]===field.when.equal?field.when.value:field.source===undefined?field.value:field.source==='yaw'?actor.yaw:actor.position[field.source]);
     const bearing=Math.atan2(context.player.x-actor.position.x,context.player.z-actor.position.z),wrap=(angle:number)=>Math.atan2(Math.sin(angle),Math.cos(angle));
-    const answer=program().project('think',{...observed,bearing,homeBearing:Math.atan2((observed['homeX']??actor.position.x)-actor.position.x,(observed['homeZ']??actor.position.z)-actor.position.z),
-      homeOff:wrap((observed['homeYaw']??actor.yaw)-actor.yaw),hitOff:wrap(bearing-actor.yaw),dt,px:context.player.x,py:context.player.y,pz:context.player.z,
+    const answer=program().project('think',{...observed,bearing,homeBearing:Math.atan2((observed.homeX??actor.position.x)-actor.position.x,(observed.homeZ??actor.position.z)-actor.position.z),
+      homeOff:wrap((observed.homeYaw??actor.yaw)-actor.yaw),hitOff:wrap(bearing-actor.yaw),dt,px:context.player.x,py:context.player.y,pz:context.player.z,
       x:actor.position.x,ay:actor.position.y,z:actor.position.z,yaw:actor.yaw,state:row.states.indexOf(actor.state),calm:Number(context.calm),attack:actor.attackPhase,
       bounds:Number(['minX','maxX','minZ','maxZ'].every(key=>memory[key]!==undefined)),scale:actor.scale});
     const out=(key:string):number=>{const value=answer[key];if(value===undefined)throw new Error('Missing creature decision output');return value;};
     for(const key of row.writes)memory[key]=out(key);
-    memory['init']=1;memory[row.clock]=context.t;memory[row.playerKeys[0]]=context.player.x;memory[row.playerKeys[1]]=context.player.z;
+    memory.init=1;memory[row.clock]=context.t;memory[row.playerKeys[0]]=context.player.x;memory[row.playerKeys[1]]=context.player.z;
     actor.position.x=out('x');actor.position.z=out('z');actor.lookTarget.copy(context.player);actor.lookWeight=out('look');
     const state=ANIMAL_STATES.find(value=>value===row.states[out('state')]);if(state!==undefined)actor.state=state;
     if(out('start')===1)actor.startAttack(row.attack);
@@ -62,8 +62,8 @@ function think(actor:Animal,context:ThinkCtx):void{
 function damage(actor:Animal,point:THREE.Vector3,_direction:THREE.Vector3,request:DamageRequest|undefined):number{
     const row=guestRows(),equipment=app.equipment,id=equipment!==null&&equipment.visible&&!equipment.stowed?equipment.current.row.id:'';
     const piercing=request===undefined||request.sourceTags.some(tag=>tag===row.piercing.legacy)?row.piercing.equipment.includes(id):request.sourceTags.some(tag=>row.piercing.tags.includes(tag));
-    return v.parse(v.pipe(v.number(),v.finite()),program().project('damage',{field:actor.mem['field']??0,rise:actor.mem['rise']??1,open:actor.mem['open']??0,
-      range:Math.hypot(point.x-(actor.mem[row.playerKeys[0]]??0),point.z-(actor.mem[row.playerKeys[1]]??0)),piercing:Number(piercing),crack:Number(weakPoint(actor,point))})['damage']);
+    return v.parse(v.pipe(v.number(),v.finite()),program().project('damage',{field:actor.mem.field??0,rise:actor.mem.rise??1,open:actor.mem.open??0,
+      range:Math.hypot(point.x-(actor.mem[row.playerKeys[0]]??0),point.z-(actor.mem[row.playerKeys[1]]??0)),piercing:Number(piercing),crack:Number(weakPoint(actor,point))}).damage);
   }
 /** The balbals' page controls; their body, rig, look, cracks and frame are the look book's rows. */
 export const BALBAL_SPECIES: Pick<SpeciesDef, 'kind' | 'think' | 'damageMul'> = {

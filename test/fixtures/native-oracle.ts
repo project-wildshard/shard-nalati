@@ -1,6 +1,5 @@
 import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
-import type { NativeProgramSpec } from './native-program';
-import { nativeProgramFixture } from './native-program';
+import { nativeProgramFixture, type NativeProgramSpec } from './native-program';
 
 /** Match a canonical JSON reader's original object iteration order while
  * retaining the complete typed value. Array order and numbers stay intact. */

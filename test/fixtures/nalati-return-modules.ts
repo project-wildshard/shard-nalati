@@ -15,7 +15,7 @@ import {ReturnProgramSchema} from '@wildshard/format/namedJsonContracts';
 import {ReturnProjectionV2Schema} from '@wildshard/format/returnProjectionV2';
 import {titanWitnessBytes,pastureWitnessBytes} from './titanInlineWitness';
 
-const kokparInput=v.parse(v.object({program:ReturnProgramSchema}),JSON.parse(JSON.stringify(NALATI_KOKPAR)));
+const kokparInput=v.parse(v.object({program:ReturnProgramSchema}),structuredClone(NALATI_KOKPAR));
 const kokparScript=parseDecisionScripts([kokparInput.program.script])[0];
 if(kokparScript===undefined)throw new Error('Missing actual Kokpar script');
 export const kokparProgram={...kokparInput.program,script:kokparScript};
@@ -62,8 +62,9 @@ export function lendNalatiAdmission(owner:Scope):void { ReturnProgram.lendModule
 const admissionOwners:Scope[]=[];
 afterEach(()=>{for(const owner of admissionOwners.splice(0))owner.dispose();});
 export function admissionPage(owner?:Scope):ReturnProgram {
-  if(owner===undefined){owner=new Scope('admission.fixture');admissionOwners.push(owner);}
-  lendNalatiAdmission(owner);return ReturnProgram.page(admission,owner);
+  const scope=owner??new Scope('admission.fixture');
+  if(owner===undefined)admissionOwners.push(scope);
+  lendNalatiAdmission(scope);return ReturnProgram.page(admission,scope);
 }
 export function admissionNative(host:SimHost):ReturnProgram {
   lendNalatiAdmission(host.scope);return ReturnProgram.native(host,admission);

@@ -3,7 +3,7 @@
 // intake, exact hash and owner refusals are covered by nalati-titan-binary.
 import {NALATI_TITAN,NALATI_TITAN_PROGRAMS as stored} from './nalati-titan';
 
-export const titanRawPrograms=stored;
+export { NALATI_TITAN_PROGRAMS as titanRawPrograms } from './nalati-titan';
 export const titanModuleBytes=Uint8Array.from(NALATI_TITAN.titan.wasm);
 export const titanWitnessBytes=Uint8Array.from(NALATI_TITAN.titan.witness);
 export const pastureWitnessBytes=Uint8Array.from(NALATI_TITAN.pasture.witness);

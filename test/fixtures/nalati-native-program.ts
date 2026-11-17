@@ -1,5 +1,4 @@
-import type { NativeProgramSpec } from './native-program';
-import { nativeProgramFixture } from './native-program';
+import { nativeProgramFixture, type NativeProgramSpec } from './native-program';
 import { runTextSnapshot } from './runSnapshot';
 import * as v from 'valibot';
 
@@ -11,7 +10,7 @@ const inputs = ['src', 'package.json', 'pnpm-lock.yaml',
 
 /** The defining source/tool/host specification, shared with the CI input publisher. */
 export function nalatiNativeProgramSpec(name: 'kokpar' | 'titan' | 'riding' | 'charge' | 'geography' | 'view'): NativeProgramSpec {
-  const cacheDir = process.env['WS_NALATI_NATIVE_CACHE'];
+  const cacheDir = process.env.WS_NALATI_NATIVE_CACHE;
   return { ...(cacheDir === undefined || cacheDir === '' ? {} : {cacheDir}), id: `nalati-${name}`, script: `test/fixtures/nalati-${name}-compile.mjs`, inputs,
     loader: name === 'titan' || name === 'riding' ? 'simulation' : 'bake' };
 }
