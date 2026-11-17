@@ -19,6 +19,13 @@ function originalPlaces(): unknown {
   return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
 }
 
+/** SA20 moved these two calls to named hosts. Check the live binding before
+ * spelling it as the original wire from singleplayer 65925fa862. */
+function originalHostCall([callee, ...args]: readonly unknown[], name: string, originalModule: string) {
+  v.parse(v.strictObject({ $ref: v.strictTuple([v.literal('host'), v.literal(name)]) }), callee);
+  return [{ $ref: [originalModule, name] }, ...args];
+}
+
 function buildNativeAssemblyInputs(placed: unknown = originalPlaces()) {
   const places = v.parse(v.object({ rows: v.array(v.object({ colliders: v.array(v.object({
     hw: v.number(), hd: v.number(), yTop: v.number(), yBottom: v.number(), x: v.number(), z: v.number(),
@@ -29,7 +36,12 @@ function buildNativeAssemblyInputs(placed: unknown = originalPlaces()) {
   const riding = constants.nativePopulation;
   const variantRows = (variant: typeof riding.variants[number]['rows'][number]) => ({ ...variant, scale: v.parse(v.tuple([v.number(), v.number()]), variant.scale) });
   const groupRows = (row: typeof riding.variants[number]) => ({ ...row, rows: row.rows.map(variantRows) });
-  return canonicalNativeOracleInput({ ...assembly, constants: { ...constants,
+  return canonicalNativeOracleInput({ ...assembly,
+    level: { ...assembly.level, speed: { ...assembly.level.speed,
+      $call: originalHostCall(assembly.level.speed.$call, 'clamp', '@wildshard/engine/core/noise') } },
+    entries: { ...assembly.entries, $fn: { ...assembly.entries.$fn,
+      $call: originalHostCall(assembly.entries.$fn.$call, 'proveTerrainEntries', '@wildshard/game/plugin/mover') } },
+    constants: { ...constants,
     groupRows: nalatiNativeGroupWire(constants.groupRows, pageWildlife.pasture),
     nativeTaming: { ...constants.nativeTaming, binding: v.parse(PageTamingBindingSchema, constants.nativeTaming.binding) },
     nativePopulation: { ...riding, shepherdOffset: v.parse(v.tuple([v.number(), v.number()]), riding.shepherdOffset),

@@ -954,7 +954,7 @@
       "partition": "Complete Nalati two cases; Nine three cases in shard-nine-dragon0694ed5a/CI44013668599. Shared engine removal waits for both.",
       "fixturePath": "test/fixtures/nalati-admission-original.json",
       "fixtureBlob": "0916ee13d64abc00431a961eba7c0a3fcfc5fe9e",
-      "changes": "Retain complete byte lengths, hashes, canonical order and skin-only growth. Fence actual current src/package/lock/full fixture inputs with the original fresh child constructors instead of dead monorepo roots."
+      "changes": "Retain complete byte lengths, hashes, canonical order and skin-only growth. Fence actual current src/package/lock/full fixture inputs with the original fresh child constructors instead of dead monorepo roots. Recompile the pre-fuel-fix pasture from exact historical AssemblyScript and translate verified SA20 host names at the original assembly wire boundary."
     }
   ],
   "supportFixtures": [
@@ -1244,7 +1244,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-native-assembly-inputs.ts",
-      "targetBlob": "ae9a197b4f1ab757e4d006876511eb4ba6b46b7c"
+      "targetBlob": "6e6373a07fa4e779d37dcb6b13b1ee403e538974"
     },
     {
       "targetPath": "test/fixtures/nalati-native-assembly.ts",
@@ -1256,11 +1256,23 @@
     },
     {
       "targetPath": "test/fixtures/nalati-native-boot-inputs.ts",
-      "targetBlob": "830778861d3456e20ade508b9aa05d6c99300cf5"
+      "targetBlob": "c27b7f196218e118abe79d3f9e54ac8f368cfe77"
     },
     {
       "targetPath": "test/fixtures/nalati-native-boot.ts",
-      "targetBlob": "e1b502aec1ca4795bb5c8e7b9f99426e7af8e781"
+      "targetBlob": "0328fa79a55b8b90666a98b50f4f68e2b37923ae"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-oracle-pasture-compile.mjs",
+      "targetBlob": "e3383323a6d0fbedd9d1525282f05f630e1f4c03"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-oracle-source/herdBindings.as",
+      "targetBlob": "4b62831cf6c5452db0433fa60a5880e8cc0dbba2"
+    },
+    {
+      "targetPath": "test/fixtures/nalati-native-oracle-source/herdGroup.as",
+      "targetBlob": "a2f48be58ee18cf6b3d5797ec62ef2f3b91a542f"
     },
     {
       "targetPath": "test/fixtures/nalati-native-place-files.ts",

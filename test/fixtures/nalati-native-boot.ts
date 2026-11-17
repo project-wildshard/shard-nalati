@@ -8,6 +8,7 @@ export const NALATI_NATIVE_BOOT_SPEC: NativeProgramSpec = { id: 'nalati-native-b
     inputs: ['src/engine', 'src/game', 'src/sdk', 'src/sharddev', 'src/commons',
       'src', 'package.json', 'pnpm-lock.yaml',
       'test/fixtures/nalati-native-boot.ts', 'test/fixtures/nalati-native-boot-inputs.ts',
+      'test/fixtures/nalati-native-oracle-pasture-compile.mjs', 'test/fixtures/nalati-native-oracle-source',
       'test/fixtures/nalati-admission.ts', 'test/fixtures/nalati-admission-original.json',
       'test/fixtures/nalati-admission-original.wasm', 'test/fixtures/nalati-admission-witness-original.bin',
       'test/fixtures/nalati-riding.ts', 'test/fixtures/nalati-riding-compile.mjs', 'test/fixtures/nalati-titan.ts', 'test/fixtures/nalati-titan-compile.mjs',
