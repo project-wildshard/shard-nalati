@@ -26,6 +26,10 @@ test('source-runtime product loans refuse changed source, changed bytes and fore
   assert.equal(builtProduct('nalati-grasslands'),'out/nalati-grasslands');
   writeFileSync('public/assets/nalati-grasslands/alias.bin','changed alias');assert.throws(()=>builtProduct('nalati-grasslands'),/Generated public alias differs/u);
   rmSync('public/assets/nalati-grasslands/alias.bin');
+  mkdirSync('public/assets/nalati-grasslands/map',{recursive:true});writeFileSync('public/assets/nalati-grasslands/map/top.webp','actual immutable product');
+  assert.equal(builtProduct('nalati-grasslands'),'out/nalati-grasslands');
+  writeFileSync('public/assets/nalati-grasslands/map/top.webp','unsealed generated map');assert.throws(()=>builtProduct('nalati-grasslands'),/Generated map alias differs/u);
+  rmSync('public/assets/nalati-grasslands/map/top.webp');
   receipt.files.push({path:'../foreign.json',sha256:'a'.repeat(64)});save();assert.throws(()=>builtProduct('nalati-grasslands'),/Foreign producer output/u);
  }finally{process.chdir(previous);rmSync(root,{recursive:true,force:true});}
 });

@@ -23,3 +23,13 @@ alias bytes and foreign paths all refuse. Actual source begin passes.
 Exact engine8b2ee5a5 export: full40-root compiler, retention and actual native
 lint149files pass; complete native assembly original3cases passes22.49s.
 Default owner admission and paired engine removal remain C10/C11.
+
+Follow-up: running the complete ordinary pinned build showed its verified
+map export creates the ignored `public/assets/nalati-grasslands/map/top.webp`
+alias even though there is no `src/assets/public` tree. Treat that single
+known builder output as a product alias, and require its exact hash among
+the sealed product files. Changed generated-map bytes refuse. No arbitrary
+untracked source or output file is admitted. Actual ordinary build succeeds
+in66.4s; begin/build/seal succeeds with809source inputs and582product files.
+The first inventory commit57a0f109 was too strict for this real builder
+side effect; this follow-up fixes it forward through normal gates.

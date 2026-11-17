@@ -1,7 +1,7 @@
 // Seal an ordinary pinned producer's inputs before lending its bytes to a source runtime.
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {mkdirSync,readFileSync,readdirSync,writeFileSync} from 'node:fs';
+import {existsSync,mkdirSync,readFileSync,readdirSync,writeFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {join} from 'node:path';
 function files(root,prefix=''){
@@ -11,6 +11,8 @@ function files(root,prefix=''){
  });}catch(error){if(error.code==='ENOENT')return [];throw error;}
 }
 const hash=path=>createHash('sha256').update(readFileSync(path)).digest('hex');
+// The pinned builder exports this verified generated-map product file as a public alias.
+const productAliases=new Set(['public/assets/nalati-grasslands/map/top.webp']);
 const directory='tmp/ci21-source';mkdirSync(directory,{recursive:true});
 function inputs(){
  const git=spawnSync('git',['ls-files','-z','--','src','public'],{encoding:'utf8'});assert.equal(git.status,0,git.stderr);
@@ -18,7 +20,7 @@ function inputs(){
  // publish-public copies only this tracked tree to its generated public aliases.
  const aliases=new Map(paths.filter(path=>path.startsWith('src/assets/public/')).map(path=>[path.replace('src/assets/public/','public/assets/nalati-grasslands/'),path]));
  const actual=[...files('src'),...files('public')].sort();
- assert.deepEqual(actual.filter(path=>!aliases.has(path)),paths,'Producer source inventory differs');
+ assert.deepEqual(actual.filter(path=>!aliases.has(path)&&!productAliases.has(path)),paths,'Producer source inventory differs');
  for(const [alias,source] of aliases)if(actual.includes(alias))assert.equal(hash(alias),hash(source),'Generated public alias differs from its tracked source');
  return paths.map(path=>({path,sha256:hash(path)}));
 }
@@ -37,6 +39,7 @@ if(process.argv[2]==='begin'){
  assert.deepEqual(inputs(),before.inputs,'Producer inputs changed during the normal build');
  assert.equal(hash('package.json'),before.package,'Producer graph changed during build');assert.equal(hash('pnpm-lock.yaml'),before.lock,'Producer lock changed during build');
  const path='out/nalati-grasslands',files=productFiles(path);assert(files.some(row=>row.path==='shard.json'),'Normal producer must emit its complete shardfile');
+ for(const alias of productAliases)if(existsSync(alias))assert(files.some(row=>row.sha256===hash(alias)),'Generated map alias must equal sealed product bytes');
  writeFileSync(`${directory}/product.json`,JSON.stringify({...before,product:'nalati-grasslands',files},null,2)+'\n');
  console.log(`Sealed ordinary producer: ${before.inputs.length} exact source inputs, ${files.length} product files`);
 }else throw new Error('Expected begin or seal around the ordinary pinned build');

@@ -1638,7 +1638,7 @@
     },
     {
       "targetPath": "test/fixtures/builtProduct.ts",
-      "targetBlob": "d008ca8c86814b48d8fb37cc1c814cd9bcef76ba"
+      "targetBlob": "f136b3fcc86686207fdd09c1f61b4343f1cefc74"
     },
     {
       "targetPath": "test/fixtures/headless-worker.ts",
