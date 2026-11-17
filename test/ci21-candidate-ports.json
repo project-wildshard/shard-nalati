@@ -941,6 +941,20 @@
       "fixturePath": "test/proof/nalati-grasslands/titanCombat.ts",
       "fixtureBlob": "975fba0e4223dbd423cb6e9f29bba26deb5a403b",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
+    },
+    {
+      "sourcePath": "test/native-oracle.test.ts",
+      "sourceBlob": "06d68e9e94ea5850fc9281cebbf7f0f3f5566222",
+      "targetPath": "test/ci21-candidate/nalati-native-oracle.test.ts",
+      "targetBlob": "2c0c0d9f63ae876248c92aea4331f48a32c0864c",
+      "originalTests": [
+        "the fenced typed Nalati oracle retains every former boot byte",
+        "the fenced typed Nalati oracle retains every former assembly byte"
+      ],
+      "partition": "Complete Nalati two cases; Nine three cases in shard-nine-dragon0694ed5a/CI44013668599. Shared engine removal waits for both.",
+      "fixturePath": "test/fixtures/nalati-admission-original.json",
+      "fixtureBlob": "0916ee13d64abc00431a961eba7c0a3fcfc5fe9e",
+      "changes": "Retain complete byte lengths, hashes, canonical order and skin-only growth. Fence actual current src/package/lock/full fixture inputs with the original fresh child constructors instead of dead monorepo roots."
     }
   ],
   "supportFixtures": [
@@ -1923,6 +1937,7 @@
     "test/ci21-candidate/nalati-wolf-fight-verbs.test.ts",
     "test/ci21-candidate/nalati-wolf-howl-verbs.test.ts",
     "test/ci21-candidate/net-titan-saddle.test.ts",
+    "test/ci21-shared/native-oracle.test.ts",
     "test/fake/bossArena.ts",
     "test/fake/nalatiSpecies.ts",
     "test/fixtures/builtProduct.ts",
@@ -1980,6 +1995,7 @@
     "test/fixtures/nalati-mount-inputs.ts",
     "test/fixtures/nalati-native-assembly-inputs.ts",
     "test/fixtures/nalati-native-assembly.ts",
+    "test/fixtures/nalati-native-boot-inputs.ts",
     "test/fixtures/nalati-native-place-files.ts",
     "test/fixtures/nalati-native-program.ts",
     "test/fixtures/nalati-night.ts",
