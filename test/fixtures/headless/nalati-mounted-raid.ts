@@ -1,21 +1,22 @@
+import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert real mounted entry and the unchanged natural raid.
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {runSnapshot} from '../runSnapshot';
 import {hashImmutableBytes} from '@wildshard/format/immutable';
-import {snapshotSimHost,serializeSimSnapshot} from '../../../src/shared/engine/sim/snapshot';
-import {canonicalSimDigest} from '../../fake/simState';
+import {snapshotSimHost,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
+import {canonicalSimDigest} from '@wildshard/engine/test/simState';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read only the admitted product and shipped physics bytes.
 import {readFileSync} from 'node:fs';
 import {builtProduct} from '../builtProduct';
 import {loadHeadlessProduct} from '@wildshard/engine/host/headlessProduct';
-import {outputDescriptor} from '../../../src/shared/game/shardfile/outputDescriptor';
-import {loadRapier} from '../../../src/shared/engine/physics/rapier';
-import {createNativeProofResident} from '../headless-native';
+import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/engine/physics/rapier';
+import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
 import {prepareHeadlessRuntime} from '../nalati-predators-native';
-import {nativePopulationOf} from '../../../src/server/game/riding/nativePopulation';
-import {nativeGroupCollection} from '../../../src/server/game/shardfile/groupRuntime';
-import {mountedPlayerOf} from '../../../src/server/game/riding/native';
+import {nativePopulationOf} from '@wildshard/engine/game/riding/nativePopulation';
+import {nativeGroupCollection} from '@wildshard/engine/game/shardfile/groupRuntime';
+import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
 import {runTrustedHeadlessTape} from '@wildshard/engine/host/headlessTape';
 import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
 import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
@@ -53,7 +54,7 @@ function mountedControls(resident:EarnedMountedRaid['resident'],start=0):Pick<Co
 export async function earnNalatiMountedRaid():Promise<EarnedMountedRaid>{
   const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessProduct(directory),descriptor=outputDescriptor(product.shardfile);assert.ok(descriptor);
   const assets=new Map(descriptor.index.files.map(file=>[file.commons===true?`commons:${file.hash}`:file.hash,Uint8Array.from(readFileSync(`${directory}/${file.path}`))]));
-  const preparation={product,assets,shard:product.shardfile,rapier:await loadRapier(readFileSync('public/assets/physics/rapier.wasm'))};
+  const preparation={product,assets,shard:product.shardfile,rapier:await loadRapier(readFileSync(nativeRapierFile))};
   const productKey=hashImmutableBytes(new TextEncoder().encode(JSON.stringify(descriptor.index)));
   let constructed:ConstructedMountedRaid|undefined;
   try{
@@ -72,7 +73,7 @@ export async function earnNalatiMountedRaid():Promise<EarnedMountedRaid>{
       assert.equal(canonicalSimDigest(snapshotSimHost(host)),saved.digest,'fresh earned fixture retains every native body, owner and clock');
       assert.equal(host.state.tick,saved.tick);assert.equal(mount.mounted,true);assert.equal(population.raid.raids,1);
       const ridden=mount.horse;assert.ok(ridden);assert.equal(ridden.entityId,saved.horse);assert.equal(ridden.hp,saved.horseHp);
-      const pack=nativeGroupCollection(host,'nalati.groups').packs[population.raid.snapshot().raiders];assert.ok(pack);
+      const pack=nativeGroupCollection(host,'nalati.groups').packs[population.raid.snapshot().raiders];assert.ok(pack !== undefined);
       assert.deepEqual(pack.members.map(actor=>[actor.entityId,actor.hp]),saved.raiders);
       return {resident,product,mount,pack,ridden,riddenHealth:saved.riddenHealth,...mountedControls(resident,saved.inputs)};
     }catch(error){resident.dispose();throw error;}
@@ -104,7 +105,7 @@ async function buildNalatiMountedRaid(preparation:Parameters<typeof createNative
     };
     for(const [x,z] of [[60,214],[40,218],[20,216],[0,216],[-50,218],[-100,212],[-135,214],[-157,218],[-175,206],[-190,191],[-196,188]] as const)drive(x,z);
     for(let tick=0;tick<300&&mount.body.speed>.15;tick++)move([reins(-1,0)]);
-    const flock=population.flocks[0];assert.ok(flock);
+    const flock=population.flocks[0];assert.ok(flock !== undefined);
     for(let tick=0;tick<600;tick++){
       const p=leadPlayer(host).position,heading=Math.atan2(flock.cx-p.x,flock.cz-p.z),delta=Math.atan2(Math.sin(mount.body.heading-heading),Math.cos(mount.body.heading-heading));
       if(Math.abs(delta)<.08)break;move([reins(0,Math.max(-1,Math.min(1,delta*2.5)))]);
@@ -112,7 +113,7 @@ async function buildNalatiMountedRaid(preparation:Parameters<typeof createNative
     for(let tick=0;tick<300&&mount.body.speed>.15;tick++)move([reins(-1,0)]);
     for(let tick=0;tick<18_000&&population.raid.raids===0;tick++)move([reins(0,0)]);
     assert.equal(population.raid.raids,1,'the untouched natural raid clock must admit the actual raiders');
-    const pack=nativeGroupCollection(host,'nalati.groups').packs[population.raid.snapshot().raiders];assert.ok(pack);
+    const pack=nativeGroupCollection(host,'nalati.groups').packs[population.raid.snapshot().raiders];assert.ok(pack !== undefined);
     return {resident,product,mount,pack,ridden,riddenHealth,move,reins,get inputs(){return controls.inputs;}};
   }catch(error){resident.dispose();throw error;}
 }

@@ -26,5 +26,5 @@ if(process.argv[2]==='begin'){
  assert.equal(hash('package.json'),before.package,'Producer graph changed during build');assert.equal(hash('pnpm-lock.yaml'),before.lock,'Producer lock changed during build');
  const path='out/nalati-grasslands',files=productFiles(path);assert(files.some(row=>row.path==='shard.json'),'Normal producer must emit its complete shardfile');
  writeFileSync(`${directory}/product.json`,JSON.stringify({...before,product:'nalati-grasslands',files},null,2)+'\n');
- console.info(`Sealed ordinary producer: ${before.inputs.length} exact source inputs, ${files.length} product files`);
+ console.log(`Sealed ordinary producer: ${before.inputs.length} exact source inputs, ${files.length} product files`);
 }else throw new Error('Expected begin or seal around the ordinary pinned build');

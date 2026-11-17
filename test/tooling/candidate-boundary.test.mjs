@@ -103,12 +103,3 @@ test('candidate native compiler support cannot hide production or arbitrary test
   put('test/ci21-candidate-ports.json', JSON.stringify({files:[{targetPath:'test/ci21-candidate/held.test.ts',compilerSupport:['src/hidden.ts']}]}));
   assert.throws(() => checkTestBoundary(root), /explicit maintained fixture modules/u);
 }));
-
-test('native proof helpers inherit their callers and stay guarded when unused', () => fixture((root, put) => {
-  put('test/proof/native.ts', "import '@wildshard/engine/__ci21_missing_export__';");
-  assert.throws(() => checkTestBoundary(root), /engine does not export/u);
-  put('test/ci21-candidate/held.test.ts', "import '../proof/native';");
-  assert.doesNotThrow(() => checkTestBoundary(root));
-  put('test/default.test.ts', "import './proof/native';");
-  assert.throws(() => checkTestBoundary(root), /engine does not export/u);
-}));

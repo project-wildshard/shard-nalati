@@ -635,7 +635,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-chapter-binding-run.ts",
       "fixtureBlob": "d9e98e6b90b64b8a0b8fce4a4eab1219b6764fcd",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-flock-verbs.test.ts",
@@ -650,7 +650,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-flock-run.ts",
       "fixtureBlob": "b8aedaf3c9fc95d28ef554ddaf51569480383996",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-javelin-contact-verbs.test.ts",
@@ -665,6 +665,66 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-polearm-contact-run.ts",
       "fixtureBlob": "62ca9bcdb8093927ded12748254dd1cd15f81f06",
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
+    },
+    {
+      "sourcePath": "test/nalati-kokpar-verbs.test.ts",
+      "sourceBlob": "350cd21509baa491a7275cb95718e207216bf31f",
+      "targetPath": "test/ci21-candidate/nalati-kokpar-verbs.test.ts",
+      "targetBlob": "07226f99d323e6ec2fea99675c92c0a4de7cee83",
+      "originalTests": [
+        "Nalati borrowed-horse Kokpar earns and replays its real delivery checkpoint"
+      ],
+      "compilerSupport": [
+        "test/fixtures/headless/nalati-kokpar-run.ts"
+      ],
+      "fixturePath": "test/fixtures/headless/nalati-kokpar-run.ts",
+      "fixtureBlob": "e942a8520cd002faab59f16ec5cdd2f3930e7813",
+      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+    },
+    {
+      "sourcePath": "test/nalati-mounted-chain-verbs.test.ts",
+      "sourceBlob": "147a087ca76afbdc3875c3dbeb4c3f02e5402524",
+      "targetPath": "test/ci21-candidate/nalati-mounted-chain-verbs.test.ts",
+      "targetBlob": "7653d8341976f2c0265a86e5ed704af99ac29835",
+      "originalTests": [
+        "real mounted contacts earn a two-hit chain and restore its exact native suffix"
+      ],
+      "compilerSupport": [
+        "test/fixtures/headless/nalati-mounted-chain-run.ts"
+      ],
+      "fixturePath": "test/fixtures/headless/nalati-mounted-chain-run.ts",
+      "fixtureBlob": "5e7808f815b53d7eb7e88a378145d83c26555486",
+      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+    },
+    {
+      "sourcePath": "test/nalati-mounted-lance-verbs.test.ts",
+      "sourceBlob": "7124315323bb33f8da6abbb556f590239083299d",
+      "targetPath": "test/ci21-candidate/nalati-mounted-lance-verbs.test.ts",
+      "targetBlob": "82e7609af25d7f7c32135e9af9c7206afee32de4",
+      "originalTests": [
+        "real mounted steering lands a lance contact and restores its exact native continuation"
+      ],
+      "compilerSupport": [
+        "test/fixtures/headless/nalati-mounted-lance-run.ts"
+      ],
+      "fixturePath": "test/fixtures/headless/nalati-mounted-lance-run.ts",
+      "fixtureBlob": "6247dd3d3c93cdf9da3643836a61d6dbe77fa3da",
+      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+    },
+    {
+      "sourcePath": "test/nalati-patrol-verbs.test.ts",
+      "sourceBlob": "1c9252eafaa58b7671ddeaa3a0e07e99d0b3b077",
+      "targetPath": "test/ci21-candidate/nalati-patrol-verbs.test.ts",
+      "targetBlob": "7200e4cce8471e589af4f77a1a1f7c3f812f3443",
+      "originalTests": [
+        "Nalati night riders appear naturally and retain an unearned captain gate after native restore"
+      ],
+      "compilerSupport": [
+        "test/fixtures/headless/nalati-patrol-run.ts"
+      ],
+      "fixturePath": "test/fixtures/headless/nalati-patrol-run.ts",
+      "fixtureBlob": "6e77f20c64b3c109adbfe5e65562f8e672121924",
       "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
     },
     {
@@ -680,7 +740,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-sabre-contact-run.ts",
       "fixtureBlob": "e29b5b6631b1e9ab969ae5f0ee96469f6b7d19fc",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-spear-contact-verbs.test.ts",
@@ -695,7 +755,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-polearm-contact-run.ts",
       "fixtureBlob": "62ca9bcdb8093927ded12748254dd1cd15f81f06",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-titan-handoff.test.ts",
@@ -713,6 +773,21 @@
       "compilerSupport": [],
       "fixturePath": "test/fixtures/headless/titanHandoff.ts",
       "fixtureBlob": "fed56401e288f2eb656d5f7587ab8972f80ea372",
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
+    },
+    {
+      "sourcePath": "test/nalati-weapon-verbs.test.ts",
+      "sourceBlob": "cdd9f9fbea4d97d2b65c31190ea67d427c0a058b",
+      "targetPath": "test/ci21-candidate/nalati-weapon-verbs.test.ts",
+      "targetBlob": "3ecc052a00361c7088092cfb72b1edf3b6d3b862",
+      "originalTests": [
+        "real held inputs drive the bow, three-hit sabre/heavy/pass and spear/javelin laws"
+      ],
+      "compilerSupport": [
+        "test/fixtures/headless/nalati-weapons-run.ts"
+      ],
+      "fixturePath": "test/fixtures/headless/nalati-weapons-run.ts",
+      "fixtureBlob": "d033ad977ef5995464243cead45f91672835f2d8",
       "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
     },
     {
@@ -728,7 +803,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-wolf-fight-run.ts",
       "fixtureBlob": "ece5d1cbeca7e593120351aeb4e8d0d412c7aaf5",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
       "sourcePath": "test/nalati-wolf-howl-verbs.test.ts",
@@ -743,7 +818,7 @@
       ],
       "fixturePath": "test/fixtures/headless/nalati-wolf-howl-run.ts",
       "fixtureBlob": "5b20d8fae1f4664a3ee48df6bf3b57336dfcd67a",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal."
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     }
   ],
   "supportFixtures": [
@@ -773,7 +848,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-mounted-raid.ts",
-      "targetBlob": "be90c0be6f7ebd216dbdce575f1738650c410ce6"
+      "targetBlob": "14d7de243dfedcdd593f71a1f7b497a2ba5445f3"
     },
     {
       "targetPath": "test/fixtures/kurgan-oracle/dungeon.ts",
@@ -1594,6 +1669,30 @@
     {
       "targetPath": "test/proof/nalati-grasslands/titanCombat.ts",
       "targetBlob": "70f0a709b77d29aa6d1169a9243d275ca4e36c42"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-kokpar-run.ts",
+      "targetBlob": "e942a8520cd002faab59f16ec5cdd2f3930e7813"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-mounted-chain-run.ts",
+      "targetBlob": "5e7808f815b53d7eb7e88a378145d83c26555486"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-mounted-lance-run.ts",
+      "targetBlob": "6247dd3d3c93cdf9da3643836a61d6dbe77fa3da"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-patrol-run.ts",
+      "targetBlob": "6e77f20c64b3c109adbfe5e65562f8e672121924"
+    },
+    {
+      "targetPath": "test/fixtures/headless/nalati-weapons-run.ts",
+      "targetBlob": "d033ad977ef5995464243cead45f91672835f2d8"
+    },
+    {
+      "targetPath": "test/proof/nalati-grasslands/verbTape.ts",
+      "targetBlob": "fc461dae937fd5426afa3b6036a888d796e6b4e5"
     }
   ],
   "typedLintFiles": [
@@ -1610,8 +1709,12 @@
     "test/ci21-candidate/nalati-herd-binary.test.ts",
     "test/ci21-candidate/nalati-javelin-contact-verbs.test.ts",
     "test/ci21-candidate/nalati-king-pose.test.ts",
+    "test/ci21-candidate/nalati-kokpar-verbs.test.ts",
     "test/ci21-candidate/nalati-kurgan-fabric.test.ts",
+    "test/ci21-candidate/nalati-mounted-chain-verbs.test.ts",
+    "test/ci21-candidate/nalati-mounted-lance-verbs.test.ts",
     "test/ci21-candidate/nalati-night-decisions.test.ts",
+    "test/ci21-candidate/nalati-patrol-verbs.test.ts",
     "test/ci21-candidate/nalati-place-binary.test.ts",
     "test/ci21-candidate/nalati-quest-prop-binary.test.ts",
     "test/ci21-candidate/nalati-roster-decisions.test.ts",
@@ -1625,6 +1728,7 @@
     "test/ci21-candidate/nalati-titan-handoff.test.ts",
     "test/ci21-candidate/nalati-view-binary.test.ts",
     "test/ci21-candidate/nalati-weapon-observation.test.ts",
+    "test/ci21-candidate/nalati-weapon-verbs.test.ts",
     "test/ci21-candidate/nalati-wind-projection.test.ts",
     "test/ci21-candidate/nalati-wolf-fight-verbs.test.ts",
     "test/ci21-candidate/nalati-wolf-howl-verbs.test.ts",
@@ -1637,9 +1741,15 @@
     "test/fixtures/headless/chapterReportCodec.ts",
     "test/fixtures/headless/nalati-chapter-binding-run.ts",
     "test/fixtures/headless/nalati-flock-run.ts",
+    "test/fixtures/headless/nalati-kokpar-run.ts",
+    "test/fixtures/headless/nalati-mounted-chain-run.ts",
+    "test/fixtures/headless/nalati-mounted-lance-run.ts",
+    "test/fixtures/headless/nalati-mounted-raid.ts",
     "test/fixtures/headless/nalati-pasture-session.ts",
+    "test/fixtures/headless/nalati-patrol-run.ts",
     "test/fixtures/headless/nalati-polearm-contact-run.ts",
     "test/fixtures/headless/nalati-sabre-contact-run.ts",
+    "test/fixtures/headless/nalati-weapons-run.ts",
     "test/fixtures/headless/nalati-wolf-fight-run.ts",
     "test/fixtures/headless/nalati-wolf-howl-run.ts",
     "test/fixtures/headless/productSession.ts",
@@ -1714,6 +1824,7 @@
     "test/fixtures/runSnapshot.ts",
     "test/fixtures/titanInlineWitness.ts",
     "test/fixtures/weatherInlineWitness.ts",
-    "test/proof/nalati-grasslands/titanCombat.ts"
+    "test/proof/nalati-grasslands/titanCombat.ts",
+    "test/proof/nalati-grasslands/verbTape.ts"
   ]
 }
