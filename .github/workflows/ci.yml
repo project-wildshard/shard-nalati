@@ -409,7 +409,10 @@ jobs:
   ci21-source:
     if: inputs.ci21_source == true
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Full41-root cohort includes every long native chapter/fight replay.
+    # The109-case predecessor exceeded30min after30files passed; individual
+    # original case/child/input/tape fences remain unchanged.
+    timeout-minutes: 45
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
