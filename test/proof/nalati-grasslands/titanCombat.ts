@@ -180,6 +180,7 @@ export async function titanRidersPilot(product:ShardProduct,host:SimHost,step:(c
     ...(d<4?[{kind:'script' as const,actorId:'nalati.companion.use',value:1}]:[])]);
  }
  assert.equal(mount.mounted,true,'real approach and USE must remount the same borrowed horse');
+ assert.equal(mount.horse,horse,'the entered borrowed identity must survive the support phase');
  const bow=slots.slots.find(row=>row.kind==='bow');assert.ok(bow);
  for(let swap=0;swap<slots.registration.length&&weapon().slot!==bow.id;swap++)await step([{kind:'script',actorId:'nalati.weapon.swap',value:1}]);
  assert.equal(weapon().slot,bow.id);

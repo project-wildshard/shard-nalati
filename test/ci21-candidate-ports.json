@@ -939,7 +939,7 @@
       ],
       "compilerSupport": [],
       "fixturePath": "test/proof/nalati-grasslands/titanCombat.ts",
-      "fixtureBlob": "244d29b431e7f33d190d8f4990e79aaedea4c3a5",
+      "fixtureBlob": "975fba0e4223dbd423cb6e9f29bba26deb5a403b",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     }
   ],
@@ -1790,7 +1790,7 @@
     },
     {
       "targetPath": "test/proof/nalati-grasslands/titanCombat.ts",
-      "targetBlob": "244d29b431e7f33d190d8f4990e79aaedea4c3a5"
+      "targetBlob": "975fba0e4223dbd423cb6e9f29bba26deb5a403b"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-kokpar-run.ts",
