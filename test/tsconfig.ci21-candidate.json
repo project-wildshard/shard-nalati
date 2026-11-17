@@ -58,6 +58,7 @@
     "ci21-candidate/nalati-sabre-contact-verbs.test.ts",
     "ci21-candidate/nalati-spear-contact-verbs.test.ts",
     "ci21-candidate/nalati-titan-handoff.test.ts",
+    "ci21-candidate/nalati-titan-verbs.test.ts",
     "ci21-candidate/nalati-weapon-verbs.test.ts",
     "ci21-candidate/nalati-wolf-fight-verbs.test.ts",
     "ci21-candidate/nalati-wolf-howl-verbs.test.ts",
@@ -73,6 +74,7 @@
     "fixtures/headless/nalati-qara-run.ts",
     "fixtures/headless/nalati-sabre-contact-run.ts",
     "fixtures/headless/nalati-polearm-contact-run.ts",
+    "fixtures/headless/nalati-titan-run.ts",
     "fixtures/headless/nalati-weapons-run.ts",
     "fixtures/headless/nalati-wolf-fight-run.ts",
     "fixtures/headless/nalati-wolf-howl-run.ts"
