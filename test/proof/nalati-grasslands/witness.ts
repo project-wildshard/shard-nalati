@@ -29,7 +29,8 @@ export async function nalatiNativeWitness(replay: boolean, gameplay = true): Pro
   assert.equal(typeof window, 'undefined'); assert.equal(typeof document, 'undefined');
   const rapier = await loadRapier(readFileSync(nativeRapierFile));
   const assets = nalatiNativeAssets(source);
-  const plan = await prepareHeadlessRuntime({ shard: source, assets, rapier, product: await loadHeadlessProduct('out/nalati-grasslands') });
+  const product = await loadHeadlessProduct('out/nalati-grasslands');
+  const plan = await prepareHeadlessRuntime({ shard: product.shardfile, assets, rapier, product });
   const ports = { ...plan.ports, rapier };
   const effects = { commands: () => [], emit: (): never => { throw new Error('Partial native witness must not fabricate ledger ingress'); } };
   const first = createSimHost(plan.level, ports); let restored: SimHost | undefined;

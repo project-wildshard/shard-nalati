@@ -10,7 +10,6 @@ import { snapshotSimHostBytes, serializeSimSnapshot } from '@wildshard/engine/si
 import type { Rapier } from '@wildshard/engine/physics/rapier';
 import { createNativeProofResident, prepareProductPlan as prepareHeadlessRuntime } from '@wildshard/engine/test/headless-native';
 import {createNalatiTamingPilot} from './tamingPilot';
-import source from '../../fixtures/nalati-shardfile-source';
 import { createNativeBakeReader } from '@wildshard/engine/game/population/nativeBake';
 import { nativeTamingOf } from '@wildshard/engine/game/riding/nativeTaming';
 import { mountedPlayerOf } from '@wildshard/engine/game/riding/native';
@@ -40,7 +39,7 @@ export async function nalatiTamingWitness(rapier: Rapier, assets: ReadonlyMap<st
   const [spawnX, , spawnZ] = spawn.at;
   if (spawnX === undefined || spawnZ === undefined) throw new Error('Missing authored wild stallion coordinates');
   const product = await loadHeadlessProduct('out/nalati-grasslands');
-  const originalPlan = await prepareHeadlessRuntime({ shard: source, assets, rapier, product });
+  const originalPlan = await prepareHeadlessRuntime({ shard: product.shardfile, assets, rapier, product });
   const heightAt = originalPlan.ports?.heightAt; if (heightAt === undefined) throw new Error('Missing actual terrain');
   // Declared assembly reads the product's shardfile, including its spawn.
   // Keep every shipped section/blob; replace only this documented fixture start.

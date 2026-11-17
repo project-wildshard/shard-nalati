@@ -18,7 +18,8 @@ import { leadCommands } from '@wildshard/engine/sim/leadPlayer';
 
 test('Nalati declared assembly retains its native 100 + 30 tick continuation', async () => {
   const rapier = await loadRapier(readFileSync(nativeRapierFile));
-  const plan = await prepareHeadlessRuntime({ shard: source, assets: nalatiNativeAssets(source), rapier, product: await loadHeadlessProduct(builtProduct('nalati-grasslands')) });
+  const product = await loadHeadlessProduct(builtProduct('nalati-grasslands'));
+  const plan = await prepareHeadlessRuntime({ shard: product.shardfile, assets: nalatiNativeAssets(source), rapier, product });
   const ports = { ...plan.ports, rapier }, effects = { commands: () => [], emit: () => undefined };
   const host = createSimHost(plan.level, ports);
   let restored: SimHost | undefined;
