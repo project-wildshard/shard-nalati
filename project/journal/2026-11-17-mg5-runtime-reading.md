@@ -31,3 +31,12 @@ reading refusal. It refused 1,915 MB playing and 2,692 MB loading.
 The older author SDK uses shard-format 0.4.9. Its compatibility patch
 retains the optional epoch in both policies. The independent 0.26.0
 validator applies the epoch and hard budget checks to the emitted folder.
+
+### Candidate schema compatibility
+
+Hosted CI21 showed that its selected shard-format 0.12.0 has the same
+epoch-less runtime-cost schema as 0.4.9. The candidate setup applies the
+existing epoch-only patch to those exact published candidate versions.
+The frozen author and 0.26.0 cook paths retain their existing checks. A
+clean pnpm install fixture resolved the candidate package with its optional
+epoch field.
