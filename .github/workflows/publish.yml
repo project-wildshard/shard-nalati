@@ -126,7 +126,8 @@ jobs:
         run: node scripts/publish-shard.mjs version "${{ steps.product.outputs.slug }}" "${{ inputs.version }}"
       - name: Install phone WebKit for prepare
         run: |
-          pw="$(node -e "const {dirname}=require('node:path');const sdk=dirname(require.resolve('@wildshard/sharddev/package.json'));console.log(dirname(require.resolve('playwright/package.json',{paths:[sdk]})))")"
+          # sdk 0.4 (SDK-SPLIT) moved prepare and its playwright into @wildshard/dev, under @wildshard/cli; an older sdk holds it
+          pw="$(node -e "const {dirname}=require('node:path');const at=(name,from)=>{try{return dirname(require.resolve(name+'/package.json',from===undefined?undefined:{paths:[from]}))}catch{return undefined}};const cli=at('@wildshard/cli'),dev=cli===undefined?undefined:at('@wildshard/dev',cli);console.log(at('playwright',dev??at('@wildshard/sharddev')))")"
           if [ "$RUNNER_OS" = Linux ]; then node "$pw/cli.js" install --with-deps webkit; else node "$pw/cli.js" install webkit; fi
       - name: Prepare in phone WebKit
         env:
