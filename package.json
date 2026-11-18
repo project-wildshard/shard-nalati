@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@wildshard/engine": "0.1.18",
-    "@wildshard/format": "npm:@wildshard/shard-format@0.31.0",
+    "@wildshard/format": "npm:@wildshard/shard-format@0.32.0",
     "@wildshard/sharddev": "npm:@wildshard/sdk@0.2.12",
     "playwright": "1.65.0",
     "three": "0.186.0",
