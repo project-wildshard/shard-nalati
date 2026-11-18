@@ -31,6 +31,10 @@ on:
         description: Exact candidate sharddev commit (empty keeps the pin)
         type: string
         default: ''
+      preparation:
+        description: Engine release tag whose preparation client prepare serves, e.g. server-staging-<sha> (empty keeps the sdk's engine pin)
+        type: string
+        default: ''
       rehearse:
         description: Run every gate, the build and prepare; never upload
         type: boolean
@@ -132,7 +136,16 @@ jobs:
       - name: Prepare in phone WebKit
         env:
           PRODUCT: ${{ steps.product.outputs.product }}
+          PREPARATION: ${{ inputs.preparation }}
         run: |
+          # A shard that overrides @wildshard/engine past the sdk's own pin
+          # (a format feature the pinned client refuses) names the engine
+          # release whose preparation client knows it (SHARD-SOURCE SS-MS1c).
+          if [ -n "$PREPARATION" ]; then
+            [[ "$PREPARATION" =~ ^(v[0-9]+\.[0-9]+\.[0-9]+|server-staging-[0-9a-f]{40})$ ]] || { echo "::error::preparation must be vX.Y.Z or server-staging-<sha>"; exit 1; }
+            export WILDSHARD_PREPARATION_CLIENT_URL="https://github.com/project-wildshard/engine/releases/download/$PREPARATION/preparation-client.tar.gz"
+            echo "prepare: preparation client $PREPARATION" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
           start=$(date +%s)
           pnpm exec wildshard prepare "$PRODUCT"
           echo "prepare: $(( $(date +%s) - start )) s on $RUNNER_OS/$RUNNER_ARCH" | tee -a "$GITHUB_STEP_SUMMARY"
