@@ -15,7 +15,7 @@ packageExtensionsChecksum: sha256-op0MFULzVAvilfo1RFw2RpCuLNkXV7DMJABjx+iQj58=
 
 patchedDependencies:
   '@wildshard/shard-format@0.4.9':
-    hash: 6a58a2a14d2275e3d0f450c1af6c6e068a6f81f4de8dcc8c107f5844c2fbc427
+    hash: f1b92f824fb9aecbea4b89eaf3e3bac2761af48004c28b384d05a5badbc40434
     path: patches/@wildshard__shard-format@0.4.9.patch
 
 importers:
@@ -1545,7 +1545,7 @@ snapshots:
       '@sentry/core': 11.0.0
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@6.0.3))
-      '@wildshard/format': '@wildshard/shard-format@0.4.9(patch_hash=6a58a2a14d2275e3d0f450c1af6c6e068a6f81f4de8dcc8c107f5844c2fbc427)(typescript@6.0.3)'
+      '@wildshard/format': '@wildshard/shard-format@0.4.9(patch_hash=f1b92f824fb9aecbea4b89eaf3e3bac2761af48004c28b384d05a5badbc40434)(typescript@6.0.3)'
       '@wildshard/wire': 0.1.0(typescript@6.0.3)
       ajv: 6.15.0
       fflate: 0.8.3
@@ -1582,7 +1582,7 @@ snapshots:
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@6.0.3))
       '@wildshard/engine': 0.1.18(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1))
-      '@wildshard/format': '@wildshard/shard-format@0.4.9(patch_hash=6a58a2a14d2275e3d0f450c1af6c6e068a6f81f4de8dcc8c107f5844c2fbc427)(typescript@6.0.3)'
+      '@wildshard/format': '@wildshard/shard-format@0.4.9(patch_hash=f1b92f824fb9aecbea4b89eaf3e3bac2761af48004c28b384d05a5badbc40434)(typescript@6.0.3)'
       ajv: 6.15.0
       assemblyscript: 0.28.20
       binaryen: '@pre-bundled/binaryen@132.0.0-patch-1'
@@ -1636,7 +1636,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@wildshard/shard-format@0.4.9(patch_hash=6a58a2a14d2275e3d0f450c1af6c6e068a6f81f4de8dcc8c107f5844c2fbc427)(typescript@6.0.3)':
+  '@wildshard/shard-format@0.4.9(patch_hash=f1b92f824fb9aecbea4b89eaf3e3bac2761af48004c28b384d05a5badbc40434)(typescript@6.0.3)':
     dependencies:
       meshoptimizer: 1.2.0
       valibot: 1.5.0(typescript@6.0.3)
