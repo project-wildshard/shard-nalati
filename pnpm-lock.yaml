@@ -9,7 +9,7 @@ overrides:
   binaryen: npm:@pre-bundled/binaryen@132.0.0-patch-1
   assemblyscript>binaryen: npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1
   '@wildshard/engine@0.1.18>@wildshard/format': npm:@wildshard/shard-format@0.4.9
-  '@wildshard/sdk@0.2.12>@wildshard/format': npm:@wildshard/shard-format@0.4.9
+  '@wildshard/sdk@0.2.13>@wildshard/format': npm:@wildshard/shard-format@0.4.9
 
 packageExtensionsChecksum: sha256-op0MFULzVAvilfo1RFw2RpCuLNkXV7DMJABjx+iQj58=
 
@@ -29,8 +29,8 @@ importers:
         specifier: npm:@wildshard/shard-format@0.34.0
         version: '@wildshard/shard-format@0.34.0(typescript@6.0.3)'
       '@wildshard/sharddev':
-        specifier: npm:@wildshard/sdk@0.2.12
-        version: '@wildshard/sdk@0.2.12(@types/node@24.3.1)(typescript@6.0.3)'
+        specifier: npm:@wildshard/sdk@0.2.13
+        version: '@wildshard/sdk@0.2.13(@types/node@24.3.1)(typescript@6.0.3)'
       playwright:
         specifier: 1.65.0
         version: 1.65.0
@@ -538,8 +538,8 @@ packages:
       sharp:
         optional: true
 
-  '@wildshard/sdk@0.2.12':
-    resolution: {integrity: sha512-UH3/pnXytqpc9mvpcqsF2OHlBCCjSfj7zjgBdnepj5aH85y84GyjaCxTuo5w1ziMpuHw4+0Ew0e3OOMaXyTrjw==}
+  '@wildshard/sdk@0.2.13':
+    resolution: {integrity: sha512-dd8q8+6E6QDu7+gbpzhUtk7+0tIwjoiFVQOjO7JJROvQTQ5Dso54a0kTvGTuASNiWZfZpUrvrJ74HFMnPU073A==}
     engines: {node: '>=24.18.0'}
     hasBin: true
 
@@ -1569,7 +1569,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@wildshard/sdk@0.2.12(@types/node@24.3.1)(typescript@6.0.3)':
+  '@wildshard/sdk@0.2.13(@types/node@24.3.1)(typescript@6.0.3)':
     dependencies:
       '@dimforge/rapier3d-simd': 0.21.0
       '@gltf-transform/core': 4.5.0

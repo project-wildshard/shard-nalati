@@ -43,7 +43,7 @@
   "dependencies": {
     "@wildshard/engine": "0.1.18",
     "@wildshard/format": "npm:@wildshard/shard-format@0.34.0",
-    "@wildshard/sharddev": "npm:@wildshard/sdk@0.2.12",
+    "@wildshard/sharddev": "npm:@wildshard/sdk@0.2.13",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0"
@@ -147,7 +147,7 @@
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
       "@wildshard/engine@0.1.18>@wildshard/format": "npm:@wildshard/shard-format@0.4.9",
-      "@wildshard/sdk@0.2.12>@wildshard/format": "npm:@wildshard/shard-format@0.4.9"
+      "@wildshard/sdk@0.2.13>@wildshard/format": "npm:@wildshard/shard-format@0.4.9"
     },
     "patchedDependencies": {
       "@wildshard/shard-format@0.4.9": "patches/@wildshard__shard-format@0.4.9.patch"
