@@ -27,28 +27,16 @@ index e4c29a3a61ce29746fc964ca76d476c32550ca7b..c6c1ad02661b7faad4aebd3e6d1e7152
 diff --git a/src/format/shardSections.ts b/src/format/shardSections.ts
 --- a/src/format/shardSections.ts
 +++ b/src/format/shardSections.ts
-@@ -38,6 +38,8 @@
- export const RequiresSchema: v.GenericSchema<ShardRequiresInput, ShardRequires> = v.strictObject({ sdk: v.literal(SHARDFILE_VERSION), capabilities: ShardNamesSchema, commons: v.pipe(v.array(ShardHashSchema), v.maxLength(limits.commons)), commonsWire: v.optional(v.record(ShardHashSchema, ShardNaturalSchema), {}), commonsCosts: v.optional(CommonsCostsSchema, {}) });
- /** Authored compressed and resident ceilings. */
+@@ -40,2 +40,4 @@
  export const BudgetsSchema: v.GenericSchema<ShardBudgetsInput, ShardBudgets> = v.strictObject({
 +  // OF10c1b: keep the authored tier through the legacy cook until SDK-SPLIT adopts the current format.
 +  tier: v.exactOptional(v.picklist(['small', 'medium', 'large'])),
    /** Reviewed whole-client floor retained when an opaque runtime becomes declared data. */
-   client: v.exactOptional(RuntimeCostSchema), library: v.strictObject({ resident: ShardNaturalSchema, compressed: ShardNaturalSchema, downloadAllowance: v.exactOptional(ShardNaturalSchema) }), sim: v.strictObject({ resident: ShardNaturalSchema, compressed: ShardNaturalSchema }), overlap: ShardNaturalSchema });
- /** Fixed-step simulation and admitted script binding declarations. */
-@@ -232,6 +234,7 @@
- }
- export type ShardRequires = { [Key in keyof ShardRequiresFields]: ShardRequiresFields[Key] };
+@@ -234,2 +236,3 @@
  interface ShardBudgetsInputFields {
 +    tier?: 'small' | 'medium' | 'large';
      client?: v.InferInput<typeof RuntimeCostSchema>;
-     library: {
-         resident: ShardNaturalInput;
-@@ -246,6 +249,7 @@
- }
- export type ShardBudgetsInput = { [Key in keyof ShardBudgetsInputFields]: ShardBudgetsInputFields[Key] };
+@@ -248,2 +251,3 @@
  interface ShardBudgetsFields {
 +    tier?: 'small' | 'medium' | 'large';
      client?: v.InferOutput<typeof RuntimeCostSchema>;
-     library: {
-         resident: ShardNatural;
