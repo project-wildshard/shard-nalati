@@ -1,18 +1,18 @@
 {
-  "webContentMB": 948.785232,
-  "glMB": 128.154479,
+  "webContentMB": 696.09468,
+  "glMB": 125.491884,
   "engineBaseMB": 299,
-  "rev": "8af8cb737924b435454425674dfd296556772893",
-  "device": "iOS 27.2 iPhone 17 Pro Simulator Safari, phone Low auto (ktx2), settled WebContent [Sim] and GL [L]",
-  "evidence": "progress/memory/mg5-epoch3-2026-11-17.json",
+  "rev": "1ec827b818b440e24e43f49a1437a10483e152d7",
+  "device": "iOS 27.2 iPhone 18 Pro Simulator Safari, Phone Low auto (ktx2), settled WebContent [Sim] and GL [L], three cold boots",
+  "evidence": "progress/memory/mg8-runtime-cost-2026-11-18.json",
   "epoch": 3,
   "imagesFirst": {
-    "webContentMB": 942.47744,
-    "glMB": 165.817011,
+    "webContentMB": 699.764744,
+    "glMB": 152.870736,
     "engineBaseMB": 299,
-    "rev": "8af8cb737924b435454425674dfd296556772893",
-    "device": "iOS 27.2 iPhone 17 Pro Simulator Safari, phone Low img (img), settled WebContent [Sim] and GL [L]",
-    "evidence": "progress/memory/mg5-epoch3-2026-11-17.json",
+    "rev": "1ec827b818b440e24e43f49a1437a10483e152d7",
+    "device": "iOS 27.2 iPhone 18 Pro Simulator Safari, Phone Low img, settled WebContent [Sim] and GL [L], three cold boots",
+    "evidence": "progress/memory/mg8-runtime-cost-2026-11-18.json",
     "epoch": 3
   }
 }

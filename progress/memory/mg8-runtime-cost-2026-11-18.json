@@ -1,0 +1,697 @@
+{
+  "engine": "1ec827b818b440e24e43f49a1437a10483e152d7",
+  "build": "1ec827b8-nalati-fffff6be",
+  "sourceHash": "228bd2eeb5ccddbac4fb960afa6d41f94f4dca619b1115e6c0d9230eb0693ba9",
+  "engineBaseMB": 299,
+  "tierLimitBytes": 536870912,
+  "residentFactor": 1.11,
+  "forms": {
+    "auto": {
+      "webContentMB": 696.0946799999999,
+      "glMB": 125.491884,
+      "accounted": 470798707
+    },
+    "img": {
+      "webContentMB": 699.764744,
+      "glMB": 152.870736,
+      "accounted": 498770703
+    }
+  },
+  "rows": [
+    {
+      "tag": "auto-1",
+      "form": "auto",
+      "webContentMB": 686.8377439999999,
+      "glMB": 125.491884,
+      "accounted": 462459125,
+      "native": {
+        "nativeGB": 0.686837744,
+        "inspectorGB": 0.948869792,
+        "minGB": 0.686559216,
+        "maxGB": 0.69018008,
+        "spreadGB": 0.003620863999999946,
+        "spreadPercent": 0.5271789489774962,
+        "samples": [
+          {
+            "seconds": 1.004,
+            "nativeGB": 0.69018008,
+            "inspectorGB": 0.947215008
+          },
+          {
+            "seconds": 2.007,
+            "nativeGB": 0.686559216,
+            "inspectorGB": 0.948869792
+          },
+          {
+            "seconds": 3.01,
+            "nativeGB": 0.686837744,
+            "inspectorGB": 0.954751648
+          }
+        ],
+        "seconds": 3.01
+      },
+      "ledger": {
+        "totals": {
+          "gpu": 125491884,
+          "ram": 117433402
+        },
+        "unattributed": {
+          "gpu": 13832230,
+          "ram": 79200
+        },
+        "texture": {
+          "mode": "ktx2",
+          "why": "auto: images-first playing estimate 2062856040 exceeds 1000000000",
+          "probe": {
+            "ran": true,
+            "note": "8 formats ok",
+            "families": {
+              "astc": true,
+              "etc2": true
+            },
+            "formats": [
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGBA8_ETC2_EAC",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ALPHA8_ETC2_EAC",
+                "ok": true
+              }
+            ],
+            "veto": null
+          }
+        },
+        "byKind": {
+          "ram/wasm": 41353216,
+          "ram/array-buffer": 55296962,
+          "gpu/texture": 68502734,
+          "gpu/renderbuffer": 4194304,
+          "ram/cache-document": 6639056,
+          "gpu/buffer": 52794846,
+          "ram/canvas": 3239936,
+          "ram/geometry-cpu": 10534008,
+          "ram/wire": 370224
+        }
+      }
+    },
+    {
+      "tag": "img-1",
+      "form": "img",
+      "webContentMB": 699.764744,
+      "glMB": 153.348032,
+      "accounted": 499200700,
+      "native": {
+        "nativeGB": 0.699764744,
+        "inspectorGB": 0.983849632,
+        "minGB": 0.699715592,
+        "maxGB": 0.700010504,
+        "spreadGB": 0.0002949119999999805,
+        "spreadPercent": 0.04214444962091153,
+        "samples": [
+          {
+            "seconds": 1.002,
+            "nativeGB": 0.699715592,
+            "inspectorGB": 0.979671712
+          },
+          {
+            "seconds": 2.002,
+            "nativeGB": 0.699764744,
+            "inspectorGB": 0.983849632
+          },
+          {
+            "seconds": 3.004,
+            "nativeGB": 0.700010504,
+            "inspectorGB": 0.991107744
+          }
+        ],
+        "seconds": 3.004
+      },
+      "ledger": {
+        "totals": {
+          "gpu": 153348032,
+          "ram": 131225246
+        },
+        "unattributed": {
+          "gpu": 13832230,
+          "ram": 0
+        },
+        "texture": {
+          "mode": "img",
+          "why": "pinned (harness textures: img)",
+          "probe": {
+            "ran": true,
+            "note": "8 formats ok",
+            "families": {
+              "astc": true,
+              "etc2": true
+            },
+            "formats": [
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGBA8_ETC2_EAC",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ALPHA8_ETC2_EAC",
+                "ok": true
+              }
+            ],
+            "veto": null
+          }
+        },
+        "byKind": {
+          "ram/wasm": 41353216,
+          "ram/cache-document": 12313912,
+          "gpu/texture": 95878986,
+          "gpu/renderbuffer": 4194304,
+          "ram/array-buffer": 47685310,
+          "gpu/buffer": 53274742,
+          "ram/canvas": 3239936,
+          "ram/image-bitmap": 15728640,
+          "ram/geometry-cpu": 10534008,
+          "ram/wire": 370224
+        }
+      }
+    },
+    {
+      "tag": "img-2",
+      "form": "img",
+      "webContentMB": 707.432456,
+      "glMB": 152.870736,
+      "accounted": 505678552,
+      "native": {
+        "nativeGB": 0.707432456,
+        "inspectorGB": 0.988994208,
+        "minGB": 0.707252232,
+        "maxGB": 0.722669576,
+        "spreadGB": 0.015417344000000055,
+        "spreadPercent": 2.1793379522298952,
+        "samples": [
+          {
+            "seconds": 1.002,
+            "nativeGB": 0.722669576,
+            "inspectorGB": 0.989141664
+          },
+          {
+            "seconds": 2.003,
+            "nativeGB": 0.707432456,
+            "inspectorGB": 0.988994208
+          },
+          {
+            "seconds": 3.005,
+            "nativeGB": 0.707252232,
+            "inspectorGB": 0.961567392
+          }
+        ],
+        "seconds": 3.005
+      },
+      "ledger": {
+        "totals": {
+          "gpu": 152870736,
+          "ram": 131637006
+        },
+        "unattributed": {
+          "gpu": 13832230,
+          "ram": 0
+        },
+        "texture": {
+          "mode": "img",
+          "why": "pinned (harness textures: img)",
+          "probe": {
+            "ran": true,
+            "note": "8 formats ok",
+            "families": {
+              "astc": true,
+              "etc2": true
+            },
+            "formats": [
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGBA8_ETC2_EAC",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ALPHA8_ETC2_EAC",
+                "ok": true
+              }
+            ],
+            "veto": null
+          }
+        },
+        "byKind": {
+          "ram/wasm": 41287680,
+          "ram/cache-document": 12313912,
+          "gpu/texture": 95878986,
+          "gpu/renderbuffer": 4194304,
+          "ram/array-buffer": 48162606,
+          "gpu/buffer": 52797446,
+          "ram/canvas": 3239936,
+          "ram/image-bitmap": 15728640,
+          "ram/geometry-cpu": 10534008,
+          "ram/wire": 370224
+        }
+      }
+    },
+    {
+      "tag": "auto-2",
+      "form": "auto",
+      "webContentMB": 696.0946799999999,
+      "glMB": 125.494484,
+      "accounted": 470801049,
+      "native": {
+        "nativeGB": 0.69609468,
+        "inspectorGB": 0.90990864,
+        "minGB": 0.696061912,
+        "maxGB": 0.696160216,
+        "spreadGB": 0.00009830399999999351,
+        "spreadPercent": 0.014122216822572687,
+        "samples": [
+          {
+            "seconds": 1,
+            "nativeGB": 0.696160216,
+            "inspectorGB": 0.90990864
+          },
+          {
+            "seconds": 2.004,
+            "nativeGB": 0.696061912,
+            "inspectorGB": 0.908794528
+          },
+          {
+            "seconds": 3.004,
+            "nativeGB": 0.69609468,
+            "inspectorGB": 0.915954336
+          }
+        ],
+        "seconds": 3.004
+      },
+      "ledger": {
+        "totals": {
+          "gpu": 125494484,
+          "ram": 115973902
+        },
+        "unattributed": {
+          "gpu": 13832230,
+          "ram": 0
+        },
+        "texture": {
+          "mode": "ktx2",
+          "why": "auto: images-first playing estimate 2062856040 exceeds 1000000000",
+          "probe": {
+            "ran": true,
+            "note": "8 formats ok",
+            "families": {
+              "astc": true,
+              "etc2": true
+            },
+            "formats": [
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGBA8_ETC2_EAC",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ALPHA8_ETC2_EAC",
+                "ok": true
+              }
+            ],
+            "veto": null
+          }
+        },
+        "byKind": {
+          "ram/wasm": 41353216,
+          "ram/cache-document": 12313912,
+          "gpu/texture": 68502734,
+          "gpu/renderbuffer": 4194304,
+          "ram/array-buffer": 48162606,
+          "gpu/buffer": 52797446,
+          "ram/canvas": 3239936,
+          "ram/geometry-cpu": 10534008,
+          "ram/wire": 370224
+        }
+      }
+    },
+    {
+      "tag": "auto-3",
+      "form": "auto",
+      "webContentMB": 706.3511120000001,
+      "glMB": 124.638972,
+      "accounted": 479270346,
+      "native": {
+        "nativeGB": 0.706351112,
+        "inspectorGB": 0.997923488,
+        "minGB": 0.705990664,
+        "maxGB": 0.708399112,
+        "spreadGB": 0.002408448000000063,
+        "spreadPercent": 0.3409703699879024,
+        "samples": [
+          {
+            "seconds": 1.003,
+            "nativeGB": 0.708399112,
+            "inspectorGB": 1.024072352
+          },
+          {
+            "seconds": 2.005,
+            "nativeGB": 0.706351112,
+            "inspectorGB": 0.99313936
+          },
+          {
+            "seconds": 3.008,
+            "nativeGB": 0.705990664,
+            "inspectorGB": 0.997923488
+          }
+        ],
+        "seconds": 3.008
+      },
+      "ledger": {
+        "totals": {
+          "gpu": 124638972,
+          "ram": 124724310
+        },
+        "unattributed": {
+          "gpu": 14365870,
+          "ram": 5143680
+        },
+        "texture": {
+          "mode": "ktx2",
+          "why": "auto: images-first playing estimate 2062856040 exceeds 1000000000",
+          "probe": {
+            "ran": true,
+            "note": "8 formats ok",
+            "families": {
+              "astc": true,
+              "etc2": true
+            },
+            "formats": [
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGBA8_ETC2_EAC",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ALPHA8_ETC2_EAC",
+                "ok": true
+              }
+            ],
+            "veto": null
+          }
+        },
+        "byKind": {
+          "ram/wasm": 41287680,
+          "ram/array-buffer": 58699058,
+          "gpu/texture": 68502734,
+          "gpu/renderbuffer": 4194304,
+          "ram/cache-document": 10593404,
+          "gpu/buffer": 51941934,
+          "ram/canvas": 3239936,
+          "ram/geometry-cpu": 10534008,
+          "ram/wire": 370224
+        }
+      }
+    },
+    {
+      "tag": "img-3",
+      "form": "img",
+      "webContentMB": 682.381272,
+      "glMB": 152.870736,
+      "accounted": 483109918,
+      "native": {
+        "nativeGB": 0.682381272,
+        "inspectorGB": 0.93292816,
+        "minGB": 0.682151896,
+        "maxGB": 0.68241404,
+        "spreadGB": 0.0002621440000000197,
+        "spreadPercent": 0.0384160601640925,
+        "samples": [
+          {
+            "seconds": 1.002,
+            "nativeGB": 0.682381272,
+            "inspectorGB": 0.92629264
+          },
+          {
+            "seconds": 2.003,
+            "nativeGB": 0.68241404,
+            "inspectorGB": 0.93292816
+          },
+          {
+            "seconds": 3.006,
+            "nativeGB": 0.682151896,
+            "inspectorGB": 0.939956896
+          }
+        ],
+        "seconds": 3.006
+      },
+      "ledger": {
+        "totals": {
+          "gpu": 152870736,
+          "ram": 133606506
+        },
+        "unattributed": {
+          "gpu": 13832230,
+          "ram": 0
+        },
+        "texture": {
+          "mode": "img",
+          "why": "pinned (harness textures: img)",
+          "probe": {
+            "ran": true,
+            "note": "8 formats ok",
+            "families": {
+              "astc": true,
+              "etc2": true
+            },
+            "formats": [
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_4x4",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "RGBA_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "astc",
+                "format": "SRGB8_ALPHA8_ASTC_6x6",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ETC2",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "RGBA8_ETC2_EAC",
+                "ok": true
+              },
+              {
+                "family": "etc2",
+                "format": "SRGB8_ALPHA8_ETC2_EAC",
+                "ok": true
+              }
+            ],
+            "veto": null
+          }
+        },
+        "byKind": {
+          "ram/wasm": 41287680,
+          "ram/cache-document": 12313912,
+          "gpu/texture": 95878986,
+          "gpu/renderbuffer": 4194304,
+          "ram/array-buffer": 50132106,
+          "gpu/buffer": 52797446,
+          "ram/canvas": 3239936,
+          "ram/image-bitmap": 15728640,
+          "ram/geometry-cpu": 10534008,
+          "ram/wire": 370224
+        }
+      }
+    }
+  ],
+  "runtimeCost": {
+    "webContentMB": 696.09468,
+    "glMB": 125.491884,
+    "engineBaseMB": 299,
+    "rev": "1ec827b818b440e24e43f49a1437a10483e152d7",
+    "device": "iOS 27.2 iPhone 18 Pro Simulator Safari, Phone Low auto (ktx2), settled WebContent [Sim] and GL [L], three cold boots",
+    "evidence": "progress/memory/mg8-runtime-cost-2026-11-18.json",
+    "epoch": 3,
+    "imagesFirst": {
+      "webContentMB": 699.764744,
+      "glMB": 152.870736,
+      "engineBaseMB": 299,
+      "rev": "1ec827b818b440e24e43f49a1437a10483e152d7",
+      "device": "iOS 27.2 iPhone 18 Pro Simulator Safari, Phone Low img, settled WebContent [Sim] and GL [L], three cold boots",
+      "evidence": "progress/memory/mg8-runtime-cost-2026-11-18.json",
+      "epoch": 3
+    }
+  }
+}
