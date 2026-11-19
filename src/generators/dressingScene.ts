@@ -65,9 +65,12 @@ export function nalatiDressingSpecimens(catalogue:unknown,materials:unknown,pack
   if(!admitted.success||!surfaces.success)throw new Error('Invalid supplied Nalati specimen declarations');
   return parseSectionValue(specimensSchema, nalatiSpecimenRows(admitted.output,surfaces.output,parseSectionValue(defineNamedRows({ kind: 'record', key: { kind: 'string' }, value: { kind: 'unknown' } }).schema, packed)));
 }
+/** The tier whose rock hulls every tier collides on: the room's (NET-LAG NL12 f). */
+export const COLLISION_TIER='phone';
 /** Exact raw contact files, read only by the SDK's normal named-file intake. */
 export const DRESSING_CONTACT_SOURCES: { name: string; kind: 'bin'; source: string; options: { decoded: number } }[]=parseSectionValue(defineNamedRows({ kind: 'array', item: { kind: 'object', mode: 'strip', entries: {name:text,kind:{ kind: 'literal', value: 'bin' },source:text,
-  options:{ kind: 'object', mode: 'strip', entries: {decoded:{ kind: 'number', integer: true, min: 0 }} }} } }).schema, contactInput.sources);
+  options:{ kind: 'object', mode: 'strip', entries: {decoded:{ kind: 'number', integer: true, min: 0 }} }} } }).schema, contactInput.sources)
+  .filter(row=>row.name.startsWith(`models/contacts/${COLLISION_TIER}-`)); // NL12 (f): only the collision tier's hulls ship
 /** Both exact sign rasters enter through the same named binary source path; two base planes bound the rectangular mip chain. */
 export const DRESSING_ATLAS_SOURCES: { name: string; kind: 'bin'; source: string; options: { gpu: number } }[]=parseSectionValue(defineNamedRows({ kind: 'array', item: { kind: 'object', mode: 'strip', entries: {name:text,kind:{ kind: 'literal', value: 'bin' },source:text,options:{ kind: 'object', mode: 'strip', entries: {gpu:number} }} } }).schema, Object.values(atlases).map(row=>({name:row.file,kind:'bin',source:row.source,options:{gpu:row.width*row.height*8}})));
 /** Exact existing compressed byte lanes, admitted under logical shard file names before client decoding: the crag bank's
@@ -126,8 +129,11 @@ function compileDressingScene(tier:'phone'|'desktop',profiles:NamedRowValue<type
   // pebbles sampled one rock texel and drew as black discs
   materials['pebble']={kind:'painterly',rim:.3,bands:.8};materials['shrub']={kind:'painterly',rim:.5,bands:.7,sway:.05};
   materials['flower']={kind:'painterly',rim:.45,bands:.6,sway:.3};materials['reed']={kind:'painterly',rim:.5,bands:.6,sway:.1};
+  // NET-LAG NL12 (f): a rock's collision is one shape on every tier: the phone hulls, the ones the room simulates (its bake
+  // solids are the phone page's capture). The desktop drew and also collided on its own finer hulls, 4 to 12 cm off the
+  // room's, so a desktop page pressed along a boulder mispredicted where a phone page never did.
   const contacts=(name:string)=>{
-    const row=Object.entries(paint.contacts[tier]??{}).find(([key])=>key===name)?.[1];if(row===undefined)throw new Error(`Missing dressing contacts ${name}`);
+    const row=Object.entries(paint.contacts[COLLISION_TIER]??{}).find(([key])=>key===name)?.[1];if(row===undefined)throw new Error(`Missing dressing contacts ${name}`);
     return{kind:'packed-hulls',...('file'in row?{file:row.file}:{data:row.points}),origins:row.origins,surface:'rock'};
   };
   const layers=[
