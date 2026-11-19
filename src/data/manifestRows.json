@@ -14,7 +14,7 @@
     "feats"
   ],
   "api": 1,
-  "gridShardfile": "/shardfiles/nalati-grasslands/shard.json",
+  "shardfile": "/shardfiles/nalati-grasslands/shard.json",
   "loadout": {
     "weapons": [
       "bow",

@@ -29,7 +29,8 @@ for (const { slug } of expected) test(`${slug}: publishable tarball includes its
     assert.equal(discoveries.length, 1, 'Each shipped product must be discoverable');
     const [, bytes] = discoveries[0], document = JSON.parse(new TextDecoder().decode(bytes));
     assert.equal(document.slug, slug);
-    assert.equal(document.data.shardfile ?? document.data.gridShardfile, `/shardfiles/${slug}/shard.json`, 'Discovery must point to the shipped shard');
+    assert.equal(document.data.gridShardfile, undefined, 'Discovery uses the one format pointer');
+    assert.equal(document.data.shardfile, `/shardfiles/${slug}/shard.json`, 'Discovery must point to the shipped shard');
     assert.ok(files.has('shard.json'));
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
