@@ -1308,7 +1308,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-original-species.ts",
-      "targetBlob": "e1bf905559a65f78370d78765ef47773f2bcfc57"
+      "targetBlob": "fcde3f92d072ef36c73d5ca2b14e690fe909feaf"
     },
     {
       "targetPath": "test/fixtures/nalati-output-cache.ts",

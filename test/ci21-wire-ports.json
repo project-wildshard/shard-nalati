@@ -122,8 +122,8 @@
         "sourceRevision": "aa2a7d1153588897c87d4bad724f6f47e6909972",
         "sourceBlob": "a37da4cc06128e9815126edfc9ea51a70f5067a6",
         "targetPath": "test/fixtures/nalati-original-species.ts",
-        "targetBlob": "e1bf905559a65f78370d78765ef47773f2bcfc57",
-        "changes": "Public installed bake-loader and14s compiler-child caps; optional private directory memoizes one full checked map per absolute root. Both default/private paths use the same bytes.slice loan. Caller explicitly releases private memo and disk root afterAll. No fallback or pin changes."
+        "targetBlob": "fcde3f92d072ef36c73d5ca2b14e690fe909feaf",
+        "changes": "Public installed simulation loader and unchanged 14s compiler-child caps; optional private directory memoizes one full checked map per absolute root. Both default/private paths use the same bytes.slice loan. Caller explicitly releases private memo and disk root afterAll. No fallback or pin changes."
       },
       "preparationHelper": {
         "targetPath": "test/fixtures/prepare-nalati-original-species.ts",

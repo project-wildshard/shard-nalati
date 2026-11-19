@@ -11,13 +11,15 @@ const names = ['species.json', 'bodies.bin', 'boot.json', 'held-weapons.wasm', '
 const metadata = pins[0];
 if (metadata === undefined || pins.length !== names.length) throw new Error('Missing original species file inventory');
 const original = metadata;
+const compiler = ['--experimental-transform-types', '--import',
+  import.meta.resolve('@wildshard/engine/scripts/sim-node-loader.mjs'),
+  'test/fixtures/prepare-nalati-original-species.ts'];
 
 /** Source-built immutable predecessor oracle; never evidence for the current producer's correctness.
  * The cold construction uses the real compiler in Node. Every hit checks all five complete original pins. */
 export function originalSpeciesFiles(directory = `tmp/nalati-original-species/${original.sha256}`): ReadonlyMap<string, Uint8Array<ArrayBuffer>> {
   const root = resolvePath(directory);
-  if (!existsSync(root)) execFileSync(process.execPath, ['--experimental-transform-types', '--import', import.meta.resolve('@wildshard/engine/scripts/bake-loader.mjs'),
-    'test/fixtures/prepare-nalati-original-species.ts', root], { stdio: ['ignore', 'pipe', 'pipe'], timeout:14_000 });
+  if (!existsSync(root)) execFileSync(process.execPath, [...compiler, root], { stdio: ['ignore', 'pipe', 'pipe'], timeout:14_000 });
   const files = new Map<string, Uint8Array<ArrayBuffer>>();
   for (const [index, pin] of pins.entries()) {
     const name = names[index];
@@ -36,8 +38,7 @@ export async function prepareOriginalSpeciesFiles(directory = `tmp/nalati-origin
   const root = resolvePath(directory);
   if (!existsSync(root)) {
     await new Promise<void>((resolve,reject)=>{
-      execFile(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/engine/scripts/bake-loader.mjs'),
-        'test/fixtures/prepare-nalati-original-species.ts',root],{timeout:14_000},(error:Error|null,stdout,stderr)=>{
+      execFile(process.execPath,[...compiler,root],{timeout:14_000},(error:Error|null,stdout,stderr)=>{
           if(error===null)resolve();else reject(Object.assign(error,{stdout,stderr}));
         });
     });
