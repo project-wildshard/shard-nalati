@@ -148,6 +148,8 @@ jobs:
         env:
           PRODUCT: ${{ steps.product.outputs.product }}
           PREPARATION: ${{ inputs.preparation }}
+          # `gh run rerun <id> --debug` turns on the recorder's full output (NET-LAG NL12).
+          WILDSHARD_PREPARATION_DEBUG: ${{ runner.debug }}
         run: |
           # A shard that overrides @wildshard/engine past the sdk's own pin
           # (a format feature the pinned client refuses) names the engine
@@ -178,7 +180,8 @@ jobs:
     needs: build
     if: ${{ !inputs.rehearse && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    # Leave room for setup, transfer and the CLI verdict timeout.
+    timeout-minutes: 30
     environment: ${{ inputs.channel }}
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
