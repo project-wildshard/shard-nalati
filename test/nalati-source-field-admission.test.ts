@@ -1,7 +1,7 @@
 import { expect, expectTypeOf, test } from 'vitest';
 import * as v from 'valibot';
 import { manifestFieldRows } from '@wildshard/sharddev/rows';
-import { specimenShapeSources } from '@wildshard/sharddev/bake/specimenCatalogue';
+import { specimenShapeSources } from '@wildshard/kit/bake/specimenCatalogue';
 import { ManifestMetadataSchema } from '@wildshard/format/minimap';
 import manifest from '../src/data/manifestRows.json' with { type: 'json' };
 

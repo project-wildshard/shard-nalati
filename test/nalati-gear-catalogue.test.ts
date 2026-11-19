@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { defineSpecimenCatalogue, nameSpecimenBook } from '@wildshard/sharddev/bake/specimenCatalogue';
+import { defineSpecimenCatalogue, nameSpecimenBook } from '@wildshard/kit/bake/specimenCatalogue';
 import { GEAR_BOOK } from '../src/generators/gear';
 
 test('published Nalati gear bytes are admitted by the author catalogue reader', () => {

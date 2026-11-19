@@ -1,4 +1,4 @@
-import { readProjectAssets } from '@wildshard/sharddev/project';
+import { readProjectAssets } from '@wildshard/build/project';
 import { runSnapshot } from './runSnapshot';
 
 /** Nalati's project read over its author folder and public/assets, as the shipped-output suites read it (CI7: once per

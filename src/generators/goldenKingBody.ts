@@ -1,6 +1,6 @@
 import { smoothstep as sstep } from '@wildshard/sharddev/noise';
 import type { Rng } from '@wildshard/sharddev/random';
-import { loft, skinPlain, S, boneIndex, mix, paletteColors, paintNoise, type Paint, type RGB, type Station, type AnimalSpecies, type BoneDef, type VariantDef } from '@wildshard/sharddev/bake/species';
+import { loft, skinPlain, S, boneIndex, mix, paletteColors, paintNoise, type Paint, type RGB, type Station, type AnimalSpecies, type BoneDef, type VariantDef } from '@wildshard/kit/bake/species';
 import * as THREE from 'three';
 
 /**

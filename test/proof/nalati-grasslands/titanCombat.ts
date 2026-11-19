@@ -14,7 +14,7 @@ import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
 import {nalatiTitanOf} from '../../fixtures/nalati-titan-native';
 import {readArenaScriptData} from '@wildshard/engine/game/boss/openArenaFight';
 import type {SimHost} from '@wildshard/engine/sim';
-import type {ShardProduct} from '@wildshard/engine/game/shardfile/shardProduct';
+import type {ShardFolder} from '@wildshard/engine/game/shardfile/shardFolder';
 import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
 import {parseHeldSlots} from '@wildshard/format/heldArms';
 import {nalatiPatrolOf} from '../../fixtures/nalati-patrol-native';
@@ -28,7 +28,7 @@ function snapshotValue(owner:{readonly snapshot:()=>unknown}):unknown{
 /** Exact input-controller continuation; the native fight/save remains authoritative. */
 export interface TitanBowCursor {tick:number;lastShots:number;lastDodge:boolean;currentAim:{yaw:number;pitch:number;flight:number}}
 
-export async function titanBowPilot(product:ShardProduct,host:SimHost,step:(commands:readonly HeadlessCommand[])=>Promise<void>,goal:1|2|3=1,
+export async function titanBowPilot(product:ShardFolder,host:SimHost,step:(commands:readonly HeadlessCommand[])=>Promise<void>,goal:1|2|3=1,
  continuation?:{readonly cursor?:TitanBowCursor;readonly pauseAfterRetry?:boolean}):Promise<TitanBowCursor|null>{
  const titan=nalatiTitanOf(host),mount=mountedPlayerOf(host);assert.ok(titan);assert.ok(mount);
  if(continuation!==undefined){assert.equal(goal,3);const tick=continuation.cursor?.tick;
@@ -128,7 +128,7 @@ export async function titanBowPilot(product:ShardProduct,host:SimHost,step:(comm
  return null;
 }
 
-export async function titanRidersPilot(product:ShardProduct,host:SimHost,step:(commands:readonly HeadlessCommand[])=>Promise<void>,borrowedHorseId?:string):Promise<void>{
+export async function titanRidersPilot(product:ShardFolder,host:SimHost,step:(commands:readonly HeadlessCommand[])=>Promise<void>,borrowedHorseId?:string):Promise<void>{
  const titan=nalatiTitanOf(host),mount=mountedPlayerOf(host),patrol=nalatiPatrolOf(host);assert.ok(titan);assert.ok(mount);assert.ok(patrol);
  const slots=parseHeldSlots(await product.json('held/slots.json')),blade=slots.slots.find(row=>row.kind==='blade');assert.ok(blade);
  const equipment=host.adapters.get('nalati.weapons'),encounter=host.adapters.get('nalati.titan');assert.ok(equipment);assert.ok(encounter);

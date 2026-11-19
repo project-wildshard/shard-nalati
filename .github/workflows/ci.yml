@@ -508,7 +508,7 @@ jobs:
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
       - name: Build and seal the ordinary pinned producer
         env:
-          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
+          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || 'c7d87608bbb1930a8213726fe4d4883b8d9a5909' }}
           NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           pnpm install --frozen-lockfile --config.ci=false
@@ -519,7 +519,7 @@ jobs:
       # Source proof currently supports an engine source candidate only.
       - name: Validate and select the exact engine source
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || 'c7d87608bbb1930a8213726fe4d4883b8d9a5909' }}
           CANDIDATE_SHARDDEV: ${{ inputs.sharddev }}
         run: |
           test -n "$CANDIDATE_ENGINE"
@@ -527,7 +527,7 @@ jobs:
           node scripts/select-candidate.mjs
       - name: Install pinned or candidate dependency graph
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || 'c7d87608bbb1930a8213726fe4d4883b8d9a5909' }}
           CANDIDATE_SHARDDEV: ''
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
@@ -537,14 +537,14 @@ jobs:
           fi
       - name: Match the candidate engine's declared format dependency
         run: |
-          node scripts/candidate-format.mjs
+          node scripts/candidate-format.mjs --ci21
           pnpm install --no-frozen-lockfile --config.ci=false
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
       - name: Compile, type-lint and run every complete original
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
-          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '8b2ee5a570d5adf3c2691f5467bdc157382518d8' }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || 'c7d87608bbb1930a8213726fe4d4883b8d9a5909' }}
+          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || 'c7d87608bbb1930a8213726fe4d4883b8d9a5909' }}
           NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           test -n "$CANDIDATE_ENGINE"

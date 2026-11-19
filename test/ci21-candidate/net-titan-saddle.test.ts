@@ -8,17 +8,17 @@ import { actRoutes } from '@wildshard/engine/sim/actRoutes';
 import { openArenaOf } from '@wildshard/engine/game/boss/openArenaNative';
 import { mountedPlayerOf } from '@wildshard/engine/game/riding/native';
 import { outputDescriptor } from '@wildshard/engine/game/shardfile/outputDescriptor';
-import { loadHeadlessProduct } from '@wildshard/engine/host/headlessProduct';
-import { createTrustedHeadlessResident } from '@wildshard/engine/host/headlessRuntime';
+import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
+import { createNativeHeadlessResident } from '@wildshard/engine/host/headlessRuntime';
 import type { HeadlessCommand } from '@wildshard/engine/host/tickProtocol';
 import { builtProduct } from '../fixtures/builtProduct';
 import { titanBowPilot } from '../proof/nalati-grasslands/titanCombat';
 
 test('a rider at a gallop takes the Titan\'s heart to his next phase with real arrows', { timeout: 300_000 }, async () => {
-  const directory = builtProduct('nalati-grasslands'), product = await loadHeadlessProduct(directory), descriptor = outputDescriptor(product.shardfile);
+  const directory = builtProduct('nalati-grasslands'), product = await loadHeadlessFolder(directory), descriptor = outputDescriptor(product.shardfile);
   if (descriptor === undefined) throw new Error('Missing output');
   const assets = new Map(descriptor.index.files.map(file => [file.commons === true ? `commons:${file.hash}` : file.hash, Uint8Array.from(readFileSync(`${directory}/${file.path}`))]));
-  const live = await createTrustedHeadlessResident({ product, shard: product.shardfile, assets, rapier: await loadRapier(Uint8Array.from(readFileSync(nativeRapierFile))) }, undefined, { room: true }), { host } = live;
+  const live = await createNativeHeadlessResident({ product, shard: product.shardfile, assets, rapier: await loadRapier(Uint8Array.from(readFileSync(nativeRapierFile))) }, undefined, { room: true }), { host } = live;
   try {
     const step = (commands: readonly HeadlessCommand[]): Promise<void> => { live.step(commands); return Promise.resolve(); };
     const titan = openArenaOf(host), seat = mountedPlayerOf(host);

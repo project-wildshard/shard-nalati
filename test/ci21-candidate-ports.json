@@ -41,7 +41,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "6369686085582cf61d817dce1aebde4f5244bf84"
+          "targetBlob": "62d10e15daff4a6024a5bf4bf13e195ac9bc0417"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -114,7 +114,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "6369686085582cf61d817dce1aebde4f5244bf84"
+          "targetBlob": "62d10e15daff4a6024a5bf4bf13e195ac9bc0417"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -184,7 +184,7 @@
         },
         {
           "targetPath": "test/fixtures/productFile.ts",
-          "targetBlob": "37dcf503cd865ad60349932b0549a40848d7ae81"
+          "targetBlob": "03ed9b83d1a648bbaa932f0cb8f4931957037ab3"
         },
         {
           "targetPath": "test/fixtures/nalati-weapon-observation.ts",
@@ -204,7 +204,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "6369686085582cf61d817dce1aebde4f5244bf84"
+          "targetBlob": "62d10e15daff4a6024a5bf4bf13e195ac9bc0417"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -243,7 +243,7 @@
       "sourcePath": "test/mounted-firearm-admission.test.ts",
       "sourceBlob": "507e32171cbff5c5b2509f0aab2a688ea55d03d2",
       "targetPath": "test/ci21-candidate/nalati-firearm-admission.test.ts",
-      "targetBlob": "5533e3d3a133eefd97168c9f4fe713c2c129a6e2",
+      "targetBlob": "6bd8c56b1a3dc34dbb76e6558d2c95835aa44217",
       "originalTests": [
         "baked firearm admission preserves every feel and playback row and refuses invalid products"
       ],
@@ -251,7 +251,7 @@
       "fixtureBlob": "62eba12424ca750565f26405f4e379daf4033036",
       "observationHelper": {
         "targetPath": "test/fixtures/productFile.ts",
-        "targetBlob": "37dcf503cd865ad60349932b0549a40848d7ae81"
+        "targetBlob": "03ed9b83d1a648bbaa932f0cb8f4931957037ab3"
       },
       "changes": "Whole original firearm case, every row and all three original invalid-product refusals retained. Only public owner import rewrites; real defining native schema validator export. No source removal until C11 published admission.",
       "additionalFixtures": [
@@ -273,7 +273,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "6369686085582cf61d817dce1aebde4f5244bf84"
+          "targetBlob": "62d10e15daff4a6024a5bf4bf13e195ac9bc0417"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -304,7 +304,7 @@
       "sourcePath": "test/held-bow-product.test.ts",
       "sourceBlob": "8644d00a7045d8cae9abbd8d483980bb7337ec7b",
       "targetPath": "test/ci21-candidate/held-bow-product.test.ts",
-      "targetBlob": "a9fbdd81f33ccce91b8ebe05845de50fe12b511c",
+      "targetBlob": "9202aaccf7fee26ab89cef7a02fea00e58ebf73d",
       "originalTests": [
         "the named bow retains the original bytes, pool channels and borrowed arrays",
         "actual named admission rejects malformed bow and pool bytes",
@@ -357,7 +357,7 @@
       "sourcePath": "test/nalati-place-binary.test.ts",
       "sourceBlob": "1e525accef9551ad4b7f5fbd5e4e1d1c7ce019fa",
       "targetPath": "test/ci21-candidate/nalati-place-binary.test.ts",
-      "targetBlob": "7b9776d30822c9ccf7f7ea5363f11ff3f9826ace",
+      "targetBlob": "606544bb0a0590d3d65c7e4bfd5673fbd350c692",
       "originalTests": [
         "the two named floor rasters read their exact blocks, NaN words included"
       ],
@@ -369,7 +369,7 @@
       "sourcePath": "test/nalati-quest-prop-binary.test.ts",
       "sourceBlob": "cd95c70fa3d4a9c97e4165cddb774af6995f8a4b",
       "targetPath": "test/ci21-candidate/nalati-quest-prop-binary.test.ts",
-      "targetBlob": "a543226373895f38d56193a9a456fd53bd0c6386",
+      "targetBlob": "c267c20567cec07f40924ae6c0025833f80d8f5a",
       "originalTests": [
         "the carried specimen prepares the exact original geometry through its named product file"
       ],
@@ -394,7 +394,7 @@
       "sourcePath": "test/nalati-shape-files.test.ts",
       "sourceBlob": "8ff2c48ec8204f22444027b655c35d7639cc6a4b",
       "targetPath": "test/ci21-candidate/nalati-shape-files.test.ts",
-      "targetBlob": "9c7bc5221ab1b5876c76e1f3035fdfffbac86171",
+      "targetBlob": "c8a7553b6d75fc5473df04fbe9f50417bb1eb43d",
       "originalTests": [
         "all named shape blocks preserve the original raw bytes and geometry metadata",
         "the product owner restores every original painted shape through file intake"
@@ -683,7 +683,7 @@
       "sourcePath": "test/nalati-headless-assembly.test.ts",
       "sourceBlob": "1dd945f9d6cbbf359bbfd10687f364c709af9833",
       "targetPath": "test/ci21-candidate/nalati-headless-assembly.test.ts",
-      "targetBlob": "6b809af4e5a599590cf26170c254c7258aa5598c",
+      "targetBlob": "84ded40504e1efe6ca111216c7e6de50a08f23cb",
       "originalTests": [
         "Nalati declared assembly retains its native 100 + 30 tick continuation",
         "Nalati chapter landing retains native actor order, codec and strict suffix",
@@ -691,7 +691,7 @@
       ],
       "compilerSupport": [],
       "fixturePath": "test/proof/nalati-grasslands/witness.ts",
-      "fixtureBlob": "f32c7570d8be01fdb9edced91cf76984fbf393fb",
+      "fixtureBlob": "c7a8cfad38373e9b33522376dcad0d3b6222a4e5",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass.",
       "additionalFixtures": [
         {
@@ -746,7 +746,7 @@
         "test/fixtures/headless/nalati-kokpar-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-kokpar-run.ts",
-      "fixtureBlob": "e942a8520cd002faab59f16ec5cdd2f3930e7813",
+      "fixtureBlob": "84c9c4dbd34d2a9d8db5d3beb2643389d42a50b9",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -791,7 +791,7 @@
         "test/fixtures/headless/nalati-patrol-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-patrol-run.ts",
-      "fixtureBlob": "6e77f20c64b3c109adbfe5e65562f8e672121924",
+      "fixtureBlob": "6e3311106a0cde053b835d418489e40891de21ec",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -809,7 +809,7 @@
         "test/fixtures/headless/nalati-qara-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-qara-run.ts",
-      "fixtureBlob": "5481418e14fb664b11c94751cd4ca2201146c6ef",
+      "fixtureBlob": "c3c1db58c562d25990881a97794dbc7f991a7f0e",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -875,7 +875,7 @@
         "test/fixtures/headless/nalati-titan-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-titan-run.ts",
-      "fixtureBlob": "af4750d37e9f32e01f94cbbd4e87bfb2ef6ac113",
+      "fixtureBlob": "a3ebc440ad38703984c66517218e16821b63c19a",
       "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal.",
       "caseAdaptations": [
         {
@@ -933,13 +933,13 @@
       "sourcePath": "test/net-titan-saddle.test.ts",
       "sourceBlob": "edf9870cf385ce75ef608936f7d7c5087d07979c",
       "targetPath": "test/ci21-candidate/net-titan-saddle.test.ts",
-      "targetBlob": "99356ebf2b6448232e877a9b83e6f36358ccecfc",
+      "targetBlob": "76eb815ea0b9d527f6fa6bc20098a852c1469bdd",
       "originalTests": [
         "a rider at a gallop takes the Titan's heart to his next phase with real arrows"
       ],
       "compilerSupport": [],
       "fixturePath": "test/proof/nalati-grasslands/titanCombat.ts",
-      "fixtureBlob": "975fba0e4223dbd423cb6e9f29bba26deb5a403b",
+      "fixtureBlob": "6a8eb3fe102c8b2f10167f0b2cf87a5ba3f30330",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -972,7 +972,7 @@
     },
     {
       "targetPath": "test/fixtures/geometry-cache-author-observation.ts",
-      "targetBlob": "73419896a3b706aba683b2a36f07d5ff3883bf8f"
+      "targetBlob": "c13222c35f91b1fd898d9c12150a48a0c724413d"
     },
     {
       "targetPath": "test/fixtures/geometry-cache-author-original.json",
@@ -984,7 +984,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-mounted-raid.ts",
-      "targetBlob": "14d7de243dfedcdd593f71a1f7b497a2ba5445f3"
+      "targetBlob": "d573077758783b9b95a46f76a83b6e137c27835a"
     },
     {
       "targetPath": "test/fixtures/kurgan-oracle/dungeon.ts",
@@ -1104,7 +1104,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-decorative.ts",
-      "targetBlob": "6369686085582cf61d817dce1aebde4f5244bf84"
+      "targetBlob": "62d10e15daff4a6024a5bf4bf13e195ac9bc0417"
     },
     {
       "targetPath": "test/fixtures/nalati-dressing-geos.json",
@@ -1204,7 +1204,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-king-data.ts",
-      "targetBlob": "4976b919d9a40010bc281d59ada34a648859620b"
+      "targetBlob": "4f12d70d5953cebe7d660bfa3befd5b31358b2ba"
     },
     {
       "targetPath": "test/fixtures/nalati-king-pose.ts",
@@ -1400,7 +1400,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-project.ts",
-      "targetBlob": "31c69ec43f0979d32ae5e7746dfd83f983df5c20"
+      "targetBlob": "3ccc156b501b82c258ec43e5630b18bd3d7adedc"
     },
     {
       "targetPath": "test/fixtures/nalati-query-terrain-original.json",
@@ -1544,7 +1544,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-species-world.ts",
-      "targetBlob": "78e1dfd34eb5fd8a2c9e70029a39e8caba38d910"
+      "targetBlob": "6bfc1c1ddd89466926f04c50d64033692ca0d867"
     },
     {
       "targetPath": "test/fixtures/nalati-specimens-original.json",
@@ -1660,7 +1660,7 @@
     },
     {
       "targetPath": "test/fixtures/productFile.ts",
-      "targetBlob": "37dcf503cd865ad60349932b0549a40848d7ae81"
+      "targetBlob": "03ed9b83d1a648bbaa932f0cb8f4931957037ab3"
     },
     {
       "targetPath": "test/fixtures/runSnapshot.ts",
@@ -1672,7 +1672,7 @@
     },
     {
       "targetPath": "test/fixtures/spruce-author-observation.ts",
-      "targetBlob": "38b56cf3abdb3b6198e8362bcd088cef06236d3a"
+      "targetBlob": "45a816a0d7a8ef1a6055d58b406e510172e2a27d"
     },
     {
       "targetPath": "test/fixtures/spruce-author-original.json",
@@ -1716,7 +1716,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-pasture-session.ts",
-      "targetBlob": "673cef55f9ae075ee4142e2807455c11f92f4062"
+      "targetBlob": "c5fd34d313783d73aaf3fba3d7a702d71b5ef29e"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-polearm-contact-run.ts",
@@ -1736,7 +1736,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/productSession.ts",
-      "targetBlob": "f33aad711f81f68488e13ada3c1ab72a56447962"
+      "targetBlob": "1225f61e1e16ac7244340079fa97cb53f56f4f63"
     },
     {
       "targetPath": "test/fixtures/headless/titanHandoff.ts",
@@ -1760,7 +1760,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-companions-native.ts",
-      "targetBlob": "5012d3e12eef26f93e739735aec93ea608a72c47"
+      "targetBlob": "a31f38820419069d5f9871a02eb11ed83d6c18ca"
     },
     {
       "targetPath": "test/fixtures/nalati-king-host.ts",
@@ -1788,11 +1788,11 @@
     },
     {
       "targetPath": "test/fixtures/nalati-verbs.ts",
-      "targetBlob": "d6a867ebcfa5c4d4e27896005aca2df1a4b7a790"
+      "targetBlob": "38a04a04507554af5390d6f33aac7e6a5fea3e91"
     },
     {
       "targetPath": "test/fixtures/nalati-world.ts",
-      "targetBlob": "52e7dbbb1948d3c9b4aa60ea09f6bd8f373e26bb"
+      "targetBlob": "a2359ad56a7f2607c954f54cf761b23b11441829"
     },
     {
       "targetPath": "test/fixtures/native-rapier-file.ts",
@@ -1816,11 +1816,11 @@
     },
     {
       "targetPath": "test/proof/nalati-grasslands/titanCombat.ts",
-      "targetBlob": "975fba0e4223dbd423cb6e9f29bba26deb5a403b"
+      "targetBlob": "6a8eb3fe102c8b2f10167f0b2cf87a5ba3f30330"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-kokpar-run.ts",
-      "targetBlob": "e942a8520cd002faab59f16ec5cdd2f3930e7813"
+      "targetBlob": "84c9c4dbd34d2a9d8db5d3beb2643389d42a50b9"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-mounted-chain-run.ts",
@@ -1832,7 +1832,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-patrol-run.ts",
-      "targetBlob": "6e77f20c64b3c109adbfe5e65562f8e672121924"
+      "targetBlob": "6e3311106a0cde053b835d418489e40891de21ec"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-weapons-run.ts",
@@ -1848,7 +1848,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-qara-run.ts",
-      "targetBlob": "5481418e14fb664b11c94751cd4ca2201146c6ef"
+      "targetBlob": "c3c1db58c562d25990881a97794dbc7f991a7f0e"
     },
     {
       "targetPath": "test/fixtures/headless/qaraHandoff.ts",
@@ -1888,7 +1888,7 @@
     },
     {
       "targetPath": "test/proof/nalati-grasslands/taming.ts",
-      "targetBlob": "49328cf4909e19c4bcbb1cd963d2da83c494652a"
+      "targetBlob": "852cdb65e28540ec1677b8f8fd80dde855f00643"
     },
     {
       "targetPath": "test/proof/nalati-grasslands/tamingPilot.ts",
@@ -1896,11 +1896,11 @@
     },
     {
       "targetPath": "test/proof/nalati-grasslands/witness.ts",
-      "targetBlob": "f32c7570d8be01fdb9edced91cf76984fbf393fb"
+      "targetBlob": "c7a8cfad38373e9b33522376dcad0d3b6222a4e5"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-titan-run.ts",
-      "targetBlob": "af4750d37e9f32e01f94cbbd4e87bfb2ef6ac113"
+      "targetBlob": "a3ebc440ad38703984c66517218e16821b63c19a"
     },
     {
       "targetPath": "test/proof/nalati-grasslands/titanTravel.ts",

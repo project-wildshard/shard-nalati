@@ -1,5 +1,5 @@
 // Native construction for the map and independent original-bake comparisons.
-import { withPortableMath } from '@wildshard/sharddev/commons/bake/portableMath';
+import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
 import { bakeNalatiPlacesOnTerrain } from './places.ts';
 import { readNalatiTerrain } from './bake-nalati-places.mjs';
 

@@ -6,17 +6,17 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { test } from 'node:test';
 
-const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessProduct');
+const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
 const { outputDescriptor } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { ScalarLatticeBindings } = await import('@wildshard/engine/world/scalarChannel');
 const { parseNavmesh } = await import('@wildshard/engine/physics/navmesh');
-const { navmeshGroundExclusion } = await import('@wildshard/sharddev/scripts/bake/navmeshGround.ts');
+const { navmeshGroundExclusion } = await import('@wildshard/dev/scripts/bake/navmeshGround.ts');
 const { decodePortableBytes } = await import('@wildshard/sharddev/bake/portableBytes');
 const { TERRAIN } = await import('../../src/generators/terrainRecipe.ts');
 const { nalatiWetAt } = await import('../../src/generators/wetRecipe.ts');
 
 test('Nalati ships its authored wet field and preserves dry trails in real navigation', { timeout: 9500 }, async () => {
-  const directory = resolve('out/nalati-grasslands'), product = await loadHeadlessProduct(directory);
+  const directory = resolve('out/nalati-grasslands'), product = await loadHeadlessFolder(directory);
   const discovery = JSON.parse(readFileSync(resolve(directory, 'mounts/shardfiles/nalati-grasslands/discovery.json'), 'utf8'));
   const policy = discovery.rows.navmesh, wet = policy.ground.wet;
   const bytes = await product.file(wet.values.data.file), raw = decodePortableBytes(bytes);

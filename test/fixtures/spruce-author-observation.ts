@@ -1,5 +1,5 @@
 import type { BufferGeometry } from 'three';
-import { withPortableMath } from '@wildshard/sharddev/commons/bake/portableMath';
+import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
 import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
 import { spruceGeometry } from '../../src/generators/spruceGeometry';
 

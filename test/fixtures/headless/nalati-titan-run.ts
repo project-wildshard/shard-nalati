@@ -7,8 +7,8 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,statSync} from 'node:fs';
 import * as v from 'valibot';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessProduct} from '@wildshard/engine/host/headlessProduct';
-import {productHeadlessSections} from '@wildshard/engine/host/headlessSections';
+import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
+import {folderHeadlessSections} from '@wildshard/engine/host/headlessSections';
 import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
 import {loadRapier} from '@wildshard/engine/physics/rapier';
 import {snapshotSimHostBytes,serializeSimSnapshot,decodeSimSnapshotBytes} from '@wildshard/engine/sim/snapshot';
@@ -38,7 +38,7 @@ if(stage!=='entry'){
   assert.equal(inherited.stage,stage==='opening'?'storm':stage==='retry'?'fire':'retry','consume only the immediately preceding earned stage');
   if(stage==='opening'||stage==='retry')assert.ok(outputPath);
 }
-const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessProduct(directory),shard=product.shardfile;
+const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessFolder(directory),shard=product.shardfile;
 const descriptor=outputDescriptor(shard);assert.ok(descriptor);
 const assets=new Map(descriptor.index.files.map(file=>[file.commons===true?`commons:${file.hash}`:file.hash,Uint8Array.from(readFileSync(`${directory}/${file.path}`))]));
 const rapier=await loadRapier(readFileSync(nativeRapierFile));
@@ -101,7 +101,7 @@ try{
     checkpointTick=host.state.tick;
   }
   const checkpoint=snapshotSimHostBytes(host),checkpointDigest=canonicalSimDigest(checkpoint);peakY=leadPlayer(host).position.y;
-  pending=(async()=>{try{return {ok:true as const,worker:await createNativeProofWorker(shard,assets,'nalati-titan',serializeSimSnapshot(checkpoint),productHeadlessSections(product),directory)};}
+  pending=(async()=>{try{return {ok:true as const,worker:await createNativeProofWorker(shard,assets,'nalati-titan',serializeSimSnapshot(checkpoint),folderHeadlessSections(product),directory)};}
     catch(error){return {ok:false as const,error};}})();
   const ready=pending;
   const checkedWorker=async():Promise<Replay>=>{

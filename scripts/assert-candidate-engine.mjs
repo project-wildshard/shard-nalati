@@ -9,10 +9,12 @@ const engine=process.env.NALATI_ENGINE_CANDIDATE;
 assert.match(engine??'',/^[a-f0-9]{40}$/u,'An exact candidate engine is required');
 const listed=spawnSync('pnpm',['list','@wildshard/engine','--depth','0','--json'],{encoding:'utf8'});
 assert.equal(listed.status,0,listed.stderr);
-const installed=JSON.parse(listed.stdout)[0]?.dependencies?.['@wildshard/engine'];assert.ok(installed);
+const edges=JSON.parse(listed.stdout)[0];
+const installed=edges?.devDependencies?.['@wildshard/engine']??edges?.dependencies?.['@wildshard/engine'];assert.ok(installed);
 const producer=process.argv.includes('--producer');
 if(producer){
- const declared=JSON.parse(readFileSync('package.json','utf8')).dependencies['@wildshard/engine'];
+ const pkg=JSON.parse(readFileSync('package.json','utf8'));
+ const declared=pkg.devDependencies?.['@wildshard/engine']??pkg.dependencies['@wildshard/engine'];
  assert.match(declared,/^\d+\.\d+\.\d+$/u,'Producer uses its exact released pin');
  assert.equal(installed.version,declared);
  assert.notEqual(installed.resolved,`https://codeload.github.com/project-wildshard/engine/tar.gz/${engine}`);

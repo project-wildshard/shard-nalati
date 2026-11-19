@@ -9,9 +9,9 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { simplifyPaintedGeometry } from '@wildshard/sharddev/bake/simplifier';
 import { staticGlb } from '@wildshard/sharddev/bake/glb';
-import { bakeGloveFist as gloveFist, bakeRiderArm as riderArm } from '@wildshard/sharddev/bake/riderArms';
+import { bakeGloveFist as gloveFist, bakeRiderArm as riderArm } from '@wildshard/kit/bake/riderArms';
 import items from '../data/items.json' with { type: 'json' };
-import { parseBowProfile, type parseHeldBowFile } from '@wildshard/sharddev/weapons/bowProfile';
+import { parseBowProfile, type parseHeldBowFile } from '@wildshard/kit/weapons/bowProfile';
 import policy from '../data/recurvePolicy.json' with { type: 'json' };
 
 const BOW_PROFILE = parseBowProfile(items.rows.find(row => row.id === 'weapon.bow')?.profile);

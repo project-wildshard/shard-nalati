@@ -1,13 +1,13 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
 import '@wildshard/engine/core/portableMathFirst';
 import {HeadlessSimulation} from '@wildshard/engine/host/headless';
-import type {loadHeadlessProduct} from '@wildshard/engine/host/headlessProduct';
-import {productHeadlessSections} from '@wildshard/engine/host/headlessSections';
+import type {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
+import {folderHeadlessSections} from '@wildshard/engine/host/headlessSections';
 import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
 import {builtProduct} from '../builtProduct';
 import {createNativeProofWorker,type NativeProofKind} from '../headless-worker';
 import {recordNativeProcessUsage} from '@wildshard/engine/test/headless/processUsage';
-import {admittedProduct} from '@wildshard/engine/test/headless/admittedProductCache';
+import {admittedFolder as admittedProduct} from '@wildshard/engine/test/headless/admittedFolderCache';
 
 if(['nalati-awareness-run.ts','nalati-discovery-run.ts'].includes(process.argv[1]?.replaceAll('\\','/').split('/').at(-1)??''))recordNativeProcessUsage();
 
@@ -20,11 +20,11 @@ const defaultProductWorker:ProductWorkerFactory=(...args)=>HeadlessSimulation.cr
 
 /** Start the independent replay owner while its caller records native input.
  * Readiness still awaits the same worker admission and initial checkpoint. */
-export async function beginProductSession(slug:string,variant?:ProductSessionVariant,snapshot?:string,createWorker:ProductWorkerFactory=defaultProductWorker):Promise<{ready:()=>Promise<ProductSimulation>;assets:ReadonlyMap<string,Uint8Array>;product:Awaited<ReturnType<typeof loadHeadlessProduct>>}> {
+export async function beginProductSession(slug:string,variant?:ProductSessionVariant,snapshot?:string,createWorker:ProductWorkerFactory=defaultProductWorker):Promise<{ready:()=>Promise<ProductSimulation>;assets:ReadonlyMap<string,Uint8Array>;product:Awaited<ReturnType<typeof loadHeadlessFolder>>}> {
   if(variant!==undefined&&variantHosts[variant]!==slug)throw new Error('Native proof variant does not match product');
   const directory=builtProduct(slug),{product,assets}=await admittedProduct(directory,'full'),source=product.shardfile;
   const descriptor=outputDescriptor(source);if(descriptor===undefined)throw new Error('Missing admitted headless inventory');
-  const sections=productHeadlessSections(product);
+  const sections=folderHeadlessSections(product);
   const nativeKinds={'driftwood-isle':'driftwood','pine-hollow':'pine','nine-dragon-stack':'nine','nalati-grasslands':'nalati'} as const;
   const nativeKind=variant??(!sections.has('sim/runtime-plan')&&(slug==='driftwood-isle'||slug==='pine-hollow'||slug==='nine-dragon-stack'||slug==='nalati-grasslands')?nativeKinds[slug]:undefined);
   const pending=nativeKind===undefined?createWorker(source,assets,snapshot,{deadline:'advisory',sections})
@@ -35,7 +35,7 @@ export async function beginProductSession(slug:string,variant?:ProductSessionVar
 }
 
 /** The same checked products and fixed native adapters as the main integration journey. */
-export async function openProductSession(slug:string,variant?:ProductSessionVariant,snapshot?:string):Promise<{sim:ProductSimulation;product:Awaited<ReturnType<typeof loadHeadlessProduct>>}> {
+export async function openProductSession(slug:string,variant?:ProductSessionVariant,snapshot?:string):Promise<{sim:ProductSimulation;product:Awaited<ReturnType<typeof loadHeadlessFolder>>}> {
   const session=await beginProductSession(slug,variant,snapshot);
   return {sim:await session.ready(),product:session.product};
 }

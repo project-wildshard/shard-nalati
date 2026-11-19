@@ -1,4 +1,4 @@
-import type { BootModes as BootModeRows, BootSources as ChunkFiles } from '@wildshard/sharddev/bootInventory';
+import type { BootModes as BootModeRows, BootSources as ChunkFiles } from '@wildshard/dev/bootInventory';
 import { bootSources, lateReads, type NalatiBootAssets } from './bootFiles';
 import BOOT_STEPS from '../data/bootSteps.json' with { type: 'json' };
 

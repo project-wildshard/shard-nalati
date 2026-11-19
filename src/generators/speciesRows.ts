@@ -1,4 +1,4 @@
-import type { AuthorSpeciesRows } from '@wildshard/sharddev/bake/species';
+import type { AuthorSpeciesRows } from '@wildshard/kit/bake/species';
 import rows from '../data/speciesLooks.json' with { type: 'json' };
 import { authorFormatRows } from '@wildshard/sharddev/formatJsonSchema';
 

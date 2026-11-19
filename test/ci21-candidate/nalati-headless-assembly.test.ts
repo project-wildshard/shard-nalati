@@ -9,16 +9,16 @@ import { createSimHost, type SimHost } from '@wildshard/engine/sim';
 import { snapshotSimHostBytes, serializeSimSnapshot, decodeSimSnapshot } from '@wildshard/engine/sim/snapshot';
 import { restoreSimHost } from '@wildshard/engine/sim/restore';
 import { loadRapier } from '@wildshard/engine/physics/rapier';
-import { loadHeadlessProduct } from '@wildshard/engine/host/headlessProduct';
+import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
 import { builtProduct } from '../fixtures/builtProduct';
-import { prepareProductPlan as prepareHeadlessRuntime } from '@wildshard/engine/test/headless-native';
+import { prepareFolderPlan as prepareHeadlessRuntime } from '@wildshard/engine/test/headless-native';
 import { nalatiNativeAssets } from '../proof/nalati-grasslands/nativeAssets';
 import { canonicalSimDigest } from '@wildshard/engine/test/simState';
 import { leadCommands } from '@wildshard/engine/sim/leadPlayer';
 
 test('Nalati declared assembly retains its native 100 + 30 tick continuation', async () => {
   const rapier = await loadRapier(readFileSync(nativeRapierFile));
-  const product = await loadHeadlessProduct(builtProduct('nalati-grasslands'));
+  const product = await loadHeadlessFolder(builtProduct('nalati-grasslands'));
   const plan = await prepareHeadlessRuntime({ shard: product.shardfile, assets: nalatiNativeAssets(source), rapier, product });
   const ports = { ...plan.ports, rapier }, effects = { commands: () => [], emit: () => undefined };
   const host = createSimHost(plan.level, ports);

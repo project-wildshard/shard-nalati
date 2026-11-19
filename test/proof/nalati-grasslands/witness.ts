@@ -1,7 +1,7 @@
 import { ownedCollisionFloor } from '../../fixtures/nalati-owned-collision-oracle';
 import { nativeRapierFile } from '../../fixtures/native-rapier-file';
 import { originalNalatiPhysics } from '../../fixtures/nalati-physics-original';
-import { loadHeadlessProduct } from '@wildshard/engine/host/headlessProduct';
+import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
 // oxlint-disable-next-line import/no-nodejs-modules -- The renderer-denying native witness asserts the actual captured world.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read the admitted in-repository native terrain and navmesh.
@@ -13,7 +13,7 @@ import { decodeSimSnapshot, serializeSimSnapshot, snapshotSimHostBytes, type Sim
 import { restoreSimHost } from '@wildshard/engine/sim/restore';
 import { loadRapier } from '@wildshard/engine/physics/rapier';
 import { createNativeBakeReader } from '@wildshard/engine/game/population/nativeBake';
-import { prepareProductPlan as prepareHeadlessRuntime } from '@wildshard/engine/test/headless-native';
+import { prepareFolderPlan as prepareHeadlessRuntime } from '@wildshard/engine/test/headless-native';
 import { nalatiTamingWitness } from './taming';
 import { canonicalSimDigest, sameBytes } from '@wildshard/engine/test/simState';
 import { leadCommands, leadPlayer } from '@wildshard/engine/sim/leadPlayer';
@@ -29,7 +29,7 @@ export async function nalatiNativeWitness(replay: boolean, gameplay = true): Pro
   assert.equal(typeof window, 'undefined'); assert.equal(typeof document, 'undefined');
   const rapier = await loadRapier(readFileSync(nativeRapierFile));
   const assets = nalatiNativeAssets(source);
-  const product = await loadHeadlessProduct('out/nalati-grasslands');
+  const product = await loadHeadlessFolder('out/nalati-grasslands');
   const plan = await prepareHeadlessRuntime({ shard: product.shardfile, assets, rapier, product });
   const ports = { ...plan.ports, rapier };
   const effects = { commands: () => [], emit: (): never => { throw new Error('Partial native witness must not fabricate ledger ingress'); } };

@@ -1,4 +1,4 @@
-import { specimenShapeSources } from '@wildshard/sharddev/bake/specimenCatalogue';
+import { specimenShapeSources } from '@wildshard/kit/bake/specimenCatalogue';
 import { authorFormatRows } from '@wildshard/sharddev/formatJsonSchema';
 import rows from '../data/mountedFigure.json' with { type: 'json' };
 

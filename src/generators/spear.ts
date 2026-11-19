@@ -1,7 +1,7 @@
 import items from '../data/items.json' with { type: 'json' };
 import { equipmentRows } from '@wildshard/sharddev/rows';
 import { parseThrownWeaponProfile } from '@wildshard/sharddev/weapons/thrownProfile';
-import { sharedMeleeAuthorBase, meleeColour as lin, type MeleeProfile } from '@wildshard/sharddev/weapons/meleeProfile';
+import { sharedMeleeAuthorBase, meleeColour as lin, type MeleeProfile } from '@wildshard/kit/weapons/meleeProfile';
 import * as THREE from 'three';
 import { tube, blob, xf, merge, withUV, sweep, helix, section, type ColorAt } from './meleeGeo';
 

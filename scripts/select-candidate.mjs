@@ -8,7 +8,10 @@ for (const [name, sha] of choices) {
   if (!sha) continue;
   if (!/^[a-f0-9]{40}$/u.test(sha)) throw new Error(`${name}: candidate must be a full commit hash`);
   const spec = `github:project-wildshard/${name}#${sha}`;
-  pkg.dependencies[`@wildshard/${name}`] = spec;
+  const key = `@wildshard/${name}`;
+  const edges = pkg.dependencies[key] === undefined && pkg.devDependencies?.[key] !== undefined
+    ? pkg.devDependencies : pkg.dependencies;
+  edges[key] = spec;
   pkg.pnpm ??= {}; pkg.pnpm.overrides ??= {};
   pkg.pnpm.overrides[`@wildshard/${name}`] = spec;
 }

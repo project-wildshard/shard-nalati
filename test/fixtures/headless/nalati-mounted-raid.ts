@@ -9,7 +9,7 @@ import {canonicalSimDigest} from '@wildshard/engine/test/simState';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read only the admitted product and shipped physics bytes.
 import {readFileSync} from 'node:fs';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessProduct} from '@wildshard/engine/host/headlessProduct';
+import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
 import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
 import {loadRapier} from '@wildshard/engine/physics/rapier';
 import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
@@ -24,7 +24,7 @@ import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
 type Mounted=NonNullable<ReturnType<typeof mountedPlayerOf>>;
 interface EarnedMountedRaid {
   readonly resident:Awaited<ReturnType<typeof createNativeProofResident>>;
-  readonly product:Awaited<ReturnType<typeof loadHeadlessProduct>>;
+  readonly product:Awaited<ReturnType<typeof loadHeadlessFolder>>;
   readonly mount:Mounted;
   readonly pack:ReturnType<typeof nativeGroupCollection>['packs'][number];
   readonly ridden:NonNullable<Mounted['horse']>;
@@ -52,7 +52,7 @@ function mountedControls(resident:EarnedMountedRaid['resident'],start=0):Pick<Co
  * still admits the current product and restores a fresh complete real owner;
  * ordinary local calls retain the original from-entry construction. */
 export async function earnNalatiMountedRaid():Promise<EarnedMountedRaid>{
-  const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessProduct(directory),descriptor=outputDescriptor(product.shardfile);assert.ok(descriptor);
+  const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessFolder(directory),descriptor=outputDescriptor(product.shardfile);assert.ok(descriptor);
   const assets=new Map(descriptor.index.files.map(file=>[file.commons===true?`commons:${file.hash}`:file.hash,Uint8Array.from(readFileSync(`${directory}/${file.path}`))]));
   const preparation={product,assets,shard:product.shardfile,rapier:await loadRapier(readFileSync(nativeRapierFile))};
   const productKey=hashImmutableBytes(new TextEncoder().encode(JSON.stringify(descriptor.index)));

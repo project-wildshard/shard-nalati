@@ -4,9 +4,9 @@ import type { BakedGrid } from '@wildshard/format/bakedTerrainBytes';
 import type { SimHost } from '@wildshard/engine/sim';
 import { NativePopulationField } from '@wildshard/engine/game/population/environment';
 import { installMountedPlayer } from '@wildshard/engine/game/riding/native';
-import { prepareProductRuntimePlan } from '@wildshard/engine/game/shardfile/nativePlan';
+import { prepareFolderRuntimePlan } from '@wildshard/engine/game/shardfile/nativePlan';
 import type { NativeAssemblyPorts } from '@wildshard/engine/game/shardfile/nativeAssemblyInput';
-import type { ShardProduct } from '@wildshard/engine/game/shardfile/shardProduct';
+import type { ShardFolder } from '@wildshard/engine/game/shardfile/shardFolder';
 import { headlessAssemblyPorts, type HeadlessRuntimeInstallation, type HeadlessRuntimePlan, type PrepareHeadlessRuntime } from '@wildshard/engine/host/headlessRuntime';
 import { withEncounters, type EncounterIntake } from '@wildshard/engine/game/population/encounterIntake';
 
@@ -17,11 +17,11 @@ export type NalatiWorldLoans = Pick<NativeAssemblyPorts<HeadlessRuntimeInstallat
 export type NalatiEncounterIntake = EncounterIntake;
 export async function prepareNalatiWorld(preparation: Parameters<PrepareHeadlessRuntime>[0], encounters?: EncounterIntake, loans: NalatiWorldLoans = {}): Promise<HeadlessRuntimePlan> {
   const product = encounters === undefined ? preparation.product : await withEncounters(preparation.product, encounters);
-  return prepareProductRuntimePlan(product, preparation.assets, { ...headlessAssemblyPorts(preparation.rapier), ...loans });
+  return prepareFolderRuntimePlan(product, preparation.assets, { ...headlessAssemblyPorts(preparation.rapier), ...loans });
 }
 
 /** Read the original named masks once before either direct native owner consumes them. */
-export async function prepareNalatiPopulation(product: Pick<ShardProduct, 'file'>, grid: BakedGrid,
+export async function prepareNalatiPopulation(product: Pick<ShardFolder, 'file'>, grid: BakedGrid,
   constants: { readonly nativeField: unknown }, bake: { readonly trees: readonly (readonly [number, number, number])[]; readonly tops: readonly number[] }): Promise<{ field: NativePopulationField; installMounted: (host: SimHost, profile: unknown) => ReturnType<typeof installMountedPlayer> }> {
   const pond = { file: 'data/geography-pond.bin', bytes: await product.file('data/geography-pond.bin') };
   const input = constants.nativeField, rows = v.parse(PopulationFieldSchema, input), wet = rows.world.wet;

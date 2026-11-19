@@ -8,7 +8,7 @@ import {readFileSync,writeFileSync,statSync} from 'node:fs';
 import * as v from 'valibot';
 import {Vector3} from 'three';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessProduct} from '@wildshard/engine/host/headlessProduct';
+import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
 import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
 import {loadRapier} from '@wildshard/engine/physics/rapier';
 import {canonicalSimDigest} from '@wildshard/engine/test/simState';
@@ -38,7 +38,7 @@ if(stage!=='night'){
 const started=performance.now(),phases:{id:string;tick:number;ms:number}[]=[];
 const trace=(id:string,tick:number):void=>{console.info(JSON.stringify({stage,id,tick,ms:performance.now()-started}));};
 const mark=(id:string,tick:number):void=>{phases.push({id,tick,ms:performance.now()-started});trace(id,tick);};
-const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessProduct(directory),shard=product.shardfile;
+const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessFolder(directory),shard=product.shardfile;
 const descriptor=outputDescriptor(shard);assert.ok(descriptor);
 const assets=new Map(descriptor.index.files.map(file=>[file.commons===true?`commons:${file.hash}`:file.hash,Uint8Array.from(readFileSync(`${directory}/${file.path}`))]));
 const rapier=await loadRapier(readFileSync(nativeRapierFile));

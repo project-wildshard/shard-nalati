@@ -7,9 +7,9 @@ import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessProduct} from '@wildshard/engine/host/headlessProduct';
+import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
 import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {productHeadlessSections} from '@wildshard/engine/host/headlessSections';
+import {folderHeadlessSections} from '@wildshard/engine/host/headlessSections';
 import {snapshotSimHostBytes,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
 import {canonicalSimDigest} from '@wildshard/engine/test/simState';
 import {loadRapier} from '@wildshard/engine/physics/rapier';
@@ -24,7 +24,7 @@ import {nalatiCampTalkTape} from '../../proof/nalati-grasslands/verbTape';
 import {SKY_ROAD} from '../../../src/generators/layout';
 import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
 
-const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessProduct(directory);
+const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessFolder(directory);
 const descriptor=outputDescriptor(product.shardfile);assert.ok(descriptor);
 const assets=new Map(descriptor.index.files.map(file=>[file.commons===true?`commons:${file.hash}`:file.hash,
   Uint8Array.from(readFileSync(`${directory}/${file.path}`))]));
@@ -101,7 +101,7 @@ try{
   const saved=snapshotSimHostBytes(host);checkpointTick=frames.length;checkpointDigest=canonicalSimDigest(saved);
   // Start concurrently and retain rejection until the original input capture ends.
   const startReplay=async()=>{
-    try{const worker=await createNativeProofWorker(product.shardfile,assets,'nalati-kokpar',serializeSimSnapshot(saved),productHeadlessSections(product),directory);return {ok:true as const,worker};}
+    try{const worker=await createNativeProofWorker(product.shardfile,assets,'nalati-kokpar',serializeSimSnapshot(saved),folderHeadlessSections(product),directory);return {ok:true as const,worker};}
     catch(error){return {ok:false as const,error};}
   };
   pending=startReplay();

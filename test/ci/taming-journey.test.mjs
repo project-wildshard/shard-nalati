@@ -18,7 +18,7 @@ import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
-const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessProduct');
+const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
 const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
@@ -49,7 +49,7 @@ const KOKPAR_TICKS = 4_000;
 
 // The room's world (HS1) ticks Nalati's king, patrols and every solid: the tame takes about 110 s on a CI runner.
 export async function earnTameKokparTitan(t, finish) {
-  const started = performance.now(), directory = resolve('out/nalati-grasslands'), product = await loadHeadlessProduct(directory), shard = product.shardfile;
+  const started = performance.now(), directory = resolve('out/nalati-grasslands'), product = await loadHeadlessFolder(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard); assert.ok(descriptor, 'The built shard must pass admission');
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
     .map(file => [file.commons === true ? `commons:${file.hash}` : file.hash, readFileSync(join(directory, file.path))]));

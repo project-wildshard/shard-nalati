@@ -65,7 +65,7 @@
         "sourceBlob": "701c2b37b486ef87ce8f2396400511457b7ca457",
         "targetPath": "test/fixtures/geometry-cache-author-observation.ts",
         "changes": "Only owner imports rewritten. Original observation/byte/hash/bound/topology/stream/disposal logic unchanged; native V8 transport preserves signed zero and typed arrays.",
-        "targetBlob": "73419896a3b706aba683b2a36f07d5ff3883bf8f"
+        "targetBlob": "c13222c35f91b1fd898d9c12150a48a0c724413d"
       },
       "targetBlob": "a50234ba9a9eecd72d68062901833df7b088164c",
       "changes": "Original complete toEqual(original) assertion; actual helper executes through the normal module runner or native V8 process boundary. Test compiler/lint checks the boundary; legacy producer/helper closure stays row36/H4. New cap10s replaces original engine default30s; geometry child cap9s. No oracle or result field normalized."
@@ -93,7 +93,7 @@
         "sourcePath": "test/fixtures/spruce-author-observation.ts",
         "sourceBlob": "4b4f09f880bf28034ee3a66f7cf346096ac09d93",
         "targetPath": "test/fixtures/spruce-author-observation.ts",
-        "targetBlob": "38b56cf3abdb3b6198e8362bcd088cef06236d3a",
+        "targetBlob": "45a816a0d7a8ef1a6055d58b406e510172e2a27d",
         "changes": "Owner imports only, exact original full geometry/channel/index/group/bounds observation and disposal logic retained."
       },
       "targetBlob": "79cc35d19ac69d154e911d4df92c6b7707064a13",
@@ -175,7 +175,7 @@
       "sourcePath": "test/nalati-decorative-native.test.ts",
       "sourceBlob": "8545b3e37f31d80cf32175947bb7455b3e268023",
       "targetPath": "test/nalati-decorative-native.test.ts",
-      "targetBlob": "ab249680d1282faee6ea9ec6eb8baedd6d1de649",
+      "targetBlob": "457926ebc1cff622527adcfb998e95ea3374cbde",
       "originalTests": [
         "native ground and byte adapters retain both complete original decorative wires",
         "separate placement calls own their nested results and reject malformed terrain"
@@ -240,7 +240,7 @@
       "sourcePath": "test/mounted-specimen-admission.test.ts",
       "sourceBlob": "ea8312c7f4a81fe1f94ec60e3c8808e15cae4f06",
       "targetPath": "test/nalati-mounted-specimen-admission.test.ts",
-      "targetBlob": "ea1ac0784298f893a72e08587de80ee66505df19",
+      "targetBlob": "49a1cff509c645d827dc50975e98657273a9beaf",
       "originalTests": [
         "the actual mounted figure keeps every clip and rejects invalid seats before native construction"
       ],

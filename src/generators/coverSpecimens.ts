@@ -1,4 +1,4 @@
-import { nameSpecimenBook } from '@wildshard/sharddev/bake/specimenCatalogue';
+import { nameSpecimenBook } from '@wildshard/kit/bake/specimenCatalogue';
 import { nameBlob } from '@wildshard/sharddev/blobs';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 import { COVER_INPUTS, coverBinName, nalatiCoverBake, type NalatiCover } from './coverBake.mjs';

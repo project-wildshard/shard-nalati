@@ -8,7 +8,7 @@ import { bakeForestPlacements, nativeTerrainQueries } from '@wildshard/sharddev/
 import { mapCloth } from './mapCloth.mjs';
 import { bakeDressing } from './dressingGeometryRows.ts';
 import { decorativeRowsOnGround } from './decorative.ts';
-import { withPortableMath } from '@wildshard/sharddev/commons/bake/portableMath';
+import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
 import { nativeNalatiDressingPlacements } from './nativeDressingPlacements.mjs';
 import { nalatiPoiPaintFromInputs, POI_PAINT_INPUTS } from './poiPaintProgram.ts';
 import { nalatiGeographySources, nalatiGeographyRows } from './geographySource.ts';

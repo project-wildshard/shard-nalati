@@ -1,4 +1,4 @@
-import { withPortableMath } from '@wildshard/sharddev/commons/bake/portableMath';
+import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
 import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
 import { Rng } from '@wildshard/sharddev/random';
 import { graniteBlock } from '../../src/generators/granite';

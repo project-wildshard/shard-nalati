@@ -6,14 +6,14 @@ import {prepareSpecimenCatalogue} from '@wildshard/engine/game/models/specimenCa
 import {hashImmutableBytes} from '@wildshard/engine/host/immutable';
 import {nameBlob} from '@wildshard/sharddev/blobs';
 import {Scope} from '@wildshard/engine/app/scope';
-import {createShardProduct} from '@wildshard/engine/game/shardfile/shardProduct';
+import {createShardFolder} from '@wildshard/engine/game/shardfile/shardFolder';
 import {emptyShardfile} from '@wildshard/engine/host/author';
 
 test('the carried specimen prepares the exact original geometry through its named product file',async()=>{
   const source={name:'models/specimens/quest-prop.bin'};
   const bytes=Uint8Array.from(readFileSync('test/fixtures/nalati-quest-prop-original.bin')),scope=new Scope('quest-prop.raw');
   const hash=hashImmutableBytes(bytes);
-  const product=createShardProduct({slug:'raw-delivery',revision:1,shardfile:emptyShardfile({slug:'raw-delivery',name:'Delivery',author:'Fixture',revision:1,seed:1}),
+  const product=createShardFolder({slug:'raw-delivery',revision:1,shardfile:emptyShardfile({slug:'raw-delivery',name:'Delivery',author:'Fixture',revision:1,seed:1}),
     sections:new Map(),files:new Map([[source.name,{hash,url:source.name}]]),read:()=>Promise.resolve(bytes)});
   try{
     const files=await prepareSpecimenCatalogue(product,carriedQuestRows.model,scope);

@@ -16,7 +16,7 @@ import { createRequire } from 'node:module';
 import { arch, cpus, platform } from 'node:os';
 import { join, resolve } from 'node:path';
 
-const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessProduct');
+const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
 const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
@@ -42,7 +42,7 @@ const stats = samples => {
 
 const directory = resolve('out/nalati-grasslands');
 if (!existsSync(directory)) throw new Error('Build the shard first: pnpm build:shards');
-const opened = performance.now(), product = await loadHeadlessProduct(directory), shard = product.shardfile, descriptor = outputDescriptor(shard);
+const opened = performance.now(), product = await loadHeadlessFolder(directory), shard = product.shardfile, descriptor = outputDescriptor(shard);
 if (!descriptor) throw new Error('The built shard must pass admission');
 const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
   .map(file => [file.commons === true ? `commons:${file.hash}` : file.hash, readFileSync(join(directory, file.path))]));

@@ -4,7 +4,7 @@ import { expect, test } from 'vitest';
 import { decorativeRows } from '../src/generators/decorativeInput';
 import { decorativeRowsOnGround } from '../src/generators/decorative';
 import { readNativeTerrain } from '@wildshard/sharddev/bake/terrain';
-import { withPortableMath } from '@wildshard/sharddev/commons/bake/portableMath';
+import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
 import { jsonBytes } from '@wildshard/engine/scripts/bake-output.mjs';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 import original from './fixtures/nalati-decorative.json' with { type: 'json' };

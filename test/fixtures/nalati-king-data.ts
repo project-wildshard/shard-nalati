@@ -8,7 +8,7 @@ import {ReturnProgramSchema} from '@wildshard/format/namedJsonContracts';
 import {SpeciesActorsFileSchema,type ArenaRoomSpeciesControlRows} from '@wildshard/format/speciesBookRows';
 import {parseRuntimeSpawns,type RuntimeBossRow} from '@wildshard/format/runtimeSpawns';
 import type {CombatTag} from '@wildshard/engine/combat/pipeline';
-import type {ShardProduct} from '@wildshard/engine/game/shardfile/shardProduct';
+import type {ShardFolder} from '@wildshard/engine/game/shardfile/shardFolder';
 import {readEncounterIntake,readEncounterPoses} from '@wildshard/engine/game/population/encounterBook';
 
 const finite=v.pipe(v.number(),v.finite()),positive=v.pipe(finite,v.minValue(Number.MIN_VALUE));
@@ -42,7 +42,7 @@ export interface NalatiKingData {
 /** Preflight the entered King's actual rows without allocating a body, taking
  * entropy, starting an encounter or creating an outcome. Its later owner
  * borrows these same admitted recipes and renderer-free fight kernels. */
-export async function readNalatiKingData(product:Pick<ShardProduct,'json'|'shardfile'|'section'>):Promise<NalatiKingData>{
+export async function readNalatiKingData(product:Pick<ShardFolder,'json'|'shardfile'|'section'>):Promise<NalatiKingData>{
   const plan=parseClientPlan(product.section('client/plan'));
   const stages=plan.features.flatMap(row=>row.kind==='world.assembly'?row.rows.stages:[]);
   const rooms=stages.filter(row=>row.kind==='arena-room'&&'mode' in row),stage=rooms[0];
