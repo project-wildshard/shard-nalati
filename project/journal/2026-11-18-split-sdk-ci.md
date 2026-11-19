@@ -8,3 +8,6 @@ The live taming journey uses the same balance gain as the headless pilot.
 The old gain was thrown three times at engine 0.1.44. The adjusted controller
 bonds the stallion, wins kokpar and earns the mounted Titan intro using the
 same observed inputs and all original assertions.
+
+The global store isolates each package's declarations. Give navcat and
+postprocessing the same Three declarations as their engine consumer.

@@ -22,9 +22,13 @@ if (typeof wire === 'string' && /^\^?\d+\.\d+\.\d+$/u.test(wire)) {
 }
 if (process.argv.includes('--ci21')) {
   pkg.pnpm.packageExtensions ??= {};
-  pkg.pnpm.packageExtensions['@wildshard/kit@0.4.11'] = {
-    dependencies: { '@types/three': pkg.devDependencies['@types/three'] },
-  };
+  // pnpm's global store isolates each package. Their source and declaration
+  // imports need Three types beside the package that actually imports them.
+  for (const name of ['@wildshard/kit@0.4.11', 'navcat', 'postprocessing']) {
+    pkg.pnpm.packageExtensions[name] = {
+      dependencies: { '@types/three': pkg.devDependencies['@types/three'] },
+    };
+  }
   // Type-lint the source reader against one format while keeping the pinned SDK.
   pkg.dependencies['@wildshard/format'] = exact;
   for (const name of ['sdk', 'build', 'dev', 'upload']) {
