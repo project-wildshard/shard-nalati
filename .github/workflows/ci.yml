@@ -134,11 +134,9 @@ jobs:
           name: ci21-map-owner-${{ github.run_id }}
           path: tmp/ci21-map/
           if-no-files-found: ignore
-      # J186: new tooling controls soak for one week outside local hooks.
-      # CI21 C10 promotes this step after 2026-11-23; retain real raw results.
-      - name: Soak candidate-boundary controls (J186, until Nov 23)
+      # J440 promotes the candidate-boundary controls after the verified soaks.
+      - name: Enforce candidate-boundary controls
         if: ${{ !cancelled() }}
-        continue-on-error: true
         run: |
           mkdir -p tmp/ci21-boundary
           set +e
@@ -146,13 +144,13 @@ jobs:
           result=$?
           set -e
           cat tmp/ci21-boundary/raw.log
-          printf '{"advisory":true,"exitCode":%s,"promoteAfter":"2026-11-23"}\n' "$result" > tmp/ci21-boundary/result.json
+          printf '{"advisory":false,"exitCode":%s}\n' "$result" > tmp/ci21-boundary/result.json
           exit "$result"
-      - name: Retain actual boundary soak results
+      - name: Retain candidate-boundary results
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ci21-boundary-soak-${{ github.run_id }}
+          name: ci21-boundary-${{ github.run_id }}
           path: tmp/ci21-boundary/
           if-no-files-found: ignore
           retention-days: 14
