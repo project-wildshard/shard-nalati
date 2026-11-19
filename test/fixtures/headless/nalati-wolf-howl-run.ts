@@ -8,7 +8,7 @@ import {HeldBowFileSchema} from '@wildshard/format/weaponProfiles';
 import {heldBowBase} from '@wildshard/engine/game/weapons/heldBowBase';
 import {bowLaunchSpeed} from '@wildshard/engine/combat/bowLaw';
 import {nativeGroupCollection} from '@wildshard/engine/game/shardfile/groupRuntime';
-import {runTrustedHeadlessTape} from '@wildshard/engine/host/headlessTape';
+import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
 import type {HeadlessCommand,HeadlessEffect} from '@wildshard/engine/host/tickProtocol';
 import {earnNalatiPasture} from './nalati-pasture-session';
 import {beginProductSession} from './productSession';
@@ -55,7 +55,7 @@ try{
   for(const text of ['Wolves are raiding the flock — the shepherd rides out','A wolf howls — the pack has your scent'])
     assert.ok(effects.some(effect=>effect.kind==='hint'&&effect.text===text),'only real native events deliver each admitted message');
   const observed=['nalati.predators','nalati.weapons'];
-  const report=runTrustedHeadlessTape(resident.host,commands=>resident.step(commands),()=>resident.effects,{version:1,observe:observed,
+  const report=runNativeHeadlessTape(resident.host,commands=>resident.step(commands),()=>resident.effects,{version:1,observe:observed,
     segments:[{id:'after-earned-regroup',ticks:1,commands:[]}]});
   const repeated=await replay.verbTape({version:1,observe:observed,segments:[
     {id:'captured-regroup-inputs',ticks:frames.length,commands:[],frames},{id:'after-earned-regroup',ticks:1,commands:[]},

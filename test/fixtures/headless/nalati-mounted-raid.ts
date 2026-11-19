@@ -17,7 +17,7 @@ import {prepareHeadlessRuntime} from '../nalati-predators-native';
 import {nativePopulationOf} from '@wildshard/engine/game/riding/nativePopulation';
 import {nativeGroupCollection} from '@wildshard/engine/game/shardfile/groupRuntime';
 import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {runTrustedHeadlessTape} from '@wildshard/engine/host/headlessTape';
+import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
 import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
 import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
 
@@ -88,7 +88,7 @@ async function buildNalatiMountedRaid(preparation:Parameters<typeof createNative
   try{
     const host=resident.host,mount=mountedPlayerOf(host),population=nativePopulationOf(host);assert.ok(mount);assert.ok(population);
     const controls=mountedControls(resident),{move,reins}=controls;
-    runTrustedHeadlessTape(host,move,()=>resident.effects,{version:1,observe:[],segments:[{id:'walk-to-camp-horse',ticks:6000,commands:[],
+    runNativeHeadlessTape(host,move,()=>resident.effects,{version:1,observe:[],segments:[{id:'walk-to-camp-horse',ticks:6000,commands:[],
       route:[{x:20,z:216},{x:40,z:218},{x:60,z:214},{x:66,z:209.5},{x:66,z:211.5},{x:66.8,z:213.4}]}]});
     move([{kind:'script',actorId:'nalati.companion.use',value:1}]);assert.equal(mount.mounted,true);
     const ridden=mount.horse;assert.ok(ridden);const riddenHealth=ridden.hp;

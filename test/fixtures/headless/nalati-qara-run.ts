@@ -17,7 +17,7 @@ import {HeldBowFileSchema} from '@wildshard/format/weaponProfiles';
 import {parseHeldSlots} from '@wildshard/format/heldArms';
 import {heldBowBase} from '@wildshard/engine/game/weapons/heldBowBase';
 import {bowLaunchSpeed} from '@wildshard/engine/combat/bowLaw';
-import {runTrustedHeadlessTape,type HeadlessTapeObservation} from '@wildshard/engine/host/headlessTape';
+import {runNativeHeadlessTape,type HeadlessTapeObservation} from '@wildshard/engine/host/headlessTape';
 import type {HeadlessCommand,HeadlessEffect,HeadlessTickCommit} from '@wildshard/engine/host/tickProtocol';
 import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
 import {prepareHeadlessRuntime,nalatiQaraOf} from '../nalati-qara-native';
@@ -56,7 +56,7 @@ try{
   const idle:HeadlessCommand[]=[{kind:'player',moveX:0,moveZ:0,yaw:0,commandVersion:1,crouch:true,steer:{keyX:0,keyY:0,stickX:0,stickY:0}}];
   if(stage==='night'){
     assert.equal(patrol.law.riders.length,0);assert.equal(patrol.readiness.eligible,false);assert.equal(qara.captain(),null);
-    runTrustedHeadlessTape(host,commands=>resident.step(commands),()=>resident.effects,{version:1,observe:[],segments:[{
+    runNativeHeadlessTape(host,commands=>resident.step(commands),()=>resident.effects,{version:1,observe:[],segments:[{
       id:'camp-road',ticks:3600,commands:[],route:[{x:0,z:216},{x:20,z:216},{x:40,z:218},{x:60,z:214}],
     }]});
     for(let tick=0;tick<60_000&&patrol.law.riders.length===0;tick++){

@@ -116,7 +116,9 @@ export async function earnTameKokparTitan(t, finish) {
       } else {
         if (!riding) { riding = true; balance = gauge; speed = 0; sampled = host.state.tick; }
         if (gauge !== balance) { speed = (gauge - balance) / ((host.state.tick - sampled) / 60); balance = gauge; sampled = host.state.tick; }
-        lean = Math.max(-1, Math.min(1, balance * 4 + speed * 1.1));
+        // Use the same gain as the headless taming pilot. The faster correction
+        // overshoots on engine 0.1.44's five-round trace.
+        lean = Math.max(-1, Math.min(1, balance * 2 + speed * 1.1));
         rounds = Math.max(rounds, taming.view.round ?? 0);
       }
       const prompt = taming.interactable.radius > 0;
