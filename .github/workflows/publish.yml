@@ -116,6 +116,12 @@ jobs:
           fi
       # As each shard repo's ci.yml does: build:shards first (its
       # publish-public step lays out public/assets), then check.
+      - name: Keep the pinned Basis encoder the phone atlases need (S12f3)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.cache/wildshard/basis
+          key: basis-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: basis-${{ runner.os }}-${{ runner.arch }}-
       - name: Build, and name the product
         id: product
         run: node scripts/publish-shard.mjs build "${{ inputs.slug }}"

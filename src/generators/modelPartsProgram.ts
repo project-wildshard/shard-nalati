@@ -5,19 +5,20 @@ import { MODEL_FILES, bakeModelPaint } from './modelPaint.mjs';
 import { nalatiModelSourceParts } from './modelSourceParts';
 
 const inputPrefix = '/assets/nalati/models/';
-/** S4 on Nalati: a phone atlas is committed UASTC with its mip chain (sharddev scripts/bake-astc6.mjs), half the raw RGBA's wire.
- *  It is a shard file blob, which the cook's phone tier can't size, so it stays in source (S12d moved it out of `astc6/`).
+/** S4 on Nalati: a phone model's atlas is UASTC with its mip chain, half the raw RGBA's wire. S12f3: the build encodes it
+ *  from the phone model's own paint with the host's checked Basis encoder, so no hand-made atlas sits in source.
  *  UASTC, not raw 6×6: a shard file blob has no image route, so a phone-tier GPU with no ASTC must still transcode it. */
-const phoneAtlasPrefix = '/assets/nalati/phone-atlas/';
-const phoneAtlas = (file: string): string => `${phoneAtlasPrefix}${file.replace(/\.glb$/u, '.ktx2')}`;
 const hasPhoneAtlas = (file: string): boolean => file.endsWith('.phone.glb');
 
 /** Owned geometry/atlas cache from the defining painter; no public painted-model handoff. */
-export async function nalatiModelPartsProgram(ctx: Pick<ProjectGenerationContext, 'cached' | 'readImagePixels' | 'encodeZstdBytes'>, selected: readonly string[] = MODEL_FILES): Promise<ReadonlyMap<string, Uint8Array>> {
+export async function nalatiModelPartsProgram(ctx: Pick<ProjectGenerationContext, 'cached' | 'readImagePixels' | 'encodeZstdBytes' | 'basisEncoder'>, selected: readonly string[] = MODEL_FILES): Promise<ReadonlyMap<string, Uint8Array>> {
   const names = [...selected];
   if (names.length === 0 || new Set(names).size !== names.length || names.some(file => !MODEL_FILES.includes(file))) throw new Error('Invalid Nalati model-part selection');
   const expected = names.flatMap(file => file.endsWith('.far.glb') ? [file] : [file, file.replace(/\.glb$/u, '.ktx2')]);
-  const files = await ctx.cached({ id: 'model-parts', native: true, inputs: [...names.map(file => `${inputPrefix}${file}`), ...names.filter(hasPhoneAtlas).map(phoneAtlas)] }, async inputs => {
+  const encoder = names.some(hasPhoneAtlas) ? await ctx.basisEncoder?.() : undefined;
+  if (names.some(hasPhoneAtlas) && encoder === undefined) throw new Error('Nalati phone atlases need the checked Basis encoder');
+  const id = encoder === undefined ? 'model-parts' : `model-parts-${encoder.identity}`;
+  const files = await ctx.cached({ id, native: true, inputs: names.map(file => `${inputPrefix}${file}`) }, async inputs => {
     const out = new Map<string, Uint8Array>();
     for (const file of names) {
       const input = inputs.get(`${inputPrefix}${file}`), name = file.split('.')[0];
@@ -25,9 +26,10 @@ export async function nalatiModelPartsProgram(ctx: Pick<ProjectGenerationContext
       const parts = nalatiModelSourceParts(await bakeModelPaint(input, name));
       out.set(file, parts.geometry);
       if (parts.webp === null) continue;
-      const atlas = hasPhoneAtlas(file) ? inputs.get(phoneAtlas(file)) : undefined;
-      if (hasPhoneAtlas(file) && atlas === undefined) throw new Error(`Missing baked Nalati phone atlas: ${file}`);
-      out.set(file.replace(/\.glb$/u, '.ktx2'), atlas ?? bakeRawColourPixels(await ctx.readImagePixels(parts.webp), { colourSpace: 'srgb' }, ctx.encodeZstdBytes));
+      const pixels = await ctx.readImagePixels(parts.webp);
+      out.set(file.replace(/\.glb$/u, '.ktx2'), encoder !== undefined && hasPhoneAtlas(file)
+        ? await encoder.encode({ index: 0, bytes: parts.webp, width: pixels.width, height: pixels.height })
+        : bakeRawColourPixels(pixels, { colourSpace: 'srgb' }, ctx.encodeZstdBytes));
     }
     return out;
   });
