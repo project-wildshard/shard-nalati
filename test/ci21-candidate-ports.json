@@ -676,7 +676,7 @@
         "test/fixtures/headless/nalati-flock-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-flock-run.ts",
-      "fixtureBlob": "b8aedaf3c9fc95d28ef554ddaf51569480383996",
+      "fixtureBlob": "d06f405e878c9d375ba22ef8a4a6667d0b57645c",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -731,7 +731,7 @@
         "test/fixtures/headless/nalati-polearm-contact-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-polearm-contact-run.ts",
-      "fixtureBlob": "62ca9bcdb8093927ded12748254dd1cd15f81f06",
+      "fixtureBlob": "28a074097217a3a041d4981d48bbb1c1c22ab1a9",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -746,7 +746,7 @@
         "test/fixtures/headless/nalati-kokpar-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-kokpar-run.ts",
-      "fixtureBlob": "84c9c4dbd34d2a9d8db5d3beb2643389d42a50b9",
+      "fixtureBlob": "afeb225a98cc88fad1751839e2b99f3fd125b9a1",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -809,7 +809,7 @@
         "test/fixtures/headless/nalati-qara-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-qara-run.ts",
-      "fixtureBlob": "c3c1db58c562d25990881a97794dbc7f991a7f0e",
+      "fixtureBlob": "457a2f8f9ed9d8b8b38f45114e01e47a7dcc754d",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -824,7 +824,7 @@
         "test/fixtures/headless/nalati-sabre-contact-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-sabre-contact-run.ts",
-      "fixtureBlob": "e29b5b6631b1e9ab969ae5f0ee96469f6b7d19fc",
+      "fixtureBlob": "72ad38ec017ec4d95727012f55878de7e017949a",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -839,7 +839,7 @@
         "test/fixtures/headless/nalati-polearm-contact-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-polearm-contact-run.ts",
-      "fixtureBlob": "62ca9bcdb8093927ded12748254dd1cd15f81f06",
+      "fixtureBlob": "28a074097217a3a041d4981d48bbb1c1c22ab1a9",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -896,7 +896,7 @@
         "test/fixtures/headless/nalati-weapons-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-weapons-run.ts",
-      "fixtureBlob": "d033ad977ef5995464243cead45f91672835f2d8",
+      "fixtureBlob": "8c40f17a7714a029b403134f3c83541ec4685592",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -911,7 +911,7 @@
         "test/fixtures/headless/nalati-wolf-fight-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-wolf-fight-run.ts",
-      "fixtureBlob": "ece5d1cbeca7e593120351aeb4e8d0d412c7aaf5",
+      "fixtureBlob": "a455582937775e217a764d0b7f073fb7b47dabb5",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -926,7 +926,7 @@
         "test/fixtures/headless/nalati-wolf-howl-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-wolf-howl-run.ts",
-      "fixtureBlob": "5b20d8fae1f4664a3ee48df6bf3b57336dfcd67a",
+      "fixtureBlob": "a45fa1b1386f454a7bc2f46de70d1e20dc559a1b",
       "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
     },
     {
@@ -984,7 +984,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-mounted-raid.ts",
-      "targetBlob": "d573077758783b9b95a46f76a83b6e137c27835a"
+      "targetBlob": "755afdc36a7b8b4e47d31976b1a3a3fb50f5a6bc"
     },
     {
       "targetPath": "test/fixtures/kurgan-oracle/dungeon.ts",
@@ -1712,27 +1712,27 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-flock-run.ts",
-      "targetBlob": "b8aedaf3c9fc95d28ef554ddaf51569480383996"
+      "targetBlob": "d06f405e878c9d375ba22ef8a4a6667d0b57645c"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-pasture-session.ts",
-      "targetBlob": "c5fd34d313783d73aaf3fba3d7a702d71b5ef29e"
+      "targetBlob": "72bfc4b8e349733422b7b62d696316c52d291ad2"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-polearm-contact-run.ts",
-      "targetBlob": "62ca9bcdb8093927ded12748254dd1cd15f81f06"
+      "targetBlob": "28a074097217a3a041d4981d48bbb1c1c22ab1a9"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-sabre-contact-run.ts",
-      "targetBlob": "e29b5b6631b1e9ab969ae5f0ee96469f6b7d19fc"
+      "targetBlob": "72ad38ec017ec4d95727012f55878de7e017949a"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-wolf-fight-run.ts",
-      "targetBlob": "ece5d1cbeca7e593120351aeb4e8d0d412c7aaf5"
+      "targetBlob": "a455582937775e217a764d0b7f073fb7b47dabb5"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-wolf-howl-run.ts",
-      "targetBlob": "5b20d8fae1f4664a3ee48df6bf3b57336dfcd67a"
+      "targetBlob": "a45fa1b1386f454a7bc2f46de70d1e20dc559a1b"
     },
     {
       "targetPath": "test/fixtures/headless/productSession.ts",
@@ -1820,7 +1820,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-kokpar-run.ts",
-      "targetBlob": "84c9c4dbd34d2a9d8db5d3beb2643389d42a50b9"
+      "targetBlob": "afeb225a98cc88fad1751839e2b99f3fd125b9a1"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-mounted-chain-run.ts",
@@ -1836,7 +1836,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-weapons-run.ts",
-      "targetBlob": "d033ad977ef5995464243cead45f91672835f2d8"
+      "targetBlob": "8c40f17a7714a029b403134f3c83541ec4685592"
     },
     {
       "targetPath": "test/proof/nalati-grasslands/verbTape.ts",
@@ -1848,7 +1848,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-qara-run.ts",
-      "targetBlob": "c3c1db58c562d25990881a97794dbc7f991a7f0e"
+      "targetBlob": "457a2f8f9ed9d8b8b38f45114e01e47a7dcc754d"
     },
     {
       "targetPath": "test/fixtures/headless/qaraHandoff.ts",

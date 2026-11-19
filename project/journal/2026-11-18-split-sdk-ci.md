@@ -11,3 +11,7 @@ same observed inputs and all original assertions.
 
 The global store isolates each package's declarations. Give navcat and
 postprocessing the same Three declarations as their engine consumer.
+
+Record the support fixture hashes after the native tape export rename.
+The retention check still pins all 42 original case bindings and every
+fixture's bytes.
