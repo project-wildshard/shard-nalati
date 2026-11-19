@@ -761,8 +761,8 @@
         "test/fixtures/headless/nalati-mounted-chain-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-mounted-chain-run.ts",
-      "fixtureBlob": "5e7808f815b53d7eb7e88a378145d83c26555486",
-      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass."
+      "fixtureBlob": "be751775de123e270790b5b7ea39edfd64b499fc",
+      "changes": "Prototype complete original native journey. Preserve every actual route, allowance, earned continuation, physical input and snapshot assertion. Public defining engine imports and owner-root paths only. No admission/completion credit until full compiler, typed lint and actual runtime pass. The mounted pilot turns under braking and takes a tighter follow-up within the existing chain window."
     },
     {
       "sourcePath": "test/nalati-mounted-lance-verbs.test.ts",
@@ -875,8 +875,8 @@
         "test/fixtures/headless/nalati-titan-run.ts"
       ],
       "fixturePath": "test/fixtures/headless/nalati-titan-run.ts",
-      "fixtureBlob": "a3ebc440ad38703984c66517218e16821b63c19a",
-      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal.",
+      "fixtureBlob": "b5a63a785e0824570f24bf06caa2378968af64cd",
+      "changes": "Whole original cases, routes, loops, seeds, real native owners, earned continuations and replay assertions retained. Public source imports and equivalent explicit presence checks; native Rapier resolves from the installed engine. Product bytes come from a normal pinned build with complete sealed source/file hashes. Local source qualification passes on exact8b2ee5a5; C10/C11 retain default admission and paired removal. Capture admission now applies the same save field order as the replay decoder.",
       "caseAdaptations": [
         {
           "reason": "J232 equivalent real-input controller against current owner physics",
@@ -1824,7 +1824,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-mounted-chain-run.ts",
-      "targetBlob": "5e7808f815b53d7eb7e88a378145d83c26555486"
+      "targetBlob": "be751775de123e270790b5b7ea39edfd64b499fc"
     },
     {
       "targetPath": "test/fixtures/headless/nalati-mounted-lance-run.ts",
@@ -1900,7 +1900,7 @@
     },
     {
       "targetPath": "test/fixtures/headless/nalati-titan-run.ts",
-      "targetBlob": "a3ebc440ad38703984c66517218e16821b63c19a"
+      "targetBlob": "b5a63a785e0824570f24bf06caa2378968af64cd"
     },
     {
       "targetPath": "test/proof/nalati-grasslands/titanTravel.ts",
