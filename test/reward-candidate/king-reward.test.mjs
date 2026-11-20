@@ -15,8 +15,19 @@ test('Nalati: King retry, native adds, Golden Bow and exact continuations', {
   let heldAdd = null;
   try {
     enterKurgan(r); r.walk([[-40,-80],[-40,-82],[-36,-87],[-35,-91]]);
-    await c.begin('King earned intro');
+    await c.begin('King earned intro'); c.drain();
  const state=()=>JSON.parse(r.host.adapters.get('nalati.king').snapshot()),weapon=()=>JSON.parse(r.host.adapters.get('nalati.weapons').snapshot());
+ // Let the King's actual strikes send the player back to the room entrance.
+ for (let tick = 0; tick < 3600 && state().boss.attempts === 1; tick++) {
+   const enemy = [...r.host.entities.values()].find(actor => actor.kind === 'golden-king' && actor.alive);
+   assert.ok(enemy);
+   const dx = enemy.position.x - r.player.position.x, dz = enemy.position.z - r.player.position.z;
+   if (Math.hypot(dx, dz) > 1.7) r.head(dx, dz);
+   else r.head(0, 0);
+ }
+ assert.equal(state().boss.attempts, 2, 'The King defeats the player on the first attempt');
+ r.walk([[-40, -80], [-40, -82], [-36, -87], [-35, -91]]);
+ await c.begin('King earned retry');
  for(let n=0;n<3&&weapon().slot!=='blade';n++)c.step([{kind:'script',actorId:'nalati.weapon.swap',value:1}]);
  const king=[...r.host.entities.values()].find(a=>a.kind==='golden-king'),head=king.position.clone();let dodged=-120,last='';
  for(let t=0;t<12000&&state().boss.state!=='victory';t++){
