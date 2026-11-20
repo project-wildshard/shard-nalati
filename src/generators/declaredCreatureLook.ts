@@ -140,9 +140,13 @@ async function declaredLook(kind: Kind, ctx: Pick<ProjectGenerationContext, 'cac
 
 export async function declaredCreatureLooks(ctx: Pick<ProjectGenerationContext, 'cached' | 'asset' | 'readImagePixels'>): Promise<CreatureLookRows> {
   const wolf = await declaredLook('wolf', ctx), horse = await declaredLook('horse', ctx);
+  const ride = ecology.modes.ride.find((row: { readonly id: string }) => row.id === 'ride');
+  if (ride === undefined) throw new Error('Missing authored horse gaits');
+  for (const row of horse.species) row.mount = { gaits: ride.gaits };
   const files = new Map([...wolf.files, ...horse.files].map(file => [file.hash, file]));
   return { files: [...files.values()], library: [...new Set([...wolf.library, ...horse.library])],
-    looks: [...wolf.looks, ...horse.looks], species: [...wolf.species, ...horse.species] };
+    looks: [...wolf.looks, ...horse.looks],
+    species: [...wolf.species, ...horse.species] };
 }
 
 export type { CreatureLookRows };

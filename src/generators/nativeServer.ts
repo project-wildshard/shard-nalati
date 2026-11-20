@@ -93,13 +93,15 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
 
 /** Nalati's server-class files (J91), built from the same programs the shard file ships: a client never fetches one. */
 export function nalatiServerFiles(pasture: NalatiTitanProgram, admission: NalatiAdmission, riding: NalatiRidingPrograms, nativeShelters: [number, number, number][]): ServerBlob[] {
-  const bootFile = nalatiNativeBootRows(pasture, admission, riding), { constants } = nalatiNativeAssemblyRows(pasture, admission, nativeShelters);
+  const { mountable, ...bootFile } = nalatiNativeBootRows(pasture, admission, riding);
+  const { constants } = nalatiNativeAssemblyRows(pasture, admission, nativeShelters);
   const strike = (at: number) => declared(constants.pageElites.strikes[at], 'Missing elite strikes').strike;
   const strikes = [strike(0), strike(1), strike(2)], [swipe, pounce, bite] = strikes;
   const elites = nalatiEliteRows({ ...constants, nativeKnockdown: parsePopulationKnockdownSource(bootFile.riding) },
     { swipe: declared(swipe, 'swipe'), pounce: declared(pounce, 'pounce'), bite: declared(bite, 'bite') });
   return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake, { herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed }), new Map<string, unknown>([['server/physics.json', nalatiPhysics()], ['server/boot.json', bootFile],
     ['server/shelters.json', constants.nativeShelters], ['server/weather.json', constants.nativeWeather], ['server/groups.json', constants.groupRows], ['server/elites.json', elites],
-    ['server/elite-strikes.json', strikes], ['server/population.json', constants.nativePopulation], ['server/ride.json', constants.nativeRide], ['server/taming.json', constants.nativeTaming],
+    ['server/elite-strikes.json', strikes], ['server/population.json', constants.nativePopulation],
+    ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming],
     ['server/arena-species.json', { species: [{ ...speciesRows.king, dims: GOLDEN_KING_DIMS }, { ...speciesRows.balbal, dims: BALBAL_DIMS }] }]]));
 }
