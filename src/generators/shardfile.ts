@@ -29,6 +29,7 @@ import type { NalatiTitanPrograms } from './stormTitanRows.mjs';
 import { nalatiGoldenKingPose } from './kurganRows';
 import type { NalatiAdmission } from './admissionProgram';
 import type { CreatureLookRows } from './declaredCreatureLook';
+import { nalatiDeclaredBootSpawns } from './physics';
 
 const kingPose = nalatiGoldenKingPose();
 
@@ -110,6 +111,7 @@ export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: Na
     navigation: navigation.navigation, terrain: queryTerrain.terrain, files: [...files, ...renderTiles.files, ...lookFiles].sort((a, b) => a.hash.localeCompare(b.hash)), critical: [...navigation.critical, ...queryTerrain.critical],
     library: [...base.library, ...creatureLooks?.library ?? []],
     rows: { ...base.rows, species: [...base.rows.species, ...creatureLooks?.species ?? []], looks: [...base.rows.looks, ...creatureLooks?.looks ?? []] },
+    creatures: { ...base.creatures, spawns: creatureLooks === undefined ? [] : nalatiDeclaredBootSpawns() },
     tiles: renderTiles.tiles, props: renderTiles.props,
     // DL17 (G1000, G872): the level is complete at control: the entered cell attaches every fine tile before control and
     // none retires in play
