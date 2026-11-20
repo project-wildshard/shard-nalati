@@ -26,7 +26,11 @@ export async function earnTitanRewards(world, input) {
     await titanBowPilot(input.product, host, step, 2);
     c.drain(); await c.begin('Titan exposed final heart');
     await titanBowPilot(input.product, host, step, 3);
-    c.drain(); await c.begin('Titan actual victory'); c.drain();
+    c.drain();
+    assert.equal(host.flags.has('dead:storm-titan'), true, 'The world records the victory on the current tick');
+    assert.equal(host.questFlags.has('dead:storm-titan'), false, 'Personal credit is still pending at the saved victory');
+    await c.begin('Titan actual victory'); c.drain();
+    assert.equal(host.questFlags.has('dead:storm-titan'), true, 'The exact continuation settles personal credit');
     assert.equal(arena.boss.state, 'victory');
     assert.equal(arena.boss.snapshot().saved.rewardTaken, false);
     // Reach the cairn on its known walkable west approach, away from the steep
