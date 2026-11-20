@@ -1,4 +1,3 @@
-import speciesRows from '../data/speciesRows.json' with { type: 'json' };
 import { GREAT_KURGAN, GREAT_KURGAN_DOOR } from './poiLayout';
 import { nativeAssemblyFiles, type NativeAssemblyPlan, type ServerBlob } from '@wildshard/sharddev/blobs';
 import { parsePopulationKnockdownSource } from '@wildshard/sharddev/nativePopulationRows';
@@ -65,10 +64,6 @@ export function nalatiEliteRows(constants: {
 export const NALATI_ELITE_CONDITIONS = { rules: { always: { rule: 0, phase: false, storm: false }, storm: { rule: 1, phase: true, storm: true }, night: { rule: 2, phase: true, storm: false }, dusk: { rule: 3, phase: true, storm: false } },
   phases: { dawn: 0, day: 0, golden: 0, dusk: 1, night: 2 }, storm: { calm: 0, storm: 1 } };
 
-/** The room's bodies, as the page's rigs size them (goldenKingBody.ts, bodies.json). */
-const GOLDEN_KING_DIMS = { bodyY: 0.95, bodyHalfLen: 0.5, bodyRadius: 0.3, headRadius: 0.16, legLen: 0.87, feet: [[0.12, 0.05], [-0.12, 0.05], [0.12, -0.05], [-0.12, -0.05]], halfWidth: 0.3, capsuleAxis: 'y' };
-const BALBAL_DIMS = { bodyY: 0.9, bodyHalfLen: 0.6, bodyRadius: 0.4, headRadius: 0.26, legLen: 0.82, feet: [[0.16, 0.05], [-0.16, 0.05], [0.16, -0.05], [-0.16, -0.05]], halfWidth: 0.38, capsuleAxis: 'y' };
-
 /** Nalati's native assembly (P1-E3.1b, J90): its hosts in install order, as data over the files in its shard file. */
 function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['bake']>['reader'] & { readonly size: number; readonly resolution: number }, rows: { readonly herds: string; readonly groups: string; readonly external: readonly unknown[] }): NativeAssemblyPlan {
   return { kind: 'native-assembly', level: { speed: 5, authorCap: true, ground: { size: nativeBake.size, height: 0 } }, terrain: { kind: 'shard-tile', resolution: 256, size: 500 }, navigation: 'shard',
@@ -102,6 +97,5 @@ export function nalatiServerFiles(pasture: NalatiTitanProgram, admission: Nalati
   return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake, { herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed }), new Map<string, unknown>([['server/physics.json', nalatiPhysics()], ['server/boot.json', bootFile],
     ['server/groups.json', constants.groupRows], ['server/elites.json', elites],
     ['server/elite-strikes.json', strikes], ['server/population.json', constants.nativePopulation],
-    ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming],
-    ['server/arena-species.json', { species: [{ ...speciesRows.king, dims: GOLDEN_KING_DIMS }, { ...speciesRows.balbal, dims: BALBAL_DIMS }] }]]));
+    ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming]]));
 }
