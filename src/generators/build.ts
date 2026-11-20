@@ -10,6 +10,7 @@ import { nalatiKokparProgram } from './kokparProgram';
 import { nalatiRidingProgram } from './ridingProgram';
 import { nalatiTitanProgram } from './stormTitanProgram';
 import { nalatiChargeProgram } from './chargeProgram';
+import { declaredWolfLook } from './declaredWolfLook';
 
 /** Owned source programs supply admitted binary charges; no inline executable decoding is needed. */
 export async function build(ctx: ProjectGenerationContext): Promise<ReturnType<typeof nalatiShardfileRows>> {
@@ -26,5 +27,5 @@ export async function build(ctx: ProjectGenerationContext): Promise<ReturnType<t
   }, JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(metadata)) as unknown, await nalatiQueryTerrainProgram(ctx), await nalatiNavigationProgram(ctx), (await nalatiKokparProgram(ctx)).rows, (await nalatiRidingProgram(ctx)).programs, (await nalatiTitanProgram(ctx)).programs, await nalatiWeatherProgram(ctx), (await nalatiAdmissionProgram(ctx)).program, (await nalatiChargeProgram(ctx)).rows, program => {
     if(program.bytes!=='')throw new Error('Nalati shard file requires file-owned program bytes');
     return 0;
-  });
+  }, await declaredWolfLook(ctx));
 }
