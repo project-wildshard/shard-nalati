@@ -18,12 +18,21 @@ test('the cooked weather files keep the native storm through save and restore', 
     assert.ok(plan.features.every(row => row.host !== 'weather.native' && row.host !== 'weather.program'));
     const environment = plan.features.findIndex(row => row.host === 'riding.environment');
     assert.notEqual(environment, -1);
-    const features = [...plan.features];
+    assert.equal(product.hasFile('server/shelters.json'), false);
+    assert.equal(product.hasFile('server/weather.json'), false);
+    const { storm: { world: stormWorld, shelters } } = await product.json('world/forest-weather.json');
+    assert.equal(shelters.length, 9, 'the original cooked shelter circles are present');
+    const features = plan.features.map(row => row.host === 'held.arms' ? { ...row, weather: { file: 'server/weather.json' } } : row);
     features.splice(environment + 1, 0, { host: 'weather.native', program: { file: 'world/weather.json' },
       shelters: { file: 'server/shelters.json' }, rows: { file: 'server/weather.json' } });
-    const oldPlan = new TextEncoder().encode(JSON.stringify({ ...plan, features }));
+    const encode = value => new TextEncoder().encode(JSON.stringify(value));
+    const oldFiles = new Map([[NATIVE_ASSEMBLY_FILE, encode({ ...plan, features })], ['server/weather.json', encode(stormWorld)], ['server/shelters.json', encode(shelters)]]);
     legacy = await openWorld({ ...input, product: { ...product,
-      file: name => name === NATIVE_ASSEMBLY_FILE ? Promise.resolve(oldPlan) : product.file(name),
+      hasFile: name => oldFiles.has(name) || product.hasFile(name),
+      file: name => {
+        const bytes = oldFiles.get(name);
+        return bytes === undefined ? product.file(name) : Promise.resolve(bytes);
+      },
     } }, { room: true });
     const save = resident => writer.serialize(snapshotSimHostBytes(resident.host));
     const storm = resident => {
