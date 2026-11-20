@@ -14,6 +14,7 @@
 // gate reads GITHUB_REPOSITORY, GITHUB_SHA, GITHUB_REF and GH_TOKEN; with
 // PUBLISH_REHEARSE=true on a ref other than main it reports and goes on (a
 // rehearsal never uploads). Every refusal is one `::error::` line and exit 1.
+import { agentFetch as fetch } from './wildshard-agent-requests.mjs';
 import { execFileSync } from 'node:child_process';
 import { appendFileSync, existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';

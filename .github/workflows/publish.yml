@@ -238,6 +238,8 @@ jobs:
       # masks them, and nothing here prints them or the account's email.
       - name: Upload
         env:
+          NODE_OPTIONS: --import=${{ github.workspace }}/scripts/wildshard-agent-fetch.mjs
+          WS_LANE_NAME: ci-publish
           WILDSHARD_API_URL: https://api.wildshard.io
           WILDSHARD_API_KEY: ${{ secrets.WILDSHARD_API_KEY }}
           WILDSHARD_CREATOR_PRIVATE_KEY: ${{ secrets.WILDSHARD_CREATOR_PRIVATE_KEY }}
