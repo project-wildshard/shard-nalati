@@ -283,6 +283,10 @@ export async function titanRidersPilot(product, host, step) {
                 v.string()
             ]))
         }), snapshotValue(encounter)).support;
+    const arena = await readArenaScriptData(product, {
+        fight: 'combat/titan-fight.json',
+        geometry: 'combat/titan-geometry.json'
+    });
     const head = new Vector3(), horse = mount.horse ?? (await import('@wildshard/engine/game/riding/nativeTaming')).nativeTamingOf(host)?.companion;
     assert.ok(horse);
     if(!mount.mounted){
@@ -354,15 +358,40 @@ export async function titanRidersPilot(product, host, step) {
         const at = leadPlayer(host).position, dx = target.position.x - at.x, dz = target.position.z - at.z, d = Math.max(.01, Math.hypot(dx, dz));
         assert.equal(titan.boss.attempts,attempts,'The support clear cannot be a reset');
         patrol.aimPoint(target, head);
+        // The lane endpoints are the same ones the game draws. Move across
+        // the warning before the charge and intercept inside the storm wall.
+        const lane = titan.fight.snapshot().riders.map(rider => rider.law.state).find(state => state.mode === 1 || state.mode === 2);
+        let goalX = d > 2.1 ? target.position.x : at.x, goalZ = d > 2.1 ? target.position.z : at.z;
+        const {x:cx, z:cz} = arena.boundary, radius = arena.boundary.radius - 8;
+        if (lane !== undefined) {
+            const width = 5.1, vx = lane.x1 - lane.x0, vz = lane.z1 - lane.z0, length = Math.hypot(vx, vz);
+            if (length > .1) {
+                const nx = -vz / length, nz = vx / length;
+                const lateral = (at.x - lane.x0) * nx + (at.z - lane.z0) * nz;
+                const inward = (cx - at.x) * nx + (cz - at.z) * nz;
+                const along = ((at.x - lane.x0) * vx + (at.z - lane.z0) * vz) / length;
+                if (Math.abs(lateral) < width && along > -3 && along < length + 3) {
+                    const sign = Math.abs(lateral) < .5 ? Math.sign(inward || 1) : Math.sign(lateral);
+                    goalX = at.x + nx * sign * (width + 1);
+                    goalZ = at.z + nz * sign * (width + 1);
+                }
+            }
+        }
+        const r = Math.hypot(goalX - cx, goalZ - cz);
+        if (r > radius) {
+            goalX = cx + (goalX - cx) * radius / r;
+            goalZ = cz + (goalZ - cz) * radius / r;
+        }
+        const moveX = goalX - at.x, moveZ = goalZ - at.z, moveDistance = Math.hypot(moveX, moveZ);
         await step([
             {
                 kind: 'player',
-                moveX: d>2.1?dx/d:0,
-                moveZ: d>2.1?dz/d:0,
+                moveX: moveDistance > .1 ? moveX / moveDistance : 0,
+                moveZ: moveDistance > .1 ? moveZ / moveDistance : 0,
                 yaw: Math.atan2(-dx, -dz),
                 commandVersion: 1,
                 ...(d<3.5&&tick%75<45?{heavy:{}}:{}),
-                sprint: d > 7,
+                sprint: moveDistance > 4,
                 steer: {
                     keyX: 0,
                     keyY: 0,
