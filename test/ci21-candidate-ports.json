@@ -330,7 +330,7 @@
       "sourcePath": "test/nalati-king-pose.test.ts",
       "sourceBlob": "c01a321d861edeb5529c19684016343ba9a9cd96",
       "targetPath": "test/ci21-candidate/nalati-king-pose.test.ts",
-      "targetBlob": "a7a05d960ede8ad9dda7fdb7126a8c1806bd94bc",
+      "targetBlob": "8205abade1f89059a55c118e5acad07f9f51d64e",
       "originalTests": [
         "King pose rows retain every joint through the full fight and its reset",
         "species channels drive the original joints without writing actor memory",
@@ -350,7 +350,7 @@
         "baked Kurgan fabric preserves shipping geometry, lighting, colliders and sand"
       ],
       "fixturePath": "test/fixtures/kurgan-oracle/dungeon.ts",
-      "fixtureBlob": "bf01989439454d44c220ed416cc1c4dd3af957c2",
+      "fixtureBlob": "ab10580b890763eb11387b4704e220c941232c7c",
       "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11. Original setup narrows to the exact original shape-bank and registry needed by every unchanged mesh/collider/floor/sand assertion."
     },
     {
@@ -513,7 +513,7 @@
       "sourcePath": "test/nalati-night-decisions.test.ts",
       "sourceBlob": "c6e50f3d2d26dcafcb4be292949854e4a3ddb1ef",
       "targetPath": "test/ci21-candidate/nalati-night-decisions.test.ts",
-      "targetBlob": "6a6e947a7e680bebe6038fbfca6df04fee2e8d3f",
+      "targetBlob": "6af2597e5a20618be6b01308920d22c1171296cf",
       "originalTests": [
         "ridge slots wrap and the night line engages and retreats with hysteresis",
         "roster holds, rider death and warrior retirement publish once",
@@ -544,7 +544,7 @@
       "sourcePath": "test/nalati-roster-decisions.test.ts",
       "sourceBlob": "5e301c9ca8c56a27bd85d7cffbb8ef786baa0890",
       "targetPath": "test/ci21-candidate/nalati-roster-decisions.test.ts",
-      "targetBlob": "f74bdd44de777b29654ff94531b73de784264ffb",
+      "targetBlob": "659d76be6e9f7d297654380aabf1f809f8b00c35",
       "originalTests": [
         "native alarm decisions retain strict radii and capped awareness",
         "wild speed projection caps teleports and handles a stationary clock",
@@ -567,7 +567,7 @@
       "sourcePath": "test/nalati-titan-decisions.test.ts",
       "sourceBlob": "5aceb3b6dec8788acd618c6afd6188d9f620af8c",
       "targetPath": "test/ci21-candidate/nalati-titan-decisions.test.ts",
-      "targetBlob": "5c613e7c5d910fd0e5dfd5a8d1cefd24a11109da",
+      "targetBlob": "1ca6634f9927febd8da03175f3a8496914b2c2b8",
       "originalTests": [
         "selected Titan spear retains the frozen 10 Hz trace, lock point, strike window and borrowed RNG",
         "storm riders complete circle, committed charge and open flank without a second state owner",
@@ -988,7 +988,7 @@
     },
     {
       "targetPath": "test/fixtures/kurgan-oracle/dungeon.ts",
-      "targetBlob": "bf01989439454d44c220ed416cc1c4dd3af957c2"
+      "targetBlob": "ab10580b890763eb11387b4704e220c941232c7c"
     },
     {
       "targetPath": "test/fixtures/kurgan-oracle/source.json",

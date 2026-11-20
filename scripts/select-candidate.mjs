@@ -18,4 +18,9 @@ for (const [name, sha] of choices) {
 // A shard's old global format override must not replace the candidate
 // engine's own schema dependency: newer engine exports require its version.
 if (choices[0][1]) delete pkg.pnpm.overrides['@wildshard/format'];
+// Backport e7bd251be's timer type only for the archived v0.1.54 source tarball.
+if (process.env.CANDIDATE_ENGINE === '6bab8fcc4c5949b85f47211918f1f68af15d2ed4') {
+  pkg.pnpm.patchedDependencies ??= {};
+  pkg.pnpm.patchedDependencies['@wildshard/engine@0.1.54'] = 'patches/engine-0.1.54-toast-timer.patch';
+}
 if (choices.some(([, value]) => value)) writeFileSync('package.json', `${JSON.stringify(pkg, null, 2)}\n`);

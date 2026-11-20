@@ -7,6 +7,7 @@ import { manifestFieldRows, type ClientChannelProgram } from '@wildshard/shardde
 /** Numeric day keys and their live-preset field layout, built before admission. */
 export function skyRows(): SkyRows {
  const {sky:S,grade:G,atmosphere:A}=manifestFieldRows(['sky','grade','atmosphere'], {sky:NALATI_MANIFEST_ROWS.sky,grade:NALATI_MANIFEST_ROWS.grade,atmosphere:NALATI_MANIFEST_ROWS.atmosphere});
+ if(S===undefined||G===undefined||A===undefined)throw new Error('Missing Nalati sky, grade or atmosphere rows');
  const P=S.painted,volume=A.volumetric;
  if(P===undefined||volume===undefined)throw new Error('Missing painted sky metadata');
  const vs=volume.strength;
