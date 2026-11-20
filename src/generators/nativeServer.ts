@@ -67,7 +67,7 @@ export const NALATI_ELITE_CONDITIONS = { rules: { always: { rule: 0, phase: fals
 /** Nalati's native assembly (P1-E3.1b, J90): its hosts in install order, as data over the files in its shard file. */
 function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['bake']>['reader'] & { readonly size: number; readonly resolution: number }, rows: { readonly herds: string; readonly groups: string; readonly external: readonly unknown[] }): NativeAssemblyPlan {
   return { kind: 'native-assembly', level: { speed: 5, authorCap: true, ground: { size: nativeBake.size, height: 0 } }, terrain: { kind: 'shard-tile', resolution: 256, size: 500 }, navigation: 'shard',
-    bake: { rows: { file: 'server/physics.json' }, reader: nativeBake, ground: 'data/physics-ground.bin', colliders: ['data/physics-colliders-0.bin', 'data/physics-colliders-1.bin'], read: 'bake',
+    bake: { rows: { file: 'server/physics.json' }, reader: nativeBake, ground: 'data/physics-ground.bin', colliders: ['data/physics-colliders-0.bin', 'data/physics-colliders-1.bin'], read: 'bake', keep: ['spawns'],
       owners: { file: 'sim/population-metadata.json' }, seal: { file: 'combat/room-entry.json', path: ['room'] } },
     collision: { resolution: nativeBake.resolution }, entries: { walk: { lanes: 23, walk: 40, start: 249, maxTicks: 800 } },
     boot: { file: 'server/boot.json' },
@@ -88,13 +88,15 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
 
 /** Nalati's server-class files (J91), built from the same programs the shard file ships: a client never fetches one. */
 export function nalatiServerFiles(pasture: NalatiTitanProgram, admission: NalatiAdmission, riding: NalatiRidingPrograms, nativeShelters: [number, number, number][]): ServerBlob[] {
-  const { mountable, ...bootFile } = nalatiNativeBootRows(pasture, admission, riding);
+  const { mountable, roster, ...bootFile } = nalatiNativeBootRows(pasture, admission, riding);
+  const bodyState = { layout: 'baked', adoption: roster.bodies.map(({ id, adopted }) => ({ id, ...adopted })),
+    centres: roster.herds.map(({ cx, cz }) => [cx, cz]), stream: roster.stream, wildStream: roster.wildStream };
   const { constants } = nalatiNativeAssemblyRows(pasture, admission, nativeShelters);
   const strike = (at: number) => declared(constants.pageElites.strikes[at], 'Missing elite strikes').strike;
   const strikes = [strike(0), strike(1), strike(2)], [swipe, pounce, bite] = strikes;
   const elites = nalatiEliteRows({ ...constants, nativeKnockdown: parsePopulationKnockdownSource(bootFile.riding) },
     { swipe: declared(swipe, 'swipe'), pounce: declared(pounce, 'pounce'), bite: declared(bite, 'bite') });
-  return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake, { herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed }), new Map<string, unknown>([['server/physics.json', nalatiPhysics()], ['server/boot.json', bootFile],
+  return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake, { herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed }), new Map<string, unknown>([['server/physics.json', nalatiPhysics()], ['server/boot.json', { ...bootFile, roster: bodyState }],
     ['server/groups.json', constants.groupRows], ['server/elites.json', elites],
     ['server/elite-strikes.json', strikes], ['server/population.json', constants.nativePopulation],
     ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming]]));
