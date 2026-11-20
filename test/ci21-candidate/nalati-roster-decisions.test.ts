@@ -1,7 +1,7 @@
 import {admissionPage} from '../fixtures/nalati-admission-loan';
 import { expect, test } from 'vitest';
 
-import { Rng } from '@wildshard/engine/core/rng';
+import { Rng } from '@wildshard/format/seededRng';
 
 
 const author = () => admissionPage();

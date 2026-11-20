@@ -12,7 +12,7 @@ import { Bone, Vector3 } from 'three';
 import { setTerrainHeight } from '@wildshard/engine/world/terrainHeight';
 import { expect, test } from 'vitest';
 import type { AnimalRigContext } from '@wildshard/engine/entities/animalRig';
-import { Rng } from '@wildshard/engine/core/rng';
+import { Rng } from '@wildshard/format/seededRng';
 import { nalatiSpeciesCatalogue } from '../fake/nalatiSpecies';
 import { animateKing } from '../fixtures/nalati-king-pose';
 import { legacyDouble } from '@wildshard/engine/test/FakeGame';

@@ -9,7 +9,7 @@ import { parseReturnProjectionV2, returnProjectionV2Layout } from '@wildshard/fo
 import { GroupStepV2 } from '@wildshard/engine/script/groupStepV2';
 import { ScriptModuleV2 } from '@wildshard/engine/script/moduleV2';
 import { Scope } from '@wildshard/engine/app/scope';
-import { Rng } from '@wildshard/engine/core/rng';
+import { Rng } from '@wildshard/format/seededRng';
 import herdRows from '../src/data/herdGroup.json' with { type: 'json' };
 import herdGuest from '../src/data/herdGuest.json' with { type: 'json' };
 import { readDecisionSources } from '@wildshard/sharddev/buildDecisionScripts';

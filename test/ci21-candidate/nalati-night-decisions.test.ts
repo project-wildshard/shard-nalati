@@ -3,7 +3,7 @@ import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
 import { ReturnModulesSchema } from '@wildshard/format/scriptContract';
 import { expect, test } from 'vitest';
 import { ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
-import { Rng } from '@wildshard/engine/core/rng';
+import { Rng } from '@wildshard/format/seededRng';
 import { NALATI_NIGHT as nightInput } from '../fixtures/nalati-night';
 import {weatherWitness as weather,withWeatherWitness} from '../fixtures/weatherInlineWitness';
 
