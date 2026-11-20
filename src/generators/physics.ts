@@ -1,3 +1,4 @@
+import type { Shardfile } from '@wildshard/format/shardSchema';
 import rows from '../data/physicsRows.json' with { type: 'json' };
 
 /** Complete source-owned native physics metadata; binary floor/collider loans remain separate. */
@@ -22,4 +23,20 @@ export function nalatiPhysicsSources(): { name: string; kind: 'bin'; source: str
   }
   return [{ name: file, kind: 'bin', source: file, options: { decoded: (rows.ground.rows + 1) * (rows.ground.cols + 1) * 4 } },
     ...Array.from(colliders, ([name, decoded]) => ({ name, kind: 'bin' as const, source: name, options: { decoded } }))];
+}
+
+/** Boot placements for species whose layered body is already in the catalogue. */
+export function nalatiDeclaredBootSpawns(): Shardfile['creatures']['spawns'] {
+  const at = new Map(rows.spawns.map(spawn => [spawn.id, spawn]));
+  return rows.actors.flatMap(actor => {
+    if (actor.kind !== 'wolf' && actor.kind !== 'horse') return [];
+    const placement = at.get(actor.id), seed = actor.seed * 0x100000000;
+    if (placement === undefined || !Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) {
+      throw new Error(`Missing exact declared boot placement or seed for ${actor.id}`);
+    }
+    const [x, y, z] = placement.at;
+    if (x === undefined || y === undefined || z === undefined) throw new Error(`Incomplete boot position for ${actor.id}`);
+    return [{ id: actor.id, species: `nalati.${actor.kind}`, variant: actor.variant, at: [x, y, z], yaw: placement.yaw,
+      scale: actor.scale, seed, brain: null, strike: null }];
+  });
 }
