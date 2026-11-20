@@ -39,7 +39,8 @@ export async function titanBowPilot(product, host, step, goal = 1, continuation)
         fight: 'combat/titan-fight.json',
         geometry: 'combat/titan-geometry.json'
     });
-    const weather = v.parse(WeatherWorldSchema, await product.json('server/weather.json')), actualWind = host.adapters.get(weather.step);
+    const forest = v.parse(v.object({ storm: v.object({ world: WeatherWorldSchema }) }), await product.json('world/forest-weather.json'));
+    const actualWind = host.adapters.get(forest.storm.world.step);
     assert.ok(actualWind);
     const weapon = host.adapters.get('nalati.weapons');
     assert.ok(weapon);

@@ -84,7 +84,7 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
       { host: 'boss.arena', id: 'nalati.king', file: 'combat/room-entry.json', body: { kind: 'golden-king', variant: 'king' }, reward: 'goldenBow',
         entrance: [GREAT_KURGAN.x - Math.sin(GREAT_KURGAN_DOOR) * (GREAT_KURGAN.r + 3), 0, GREAT_KURGAN.z - Math.cos(GREAT_KURGAN_DOOR) * (GREAT_KURGAN.r + 3), GREAT_KURGAN_DOOR] },
       { host: 'riding.elites-ready' },
-      { host: 'held.arms', step: 'nalati.weapons', slots: 'held/slots.json', speed: 7.2, weather: { file: 'server/weather.json' },
+      { host: 'held.arms', step: 'nalati.weapons', slots: 'held/slots.json', speed: 7.2, weather: { file: 'world/forest-weather.json', path: ['storm', 'world'] },
         input: { attack: 'nalati.weapon.attack', swap: 'nalati.weapon.swap', aim: 'nalati.weapon.aim', pitch: 'nalati.weapon.pitch' } },
       { host: 'encounter.patrol', step: 'nalati.patrol', rows: 'combat/timed-encounters.json', actors: 'actors/sheep.json', looks: 'actors/species-looks.json', herds: rows.herds, external: { value: rows.external } },
       { host: 'boss.open-arena', id: 'nalati.titan', fight: 'combat/titan-fight.json', geometry: 'combat/titan-geometry.json', view: 'titan-view', groups: rows.groups,
@@ -100,7 +100,7 @@ export function nalatiServerFiles(pasture: NalatiTitanProgram, admission: Nalati
   const elites = nalatiEliteRows({ ...constants, nativeKnockdown: parsePopulationKnockdownSource(bootFile.riding) },
     { swipe: declared(swipe, 'swipe'), pounce: declared(pounce, 'pounce'), bite: declared(bite, 'bite') });
   return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake, { herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed }), new Map<string, unknown>([['server/physics.json', nalatiPhysics()], ['server/boot.json', bootFile],
-    ['server/shelters.json', constants.nativeShelters], ['server/weather.json', constants.nativeWeather], ['server/groups.json', constants.groupRows], ['server/elites.json', elites],
+    ['server/groups.json', constants.groupRows], ['server/elites.json', elites],
     ['server/elite-strikes.json', strikes], ['server/population.json', constants.nativePopulation],
     ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming],
     ['server/arena-species.json', { species: [{ ...speciesRows.king, dims: GOLDEN_KING_DIMS }, { ...speciesRows.balbal, dims: BALBAL_DIMS }] }]]));
