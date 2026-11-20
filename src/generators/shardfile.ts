@@ -28,6 +28,7 @@ import type { NalatiKokpar } from './kokparRows';
 import type { NalatiTitanPrograms } from './stormTitanRows.mjs';
 import { nalatiGoldenKingPose } from './kurganRows';
 import type { NalatiAdmission } from './admissionProgram';
+import type { WolfLook } from './declaredWolfLook';
 
 const kingPose = nalatiGoldenKingPose();
 
@@ -76,7 +77,7 @@ function renderRows(value: unknown): { files: readonly unknown[]; tiles: readonl
 /** Compose the complete header with caller-owned byte lengths; retain module deduplication and page charges.
  * Named source programs carry empty inline bytes; historical fixture transport is measured by its fixture owner. */
 export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: NalatiHeldProgramCosts, render: unknown,
-  queryTerrain: Omit<BakedQueryTerrain, 'assets'>, navigation: Awaited<ReturnType<typeof nalatiNavigationProgram>>, kokpar: Pick<NalatiKokpar, 'program' | 'course' | 'compiled'>, ridingPrograms: Pick<NalatiRidingPrograms, 'approach' | 'breaking' | 'riding' | 'compiled'>, titanProgram: NalatiTitanPrograms, weather: Pick<NalatiWeather, 'rows' | 'channels'>, admission: NalatiAdmission, charge: Pick<NalatiCharge, 'script' | 'bytes' | 'compiled'>, programByteLength: (program: NalatiSpeciesProgramCosts['program']) => number): ReturnType<typeof parseShardfile> {
+  queryTerrain: Omit<BakedQueryTerrain, 'assets'>, navigation: Awaited<ReturnType<typeof nalatiNavigationProgram>>, kokpar: Pick<NalatiKokpar, 'program' | 'course' | 'compiled'>, ridingPrograms: Pick<NalatiRidingPrograms, 'approach' | 'breaking' | 'riding' | 'compiled'>, titanProgram: NalatiTitanPrograms, weather: Pick<NalatiWeather, 'rows' | 'channels'>, admission: NalatiAdmission, charge: Pick<NalatiCharge, 'script' | 'bytes' | 'compiled'>, programByteLength: (program: NalatiSpeciesProgramCosts['program']) => number, wolves?: WolfLook): ReturnType<typeof parseShardfile> {
   const weatherDecision = weather.rows, weatherChannels = weather.channels.weather, herdChannels = weather.channels.herd;
   const pasture = titanProgram.wind;
   const files = [...navigation.files, ...queryTerrain.files].sort((a, b) => a.hash.localeCompare(b.hash));
@@ -102,14 +103,19 @@ export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: Na
     + admission.compiled.bytes+admissionProjection.artifact.pages*65536*2;
   // the creature, elite and Titan view modules (behaviour/creatureViews.as, eliteViews.as, titanView.as, titanFireView.as, titanWhirlsView.as): their live and last-good pages on the client
   const viewMemory = NALATI_VIEW_PAGES * 65536 * 2;
+  const wolfFiles = wolves?.files ?? [];
+  const wolfResident = wolfFiles.reduce((sum, file) => sum + file.decoded + file.gpu, 0);
+  const wolfWire = wolfFiles.reduce((sum, file) => sum + file.compressed, 0);
   return parseShardfile({ ...base,
-    navigation: navigation.navigation, terrain: queryTerrain.terrain, files: [...files, ...renderTiles.files].sort((a, b) => a.hash.localeCompare(b.hash)), critical: [...navigation.critical, ...queryTerrain.critical],
+    navigation: navigation.navigation, terrain: queryTerrain.terrain, files: [...files, ...renderTiles.files, ...wolfFiles].sort((a, b) => a.hash.localeCompare(b.hash)), critical: [...navigation.critical, ...queryTerrain.critical],
+    library: [...base.library, ...wolves?.library ?? []],
+    rows: { ...base.rows, species: [...base.rows.species, ...wolves?.species ?? []], looks: [...base.rows.looks, ...wolves?.looks ?? []] },
     tiles: renderTiles.tiles, props: renderTiles.props,
     // DL17 (G1000, G872): the level is complete at control: the entered cell attaches every fine tile before control and
     // none retires in play
     ring: 'cell',
     serverBudget: { ...base.serverBudget, memory: base.serverBudget.memory + resident + programMemory },
-    budgets: { ...base.budgets, tier: 'large', library: { ...base.budgets.library, resident: base.budgets.library.resident + viewMemory }, sim: { resident: files.reduce((sum, file) => sum + file.decoded + file.gpu, 0) + programMemory, compressed: files.reduce((sum, file) => sum + file.compressed, 0) + programBytes + held.compiledBytes + ridingPrograms.compiled.bytes+titanProgram.compiled.pasture.bytes+admission.compiled.bytes } },
+    budgets: { ...base.budgets, tier: 'large', library: { ...base.budgets.library, resident: base.budgets.library.resident + viewMemory + wolfResident, compressed: base.budgets.library.compressed + wolfWire }, sim: { resident: files.reduce((sum, file) => sum + file.decoded + file.gpu, 0) + programMemory, compressed: files.reduce((sum, file) => sum + file.compressed, 0) + programBytes + held.compiledBytes + ridingPrograms.compiled.bytes+titanProgram.compiled.pasture.bytes+admission.compiled.bytes } },
     look: { ...base.look, materials: { ...base.look.materials, ...Object.fromEntries(Object.entries({ ...lookGraphs, ...presentationGraphs, 'nalati-sky-dome': skyDome }).map(([id, graph]) => [id, { family: 'graph' as const, graph }])) } },
     accent: 'ember', runtime: { kind: 'client-plan', cost: NALATI_RUNTIME_COST, binds: ['quests', 'ledger', 'state', 'items', 'spawns', 'modes', 'clientChannels', 'terrain', 'props'], spawns: NALATI_RUNTIME_SPAWNS },
     clientChannels: compactChannels([...Object.values(SPECIES_POSES).flatMap(pose => parseClientChannels(pose.programs)),...kingPose.programs,...herdChannels.clientChannels,...weatherChannels.clientChannels,...Object.values(peoplePrograms).flat()]),
