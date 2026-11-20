@@ -15,7 +15,8 @@ const producer=process.argv.includes('--producer');
 if(producer){
  const pkg=JSON.parse(readFileSync('package.json','utf8'));
  const declared=pkg.devDependencies?.['@wildshard/engine']??pkg.dependencies['@wildshard/engine'];
- assert.match(declared,/^\d+\.\d+\.\d+$/u,'Producer uses its exact released pin');
+ // J475/FS28: npm next carries an exact prerelease, 0.1.54-next.<sha>, before the tag.
+ assert.match(declared,/^\d+\.\d+\.\d+(?:-next\.[0-9a-f]{7,40})?$/u,'Producer uses its exact released pin');
  assert.equal(installed.version,declared);
  assert.notEqual(installed.resolved,`https://codeload.github.com/project-wildshard/engine/tar.gz/${engine}`);
 }else assert.equal(installed.resolved,`https://codeload.github.com/project-wildshard/engine/tar.gz/${engine}`);
