@@ -37,7 +37,7 @@ const assemblyRows = (pasture: NalatiTitanProgram, admission: NalatiAdmission, n
       id: def.id, lair: def.lair, awareR: def.awareR, engageR: def.engageR, leashR: def.leashR, rule: def.rule, respawnMin: def.respawnMin, drop: { skin: def.drop.skin },
     }])),
     nativePopulation: { ...riding, driver: { ...riding.driver, projection: crowdNativeProjection } },
-    nativeRide: { ...nativeRide, speeds: ecology.modes.ride[0].gaits, roads: boot.roads }, nativeShelters,
+    nativeRide: { ...nativeRide, roads: boot.roads }, nativeShelters,
   } };
 };
 /** The population, riding, elite and shelter rows the native hosts read, around the build's programs and placed shelters. */
@@ -75,15 +75,15 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
     bake: { rows: { file: 'server/physics.json' }, reader: nativeBake, ground: 'data/physics-ground.bin', colliders: ['data/physics-colliders-0.bin', 'data/physics-colliders-1.bin'], read: 'bake',
       owners: { file: 'sim/population-metadata.json' }, seal: { file: 'combat/room-entry.json', path: ['room'] } },
     collision: { resolution: nativeBake.resolution }, entries: { walk: { lanes: 23, walk: 40, start: 249, maxTicks: 800 } },
-    boot: { file: 'server/boot.json' }, field: { rows: { file: 'world/meadow.json' }, pond: 'data/geography-pond.bin' },
-    features: [{ host: 'collision' }, { host: 'water.field' }, { host: 'day.declared', clock: { file: 'world/forest-weather.json', path: ['sky', 'clock'] } }, { host: 'riding.roster' },
+    boot: { file: 'server/boot.json' },
+    features: [{ host: 'collision' }, { host: 'day.declared', clock: { file: 'world/forest-weather.json', path: ['sky', 'clock'] } }, { host: 'riding.roster' },
       { host: 'riding.trample', id: 'nalati.trample', radius: 0.55, strength: 1, speedLimit: 30 }, { host: 'riding.environment', wind: { x: -0.8, z: 0.6, strength: 0.5 }, flatten: 0.85 },
       { host: 'weather.native', program: { file: 'world/weather.json' }, shelters: { file: 'server/shelters.json' }, rows: { file: 'server/weather.json' } }, { host: 'riding.groups', rows: { file: 'server/groups.json' } },
       { host: 'riding.elites', rows: { file: 'server/elites.json' }, strikes: { file: 'server/elite-strikes.json' }, projected: 2, conditions: NALATI_ELITE_CONDITIONS },
       { host: 'riding.hunt', config: { file: 'server/population.json' } }, { host: 'riding.mounted', profile: { file: 'server/ride.json' } },
       { host: 'boss.arena', id: 'nalati.king', file: 'combat/room-entry.json', body: { kind: 'golden-king', variant: 'king' }, reward: 'goldenBow',
         entrance: [GREAT_KURGAN.x - Math.sin(GREAT_KURGAN_DOOR) * (GREAT_KURGAN.r + 3), 0, GREAT_KURGAN.z - Math.cos(GREAT_KURGAN_DOOR) * (GREAT_KURGAN.r + 3), GREAT_KURGAN_DOOR] },
-      { host: 'riding.taming', rows: { file: 'server/taming.json' }, poses: { file: 'sim/taming-poses.json', path: ['poses'] }, pose: { file: 'actors/species-looks.json', path: ['poses', 'horse'] } }, { host: 'riding.elites-ready' },
+      { host: 'riding.elites-ready' },
       { host: 'held.arms', step: 'nalati.weapons', slots: 'held/slots.json', speed: 7.2, weather: { file: 'server/weather.json' },
         input: { attack: 'nalati.weapon.attack', swap: 'nalati.weapon.swap', aim: 'nalati.weapon.aim', pitch: 'nalati.weapon.pitch' } },
       { host: 'encounter.patrol', step: 'nalati.patrol', rows: 'combat/timed-encounters.json', actors: 'actors/sheep.json', looks: 'actors/species-looks.json', herds: rows.herds, external: { value: rows.external } },
