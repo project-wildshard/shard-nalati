@@ -13,7 +13,7 @@ import { buildBalbal } from '../../src/generators/balbalBody.ts';
 import { Rng } from '@wildshard/sharddev/random';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
-const { resolveTierSkinLookFiles } = await import('@wildshard/format/skinAssets');
+const { resolveSkinLookTier } = await import('@wildshard/format/skinAssets');
 const { readImagePixels } = await import('@wildshard/sharddev/bake/image');
 
 // The GLB reader returns views over interleaved, packed, or plain buffers.
@@ -41,7 +41,8 @@ test('cooked eagle and balbal looks preserve the authored wings, stone and joint
   };
   const looks = source.rows.looks.filter(row => ['look.nalati.eagle', 'look.nalati.balbal'].includes(row.id));
   assert.equal(looks.length, 2);
-  for (const look of looks) for (const name of ['skin', 'variants', 'phone']) visit(look.parameters[name]);
+  // Format 0.63: a tiered look names `phone` (its phone skin) and `phoneVariants`; the one-tier balbal names neither.
+  for (const look of looks) for (const name of ['skin', 'variants', 'phone', 'phoneVariants']) if (look.parameters[name] !== undefined) visit(look.parameters[name]);
   const balbal = bodySpecies('balbal').variants;
   const byTier = {};
   for (const tier of ['phone', 'desktop']) {
@@ -50,7 +51,7 @@ test('cooked eagle and balbal looks preserve the authored wings, stone and joint
     while (!step.done) step = selected.next();
     const entries = {};
     for (const look of looks) {
-      const { variants } = resolveTierSkinLookFiles(source, look, { assets: files, tier });
+      const { variants } = resolveSkinLookTier(source, look, { assets: files, tier });
       const kind = look.id.endsWith('.eagle') ? 'eagle' : 'balbal';
       assert.deepEqual([...variants.keys()].sort(), kind === 'eagle' ? ['qyran'] : ['capped', 'warrior']);
       for (const [id, { row, binding }] of variants) {
