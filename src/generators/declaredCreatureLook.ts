@@ -156,10 +156,20 @@ async function bakeCreature(kind: Kind, ctx: Pick<ProjectGenerationContext, 'rea
     });
     return store(tier.files.table, 'json', [...new Set(skins)].sort());
   };
-  const desktopTable = table(desktop), phoneTable = table(phone), { lookId } = recipe;
-  const look = { ...desktop.look, id: lookId, parameters: { ...desktop.look.parameters, phone: phoneTable } };
+  // Format 0.63 (OF23f): a tiered variant look names its phone default skin (`phone`) and its phone variant table
+  // (`phoneVariants`) beside the desktop pair. The balbal has one authored tier, so it stays untiered.
+  const desktopTable = table(desktop), { lookId } = recipe;
+  const skinHash = (bytes: Uint8Array): string => {
+    const { row, binding } = parseSkinFile(bytes);
+    return store(bytes, 'json', skinFileDependencies(row, binding));
+  };
+  const tiered = phone !== desktop;
+  const phoneRoots = tiered ? [skinHash(phone.skin), table(phone)] : [];
+  const [phoneSkin, phoneTable] = phoneRoots;
+  const look = { ...desktop.look, id: lookId,
+    parameters: { ...desktop.look.parameters, ...(tiered ? { phone: phoneSkin, phoneVariants: phoneTable } : {}) } };
   if (desktop.species.body === undefined) throw new Error(`Missing creature rig contract: ${kind}`);
-  const rows: CreatureLookRows = { files: [...files.values()], library: [hashImmutableBytes(desktop.skin), desktopTable, phoneTable],
+  const rows: CreatureLookRows = { files: [...files.values()], library: [skinHash(desktop.skin), desktopTable, ...phoneRoots],
     species: [{ ...desktop.species, body: { ...desktop.species.body, look: lookId } }], looks: [look] };
   assets.set(header, new TextEncoder().encode(JSON.stringify(rows)));
   return assets;
