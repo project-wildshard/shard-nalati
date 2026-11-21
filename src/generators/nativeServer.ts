@@ -2,7 +2,6 @@ import { GREAT_KURGAN, GREAT_KURGAN_DOOR } from './poiLayout';
 import { nativeAssemblyFiles, type NativeAssemblyPlan, type ServerBlob } from '@wildshard/sharddev/blobs';
 import { parsePopulationKnockdownSource } from '@wildshard/sharddev/nativePopulationRows';
 import boot from '../data/headlessBoot.json' with { type: 'json' };
-import combatTargets from '../data/combatTargets.json' with { type: 'json' };
 import crowdNativeProjection from '../data/crowdNativeProjection.json' with { type: 'json' };
 import nativeRide from '../data/nativeRiding.json' with { type: 'json' };
 import worldUpdates from '../data/worldUpdates.json' with { type: 'json' };
@@ -19,7 +18,7 @@ function declared<T>(value: T | undefined, message: string): T { if (value === u
 const bootRows = (pasture: NalatiTitanProgram, admissionInput: NalatiAdmission, ridingPrograms: NalatiRidingPrograms) => {
   const { compiled: _admissionCompiled, ...admission } = admissionInput;
   const { compiled: _ridingCompiled, ...riding } = ridingPrograms;
-  return { ...boot, worldUpdates, combatTargets,
+  return { ...boot, worldUpdates,
     hunt: { ...ecology.gameplay, ...ecology.species, sheepdog: { aggressive: false, walkSpeed: 1.4 }, [ecology.argymaq]: ecology.gameplay.horse },
     admission, pasture, riding };
 };

@@ -201,6 +201,9 @@ export async function declaredCreatureLooks(ctx: Pick<ProjectGenerationContext, 
   const ride = ecology.modes.ride.find((row: { readonly id: string }) => row.id === 'ride');
   if (ride === undefined) throw new Error('Missing authored horse gaits');
   for (const row of horse.species) row.mount = { gaits: ride.gaits };
+  // ONE-FORMAT OF38c (J420 (2)): a hidden or owned wolf or horse cannot be aimed at or hit; the creature says so, where the
+  // page's old `combat.targets` aim list said it for every target
+  for (const row of [...wolf.species, ...horse.species]) row.attackable = { unless: [{ field: 'hidden', equals: 1 }, { field: 'owned', equals: 1 }] };
   const looks = [wolf, horse, await declaredLook('eagle', ctx), await declaredLook('balbal', ctx)];
   const files = new Map(looks.flatMap(row => row.files).map(file => [file.hash, file]));
   return { files: [...files.values()], library: [...new Set(looks.flatMap(row => row.library))],
