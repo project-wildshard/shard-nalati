@@ -516,7 +516,7 @@ jobs:
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
       - name: Build and seal the ordinary pinned producer
         env:
-          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '6bab8fcc4c5949b85f47211918f1f68af15d2ed4' }}
+          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '7c0a0094fbf352638eab14c68e9a3ddc7e875626' }}
           NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           pnpm install --frozen-lockfile --config.ci=false
@@ -527,7 +527,7 @@ jobs:
       # Source proof currently supports an engine source candidate only.
       - name: Validate and select the exact engine source
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine || '6bab8fcc4c5949b85f47211918f1f68af15d2ed4' }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || '7c0a0094fbf352638eab14c68e9a3ddc7e875626' }}
           CANDIDATE_SHARDDEV: ${{ inputs.sharddev }}
         run: |
           test -n "$CANDIDATE_ENGINE"
@@ -535,7 +535,7 @@ jobs:
           node scripts/select-candidate.mjs
       - name: Install pinned or candidate dependency graph
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine || '6bab8fcc4c5949b85f47211918f1f68af15d2ed4' }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || '7c0a0094fbf352638eab14c68e9a3ddc7e875626' }}
           CANDIDATE_SHARDDEV: ''
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
@@ -551,8 +551,8 @@ jobs:
         run: node scripts/assert-store-layout.mjs
       - name: Compile, type-lint and run every complete original
         env:
-          CANDIDATE_ENGINE: ${{ inputs.engine || '6bab8fcc4c5949b85f47211918f1f68af15d2ed4' }}
-          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '6bab8fcc4c5949b85f47211918f1f68af15d2ed4' }}
+          CANDIDATE_ENGINE: ${{ inputs.engine || '7c0a0094fbf352638eab14c68e9a3ddc7e875626' }}
+          NALATI_ENGINE_CANDIDATE: ${{ inputs.engine || '7c0a0094fbf352638eab14c68e9a3ddc7e875626' }}
           NALATI_JOURNEY_DIR: tmp/ci21-source
         run: |
           test -n "$CANDIDATE_ENGINE"

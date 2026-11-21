@@ -19,3 +19,6 @@ packageExtensions:
   navcat@0.4.1:
     dependencies:
       '@types/three': 0.186.0
+  '@wildshard/kit':
+    dependencies:
+      '@types/three': 0.186.0

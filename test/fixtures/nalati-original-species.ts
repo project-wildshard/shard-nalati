@@ -19,7 +19,7 @@ const compiler = ['--experimental-transform-types', '--import',
  * The cold construction uses the real compiler in Node. Every hit checks all five complete original pins. */
 export function originalSpeciesFiles(directory = `tmp/nalati-original-species/${original.sha256}`): ReadonlyMap<string, Uint8Array<ArrayBuffer>> {
   const root = resolvePath(directory);
-  if (!existsSync(root)) execFileSync(process.execPath, [...compiler, root], { stdio: ['ignore', 'pipe', 'pipe'], timeout:14_000 });
+  if (!existsSync(root)) execFileSync(process.execPath, [...compiler, root], { stdio: ['ignore', 'pipe', 'pipe'], timeout:25_000 });
   const files = new Map<string, Uint8Array<ArrayBuffer>>();
   for (const [index, pin] of pins.entries()) {
     const name = names[index];

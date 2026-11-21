@@ -946,7 +946,7 @@
       "sourcePath": "test/native-oracle.test.ts",
       "sourceBlob": "06d68e9e94ea5850fc9281cebbf7f0f3f5566222",
       "targetPath": "test/ci21-candidate/nalati-native-oracle.test.ts",
-      "targetBlob": "2c0c0d9f63ae876248c92aea4331f48a32c0864c",
+      "targetBlob": "32bcedf32732937ceb82574919272d8381074caa",
       "originalTests": [
         "the fenced typed Nalati oracle retains every former boot byte",
         "the fenced typed Nalati oracle retains every former assembly byte"
@@ -1308,7 +1308,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-original-species.ts",
-      "targetBlob": "fcde3f92d072ef36c73d5ca2b14e690fe909feaf"
+      "targetBlob": "8fef1273d225086389463e614db6635c1d985826"
     },
     {
       "targetPath": "test/fixtures/nalati-output-cache.ts",

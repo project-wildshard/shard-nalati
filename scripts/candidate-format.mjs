@@ -24,7 +24,7 @@ if (process.argv.includes('--ci21')) {
   pkg.pnpm.packageExtensions ??= {};
   // pnpm's global store isolates each package. Their source and declaration
   // imports need Three types beside the package that actually imports them.
-  for (const name of ['@wildshard/kit@0.4.11', 'navcat', 'postprocessing']) {
+  for (const name of ['@wildshard/kit', 'navcat', 'postprocessing']) {
     pkg.pnpm.packageExtensions[name] = {
       dependencies: { '@types/three': pkg.devDependencies['@types/three'] },
     };

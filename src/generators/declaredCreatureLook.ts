@@ -57,7 +57,7 @@ function creatureSpecies(kind: Kind) {
   if (recipe === undefined) throw new Error(`Missing creature recipe: ${kind}`);
   const { bodyY, bodyHalfLen, bodyRadius, headRadius, legLen, halfWidth, feet } = recipe.dims;
   const creature = readSpecies({ ...boot.species[kind], ...ecology.gameplay[kind], id: `nalati.${kind}`, label: authored.metadata.label, lockable: recipe.lockable ?? true });
-  const original = { look: authored.id, dims: { bodyY, bodyHalfLen, bodyRadius, headRadius, legLen, halfWidth, feet } };
+  const original = { look: authored.id, dims: { bodyY, bodyHalfLen, bodyRadius, headRadius, legLen, halfWidth, feet: feet.map(([x, z]): [number, number] => [x ?? 0, z ?? 0]) } };
   const { species: [species] } = speciesProgramToRows({ species: [creature], strikes: [] }, new Map([[kind, original]]));
   if (species === undefined) throw new Error(`Missing creature species row: ${kind}`);
   return { species, lookId: authored.id, material: authored.material };
