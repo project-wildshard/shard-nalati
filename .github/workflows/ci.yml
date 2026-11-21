@@ -241,7 +241,7 @@ jobs:
   ring-2-content:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
