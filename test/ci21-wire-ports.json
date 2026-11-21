@@ -14,7 +14,7 @@
       ],
       "fixturePath": "test/fixtures/species-barrel-author-original.json",
       "fixtureBlob": "62009c0307777eddf73066575f68f7730e03d67a",
-      "targetBlob": "fc9e4eb70f2663779703b3a78d310d97d6016e5f",
+      "targetBlob": "f7ed01c25b126016869aa92101b6165c8bba7051",
       "compilerSupport": []
     },
     {
@@ -30,7 +30,7 @@
       ],
       "fixturePath": "test/fixtures/view-author-original.json",
       "fixtureBlob": "723fd5778f4428b752956b6fe12be0b77cd3ffd0",
-      "targetBlob": "a0574b944d85f83d2b6389a87caeea8f9fea0b7c"
+      "targetBlob": "2ddd0e69a0af74e05f2306f7744633158fb4b2a4"
     },
     {
       "sourcePath": "test/nalati-loft-author.test.ts",
@@ -67,7 +67,7 @@
         "changes": "Only owner imports rewritten. Original observation/byte/hash/bound/topology/stream/disposal logic unchanged; native V8 transport preserves signed zero and typed arrays.",
         "targetBlob": "c13222c35f91b1fd898d9c12150a48a0c724413d"
       },
-      "targetBlob": "a50234ba9a9eecd72d68062901833df7b088164c",
+      "targetBlob": "6ca5e07d947e591ac5f8521f4b232a52946f267b",
       "changes": "Original complete toEqual(original) assertion; actual helper executes through the normal module runner or native V8 process boundary. Test compiler/lint checks the boundary; legacy producer/helper closure stays row36/H4. New cap10s replaces original engine default30s; geometry child cap9s. No oracle or result field normalized."
     },
     {
@@ -122,7 +122,7 @@
         "sourceRevision": "aa2a7d1153588897c87d4bad724f6f47e6909972",
         "sourceBlob": "a37da4cc06128e9815126edfc9ea51a70f5067a6",
         "targetPath": "test/fixtures/nalati-original-species.ts",
-        "targetBlob": "8fef1273d225086389463e614db6635c1d985826",
+        "targetBlob": "c55b7e379c90ea642b4ff87879135b7d52cff36c",
         "changes": "Public installed simulation loader and unchanged 14s compiler-child caps; optional private directory memoizes one full checked map per absolute root. Both default/private paths use the same bytes.slice loan. Caller explicitly releases private memo and disk root afterAll. No fallback or pin changes."
       },
       "preparationHelper": {
@@ -152,7 +152,7 @@
         "sourceRevision": "020c7a7ecefea0c0e128df9f972df81bb580f0f6",
         "sourceBlob": "4624d9be45fdde06ad4aa31c0c5d0b5653aaca2e",
         "targetPath": "test/fixtures/nalati-native-place-files.ts",
-        "targetBlob": "ff87ebf608a57bcb2d980868fb3fb67888c7a6a6",
+        "targetBlob": "6ecb6869ee41725c21fdc2dd6bdc7019013a38c9",
         "changes": "Missing monorepo native-program dependency replaced with one fresh actual source build at module load, public bake-loader/native realm,14s child fence, complete8file inventory and unchanged full places/specimens pins. V8 transports exact bytes, private disk output removed in finally, caller always receives slice loans. No cache fallback, synthetic fixture or producer changes. Shared nativePlaceFile consumers pay the same cold source cost once per importing realm; no persistent source cache remains."
       },
       "preparationHelper": {

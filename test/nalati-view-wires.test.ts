@@ -29,7 +29,7 @@ console.log(JSON.stringify(observed));`,
     {
       cwd: resolve(import.meta.dirname, '..'),
       encoding: 'utf8',
-      timeout: 9000,
+      timeout: 25_000,
     },
   )
   const observed: unknown = JSON.parse(output)

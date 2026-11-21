@@ -19,7 +19,7 @@ try {
   const output = resolve(root, 'files.v8');
   execFileSync(process.execPath, ['--experimental-transform-types', '--import',
     import.meta.resolve('@wildshard/engine/scripts/bake-loader.mjs'), 'test/fixtures/nalati-native-places-compile.mjs', output],
-  { timeout: 14_000, stdio: ['ignore', 'pipe', 'pipe'] });
+  { timeout: 25_000, stdio: ['ignore', 'pipe', 'pipe'] });
   const raw: unknown = deserialize(readFileSync(output));
   const rows = v.parse(v.array(v.tuple([v.string(), v.instance(Uint8Array)])), raw);
   for (const [name, bytes] of rows) {

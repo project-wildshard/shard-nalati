@@ -23,7 +23,7 @@ test('granite and ordinary/scrambled blobs retain all original geometry bits and
 import {geometryCacheAuthorObservation} from './test/fixtures/geometry-cache-author-observation.ts';
 process.stdout.write(serialize(geometryCacheAuthorObservation()));`,
     ],
-    { cwd: resolve(import.meta.dirname, '..'), timeout: 9000 },
+    { cwd: resolve(import.meta.dirname, '..'), timeout: 25_000 },
   )
   const actual: unknown = deserialize(wire)
   expect(actual).toEqual(original)

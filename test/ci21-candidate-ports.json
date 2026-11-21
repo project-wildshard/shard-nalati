@@ -1276,7 +1276,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-native-place-files.ts",
-      "targetBlob": "ff87ebf608a57bcb2d980868fb3fb67888c7a6a6"
+      "targetBlob": "6ecb6869ee41725c21fdc2dd6bdc7019013a38c9"
     },
     {
       "targetPath": "test/fixtures/nalati-native-places-compile.mjs",
@@ -1308,7 +1308,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-original-species.ts",
-      "targetBlob": "8fef1273d225086389463e614db6635c1d985826"
+      "targetBlob": "c55b7e379c90ea642b4ff87879135b7d52cff36c"
     },
     {
       "targetPath": "test/fixtures/nalati-output-cache.ts",

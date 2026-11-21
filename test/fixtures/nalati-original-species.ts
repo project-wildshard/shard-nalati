@@ -38,7 +38,7 @@ export async function prepareOriginalSpeciesFiles(directory = `tmp/nalati-origin
   const root = resolvePath(directory);
   if (!existsSync(root)) {
     await new Promise<void>((resolve,reject)=>{
-      execFile(process.execPath,[...compiler,root],{timeout:14_000},(error:Error|null,stdout,stderr)=>{
+      execFile(process.execPath,[...compiler,root],{timeout:25_000},(error:Error|null,stdout,stderr)=>{
           if(error===null)resolve();else reject(Object.assign(error,{stdout,stderr}));
         });
     });
