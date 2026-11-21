@@ -35,7 +35,7 @@ async function play(runtime, plan, declared) {
 // costs 22.7 s on hosted Linux. Even a 30-tick walk costs 8.2 s locally.
 // This actual product path belongs outside the quick candidate leg/hooks.
 const legTicks = 120;
-for (const { name: slug } of products) test(`${slug}: boot, walk and resume on the installed engine`, { timeout: 60_000 }, async () => {
+for (const { name: slug } of products) test(`${slug}: boot, walk and resume on the installed engine`, { timeout: 180_000 }, async () => {
   const directory = resolve('out', slug), product = await loadHeadlessFolder(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard);
   assert.ok(descriptor, 'The built shard must pass admission');

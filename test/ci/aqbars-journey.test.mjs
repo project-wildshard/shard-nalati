@@ -45,7 +45,7 @@ const PERCHED = 1.5, STAND_OFF = 8;
 // How long after the last swing input its blow may still land (a released heavy swing and the combo's recovery).
 const SWING_TICKS = 60;
 
-test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { timeout: 60_000 }, async () => {
+test('nalati-grasslands: Aqbars the Pale felled at her crags on real inputs', { timeout: 180_000 }, async () => {
   const started = performance.now(), directory = resolve('out/nalati-grasslands'), product = await loadHeadlessFolder(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard); assert.ok(descriptor, 'The built shard must pass admission');
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))

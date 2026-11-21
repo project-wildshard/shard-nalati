@@ -9,7 +9,7 @@ const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
 const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
 
-test('nalati-grasslands: the Titan refuses an unearned mounted encounter and reward', { timeout: 60_000 }, async () => {
+test('nalati-grasslands: the Titan refuses an unearned mounted encounter and reward', { timeout: 180_000 }, async () => {
   const started = performance.now(), { resident, world, input } = await boot();
   const writer = createSimSnapshotSerializer();
   let resumed;

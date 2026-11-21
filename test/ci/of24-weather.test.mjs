@@ -8,7 +8,7 @@ const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
 const { openArenaOf } = await import('@wildshard/engine/game/boss/openArenaNative');
 const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
 
-test('the cooked weather files keep the native storm through save and restore', { timeout: 60_000 }, async () => {
+test('the cooked weather files keep the native storm through save and restore', { timeout: 180_000 }, async () => {
   const { input, world } = await boot();
   const { product } = input;
   const writer = createSimSnapshotSerializer();

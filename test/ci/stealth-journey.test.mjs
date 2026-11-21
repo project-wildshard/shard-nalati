@@ -42,7 +42,7 @@ const TO_PLAINS = [[60, 214], [40, 218], [20, 216], [0, 216], [0, 200], [0, 190]
   [19, 87], [20, 86], [22, 86], [23, 85], [25, 85], [30, 80], [31, 80], [32, 79], [33, 79], [36, 76], [37, 76]];
 const DT = 1 / 60;
 
-test('nalati-grasslands: hidden in the feather grass, then seen by the herd, on real inputs', { timeout: 60_000 }, async () => {
+test('nalati-grasslands: hidden in the feather grass, then seen by the herd, on real inputs', { timeout: 180_000 }, async () => {
   const started = performance.now(), directory = resolve('out/nalati-grasslands'), product = await loadHeadlessFolder(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard); assert.ok(descriptor, 'The built shard must pass admission');
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))

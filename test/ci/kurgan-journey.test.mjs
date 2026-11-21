@@ -10,7 +10,7 @@ import { enterKurgan } from './kurgan-route.mjs';
 const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
 
-test('nalati-grasslands: enter the kurgan and resume its real intro', { timeout: 60_000 }, async () => {
+test('nalati-grasslands: enter the kurgan and resume its real intro', { timeout: 180_000 }, async () => {
   const started = performance.now(), { resident, world, input, shard } = await boot();
   const writer = createSimSnapshotSerializer();
   let resumed;

@@ -11,7 +11,7 @@ const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wil
 const { nativeTamingOf } = await import('@wildshard/engine/game/riding/nativeTaming');
 const { mountedPlayerOf } = await import('@wildshard/engine/game/riding/native');
 
-test('Nalati water and riding rows preserve the original native world', { timeout: 60_000 }, async () => {
+test('Nalati water and riding rows preserve the original native world', { timeout: 180_000 }, async () => {
   const { input, world } = await boot();
   const { product } = input;
   const writer = createSimSnapshotSerializer();
