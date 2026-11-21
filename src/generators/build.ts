@@ -27,5 +27,15 @@ export async function build(ctx: ProjectGenerationContext): Promise<ReturnType<t
   }, JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(metadata)) as unknown, await nalatiQueryTerrainProgram(ctx), await nalatiNavigationProgram(ctx), (await nalatiKokparProgram(ctx)).rows, (await nalatiRidingProgram(ctx)).programs, (await nalatiTitanProgram(ctx)).programs, await nalatiWeatherProgram(ctx), (await nalatiAdmissionProgram(ctx)).program, (await nalatiChargeProgram(ctx)).rows, program => {
     if(program.bytes!=='')throw new Error('Nalati shard file requires file-owned program bytes');
     return 0;
-  }, await declaredCreatureLooks(ctx));
+  }, await declaredCreatureLooks(ctx), guestProjectionOf(species.rows.presentation));
+}
+
+/** ONE-FORMAT OF30: the balbal look-book row's projection, the night riders' guest view programme, for its declared row. */
+function guestProjectionOf(presentation: unknown): unknown {
+  const rows: unknown = typeof presentation === 'object' && presentation !== null ? Reflect.get(Reflect.get(presentation, 'lookBook') ?? {}, 'rows') : undefined;
+  if (!Array.isArray(rows)) throw new Error('Missing species look book');
+  const row: unknown = rows.find((entry: unknown) => typeof entry === 'object' && entry !== null && Reflect.get(Reflect.get(entry, 'metadata') ?? {}, 'kind') === 'balbal');
+  const projection: unknown = typeof row === 'object' && row !== null ? Reflect.get(row, 'projection') : undefined;
+  if (projection === undefined) throw new Error('Missing balbal guest projection');
+  return projection;
 }

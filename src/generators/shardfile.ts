@@ -78,7 +78,7 @@ function renderRows(value: unknown): { files: readonly unknown[]; tiles: readonl
 /** Compose the complete header with caller-owned byte lengths; retain module deduplication and page charges.
  * Named source programs carry empty inline bytes; historical fixture transport is measured by its fixture owner. */
 export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: NalatiHeldProgramCosts, render: unknown,
-  queryTerrain: Omit<BakedQueryTerrain, 'assets'>, navigation: Awaited<ReturnType<typeof nalatiNavigationProgram>>, kokpar: Pick<NalatiKokpar, 'program' | 'course' | 'compiled'>, ridingPrograms: Pick<NalatiRidingPrograms, 'approach' | 'breaking' | 'riding' | 'compiled'>, titanProgram: NalatiTitanPrograms, weather: Pick<NalatiWeather, 'rows' | 'channels'>, admission: NalatiAdmission, charge: Pick<NalatiCharge, 'script' | 'bytes' | 'compiled'>, programByteLength: (program: NalatiSpeciesProgramCosts['program']) => number, creatureLooks?: CreatureLookRows): ReturnType<typeof parseShardfile> {
+  queryTerrain: Omit<BakedQueryTerrain, 'assets'>, navigation: Awaited<ReturnType<typeof nalatiNavigationProgram>>, kokpar: Pick<NalatiKokpar, 'program' | 'course' | 'compiled'>, ridingPrograms: Pick<NalatiRidingPrograms, 'approach' | 'breaking' | 'riding' | 'compiled'>, titanProgram: NalatiTitanPrograms, weather: Pick<NalatiWeather, 'rows' | 'channels'>, admission: NalatiAdmission, charge: Pick<NalatiCharge, 'script' | 'bytes' | 'compiled'>, programByteLength: (program: NalatiSpeciesProgramCosts['program']) => number, creatureLooks?: CreatureLookRows, guestProjection?: unknown): ReturnType<typeof parseShardfile> {
   const weatherDecision = weather.rows, weatherChannels = weather.channels.weather, herdChannels = weather.channels.herd;
   const pasture = titanProgram.wind;
   const files = [...navigation.files, ...queryTerrain.files].sort((a, b) => a.hash.localeCompare(b.hash));
@@ -110,7 +110,8 @@ export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: Na
   return parseShardfile({ ...base,
     navigation: navigation.navigation, terrain: queryTerrain.terrain, files: [...files, ...renderTiles.files, ...lookFiles].sort((a, b) => a.hash.localeCompare(b.hash)), critical: [...navigation.critical, ...queryTerrain.critical],
     library: [...base.library, ...creatureLooks?.library ?? []],
-    rows: { ...base.rows, species: [...base.rows.species, ...creatureLooks?.species ?? []], looks: [...base.rows.looks, ...creatureLooks?.looks ?? []] },
+    // ONE-FORMAT OF30: the balbal's declared row carries the night riders' guest projection (format fbbd778c)
+    rows: { ...base.rows, species: [...base.rows.species, ...withGuestProjection(creatureLooks?.species ?? [], guestProjection)], looks: [...base.rows.looks, ...creatureLooks?.looks ?? []] },
     creatures: { ...base.creatures, spawns: creatureLooks === undefined ? [] : nalatiDeclaredBootSpawns() },
     tiles: renderTiles.tiles, props: renderTiles.props,
     // DL17 (G1000, G872): the level is complete at control: the entered cell attaches every fine tile before control and
@@ -123,6 +124,13 @@ export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: Na
     clientChannels: compactChannels([...Object.values(SPECIES_POSES).flatMap(pose => parseClientChannels(pose.programs)),...kingPose.programs,...herdChannels.clientChannels,...weatherChannels.clientChannels,...Object.values(peoplePrograms).flat()]),
     modes: ecology.modes, quests: {...questContent.quests,achievements:NALATI_FEATS}, ledger: parseLedgerRules(NALATI_LEDGER), state: NALATI_STATE, items, audio: {...audioRows,sceneFile:'audio/scene.json'}, spawn: { x: 0, y: 0, z: 232, yaw: 0 },
     edge: { north: row('north'), east: row('east'), south: row('south'), west: row('west') } });
+}
+
+/** OF30: a fresh balbal row with the guest projection; every other row as it is. */
+function withGuestProjection<T extends { readonly kind: string }>(species: readonly T[], projection: unknown): T[] {
+  const out: T[] = [];
+  for (const entry of species) out.push(entry.kind === 'balbal' && projection !== undefined ? { ...entry, projection } : entry);
+  return out;
 }
 
 // oxlint-disable-next-line import/no-default-export -- Offline callers supply the same explicit admitted species costs.
