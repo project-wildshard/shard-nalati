@@ -154,7 +154,7 @@
       "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.67.0",
       "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.67.0",
       "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.67.0",
-      "@wildshard/kit>@wildshard/shard-format": "0.66.0"
+      "@wildshard/kit>@wildshard/shard-format": "0.67.0"
     }
   },
   "binDependencies": {
