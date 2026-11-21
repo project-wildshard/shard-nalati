@@ -41,15 +41,15 @@
     "check:bin-pins": "node kit/scripts/bin-pins.mjs"
   },
   "dependencies": {
-    "@wildshard/format": "npm:@wildshard/shard-format@0.64.0",
-    "@wildshard/sharddev": "npm:@wildshard/sdk@0.4.22",
+    "@wildshard/format": "npm:@wildshard/shard-format@0.66.0",
+    "@wildshard/sharddev": "npm:@wildshard/sdk@0.4.23",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0",
-    "@wildshard/cli": "0.4.22",
-    "@wildshard/kit": "0.4.22",
-    "@wildshard/dev": "0.4.22",
-    "@wildshard/build": "0.4.22"
+    "@wildshard/cli": "0.4.23",
+    "@wildshard/kit": "0.4.23",
+    "@wildshard/dev": "0.4.23",
+    "@wildshard/build": "0.4.23"
   },
   "devDependencies": {
     "@types/node": "24.3.1",
@@ -61,7 +61,7 @@
     "vite": "8.3.0",
     "vitest": "5.0.1",
     "npm-bin-deps": "2.1.0",
-    "@wildshard/engine": "0.1.64-next.7c0a0094"
+    "@wildshard/engine": "0.1.65-next.9c91846e"
   },
   "pnpm": {
     "ignoredOptionalDependencies": [
@@ -147,14 +147,14 @@
       "@typescript/typescript-win32-x64"
     ],
     "overrides": {
-      "@wildshard/engine": "0.1.64-next.7c0a0094",
+      "@wildshard/engine": "0.1.65-next.9c91846e",
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
-      "@wildshard/sdk>@wildshard/format": "npm:@wildshard/shard-format@0.64.0",
-      "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.64.0",
-      "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.64.0",
-      "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.64.0",
-      "@wildshard/kit>@wildshard/shard-format": "0.64.0"
+      "@wildshard/sdk>@wildshard/format": "npm:@wildshard/shard-format@0.66.0",
+      "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.66.0",
+      "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.66.0",
+      "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.66.0",
+      "@wildshard/kit>@wildshard/shard-format": "0.66.0"
     }
   },
   "binDependencies": {
