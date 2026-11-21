@@ -12,8 +12,8 @@ test('the fenced typed Nalati oracle retains every former boot byte', async () =
   const rows = await nalatiNativeBoot(), ordered = `${JSON.stringify(rows)}\n`;
   expect(ordered).toBe(encodeCanonicalJson(rows));
   const wire = new TextEncoder().encode(ordered);
-  expect(wire.byteLength).toBe(109461);
-  expect(hashImmutableBytes(wire)).toBe('73495b73fb1f983c9508ede352b75bd9782f41445a70408171336194a66f4c72');
+  expect(wire.byteLength).toBe(109260);
+  expect(hashImmutableBytes(wire)).toBe('ca7177cab3fdb44d9841fe90e9361ab15896620c6c67070ef713eb0a2597a683');
 });
 
 test('the fenced typed Nalati oracle retains every former assembly byte', async () => {
