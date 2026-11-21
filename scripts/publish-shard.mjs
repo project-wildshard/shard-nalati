@@ -8,21 +8,30 @@
 //   node scripts/publish-shard.mjs build [slug]      build, then name the product folder
 //   node scripts/publish-shard.mjs version <slug> <X.Y.Z|auto>
 //                                                    the version upload sends
-//   node scripts/publish-shard.mjs summary <slug> <channel> <upload log>
-//                                                    the run's summary and pin line
+//   node scripts/publish-shard.mjs preparation       refuse an empty or malformed
+//                                                    PREPARATION before anything runs
+//   node scripts/publish-shard.mjs summary <slug> <channel> <upload log> [shard file]
+//                                                    the run's summary; the upload id
+//                                                    of an accepted, cooking upload
+//   node scripts/publish-shard.mjs cook <slug> <channel> <hash> [upload id]
+//                                                    wait for the cook's verdict and
+//                                                    staging's revision (the cook job)
 //
 // gate reads GITHUB_REPOSITORY, GITHUB_SHA, GITHUB_REF and GH_TOKEN; with
 // PUBLISH_REHEARSE=true on a ref other than main it reports and goes on (a
 // rehearsal never uploads). Every refusal is one `::error::` line and exit 1.
 import { agentFetch as fetch } from './wildshard-agent-requests.mjs';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { appendFileSync, existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { setTimeout as sleep } from 'node:timers/promises';
 import { pathToFileURL } from 'node:url';
 
 const API = process.env.WILDSHARD_API_URL || 'https://api.wildshard.io';
 const GITHUB = process.env.GITHUB_API_URL || 'https://api.github.com';
 const SEMVER = /^(\d+)\.(\d+)\.(\d+)$/u;
+const PREPARATION = /^(?:v\d+\.\d+\.\d+|server-staging-[0-9a-f]{40})$/u;
 
 class Refusal extends Error {}
 
@@ -88,6 +97,33 @@ export function sdkPinProblem(pkg) {
   return undefined;
 }
 
+/**
+ * A6 (build-max 2026-11-20): why a `preparation` input cannot prepare. Empty fell back to the sdk's pinned engine
+ * client (v0.1.54 stalled phone WebKit 240 s on both runners), and a default here goes stale as v0.1.46 and v0.1.47
+ * did, so the dispatch names the client, and an empty one stops in seconds rather than after the build.
+ */
+export function preparationProblem(tag, newest) {
+  const value = (tag ?? '').trim();
+  if (!value) {
+    const example = newest ?? 'vX.Y.Z';
+    return `preparation is empty: name the engine release whose preparation client prepares this shard, e.g. gh workflow run publish.yml -f preparation=${example}${newest ? ` (${newest} is engine's newest release)` : ''}, or server-staging-<sha> for the build staging runs`;
+  }
+  return PREPARATION.test(value) ? undefined : `preparation must be vX.Y.Z or server-staging-<sha> (40 hex), not ${value}`;
+}
+
+/**
+ * A6: one look at a cooking upload. `status` is the API's upload state (undefined when the upload was live at commit
+ * and left no id), `row` the staging catalogue's row for the slug (what engine's pin-shard.ts checks).
+ */
+export function cookStep({ status, row, hash, uploadId }) {
+  if (status === 'refused' || status === 'stalled') {
+    return { refuse: `upload ${uploadId} ${status}${status === 'stalled' ? ' (it may still settle)' : ''}; read the verdict with: pnpm exec wildshard upload status ${uploadId}` };
+  }
+  if (status !== undefined && status !== 'live') return { wait: `upload ${status}` };
+  if (row?.hash === hash && Number.isSafeInteger(row.revision)) return { revision: row.revision };
+  return { wait: `staging names ${row ? `${row.slug} rev ${row.revision} ${String(row.hash).slice(0, 8)}` : 'no row for it'}, not ${hash.slice(0, 8)}` };
+}
+
 /** The product a dispatch names: the given slug, else the only one built. */
 export function pickProduct(slugs, wanted) {
   if (wanted) {
@@ -98,11 +134,15 @@ export function pickProduct(slugs, wanted) {
   return slugs[0];
 }
 
-/** The upload's committed line and grid lines, from its output. */
+/** The upload's committed line and grid lines, from its output; or the queued line of an accepted, cooking upload. */
 export function uploadLines(log) {
   const lines = log.split('\n').map((line) => line.trim());
   const at = lines.findIndex((line) => /^(committed|already stored): /u.test(line));
-  if (at < 0) return { committed: undefined, after: [] };
+  if (at < 0) {
+    const queued = lines.find((line) => /^queued: /u.test(line));
+    const id = queued && /\(upload (\S+)\)$/u.exec(queued)?.[1];
+    return { committed: undefined, after: [], ...(queued ? { queued, uploadId: id } : {}) };
+  }
   const committed = lines[at];
   const match = /^(?:committed|already stored): (\S+) (\S+) catalogue number (\d+) for (\S+) \(([0-9a-f]{64})\)/u.exec(committed);
   return {
@@ -179,14 +219,67 @@ async function version(slug, wanted) {
   output('version', nextVersion(wanted, row?.version ?? undefined, own));
 }
 
-function report(slug, channel, logFile) {
+function report(slug, channel, logFile, shardFile) {
   const parsed = uploadLines(readFileSync(logFile, 'utf8'));
-  if (!parsed.committed) throw new Refusal('the upload printed no committed line');
+  const hash = parsed.hash ?? (shardFile ? createHash('sha256').update(readFileSync(shardFile)).digest('hex') : undefined);
+  if (parsed.queued && parsed.uploadId && hash) {
+    // A6: the API accepted the upload and the cook runs on (Pine's take 45 to 52 minutes); this job ends green here and
+    // the cook job reports the verdict.
+    summary(`### ${slug} on ${channel}: accepted, cooking\n\n~~~text\n${parsed.queued}\n~~~\n\nThe cook job waits for the verdict; by hand: \`pnpm exec wildshard upload status ${parsed.uploadId}\``);
+    output('upload_id', parsed.uploadId);
+    output('hash', hash);
+    return;
+  }
+  if (!parsed.committed) throw new Refusal('the upload printed no committed or queued line');
   summary(`### ${slug} on ${channel}\n\n~~~text\n${[parsed.committed, ...parsed.after].join('\n')}\n~~~`);
   if (parsed.revision !== undefined) {
     output('revision', String(parsed.revision));
     output('hash', parsed.hash);
-    summary(`\nEngine pin bump (SHARD-PUBLISH-ACTIONS SP6), from any machine with gh:\n\n~~~sh\ngh workflow run shard-pin.yml -R project-wildshard/engine -f slug=${slug} -f revision=${parsed.revision} -f hash=${parsed.hash} -f channel=${channel}\n~~~`);
+  }
+}
+
+async function preparation() {
+  const tag = process.env.PREPARATION ?? '';
+  let newest;
+  if (!tag.trim()) {
+    try {
+      newest = (await getJson(`${GITHUB}/repos/project-wildshard/engine/releases/latest`, process.env.GH_TOKEN)).tag_name;
+    } catch {
+      newest = undefined;
+    }
+  }
+  const problem = preparationProblem(tag, newest);
+  if (problem) throw new Refusal(problem);
+  summary(`preparation: ${tag.trim()}`);
+}
+
+const minutes = (name, fallback) => Number(process.env[name] ?? fallback) * 60_000;
+
+async function cook(slug, channel, hash, uploadId) {
+  const started = Date.now();
+  const deadline = started + minutes('PUBLISH_COOK_MINUTES', 100);
+  const pause = minutes('PUBLISH_COOK_POLL_MINUTES', 1);
+  let seen;
+  for (;;) {
+    let step;
+    try {
+      const status = uploadId ? (await getJson(`${API}/api/shardfiles/uploads/${encodeURIComponent(uploadId)}/status`)).status : undefined;
+      const document = status === undefined || status === 'live' ? await getJson(`${API}/api/catalogue.json?channel=staging`) : undefined;
+      step = cookStep({ status, row: document?.shards?.find((row) => row.slug === slug), hash, uploadId });
+    } catch (error) {
+      step = { wait: `the API: ${error.message}` };
+    }
+    if (step.refuse) throw new Refusal(step.refuse);
+    const took = Math.round((Date.now() - started) / 60_000);
+    if (step.revision !== undefined) {
+      output('revision', String(step.revision));
+      summary(`### ${slug} cooked: rev ${step.revision} live on ${channel} (${hash.slice(0, 8)}), after ${took} min\n\nEngine pin bump (SHARD-PUBLISH-ACTIONS SP6), from any machine with gh:\n\n~~~sh\ngh workflow run shard-pin.yml -R project-wildshard/engine -f slug=${slug} -f revision=${step.revision} -f hash=${hash} -f channel=${channel}\n~~~`);
+      return;
+    }
+    if (step.wait !== seen) console.log(`cook: ${step.wait} (${took} min)`);
+    seen = step.wait;
+    if (Date.now() + pause > deadline) throw new Refusal(`no verdict after ${took} min (${step.wait}); read it later with: pnpm exec wildshard upload status ${uploadId ?? '<id>'}`);
+    await sleep(pause);
   }
 }
 
@@ -195,8 +288,10 @@ async function main(argv) {
   if (command === 'gate') return gate();
   if (command === 'build') return build(rest[0] || undefined);
   if (command === 'version' && rest.length === 2) return version(rest[0], rest[1]);
-  if (command === 'summary' && rest.length === 3) return report(rest[0], rest[1], rest[2]);
-  throw new Refusal('usage: publish-shard.mjs gate | build [slug] | version <slug> <X.Y.Z|auto> | summary <slug> <channel> <log>');
+  if (command === 'preparation') return preparation();
+  if (command === 'summary' && (rest.length === 3 || rest.length === 4)) return report(...rest);
+  if (command === 'cook' && (rest.length === 3 || rest.length === 4)) return cook(rest[0], rest[1], rest[2], rest[3] || undefined);
+  throw new Refusal('usage: publish-shard.mjs gate | preparation | build [slug] | version <slug> <X.Y.Z|auto> | summary <slug> <channel> <log> [shard file] | cook <slug> <channel> <hash> [upload id]');
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {

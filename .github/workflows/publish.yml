@@ -32,9 +32,9 @@ on:
         type: string
         default: ''
       preparation:
-        description: Engine release tag whose preparation client prepare serves, e.g. server-staging-<sha> (empty keeps the sdk's engine pin)
+        description: Engine release whose preparation client prepares, vX.Y.Z or server-staging-<sha> (required; empty refuses)
         type: string
-        default: ''
+        required: true
       rehearse:
         description: Run every gate, the build and prepare; never upload
         type: boolean
@@ -73,6 +73,13 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: package.json
+      # A6 (build-max 2026-11-20): an empty preparation fell back to the sdk's pinned engine client, and v0.1.54's
+      # stalled phone WebKit 240 s on both runners. The dispatch names the client; empty stops here, in seconds.
+      - name: Refuse an empty or malformed preparation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PREPARATION: ${{ inputs.preparation }}
+        run: node scripts/publish-shard.mjs preparation
       - name: Refuse anything but main's green tip
         env:
           GH_TOKEN: ${{ github.token }}
@@ -147,18 +154,14 @@ jobs:
       - name: Prepare in phone WebKit
         env:
           PRODUCT: ${{ steps.product.outputs.product }}
+          # Checked by the build job's first step (A6): vX.Y.Z or server-staging-<sha>, never empty.
           PREPARATION: ${{ inputs.preparation }}
           # `gh run rerun <id> --debug` turns on the recorder's full output (NET-LAG NL12).
           WILDSHARD_PREPARATION_DEBUG: ${{ runner.debug }}
         run: |
-          # A shard that overrides @wildshard/engine past the sdk's own pin
-          # (a format feature the pinned client refuses) names the engine
-          # release whose preparation client knows it (SHARD-SOURCE SS-MS1c).
-          if [ -n "$PREPARATION" ]; then
-            [[ "$PREPARATION" =~ ^(v[0-9]+\.[0-9]+\.[0-9]+|server-staging-[0-9a-f]{40})$ ]] || { echo "::error::preparation must be vX.Y.Z or server-staging-<sha>"; exit 1; }
-            export WILDSHARD_PREPARATION_CLIENT_URL="https://github.com/project-wildshard/engine/releases/download/$PREPARATION/preparation-client.tar.gz"
-            echo "prepare: preparation client $PREPARATION" | tee -a "$GITHUB_STEP_SUMMARY"
-          fi
+          # The dispatch names the engine release whose preparation client prepares (SHARD-SOURCE SS-MS1c, A6).
+          export WILDSHARD_PREPARATION_CLIENT_URL="https://github.com/project-wildshard/engine/releases/download/$PREPARATION/preparation-client.tar.gz"
+          echo "prepare: preparation client $PREPARATION" | tee -a "$GITHUB_STEP_SUMMARY"
           start=$(date +%s)
           pnpm exec wildshard prepare "$PRODUCT"
           echo "prepare: $(( $(date +%s) - start )) s on $RUNNER_OS/$RUNNER_ARCH" | tee -a "$GITHUB_STEP_SUMMARY"
@@ -180,8 +183,12 @@ jobs:
     needs: build
     if: ${{ !inputs.rehearse && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-24.04
-    # Leave room for setup, transfer and the CLI verdict timeout.
+    # Setup, transfer and the commit: the job ends at "accepted, cooking" (A6) and the cook job waits for the verdict.
     timeout-minutes: 30
+    outputs:
+      upload_id: ${{ steps.report.outputs.upload_id }}
+      revision: ${{ steps.report.outputs.revision }}
+      hash: ${{ steps.report.outputs.hash }}
     environment: ${{ inputs.channel }}
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
@@ -190,7 +197,6 @@ jobs:
       SLUG: ${{ needs.build.outputs.slug }}
       VERSION: ${{ needs.build.outputs.version }}
       CHANNEL: ${{ inputs.channel }}
-      NIGHTLY_APP_CLIENT_ID: ${{ secrets.NIGHTLY_APP_CLIENT_ID }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -246,10 +252,39 @@ jobs:
         run: |
           test -n "$WILDSHARD_API_KEY" || { echo '::error::no WILDSHARD_API_KEY org secret reaches this repo'; exit 1; }
           set -o pipefail
-          pnpm exec wildshard upload "tmp/publish/$SLUG.shardfile" --channel "$CHANNEL" --version "$VERSION" 2>&1 | tee tmp/publish/upload.log
-      - name: Committed revision and grid line
+          pnpm exec wildshard upload "tmp/publish/$SLUG.shardfile" --channel "$CHANNEL" --version "$VERSION" --no-wait 2>&1 | tee tmp/publish/upload.log
+      - name: Accepted upload, or committed revision and grid line
         id: report
-        run: node scripts/publish-shard.mjs summary "$SLUG" "$CHANNEL" tmp/publish/upload.log
+        run: node scripts/publish-shard.mjs summary "$SLUG" "$CHANNEL" tmp/publish/upload.log "tmp/publish/$SLUG.shardfile"
+
+  # A6 (build-max 2026-11-20): Pine's cook takes 45 to 52 minutes, past the upload job's limit, which cancelled runs
+  # whose cook succeeded. This job reads the API's upload status, needs no API key, and only then asks engine for the pin.
+  cook:
+    needs: [build, upload]
+    if: ${{ needs.upload.outputs.hash != '' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    environment: ${{ inputs.channel }}
+    env:
+      SLUG: ${{ needs.build.outputs.slug }}
+      CHANNEL: ${{ inputs.channel }}
+      HASH: ${{ needs.upload.outputs.hash }}
+      UPLOAD_ID: ${{ needs.upload.outputs.upload_id }}
+      NIGHTLY_APP_CLIENT_ID: ${{ secrets.NIGHTLY_APP_CLIENT_ID }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            /scripts/
+            /package.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+      - name: Wait for the cook's verdict and staging's revision
+        id: report
+        run: node scripts/publish-shard.mjs cook "$SLUG" "$CHANNEL" "$HASH" "$UPLOAD_ID"
       - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         id: nightly
         if: env.NIGHTLY_APP_CLIENT_ID != '' && steps.report.outputs.revision != ''
@@ -264,7 +299,6 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.nightly.outputs.token }}
           REVISION: ${{ steps.report.outputs.revision }}
-          HASH: ${{ steps.report.outputs.hash }}
         run: |
           gh api repos/project-wildshard/engine/dispatches -f event_type=shard-published \
             -F "client_payload[slug]=$SLUG" -F "client_payload[revision]=$REVISION" \
