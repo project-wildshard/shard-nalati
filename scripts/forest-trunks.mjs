@@ -8,11 +8,12 @@
 // own trees from a served engine build (headless Chromium, `?chunk=nalati-grasslands`) and rewrites those rows so the
 // room's capsules are the page's, one for one (engine `trunkCapsule`, f32 like every other solid row).
 //
-// `trees` and `tops` stay as they are: they are the population habitat (herds, weather shelter), and the format pins
-// that file at exactly 155 rows (shardfile src/format/populationEnvironment.ts, G1004), so moving them is a format row.
+// `trees` and `tops` are the population habitat (herds, weather shelter): one [x, z, r] and one top height per page tree,
+// from the same capture (SHARD-COMPAT SS10c; the format takes up to 4,096 since G1004's pin of 155 went).
 //
 //   node scripts/forest-trunks.mjs --url=http://127.0.0.1:4177          # write physicsRows.json
 //   node scripts/forest-trunks.mjs --url=http://127.0.0.1:4177 --check  # exit 1 when the rows drifted
+//   node scripts/forest-trunks.mjs --from-bake                          # habitat from the captured trunks, no browser
 //
 // Serve an engine build that pins this shard's current product (engine: `pnpm build:game`, then
 // `node scripts/preview-server.mjs --root . --port 4177`). Then refresh physicsRows.d.json.ts: run engine's
@@ -56,9 +57,25 @@ export function withTrees(rows, trees) {
   });
   return {
     ...rows,
+    ...habitat(trees),
     pieces: [{ ...forest, colliders: trees.length }, ...rows.pieces.slice(1)],
     solids: [...rows.solids.slice(0, FIRST_TRUNK), ...solids, ...rows.solids.slice(FIRST_TRUNK + forest.colliders)],
   };
+}
+
+/** SS10c: the population habitat, one [x, z, r] and one top (foot plus the page's height) per page tree. */
+export function habitat(trees) {
+  return { trees: trees.map(t => [t.x, t.z, t.r]), tops: trees.map(t => t.y + Math.max(1, t.height)) };
+}
+
+/** The page trees the bake's forest capsules were captured from (the inverse of `trunkCapsule`). */
+export function bakedTrees(rows) {
+  const forest = rows.pieces[0];
+  if (forest?.id !== 'forest') throw new Error('physicsRows: pieces[0] is not the forest');
+  return rows.solids.slice(FIRST_TRUNK, FIRST_TRUNK + forest.colliders).map(s => {
+    const height = 2 * (s.halfHeight + s.radius);
+    return { x: s.at[0], y: s.at[1] - height / 2, z: s.at[2], r: s.radius, height };
+  });
 }
 
 async function capture(base, timeout) {
@@ -76,10 +93,11 @@ async function capture(base, timeout) {
 }
 
 if (process.argv[1] !== undefined && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const base = flag('url', '');
-  if (base === '') { console.error('usage: node scripts/forest-trunks.mjs --url=<served engine build> [--check]'); process.exit(2); }
-  const trees = await capture(base, Number(flag('timeout', '240')) * 1000);
-  const rows = JSON.parse(readFileSync(FILE, 'utf8')), next = withTrees(rows, trees);
+  const base = flag('url', ''), fromBake = process.argv.includes('--from-bake');
+  if (base === '' && !fromBake) { console.error('usage: node scripts/forest-trunks.mjs --url=<served engine build> [--check] | --from-bake'); process.exit(2); }
+  const rows = JSON.parse(readFileSync(FILE, 'utf8'));
+  const trees = fromBake ? bakedTrees(rows) : await capture(base, Number(flag('timeout', '240')) * 1000);
+  const next = fromBake ? { ...rows, ...habitat(trees) } : withTrees(rows, trees);
   const same = JSON.stringify(next) === JSON.stringify(rows);
   console.error(`forest-trunks: page ${trees.length} trees, bake ${rows.pieces[0].colliders}${same ? ', same' : ', drifted'}`);
   if (process.argv.includes('--check')) process.exit(same ? 0 : 1);
