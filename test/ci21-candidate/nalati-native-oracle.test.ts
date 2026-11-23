@@ -12,8 +12,9 @@ test('the fenced typed Nalati oracle retains every former boot byte', async () =
   const rows = await nalatiNativeBoot(), ordered = `${JSON.stringify(rows)}\n`;
   expect(ordered).toBe(encodeCanonicalJson(rows));
   const wire = new TextEncoder().encode(ordered);
-  expect(wire.byteLength).toBe(109260);
-  expect(hashImmutableBytes(wire)).toBe('ca7177cab3fdb44d9841fe90e9361ab15896620c6c67070ef713eb0a2597a683');
+  // OF24y adds one telegraph channel and the matching compiled program identity to each riding phase.
+  expect(wire.byteLength).toBe(109341);
+  expect(hashImmutableBytes(wire)).toBe('b0a82388187b3ef6250d2d7c963be26566231d9af87f2cf9a0320ceac9e6ebe7');
 });
 
 test('the fenced typed Nalati oracle retains every former assembly byte', async () => {

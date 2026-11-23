@@ -946,7 +946,7 @@
       "sourcePath": "test/native-oracle.test.ts",
       "sourceBlob": "06d68e9e94ea5850fc9281cebbf7f0f3f5566222",
       "targetPath": "test/ci21-candidate/nalati-native-oracle.test.ts",
-      "targetBlob": "32fd736a03e011bf0b47da0346758ce3fb9a5e1a",
+      "targetBlob": "7debf7097b2b5390d6270c849c62106137ef65bf",
       "originalTests": [
         "the fenced typed Nalati oracle retains every former boot byte",
         "the fenced typed Nalati oracle retains every former assembly byte"
