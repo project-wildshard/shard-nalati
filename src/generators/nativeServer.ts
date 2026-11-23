@@ -78,8 +78,8 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
       { host: 'boss.arena', id: 'nalati.king', file: 'combat/room-entry.json', body: { kind: 'golden-king', variant: 'king' }, reward: 'goldenBow',
         entrance: [GREAT_KURGAN.x - Math.sin(GREAT_KURGAN_DOOR) * (GREAT_KURGAN.r + 3), 0, GREAT_KURGAN.z - Math.cos(GREAT_KURGAN_DOOR) * (GREAT_KURGAN.r + 3), GREAT_KURGAN_DOOR] },
       { host: 'riding.elites-ready' },
-      { host: 'held.arms', step: 'nalati.weapons', slots: 'held/slots.json', speed: 7.2, weather: { file: 'world/forest-weather.json', path: ['storm', 'world'] },
-        input: { attack: 'nalati.weapon.attack', swap: 'nalati.weapon.swap', aim: 'nalati.weapon.aim', pitch: 'nalati.weapon.pitch' } },
+      // OF38d4b: no held.arms row; the engine stands the arsenal from held/slots.json (nalati.arsenal: step nalati.weapons,
+      // inputs nalati.weapon.*), the sprint speed and the storm's wind rows, as this row once wrote them
       { host: 'encounter.patrol', step: 'nalati.patrol', rows: 'combat/timed-encounters.json', actors: 'actors/sheep.json', looks: 'actors/species-looks.json', herds: rows.herds, external: { value: rows.external } },
       { host: 'boss.open-arena', id: 'nalati.titan', fight: 'combat/titan-fight.json', geometry: 'combat/titan-geometry.json', view: 'titan-view', groups: rows.groups,
         input: { use: 'nalati.titan.use', skip: 'nalati.titan.skip' }, target: 'encounter:storm-titan:heart', grants: [{ item: 'naizagai', count: 1 }, { item: 'sky-marked-saddle', count: 1 }] }] };
