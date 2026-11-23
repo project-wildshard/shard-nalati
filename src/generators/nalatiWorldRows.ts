@@ -24,7 +24,7 @@ export function bakeNalatiWorldRows(nativeTerrain: Uint8Array, staticTiles: read
 export async function bakeNalatiWorldRowsLod(nativeTerrain: Uint8Array, staticTiles: readonly NalatiStaticTile[], family: string, policy: { targetRatio: number; maxErrorMetres: number }, catalogue?: Pick<StaticMaterialCatalogue, 'snapshot' | 'dependencies'>, phase: 'i3' | 'exact' = 'i3'): Promise<BakedWorldRows & { nativeGround: NativeGround }> {
   // iPhone downloads I3: the L0 tiles (the painter mesh, read by the owned-geometry intake) ship in phone geometry; a tile
   // by an entryway keeps its exact bytes if rounding would lift it into the entry's clearance (compactClearGlb)
-  const entryways = emptyShardfile({ slug: 'nalati-grasslands', name: 'Nalati Grasslands', author: 'Wildshard', revision: 1, seed: 1 }).entryways, tiles: NalatiGroundTile[] = [];
+  const entryways = emptyShardfile({ slug: 'nalati-grasslands', name: 'Nalati Grasslands', author: 'Wildshard', saveRevision: 1, seed: 1 }).entryways, tiles: NalatiGroundTile[] = [];
   for (const entry of await bakeNalatiGroundLod(nalatiGroundSource(nativeTerrain), policy, staticTiles)) {
     const bytes = entry.tile.lod === 0 && phase === 'i3' ? await compactClearGlb(entry.bytes, entryways) : entry.bytes;
     tiles.push(bytes === entry.bytes ? entry : { ...entry, bytes, cost: parseGlb(bytes) });

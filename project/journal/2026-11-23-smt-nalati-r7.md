@@ -7,3 +7,7 @@ against that same engine commit.
 
 Keep the curated images and update their stamp for the r7 source.
 The publish build must leave the tracked source checkout clean.
+
+Use saveRevision for both authored identities on the format 0.71
+reader. Keep the value 1 and stamp the unchanged curated art for
+this source so its prepared product needs no tracked edits.

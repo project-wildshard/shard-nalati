@@ -44,7 +44,7 @@ const row = (side: keyof typeof NALATI_EDGES): { heights: number[]; colours: [nu
 });
 const {scene,...audioRows}=nalatiAudioRows().audio;
 export const AUDIO_SCENE: ReturnType<typeof nalatiAudioRows>['audio']['scene'] =scene;
-const base = emptyShardfile({ slug: 'nalati-grasslands', name: 'Nalati Grasslands', author: 'Wildshard', revision: 1, seed: 0x4a1a });
+const base = emptyShardfile({ slug: 'nalati-grasslands', name: 'Nalati Grasslands', author: 'Wildshard', saveRevision: 1, seed: 0x4a1a });
 // G384: the creatures' navigation is the platform's WSNM row over the original bytes (generators/navigation.ts), and the
 // ground's native lattice is query-only terrain (generators/terrain.ts at build time: no render tiles; the bound runtime keeps rendering
 // and collision), both charged to the server's memory and the sim budget at their actual decoded cost.
