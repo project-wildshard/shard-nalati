@@ -118,7 +118,8 @@ export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: Na
     // DL17 (G1000, G872): the level is complete at control: the entered cell attaches every fine tile before control and
     // none retires in play
     ring: 'cell',
-    serverBudget: { ...base.serverBudget, memory: base.serverBudget.memory + resident + programMemory },
+    // ONE-FORMAT OF31h3: the awake cost, engine's measured SC8 table (v0.1.19): 2.741 ms per tick with one player
+    serverBudget: { ...base.serverBudget, awakeMicros: 2741, memory: base.serverBudget.memory + resident + programMemory },
     budgets: { ...base.budgets, tier: 'large', library: { ...base.budgets.library, resident: base.budgets.library.resident + viewMemory + lookResident, compressed: base.budgets.library.compressed + lookWire }, sim: { resident: files.reduce((sum, file) => sum + file.decoded + file.gpu, 0) + programMemory, compressed: files.reduce((sum, file) => sum + file.compressed, 0) + programBytes + held.compiledBytes + ridingPrograms.compiled.bytes+titanProgram.compiled.pasture.bytes+admission.compiled.bytes } },
     look: { ...base.look, materials: { ...base.look.materials, ...Object.fromEntries(Object.entries({ ...lookGraphs, ...presentationGraphs, 'nalati-sky-dome': skyDome }).map(([id, graph]) => [id, { family: 'graph' as const, graph }])) } },
     accent: 'ember', runtime: { kind: 'client-plan', cost: NALATI_RUNTIME_COST, binds: ['quests', 'ledger', 'state', 'items', 'spawns', 'modes', 'clientChannels', 'terrain', 'props'], spawns: NALATI_RUNTIME_SPAWNS },
