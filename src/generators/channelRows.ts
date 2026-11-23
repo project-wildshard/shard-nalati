@@ -36,5 +36,7 @@ export function compactChannels(input: unknown): ClientChannelProgram[] {
     for (const row of program.channels) row.value = ref(row.value);
     for (const row of program.locals ?? []) row.next = ref(row.next);
   }
+  // ONE-FORMAT OF30: an empty restoreOnly is the format's default; leaving it out keeps the manifest under its JSON-node cap.
+  for (const program of programs) if (program.numeric?.restoreOnly.length === 0) Reflect.deleteProperty(program.numeric, 'restoreOnly');
   return programs;
 }
