@@ -27,7 +27,8 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Match ci.yml's Ring 2 job envelope for setup, build and play.
+    timeout-minutes: 35
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
