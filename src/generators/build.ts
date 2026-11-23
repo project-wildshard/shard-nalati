@@ -27,7 +27,7 @@ export async function build(ctx: ProjectGenerationContext): Promise<ReturnType<t
   }, JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(metadata)) as unknown, await nalatiQueryTerrainProgram(ctx), await nalatiNavigationProgram(ctx), (await nalatiKokparProgram(ctx)).rows, (await nalatiRidingProgram(ctx)).programs, (await nalatiTitanProgram(ctx)).programs, await nalatiWeatherProgram(ctx), (await nalatiAdmissionProgram(ctx)).program, (await nalatiChargeProgram(ctx)).rows, program => {
     if(program.bytes!=='')throw new Error('Nalati shard file requires file-owned program bytes');
     return 0;
-  }, await declaredCreatureLooks(ctx), guestProjectionOf(species.rows.presentation));
+  }, await declaredCreatureLooks(ctx), guestProjectionOf(species.rows.presentation), bytes => ctx.asset(bytes));
 }
 
 /** ONE-FORMAT OF30: the balbal look-book row's projection, the night riders' guest view programme, for its declared row. */

@@ -7,14 +7,15 @@ import type { CreatureRig } from '@wildshard/sdk/scene/creature';
 import type { VariantDef } from '@wildshard/kit/bake/species';
 import { buildBalbal } from './balbalBody';
 
-export async function eagleRig(bytes: Uint8Array): Promise<{ rig: CreatureRig; atlas: Uint8Array }> {
+/** An original rigged hull (the eagle, two-sided; the Golden King) with its one atlas, which the skin binding owns. */
+export async function originalRig(bytes: Uint8Array, doubleSided: boolean): Promise<{ rig: CreatureRig; atlas: Uint8Array }> {
   const document = await readRigDocument(bytes), root = document.getRoot();
   const [skin] = root.listSkins(), [mesh] = root.listMeshes();
   const primitive = mesh?.listPrimitives()[0], material = primitive?.getMaterial();
   const atlas = material?.getBaseColorTexture()?.getImage();
   if (skin === undefined || root.listSkins().length !== 1 || root.listMeshes().length !== 1
-      || mesh?.listPrimitives().length !== 1 || material?.getDoubleSided() !== true
-      || atlas === null || atlas === undefined) throw new Error('Expected Nalati’s original double-sided eagle with one atlas');
+      || mesh?.listPrimitives().length !== 1 || material === null || material === undefined || (doubleSided && !material.getDoubleSided())
+      || atlas === null || atlas === undefined) throw new Error('Expected one of Nalati’s original rigs with one atlas');
   const bones: SkinnedBone[] = skin.listJoints().map(joint => ({
     name: joint.getName(), parent: joint.getParentNode()?.getName() ?? null, pos: joint.getWorldTranslation(),
   }));

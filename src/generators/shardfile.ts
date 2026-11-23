@@ -11,6 +11,7 @@ import { NALATI_ECOLOGY as ecology } from './ecology.mjs';
 import { peoplePrograms } from './peopleMotion';
 import { emptyShardfile } from '@wildshard/sdk/author';
 import { parseShardfile } from '@wildshard/format/shardSchema';
+import { lowerMaterialGraphs } from '@wildshard/sdk/internal/materialGraphFiles';
 import type { BakedQueryTerrain } from '@wildshard/sdk/bake/terrain';
 import { nalatiAudioRows } from './audioRows';
 import { NALATI_EDGES } from './edges';
@@ -78,7 +79,7 @@ function renderRows(value: unknown): { files: readonly unknown[]; tiles: readonl
 /** Compose the complete header with caller-owned byte lengths; retain module deduplication and page charges.
  * Named source programs carry empty inline bytes; historical fixture transport is measured by its fixture owner. */
 export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: NalatiHeldProgramCosts, render: unknown,
-  queryTerrain: Omit<BakedQueryTerrain, 'assets'>, navigation: Awaited<ReturnType<typeof nalatiNavigationProgram>>, kokpar: Pick<NalatiKokpar, 'program' | 'course' | 'compiled'>, ridingPrograms: Pick<NalatiRidingPrograms, 'approach' | 'breaking' | 'riding' | 'compiled'>, titanProgram: NalatiTitanPrograms, weather: Pick<NalatiWeather, 'rows' | 'channels'>, admission: NalatiAdmission, charge: Pick<NalatiCharge, 'script' | 'bytes' | 'compiled'>, programByteLength: (program: NalatiSpeciesProgramCosts['program']) => number, creatureLooks?: CreatureLookRows, guestProjection?: unknown): ReturnType<typeof parseShardfile> {
+  queryTerrain: Omit<BakedQueryTerrain, 'assets'>, navigation: Awaited<ReturnType<typeof nalatiNavigationProgram>>, kokpar: Pick<NalatiKokpar, 'program' | 'course' | 'compiled'>, ridingPrograms: Pick<NalatiRidingPrograms, 'approach' | 'breaking' | 'riding' | 'compiled'>, titanProgram: NalatiTitanPrograms, weather: Pick<NalatiWeather, 'rows' | 'channels'>, admission: NalatiAdmission, charge: Pick<NalatiCharge, 'script' | 'bytes' | 'compiled'>, programByteLength: (program: NalatiSpeciesProgramCosts['program']) => number, creatureLooks?: CreatureLookRows, guestProjection?: unknown, asset?: (bytes: Uint8Array) => string): ReturnType<typeof parseShardfile> {
   const weatherDecision = weather.rows, weatherChannels = weather.channels.weather, herdChannels = weather.channels.herd;
   const pasture = titanProgram.wind;
   const files = [...navigation.files, ...queryTerrain.files].sort((a, b) => a.hash.localeCompare(b.hash));
@@ -107,7 +108,7 @@ export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: Na
   const lookFiles = creatureLooks?.files ?? [];
   const lookResident = lookFiles.reduce((sum, file) => sum + file.decoded + file.gpu, 0);
   const lookWire = lookFiles.reduce((sum, file) => sum + file.compressed, 0);
-  return parseShardfile({ ...base,
+  return parseLowered({ ...base,
     navigation: navigation.navigation, terrain: queryTerrain.terrain, files: [...files, ...renderTiles.files, ...lookFiles].sort((a, b) => a.hash.localeCompare(b.hash)), critical: [...navigation.critical, ...queryTerrain.critical],
     library: [...base.library, ...creatureLooks?.library ?? []],
     // ONE-FORMAT OF30: the balbal's declared row carries the night riders' guest projection (format fbbd778c)
@@ -123,7 +124,16 @@ export function nalatiShardfileRows(species: NalatiSpeciesProgramCosts, held: Na
     accent: 'ember', runtime: { kind: 'client-plan', cost: NALATI_RUNTIME_COST, binds: ['quests', 'ledger', 'state', 'items', 'spawns', 'modes', 'clientChannels', 'terrain', 'props'], spawns: NALATI_RUNTIME_SPAWNS },
     clientChannels: compactChannels([...Object.values(SPECIES_POSES).flatMap(pose => parseClientChannels(pose.programs)),...kingPose.programs,...herdChannels.clientChannels,...weatherChannels.clientChannels,...Object.values(peoplePrograms).flat()]),
     modes: ecology.modes, quests: {...questContent.quests,achievements:NALATI_FEATS}, ledger: parseLedgerRules(NALATI_LEDGER), state: NALATI_STATE, items, audio: {...audioRows,sceneFile:'audio/scene.json'}, spawn: { x: 0, y: 0, z: 232, yaw: 0 },
-    edge: { north: row('north'), east: row('east'), south: row('south'), west: row('west') } });
+    edge: { north: row('north'), east: row('east'), south: row('south'), west: row('west') } }, asset);
+}
+
+/** ONE-FORMAT OF30: the declaration with its material graphs lowered to graph files first (the build's own D74 step, which
+ *  runs after this parse), so the declared creature skins fit the 100,000 JSON nodes; with no `asset` it parses as it is. */
+function parseLowered(declaration: Parameters<typeof parseShardfile>[0], asset: ((bytes: Uint8Array) => string) | undefined): ReturnType<typeof parseShardfile> {
+  if (asset === undefined) return parseShardfile(declaration);
+  const lowered = lowerMaterialGraphs(declaration);
+  for (const [hash, bytes] of lowered.assets) if (asset(bytes) !== hash) throw new Error('Material graph file identity differs');
+  return parseShardfile(lowered.declaration);
 }
 
 /** OF30: a fresh balbal row with the guest projection; every other row as it is. */

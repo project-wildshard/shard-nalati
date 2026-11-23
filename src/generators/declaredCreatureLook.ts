@@ -11,7 +11,7 @@ import { speciesProgramToRows } from '@wildshard/sdk/species/toRows';
 import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import type { Shardfile } from '@wildshard/format/shardSchema';
 import { parseSkinFile, skinFileDependencies } from '@wildshard/format/skinAssets';
-import { balbalRig, eagleRig } from './customCreatureRig';
+import { balbalRig, originalRig } from './customCreatureRig';
 import { bodySpecies } from './speciesRows';
 import type { BodyRows } from './bodyKey';
 import bakedBodies from '../data/bodies.json' with { type: 'json' };
@@ -23,10 +23,18 @@ import { nalatiRigFile } from './rigSources';
 
 type Asset = Shardfile['files'][number];
 type Tier = 'phone' | 'desktop';
-type Quadruped = 'wolf' | 'horse';
-type Custom = 'eagle' | 'balbal';
+/** ONE-FORMAT OF30: every creature the rigged-hull book drew is a declared skin: the quadruped hulls fitted to the kit
+ *  skeleton, the eagle and the Golden King on their own rigs, the balbal built. */
+type Quadruped = 'wolf' | 'horse' | 'sheepdog' | 'leopard' | 'kokbori' | 'argymaq' | 'ghost-rider';
+type Custom = 'eagle' | 'balbal' | 'golden-king';
 type Kind = Quadruped | Custom;
-const isQuadruped = (kind: Kind): kind is Quadruped => kind === 'wolf' || kind === 'horse';
+const QUADRUPEDS: ReadonlySet<string> = new Set(['wolf', 'horse', 'sheepdog', 'leopard', 'kokbori', 'argymaq', 'ghost-rider']);
+const isQuadruped = (kind: Kind): kind is Quadruped => QUADRUPEDS.has(kind);
+/** The booted roster's two kinds take their rows from the boot recipes; every other kind from its painted look. */
+const isBooted = (kind: Kind): kind is 'wolf' | 'horse' => kind === 'wolf' || kind === 'horse';
+const SIZES: Readonly<Record<Quadruped, 'medium' | 'large'>> = { wolf: 'medium', horse: 'large', sheepdog: 'medium', leopard: 'medium', kokbori: 'medium', argymaq: 'large', 'ghost-rider': 'large' };
+/** A custom kind drawn on its own original rig (the rest are built). */
+const ownRig = (kind: Kind): boolean => kind === 'eagle' || kind === 'golden-king';
 interface CreatureLookRows {
   files: Asset[];
   library: string[];
@@ -43,11 +51,14 @@ function sourceBytes(inputs: ReadonlyMap<string, Uint8Array>, file: string): Uin
 function creatureSpecies(kind: Kind) {
   const authored = authoredLooks.find(row => row.metadata.kind === kind);
   if (authored === undefined) throw new Error(`Missing painted creature look: ${kind}`);
-  if (!isQuadruped(kind)) {
+  if (!isBooted(kind)) {
     const parsed = authorFormatRows('speciesBookRows.SpeciesLookBookSchema', { slug: 'nalati-grasslands', body: {}, rows: [authored] }).rows[0];
-    const body = (bakedBodies as unknown as BodyRows).bodies.find(row => row.key.startsWith(`${kind}:`));
+    // the eagle and balbal bodies are named by kind; every other painted kind by its first variant's packed body
+    const bodies = (bakedBodies as unknown as BodyRows).bodies, first = Object.values(authored.variants)[0]?.body;
+    const body = kind === 'eagle' || kind === 'balbal' ? bodies.find(row => row.key.startsWith(`${kind}:`)) : bodies.find(row => row.key === first);
     if (parsed === undefined || body === undefined) throw new Error(`Missing authored body: ${kind}`);
-    const speciesInput = { ...parsed.metadata, id: `nalati.${kind}` };
+    // a skin names its skeleton by the species id: lower case with no hyphen (`nalati.ghostrider`, `nalati.goldenking`)
+    const speciesInput = { ...parsed.metadata, id: `nalati.${kind.replaceAll('-', '')}` };
     const original = { look: authored.id, dims: body.dims };
     const { species: [species] } = speciesProgramToRows({ species: [speciesInput], strikes: [] }, new Map([[kind, original]]));
     if (species === undefined) throw new Error(`Missing creature species row: ${kind}`);
@@ -66,7 +77,7 @@ function creatureSpecies(kind: Kind) {
 const hulls: Readonly<Record<string, string>> = CREATURE_HULLS;
 type Recipe = ReturnType<typeof creatureSpecies>;
 type BakedTier = Pick<HullCreature, 'skin' | 'species' | 'look' | 'files'>;
-function hullOf(kind: Quadruped, variant: string): string {
+function hullOf(kind: Quadruped | 'golden-king', variant: string): string {
   const hull = hulls[`${kind}:${variant}`];
   if (hull === undefined) throw new Error(`Missing creature hull: ${kind}:${variant}`);
   return hull;
@@ -104,7 +115,7 @@ async function bakeQuadrupedTier(kind: Quadruped, tier: Tier, ctx: Pick<ProjectG
     variants[id] = { ...known, ...(source === undefined ? {} : { coat: await colour(sourceBytes(inputs, source)) }) };
   }
   if (first === undefined) throw new Error(`Missing declared variants: ${kind}`);
-  return hullCreature(species.id, first.rig, { species, size: kind === 'horse' ? 'large' : 'medium', skeleton: 'quadruped',
+  return hullCreature(species.id, first.rig, { species, size: SIZES[kind], skeleton: 'quadruped',
     look: { maps: first.maps, surface: { family: 'painterly', rim: material.rim, bands: material.bands }, variants } });
 }
 
@@ -112,12 +123,13 @@ const encode = (value: unknown): Uint8Array => new TextEncoder().encode(JSON.str
 
 async function bakeCustomTier(kind: Custom, tier: Tier, ctx: Pick<ProjectGenerationContext, 'readImagePixels'>,
   inputs: ReadonlyMap<string, Uint8Array>, { species, material }: Recipe): Promise<BakedTier> {
-  const eagle = kind === 'eagle' ? await eagleRig(sourceBytes(inputs, nalatiRigFile(kind, tier))) : undefined;
-  const colour = eagle === undefined ? undefined : await bakeRawColourPixels(await ctx.readImagePixels(eagle.atlas));
+  const own = ownRig(kind) ? await originalRig(sourceBytes(inputs, nalatiRigFile(kind === 'golden-king' ? hullOf(kind, 'king') : kind, tier)), kind === 'eagle') : undefined;
+  const colour = own === undefined ? undefined : await bakeRawColourPixels(await ctx.readImagePixels(own.atlas));
+  // the hull book drew only the eagle two-sided
   const variants = bodySpecies(kind).variants.map(variant => {
-    const rig = eagle?.rig ?? balbalRig(variant);
+    const rig = own?.rig ?? balbalRig(variant);
     const surface = { family: 'painterly' as const, rim: material.rim, bands: material.bands, vertexColours: colour === undefined,
-      ...(colour === undefined ? {} : { map: hashImmutableBytes(colour), doubleSided: true }) };
+      ...(colour === undefined ? {} : { map: hashImmutableBytes(colour), doubleSided: kind === 'eagle' }) };
     const skin = creatureSkin(rig, { id: species.id, family: 'pbr', binding: { loops: [], material: surface } });
     return { id: variant.id, rig, skin: encode(skin) };
   });
@@ -180,7 +192,7 @@ async function declaredLook(kind: Kind, ctx: Pick<ProjectGenerationContext, 'cac
   const recipe = creatureSpecies(kind), tiers: readonly Tier[] = ['phone', 'desktop'];
   const inputs: string[] = [];
   for (const tier of tiers) {
-    if (kind === 'eagle') inputs.push(nalatiRigFile(kind, tier));
+    if (ownRig(kind)) inputs.push(nalatiRigFile(kind === 'golden-king' ? hullOf(kind, 'king') : kind, tier));
     if (!isQuadruped(kind)) continue;
     for (const { id } of recipe.species.variants) {
       const hull = hullOf(kind, id);
@@ -205,6 +217,7 @@ export async function declaredCreatureLooks(ctx: Pick<ProjectGenerationContext, 
   // page's old `combat.targets` aim list said it for every target
   for (const row of [...wolf.species, ...horse.species]) row.attackable = { unless: [{ field: 'hidden', equals: 1 }, { field: 'owned', equals: 1 }] };
   const looks = [wolf, horse, await declaredLook('eagle', ctx), await declaredLook('balbal', ctx)];
+  for (const kind of ['sheepdog', 'leopard', 'kokbori', 'argymaq', 'ghost-rider', 'golden-king'] as const) looks.push(await declaredLook(kind, ctx));
   const files = new Map(looks.flatMap(row => row.files).map(file => [file.hash, file]));
   return { files: [...files.values()], library: [...new Set(looks.flatMap(row => row.library))],
     looks: looks.flatMap(row => row.looks), species: looks.flatMap(row => row.species) };
