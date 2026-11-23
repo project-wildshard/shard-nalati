@@ -103,6 +103,9 @@ v_beaten=f(Field.zzVBeaten);
 v_roll=f(Field.zzVRoll);
 v_shake=f(Field.zzVShake);
 }
+// ONE-FORMAT OF24y (J491): the way to lean against what the horse is about to do, from the break's own state. The
+// telegraphed buck or rear pushes toward s_dir; a rear's drop pushes back the other way; a spin pulls toward its force.
+@inline function cue():f64{const lead=s_next-s_roundT;if(lead>0&&lead<Params.telegraph&&s_kind!=1)return s_dir;if(s_rearAt>0&&s_rearAt-s_roundT<.12)return -s_rearDir;return s_spinT>0?Math.sign(s_spinF):0;}
 @inline function publish():void{
 Do.release();Do.channel(Channel.zzNext,nextSignal);Do.channel(Channel.zzCapture,captureKind);Do.channel(Channel.zzUpgrade,upgradeResult);Do.channel(Channel.zzPresent,presentView);Do.channel(Channel.zzAccept,acceptedResult);
 Do.channel(Channel.zzPhase,phase);
@@ -146,6 +149,7 @@ Do.channel(Channel.zzVEarOffset,v_earOffset);
 Do.channel(Channel.zzVRound,v_round);
 Do.channel(Channel.zzVBalance,v_balance);
 Do.channel(Channel.zzVDanger,v_danger);
+Do.channel(Channel.zzVCue,phase==1?cue():0);
 Do.channel(Channel.zzVOffer,v_offer);
 Do.channel(Channel.zzVRadius,v_radius);
 Do.channel(Channel.zzVBeaten,v_beaten);
