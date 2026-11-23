@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest';
 // oxlint-disable-next-line import/no-nodejs-modules -- Compile the same committed behaviour inputs as the author program.
 import { readFileSync, readdirSync } from 'node:fs';
-import courseSource from '@wildshard/sharddev/commons/scripts/course.as?raw';
-import { compileDecisionScripts } from '@wildshard/sharddev/buildDecisionScripts';
+import courseSource from '@wildshard/sdk/commons/scripts/course.as?raw';
+import { compileDecisionScripts } from '@wildshard/sdk/buildDecisionScripts';
 import { nalatiKokparRows } from '../src/generators/kokparRows';
 const root = 'src/behaviour';
 const authored = new Map(readdirSync(root).filter(name => name.endsWith('.as')).map(name => [`behaviour/${name}`, readFileSync(`${root}/${name}`, 'utf8')]));

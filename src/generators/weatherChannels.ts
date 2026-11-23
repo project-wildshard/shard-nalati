@@ -1,5 +1,5 @@
-import {ClientChannels,clientChannelLimits} from '@wildshard/sharddev/clientChannels';
-import {parseClientChannels,type ClientChannelProgram} from '@wildshard/sharddev/rows';
+import {ClientChannels,clientChannelLimits} from '@wildshard/sdk/clientChannels';
+import {parseClientChannels,type ClientChannelProgram} from '@wildshard/sdk/rows';
 
 const CLIENT_CHANNEL_LIMITS = clientChannelLimits();
 

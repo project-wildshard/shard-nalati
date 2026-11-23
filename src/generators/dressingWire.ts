@@ -1,4 +1,4 @@
-import { encodeBuildBytes } from '@wildshard/sharddev/bake/byteCodec';
+import { encodeBuildBytes } from '@wildshard/sdk/bake/byteCodec';
 import { bakeDressing } from './dressingGeometryRows';
 import { encodeNalatiPart } from './placeWire';
 

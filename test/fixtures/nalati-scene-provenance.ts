@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
+import { nameBlob, type NamedBlob } from '@wildshard/sdk/blobs';
 import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
 
 const scalar = v.number();

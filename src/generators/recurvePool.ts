@@ -7,8 +7,8 @@ import ARM_STYLE from '../data/armsStyle.json' with {type:'json'};
 // stave (`styles`, the first the base), swapped in by the host's repaint.
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { simplifyPaintedGeometry } from '@wildshard/sharddev/bake/simplifier';
-import { staticGlb } from '@wildshard/sharddev/bake/glb';
+import { simplifyPaintedGeometry } from '@wildshard/sdk/bake/simplifier';
+import { staticGlb } from '@wildshard/sdk/bake/glb';
 import { bakeGloveFist as gloveFist, bakeRiderArm as riderArm } from '@wildshard/kit/bake/riderArms';
 import items from '../data/items.json' with { type: 'json' };
 import { parseBowProfile, type parseHeldBowFile } from '@wildshard/kit/weapons/bowProfile';

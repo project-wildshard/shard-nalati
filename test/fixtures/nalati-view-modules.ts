@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 import { nalatiNativeProgram } from './nalati-native-program';
-import type { NamedBlob } from '@wildshard/sharddev/blobs';
+import type { NamedBlob } from '@wildshard/sdk/blobs';
 import { SCRIPT_V2_REVISIONS } from '@wildshard/format/scriptAdmissionV2';
 import { NALATI_VIEW_MODULES, nalatiViewModules } from '../../src/generators/viewPrograms';
 

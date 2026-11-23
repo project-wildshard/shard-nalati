@@ -6,7 +6,7 @@ import {dirname,join} from 'node:path';
 // oxlint-disable-next-line import/no-nodejs-modules -- Keep scratch in the repository under the disk rule.
 import process from 'node:process';
 import {NALATI_PASTURE as pasture,NALATI_TITAN,NALATI_TITAN_PROGRAMS as programs} from '../fixtures/nalati-titan';
-import {prepareProjectOutput} from '@wildshard/sharddev/projectOutput';
+import {prepareProjectOutput} from '@wildshard/sdk/projectOutput';
 import {hashImmutableBytes} from '@wildshard/engine/host/immutable';
 import {Scope} from '@wildshard/engine/app/scope';
 import {ReturnProgram} from '@wildshard/engine/game/population/returnProgram';

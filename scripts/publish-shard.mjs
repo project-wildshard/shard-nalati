@@ -86,7 +86,7 @@ export const SDK_FLOOR = '0.2.13';
 /** A refusal when package.json pins an exact sdk below SDK_FLOOR; a range or a missing pin passes. */
 export function sdkPinProblem(pkg) {
   const deps = { ...pkg.devDependencies, ...pkg.dependencies };
-  for (const name of ['@wildshard/sharddev', '@wildshard/sdk']) {
+  for (const name of ['@wildshard/sdk', '@wildshard/sdk']) {
     const spec = deps[name];
     if (typeof spec !== 'string') continue;
     const version = /^(?:npm:@wildshard\/sdk@)?(\d+\.\d+\.\d+)$/u.exec(spec)?.[1];

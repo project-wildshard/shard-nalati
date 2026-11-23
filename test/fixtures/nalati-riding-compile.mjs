@@ -1,7 +1,7 @@
 // GR6: compile Nalati's mounts / taming / riding program in plain Node (a happy-dom test environment cannot feed the
 // compiler) through the shard's own builder, and print { programs, wasm, witness } (base64) as one JSON line.
 import { readFileSync } from 'node:fs';
-import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
+import { compileReturnProjectionV2 } from '@wildshard/sdk/returnProjectionV2';
 import { nalatiRidingRows } from '../../src/generators/ridingRows.mjs';
 import { NALATI_ECOLOGY as ecology } from '../../src/generators/ecology.mjs';
 

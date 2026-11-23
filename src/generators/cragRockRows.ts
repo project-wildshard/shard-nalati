@@ -1,5 +1,5 @@
-import type { ColliderDesc } from '@wildshard/sharddev/bake/placement';
-import { encodeBuildBytes, decodeBuildDeflate } from '@wildshard/sharddev/bake/byteCodec';
+import type { ColliderDesc } from '@wildshard/sdk/bake/placement';
+import { encodeBuildBytes, decodeBuildDeflate } from '@wildshard/sdk/bake/byteCodec';
 import { bakeCragRockOnTerrain, type CragRockBake } from './places';
 import { join, writeGeometry, type PlaceGeometryRow } from './geometryWriter';
 

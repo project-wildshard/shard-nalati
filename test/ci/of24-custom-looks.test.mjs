@@ -7,14 +7,14 @@ import { join } from 'node:path';
 import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
 import { outputDescriptor } from '@wildshard/engine/game/shardfile/outputDescriptor';
 import { entryFileSteps } from '@wildshard/format/tierSelection';
-import { readRigDocument } from '@wildshard/sharddev/bake/rig';
+import { readRigDocument } from '@wildshard/sdk/bake/rig';
 import { bodySpecies } from '../../src/generators/speciesRows.ts';
 import { buildBalbal } from '../../src/generators/balbalBody.ts';
-import { Rng } from '@wildshard/sharddev/random';
+import { Rng } from '@wildshard/sdk/random';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 const { resolveSkinLookTier } = await import('@wildshard/format/skinAssets');
-const { readImagePixels } = await import('@wildshard/sharddev/bake/image');
+const { readImagePixels } = await import('@wildshard/sdk/bake/image');
 
 // The GLB reader returns views over interleaved, packed, or plain buffers.
 const equalChannel = (actual, expected, label) => {

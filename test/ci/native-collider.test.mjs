@@ -7,7 +7,7 @@ import * as v from 'valibot';
 import { NativeArraySliceSchema, nativeColliderRecordSchema } from '@wildshard/format/nativePhysics';
 import { WorldPhysicsSchema } from '@wildshard/format/worldPhysics';
 import { createNativeBakeReader } from '@wildshard/engine/game/population/nativeBake';
-import { readNamedBlob } from '@wildshard/sharddev/blobs';
+import { readNamedBlob } from '@wildshard/sdk/blobs';
 import { originalNalatiPhysics } from '../fixtures/nalati-physics-original.ts';
 import { nalatiPhysicsSources } from '../../src/generators/physics.ts';
 

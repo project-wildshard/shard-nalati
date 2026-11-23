@@ -1,5 +1,5 @@
-import { smoothstep as sstep } from '@wildshard/sharddev/noise';
-import type { Rng } from '@wildshard/sharddev/random';
+import { smoothstep as sstep } from '@wildshard/sdk/noise';
+import type { Rng } from '@wildshard/sdk/random';
 import { loft, skinPlain, S, boneIndex, mix, srgb, paletteColors, paintNoise, type Paint, type AnimalSpecies, type BoneDef, type VariantDef } from '@wildshard/kit/bake/species';
 import * as THREE from 'three';
 import { tuft, hash01, type V3, type Skin } from './shape';

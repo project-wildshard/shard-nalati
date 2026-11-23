@@ -1104,7 +1104,7 @@ TypeScript three.js scene source, and Blender makes the `.glb` models it loads (
 #### update-target
 
 `update` works on a shard repo: a folder whose `package.json` lists `@wildshard/sdk`, as `new` writes it, or
-`@wildshard/sharddev`. Run it in that folder, or name it: `wildshard update my-shard`.
+`@wildshard/sdk`. Run it in that folder, or name it: `wildshard update my-shard`.
 
 #### update-pins-no-git
 
@@ -1797,7 +1797,7 @@ pnpm --package=@wildshard/sdk@latest dlx wildshard update --pins
 ```
 
 An older installed CLI cannot do the move: 0.2.4 and earlier refuse the flag, and 0.2.5 refuses a repo that lists
-the sdk as `@wildshard/sharddev` or by a GitHub pin. Once the repo is on the newest sdk, `pnpm exec wildshard
+the sdk as `@wildshard/sdk` or by a GitHub pin. Once the repo is on the newest sdk, `pnpm exec wildshard
 update --pins` works too.
 
 `wildshard update --pins` moves the repo to a newer sdk release first: npm's latest, or the one you name with
@@ -1807,7 +1807,7 @@ update --pins` works too.
 2. moves every pin `package.json` lists to what that release names: the sdk to the release, `@wildshard/format`,
    `@wildshard/engine` and `three` to the exact specs it pins, each `pnpm.overrides` entry for one of those packages
    with it, and `engines.node` to the Node it needs. The sdk keeps the name and form the repo lists it with:
-   `@wildshard/sdk` or `@wildshard/sharddev`; an exact version, an `npm:@wildshard/sdk@<version>` alias, or a GitHub
+   `@wildshard/sdk` or `@wildshard/sdk`; an exact version, an `npm:@wildshard/sdk@<version>` alias, or a GitHub
    pin, which moves to the commit the release's `v<version>` tag names (or to that tag, if it named a tag). It changes
    nothing else in the file and prints each move;
 3. runs `pnpm install`, and refuses if pnpm did not install that sdk and, when the repo lists `three`, that `three`;

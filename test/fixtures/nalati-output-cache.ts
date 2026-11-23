@@ -2,9 +2,9 @@
 import { mkdtempSync, mkdirSync, readdirSync, statSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Cache paths stay inside this fixture's private repository scratch root.
 import { resolve, dirname } from 'node:path';
-import { createProjectGeneration, type ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
+import { createProjectGeneration, type ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { prepareOutput } from '../../src/generators/output';
-import { projectCompilerIdentity } from '@wildshard/sharddev/projectCompilerIdentity';
+import { projectCompilerIdentity } from '@wildshard/sdk/projectCompilerIdentity';
 import { runNativeCacheSnapshot } from './native-cache-snapshot';
 
 // One genuinely empty cache owns native compilation during fixture preparation.

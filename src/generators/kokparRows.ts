@@ -1,5 +1,5 @@
-import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import { courseProgramInputs } from '@wildshard/sharddev/commons/courseProgram';
+import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
+import { courseProgramInputs } from '@wildshard/sdk/commons/courseProgram';
 import { KOKPAR, KOKPAR_GOAL_REACH } from './layout';
 import { OVAL, LINE_X, HORSE_START, RIDER_START, FIELD_AT, RIDER_PITCH, SHOULDER } from './horseCourse';
 import quest from '../data/questContent.json' with { type: 'json' };

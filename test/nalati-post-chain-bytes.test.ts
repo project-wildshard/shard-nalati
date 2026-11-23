@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { expect, test } from 'vitest';
 import { postChainRows } from '../src/generators/postChain';
 

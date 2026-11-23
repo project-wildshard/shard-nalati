@@ -7,7 +7,7 @@
  *   wearDisc(x, z, r) / wearPath(ax, az, bx, bz, w)              // the shapes, combine with Math.max
  */
 import * as THREE from 'three';
-import { Noise2D, smoothstep } from '@wildshard/sharddev/noise';
+import { Noise2D, smoothstep } from '@wildshard/sdk/noise';
 import paintedTextures from '../data/paintedTextures.json' with { type: 'json' };
 
 type Ground = (x: number, z: number) => number;

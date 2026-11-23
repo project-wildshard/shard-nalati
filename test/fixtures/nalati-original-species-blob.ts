@@ -1,4 +1,4 @@
-import { nameBlob, type BlobSourceOptions, type NamedBlob, type NamedBlobKind } from '@wildshard/sharddev/blobs';
+import { nameBlob, type BlobSourceOptions, type NamedBlob, type NamedBlobKind } from '@wildshard/sdk/blobs';
 import { originalSpeciesOutput } from './nalati-original-species';
 import pins from './nalati-species-files.json' with { type: 'json' };
 

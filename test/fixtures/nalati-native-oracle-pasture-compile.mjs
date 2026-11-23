@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
-import { readDecisionSources } from '@wildshard/sharddev/buildDecisionScripts';
-import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
+import { readDecisionSources } from '@wildshard/sdk/buildDecisionScripts';
+import { compileReturnProjectionV2 } from '@wildshard/sdk/returnProjectionV2';
 import { nalatiTitanRows } from '../../src/generators/stormTitanRows.mjs';
 
 // Recompile the original oracle's pasture input before the herd fuel fix.

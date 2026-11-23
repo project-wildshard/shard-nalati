@@ -4,7 +4,7 @@ import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Keep the entire proof below repository tmp.
 import { resolve } from 'node:path';
 import {afterAll,beforeAll,expect,test} from 'vitest';
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { originalSpeciesFile, originalSpeciesFiles, forgetOriginalSpeciesLoans } from './fixtures/nalati-original-species';
 import pins from './fixtures/nalati-species-files.json' with { type: 'json' };
 

@@ -1,6 +1,6 @@
 import {expect,test} from 'vitest';
 import {registeredJsonSchema} from '@wildshard/engine/host/formatJsonSchema';
-import {nameBlob} from '@wildshard/sharddev/blobs';
+import {nameBlob} from '@wildshard/sdk/blobs';
 import {emptyShardfile} from '@wildshard/engine/host/author';
 import {createShardFolder} from '@wildshard/engine/game/shardfile/shardFolder';
 import {MOUNTED_FIGURE as source} from './fixtures/nalati-poi-paint-original';

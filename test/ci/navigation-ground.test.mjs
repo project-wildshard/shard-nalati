@@ -11,7 +11,7 @@ const { outputDescriptor } = await import('@wildshard/engine/game/shardfile/outp
 const { ScalarLatticeBindings } = await import('@wildshard/engine/world/scalarChannel');
 const { parseNavmesh } = await import('@wildshard/engine/physics/navmesh');
 const { navmeshGroundExclusion } = await import('@wildshard/dev/scripts/bake/navmeshGround.ts');
-const { decodePortableBytes } = await import('@wildshard/sharddev/bake/portableBytes');
+const { decodePortableBytes } = await import('@wildshard/sdk/bake/portableBytes');
 const { TERRAIN } = await import('../../src/generators/terrainRecipe.ts');
 const { nalatiWetAt } = await import('../../src/generators/wetRecipe.ts');
 

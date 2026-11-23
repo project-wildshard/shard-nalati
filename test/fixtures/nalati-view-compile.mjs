@@ -1,6 +1,6 @@
 // Compile each declared view through the production module builder and real SDK compiler.
 import { readFileSync } from 'node:fs';
-import { compileScriptV2 } from '@wildshard/sharddev/compileScriptV2';
+import { compileScriptV2 } from '@wildshard/sdk/compileScriptV2';
 import { SCRIPT_V2_REVISIONS } from '@wildshard/format/scriptAdmissionV2';
 import { NALATI_VIEW_MODULES, nalatiViewModules } from '../../src/generators/viewPrograms.ts';
 const rows = {};

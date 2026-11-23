@@ -1,7 +1,7 @@
 // GR6: compile Nalati's Storm Titan and pasture programmes in plain Node (a happy-dom test environment cannot feed the
 // compiler) through the shard's own builder, and print { programs, titan, pasture } (bytes base64) as one JSON line.
-import { readDecisionSources } from '@wildshard/sharddev/buildDecisionScripts';
-import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
+import { readDecisionSources } from '@wildshard/sdk/buildDecisionScripts';
+import { compileReturnProjectionV2 } from '@wildshard/sdk/returnProjectionV2';
 import { nalatiTitanRows } from '../../src/generators/stormTitanRows.mjs';
 
 const { programs, titan, pasture } = await nalatiTitanRows((input, registries, authored, options) =>

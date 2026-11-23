@@ -1,6 +1,6 @@
 import type { AuthorSpeciesRows } from '@wildshard/kit/bake/species';
 import rows from '../data/speciesLooks.json' with { type: 'json' };
-import { authorFormatRows } from '@wildshard/sharddev/formatJsonSchema';
+import { authorFormatRows } from '@wildshard/sdk/formatJsonSchema';
 
 type VariantDef = AuthorSpeciesRows['variants'][number];
 /** Build-only variant facts shared with the admitted body catalogue. */

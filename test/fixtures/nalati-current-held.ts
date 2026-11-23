@@ -4,7 +4,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { afterAll } from 'vitest';
 import { build } from 'vite';
-import { createProjectGeneration } from '@wildshard/sharddev/projectGeneration';
+import { createProjectGeneration } from '@wildshard/sdk/projectGeneration';
 import { prepareSpecies } from '../../src/generators/output';
 
 const cache = mkdtempSync(resolve('tmp/nalati-current-held-'));

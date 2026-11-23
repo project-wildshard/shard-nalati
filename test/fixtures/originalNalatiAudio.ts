@@ -1,4 +1,4 @@
-import { parseAudioData } from '@wildshard/sharddev/audio';
+import { parseAudioData } from '@wildshard/sdk/audio';
 import {NALATI_PHRASES} from './originalNalatiAudioPhrases';
 import patches from '../../src/data/voicePatches.json' with {type:'json'};
 import scene from '../../src/data/audioScene.json' with {type:'json'};

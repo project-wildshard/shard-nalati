@@ -1,14 +1,14 @@
 import { nalatiRoadSignSites, nalatiRoadSignposts } from './roadSigns';
 import { nalatiKurganLayout } from './kurganRows';
-import { annulus } from '@wildshard/sharddev/bake/annulus';
+import { annulus } from '@wildshard/sdk/bake/annulus';
 import { finGeometry, ribGeometry, towerGeometry, type CragKind } from './cragGeometry';
 import type { DressPlan } from './dressingPlan';
 import * as THREE from 'three';
 import { paramsOf, type ModelSource } from './modelSource';
-import { readNativeTerrain } from '@wildshard/sharddev/bake/terrain';
+import { readNativeTerrain } from '@wildshard/sdk/bake/terrain';
 import { PaintKit, M, v3 } from './paint';
 import { pole, lathe, blob, mergeVerticesByPos } from './smoothGeometry';
-import { specimenKey, type AuthorPlacement as Placement, type ColliderDesc, type Draw, type BoxSpec as Collider } from '@wildshard/sharddev/bake/placement';
+import { specimenKey, type AuthorPlacement as Placement, type ColliderDesc, type Draw, type BoxSpec as Collider } from '@wildshard/sdk/bake/placement';
 import { graniteBlock } from './granite';
 import { painted, paintedSpecimen, isPainted, rememberPainted, type Paint, type PaintCtx, type Made, type Kit, type PaintAt } from './painted';
 import { cragLedgeFloor, leopardCaveFloor, kurganEntranceFloor, generatedBounds, instanceTris, type MemberData, type InstanceData, type GeneratedSpec } from './placement';
@@ -27,9 +27,9 @@ import { bakeDressing } from './dressingGeometryRows';
 import { writeGeometry, join } from './geometryWriter';
 import { LEOPARD_CAVE, ARGYMAQ_PASTURE, SNOW_LOTUS, WATCHTOWER, KOKPAR, PASTURE, RIM_N as RIM_Z, MELT_STREAM as BROOK } from './layout';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { Rng } from '@wildshard/sharddev/random';
+import { Rng } from '@wildshard/sdk/random';
 import { inPoiClearing,zoneAt,glacierMask,brookMask,riverMask,rimZAt,RIVER,outcropAt,edgeBermAt,TERRAIN } from './terrainRecipe';
-import { Noise2D, smoothstep } from '@wildshard/sharddev/noise';
+import { Noise2D, smoothstep } from '@wildshard/sdk/noise';
 
 const dungeonLayout = nalatiKurganLayout();
 

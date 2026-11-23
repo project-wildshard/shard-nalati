@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { staticGlb, type GlbPrimitive } from '@wildshard/sharddev/bake/glb';
+import { staticGlb, type GlbPrimitive } from '@wildshard/sdk/bake/glb';
 import { SPRUCE_SPECS, spruceGeometry } from './spruceGeometry';
 
 /** The spruce rest pool's shard file name: the tree set loads it through `product.url` (GR6; it was a hashed public GLB). */

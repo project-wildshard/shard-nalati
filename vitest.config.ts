@@ -17,7 +17,7 @@ export default defineConfig({
     // Each cold native fixture starts a real source compiler. Serialize files
     // so they retain their existing fences beside Ring 2's background cook.
     maxWorkers: 1,
-    execArgv: ['--import', path.resolve('node_modules/@wildshard/sharddev/src/sharddev/bake/format-hook.mjs')],
+    execArgv: ['--import', path.resolve('node_modules/@wildshard/sdk/src/sharddev/bake/format-hook.mjs')],
     testTimeout: 30_000,
     environment: 'node',
     server: { deps: { inline: [/@wildshard\//u] } },

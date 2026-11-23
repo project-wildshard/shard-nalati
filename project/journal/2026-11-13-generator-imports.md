@@ -3,7 +3,7 @@
 Meta SHARD-AUTHORING SA6 (J170, J317). The ratchet was 31.
 
 - The author lint now loads sharddev's `wildshard-sdk` plugin
-  (`node_modules/@wildshard/sharddev/lint/sdk-plugin.mjs`, pin `efbdc25`).
+  (`node_modules/@wildshard/sdk/lint/sdk-plugin.mjs`, pin `efbdc25`).
   Its `generator-imports` allows the shard format, valibot and `node:*`:
   26 of the 31 hits were those and pass as they are.
 - Four generators imported engine's live `ModelDef` (and `paramsOf`,

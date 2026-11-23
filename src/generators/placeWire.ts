@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import type { FixedDrawRowsSchema } from '@wildshard/format/fixedDraws';
 import type { InferOutput } from 'valibot';
 

@@ -22,11 +22,11 @@ export async function prepareNalatiDressing(forestMask, scalarBlocks) {
     const { default: NALATI_GRASS_LAYOUT } = await import('../../src/data/grassFieldLayout.json', { with: { type: 'json' } });
     const { RIVER } = await import('../../src/generators/terrainRecipe.ts');
     const [{ bakeForestPlacements }, { SPRUCE_SPECS }, { bakeNalatiDressingSource }] = await Promise.all([
-      import('@wildshard/sharddev/bake/forest'), import('../../src/generators/spruceGeometry.ts'),
+      import('@wildshard/sdk/bake/forest'), import('../../src/generators/spruceGeometry.ts'),
       import('../../src/generators/dressingSource.ts'),
     ]);
     const [heightfield, { bakeMeadowField }, { terrainHeight: heightAt }] = await Promise.all([
-      import('@wildshard/engine/world/Heightfield'), import('@wildshard/sharddev/bake/meadow'),
+      import('@wildshard/engine/world/Heightfield'), import('@wildshard/sdk/bake/meadow'),
       import('@wildshard/engine/world/terrainHeight'),
     ]);
     const meadow = bakeMeadowField({ seed: definition.seed, half: 250, heightAt,

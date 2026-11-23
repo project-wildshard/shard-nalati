@@ -1,4 +1,4 @@
-import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
+import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { buildDressingWire } from './dressingWire';
 
 /** Own the original native dressing geometry and metadata; no public/source file is read or published. */

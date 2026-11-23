@@ -4,7 +4,7 @@ import {expect,test} from 'vitest';
 import {carriedQuestRows} from '../fixtures/nalati-carried-quest';
 import {prepareSpecimenCatalogue} from '@wildshard/engine/game/models/specimenCatalogue';
 import {hashImmutableBytes} from '@wildshard/engine/host/immutable';
-import {nameBlob} from '@wildshard/sharddev/blobs';
+import {nameBlob} from '@wildshard/sdk/blobs';
 import {Scope} from '@wildshard/engine/app/scope';
 import {createShardFolder} from '@wildshard/engine/game/shardfile/shardFolder';
 import {emptyShardfile} from '@wildshard/engine/host/author';

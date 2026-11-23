@@ -1,4 +1,4 @@
-import { smoothstep as sstep } from '@wildshard/sharddev/noise';
+import { smoothstep as sstep } from '@wildshard/sdk/noise';
 import { loft, S, mix, srgb, setShag, setShapeFn, paintNoise, type Paint, type Station } from '@wildshard/kit/bake/species';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';

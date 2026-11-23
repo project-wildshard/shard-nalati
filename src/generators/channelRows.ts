@@ -1,4 +1,4 @@
-import { parseClientChannels, type ClientChannelProgram } from '@wildshard/sharddev/rows';
+import { parseClientChannels, type ClientChannelProgram } from '@wildshard/sdk/rows';
 
 /** Reuse identical copied-value expressions offline, remapping every consumer. */
 export function compactChannels(input: unknown): ClientChannelProgram[] {

@@ -1,9 +1,9 @@
 import { MeshStandardMaterial } from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { readRigDocument, writeRigDocument } from '@wildshard/sharddev/bake/rig';
-import { skinnedGlb, type SkinnedBone } from '@wildshard/sharddev/bake/skinned';
-import { Rng } from '@wildshard/sharddev/random';
-import type { CreatureRig } from '@wildshard/sharddev/scene/creature';
+import { readRigDocument, writeRigDocument } from '@wildshard/sdk/bake/rig';
+import { skinnedGlb, type SkinnedBone } from '@wildshard/sdk/bake/skinned';
+import { Rng } from '@wildshard/sdk/random';
+import type { CreatureRig } from '@wildshard/sdk/scene/creature';
 import type { VariantDef } from '@wildshard/kit/bake/species';
 import { buildBalbal } from './balbalBody';
 

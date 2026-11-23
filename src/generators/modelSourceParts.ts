@@ -1,4 +1,4 @@
-import { parseGlb } from '@wildshard/sharddev/assets';
+import { parseGlb } from '@wildshard/sdk/assets';
 
 type ObjectRow = Record<string, unknown>;
 function object(input: unknown): ObjectRow {

@@ -1,5 +1,5 @@
-import type { compileDecisionScripts } from '@wildshard/sharddev/buildDecisionScripts';
-import { parseSpawnScript, spawnRegistries, type SpawnScript } from '@wildshard/sharddev/rows';
+import type { compileDecisionScripts } from '@wildshard/sdk/buildDecisionScripts';
+import { parseSpawnScript, spawnRegistries, type SpawnScript } from '@wildshard/sdk/rows';
 import { charge } from './eliteCharge';
 
 /** The shard file name the Qara Batyr charge module ships under. */

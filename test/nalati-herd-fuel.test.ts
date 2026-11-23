@@ -12,8 +12,8 @@ import { Scope } from '@wildshard/engine/app/scope';
 import { Rng } from '@wildshard/format/seededRng';
 import herdRows from '../src/data/herdGroup.json' with { type: 'json' };
 import herdGuest from '../src/data/herdGuest.json' with { type: 'json' };
-import { readDecisionSources } from '@wildshard/sharddev/buildDecisionScripts';
-import { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
+import { readDecisionSources } from '@wildshard/sdk/buildDecisionScripts';
+import { compileReturnProjectionV2 } from '@wildshard/sdk/returnProjectionV2';
 import { nalatiTitanRows } from '../src/generators/stormTitanRows.mjs';
 
 // the pasture module and its rows, compiled from this checkout's behaviour/*.as the way the build does

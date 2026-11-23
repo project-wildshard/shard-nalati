@@ -1,6 +1,6 @@
-import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
+import { withPortableMath } from '@wildshard/sdk/math/portableMath';
 import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
-import { Rng } from '@wildshard/sharddev/random';
+import { Rng } from '@wildshard/sdk/random';
 import { graniteBlock } from '../../src/generators/granite';
 import { blob } from '../../src/generators/smoothGeometry';
 

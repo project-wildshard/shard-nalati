@@ -1,6 +1,6 @@
 import ARM_STYLE from '../data/armsStyle.json' with {type:'json'};
 import items from '../data/items.json' with { type: 'json' };
-import { equipmentRows } from '@wildshard/sharddev/rows';
+import { equipmentRows } from '@wildshard/sdk/rows';
 import * as THREE from 'three';
 import { sharedMeleeAuthorBase, parseMeleeWeaponProfile, meleeKey as key, meleeColour as lin, type MeleeRig as SwordRig, type MeleeMoveSet as SwordMoveSet, type MeleeMove as Move, type MeleeProfile } from '@wildshard/kit/weapons/meleeProfile';
 import { bakeForearm as forearm } from '@wildshard/kit/bake/riderArms';

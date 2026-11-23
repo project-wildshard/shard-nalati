@@ -1,5 +1,5 @@
-import { encodeCanonicalJson } from '@wildshard/sharddev/immutable';
-import type { parseNativeGroupRows } from '@wildshard/sharddev/nativePopulationRows';
+import { encodeCanonicalJson } from '@wildshard/sdk/immutable';
+import type { parseNativeGroupRows } from '@wildshard/sdk/nativePopulationRows';
 
 type GroupRows = ReturnType<typeof parseNativeGroupRows>;
 type Step = GroupRows['steps'][number];

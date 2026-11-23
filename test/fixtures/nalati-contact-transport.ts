@@ -1,5 +1,5 @@
 import {base64Bytes,unshuffleLanes} from '@wildshard/engine/core/byteCodec';
-import {nameBlob,type NamedBlob} from '@wildshard/sharddev/blobs';
+import {nameBlob,type NamedBlob} from '@wildshard/sdk/blobs';
 import {encodeCanonicalJson} from '@wildshard/engine/host/immutable';
 import {SceneDressingSchema,type SceneDressingRows} from '@wildshard/format/sceneDressing';
 import * as v from 'valibot';

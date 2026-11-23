@@ -5,7 +5,7 @@ import { nalatiPredecessorCoverRows } from './nalati-cover';
 import { nalatiCragRows } from './nalati-crags';
 import { SceneDressingSchema, type SceneDressingRows } from '@wildshard/format/sceneDressing';
 import { parse } from 'valibot';
-import { nameBlob } from '@wildshard/sharddev/blobs';
+import { nameBlob } from '@wildshard/sdk/blobs';
 import { encodeCanonicalJson } from '@wildshard/format/immutable';
 
 // Independent historical wire transport; production always publishes named byte loans.

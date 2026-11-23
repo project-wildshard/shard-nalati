@@ -1,8 +1,9 @@
-import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import courseSource from '@wildshard/sharddev/commons/scripts/course.as?raw';
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
-import { parseDecisionScripts } from '@wildshard/sharddev/decisionScripts';
-import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
+import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
+// oxlint-disable-next-line wildshard/public-index -- SHARD-COMPAT SA7b: `./commons/scripts/course.as` is an sdk export; the sdk's wrapper does not yet strip Vite's `?raw` query (sharddev lint/engine-plugin.mjs)
+import courseSource from '@wildshard/sdk/commons/scripts/course.as?raw';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
+import { parseDecisionScripts } from '@wildshard/sdk/decisionScripts';
+import { nameBlob, type NamedBlob } from '@wildshard/sdk/blobs';
 import { kokparModuleOptions, nalatiKokparRows, NALATI_KOKPAR_MODULE, NALATI_COURSE_MODULE, type NalatiKokpar } from './kokparRows';
 
 const PREFIX = '/src/shards/nalati-grasslands/';

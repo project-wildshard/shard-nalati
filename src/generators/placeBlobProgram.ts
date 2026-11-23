@@ -1,5 +1,5 @@
-import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
+import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
+import { nameBlob, type NamedBlob } from '@wildshard/sdk/blobs';
 
 const sources = {
   crags: { file: 'crags.bin', input: '/assets/nalati/baked/crags.bin' },

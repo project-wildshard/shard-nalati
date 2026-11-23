@@ -7,7 +7,7 @@ import { build } from 'vite';
 import * as v from 'valibot';
 import { nalatiSpecimenRows } from '../src/generators/specimenRows';
 import { SpecimenCatalogueSchema, SpecimenMaterialSchema } from '@wildshard/format/specimenCatalogue';
-import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
+import { assertConfigBoundary } from '@wildshard/sdk/configBoundary';
 import { NALATI_MAP_INPUTS, nalatiMapPixels } from '../src/generators/mapProgram';
 
 const project = 'src/';

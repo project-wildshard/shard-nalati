@@ -1,11 +1,11 @@
 import { expect, test } from 'vitest';
 import * as v from 'valibot';
-import { creatureSurfaceFrame } from '@wildshard/sharddev/clientChannels';
-import { namePopulationHabitat } from '@wildshard/sharddev/nativePopulationRows';
+import { creatureSurfaceFrame } from '@wildshard/sdk/clientChannels';
+import { namePopulationHabitat } from '@wildshard/sdk/nativePopulationRows';
 import frameRows from '../src/data/speciesRows.json' with { type: 'json' };
 import habitat from '../src/data/physicsRows.json' with { type: 'json' };
 import { ForagerContinuation } from '@wildshard/format/ambientLife';
-import { namedJsonSchema } from '@wildshard/sharddev/formatJsonSchema';
+import { namedJsonSchema } from '@wildshard/sdk/formatJsonSchema';
 
 test('frame inputs preserve finite scalars, safe keys and both original bank ceilings', () => {
   const rows = frameRows.kingFrame, defaults = frameRows.kingPoseDefaults;

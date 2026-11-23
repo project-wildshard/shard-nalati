@@ -8,7 +8,7 @@ import { build } from 'vite';
 import * as v from 'valibot';
 import { nalatiPoiScenes, type NalatiPoiScenePlaces } from '../src/generators/poiScenes';
 import { jsonBytes } from '@wildshard/engine/scripts/bake-output.mjs';
-import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
+import { assertConfigBoundary } from '@wildshard/sdk/configBoundary';
 import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
 import original from './fixtures/nalati-poi-scenes.json' with { type: 'json' };
 

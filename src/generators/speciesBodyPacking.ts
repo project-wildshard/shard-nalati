@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 
 /** Authored layout of the existing unshuffled creature body binary. Bones and dimensions stay opaque and exact. */
 export interface SpeciesBodySource {

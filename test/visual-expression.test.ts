@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import original from './fixtures/nalati-weatherChannels-original.json' with { type: 'json' };
-import { parseClientChannels } from '@wildshard/sharddev/rows';
+import { parseClientChannels } from '@wildshard/sdk/rows';
 import { visualExpression } from '../src/generators/visualExpression';
 import { visualPack, weatherFxChannels } from '../src/generators/weatherFxChannels';
 import { skyChannels } from '../src/generators/skyPresentation';

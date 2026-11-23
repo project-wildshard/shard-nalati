@@ -14,7 +14,7 @@ import { HeldBowFileSchema, HeldBowDefinitionSchema } from '@wildshard/format/we
 import { bindHeldBow } from '@wildshard/engine/game/weapons/heldLauncher';
 import { registeredJsonSchema } from '@wildshard/engine/host/formatJsonSchema';
 import { fixtureJsonCheck } from '../fixtures/productFile';
-import { nameBlob } from '@wildshard/sharddev/blobs';
+import { nameBlob } from '@wildshard/sdk/blobs';
 import { validateNamedJsonSchema } from '@wildshard/engine/game/shardfile/customSchema';
 import { createShardFolder } from '@wildshard/engine/game/shardfile/shardFolder';
 import { emptyShardfile } from '@wildshard/engine/host/author';

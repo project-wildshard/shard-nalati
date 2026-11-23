@@ -1,7 +1,7 @@
 import { BufferAttribute } from 'three';
-import type { compileReturnProjectionV2 } from '@wildshard/sharddev/returnProjectionV2';
-import { encodeBuildBytes } from '@wildshard/sharddev/bake/byteCodec';
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
+import type { compileReturnProjectionV2 } from '@wildshard/sdk/returnProjectionV2';
+import { encodeBuildBytes } from '@wildshard/sdk/bake/byteCodec';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import speciesRows from '../data/speciesRows.json' with { type: 'json' };
 import authoredLooks from '../data/speciesLooks.json' with { type: 'json' };
 import { SPECIES_POSES } from './speciesPoses';

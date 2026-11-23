@@ -12,7 +12,7 @@ const source = resolve(owner.source), program = resolve(source, owner.program);
 const mapFile = ['data/map.json', 'look/map.json'].map(file => resolve(source, file)).find(existsSync);
 assert.ok(mapFile, 'The owner must retain its actual authored map settings');
 const settings = JSON.parse(readFileSync(mapFile, 'utf8'));
-const sdk = dirname(require.resolve('@wildshard/sharddev/package.json'));
+const sdk = dirname(require.resolve('@wildshard/sdk/package.json'));
 const sdkFile = file => realpathSync(resolve(sdk, 'src/sharddev', file));
 function programInputs(entry) {
   const options = { moduleResolution: ts.ModuleResolutionKind.Bundler, allowJs: true, resolveJsonModule: true };
