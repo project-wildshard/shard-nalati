@@ -42,14 +42,14 @@
   },
   "dependencies": {
     "@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-    "@wildshard/sdk": "0.4.28",
+    "@wildshard/sdk": "0.4.29",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0",
-    "@wildshard/cli": "0.4.28",
-    "@wildshard/kit": "0.4.28",
-    "@wildshard/dev": "0.4.28",
-    "@wildshard/build": "0.4.28"
+    "@wildshard/cli": "0.4.29",
+    "@wildshard/kit": "0.4.29",
+    "@wildshard/dev": "0.4.29",
+    "@wildshard/build": "0.4.29"
   },
   "devDependencies": {
     "@types/node": "24.3.1",
@@ -60,8 +60,7 @@
     "oxlint": "1.89.0",
     "vite": "8.3.0",
     "vitest": "5.0.1",
-    "npm-bin-deps": "2.1.0",
-    "@wildshard/engine": "0.1.74-next.d6e6bc6b"
+    "npm-bin-deps": "2.1.0"
   },
   "pnpm": {
     "ignoredOptionalDependencies": [
@@ -147,14 +146,18 @@
       "@typescript/typescript-win32-x64"
     ],
     "overrides": {
-      "@wildshard/engine": "0.1.74-next.d6e6bc6b",
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
       "@wildshard/sdk>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
       "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
       "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
       "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-      "@wildshard/kit>@wildshard/shard-format": "0.71.0"
+      "@wildshard/kit>@wildshard/shard-format": "0.71.0",
+      "@wildshard/build": "0.4.29",
+      "@wildshard/upload": "0.4.29",
+      "@wildshard/sdk": "0.4.29",
+      "@wildshard/kit": "0.4.29",
+      "@wildshard/dev": "0.4.29"
     }
   },
   "binDependencies": {

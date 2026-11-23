@@ -7,7 +7,7 @@ import {commitQuestEffects} from '@wildshard/sdk/internal/engine/game/quest/effe
 import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
 import {practiceRoomState} from '@wildshard/sdk/internal/engine/core/practiceRoomState';
 import {carriedRound,carriedRoundDue,carriedRoundFrame,carriedRoundOutputs,carriedRoundHome,
-  carriedRoundGoal,carriedRoundCarrying} from '@wildshard/engine/game/quest/carriedRound';
+  carriedRoundGoal,carriedRoundCarrying} from '@wildshard/sdk/internal/engine/game/quest/carriedRound';
 import {prepareHeadlessRuntime as prepareNalati} from './nalati-verbs';
 import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
