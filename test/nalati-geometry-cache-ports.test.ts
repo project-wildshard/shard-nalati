@@ -16,7 +16,7 @@ test('granite and ordinary/scrambled blobs retain all original geometry bits and
     execPath,
     [
       '--import',
-      import.meta.resolve('@wildshard/engine/scripts/sim-node-loader.mjs'),
+      import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
       '--input-type=module',
       '-e',
       String.raw`import {serialize} from 'node:v8';

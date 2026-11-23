@@ -1,7 +1,7 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Bind only the physically earned continuation between bounded native cases.
 import {createHash} from 'node:crypto';
 import * as v from 'valibot';
-import {HeadlessTapePlanSchema,HeadlessTapeReportSchema} from '@wildshard/engine/host/tickProtocol';
+import {HeadlessTapePlanSchema,HeadlessTapeReportSchema} from '@wildshard/sdk/headless/host/tickProtocol';
 
 const natural=v.pipe(v.number(),v.safeInteger(),v.minValue(0));
 const digest=v.pipe(v.string(),v.regex(/^[a-f0-9]{64}$/u));

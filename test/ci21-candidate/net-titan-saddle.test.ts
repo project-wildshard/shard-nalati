@@ -3,14 +3,14 @@ import { nativeRapierFile } from '../fixtures/native-rapier-file';
 // oxlint-disable-next-line import/no-nodejs-modules -- A world runs the shipped product bytes and physics module.
 import { readFileSync } from 'node:fs';
 import { expect, test } from 'vitest';
-import { loadRapier } from '@wildshard/engine/physics/rapier';
-import { actRoutes } from '@wildshard/engine/sim/actRoutes';
-import { openArenaOf } from '@wildshard/engine/game/boss/openArenaNative';
-import { mountedPlayerOf } from '@wildshard/engine/game/riding/native';
-import { outputDescriptor } from '@wildshard/engine/game/shardfile/outputDescriptor';
-import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
-import { createNativeHeadlessResident } from '@wildshard/engine/host/headlessRuntime';
-import type { HeadlessCommand } from '@wildshard/engine/host/tickProtocol';
+import { loadRapier } from '@wildshard/sdk/headless/physics/rapier';
+import { actRoutes } from '@wildshard/sdk/internal/engine/sim/actRoutes';
+import { openArenaOf } from '@wildshard/sdk/internal/engine/game/boss/openArenaNative';
+import { mountedPlayerOf } from '@wildshard/sdk/internal/engine/game/riding/native';
+import { outputDescriptor } from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import { loadHeadlessFolder } from '@wildshard/sdk/headless/host/headlessFolder';
+import { createNativeHeadlessResident } from '@wildshard/sdk/headless/host/headlessRuntime';
+import type { HeadlessCommand } from '@wildshard/sdk/headless/host/tickProtocol';
 import { builtProduct } from '../fixtures/builtProduct';
 import { titanBowPilot } from '../proof/nalati-grasslands/titanCombat';
 

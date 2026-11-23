@@ -12,19 +12,19 @@
 // stands off and circles until she comes down; her pounces are not dodged.
 // Nothing writes her health, state or record: the elite core files the kill
 // once and starts her lair's respawn clock. Her rows are read from the shard file.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
-const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
+import { engineRequire } from '@wildshard/sdk/headless';
 
 // Over the Kunes on the timber bridge, the south bank's shelves to the horse plains (the taming journey's route,
 // test/ci/taming-journey.test.mjs), then south-east over the plains to the foot of Aqbars' crags.

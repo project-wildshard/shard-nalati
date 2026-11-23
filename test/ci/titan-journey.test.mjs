@@ -5,9 +5,9 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { boot, rider } from './journey-rider.mjs';
 import { TITAN_ROUTE } from './titan-route.mjs';
-const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+const { actRoutes } = await import('@wildshard/sdk/internal/engine/sim/actRoutes');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
 
 test('nalati-grasslands: the Titan refuses an unearned mounted encounter and reward', { timeout: 180_000 }, async () => {
   const started = performance.now(), { resident, world, input } = await boot();

@@ -6,9 +6,9 @@
 // trap at the same frames Sentry recorded (`wasm-function[65]` to `[7]`, `0x1c34`).
 import { describe, expect, test } from 'vitest';
 import { parseReturnProjectionV2, returnProjectionV2Layout } from '@wildshard/format/returnProjectionV2';
-import { GroupStepV2 } from '@wildshard/engine/script/groupStepV2';
-import { ScriptModuleV2 } from '@wildshard/engine/script/moduleV2';
-import { Scope } from '@wildshard/engine/app/scope';
+import { GroupStepV2 } from '@wildshard/sdk/internal/engine/script/groupStepV2';
+import { ScriptModuleV2 } from '@wildshard/sdk/internal/engine/script/moduleV2';
+import { Scope } from '@wildshard/sdk/headless/app/scope';
 import { Rng } from '@wildshard/format/seededRng';
 import herdRows from '../src/data/herdGroup.json' with { type: 'json' };
 import herdGuest from '../src/data/herdGuest.json' with { type: 'json' };

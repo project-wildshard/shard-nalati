@@ -157,7 +157,7 @@ jobs:
       - name: Keep the cleared queue and public imports honest
         run: node scripts/check-test-boundary.mjs
       - name: Native collider bytes and owned recovery
-        run: node --import @wildshard/engine/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
+        run: node --import @wildshard/sdk/headless/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
       # The key names the C library: a basisu built on ubuntu-26.04 (glibc
       # 2.43) fails on ubuntu-24.04 (2.39), so caches never mix (repo-kit c9bbdb2).
       - name: Name the C library the Basis encoder links against

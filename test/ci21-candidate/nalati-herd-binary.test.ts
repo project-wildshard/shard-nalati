@@ -7,9 +7,9 @@ import {dirname,join} from 'node:path';
 import process from 'node:process';
 import {NALATI_PASTURE as pasture,NALATI_TITAN,NALATI_TITAN_PROGRAMS as programs} from '../fixtures/nalati-titan';
 import {prepareProjectOutput} from '@wildshard/sdk/projectOutput';
-import {hashImmutableBytes} from '@wildshard/engine/host/immutable';
-import {Scope} from '@wildshard/engine/app/scope';
-import {ReturnProgram} from '@wildshard/engine/game/population/returnProgram';
+import {hashImmutableBytes} from '@wildshard/sdk/immutable';
+import {Scope} from '@wildshard/sdk/headless/app/scope';
+import {ReturnProgram} from '@wildshard/sdk/internal/engine/game/population/returnProgram';
 import {lendNalatiPasture} from '../fixtures/nalati-return-modules';
 
 // GR6: the named-file reader reads the build program's bytes from a scratch project, as it reads any source

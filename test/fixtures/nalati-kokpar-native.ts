@@ -1,15 +1,15 @@
 import * as v from 'valibot';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HeadlessRuntimeInstallation,PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessRuntimeInstallation,PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
 import {parseCarriedQuest,type CarriedQuestRows} from '@wildshard/format/questSteps';
-import {ReturnProgram} from '@wildshard/engine/game/population/returnProgram';
-import {commitQuestEffects} from '@wildshard/engine/game/quest/effects';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {practiceRoomState} from '@wildshard/engine/core/practiceRoomState';
+import {ReturnProgram} from '@wildshard/sdk/internal/engine/game/population/returnProgram';
+import {commitQuestEffects} from '@wildshard/sdk/internal/engine/game/quest/effects';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {practiceRoomState} from '@wildshard/sdk/internal/engine/core/practiceRoomState';
 import {carriedRound,carriedRoundDue,carriedRoundFrame,carriedRoundOutputs,carriedRoundHome,
   carriedRoundGoal,carriedRoundCarrying} from '@wildshard/engine/game/quest/carriedRound';
 import {prepareHeadlessRuntime as prepareNalati} from './nalati-verbs';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** Dedicated proof variant: ordinary camp/taming consumers keep their installs. */
 export const prepareHeadlessRuntime:PrepareHeadlessRuntime=async preparation=>{

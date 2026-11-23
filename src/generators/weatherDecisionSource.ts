@@ -4,7 +4,7 @@ import { parseDecisionScripts, type DecisionScriptRow } from '@wildshard/sdk/dec
 import { NALATI_DECISION_SOURCES } from './decisionSourceInventory';
 
 /**
- * The steppe storm as weather reactions (G474, @wildshard/engine/game/weather/reactions WeatherReactions) at 10 Hz: the bolt clock runs
+ * The steppe storm as weather reactions (G474, engine `game/weather/reactions` WeatherReactions) at 10 Hz: the bolt clock runs
  * while nothing is armed; a ready storm arms a strike on the highest point of a cell round the player (the yurts and the
  * covered player excepted) and lands it 1.2 s later; a gust front or a waning storm only flashes in the cloud; GET LOW
  * while the player is the highest thing within 30 m; the wind the phase asks for (the Storm Titan holds his storm open).

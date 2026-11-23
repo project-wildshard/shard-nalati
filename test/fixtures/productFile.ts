@@ -1,6 +1,6 @@
-import type { FolderFile, ShardFolderInput } from '@wildshard/engine/game/shardfile/shardFolder';
-import { registeredJsonSchema } from '@wildshard/engine/host/formatJsonSchema';
-import { validateNamedJsonSchemaPaced } from '@wildshard/engine/game/shardfile/customSchema';
+import type { FolderFile, ShardFolderInput } from '@wildshard/sdk/internal/engine/game/shardfile/shardFolder';
+import { registeredJsonSchema } from '@wildshard/sdk/internal/engine/host/formatJsonSchema';
+import { validateNamedJsonSchemaPaced } from '@wildshard/sdk/internal/engine/game/shardfile/customSchema';
 
 /** These renderer-free authored fixtures run in Node even with happy-dom's
  * SSR:false. Lend the existing real native validator, never a trusted bypass. */

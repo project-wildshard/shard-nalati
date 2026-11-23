@@ -1,7 +1,7 @@
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import {nativeTamingOf} from '@wildshard/engine/game/riding/nativeTaming';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import {nativeTamingOf} from '@wildshard/sdk/internal/engine/game/riding/nativeTaming';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** The pilot observes only the living horse position, live prompt and balance gauge. No trust/position grants or forceBreak. */
 export function nalatiTamingPilot(host: SimHost, stallionId: string, previousBalance: number): { balance: number; commands: HeadlessCommand[] } {

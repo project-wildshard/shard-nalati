@@ -2,8 +2,8 @@
 import { createHash } from 'node:crypto';
 import { expect, test } from 'vitest';
 import { BufferAttribute, BufferGeometry, Mesh, type Object3D } from 'three';
-import { WorldRegistry } from '@wildshard/engine/world/registry';
-import type { BossArenaRoom } from '@wildshard/engine/game/boss/arenaRoomView';
+import { WorldRegistry } from '@wildshard/sdk/internal/engine/world/registry';
+import type { BossArenaRoom } from '@wildshard/sdk/internal/engine/game/boss/arenaRoomView';
 import { bossArena } from '../fake/bossArena';
 import { ShippingKurganDungeon } from '../fixtures/kurgan-oracle/dungeon';
 import { installWorldFixture } from '../fixtures/nalati-fabric-world';

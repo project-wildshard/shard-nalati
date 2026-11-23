@@ -1,4 +1,4 @@
-import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson } from '@wildshard/sdk/immutable';
 import { nativeProgramFixture, type NativeProgramSpec } from './native-program';
 
 /** Match a canonical JSON reader's original object iteration order while

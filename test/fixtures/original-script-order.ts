@@ -1,5 +1,5 @@
 import { parseDecisionScripts, type DecisionScriptRow } from '@wildshard/sdk/decisionScripts';
-import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson } from '@wildshard/sdk/immutable';
 
 function matchesAdmitted(input: unknown, admitted: DecisionScriptRow): input is DecisionScriptRow {
   return encodeCanonicalJson(input) === encodeCanonicalJson(admitted);

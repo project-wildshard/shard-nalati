@@ -1,36 +1,36 @@
 import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Require earned native state and exact independent input replay.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- The fixed child uses the admitted physics bytes and its owned continuation file.
 import {readFileSync,writeFileSync,statSync} from 'node:fs';
 import * as v from 'valibot';
 import {beginProductSession} from './productSession';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {prepareHeadlessRuntime} from '../nalati-chapter-native';
 import {prepareHeadlessRuntime as prepareKing} from '../nalati-king-native';
 import {nativeKingOf} from '../nalati-king-host';
 import {readNalatiKingData} from '../nalati-king-data';
 import {kingEntryInputs,kingPhaseInputs,kingHomeInputs,kingCheckpointSettleInputs} from '../../proof/nalati-grasslands/king';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
 import {parseCarriedQuest} from '@wildshard/format/questSteps';
 import {parseHeldSlots} from '@wildshard/format/heldArms';
 import {HeldBowFileSchema} from '@wildshard/format/weaponProfiles';
-import {heldBowBase} from '@wildshard/engine/game/weapons/heldBowBase';
-import {decodeSimSnapshot,decodeSimSnapshotBytes,snapshotSimHostBytes,serializeSimSnapshot,type SimSnapshotBytes} from '@wildshard/engine/sim/snapshot';
-import {physicsState,sameBytes} from '@wildshard/engine/test/simState';
+import {heldBowBase} from '@wildshard/sdk/internal/engine/game/weapons/heldBowBase';
+import {decodeSimSnapshot,decodeSimSnapshotBytes,snapshotSimHostBytes,serializeSimSnapshot,type SimSnapshotBytes} from '@wildshard/sdk/headless/sim/snapshot';
+import {physicsState,sameBytes} from '@wildshard/sdk/internal/engine/test/simState';
 import {chapterCampInputs,chapterApproachInputs,chapterBondInputs,chapterGoatInputs,chapterReturnInputs,chapterHomeInputs} from '../../proof/nalati-grasslands/chapterOne';
 import {chapterCarvingRoadInputs,chapterCarvingArrivalInputs,chapterCarvingInputs} from '../../proof/nalati-grasslands/chapterTwo';
-import {checkedReplayPipeline} from '@wildshard/engine/test/headless/checkedReplayPipeline';
+import {checkedReplayPipeline} from '@wildshard/sdk/internal/engine/test/headless/checkedReplayPipeline';
 import {ChapterHandoffSchema,chapterObserved,chapterTwoObserved,chapterWire,chapterRead,chapterWireHash,chapterSnapshotDigest,
   chapterInputHash,checkChapterLedger,type ChapterPart,type ChapterHandoff} from './chapterHandoff';
-import type {HeadlessCommand,HeadlessEffect,HeadlessTickCommit} from '@wildshard/engine/host/tickProtocol';
-import type {HeadlessTapeObservation,HeadlessTapeReport} from '@wildshard/engine/host/headlessTape';
+import type {HeadlessCommand,HeadlessEffect,HeadlessTickCommit} from '@wildshard/sdk/headless/host/tickProtocol';
+import type {HeadlessTapeObservation,HeadlessTapeReport} from '@wildshard/sdk/headless/host/headlessTape';
 import {packChapterReport,unpackChapterReport} from './chapterReportCodec';
 import {PACKED_CHAPTER_TAMING,unpackChapterTaming} from './chapterObservation';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const [stage,outputPath,inputPath,inputHash]=process.argv.slice(2);assert.ok(stage==='plains'||stage==='approach'||stage==='bond'||stage==='goat'||stage==='return'||stage==='home'||stage==='carving-road'||stage==='carving-arrival'||stage==='carvings'||stage==='king-entry'||stage==='king-phase-one'||stage==='king-phase-two'||stage==='king-victory'||stage==='king-home');
 const kingStage=stage==='king-entry'||stage==='king-phase-one'||stage==='king-phase-two'||stage==='king-victory'||stage==='king-home';assert.ok(outputPath);

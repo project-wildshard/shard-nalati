@@ -2,19 +2,19 @@ import { originalNalatiPhysics } from '../../fixtures/nalati-physics-original';
 // oxlint-disable-next-line import/no-nodejs-modules -- read the original native proof input without inferring its full generated JSON type
 import {readFileSync} from 'node:fs';
 import * as v from 'valibot';
-import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
+import { loadHeadlessFolder } from '@wildshard/sdk/headless/host/headlessFolder';
 // oxlint-disable-next-line import/no-nodejs-modules -- The witness refuses incomplete native gameplay rather than report a passing flag.
 import assert from 'node:assert/strict';
-import type { SimHost } from '@wildshard/engine/sim';
-import { snapshotSimHostBytes, serializeSimSnapshot } from '@wildshard/engine/sim/snapshot';
-import type { Rapier } from '@wildshard/engine/physics/rapier';
-import { createNativeProofResident, prepareFolderPlan as prepareHeadlessRuntime } from '@wildshard/engine/test/headless-native';
+import type { SimHost } from '@wildshard/sdk/internal/engine/sim';
+import { snapshotSimHostBytes, serializeSimSnapshot } from '@wildshard/sdk/headless/sim/snapshot';
+import type { Rapier } from '@wildshard/sdk/headless/physics/rapier';
+import { createNativeProofResident, prepareFolderPlan as prepareHeadlessRuntime } from '@wildshard/sdk/internal/engine/test/headless-native';
 import {createNalatiTamingPilot} from './tamingPilot';
-import { createNativeBakeReader } from '@wildshard/engine/game/population/nativeBake';
-import { nativeTamingOf } from '@wildshard/engine/game/riding/nativeTaming';
-import { mountedPlayerOf } from '@wildshard/engine/game/riding/native';
-import { canonicalSimDigest } from '@wildshard/engine/test/simState';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { createNativeBakeReader } from '@wildshard/sdk/internal/engine/game/population/nativeBake';
+import { nativeTamingOf } from '@wildshard/sdk/internal/engine/game/riding/nativeTaming';
+import { mountedPlayerOf } from '@wildshard/sdk/internal/engine/game/riding/native';
+import { canonicalSimDigest } from '@wildshard/sdk/internal/engine/test/simState';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const physics=(()=>{
  const rows:unknown=originalNalatiPhysics();

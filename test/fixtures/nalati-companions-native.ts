@@ -1,14 +1,14 @@
 import * as v from 'valibot';
-import {MountCompanions,companionToName} from '@wildshard/engine/game/riding/companions';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {nativeTamingOf} from '@wildshard/engine/game/riding/nativeTaming';
-import {ReturnProgram} from '@wildshard/engine/game/population/returnProgram';
+import {MountCompanions,companionToName} from '@wildshard/sdk/internal/engine/game/riding/companions';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {nativeTamingOf} from '@wildshard/sdk/internal/engine/game/riding/nativeTaming';
+import {ReturnProgram} from '@wildshard/sdk/internal/engine/game/population/returnProgram';
 import {ClientRidingSessionSchema,cleanMountName} from '@wildshard/format/riding';
-import {pickPrompt} from '@wildshard/engine/world/interact/prompts';
-import type {AnimalSim} from '@wildshard/engine/entities/AnimalSim';
-import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
-import {prepareFolderPlan as prepareNalati} from '@wildshard/engine/test/headless-native';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import {pickPrompt} from '@wildshard/sdk/internal/engine/world/interact/prompts';
+import type {AnimalSim} from '@wildshard/sdk/internal/engine/entities/AnimalSim';
+import type {PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
+import {prepareFolderPlan as prepareNalati} from '@wildshard/sdk/internal/engine/test/headless-native';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const finite=v.pipe(v.number(),v.finite());
 const id=v.pipe(v.string(),v.minLength(1),v.maxLength(128));

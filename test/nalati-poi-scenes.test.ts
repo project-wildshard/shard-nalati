@@ -7,9 +7,9 @@ import { expect, test } from 'vitest';
 import { build } from 'vite';
 import * as v from 'valibot';
 import { nalatiPoiScenes, type NalatiPoiScenePlaces } from '../src/generators/poiScenes';
-import { jsonBytes } from '@wildshard/engine/scripts/bake-output.mjs';
+import { jsonBytes } from '@wildshard/sdk/headless/scripts/bake-output.mjs';
 import { assertConfigBoundary } from '@wildshard/sdk/configBoundary';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import original from './fixtures/nalati-poi-scenes.json' with { type: 'json' };
 
 function checkMetadata(source: 'places.json' | 'native runtime'): void {

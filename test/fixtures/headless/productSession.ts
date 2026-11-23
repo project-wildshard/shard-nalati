@@ -1,13 +1,13 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
-import {HeadlessSimulation} from '@wildshard/engine/host/headless';
-import type {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
-import {folderHeadlessSections} from '@wildshard/engine/host/headlessSections';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
+import {HeadlessSimulation} from '@wildshard/sdk/headless/host/headless';
+import type {loadHeadlessFolder} from '@wildshard/sdk/headless/host/headlessFolder';
+import {folderHeadlessSections} from '@wildshard/sdk/headless/host/headlessSections';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
 import {builtProduct} from '../builtProduct';
 import {createNativeProofWorker,type NativeProofKind} from '../headless-worker';
-import {recordNativeProcessUsage} from '@wildshard/engine/test/headless/processUsage';
-import {admittedFolder as admittedProduct} from '@wildshard/engine/test/headless/admittedFolderCache';
+import {recordNativeProcessUsage} from '@wildshard/sdk/internal/engine/test/headless/processUsage';
+import {admittedFolder as admittedProduct} from '@wildshard/sdk/internal/engine/test/headless/admittedFolderCache';
 
 if(['nalati-awareness-run.ts','nalati-discovery-run.ts'].includes(process.argv[1]?.replaceAll('\\','/').split('/').at(-1)??''))recordNativeProcessUsage();
 

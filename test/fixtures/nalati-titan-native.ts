@@ -1,10 +1,10 @@
 import { nalatiNativeAssembly } from './nalati-native-assembly';
 import * as v from 'valibot';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
-import {ledgerPorts} from '@wildshard/engine/game/plugin/simulation';
-import {openArenaArrows,openArenaOf,prepareOpenArena,type NativeOpenArena} from '@wildshard/engine/game/boss/openArenaNative';
-import {HEADLESS_ARENA} from '@wildshard/engine/game/boss/headlessArenaViews';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
+import {ledgerPorts} from '@wildshard/sdk/internal/engine/game/plugin/simulation';
+import {openArenaArrows,openArenaOf,prepareOpenArena,type NativeOpenArena} from '@wildshard/sdk/internal/engine/game/boss/openArenaNative';
+import {HEADLESS_ARENA} from '@wildshard/sdk/internal/engine/game/boss/headlessArenaViews';
 import {prepareNalatiPatrol,nalatiPatrolOf,type NalatiPatrolExtras} from './nalati-patrol-native';
 import {withNalatiCompanions} from './nalati-companions-native';
 import {withNalatiWeapons} from './nalati-weapons-native';

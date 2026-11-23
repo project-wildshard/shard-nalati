@@ -3,8 +3,9 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { defineConfig } from 'vitest/config';
 import { viteTmpRoot } from './scripts/vite-tmp.mjs';
+import { enginePackagePath } from '@wildshard/sdk/headless';
 
-const engine = path.dirname(createRequire(import.meta.url).resolve('@wildshard/engine/package.json'));
+const engine = path.dirname(enginePackagePath);
 const rapierAlias = [
   { find: /^\.\/rapier_wasm3d(\.js)?$/u, replacement: path.join(engine, 'src/server/engine/physics/rapierBindings.ts') },
   { find: /^@dimforge\/rapier3d-simd$/u, replacement: createRequire(path.join(engine, 'package.json')).resolve('@dimforge/rapier3d-simd/rapier.js') },

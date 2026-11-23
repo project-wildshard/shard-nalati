@@ -1,14 +1,14 @@
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HuntBody} from '@wildshard/engine/ai/hunt';
-import type {NativeEliteBindings} from '@wildshard/engine/ai/eliteRoster';
-import {prepareSlots,slotsOf,type SlotHeld} from '@wildshard/engine/game/boss/slotsNative';
-import type {SlotEncounterLaw,SlotTell} from '@wildshard/engine/game/boss/slotLaw';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HuntBody} from '@wildshard/sdk/internal/engine/ai/hunt';
+import type {NativeEliteBindings} from '@wildshard/sdk/internal/engine/ai/eliteRoster';
+import {prepareSlots,slotsOf,type SlotHeld} from '@wildshard/sdk/internal/engine/game/boss/slotsNative';
+import type {SlotEncounterLaw,SlotTell} from '@wildshard/sdk/internal/engine/game/boss/slotLaw';
 import {prepareNalatiTitan} from './nalati-titan-native';
-import {readEncounterIntake} from '@wildshard/engine/game/population/encounterBook';
+import {readEncounterIntake} from '@wildshard/sdk/internal/engine/game/population/encounterBook';
 import {readNalatiWeaponObservation} from './nalati-weapon-observation';
 import type {NalatiEncounterIntake} from './nalati-world';
-import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
-import {leadPlayer} from '@wildshard/engine/sim/leadPlayer';
+import type {PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
+import {leadPlayer} from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const SLOTS={step:'nalati.patrol',rows:'combat/timed-encounters.json',actors:'actors/sheep.json',looks:'actors/species-looks.json'} as const;
 export interface NativeNalatiBalbals {readonly law:SlotEncounterLaw<HuntBody,SlotTell>;readonly contacts:()=>number;readonly adoptAdd:(body:HuntBody)=>void}

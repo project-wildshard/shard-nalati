@@ -1,17 +1,17 @@
 import * as v from 'valibot';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {PrepareHeadlessRuntime,HeadlessRuntimeInstallation} from '@wildshard/engine/host/headlessRuntime';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {PrepareHeadlessRuntime,HeadlessRuntimeInstallation} from '@wildshard/sdk/headless/host/headlessRuntime';
 import {ChapterViewSchema,type ChapterViewRows} from '@wildshard/format/questPageComposition';
 import {parseChapterStoryPresentation} from '@wildshard/format/questStory';
 import {parseCarriedQuest} from '@wildshard/format/questSteps';
-import {ReturnProgram} from '@wildshard/engine/game/population/returnProgram';
-import {chapterDecide} from '@wildshard/engine/game/quest/chapterDecision';
-import {questObservation} from '@wildshard/engine/game/quest/questObservation';
-import {commitQuestEffects} from '@wildshard/engine/game/quest/effects';
-import {nativeTamingOf} from '@wildshard/engine/game/riding/nativeTaming';
+import {ReturnProgram} from '@wildshard/sdk/internal/engine/game/population/returnProgram';
+import {chapterDecide} from '@wildshard/sdk/internal/engine/game/quest/chapterDecision';
+import {questObservation} from '@wildshard/sdk/internal/engine/game/quest/questObservation';
+import {commitQuestEffects} from '@wildshard/sdk/internal/engine/game/quest/effects';
+import {nativeTamingOf} from '@wildshard/sdk/internal/engine/game/riding/nativeTaming';
 import {nalatiTitanOf} from './nalati-titan-native';
 import {prepareNalatiBalbals} from './nalati-balbal-native';
-import type {NativeEliteBindings} from '@wildshard/engine/ai/eliteRoster';
+import type {NativeEliteBindings} from '@wildshard/sdk/internal/engine/ai/eliteRoster';
 import {readNalatiKingData} from './nalati-king-data';
 import {installNativeKing} from './nalati-king-host';
 import {chapterWire,chapterRead} from './headless/chapterHandoff';
@@ -19,10 +19,10 @@ import {installNalatiReadings} from './nalati-verbs';
 import {installNalatiMountInputs} from './nalati-mount-inputs';
 import {installNalatiKokpar} from './nalati-kokpar-native';
 import {installNalatiChapterObservation} from './nalati-chapter-observation';
-import type {ChapterRecords as NalatiChapterRecords} from '@wildshard/engine/game/quest/chapterRecords';
+import type {ChapterRecords as NalatiChapterRecords} from '@wildshard/sdk/internal/engine/game/quest/chapterRecords';
 import {installPackedChapterTaming} from './headless/chapterObservation';
 import {createNalatiChapterPresentation} from './nalati-chapter-presentation';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 interface ChapterLoans {
   /** These methods must read their original entered encounters, or an explicit

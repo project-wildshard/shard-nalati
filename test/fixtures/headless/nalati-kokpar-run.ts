@@ -1,28 +1,28 @@
 import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- The native proof reads the same shipped physics module.
 import {readFileSync} from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Outcomes must come from actual mounted input and native events.
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {folderHeadlessSections} from '@wildshard/engine/host/headlessSections';
-import {snapshotSimHostBytes,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
-import {canonicalSimDigest} from '@wildshard/engine/test/simState';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
+import {loadHeadlessFolder} from '@wildshard/sdk/headless/host/headlessFolder';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import {folderHeadlessSections} from '@wildshard/sdk/headless/host/headlessSections';
+import {snapshotSimHostBytes,serializeSimSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
+import {canonicalSimDigest} from '@wildshard/sdk/internal/engine/test/simState';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
 import {parseCarriedQuest} from '@wildshard/format/questSteps';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {createNativeProofWorker} from '../headless-worker';
 import {prepareHeadlessRuntime} from '../nalati-kokpar-native';
-import {runNativeHeadlessTape,type HeadlessTapeSegment} from '@wildshard/engine/host/headlessTape';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import {runNativeHeadlessTape,type HeadlessTapeSegment} from '@wildshard/sdk/headless/host/headlessTape';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import {nalatiCampTalkTape} from '../../proof/nalati-grasslands/verbTape';
 import {SKY_ROAD} from '../../../src/generators/layout';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const directory=builtProduct('nalati-grasslands'),product=await loadHeadlessFolder(directory);
 const descriptor=outputDescriptor(product.shardfile);assert.ok(descriptor);

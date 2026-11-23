@@ -1,14 +1,14 @@
 import * as v from 'valibot';
-import {nativePopulationOf} from '@wildshard/engine/game/riding/nativePopulation';
-import {PastureCues} from '@wildshard/engine/game/riding/pastureCues';
+import {nativePopulationOf} from '@wildshard/sdk/internal/engine/game/riding/nativePopulation';
+import {PastureCues} from '@wildshard/sdk/internal/engine/game/riding/pastureCues';
 import {PastureActorSchema} from '@wildshard/format/wildlifePopulation';
 import {PopulationEffectsSchema} from '@wildshard/format/creatures';
-import {GroupNotices} from '@wildshard/engine/game/population/groupNotices';
+import {GroupNotices} from '@wildshard/sdk/internal/engine/game/population/groupNotices';
 import {prepareNalatiWorld} from './nalati-world';
 import {withNalatiCompanions} from './nalati-companions-native';
 import {withNalatiWeapons} from './nalati-weapons-native';
-import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import type {PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const Signal=v.strictObject({name:v.string(),x:v.pipe(v.number(),v.finite()),z:v.pipe(v.number(),v.finite()),tick:v.pipe(v.number(),v.integer(),v.minValue(0))});
 const Cue=v.strictObject({kind:v.string(),text:v.string(),sound:v.nullable(v.string()),actor:v.nullable(v.string())});

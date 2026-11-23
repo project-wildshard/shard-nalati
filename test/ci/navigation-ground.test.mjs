@@ -1,15 +1,15 @@
 // J186: build Nalati first. Check its actual admitted scalar/navigation bytes,
 // not a copied discovery fixture or a renderer/world facade. Outside hooks.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { test } from 'node:test';
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { outputDescriptor } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { ScalarLatticeBindings } = await import('@wildshard/engine/world/scalarChannel');
-const { parseNavmesh } = await import('@wildshard/engine/physics/navmesh');
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { outputDescriptor } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { ScalarLatticeBindings } = await import('@wildshard/sdk/internal/engine/world/scalarChannel');
+const { parseNavmesh } = await import('@wildshard/sdk/internal/engine/physics/navmesh');
 const { navmeshGroundExclusion } = await import('@wildshard/dev/scripts/bake/navmeshGround.ts');
 const { decodePortableBytes } = await import('@wildshard/sdk/bake/portableBytes');
 const { TERRAIN } = await import('../../src/generators/terrainRecipe.ts');

@@ -14,7 +14,7 @@ let stormHash:string|undefined,fireHash:string|undefined,retryHash:string|undefi
 afterAll(()=>{rmSync(directory,{recursive:true,force:true});});
 function run(stage:'entry'|'opening'|'retry'|'victory',input:string,hash?:string,output?:string):string{
   const started=performance.now();
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/engine/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/nalati-titan-run.ts'),stage,input,...(hash===undefined?[]:[hash]),...(output===undefined?[]:[output])],{encoding:'utf8',timeout:300_000});
   expect(child.status,child.stdout+child.stderr+String(child.error??'')+(child.signal??'')).toBe(0);
   expect(child.stdout).toContain(`"story":"titan-${stage}"`);

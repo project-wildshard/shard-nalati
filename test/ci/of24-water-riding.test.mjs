@@ -4,12 +4,12 @@ import { test } from 'node:test';
 import { boot } from './journey-rider.mjs';
 
 const { NATIVE_ASSEMBLY_FILE } = await import('@wildshard/format/nativeAssembly');
-const { runNativeHeadlessTape } = await import('@wildshard/engine/host/headlessTape');
-const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
-const { nativeTamingOf } = await import('@wildshard/engine/game/riding/nativeTaming');
-const { mountedPlayerOf } = await import('@wildshard/engine/game/riding/native');
+const { runNativeHeadlessTape } = await import('@wildshard/sdk/headless/host/headlessTape');
+const { actRoutes } = await import('@wildshard/sdk/internal/engine/sim/actRoutes');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
+const { nativeTamingOf } = await import('@wildshard/sdk/internal/engine/game/riding/nativeTaming');
+const { mountedPlayerOf } = await import('@wildshard/sdk/internal/engine/game/riding/native');
 
 test('Nalati water and riding rows preserve the original native world', { timeout: 180_000 }, async () => {
   const { input, world } = await boot();

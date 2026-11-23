@@ -8,7 +8,7 @@ const root = 'src/behaviour';
 const authored = new Map(readdirSync(root).filter(name => name.endsWith('.as')).map(name => [`behaviour/${name}`, readFileSync(`${root}/${name}`, 'utf8')]));
 const built = await nalatiKokparRows(compileDecisionScripts, authored, courseSource);
 const course = { ...built.rows.course, bytes: Buffer.from(built.courseWasm).toString('base64') };
-import { ProjectedState, ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
+import { ProjectedState, ReturnProgram } from '@wildshard/sdk/internal/engine/game/population/returnProgram';
 import { parseRidingPractice } from '@wildshard/format/practiceCourseRows';
 import { horseCourseRows } from '../src/generators/courseScene';
 import { parseDecisionScripts } from '@wildshard/format/decisionScripts';

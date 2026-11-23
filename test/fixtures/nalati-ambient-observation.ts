@@ -1,5 +1,5 @@
 import { BufferAttribute, type BufferGeometry } from 'three';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { wingGeo, halfBirdGeo, buildMarmotGeometry } from '../../src/generators/ambientGeometry';
 
 /** Observe all original ambient channels, storage, topology and authored bounds before any codec. */

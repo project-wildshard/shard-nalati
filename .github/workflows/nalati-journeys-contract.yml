@@ -82,9 +82,9 @@ jobs:
       - name: Check installed exports and the cleared queue
         run: node scripts/check-test-boundary.mjs --rewards
       - name: Earn the goat, Titan rewards and exact continuations
-        run: node --experimental-transform-types --import @wildshard/engine/scripts/sim-node-loader.mjs --test test/reward-candidate/mounted-rewards.test.mjs
+        run: node --experimental-transform-types --import @wildshard/sdk/headless/scripts/sim-node-loader.mjs --test test/reward-candidate/mounted-rewards.test.mjs
       - name: Earn the King reward and native continuations
-        run: node --experimental-transform-types --import @wildshard/engine/scripts/sim-node-loader.mjs --test test/reward-candidate/king-reward.test.mjs
+        run: node --experimental-transform-types --import @wildshard/sdk/headless/scripts/sim-node-loader.mjs --test test/reward-candidate/king-reward.test.mjs
       - name: Retain actual journey receipts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

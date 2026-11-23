@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 import { nameBlob, type NamedBlob } from '@wildshard/sdk/blobs';
-import { encodeCanonicalJson } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson } from '@wildshard/sdk/immutable';
 
 const scalar = v.number();
 const sourceRows = v.object({ places: v.object({ rows: v.array(v.object({

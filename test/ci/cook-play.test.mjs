@@ -2,7 +2,7 @@
 // served live-herd/restore case is 62.10 s. Quick gates stay unchanged.
 // Use the shipped cooker/encoder, then only extracted server-pack bytes.
 // This complete publish/serve/play journey never joins hooks or Ring 3.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -12,12 +12,13 @@ import {tmpdir} from 'node:os';
 import {dirname,join,resolve} from 'node:path';
 import {brotliCompressSync,brotliDecompressSync,constants} from 'node:zlib';
 import {test} from 'node:test';
+import { enginePackagePath } from '@wildshard/sdk/headless';
 
-const {readServerPackBook,serverPackFile}=await import('@wildshard/engine/game/shardfile/serverPack');
-const {loadHeadlessFolder}=await import('@wildshard/engine/host/headlessFolder');
-const {openWorldAdapter}=await import('@wildshard/engine/host/openWorld');
-const {outputDescriptor,serverReadsFile}=await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const {loadRapier}=await import('@wildshard/engine/physics/rapier');
+const {readServerPackBook,serverPackFile}=await import('@wildshard/sdk/headless/game/shardfile/serverPack');
+const {loadHeadlessFolder}=await import('@wildshard/sdk/headless/host/headlessFolder');
+const {openWorldAdapter}=await import('@wildshard/sdk/internal/engine/host/openWorld');
+const {outputDescriptor,serverReadsFile}=await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const {loadRapier}=await import('@wildshard/sdk/headless/physics/rapier');
 const require=createRequire(import.meta.url);
 
 test('the real cooked Nalati walks and resumes using only served server files',{timeout:900_000},async()=>{
@@ -26,7 +27,7 @@ test('the real cooked Nalati walks and resumes using only served server files',{
  const previous=process.env.WILDSHARD_SPAWN_PART_CACHE;
  process.env.WILDSHARD_SPAWN_PART_CACHE=join(root,'cold-parts');
  try{
-  const {cookShard,servedAsIs}=await import('@wildshard/engine/game/shardCook');
+  const {cookShard,servedAsIs}=await import('@wildshard/sdk/headless/game/shardCook');
   const bin=join(dirname(require.resolve('@wildshard/cli/package.json')),'bin/wildshard.mjs'),tar=join(root,'dunes.tar');
   const done=spawnSync(process.execPath,[bin,'pack',resolve('out/nalati-grasslands'),'--out',tar],{encoding:'utf8',timeout:30_000});
   assert.ifError(done.error);assert.equal(done.status,0,done.stderr);
@@ -47,7 +48,7 @@ test('the real cooked Nalati walks and resumes using only served server files',{
   const assets=new Map(descriptor.index.files.filter(file=>serverReadsFile(file,shard.terrain?.collider)&&
    (file.name===undefined||file.kind==='wasm'||file.kind==='tile')).map(file=>
    [file.commons===true?`commons:${file.hash}`:file.hash,readFileSync(join(unpacked,file.path))]));
-  const engineRequire=createRequire(require.resolve('@wildshard/engine/package.json'));
+  const engineRequire=createRequire(enginePackagePath);
   const rapier=await loadRapier(readFileSync(engineRequire.resolve('@dimforge/rapier3d-simd/rapier_wasm3d_bg.wasm')));
   const create=async snapshot=>{const world=await openWorldAdapter({shard,assets,product,rapier},snapshot);worlds.push(world);return world;};
   const world=await create(),played=await world.verbTape({version:1,observe:[],segments:[

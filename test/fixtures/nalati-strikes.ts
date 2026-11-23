@@ -1,8 +1,8 @@
-import { canReach } from '@wildshard/engine/ai/reach';
-import { StrikeRunner, type StrikeActor, type StrikeContext, type StrikeSpec } from '@wildshard/engine/ai/strikes';
+import { canReach } from '@wildshard/sdk/internal/engine/ai/reach';
+import { StrikeRunner, type StrikeActor, type StrikeContext, type StrikeSpec } from '@wildshard/sdk/internal/engine/ai/strikes';
 import { Vector3 } from 'three';
 import { strike } from '@wildshard/sdk/species';
-import { strikeFromData } from '@wildshard/engine/ai/strikeRows';
+import { strikeFromData } from '@wildshard/sdk/internal/engine/ai/strikeRows';
 import rows from './nalati-strikeProfiles-original.json' with { type: 'json' };
 
 const point = (radius: number): StrikeSpec['shape'] => ({ kind: 'point', radius, exclusive: true });

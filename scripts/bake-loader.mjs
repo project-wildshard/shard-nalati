@@ -1,1 +1,1 @@
-import '@wildshard/engine/scripts/bake-loader.mjs';
+import '@wildshard/sdk/headless/scripts/bake-loader.mjs';

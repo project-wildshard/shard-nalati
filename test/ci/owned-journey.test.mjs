@@ -1,6 +1,6 @@
 // J186: actual built products, real player input and authored route data.
 // Explicit CI proof only; no teleports, forced quest flags or fake host.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -8,14 +8,14 @@ import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 const { questSource } = await import('./quest-source.mjs');
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { openWorldAdapter } = await import('@wildshard/engine/host/openWorld');
-const { HeadlessSimulation } = await import('@wildshard/engine/host/headless');
-const { folderHeadlessSections } = await import('@wildshard/engine/host/headlessSections');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const { manifestFolders, builtShardFolders } = await import('@wildshard/engine/scripts/shard-outputs.mjs');
-const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { openWorldAdapter } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { HeadlessSimulation } = await import('@wildshard/sdk/headless/host/headless');
+const { folderHeadlessSections } = await import('@wildshard/sdk/headless/host/headlessSections');
+const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+const { manifestFolders, builtShardFolders } = await import('@wildshard/sdk/headless/scripts/shard-outputs.mjs');
+import { engineRequire } from '@wildshard/sdk/headless';
 const routes = JSON.parse(readFileSync('test/ci/walk-routes.json', 'utf8'));
 const products = builtShardFolders(process.cwd(), manifestFolders(process.cwd())).map(row => row.slug).sort();
 assert.ok(products.length);

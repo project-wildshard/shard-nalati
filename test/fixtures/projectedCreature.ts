@@ -1,5 +1,5 @@
-import { app } from '@wildshard/engine/app/runtime';
-import { ActorProjectionV2 } from '@wildshard/engine/game/population/actorProjectionV2';
+import { app } from '@wildshard/sdk/internal/engine/app/runtime';
+import { ActorProjectionV2 } from '@wildshard/sdk/internal/engine/game/population/actorProjectionV2';
 import rows from './balbal-projection-original.json' with { type: 'json' };
 
 /** Frozen author rows feed the real production binder and its scoped cache. */

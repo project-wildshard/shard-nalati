@@ -14,7 +14,7 @@
       ],
       "fixturePath": "test/fixtures/species-barrel-author-original.json",
       "fixtureBlob": "62009c0307777eddf73066575f68f7730e03d67a",
-      "targetBlob": "f7ed01c25b126016869aa92101b6165c8bba7051",
+      "targetBlob": "05309133858ec81a2108a8ca693c2781eb31a4b8",
       "compilerSupport": []
     },
     {
@@ -30,7 +30,7 @@
       ],
       "fixturePath": "test/fixtures/view-author-original.json",
       "fixtureBlob": "723fd5778f4428b752956b6fe12be0b77cd3ffd0",
-      "targetBlob": "2ddd0e69a0af74e05f2306f7744633158fb4b2a4"
+      "targetBlob": "5f3fcb8d6c02a453520f10e0c422e93fdb74ea80"
     },
     {
       "sourcePath": "test/nalati-loft-author.test.ts",
@@ -46,7 +46,7 @@
         "sourceBlob": "8e6f7ca0bf50765eb0ce59ce1642bee9124e0bfe",
         "targetPath": "test/fixtures/nalati-ambient-observation.ts",
         "changes": "Only owner imports rewritten; original observation/byte/hash/bound/topology/disposal logic unchanged. Actual module runner executes offline author code without a simulation-closure claim.",
-        "targetBlob": "190f8de06f5659bbebf346acc81687a2c2b6ed1b"
+        "targetBlob": "432ac1940c6043bc5e854815003f8b1883627432"
       },
       "targetBlob": "82fbd4bee7cce7a823070038d9e14b2aa2c939e4",
       "changes": "Original complete toEqual(original) assertion; actual helper executes through the normal module runner or native V8 process boundary. Test compiler/lint checks the boundary; legacy producer/helper closure stays row36/H4. New cap10s replaces original engine default30s; geometry child cap9s. No oracle or result field normalized."
@@ -65,9 +65,9 @@
         "sourceBlob": "701c2b37b486ef87ce8f2396400511457b7ca457",
         "targetPath": "test/fixtures/geometry-cache-author-observation.ts",
         "changes": "Only owner imports rewritten. Original observation/byte/hash/bound/topology/stream/disposal logic unchanged; native V8 transport preserves signed zero and typed arrays.",
-        "targetBlob": "c3e035cc4b3624c0deb9e9600608210d8783331b"
+        "targetBlob": "2e35e42e241f64455bf07d9bc7a9267e8616d99f"
       },
-      "targetBlob": "6ca5e07d947e591ac5f8521f4b232a52946f267b",
+      "targetBlob": "4853a6fd4a9693add7e1cd655bef2c03c5102371",
       "changes": "Original complete toEqual(original) assertion; actual helper executes through the normal module runner or native V8 process boundary. Test compiler/lint checks the boundary; legacy producer/helper closure stays row36/H4. New cap10s replaces original engine default30s; geometry child cap9s. No oracle or result field normalized."
     },
     {
@@ -93,7 +93,7 @@
         "sourcePath": "test/fixtures/spruce-author-observation.ts",
         "sourceBlob": "4b4f09f880bf28034ee3a66f7cf346096ac09d93",
         "targetPath": "test/fixtures/spruce-author-observation.ts",
-        "targetBlob": "c0c3bb110ba3a4cf2f3d36053f1c28c26d63c88a",
+        "targetBlob": "bd6ee815ed1e58276a39357839690eba5b197460",
         "changes": "Owner imports only, exact original full geometry/channel/index/group/bounds observation and disposal logic retained."
       },
       "targetBlob": "79cc35d19ac69d154e911d4df92c6b7707064a13",
@@ -122,7 +122,7 @@
         "sourceRevision": "aa2a7d1153588897c87d4bad724f6f47e6909972",
         "sourceBlob": "a37da4cc06128e9815126edfc9ea51a70f5067a6",
         "targetPath": "test/fixtures/nalati-original-species.ts",
-        "targetBlob": "c55b7e379c90ea642b4ff87879135b7d52cff36c",
+        "targetBlob": "75445b3ee8d222f6f1cc75b24b1c9b5be56edf04",
         "changes": "Public installed simulation loader and unchanged 14s compiler-child caps; optional private directory memoizes one full checked map per absolute root. Both default/private paths use the same bytes.slice loan. Caller explicitly releases private memo and disk root afterAll. No fallback or pin changes."
       },
       "preparationHelper": {
@@ -152,7 +152,7 @@
         "sourceRevision": "020c7a7ecefea0c0e128df9f972df81bb580f0f6",
         "sourceBlob": "4624d9be45fdde06ad4aa31c0c5d0b5653aaca2e",
         "targetPath": "test/fixtures/nalati-native-place-files.ts",
-        "targetBlob": "6ecb6869ee41725c21fdc2dd6bdc7019013a38c9",
+        "targetBlob": "7088b17f08d5bd3a15f5ab2d1716ccdce478958c",
         "changes": "Missing monorepo native-program dependency replaced with one fresh actual source build at module load, public bake-loader/native realm,14s child fence, complete8file inventory and unchanged full places/specimens pins. V8 transports exact bytes, private disk output removed in finally, caller always receives slice loans. No cache fallback, synthetic fixture or producer changes. Shared nativePlaceFile consumers pay the same cold source cost once per importing realm; no persistent source cache remains."
       },
       "preparationHelper": {
@@ -175,7 +175,7 @@
       "sourcePath": "test/nalati-decorative-native.test.ts",
       "sourceBlob": "8545b3e37f31d80cf32175947bb7455b3e268023",
       "targetPath": "test/nalati-decorative-native.test.ts",
-      "targetBlob": "9e2164ef9174eab1dd5668517d42f5fb5512cfa0",
+      "targetBlob": "5535ce034d610db11450eb9fba180d9a05877444",
       "originalTests": [
         "native ground and byte adapters retain both complete original decorative wires",
         "separate placement calls own their nested results and reject malformed terrain"
@@ -188,7 +188,7 @@
       "sourcePath": "test/nalati-place-runtime-source.test.ts",
       "sourceBlob": "b1ede5e371f8a9cfb2a11ca0a55f7e8547b13856",
       "targetPath": "test/nalati-place-runtime-source.test.ts",
-      "targetBlob": "48d27375921b1f4769de7c7450cf2faa0c73b5b7",
+      "targetBlob": "809e2e06bd291ff573e3a1d6bd00aa5ce6bcca74",
       "originalTests": [
         "pure runtime preparation preserves all seven complete output pins and input records",
         "structured preparation keeps metadata and independent owned floor bytes",
@@ -203,7 +203,7 @@
         "sourcePath": "test/fixtures/nalati-runtime-wire.ts",
         "sourceBlob": "5513d18d56e8a2b79b5bf1beee85438251b163ee",
         "targetPath": "test/fixtures/nalati-runtime-wire.ts",
-        "targetBlob": "63d5d0e55c418064c91776d3634b5f620fd7dab6",
+        "targetBlob": "24f1ea066855fe82225852bda7d9243fb1280f44",
         "changes": "One import rewritten from local untyped reexport shim to its defining public typed engine bake-output module; same function and full seven-output envelope. All other bytes unchanged from approved020c7a7. Engine original currently imports a missing lifted helper; no runnable current engine baseline claimed."
       },
       "changes": "All four original cases/assertions and seven exact full output pins retained. Owner imports, physical source input/bundle paths relocated. Historical publication prefix remains in inventory keys and pinned fixture JSON; no hash/path key normalized. Both original full floor binary loans retained byte for byte, complete shapeBook and input immutability, independent mutation/rebuild, original refusal checks and actual single config-safe chunk remain.",
@@ -214,7 +214,7 @@
       "sourcePath": "test/nalati-poi-scenes.test.ts",
       "sourceBlob": "076231c8462c331b4d1bd11c0aaa464bdc660005",
       "targetPath": "test/nalati-poi-scenes.test.ts",
-      "targetBlob": "38b79748762b22cf1e35f625f5df42ac0d15eced",
+      "targetBlob": "49d239bc0f4e7f19c815c1ff5e6335038e66b255",
       "originalTests": [
         "owned places.json metadata retains every original POI scene wire byte",
         "owned native runtime metadata retains every original POI scene wire byte",
@@ -240,7 +240,7 @@
       "sourcePath": "test/mounted-specimen-admission.test.ts",
       "sourceBlob": "ea8312c7f4a81fe1f94ec60e3c8808e15cae4f06",
       "targetPath": "test/nalati-mounted-specimen-admission.test.ts",
-      "targetBlob": "6e792fac2698b012d6b306b6c4e2fec1e255a265",
+      "targetBlob": "335016d1768120d08519bc0ede66b4b78cb91fb1",
       "originalTests": [
         "the actual mounted figure keeps every clip and rejects invalid seats before native construction"
       ],

@@ -1,20 +1,20 @@
 import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert the actual native command capture and fresh replay.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read the shipped native physics bytes.
 import {readFileSync} from 'node:fs';
 import * as v from 'valibot';
 import {beginProductSession} from './productSession';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {prepareHeadlessRuntime} from '../nalati-weapons-native';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {runNativeHeadlessTape,type HeadlessTapeSegment} from '@wildshard/engine/host/headlessTape';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {runNativeHeadlessTape,type HeadlessTapeSegment} from '@wildshard/sdk/headless/host/headlessTape';
 import {BladeRowsSchema} from '@wildshard/format/heldMelee';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const input=(actorId:string):HeadlessCommand=>({kind:'script',actorId,value:1});
 const player=(heavy=false,sprint=false):HeadlessCommand=>({kind:'player',moveX:0,moveZ:0,yaw:0,commandVersion:1,

@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { parseQuestData } from '@wildshard/format/quests';
-import { Flags } from '@wildshard/engine/world/interact/flags';
-import { QuestState, lineFor } from '@wildshard/engine/quest/core';
+import { Flags } from '@wildshard/sdk/internal/engine/world/interact/flags';
+import { QuestState, lineFor } from '@wildshard/sdk/internal/engine/quest/core';
 import feats from '../src/data/feats.json' with { type: 'json' };
 import content from '../src/data/questContent.json' with { type: 'json' };
 const quests = parseQuestData({ ...content.quests, achievements: feats });

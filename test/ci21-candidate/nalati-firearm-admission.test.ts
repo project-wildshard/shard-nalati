@@ -1,10 +1,10 @@
 import { expect, test } from 'vitest';
 import { parseHeldFirearmRows, parseHeldFirearmView } from '@wildshard/format/weaponProfiles';
-import { registeredJsonSchema } from '@wildshard/engine/host/formatJsonSchema';
+import { registeredJsonSchema } from '@wildshard/sdk/internal/engine/host/formatJsonSchema';
 import { fixtureJsonCheck } from '../fixtures/productFile';
 import { nameBlob } from '@wildshard/sdk/blobs';
-import { emptyShardfile } from '@wildshard/engine/host/author';
-import { createShardFolder } from '@wildshard/engine/game/shardfile/shardFolder';
+import { emptyShardfile } from '@wildshard/sdk/internal/engine/host/author';
+import { createShardFolder } from '@wildshard/sdk/internal/engine/game/shardfile/shardFolder';
 import source from '../fixtures/nalati-rifle-original.json' with { type: 'json' };
 
 const encode = (input: unknown): Uint8Array => new TextEncoder().encode(JSON.stringify(input));

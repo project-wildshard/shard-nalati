@@ -1,12 +1,12 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- The physical route must earn every arrival through native inputs.
 import assert from 'node:assert/strict';
-import type {SimHost} from '@wildshard/engine/sim';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {PhysicsRouteCursor,type WalkPoint} from '@wildshard/engine/host/headlessJourney';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {PhysicsRouteCursor,type WalkPoint} from '@wildshard/sdk/headless/host/headlessJourney';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import {SKY_ROAD} from '../../../src/generators/layout';
 import {nalatiTitanOf} from '../../fixtures/nalati-titan-native';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** The real entry, borrowed horse and storm prefix. No wait advances a clock
  * directly; departure follows the admitted weather owner's remaining time. */

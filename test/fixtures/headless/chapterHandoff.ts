@@ -1,12 +1,12 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Content-address the actual checked native continuation.
 import {createHash} from 'node:crypto';
 import * as v from 'valibot';
-import {HeadlessTapePlanSchema,HeadlessTapeReportSchema} from '@wildshard/engine/host/tickProtocol';
-import {decodeSimSnapshotBytes,type SimSnapshot,type SimSnapshotBytes} from '@wildshard/engine/sim/snapshot';
-import {physicsState} from '@wildshard/engine/test/simState';
+import {HeadlessTapePlanSchema,HeadlessTapeReportSchema} from '@wildshard/sdk/headless/host/tickProtocol';
+import {decodeSimSnapshotBytes,type SimSnapshot,type SimSnapshotBytes} from '@wildshard/sdk/headless/sim/snapshot';
+import {physicsState} from '@wildshard/sdk/internal/engine/test/simState';
 import {PACKED_CHAPTER_TAMING,unpackChapterTaming} from './chapterObservation';
 import {chapterReportUsesCodec,unpackChapterReport} from './chapterReportCodec';
-import type {HeadlessTapeReport} from '@wildshard/engine/host/headlessTape';
+import type {HeadlessTapeReport} from '@wildshard/sdk/headless/host/headlessTape';
 
 const natural=v.pipe(v.number(),v.safeInteger(),v.minValue(0)),digest=v.pipe(v.string(),v.regex(/^[a-f0-9]{64}$/u));
 export const chapterObserved:readonly string[]=Object.freeze(['nalati.taming','nalati.chapter','nalati.kokpar','nalati.talk','nalati.king-closed']);

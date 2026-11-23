@@ -11,23 +11,23 @@
 // stealth/controller.ts) runs beside the host as the page runs it: stepped
 // with the pose the page samples, fed the native grass, herds and packs it
 // observes. Nothing is written to cover, awareness, latch or state.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const { nativeTamingOf } = await import('@wildshard/engine/game/riding/nativeTaming');
-const { mountedPlayerOf } = await import('@wildshard/engine/game/riding/native');
-const { nativeGroupCollection } = await import('@wildshard/engine/game/shardfile/groupRuntime');
-const { StealthCrouch, sampleStealthSources } = await import('@wildshard/engine/game/stealth/stealthLaw');
-const { practiceRoom } = await import('@wildshard/engine/core/practiceRoom');
-const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+const { nativeTamingOf } = await import('@wildshard/sdk/internal/engine/game/riding/nativeTaming');
+const { mountedPlayerOf } = await import('@wildshard/sdk/internal/engine/game/riding/native');
+const { nativeGroupCollection } = await import('@wildshard/sdk/internal/engine/game/shardfile/groupRuntime');
+const { StealthCrouch, sampleStealthSources } = await import('@wildshard/sdk/internal/engine/game/stealth/stealthLaw');
+const { practiceRoom } = await import('@wildshard/sdk/internal/engine/core/practiceRoom');
+import { engineRequire } from '@wildshard/sdk/headless';
 
 // From spawn through the camp gate to the feather grass (the engine's native stealth proof walks the same line).
 const INTO_GRASS = [[20, 216], [40, 218], [60, 214], [66, 209.5], [60, 205], [45, 205], [34, 198]];

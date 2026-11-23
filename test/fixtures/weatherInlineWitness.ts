@@ -5,7 +5,7 @@ import weatherOriginal from './nalati-weather-original.json';
 import * as v from 'valibot';
 import {WeatherReactionsSchema} from '@wildshard/format/weatherProgram';
 import {DecisionScriptsSchema} from '@wildshard/format/decisionScripts';
-import {sha256} from '@wildshard/engine/game/plugin/moduleHash';
+import {sha256} from '@wildshard/sdk/internal/engine/game/plugin/moduleHash';
 
 const raw=v.parse(v.object({...WeatherReactionsSchema.entries,script:DecisionScriptsSchema.pipe[2].item}),
   weatherOriginal);

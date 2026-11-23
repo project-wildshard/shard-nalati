@@ -6,7 +6,7 @@ import { expect, test } from 'vitest';
 import { build } from 'vite';
 import * as v from 'valibot';
 import { placeRuntimeRows, type PlaceRuntimeInput } from '../src/generators/placeRuntimeSource.mjs';
-import { jsonBytes } from '@wildshard/engine/scripts/bake-output.mjs';
+import { jsonBytes } from '@wildshard/sdk/headless/scripts/bake-output.mjs';
 import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { assertConfigBoundary } from '@wildshard/sdk/configBoundary';
 import { nalatiRuntimeWire } from './fixtures/nalati-runtime-wire';

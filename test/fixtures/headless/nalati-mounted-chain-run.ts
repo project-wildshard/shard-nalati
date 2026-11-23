@@ -1,18 +1,18 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert actual native contacts and independent replay.
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
 import * as v from 'valibot';
-import {decodeSimSnapshot,snapshotSimHost,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
-import {canonicalSimDigest} from '@wildshard/engine/test/simState';
+import {decodeSimSnapshot,snapshotSimHost,serializeSimSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
+import {canonicalSimDigest} from '@wildshard/sdk/internal/engine/test/simState';
 import {BladeRowsSchema} from '@wildshard/format/heldMelee';
 import {MeleeWeaponProfileSchema} from '@wildshard/format/weaponProfiles';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import {beginProductSession} from './productSession';
-import {checkedReplayPipeline} from '@wildshard/engine/test/headless/checkedReplayPipeline';
+import {checkedReplayPipeline} from '@wildshard/sdk/internal/engine/test/headless/checkedReplayPipeline';
 import {earnNalatiMountedRaid} from './nalati-mounted-raid';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const State=v.object({passes:v.number(),moves:v.array(v.string()),pass:v.object({passChain:v.number(),chainT:v.number()}),
   blade:v.object({contacts:v.number(),struck:v.array(v.string())})});

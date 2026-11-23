@@ -1,5 +1,5 @@
 import type { PlaceRuntimeRows } from '../../src/generators/placeRuntimeSource.mjs';
-import { jsonBytes } from '@wildshard/engine/scripts/bake-output.mjs';
+import { jsonBytes } from '@wildshard/sdk/headless/scripts/bake-output.mjs';
 
 /** Reconstruct the retired publication envelope only for immutable predecessor byte oracles. */
 export function nalatiRuntimeWire(packet: PlaceRuntimeRows): ReadonlyMap<string, Uint8Array> {

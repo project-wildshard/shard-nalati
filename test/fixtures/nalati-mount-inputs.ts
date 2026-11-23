@@ -1,8 +1,8 @@
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HeadlessRuntimeInstallation} from '@wildshard/engine/host/headlessRuntime';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {pickPrompt} from '@wildshard/engine/world/interact/prompts';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessRuntimeInstallation} from '@wildshard/sdk/headless/host/headlessRuntime';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {pickPrompt} from '@wildshard/sdk/internal/engine/world/interact/prompts';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** Fixture input edge for the actual registered camp mounts. No actor id or
  * forced mount crosses the tape: USE must reach a visible native prompt. */

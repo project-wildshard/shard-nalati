@@ -1,7 +1,7 @@
 import { expect, test, vi } from 'vitest';
 import { unzlibSync } from 'fflate';
-import { unshuffleLanes } from '@wildshard/engine/core/deflate';
-import { fixedDraws } from '@wildshard/engine/game/models/fixedDraws';
+import { unshuffleLanes } from '@wildshard/sdk/internal/engine/core/deflate';
+import { fixedDraws } from '@wildshard/sdk/internal/engine/game/models/fixedDraws';
 import { FixedDrawRowsSchema } from '@wildshard/format/fixedDraws';
 import * as v from 'valibot';
 import { nalatiNamedPlaceDraw } from '../../src/generators/placeWire';

@@ -1,15 +1,15 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Every transition requires an earned original owner.
 import assert from 'node:assert/strict';
-import type {SimHost,SimStateAdapter} from '@wildshard/engine/sim';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import type {SimHost,SimStateAdapter} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import type {NalatiKingData} from '../../fixtures/nalati-king-data';
 import {readNalatiWeaponObservation} from '../../fixtures/nalati-weapon-observation';
 import {chapterWalkInputs,chapterRideInputs,chapterCampReturnInputs} from './chapterOne';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {nativeTamingOf} from '@wildshard/engine/game/riding/nativeTaming';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {nativeTamingOf} from '@wildshard/sdk/internal/engine/game/riding/nativeTaming';
 import {SKY_ROAD} from '../../../src/generators/layout';
 import type {KingObservation,KingBodyObservation} from '../../fixtures/nalati-king-continuation';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** A walking destination inside the actual door program's observed strip. */
 export function kingEntryPoint(e:Pick<NalatiKingData['entrance'],'x'|'z'|'facing'>):{readonly x:number;readonly z:number} {

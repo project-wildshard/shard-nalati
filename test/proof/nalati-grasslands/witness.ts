@@ -1,22 +1,22 @@
 import { ownedCollisionFloor } from '../../fixtures/nalati-owned-collision-oracle';
 import { nativeRapierFile } from '../../fixtures/native-rapier-file';
 import { originalNalatiPhysics } from '../../fixtures/nalati-physics-original';
-import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
+import { loadHeadlessFolder } from '@wildshard/sdk/headless/host/headlessFolder';
 // oxlint-disable-next-line import/no-nodejs-modules -- The renderer-denying native witness asserts the actual captured world.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read the admitted in-repository native terrain and navmesh.
 import { readFileSync } from 'node:fs';
 import source from '../../fixtures/nalati-shardfile-source';
 import { nalatiNativeAssets } from './nativeAssets';
-import { createSimHost, type SimHost } from '@wildshard/engine/sim';
-import { decodeSimSnapshot, serializeSimSnapshot, snapshotSimHostBytes, type SimSnapshot } from '@wildshard/engine/sim/snapshot';
-import { restoreSimHost } from '@wildshard/engine/sim/restore';
-import { loadRapier } from '@wildshard/engine/physics/rapier';
-import { createNativeBakeReader } from '@wildshard/engine/game/population/nativeBake';
-import { prepareFolderPlan as prepareHeadlessRuntime } from '@wildshard/engine/test/headless-native';
+import { createSimHost, type SimHost } from '@wildshard/sdk/internal/engine/sim';
+import { decodeSimSnapshot, serializeSimSnapshot, snapshotSimHostBytes, type SimSnapshot } from '@wildshard/sdk/headless/sim/snapshot';
+import { restoreSimHost } from '@wildshard/sdk/internal/engine/sim/restore';
+import { loadRapier } from '@wildshard/sdk/headless/physics/rapier';
+import { createNativeBakeReader } from '@wildshard/sdk/internal/engine/game/population/nativeBake';
+import { prepareFolderPlan as prepareHeadlessRuntime } from '@wildshard/sdk/internal/engine/test/headless-native';
 import { nalatiTamingWitness } from './taming';
-import { canonicalSimDigest, sameBytes } from '@wildshard/engine/test/simState';
-import { leadCommands, leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { canonicalSimDigest, sameBytes } from '@wildshard/sdk/internal/engine/test/simState';
+import { leadCommands, leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const physics:unknown=originalNalatiPhysics();
 const nalatiBake=()=>createNativeBakeReader(physics,{label:'Nalati',resolution:256,size:500,parked:false,rig:'segments',provenance:'piece',shapes:[1,2,6,9]},{file:'data/physics-ground.bin',bytes:readFileSync('src/data/physics-ground.bin')},[0,1].map(index=>({file:`data/physics-colliders-${index}.bin`,bytes:readFileSync(`src/data/physics-colliders-${index}.bin`)}))).read();

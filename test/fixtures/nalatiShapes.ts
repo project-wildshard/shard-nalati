@@ -1,5 +1,5 @@
 import { originalPoiPaintFiles } from './nalati-poi-paint-original';
-import { fixedDraws } from '@wildshard/engine/game/models/fixedDraws';
+import { fixedDraws } from '@wildshard/sdk/internal/engine/game/models/fixedDraws';
 import shapeRows from './nalati-shape-book-original.json' with { type: 'json' };
 
 /** Nalati's frozen original shape book (the shard file's models/shape-book.json) as one fixed-draw library,

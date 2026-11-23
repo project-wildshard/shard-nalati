@@ -1,7 +1,7 @@
-import {Scope} from '@wildshard/engine/app/scope';
+import {Scope} from '@wildshard/sdk/headless/app/scope';
 import {lendNalatiPasture} from '../fixtures/nalati-return-modules';
 import { expect, test, beforeEach, afterEach } from 'vitest';
-import { ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
+import { ReturnProgram } from '@wildshard/sdk/internal/engine/game/population/returnProgram';
 import { Rng } from '@wildshard/format/seededRng';
 import {titanPrograms as program} from '../fixtures/titanInlineWitness';
 

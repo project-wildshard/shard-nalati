@@ -1,9 +1,9 @@
 import * as v from 'valibot';
-import type { Scope } from '@wildshard/engine/app/scope';
+import type { Scope } from '@wildshard/sdk/headless/app/scope';
 import { parseDecisionScripts } from '@wildshard/format/decisionScripts';
 import { ReturnProgramSchema } from '@wildshard/format/namedJsonContracts';
 import { ReturnModulesSchema } from '@wildshard/format/scriptContract';
-import { ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
+import { ReturnProgram } from '@wildshard/sdk/internal/engine/game/population/returnProgram';
 import { NALATI_KOKPAR, NALATI_KOKPAR_WASM } from './nalati-kokpar';
 
 const input = v.parse(v.object({ program: ReturnProgramSchema }), JSON.parse(JSON.stringify(NALATI_KOKPAR)));

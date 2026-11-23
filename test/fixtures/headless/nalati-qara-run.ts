@@ -1,6 +1,6 @@
 import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert only earned native combat and independent replay.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Admit the named product and unchanged repository physics bytes.
@@ -8,24 +8,24 @@ import {readFileSync,writeFileSync,statSync} from 'node:fs';
 import * as v from 'valibot';
 import {Vector3} from 'three';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {canonicalSimDigest} from '@wildshard/engine/test/simState';
-import {decodeSimSnapshot,snapshotSimHost,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
+import {loadHeadlessFolder} from '@wildshard/sdk/headless/host/headlessFolder';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {canonicalSimDigest} from '@wildshard/sdk/internal/engine/test/simState';
+import {decodeSimSnapshot,snapshotSimHost,serializeSimSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
 import {HeldBowFileSchema} from '@wildshard/format/weaponProfiles';
 import {parseHeldSlots} from '@wildshard/format/heldArms';
-import {heldBowBase} from '@wildshard/engine/game/weapons/heldBowBase';
-import {bowLaunchSpeed} from '@wildshard/engine/combat/bowLaw';
-import {runNativeHeadlessTape,type HeadlessTapeObservation} from '@wildshard/engine/host/headlessTape';
-import type {HeadlessCommand,HeadlessEffect,HeadlessTickCommit} from '@wildshard/engine/host/tickProtocol';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {heldBowBase} from '@wildshard/sdk/internal/engine/game/weapons/heldBowBase';
+import {bowLaunchSpeed} from '@wildshard/sdk/internal/engine/combat/bowLaw';
+import {runNativeHeadlessTape,type HeadlessTapeObservation} from '@wildshard/sdk/headless/host/headlessTape';
+import type {HeadlessCommand,HeadlessEffect,HeadlessTickCommit} from '@wildshard/sdk/headless/host/tickProtocol';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {prepareHeadlessRuntime,nalatiQaraOf} from '../nalati-qara-native';
 import {nalatiPatrolOf} from '../nalati-patrol-native';
 import {beginProductSession} from './productSession';
-import {checkedReplayPipeline} from '@wildshard/engine/test/headless/checkedReplayPipeline';
+import {checkedReplayPipeline} from '@wildshard/sdk/internal/engine/test/headless/checkedReplayPipeline';
 import {QaraHandoffSchema,checkQaraLedger,qaraWireHash,qaraObservationHash,qaraCommandHash,type QaraHandoff,type QaraPart} from './qaraHandoff';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const [stage,inputPath,outputPath,inputHash]=process.argv.slice(2);
 assert.ok(stage==='night'||stage==='patrol'||stage==='bow'||stage==='victory');assert.ok(inputPath);assert.ok(outputPath);

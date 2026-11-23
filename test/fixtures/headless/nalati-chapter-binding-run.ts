@@ -1,18 +1,18 @@
 import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Native owner admission and continuation are asserted in the bounded child.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- The original shipped Rapier module is part of the native product proof.
 import {readFileSync} from 'node:fs';
 import {beginProductSession} from './productSession';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {prepareHeadlessRuntime} from '../nalati-chapter-native';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {decodeSimSnapshot,snapshotSimHost,leadSnapshot} from '@wildshard/engine/sim/snapshot';
-import {physicsState,sameBytes} from '@wildshard/engine/test/simState';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {decodeSimSnapshot,snapshotSimHost,leadSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
+import {physicsState,sameBytes} from '@wildshard/sdk/internal/engine/test/simState';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 let priorPhase=0;
 const phase=(name:string,tick?:number):void=>{const now=performance.now();console.info(JSON.stringify({diagnostic:'nalati-chapter-binding-phase',phase:name,atMs:Math.round(now),phaseMs:Math.round(now-priorPhase),...(tick===undefined?{}:{tick})}));priorPhase=now;};

@@ -2,12 +2,12 @@
 import {readFileSync} from 'node:fs';
 import {expect,test} from 'vitest';
 import {carriedQuestRows} from '../fixtures/nalati-carried-quest';
-import {prepareSpecimenCatalogue} from '@wildshard/engine/game/models/specimenCatalogue';
-import {hashImmutableBytes} from '@wildshard/engine/host/immutable';
+import {prepareSpecimenCatalogue} from '@wildshard/sdk/internal/engine/game/models/specimenCatalogue';
+import {hashImmutableBytes} from '@wildshard/sdk/immutable';
 import {nameBlob} from '@wildshard/sdk/blobs';
-import {Scope} from '@wildshard/engine/app/scope';
-import {createShardFolder} from '@wildshard/engine/game/shardfile/shardFolder';
-import {emptyShardfile} from '@wildshard/engine/host/author';
+import {Scope} from '@wildshard/sdk/headless/app/scope';
+import {createShardFolder} from '@wildshard/sdk/internal/engine/game/shardfile/shardFolder';
+import {emptyShardfile} from '@wildshard/sdk/internal/engine/host/author';
 
 test('the carried specimen prepares the exact original geometry through its named product file',async()=>{
   const source={name:'models/specimens/quest-prop.bin'};

@@ -10,17 +10,17 @@
 // It reports, it never blocks a push: exit 2 when the near-herd p95 is more than WORSE x its baseline, or the herd is
 // not near the player for most of the window; exit 1 when a run has no baseline entry yet. The budgets it prints are the
 // server's 60 ticks/s (16.67 ms) and MMO MP1.2's 10 ms bar. These are this machine's numbers, not the VPS's.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { arch, cpus, platform } from 'node:os';
 import { join, resolve } from 'node:path';
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+import { enginePackagePath, engineRequire } from '@wildshard/sdk/headless';
 
 // The bridge and the bank's traversable shelves to the plains (walk-routes.json `bridge`; the taming journey's route).
 const ROUTE = [[0, 216], [0, 200], [0, 190], [0, 183], [0, 170], [0, 158], [0, 150], [0, 146],
@@ -87,7 +87,7 @@ try {
     herd.push(timed(group.length > 0 && Math.hypot(dx, dz) > FOLLOW ? run(dx, dz, true) : idle));
   }
   const nearTicks = near.filter(count => count > 0).length;
-  const engine = JSON.parse(readFileSync(engineRequire.resolve('@wildshard/engine/package.json'), 'utf8')).version;
+  const engine = JSON.parse(readFileSync(enginePackagePath, 'utf8')).version;
   const key = `${engine} ${platform()}-${arch()} ${cpus()[0]?.model ?? 'cpu'}`;
   const report = { key, node: process.version, openMs: Math.round(openMs), horses: horses().length,
     nearHerd: { ticks: nearTicks, of: HERD_TICKS, meanHorses: Math.round(near.reduce((sum, count) => sum + count, 0) / HERD_TICKS * 10) / 10, maxHorses: Math.max(...near) },

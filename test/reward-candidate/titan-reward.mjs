@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import { rider } from '../ci/journey-rider.mjs';
 import { rewardContinuations } from './reward-continuation.mjs';
 import { titanBowPilot, titanRidersPilot } from './titan-reward-pilot.mjs';
-const { openArenaOf } = await import('@wildshard/engine/game/boss/openArenaNative');
-const { mountedPlayerOf } = await import('@wildshard/engine/game/riding/native');
+const { openArenaOf } = await import('@wildshard/sdk/internal/engine/game/boss/openArenaNative');
+const { mountedPlayerOf } = await import('@wildshard/sdk/internal/engine/game/riding/native');
 
 // Continue the same actual tamed horse/kokpar/intro world. Calls name only
 // player controls and public interaction acts; no encounter state is written.

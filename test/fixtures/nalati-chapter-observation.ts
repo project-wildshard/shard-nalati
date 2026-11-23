@@ -1,7 +1,7 @@
-import {QuestLine} from '@wildshard/engine/quest/core';
-import type {SimHost} from '@wildshard/engine/sim';
+import {QuestLine} from '@wildshard/sdk/internal/engine/quest/core';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
 import type {parseChapterStoryPresentation} from '@wildshard/format/questStory';
-import {chapterFlow} from '@wildshard/engine/game/quest/chapterFlow';
+import {chapterFlow} from '@wildshard/sdk/internal/engine/game/quest/chapterFlow';
 
 /** Observe the page's actual chapter readouts over the existing native quest
  * owners. No quest, flag, dialogue clock or completion callback is replaced. */

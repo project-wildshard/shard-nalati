@@ -1,15 +1,15 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert actual contacts and independent native input replay.
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
-import {nativeGroupCollection} from '@wildshard/engine/game/shardfile/groupRuntime';
-import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
-import {snapshotSimHost,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import {nativeGroupCollection} from '@wildshard/sdk/internal/engine/game/shardfile/groupRuntime';
+import {runNativeHeadlessTape} from '@wildshard/sdk/headless/host/headlessTape';
+import {snapshotSimHost,serializeSimSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import {earnNalatiPasture} from './nalati-pasture-session';
 import {beginProductSession} from './productSession';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const Weapons=v.object({blade:v.object({contacts:v.number(),struck:v.array(v.string())}),swing:v.object({move:v.nullable(v.number()),swingT:v.number()}),moves:v.array(v.string())});
 const {resident,population,checkpoint,checkpointTick}=await earnNalatiPasture([

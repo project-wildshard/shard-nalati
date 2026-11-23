@@ -1,5 +1,5 @@
 import { withPortableMath } from '@wildshard/sdk/math/portableMath';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { Rng } from '@wildshard/sdk/random';
 import { graniteBlock } from '../../src/generators/granite';
 import { blob } from '../../src/generators/smoothGeometry';

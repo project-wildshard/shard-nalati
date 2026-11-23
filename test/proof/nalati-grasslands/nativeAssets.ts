@@ -1,6 +1,6 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- The native witnesses read Nalati's committed native inputs.
 import { readFileSync } from 'node:fs';
-import type { Shardfile } from '@wildshard/engine/host/shardfile';
+import type { Shardfile } from '@wildshard/format/shardSchema';
 import { nalatiQueryTerrain } from '../../../src/generators/terrain';
 
 const root = new URL('../../../', import.meta.url);

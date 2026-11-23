@@ -4,8 +4,8 @@ import { execFile } from 'node:child_process';
 import { readFileSync, statSync, writeFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- All compiler inputs remain repository-relative.
 import { resolve as resolvePath } from 'node:path';
-import { bakeInputHashes, InputHashMemo } from '@wildshard/engine/scripts/bake-input-hashes.mjs';
-import { runNativeRecorder, type RecorderTask } from '@wildshard/engine/scripts/native-recorder-cache.mjs';
+import { bakeInputHashes, InputHashMemo } from '@wildshard/sdk/headless/scripts/bake-input-hashes.mjs';
+import { runNativeRecorder, type RecorderTask } from '@wildshard/sdk/headless/scripts/native-recorder-cache.mjs';
 
 const memos = new Map<string, InputHashMemo>();
 const MAX_BYTES = 1 << 26;

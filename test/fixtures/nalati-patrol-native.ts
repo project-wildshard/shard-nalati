@@ -1,10 +1,10 @@
 import { nalatiNativeAssembly } from './nalati-native-assembly';
 import * as v from 'valibot';
-import type {DamageRequest} from '@wildshard/engine/combat/pipeline';
-import type {HuntBody} from '@wildshard/engine/ai/hunt';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
-import {patrolOf,preparePatrol,readPatrolIntake,type NativePatrol} from '@wildshard/engine/game/boss/patrolNative';
+import type {DamageRequest} from '@wildshard/sdk/internal/engine/combat/pipeline';
+import type {HuntBody} from '@wildshard/sdk/internal/engine/ai/hunt';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
+import {patrolOf,preparePatrol,readPatrolIntake,type NativePatrol} from '@wildshard/sdk/internal/engine/game/boss/patrolNative';
 import {prepareNalatiWorld,type NalatiEncounterIntake,type NalatiWorldLoans} from './nalati-world';
 
 export type NativeNalatiPatrol=NativePatrol;

@@ -1,17 +1,17 @@
 // Shared Nalati Ring 2 rider: admitted product, native physics and real
 // movement/prompt inputs. No pose, health, flags or quest state is written.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
-const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+const { actRoutes } = await import('@wildshard/sdk/internal/engine/sim/actRoutes');
+import { engineRequire } from '@wildshard/sdk/headless';
 
 export async function boot(snapshot) {
   const directory = resolve('out/nalati-grasslands'), product = await loadHeadlessFolder(directory), shard = product.shardfile;

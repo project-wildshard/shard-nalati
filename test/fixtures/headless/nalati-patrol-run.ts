@@ -1,20 +1,20 @@
 import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Check actual native spawn and continuation, never supplied output.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Load only the admitted product and unchanged native physics bytes.
 import {readFileSync} from 'node:fs';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {snapshotSimHostBytes,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
-import {canonicalSimDigest} from '@wildshard/engine/test/simState';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {loadHeadlessFolder} from '@wildshard/sdk/headless/host/headlessFolder';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {snapshotSimHostBytes,serializeSimSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
+import {canonicalSimDigest} from '@wildshard/sdk/internal/engine/test/simState';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {prepareHeadlessRuntime,nalatiPatrolOf} from '../nalati-patrol-native';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 let priorPhase = 0;
 const phase = (name: string, tick?: number): void => {

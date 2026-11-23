@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 // oxlint-disable-next-line import/no-nodejs-modules -- Bounded test-only report transport; no asset or executable is decoded.
 import {deflateSync,inflateSync,brotliCompressSync,brotliDecompressSync,constants} from 'node:zlib';
 import * as v from 'valibot';
-import type {HeadlessTapeReport} from '@wildshard/engine/host/headlessTape';
+import type {HeadlessTapeReport} from '@wildshard/sdk/headless/host/headlessTape';
 import {packChapterTaming,unpackChapterTaming} from './chapterObservation';
 
 type Json=null|boolean|number|string|Json[]|{[key:string]:Json};

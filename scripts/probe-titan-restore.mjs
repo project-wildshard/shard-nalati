@@ -6,7 +6,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { boot } from '../test/ci/journey-rider.mjs';
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
 const path = process.argv[2];
 if (!path) throw new Error('Expected an earned Titan checkpoint bundle');
 const bundle = JSON.parse(readFileSync(path, 'utf8'));

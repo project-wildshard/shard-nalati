@@ -1,6 +1,6 @@
 import * as v from 'valibot';
-import type {SimHost} from '@wildshard/engine/sim';
-import {arenaSealCollider} from '@wildshard/engine/game/boss/arenaCollision';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import {arenaSealCollider} from '@wildshard/sdk/internal/engine/game/boss/arenaCollision';
 import type {NalatiKingData} from './nalati-king-data';
 import {originalNalatiPhysics} from './nalati-physics-original';
 

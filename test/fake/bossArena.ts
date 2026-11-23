@@ -1,4 +1,4 @@
-import { BossArenaRoom } from '@wildshard/engine/game/boss/arenaRoomView';
+import { BossArenaRoom } from '@wildshard/sdk/internal/engine/game/boss/arenaRoomView';
 import room from '../../src/data/bossArenaRoom.json' with { type: 'json' };
 import view from '../../src/data/kurganView.json' with { type: 'json' };
 import { SHAPES } from '../fixtures/nalatiShapes';

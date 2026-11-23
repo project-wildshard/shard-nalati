@@ -2,19 +2,19 @@
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import { Vector3, PerspectiveCamera } from 'three';
-import { HeadlessCloudBody } from '@wildshard/engine/game/boss/headlessCloudBody';
+import { HeadlessCloudBody } from '@wildshard/sdk/internal/engine/game/boss/headlessCloudBody';
 import { HeldBowFileSchema } from '@wildshard/format/weaponProfiles';
 import { WeatherWorldSchema, WindStateSchema } from '@wildshard/format/weatherProgram';
-import { heldBowBase } from '@wildshard/engine/game/weapons/heldBowBase';
-import { bowLaunchSpeed, bowMuzzle, bowMount } from '@wildshard/engine/combat/bowLaw';
-import { projectileFlightStep } from '@wildshard/engine/combat/projectileFlight';
-import { Wind } from '@wildshard/engine/world/steppeWind';
-import { mountedPlayerOf } from '@wildshard/engine/game/riding/native';
-import { openArenaOf as nalatiTitanOf } from '@wildshard/engine/game/boss/openArenaNative';
-import { readArenaScriptData } from '@wildshard/engine/game/boss/openArenaFight';
+import { heldBowBase } from '@wildshard/sdk/internal/engine/game/weapons/heldBowBase';
+import { bowLaunchSpeed, bowMuzzle, bowMount } from '@wildshard/sdk/internal/engine/combat/bowLaw';
+import { projectileFlightStep } from '@wildshard/sdk/internal/engine/combat/projectileFlight';
+import { Wind } from '@wildshard/sdk/internal/engine/world/steppeWind';
+import { mountedPlayerOf } from '@wildshard/sdk/internal/engine/game/riding/native';
+import { openArenaOf as nalatiTitanOf } from '@wildshard/sdk/internal/engine/game/boss/openArenaNative';
+import { readArenaScriptData } from '@wildshard/sdk/internal/engine/game/boss/openArenaFight';
 import { parseHeldSlots } from '@wildshard/format/heldArms';
-import { patrolOf as nalatiPatrolOf } from '@wildshard/engine/game/boss/patrolNative';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { patrolOf as nalatiPatrolOf } from '@wildshard/sdk/internal/engine/game/boss/patrolNative';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 function snapshotValue(owner) {
     const wire = owner.snapshot();
     assert.equal(typeof wire, 'string');
@@ -288,7 +288,7 @@ export async function titanRidersPilot(product, host, step) {
         fight: 'combat/titan-fight.json',
         geometry: 'combat/titan-geometry.json'
     });
-    const head = new Vector3(), horse = mount.horse ?? (await import('@wildshard/engine/game/riding/nativeTaming')).nativeTamingOf(host)?.companion;
+    const head = new Vector3(), horse = mount.horse ?? (await import('@wildshard/sdk/internal/engine/game/riding/nativeTaming')).nativeTamingOf(host)?.companion;
     assert.ok(horse);
     if(!mount.mounted){
       await step([{kind:'script',actorId:'nalati.whistle',value:1}]);

@@ -26,8 +26,8 @@ export async function prepareNalatiDressing(forestMask, scalarBlocks) {
       import('../../src/generators/dressingSource.ts'),
     ]);
     const [heightfield, { bakeMeadowField }, { terrainHeight: heightAt }] = await Promise.all([
-      import('@wildshard/engine/world/Heightfield'), import('@wildshard/sdk/bake/meadow'),
-      import('@wildshard/engine/world/terrainHeight'),
+      import('@wildshard/sdk/headless/world/Heightfield'), import('@wildshard/sdk/bake/meadow'),
+      import('@wildshard/sdk/headless/world/terrainHeight'),
     ]);
     const meadow = bakeMeadowField({ seed: definition.seed, half: 250, heightAt,
       normalAt: heightfield.normalAt, splatAt: heightfield.splatAt, trailDistance: heightfield.trailDistance,
@@ -43,10 +43,10 @@ export async function prepareNalatiDressing(forestMask, scalarBlocks) {
     SPRUCE_SPECS.map(row => ({ trunkRadius: row.trunk, height: row.height })));
     const made = await bakeNalatiDressingSource({ heightAt, normalAt: heightfield.normalAt,
       trailDistance: heightfield.trailDistance, inChunk: heightfield.inChunk, trails: heightfield.TRAILS, meadow, forest,
-      phone: (await import('@wildshard/engine/core/tier')).TIER_CONFIG.maxTexture <= 1024 });
+      phone: (await import('@wildshard/sdk/headless/core/tier')).TIER_CONFIG.maxTexture <= 1024 });
     return made;
   } finally {
-    const { pageScope } = await import('@wildshard/engine/app/resources');
+    const { pageScope } = await import('@wildshard/sdk/headless/app/resources');
     pageScope.dispose(); environment.dispose();
   }
 

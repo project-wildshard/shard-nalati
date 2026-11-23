@@ -1,32 +1,32 @@
 import { nativeRapierFile } from '../native-rapier-file';
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert only actual input outcomes and independent native replay.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read the admitted named product and shipped physics binary.
 import {readFileSync,writeFileSync,statSync} from 'node:fs';
 import * as v from 'valibot';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
-import {folderHeadlessSections} from '@wildshard/engine/host/headlessSections';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {admitSimSnapshotBytes,snapshotSimHostBytes,serializeSimSnapshot,decodeSimSnapshotBytes} from '@wildshard/engine/sim/snapshot';
-import {canonicalSimDigest} from '@wildshard/engine/test/simState';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {loadHeadlessFolder} from '@wildshard/sdk/headless/host/headlessFolder';
+import {folderHeadlessSections} from '@wildshard/sdk/headless/host/headlessSections';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {admitSimSnapshotBytes,snapshotSimHostBytes,serializeSimSnapshot,decodeSimSnapshotBytes} from '@wildshard/sdk/headless/sim/snapshot';
+import {canonicalSimDigest} from '@wildshard/sdk/internal/engine/test/simState';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {createNativeProofWorker} from '../headless-worker';
 import {prepareHeadlessRuntime,nalatiTitanOf} from '../nalati-titan-native';
-import {readArenaScriptData} from '@wildshard/engine/game/boss/openArenaFight';
-import {questObservation} from '@wildshard/engine/game/quest/questObservation';
+import {readArenaScriptData} from '@wildshard/sdk/internal/engine/game/boss/openArenaFight';
+import {questObservation} from '@wildshard/sdk/internal/engine/game/quest/questObservation';
 import {parseChapterStoryPresentation} from '@wildshard/format/questStory';
 import {reachTitanCairn} from '../../proof/nalati-grasslands/titanTravel';
 import {titanBowPilot,titanRidersPilot} from '../../proof/nalati-grasslands/titanCombat';
-import {checkedReplayPipeline} from '@wildshard/engine/test/headless/checkedReplayPipeline';
-import type {HeadlessTapeObservation} from '@wildshard/engine/host/headlessTape';
+import {checkedReplayPipeline} from '@wildshard/sdk/internal/engine/test/headless/checkedReplayPipeline';
+import type {HeadlessTapeObservation} from '@wildshard/sdk/headless/host/headlessTape';
 import {TitanHandoffSchema,checkTitanLedger,titanWireHash,titanInputDigest,titanObservationDigest,type TitanHandoff,type TitanPart} from './titanHandoff';
-import type {HeadlessCommand,HeadlessEffect} from '@wildshard/engine/host/tickProtocol';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
-import { mountedPlayerOf } from '@wildshard/engine/game/riding/native';
+import type {HeadlessCommand,HeadlessEffect} from '@wildshard/sdk/headless/host/tickProtocol';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
+import { mountedPlayerOf } from '@wildshard/sdk/internal/engine/game/riding/native';
 
 const [stage,handoffPath,handoffHash,outputPath]=process.argv.slice(2);
 assert.ok(stage==='entry'||stage==='opening'||stage==='retry'||stage==='victory','name the bounded Titan case');assert.ok(handoffPath);

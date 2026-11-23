@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import * as v from 'valibot';
-import { ArenaFightPageSchema } from '@wildshard/engine/game/boss/arenaRoomRows';
+import { ArenaFightPageSchema } from '@wildshard/sdk/internal/engine/game/boss/arenaRoomRows';
 import { ArenaBossProfileSchema } from '@wildshard/format/bossProfiles';
 import { nalatiGoldenKingRows } from '../src/generators/kurganRows';
 

@@ -1,9 +1,9 @@
 import * as v from 'valibot';
-import {DialogueClock} from '@wildshard/engine/quest/dialogueClock';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HeadlessRuntimeInstallation} from '@wildshard/engine/host/headlessRuntime';
-import type {QuestPresentationPorts} from '@wildshard/engine/game/quest/effectPresentation';
-import type {Scope} from '@wildshard/engine/app/scope';
+import {DialogueClock} from '@wildshard/sdk/internal/engine/quest/dialogueClock';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessRuntimeInstallation} from '@wildshard/sdk/headless/host/headlessRuntime';
+import type {QuestPresentationPorts} from '@wildshard/sdk/internal/engine/game/quest/effectPresentation';
+import type {Scope} from '@wildshard/sdk/headless/app/scope';
 
 interface PresentationHost {
   readonly scope:Scope;readonly clock:Pick<SimHost['clock'],'now'>;

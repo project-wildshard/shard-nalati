@@ -1,23 +1,23 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Every chapter edge requires its genuinely earned original owner.
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {nativeTamingOf} from '@wildshard/engine/game/riding/nativeTaming';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {nativeTamingOf} from '@wildshard/sdk/internal/engine/game/riding/nativeTaming';
 import type {parseHeldSlots} from '@wildshard/format/heldArms';
-import type {heldBowBase} from '@wildshard/engine/game/weapons/heldBowBase';
-import {bowLaunchSpeed} from '@wildshard/engine/combat/bowLaw';
-import {DRAW_TIME,RENOCK_TIME} from '@wildshard/engine/combat/bowDraw';
-import {FIXED_STEP} from '@wildshard/engine/core/fixedStep';
-import {ARROW_RADIUS} from '@wildshard/engine/combat/projectileLaw';
-import {worldHit} from '@wildshard/engine/physics/query';
+import type {heldBowBase} from '@wildshard/sdk/internal/engine/game/weapons/heldBowBase';
+import {bowLaunchSpeed} from '@wildshard/sdk/internal/engine/combat/bowLaw';
+import {DRAW_TIME,RENOCK_TIME} from '@wildshard/sdk/internal/engine/combat/bowDraw';
+import {FIXED_STEP} from '@wildshard/sdk/internal/engine/core/fixedStep';
+import {ARROW_RADIUS} from '@wildshard/sdk/internal/engine/combat/projectileLaw';
+import {worldHit} from '@wildshard/sdk/internal/engine/physics/query';
 import {SKY_ROAD} from '../../../src/generators/layout';
 import {nalatiBalbalsOf} from '../../fixtures/nalati-balbal-native';
 import {readNalatiWeaponObservation,type NalatiWeaponObservation} from '../../fixtures/nalati-weapon-observation';
 import {nalatiChapterPresentationOf} from '../../fixtures/nalati-chapter-presentation';
 import {chapterWalkInputs,chapterRideInputs} from './chapterOne';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** Leave the completed first reading and accept only the actual next elder
  * dialogue, then ride the earned horse to the real carving field. */

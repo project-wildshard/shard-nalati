@@ -1,10 +1,10 @@
-import { app } from '@wildshard/engine/app/runtime';
+import { app } from '@wildshard/sdk/internal/engine/app/runtime';
 import type { RngPort as Rng } from '@wildshard/format/seededRng';
-import { fxMaterial, annulus, FX, type FxMaterial } from '@wildshard/engine/fx/groundFx';
-import type { BoxSpec as Collider } from '@wildshard/engine/physics/box';
-import { HeightPatch } from '@wildshard/engine/physics/heightPatch';
-import type { Material } from '@wildshard/engine/physics/surface';
-import { boxDesc, type ColliderDesc, type WorldRegistry } from '@wildshard/engine/world/registry';
+import { fxMaterial, annulus, FX, type FxMaterial } from '@wildshard/sdk/internal/engine/fx/groundFx';
+import type { BoxSpec as Collider } from '@wildshard/sdk/internal/engine/physics/box';
+import { HeightPatch } from '@wildshard/sdk/internal/engine/physics/heightPatch';
+import type { Material } from '@wildshard/sdk/internal/engine/physics/surface';
+import { boxDesc, type ColliderDesc, type WorldRegistry } from '@wildshard/sdk/internal/engine/world/registry';
 /**
  * KurganDungeon — the INSIDE of the great kurgan (plan row B13; design docs/design/nalati/elites-and-bosses.md §2 "The Golden
  * King fight"; mockups art/nalati-grasslands/round-2/5-bosses/boss-1…4). A timber-lined dromos (the entrance corridor, the

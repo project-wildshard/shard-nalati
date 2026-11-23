@@ -2,9 +2,9 @@ import { SPECIES_POSES } from '../../src/generators/speciesPoses';
 // Frozen pre-migration oracle for saved transforms and horse-head observations.
 import { Bone, Group, type Vector3 } from 'three';
 import * as v from 'valibot';
-import type { AnimalSim } from '@wildshard/engine/entities/AnimalSim';
-import { AnimalPoseLaw } from '@wildshard/engine/entities/animalPose';
-import { QuadrupedRigPose, applyAnimalRoot, type AnimalRigContext } from '@wildshard/engine/entities/animalRig';
+import type { AnimalSim } from '@wildshard/sdk/internal/engine/entities/AnimalSim';
+import { AnimalPoseLaw } from '@wildshard/sdk/internal/engine/entities/animalPose';
+import { QuadrupedRigPose, applyAnimalRoot, type AnimalRigContext } from '@wildshard/sdk/internal/engine/entities/animalRig';
 import { bodySpecies } from '../../src/generators/speciesRows';
 import { poseRidingEnvelopes } from '../../src/shared/game/riding/presentation';
 import { numericCreaturePose } from '../../src/shared/game/plugin/channelPrograms';

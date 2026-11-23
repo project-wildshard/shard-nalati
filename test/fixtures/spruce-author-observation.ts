@@ -1,6 +1,6 @@
 import type { BufferGeometry } from 'three';
 import { withPortableMath } from '@wildshard/sdk/math/portableMath';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { spruceGeometry } from '../../src/generators/spruceGeometry';
 
 function identity(geometry: BufferGeometry) {

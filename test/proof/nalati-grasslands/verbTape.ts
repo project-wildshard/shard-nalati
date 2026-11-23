@@ -1,5 +1,5 @@
-import type {HeadlessTapePlan} from '@wildshard/engine/host/headlessTape';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import type {HeadlessTapePlan} from '@wildshard/sdk/headless/host/headlessTape';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 
 const press=(value:number):HeadlessCommand=>({kind:'script',actorId:'nalati.talk',value});
 const campRoad:readonly [number,number][]=[[20,216],[40,218],[60,214],[66,209.5],[73,206.1],[83,206],[84.8,203.8],[88,204.5],[95,204],

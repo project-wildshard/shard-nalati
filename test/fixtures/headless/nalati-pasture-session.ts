@@ -4,16 +4,16 @@ import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read only the admitted product and actual physics bytes.
 import {readFileSync} from 'node:fs';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {snapshotSimHost,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
-import {nativePopulationOf,type NativePopulation} from '@wildshard/engine/game/riding/nativePopulation';
-import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
-import type {WalkPoint} from '@wildshard/engine/host/headlessJourney';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {loadHeadlessFolder} from '@wildshard/sdk/headless/host/headlessFolder';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {snapshotSimHost,serializeSimSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
+import {nativePopulationOf,type NativePopulation} from '@wildshard/sdk/internal/engine/game/riding/nativePopulation';
+import {runNativeHeadlessTape} from '@wildshard/sdk/headless/host/headlessTape';
+import type {WalkPoint} from '@wildshard/sdk/headless/host/headlessJourney';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {prepareHeadlessRuntime} from '../nalati-predators-native';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 interface EarnedPasture {
   resident:Awaited<ReturnType<typeof createNativeProofResident>>;

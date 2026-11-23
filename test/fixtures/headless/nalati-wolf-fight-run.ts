@@ -1,17 +1,17 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert actual damage and independent real-input replay.
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {Vector3} from 'three';
 import {HeldBowFileSchema} from '@wildshard/format/weaponProfiles';
-import {heldBowBase} from '@wildshard/engine/game/weapons/heldBowBase';
-import {bowLaunchSpeed} from '@wildshard/engine/combat/bowLaw';
-import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import {heldBowBase} from '@wildshard/sdk/internal/engine/game/weapons/heldBowBase';
+import {bowLaunchSpeed} from '@wildshard/sdk/internal/engine/combat/bowLaw';
+import {runNativeHeadlessTape} from '@wildshard/sdk/headless/host/headlessTape';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import {beginProductSession} from './productSession';
 import {earnNalatiPasture} from './nalati-pasture-session';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const {resident,product,population,flock,sheep,originalWolves,checkpoint,checkpointTick}=await earnNalatiPasture();
 let replay:Awaited<ReturnType<Awaited<ReturnType<typeof beginProductSession>>['ready']>>|undefined;

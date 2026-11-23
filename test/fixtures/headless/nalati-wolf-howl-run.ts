@@ -1,18 +1,18 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert the earned native encounter and independent input replay.
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {Vector3} from 'three';
 import {HeldBowFileSchema} from '@wildshard/format/weaponProfiles';
-import {heldBowBase} from '@wildshard/engine/game/weapons/heldBowBase';
-import {bowLaunchSpeed} from '@wildshard/engine/combat/bowLaw';
-import {nativeGroupCollection} from '@wildshard/engine/game/shardfile/groupRuntime';
-import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
-import type {HeadlessCommand,HeadlessEffect} from '@wildshard/engine/host/tickProtocol';
+import {heldBowBase} from '@wildshard/sdk/internal/engine/game/weapons/heldBowBase';
+import {bowLaunchSpeed} from '@wildshard/sdk/internal/engine/combat/bowLaw';
+import {nativeGroupCollection} from '@wildshard/sdk/internal/engine/game/shardfile/groupRuntime';
+import {runNativeHeadlessTape} from '@wildshard/sdk/headless/host/headlessTape';
+import type {HeadlessCommand,HeadlessEffect} from '@wildshard/sdk/headless/host/tickProtocol';
 import {earnNalatiPasture} from './nalati-pasture-session';
 import {beginProductSession} from './productSession';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const {resident,product,population,flock,sheep,checkpoint,checkpointTick,arrivalTick}=await earnNalatiPasture([
   {x:-135,z:214},{x:-157,z:212,jump:true,jumpAt:7},{x:-175,z:206},

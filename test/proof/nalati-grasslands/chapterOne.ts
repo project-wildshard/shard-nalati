@@ -1,18 +1,18 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- A failed real input route must refuse its proof.
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import type {HeadlessTapePlan} from '@wildshard/engine/host/headlessTape';
-import {PhysicsRouteCursor} from '@wildshard/engine/host/headlessJourney';
-import {nativeTamingOf} from '@wildshard/engine/game/riding/nativeTaming';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import type {HeadlessTapePlan} from '@wildshard/sdk/headless/host/headlessTape';
+import {PhysicsRouteCursor} from '@wildshard/sdk/headless/host/headlessJourney';
+import {nativeTamingOf} from '@wildshard/sdk/internal/engine/game/riding/nativeTaming';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
 import {nalatiCampIntroTape} from './verbTape';
 import {nalatiHorsePlainsInputs} from './horsePlainsWalk';
 import {createNalatiTamingPilot} from './tamingPilot';
 import type {CarriedQuestRows} from '@wildshard/format/questSteps';
 import {SKY_ROAD} from '../../../src/generators/layout';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** Yield the existing trusted route's exact commands, allowing a checked
  * worker reply between ticks. The consumer must commit each yielded tick. */

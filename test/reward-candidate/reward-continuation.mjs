@@ -1,8 +1,8 @@
 // A checkpoint opens a second real world; only the same subsequent player
 // inputs reach it. Every suffix compares the whole save and every effect.
 import assert from 'node:assert/strict';
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
 
 export function rewardContinuations(world, input) {
   const writer = createSimSnapshotSerializer(), checkpoints = [];

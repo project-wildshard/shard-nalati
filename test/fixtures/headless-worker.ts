@@ -1,7 +1,7 @@
 // oxlint-disable-next-line import/no-unassigned-import -- Portable Math precedes simulation modules.
-import '@wildshard/engine/core/portableMathFirst';
-import { createNativeProofWorker as createWorker } from '@wildshard/engine/test/headless-worker';
-import type { Shardfile } from '@wildshard/engine/host/shardfile';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
+import { createNativeProofWorker as createWorker } from '@wildshard/sdk/internal/engine/test/headless-worker';
+import type { Shardfile } from '@wildshard/format/shardSchema';
 
 export type NativeProofKind = 'driftwood' | 'driftwood-trade' | 'sky-verbs' | 'pine' | 'pine-verbs' | 'nine' | 'nine-flat' | 'nalati' | 'nalati-companions' | 'nalati-weapons' | 'nalati-predators' | 'nalati-world' | 'nalati-stealth' | 'nalati-verbs' | 'nalati-kokpar' | 'nalati-chapter' | 'nalati-king' | 'nalati-qara' | 'nalati-titan' | 'nalati-practice' | 'trusted' | 'deferred';
 

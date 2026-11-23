@@ -40,7 +40,7 @@ keeps a 9.5 s limit and stays outside commit/push hooks.
 The explicit CI-only native collider proof runs without a full cook:
 
 ```sh
-node --import @wildshard/engine/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
+node --import @wildshard/sdk/headless/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
 ```
 
 Five cases retain exact raw f32/u32 copies, signed zero, ownership,

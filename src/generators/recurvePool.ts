@@ -1,8 +1,8 @@
 import ARM_STYLE from '../data/armsStyle.json' with {type:'json'};
 // Nalati's composite recurve, baked (SHARD-PLATFORM C6 view, G467): the horn-and-sinew bow with the left glove on it, the
 // right thumb-draw fist, both rider sleeves and the birch arrow (loose and nocked), built once here with the engine's arm
-// builder (nalatiArms) and written as one rest-geometry pool GLB plus the held bow draw's rows (@wildshard/engine/game/plugin/
-// heldLauncher heldBowProfile; the rows file loads with its loadHeldBow). The runtime borrows the parts by name and bends the stave on the engine's BowShape; it
+// builder (nalatiArms) and written as one rest-geometry pool GLB plus the held bow draw's rows (engine `game/plugin/
+// heldLauncher` heldBowProfile; the rows file loads with its loadHeldBow). The runtime borrows the parts by name and bends the stave on the engine's BowShape; it
 // builds no bow. The Golden Bow and the Sky-Wolf skin are the same bow repainted: each paint is a colour channel on the
 // stave (`styles`, the first the base), swapped in by the host's repaint.
 import * as THREE from 'three';

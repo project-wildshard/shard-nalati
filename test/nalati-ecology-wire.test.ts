@@ -16,7 +16,7 @@ test('complete ecology, barrel bodies/floors and watch decision retain original 
     execPath,
     [
       '--import',
-      import.meta.resolve('@wildshard/engine/scripts/sim-node-loader.mjs'),
+      import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
       '--input-type=module',
       '-e',
       String.raw`import {createHash} from 'node:crypto';

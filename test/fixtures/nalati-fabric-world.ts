@@ -1,5 +1,5 @@
-import { installWorldRegistry } from '@wildshard/engine/world/registry';
-import { unshuffleLanes } from '@wildshard/engine/core/byteCodec';
+import { installWorldRegistry } from '@wildshard/sdk/internal/engine/world/registry';
+import { unshuffleLanes } from '@wildshard/sdk/internal/engine/core/byteCodec';
 // oxlint-disable-next-line import/no-nodejs-modules -- Decode the exact original retained shape bank.
 import { inflateSync } from 'node:zlib';
 import { SHAPES, SHAPE_BYTES } from './nalatiShapes';

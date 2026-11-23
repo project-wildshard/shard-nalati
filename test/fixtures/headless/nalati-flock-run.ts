@@ -1,11 +1,11 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert actual native outcomes and independent replay.
 import assert from 'node:assert/strict';
-import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
+import {runNativeHeadlessTape} from '@wildshard/sdk/headless/host/headlessTape';
 import {earnNalatiPasture} from './nalati-pasture-session';
 import {beginProductSession} from './productSession';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const {resident,population,flock,sheep,originalWolves,delay,arrivalTick,checkpoint,checkpointTick}=await earnNalatiPasture();
 let replay:Awaited<ReturnType<Awaited<ReturnType<typeof beginProductSession>>['ready']>>|undefined;

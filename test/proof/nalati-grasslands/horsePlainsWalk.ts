@@ -1,7 +1,7 @@
-import type {SimHost} from '@wildshard/engine/sim';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import {PhysicsRouteCursor} from '@wildshard/engine/host/headlessJourney';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import {PhysicsRouteCursor} from '@wildshard/sdk/headless/host/headlessJourney';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 // Desired walking inputs around the steep south bank and bowl shelves. These
 // are route targets, not asserted geometry; the real motor resolves every step.

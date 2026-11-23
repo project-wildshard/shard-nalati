@@ -7,8 +7,8 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { boot, rider } from './journey-rider.mjs';
 import { enterKurgan } from './kurgan-route.mjs';
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
 
 test('nalati-grasslands: enter the kurgan and resume its real intro', { timeout: 180_000 }, async () => {
   const started = performance.now(), { resident, world, input, shard } = await boot();

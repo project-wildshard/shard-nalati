@@ -2,7 +2,7 @@
 import {createHash} from 'node:crypto';
 import * as v from 'valibot';
 import type {TitanBowCursor} from '../../proof/nalati-grasslands/titanCombat';
-import {HeadlessTapePlanSchema,HeadlessTapeReportSchema,TickCommandSchema} from '@wildshard/engine/host/tickProtocol';
+import {HeadlessTapePlanSchema,HeadlessTapeReportSchema,TickCommandSchema} from '@wildshard/sdk/headless/host/tickProtocol';
 
 const natural=v.pipe(v.number(),v.safeInteger(),v.minValue(0));
 const digest=v.pipe(v.string(),v.regex(/^[a-f0-9]{64}$/u));

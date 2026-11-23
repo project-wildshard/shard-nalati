@@ -16,7 +16,7 @@ test('complete Titan, elite and four fire-profile wires retain every original fi
     execPath,
     [
       '--import',
-      import.meta.resolve('@wildshard/engine/scripts/sim-node-loader.mjs'),
+      import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
       '--input-type=module',
       '-e',
       String.raw`import {createHash} from 'node:crypto';

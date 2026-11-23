@@ -1,5 +1,5 @@
 import { expect,test } from 'vitest';
-import { ProjectedState,ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
+import { ProjectedState,ReturnProgram } from '@wildshard/sdk/internal/engine/game/population/returnProgram';
 import { NALATI_NIGHT as nightInput } from '../fixtures/nalati-night';
 import {withWeatherWitness} from '../fixtures/weatherInlineWitness';
 

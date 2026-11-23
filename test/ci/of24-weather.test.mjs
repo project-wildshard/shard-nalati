@@ -3,10 +3,10 @@ import { test } from 'node:test';
 import { boot } from './journey-rider.mjs';
 
 const { NATIVE_ASSEMBLY_FILE } = await import('@wildshard/format/nativeAssembly');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
-const { openArenaOf } = await import('@wildshard/engine/game/boss/openArenaNative');
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { actRoutes } = await import('@wildshard/sdk/internal/engine/sim/actRoutes');
+const { openArenaOf } = await import('@wildshard/sdk/internal/engine/game/boss/openArenaNative');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
 
 test('the cooked weather files keep the native storm through save and restore', { timeout: 180_000 }, async () => {
   const { input, world } = await boot();

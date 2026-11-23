@@ -1,16 +1,16 @@
 import { originalSpeciesJson } from './nalati-original-species';
 // Frozen pre-migration native envelope; production never imports this fixture.
 import type * as THREE from 'three';
-import type { Animal } from '@wildshard/engine/entities/AnimalView';
-import type { SpeciesDef,ThinkCtx } from '@wildshard/engine/entities/species/registry';
+import type { Animal } from '@wildshard/sdk/internal/engine/entities/AnimalView';
+import type { SpeciesDef,ThinkCtx } from '@wildshard/sdk/internal/engine/entities/species/registry';
 import * as v from 'valibot';
-import { app } from '@wildshard/engine/app/runtime';
-import { ANIMAL_STATES } from '@wildshard/engine/entities/animalStates';
-import type { DamageRequest } from '@wildshard/engine/combat/pipeline';
-import { StrikeRunner } from '@wildshard/engine/ai/strikes';
-import { strikeFromData } from '@wildshard/engine/ai/strikeRows';
+import { app } from '@wildshard/sdk/internal/engine/app/runtime';
+import { ANIMAL_STATES } from '@wildshard/sdk/internal/engine/entities/animalStates';
+import type { DamageRequest } from '@wildshard/sdk/internal/engine/combat/pipeline';
+import { StrikeRunner } from '@wildshard/sdk/internal/engine/ai/strikes';
+import { strikeFromData } from '@wildshard/sdk/internal/engine/ai/strikeRows';
 import { CreatureGuestSchema, type CreatureGuestRows } from '@wildshard/format/speciesBookRows';
-import { ReturnProgram } from '@wildshard/engine/game/population/returnProgram';
+import { ReturnProgram } from '@wildshard/sdk/internal/engine/game/population/returnProgram';
 import generated from './originalBalbalRows.json' with { type: 'json' };
 // The unchanged ABI1 artifact is the oracle even after the production guest selects ABI2.
 function speciesGuestRows(): CreatureGuestRows { return v.parse(CreatureGuestSchema, generated); }

@@ -1,17 +1,17 @@
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assert real contacts and independent native replay.
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {Vector3} from 'three';
 import {ThrownWeaponProfileSchema} from '@wildshard/format/weaponProfiles';
 import {parseHeldSlots} from '@wildshard/format/heldArms';
-import {nativeGroupCollection} from '@wildshard/engine/game/shardfile/groupRuntime';
-import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import {nativeGroupCollection} from '@wildshard/sdk/internal/engine/game/shardfile/groupRuntime';
+import {runNativeHeadlessTape} from '@wildshard/sdk/headless/host/headlessTape';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import {earnNalatiPasture} from './nalati-pasture-session';
 import {beginProductSession} from './productSession';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const mode=process.argv[2];if(mode!=='thrust'&&mode!=='javelin')throw new Error('Unknown fixed native polearm proof');
 const {resident,product,population,checkpoint,checkpointTick}=await earnNalatiPasture([

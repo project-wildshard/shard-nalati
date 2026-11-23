@@ -4,22 +4,22 @@ import assert from 'node:assert/strict';
 import * as v from 'valibot';
 import {runSnapshot} from '../runSnapshot';
 import {hashImmutableBytes} from '@wildshard/format/immutable';
-import {snapshotSimHost,serializeSimSnapshot} from '@wildshard/engine/sim/snapshot';
-import {canonicalSimDigest} from '@wildshard/engine/test/simState';
+import {snapshotSimHost,serializeSimSnapshot} from '@wildshard/sdk/headless/sim/snapshot';
+import {canonicalSimDigest} from '@wildshard/sdk/internal/engine/test/simState';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read only the admitted product and shipped physics bytes.
 import {readFileSync} from 'node:fs';
 import {builtProduct} from '../builtProduct';
-import {loadHeadlessFolder} from '@wildshard/engine/host/headlessFolder';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
+import {loadHeadlessFolder} from '@wildshard/sdk/headless/host/headlessFolder';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
 import {prepareHeadlessRuntime} from '../nalati-predators-native';
-import {nativePopulationOf} from '@wildshard/engine/game/riding/nativePopulation';
-import {nativeGroupCollection} from '@wildshard/engine/game/shardfile/groupRuntime';
-import {mountedPlayerOf} from '@wildshard/engine/game/riding/native';
-import {runNativeHeadlessTape} from '@wildshard/engine/host/headlessTape';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import {nativePopulationOf} from '@wildshard/sdk/internal/engine/game/riding/nativePopulation';
+import {nativeGroupCollection} from '@wildshard/sdk/internal/engine/game/shardfile/groupRuntime';
+import {mountedPlayerOf} from '@wildshard/sdk/internal/engine/game/riding/native';
+import {runNativeHeadlessTape} from '@wildshard/sdk/headless/host/headlessTape';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 type Mounted=NonNullable<ReturnType<typeof mountedPlayerOf>>;
 interface EarnedMountedRaid {

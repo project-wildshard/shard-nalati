@@ -2,11 +2,11 @@
 import {createHash} from 'node:crypto';
 import * as v from 'valibot';
 import {Vector3} from 'three';
-import {BossBrain,type BossPorts,type BossPresentation,type BossSaved,type BossContinuation} from '@wildshard/engine/ai/BossBrain';
-import type {Scope} from '@wildshard/engine/app/scope';
-import {bossFight,type PhasedBossBody,type PhasedBossPorts,type PhasedBossContinuation} from '@wildshard/engine/game/plugin/bossPhase';
-import {ArenaPortalLaw,type ArenaPortalSnapshot} from '@wildshard/engine/game/boss/arenaPortal';
-import type {ArenaRoomGround} from '@wildshard/engine/game/boss/arenaGround';
+import {BossBrain,type BossPorts,type BossPresentation,type BossSaved,type BossContinuation} from '@wildshard/sdk/internal/engine/ai/BossBrain';
+import type {Scope} from '@wildshard/sdk/headless/app/scope';
+import {bossFight,type PhasedBossBody,type PhasedBossPorts,type PhasedBossContinuation} from '@wildshard/sdk/internal/engine/game/plugin/bossPhase';
+import {ArenaPortalLaw,type ArenaPortalSnapshot} from '@wildshard/sdk/internal/engine/game/boss/arenaPortal';
+import type {ArenaRoomGround} from '@wildshard/sdk/internal/engine/game/boss/arenaGround';
 import type {NalatiKingData} from './nalati-king-data';
 
 const finite=v.pipe(v.number(),v.finite()),positive=v.pipe(finite,v.minValue(0));

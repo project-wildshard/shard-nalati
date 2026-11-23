@@ -12,7 +12,7 @@ const metadata = pins[0];
 if (metadata === undefined || pins.length !== names.length) throw new Error('Missing original species file inventory');
 const original = metadata;
 const compiler = ['--experimental-transform-types', '--import',
-  import.meta.resolve('@wildshard/engine/scripts/sim-node-loader.mjs'),
+  import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
   'test/fixtures/prepare-nalati-original-species.ts'];
 
 /** Source-built immutable predecessor oracle; never evidence for the current producer's correctness.

@@ -11,24 +11,24 @@
 // goat snatched from the middle at speed and carried into a tai-qazan. The
 // round is the shard's own chapter story, installed on the host as the
 // standalone server's cell world installs it.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const { nativeTamingOf } = await import('@wildshard/engine/game/riding/nativeTaming');
-const { mountedPlayerOf } = await import('@wildshard/engine/game/riding/native');
-const { questBooks } = await import('@wildshard/engine/quest/players');
-const { shardRows } = await import('@wildshard/engine/sim/shardRows');
-const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+const { nativeTamingOf } = await import('@wildshard/sdk/internal/engine/game/riding/nativeTaming');
+const { mountedPlayerOf } = await import('@wildshard/sdk/internal/engine/game/riding/native');
+const { questBooks } = await import('@wildshard/sdk/internal/engine/quest/players');
+const { shardRows } = await import('@wildshard/sdk/internal/engine/sim/shardRows');
+const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
 const exactEngine = process.env.NALATI_ENGINE_CANDIDATE;
-const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+import { engineRequire } from '@wildshard/sdk/headless';
 
 // The taming controls the page sends (server/taming.json inputs): hold offer, lean, press mount at the prompt.
 const OFFER = 'nalati.taming.offer', LEAN = 'nalati.taming.lean', MOUNT = 'nalati.taming.mount';
@@ -205,9 +205,9 @@ export async function earnTameKokparTitan(t, finish) {
       console.log(`kokpar ${JSON.stringify({ startTick: start, pickupTick, wonTick, topSpeed: Math.round(topSpeed * 10) / 10, closest: Math.round(closest * 100) / 100, snatched, goat: goat(), elapsedMs: Math.round(performance.now() - begun) })}`);
     });
     await t.test('mounted: the earned tulpar wakes the Storm Titan', async () => {
-      const { openArenaOf } = await import('@wildshard/engine/game/boss/openArenaNative');
-      const { actRoutes } = await import('@wildshard/engine/sim/actRoutes');
-      const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/engine/sim/snapshot');
+      const { openArenaOf } = await import('@wildshard/sdk/internal/engine/game/boss/openArenaNative');
+      const { actRoutes } = await import('@wildshard/sdk/internal/engine/sim/actRoutes');
+      const { createSimSnapshotSerializer, snapshotSimHostBytes } = await import('@wildshard/sdk/headless/sim/snapshot');
       const arena = openArenaOf(host); assert.ok(arena);
       const state = () => JSON.parse(host.adapters.get('nalati.titan').snapshot());
       const toward = (x, z) => {

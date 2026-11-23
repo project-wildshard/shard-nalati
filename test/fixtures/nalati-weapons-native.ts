@@ -1,9 +1,9 @@
 import { nalatiNativeAssembly } from './nalati-native-assembly';
 import * as v from 'valibot';
-import {installCombatMotion} from '@wildshard/engine/game/shardfile/nativeRuntimeLoans';
-import {heldArmsOf,prepareHeldArms,type HeldArrowTargets,type HeldRay,type HeldSeat} from '@wildshard/engine/game/weapons/nativeHeld';
-import type {SimHost} from '@wildshard/engine/sim';
-import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
+import {installCombatMotion} from '@wildshard/sdk/internal/engine/game/shardfile/nativeRuntimeLoans';
+import {heldArmsOf,prepareHeldArms,type HeldArrowTargets,type HeldRay,type HeldSeat} from '@wildshard/sdk/internal/engine/game/weapons/nativeHeld';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
 import {prepareHeadlessRuntime as prepareCompanions} from './nalati-companions-native';
 
 /** The shard file's arms on a tape's world. */

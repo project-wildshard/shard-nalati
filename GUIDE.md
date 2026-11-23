@@ -90,6 +90,7 @@ with `rule`, `fix` and `guide`) for agents and scripts.
 | `wildshard content <folder> [--bar templates]` | Count the content in a built shard; the template bar lists every shortfall. `--bar=templates` also works |
 | `wildshard hero <source> --base <url>` | Capture the hero from a served build and stamp `hero.json`. `--stamp-existing` marks the images already there as current: only when you have looked at them and they show the current world |
 | `wildshard upload <file> --channel staging\|prod` | Send a prepared shard file to the API (section 5) |
+| `wildshard migrate --dry-run <file>` | Ask the API what admission would do with a shard file, storing nothing: its format against the API's, the migrations it would run, deprecations, the chain id and the digest it would record (`--server` or `WILDSHARD_API_URL`) |
 | `wildshard account <email>` | Make your account once and save its key, which upload sends (see "Uploading", step 5) |
 | `wildshard whoami` | Say which account key upload would send (from `WILDSHARD_API_KEY` or the key file), show its first characters, and print its account's email and how many slugs it owns (`--server` or `WILDSHARD_API_URL`) |
 | `wildshard grid [--channel staging\|prod\|preview]` | Print the world grid on a channel: each taken cell and its shard, then the free cells. No key needed (section 5) |
@@ -205,7 +206,7 @@ A staging MMO page keeps authoritative quests and creatures in its worker client
 a Playwright proof (the same reader serves local `wildshard dev`):
 
 ```js
-import { readProofState } from '@wildshard/engine/scripts/proof-state.mjs';
+import { readProofState } from '@wildshard/sdk/headless/scripts/proof-state.mjs';
 const state = await page.evaluate(readProofState, { creatureKinds: ['boar'] });
 if (!state) throw new Error('Enter the shard before reading gameplay');
 console.log(state.quest.flags, state.quest.quests, state.creatures, state.seat);
@@ -759,9 +760,11 @@ const quest = { id: 'honey-badger', title: 'The honey badger', track: true, comp
 const badgerDead: Shardfile['quests']['triggers'][number] = { id: 'badger-dead', kind: 'death', flag: 'wren.badger-dead', tag: 'creature.badger' };
 
 // 5. Loot: a `trophies` table rolls items on each kill, matched by the creature's `kind`; a `coins` table would pay
-//    coins the same way. The rest of the economy row is empty: no effects, goods, grants, finds or map marks.
+//    coins the same way. `currency` names the shard's coin: what it is called, the pickup a kill bursts and the Bag
+//    icon. The rest of the economy row is empty: no effects, goods, grants, finds or map marks.
 const loot: Shardfile['rows']['loot'][number] = { id: 'wren.loot', gear: 'purse.coins', finds: null, marks: null, charted: false, chime: 'coin',
   economy: {
+    currency: { id: 'coin', name: 'Coin', model: 'shared/doubloon', icon: 'coin' },
     tables: [{ id: 'badger.trophies', domain: 'trophies', table: { mode: 'weighted', rows: [{ item: 'honeycomb', weight: 1, count: 1, match: { kind: 'badger' } }] } }],
     effects: [], goods: [], grants: { player: [], worn: [], weapons: [] }, finds: { counters: [], sections: [] }, marks: [],
   } };
@@ -1104,7 +1107,7 @@ TypeScript three.js scene source, and Blender makes the `.glb` models it loads (
 #### update-target
 
 `update` works on a shard repo: a folder whose `package.json` lists `@wildshard/sdk`, as `new` writes it, or
-`@wildshard/sdk`. Run it in that folder, or name it: `wildshard update my-shard`.
+`@wildshard/sharddev`. Run it in that folder, or name it: `wildshard update my-shard`.
 
 #### update-pins-no-git
 
@@ -1405,8 +1408,9 @@ not hold; the budget finding after it says what that leaves. Code `audio-waiver-
 
 #### shardfile-draft
 
-A warning from `build` and `check`, a refusal from `upload`: the shard file is a draft (`sdk: "0.2"`). Prepare it
-first ("Uploading", step 1).
+A draft (`sdk: "0.2"`) gets a warning from `build` and `check`. Format validation refuses missing, stale or
+invalid preparation with code `preparation-invalid`. Prepare the built folder again, then rebuild the shard file
+("Uploading").
 
 #### shardfile-link
 
@@ -1797,7 +1801,7 @@ pnpm --package=@wildshard/sdk@latest dlx wildshard update --pins
 ```
 
 An older installed CLI cannot do the move: 0.2.4 and earlier refuse the flag, and 0.2.5 refuses a repo that lists
-the sdk as `@wildshard/sdk` or by a GitHub pin. Once the repo is on the newest sdk, `pnpm exec wildshard
+the sdk as `@wildshard/sharddev` or by a GitHub pin. Once the repo is on the newest sdk, `pnpm exec wildshard
 update --pins` works too.
 
 `wildshard update --pins` moves the repo to a newer sdk release first: npm's latest, or the one you name with
@@ -1807,7 +1811,7 @@ update --pins` works too.
 2. moves every pin `package.json` lists to what that release names: the sdk to the release, `@wildshard/format`,
    `@wildshard/engine` and `three` to the exact specs it pins, each `pnpm.overrides` entry for one of those packages
    with it, and `engines.node` to the Node it needs. The sdk keeps the name and form the repo lists it with:
-   `@wildshard/sdk` or `@wildshard/sdk`; an exact version, an `npm:@wildshard/sdk@<version>` alias, or a GitHub
+   `@wildshard/sdk` or `@wildshard/sharddev`; an exact version, an `npm:@wildshard/sdk@<version>` alias, or a GitHub
    pin, which moves to the commit the release's `v<version>` tag names (or to that tag, if it named a tag). It changes
    nothing else in the file and prints each move;
 3. runs `pnpm install`, and refuses if pnpm did not install that sdk and, when the repo lists `three`, that `three`;

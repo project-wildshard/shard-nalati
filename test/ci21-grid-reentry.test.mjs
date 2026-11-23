@@ -1,22 +1,22 @@
 // CI21 G498/DB1: the original eviction and generic-module contracts, owned
 // by each producer and run only after its ordinary build in CI.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { test } from 'node:test';
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { outputDescriptor } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const { snapshotSimHost, serializeSimSnapshot, decodeSimSnapshot } = await import('@wildshard/engine/sim/snapshot');
-const { restoreSimHost } = await import('@wildshard/engine/sim/restore');
-const { createShardfileSim, bindShardfileSim, prepareShardfileSimRestore } = await import('@wildshard/engine/game/plugin/simulation');
-const { createNativeHeadlessResident } = await import('@wildshard/engine/host/headlessRuntime');
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { outputDescriptor } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+const { snapshotSimHost, serializeSimSnapshot, decodeSimSnapshot } = await import('@wildshard/sdk/headless/sim/snapshot');
+const { restoreSimHost } = await import('@wildshard/sdk/internal/engine/sim/restore');
+const { createShardfileSim, bindShardfileSim, prepareShardfileSimRestore } = await import('@wildshard/sdk/internal/engine/game/plugin/simulation');
+const { createNativeHeadlessResident } = await import('@wildshard/sdk/headless/host/headlessRuntime');
 const { hasDeclaredClientPage } = await import('@wildshard/format/runtimeBinds');
-const { folderHeadlessSections } = await import('@wildshard/engine/host/headlessSections');
-const { ScriptHost } = await import('@wildshard/engine/script/host');
-const { leadPlayer } = await import('@wildshard/engine/sim/leadPlayer');
-const require = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+const { folderHeadlessSections } = await import('@wildshard/sdk/headless/host/headlessSections');
+const { ScriptHost } = await import('@wildshard/sdk/internal/engine/script/host');
+const { leadPlayer } = await import('@wildshard/sdk/internal/engine/sim/leadPlayer');
+import { engineRequire as require } from '@wildshard/sdk/headless';
 const owner = JSON.parse(readFileSync('test/ci21-grid-owner.json', 'utf8'));
 const quest = { fact: () => undefined, coins: () => undefined };
 async function supplied(row) {

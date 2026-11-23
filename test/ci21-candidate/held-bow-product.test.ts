@@ -7,17 +7,17 @@ import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
 // oxlint-disable-next-line import/no-nodejs-modules -- The recorder fixture uses the actual repository root.
 import process from 'node:process';
-import { captureFolderInputs } from '@wildshard/engine/scripts/shardfile-inputs.mjs';
+import { captureFolderInputs } from '@wildshard/sdk/headless/scripts/shardfile-inputs.mjs';
 import { build } from '@wildshard/dev/scripts/shardfile-vite.mjs';
 import recurve from '../../public/assets/nalati/baked/recurve-pool.json' with { type:'json' };
 import { HeldBowFileSchema, HeldBowDefinitionSchema } from '@wildshard/format/weaponProfiles';
-import { bindHeldBow } from '@wildshard/engine/game/weapons/heldLauncher';
-import { registeredJsonSchema } from '@wildshard/engine/host/formatJsonSchema';
+import { bindHeldBow } from '@wildshard/sdk/internal/engine/game/weapons/heldLauncher';
+import { registeredJsonSchema } from '@wildshard/sdk/internal/engine/host/formatJsonSchema';
 import { fixtureJsonCheck } from '../fixtures/productFile';
 import { nameBlob } from '@wildshard/sdk/blobs';
-import { validateNamedJsonSchema } from '@wildshard/engine/game/shardfile/customSchema';
-import { createShardFolder } from '@wildshard/engine/game/shardfile/shardFolder';
-import { emptyShardfile } from '@wildshard/engine/host/author';
+import { validateNamedJsonSchema } from '@wildshard/sdk/internal/engine/game/shardfile/customSchema';
+import { createShardFolder } from '@wildshard/sdk/internal/engine/game/shardfile/shardFolder';
+import { emptyShardfile } from '@wildshard/sdk/internal/engine/host/author';
 
 const encode=(input:unknown):Uint8Array=>new TextEncoder().encode(`${JSON.stringify(input)}\n`);
 const schema=registeredJsonSchema('weapons/bow-page.json');

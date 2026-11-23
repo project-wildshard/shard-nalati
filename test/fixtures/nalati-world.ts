@@ -1,14 +1,14 @@
 import * as v from 'valibot';
 import { PopulationFieldSchema } from '@wildshard/format/populationEnvironment';
 import type { BakedGrid } from '@wildshard/format/bakedTerrainBytes';
-import type { SimHost } from '@wildshard/engine/sim';
-import { NativePopulationField } from '@wildshard/engine/game/population/environment';
-import { installMountedPlayer } from '@wildshard/engine/game/riding/native';
-import { prepareFolderRuntimePlan } from '@wildshard/engine/game/shardfile/nativePlan';
-import type { NativeAssemblyPorts } from '@wildshard/engine/game/shardfile/nativeAssemblyInput';
-import type { ShardFolder } from '@wildshard/engine/game/shardfile/shardFolder';
-import { headlessAssemblyPorts, type HeadlessRuntimeInstallation, type HeadlessRuntimePlan, type PrepareHeadlessRuntime } from '@wildshard/engine/host/headlessRuntime';
-import { withEncounters, type EncounterIntake } from '@wildshard/engine/game/population/encounterIntake';
+import type { SimHost } from '@wildshard/sdk/internal/engine/sim';
+import { NativePopulationField } from '@wildshard/sdk/internal/engine/game/population/environment';
+import { installMountedPlayer } from '@wildshard/sdk/internal/engine/game/riding/native';
+import { prepareFolderRuntimePlan } from '@wildshard/sdk/internal/engine/game/shardfile/nativePlan';
+import type { NativeAssemblyPorts } from '@wildshard/sdk/internal/engine/game/shardfile/nativeAssemblyInput';
+import type { ShardFolder } from '@wildshard/sdk/internal/engine/game/shardfile/shardFolder';
+import { headlessAssemblyPorts, type HeadlessRuntimeInstallation, type HeadlessRuntimePlan, type PrepareHeadlessRuntime } from '@wildshard/sdk/headless/host/headlessRuntime';
+import { withEncounters, type EncounterIntake } from '@wildshard/sdk/internal/engine/game/population/encounterIntake';
 
 /** A proof's loans over the product's own world. */
 export type NalatiWorldLoans = Pick<NativeAssemblyPorts<HeadlessRuntimeInstallation>, 'pastureCues' | 'observeWeather' | 'observeBindings'>;
