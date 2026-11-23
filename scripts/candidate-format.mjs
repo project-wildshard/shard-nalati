@@ -1,11 +1,10 @@
 // Candidate engines retain their own declared format dependency. The author
 // project and SDK keep their existing pins while Ring 3 proves that graph.
 import { readFileSync, writeFileSync } from 'node:fs';
-import { createRequire } from 'node:module';
+import { engineRequire } from '@wildshard/sdk/headless';
 
 const root = new URL('../', import.meta.url);
-const require = createRequire(new URL('package.json', root));
-const engine = require('@wildshard/engine/package.json');
+const engine = engineRequire('./package.json');
 const format = engine.dependencies?.['@wildshard/format'];
 if (typeof format !== 'string' || !/^npm:@wildshard\/shard-format@\^?\d+\.\d+\.\d+$/u.test(format)) {
   throw new Error('Candidate engine must declare its published format dependency');

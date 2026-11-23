@@ -42,14 +42,14 @@
   },
   "dependencies": {
     "@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-    "@wildshard/sdk": "0.4.27",
+    "@wildshard/sdk": "0.4.28",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0",
-    "@wildshard/cli": "0.4.27",
-    "@wildshard/kit": "0.4.27",
-    "@wildshard/dev": "0.4.27",
-    "@wildshard/build": "0.4.27"
+    "@wildshard/cli": "0.4.28",
+    "@wildshard/kit": "0.4.28",
+    "@wildshard/dev": "0.4.28",
+    "@wildshard/build": "0.4.28"
   },
   "devDependencies": {
     "@types/node": "24.3.1",

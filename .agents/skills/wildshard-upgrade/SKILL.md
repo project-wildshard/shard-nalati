@@ -18,7 +18,7 @@ pnpm --package=@wildshard/sdk@latest dlx wildshard update --pins
 
 `wildshard update --pins` does the move in one command (`GUIDE.md#7-wildshard-update`): it moves every pin to the
 release, runs `pnpm install`, applies the release's codemods, rewrites the guide and skills, and runs check. An
-installed 0.2.4 or older refuses the flag, and 0.2.5 refuses a repo that lists the sdk as `@wildshard/sdk` or by
+installed 0.2.4 or older refuses the flag, and 0.2.5 refuses a repo that lists the sdk as `@wildshard/sharddev` or by
 a GitHub pin, so start from the line above.
 
 ## The steps, in order

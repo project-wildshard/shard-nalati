@@ -17,7 +17,7 @@
 //
 // Serve an engine build that pins this shard's current product (engine: `pnpm build:game`, then
 // `node scripts/preview-server.mjs --root . --port 4177`). Then refresh physicsRows.d.json.ts: run engine's
-// scripts/json-declarations.mjs from here by its real path (`node "$(realpath node_modules/@wildshard/engine/scripts/json-declarations.mjs)"`).
+// scripts/json-declarations.mjs from here by its real path (`node "$(realpath node_modules/engine `scripts/json`-declarations.mjs)"`).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
