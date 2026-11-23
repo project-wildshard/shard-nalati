@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { expect, test, vi } from 'vitest';
 import { originalPlaceBinary } from './fixtures/nalati-original-place-binary';
 import * as source from './fixtures/nalati-native-place-files';
-import { hashImmutableBytes } from '@wildshard/format/immutable';
+import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import pins from './fixtures/nalati-place-wires.json' with { type: 'json' };
 
 const pin = pins.find(row => row.path.endsWith('/places.bin'));

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/format/immutable';
+import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import { fencedNativeOracle } from '../fixtures/native-oracle';
 import { nalatiNativeBootInputs } from '../fixtures/nalati-native-boot-inputs';
 import { nalatiNativeAssemblyInputs } from '../fixtures/nalati-native-assembly-inputs';

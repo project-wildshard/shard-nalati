@@ -1,6 +1,6 @@
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 import courseSource from '@wildshard/sharddev/commons/scripts/course.as?raw';
-import { hashImmutableBytes } from '@wildshard/format/immutable';
+import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import { parseDecisionScripts } from '@wildshard/sharddev/decisionScripts';
 import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
 import { kokparModuleOptions, nalatiKokparRows, NALATI_KOKPAR_MODULE, NALATI_COURSE_MODULE, type NalatiKokpar } from './kokparRows';

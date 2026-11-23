@@ -7,7 +7,7 @@ import { build } from 'vite';
 import * as v from 'valibot';
 import { placeRuntimeRows, type PlaceRuntimeInput } from '../src/generators/placeRuntimeSource.mjs';
 import { jsonBytes } from '@wildshard/engine/scripts/bake-output.mjs';
-import { hashImmutableBytes } from '@wildshard/format/immutable';
+import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
 import { nalatiRuntimeWire } from './fixtures/nalati-runtime-wire';
 import shapeBook from './fixtures/nalati-shape-book-original.json' with { type: 'json' };

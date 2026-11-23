@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/format/immutable';
+import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import { bakeNalatiWorldRowsLod } from './nalatiWorldRows';
 import { bakeNalatiGroundQuads, nalatiGroundSource } from './nalatiGroundSource';
 

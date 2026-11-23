@@ -6,7 +6,7 @@ import { decorativeRowsOnGround } from '../src/generators/decorative';
 import { readNativeTerrain } from '@wildshard/sharddev/bake/terrain';
 import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
 import { jsonBytes } from '@wildshard/engine/scripts/bake-output.mjs';
-import { hashImmutableBytes } from '@wildshard/format/immutable';
+import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import original from './fixtures/nalati-decorative.json' with { type: 'json' };
 
 const terrain = readFileSync('public/assets/baked/nalati-grasslands/terrain.bin');

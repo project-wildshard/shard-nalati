@@ -107,7 +107,7 @@
       "sourcePath": "test/nalati-original-species.test.ts",
       "sourceBlob": "eff8a3c90a44c586236a903dbe2ac4f70e64cc7d",
       "targetPath": "test/nalati-original-species.test.ts",
-      "targetBlob": "7d7b737dc89fca19ccf425a18356d6c7931fff9e",
+      "targetBlob": "834b49b14de37dff04677dfad46cccc66e3f45f0",
       "originalTests": [
         "cold source oracle and every detached warm loan retain all five complete original files",
         "individual original file loans are detached and unknown names refuse"
@@ -138,7 +138,7 @@
       "sourcePath": "test/nalati-original-place-binary.test.ts",
       "sourceBlob": "0ecca6401607c661c49ebf400bc51582af2a82cf",
       "targetPath": "test/nalati-original-place-binary.test.ts",
-      "targetBlob": "38d187e2ca27641fd7f5a108b3005bef78766da8",
+      "targetBlob": "d242a6a54c32d4bae814610a7218db984e732707",
       "originalTests": [
         "cold and warm originals retain every byte without a warm producer call",
         "corrupt originals refuse without invoking a replacement producer",
@@ -175,7 +175,7 @@
       "sourcePath": "test/nalati-decorative-native.test.ts",
       "sourceBlob": "8545b3e37f31d80cf32175947bb7455b3e268023",
       "targetPath": "test/nalati-decorative-native.test.ts",
-      "targetBlob": "457926ebc1cff622527adcfb998e95ea3374cbde",
+      "targetBlob": "ba25e8d2c1021badd585640f4485208d7e776db4",
       "originalTests": [
         "native ground and byte adapters retain both complete original decorative wires",
         "separate placement calls own their nested results and reject malformed terrain"
@@ -188,7 +188,7 @@
       "sourcePath": "test/nalati-place-runtime-source.test.ts",
       "sourceBlob": "b1ede5e371f8a9cfb2a11ca0a55f7e8547b13856",
       "targetPath": "test/nalati-place-runtime-source.test.ts",
-      "targetBlob": "c92ee7aa2d3e62f70017cb0e07a35d5a3ffcd180",
+      "targetBlob": "95ef06eb57b89ce538309f84cab1f1578068b8c9",
       "originalTests": [
         "pure runtime preparation preserves all seven complete output pins and input records",
         "structured preparation keeps metadata and independent owned floor bytes",

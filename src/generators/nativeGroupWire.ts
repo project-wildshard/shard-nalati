@@ -1,4 +1,4 @@
-import { encodeCanonicalJson } from '@wildshard/format/immutable';
+import { encodeCanonicalJson } from '@wildshard/sharddev/immutable';
 import type { parseNativeGroupRows } from '@wildshard/sharddev/nativePopulationRows';
 
 type GroupRows = ReturnType<typeof parseNativeGroupRows>;

@@ -116,7 +116,7 @@ import { nalatiEliteViews } from './eliteViews';
 import { nalatiTitanView } from './titanView';
 import { nalatiTitanFireView } from './titanFireView';
 import { nalatiTitanWhirlsView } from './titanWhirlsView';
-import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/format/immutable';
+import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import worldAssembly from '../data/worldAssembly.json' with { type: 'json' };
 import { FixedDrawRowsSchema } from '@wildshard/format/fixedDraws';
 import { postChainRows } from './postChain';

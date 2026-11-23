@@ -8,7 +8,7 @@ import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 import { species as readSpecies } from '@wildshard/sharddev/species';
 import { speciesProgramToRows } from '@wildshard/sharddev/species/toRows';
-import { hashImmutableBytes } from '@wildshard/format/immutable';
+import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import type { Shardfile } from '@wildshard/format/shardSchema';
 import { parseSkinFile, skinFileDependencies } from '@wildshard/format/skinAssets';
 import { balbalRig, eagleRig } from './customCreatureRig';

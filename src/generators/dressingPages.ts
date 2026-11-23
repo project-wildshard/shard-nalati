@@ -1,5 +1,5 @@
 import { nameBlob, type NamedBlob } from '@wildshard/sharddev/blobs';
-import { encodeCanonicalJson } from '@wildshard/format/immutable';
+import { encodeCanonicalJson } from '@wildshard/sharddev/immutable';
 import { authorFormatSchema, namedJsonSchema } from '@wildshard/sharddev/formatJsonSchema';
 import { parseSectionValue } from '@wildshard/sharddev/sections';
 import { DRESSING_SCHEMAS } from './dressingSchemas';
