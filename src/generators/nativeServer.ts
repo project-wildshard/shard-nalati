@@ -1,5 +1,6 @@
 import { GREAT_KURGAN, GREAT_KURGAN_DOOR } from './poiLayout';
-import { nativeAssemblyFiles, type NativeAssemblyPlan, type ServerBlob } from '@wildshard/sdk/blobs';
+import { serverBlob, type NativeAssemblyPlan, type ServerBlob } from '@wildshard/sdk/blobs';
+import { NATIVE_ASSEMBLY_DATA_SCHEMA } from '@wildshard/format/nativeAssembly';
 import { parsePopulationKnockdownSource } from '@wildshard/sdk/nativePopulationRows';
 import boot from '../data/headlessBoot.json' with { type: 'json' };
 import crowdNativeProjection from '../data/crowdNativeProjection.json' with { type: 'json' };
@@ -93,12 +94,13 @@ function nalatiFamilyHosts(rows: { readonly herds: string; readonly groups: stri
         input: { use: 'nalati.titan.use', skip: 'nalati.titan.skip' }, target: 'encounter:storm-titan:heart', grants: [{ item: 'naizagai', count: 1 }, { item: 'sky-marked-saddle', count: 1 }] }];
 }
 
-/** FORMAT-PRUNE FP16d: the `server/riding`, `server/boss` and `server/patrol` sections, from the same rows the plan once named. */
-export function nalatiHostSections(pasture: NalatiTitanProgram, admission: NalatiAdmission, nativeShelters: [number, number, number][]): readonly (readonly ['server/riding' | 'server/boss' | 'server/patrol', unknown])[] {
+/** FORMAT-PRUNE FP16d, FP21: the `server/world`, `server/riding`, `server/boss` and `server/patrol` sections, from the same rows and settings the plan once held. */
+export function nalatiHostSections(pasture: NalatiTitanProgram, admission: NalatiAdmission, nativeShelters: [number, number, number][]): readonly (readonly ['server/riding' | 'server/boss' | 'server/patrol' | 'server/world', unknown])[] {
   const { constants } = nalatiNativeAssemblyRows(pasture, admission, nativeShelters);
   const hosts = nalatiFamilyHosts({ herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed });
   const family = (owns: (host: string) => boolean) => ({ version: 1, hosts: hosts.filter(row => owns(row.host)) });
-  return [['server/riding', family(host => host.startsWith('riding.'))], ['server/boss', family(host => host.startsWith('boss.'))], ['server/patrol', family(host => host === 'encounter.patrol')]];
+  const { kind: _kind, features: _features, ...world } = nalatiNativeAssemblyPlan(constants.nativeBake);
+  return [['server/world', { version: 1, ...world }], ['server/riding', family(host => host.startsWith('riding.'))], ['server/boss', family(host => host.startsWith('boss.'))], ['server/patrol', family(host => host === 'encounter.patrol')]];
 }
 
 /** Nalati's server-class files (J91), built from the same programs the shard file ships: a client never fetches one. */
@@ -116,8 +118,10 @@ export function nalatiServerFiles(pasture: NalatiTitanProgram, admission: Nalati
   const strikes = [strike(0), strike(1), strike(2)], [swipe, pounce, bite] = strikes;
   const elites = nalatiEliteRows({ ...constants, nativeKnockdown: parsePopulationKnockdownSource(bootFile.riding) },
     { swipe: declared(swipe, 'swipe'), pounce: declared(pounce, 'pounce'), bite: declared(bite, 'bite') });
-  return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake), new Map<string, unknown>([['server/physics.json', physics], ['server/boot.json', { ...bootFile, roster: bodyState }],
+  // FORMAT-PRUNE FP21: no plan file; the world's settings are the server/world section (nalatiHostSections)
+  const rows = new Map<string, unknown>([['server/physics.json', physics], ['server/boot.json', { ...bootFile, roster: bodyState }],
     ['server/groups.json', constants.groupRows], ['server/elites.json', elites],
     ['server/elite-strikes.json', strikes], ['server/population.json', constants.nativePopulation],
-    ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming]]));
+    ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming]]);
+  return [...rows].map(([name, value]) => serverBlob(name, { schema: NATIVE_ASSEMBLY_DATA_SCHEMA, value }));
 }
