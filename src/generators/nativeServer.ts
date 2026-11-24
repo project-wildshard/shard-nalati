@@ -64,14 +64,21 @@ export const NALATI_ELITE_CONDITIONS = { rules: { always: { rule: 0, phase: fals
   phases: { dawn: 0, day: 0, golden: 0, dusk: 1, night: 2 }, storm: { calm: 0, storm: 1 } };
 
 /** Nalati's native assembly (P1-E3.1b, J90): its hosts in install order, as data over the files in its shard file. */
-function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['bake']>['reader'] & { readonly size: number; readonly resolution: number }, rows: { readonly herds: string; readonly groups: string; readonly external: readonly unknown[] }): NativeAssemblyPlan {
+function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['bake']>['reader'] & { readonly size: number; readonly resolution: number }): NativeAssemblyPlan {
   return { kind: 'native-assembly', level: { speed: 5, authorCap: true, ground: { size: nativeBake.size, height: 0 } }, terrain: { kind: 'shard-tile', resolution: 256, size: 500 }, navigation: 'shard',
     bake: { rows: { file: 'server/physics.json' }, reader: nativeBake, ground: 'data/physics-ground.bin', colliders: ['data/physics-colliders-0.bin', 'data/physics-colliders-1.bin'], read: 'bake', keep: ['spawns'],
       owners: { file: 'sim/population-metadata.json' }, seal: { file: 'combat/room-entry.json', path: ['room'] } },
     collision: { resolution: nativeBake.resolution }, entries: { walk: { lanes: 23, walk: 40, start: 249, maxTicks: 800 } },
     boot: { file: 'server/boot.json' },
-    // FORMAT-PRUNE FP16d: the day is the forest weather's sky clock (world/forest-weather.json sky.clock), which the engine stands
-    features: [{ host: 'collision' }, { host: 'riding.roster' },
+    // FORMAT-PRUNE FP16d: no host row. The engine stands collision (the bake is read whole), the day (the forest weather's
+    // sky clock, world/forest-weather.json sky.clock) and the riding, boss and patrol families from their server/* sections
+    // (nalatiHostSections)
+    features: [] };
+}
+
+/** FORMAT-PRUNE FP16d: Nalati's riding, boss and patrol hosts, each family's rows in install order, as its section holds them. */
+function nalatiFamilyHosts(rows: { readonly herds: string; readonly groups: string; readonly external: readonly unknown[] }): NativeAssemblyPlan['features'] {
+  return [{ host: 'riding.roster' },
       { host: 'riding.trample', id: 'nalati.trample', radius: 0.55, strength: 1, speedLimit: 30 }, { host: 'riding.environment', wind: { x: -0.8, z: 0.6, strength: 0.5 }, flatten: 0.85 },
       { host: 'riding.groups', rows: { file: 'server/groups.json' } },
       { host: 'riding.elites', rows: { file: 'server/elites.json' }, strikes: { file: 'server/elite-strikes.json' }, projected: 2, conditions: NALATI_ELITE_CONDITIONS },
@@ -83,7 +90,15 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
       // inputs nalati.weapon.*), the sprint speed and the storm's wind rows, as this row once wrote them
       { host: 'encounter.patrol', step: 'nalati.patrol', rows: 'combat/timed-encounters.json', actors: 'actors/sheep.json', looks: 'actors/species-looks.json', herds: rows.herds, external: { value: rows.external } },
       { host: 'boss.open-arena', id: 'nalati.titan', fight: 'combat/titan-fight.json', geometry: 'combat/titan-geometry.json', view: 'titan-view', groups: rows.groups,
-        input: { use: 'nalati.titan.use', skip: 'nalati.titan.skip' }, target: 'encounter:storm-titan:heart', grants: [{ item: 'naizagai', count: 1 }, { item: 'sky-marked-saddle', count: 1 }] }] };
+        input: { use: 'nalati.titan.use', skip: 'nalati.titan.skip' }, target: 'encounter:storm-titan:heart', grants: [{ item: 'naizagai', count: 1 }, { item: 'sky-marked-saddle', count: 1 }] }];
+}
+
+/** FORMAT-PRUNE FP16d: the `server/riding`, `server/boss` and `server/patrol` sections, from the same rows the plan once named. */
+export function nalatiHostSections(pasture: NalatiTitanProgram, admission: NalatiAdmission, nativeShelters: [number, number, number][]): readonly (readonly ['server/riding' | 'server/boss' | 'server/patrol', unknown])[] {
+  const { constants } = nalatiNativeAssemblyRows(pasture, admission, nativeShelters);
+  const hosts = nalatiFamilyHosts({ herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed });
+  const family = (owns: (host: string) => boolean) => ({ version: 1, hosts: hosts.filter(row => owns(row.host)) });
+  return [['server/riding', family(host => host.startsWith('riding.'))], ['server/boss', family(host => host.startsWith('boss.'))], ['server/patrol', family(host => host === 'encounter.patrol')]];
 }
 
 /** Nalati's server-class files (J91), built from the same programs the shard file ships: a client never fetches one. */
@@ -101,7 +116,7 @@ export function nalatiServerFiles(pasture: NalatiTitanProgram, admission: Nalati
   const strikes = [strike(0), strike(1), strike(2)], [swipe, pounce, bite] = strikes;
   const elites = nalatiEliteRows({ ...constants, nativeKnockdown: parsePopulationKnockdownSource(bootFile.riding) },
     { swipe: declared(swipe, 'swipe'), pounce: declared(pounce, 'pounce'), bite: declared(bite, 'bite') });
-  return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake, { herds: constants.nativeTaming.herds, groups: constants.nativePopulation.groups, external: constants.pageElites.borrowed }), new Map<string, unknown>([['server/physics.json', physics], ['server/boot.json', { ...bootFile, roster: bodyState }],
+  return nativeAssemblyFiles(nalatiNativeAssemblyPlan(constants.nativeBake), new Map<string, unknown>([['server/physics.json', physics], ['server/boot.json', { ...bootFile, roster: bodyState }],
     ['server/groups.json', constants.groupRows], ['server/elites.json', elites],
     ['server/elite-strikes.json', strikes], ['server/population.json', constants.nativePopulation],
     ['server/ride.json', { ...constants.nativeRide, mountable }], ['server/taming.json', constants.nativeTaming]]));
