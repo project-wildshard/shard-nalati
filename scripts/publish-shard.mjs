@@ -116,12 +116,29 @@ export function preparationProblem(tag, newest) {
  * and left no id), `row` the staging catalogue's row for the slug (what engine's pin-shard.ts checks).
  */
 export function cookStep({ status, row, hash, uploadId }) {
-  if (status === 'refused' || status === 'stalled') {
-    return { refuse: `upload ${uploadId} ${status}${status === 'stalled' ? ' (it may still settle)' : ''}; read the verdict with: pnpm exec wildshard upload status ${uploadId}` };
+  if (status === 'refused') {
+    return { refuse: `upload ${uploadId} refused; read the verdict with: pnpm exec wildshard upload status ${uploadId}` };
   }
+  // MW13: `stalled` is the API's 30-minute alarm that no cook build has started, not a verdict: the cook still takes
+  // stalled uploads (api-server cook-uploads `pending`), and Sky Reach's e5c0c380 went live after it. Wait on to the
+  // job's own deadline (PUBLISH_COOK_MINUTES) instead of ending red while the cook works through its queue.
+  if (status === 'stalled') return { wait: 'upload stalled (no cook build in 30 min; the cook still takes it)' };
   if (status !== undefined && status !== 'live') return { wait: `upload ${status}` };
   if (row?.hash === hash && Number.isSafeInteger(row.revision)) return { revision: row.revision };
   return { wait: `staging names ${row ? `${row.slug} rev ${row.revision} ${String(row.hash).slice(0, 8)}` : 'no row for it'}, not ${hash.slice(0, 8)}` };
+}
+
+/**
+ * QA-11-23-b row 48 (J505): the cook wait's end with no verdict. Driftwood's run 45384751206 ended red on a stalled
+ * upload and Pine's cook (45 to 52 minutes) once outran its job, leaving a pin by hand. With `handoff` (the publish's
+ * cook job, and publish-cook.yml below its last hop) the wait is not a failure: the job ends green, names the hand-off,
+ * and dispatches publish-cook.yml, which waits on and asks engine for the pin once the verdict lands. Without it (the
+ * last hop) it refuses, naming the command that reads the verdict.
+ */
+export function cookDeadline({ slug, took, wait, uploadId, handoff }) {
+  const line = `no verdict after ${took} min (${wait})`;
+  if (!handoff) return { refuse: `${line}; read it later with: pnpm exec wildshard upload status ${uploadId ?? '<id>'}` };
+  return { summary: `### ${slug}: ${line}\n\nThe cook still runs: publish-cook.yml waits on for its verdict and asks engine for the pin when it lands.` };
 }
 
 /** The product a dispatch names: the given slug, else the only one built. */
@@ -278,7 +295,13 @@ async function cook(slug, channel, hash, uploadId) {
     }
     if (step.wait !== seen) console.log(`cook: ${step.wait} (${took} min)`);
     seen = step.wait;
-    if (Date.now() + pause > deadline) throw new Refusal(`no verdict after ${took} min (${step.wait}); read it later with: pnpm exec wildshard upload status ${uploadId ?? '<id>'}`);
+    if (Date.now() + pause > deadline) {
+      const end = cookDeadline({ slug, took, wait: step.wait, uploadId, handoff: process.env.PUBLISH_COOK_HANDOFF === 'true' });
+      if (end.refuse) throw new Refusal(end.refuse);
+      output('handoff', 'true');
+      summary(end.summary);
+      return;
+    }
     await sleep(pause);
   }
 }

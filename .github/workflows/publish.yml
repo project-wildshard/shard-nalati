@@ -284,6 +284,11 @@ jobs:
       HASH: ${{ needs.upload.outputs.hash }}
       UPLOAD_ID: ${{ needs.upload.outputs.upload_id }}
       NIGHTLY_APP_CLIENT_ID: ${{ secrets.NIGHTLY_APP_CLIENT_ID }}
+      # QA-11-23-b row 48: past the wait, hand the cook to publish-cook.yml instead of ending red.
+      PUBLISH_COOK_HANDOFF: 'true'
+    permissions:
+      contents: read
+      actions: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -317,3 +322,12 @@ jobs:
             -F "client_payload[slug]=$SLUG" -F "client_payload[revision]=$REVISION" \
             -F "client_payload[hash]=$HASH" -F "client_payload[channel]=$CHANNEL"
           echo "engine shard-pin dispatched for $SLUG rev $REVISION" >> "$GITHUB_STEP_SUMMARY"
+      # QA-11-23-b row 48 (J505): a cook past this job's wait goes on in publish-cook.yml, which pins it on its verdict.
+      - name: Hand a slow cook to publish-cook.yml
+        if: steps.report.outputs.handoff == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run publish-cook.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f slug="$SLUG" -f channel="$CHANNEL" -f hash="$HASH" -f upload_id="$UPLOAD_ID" -f hop=1
+          echo "the cook goes on in publish-cook.yml (hop 1); it asks engine for the pin on its verdict" >> "$GITHUB_STEP_SUMMARY"

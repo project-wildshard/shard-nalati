@@ -1,0 +1,97 @@
+name: publish-cook
+
+# QA-11-23-b row 48 (J505): a cook that outlasts publish.yml's cook job still gets its pin. Big shards' cooks run long
+# (Pine's 45 to 52 minutes, A6), and Driftwood's run 45384751206 ended red on a stalled upload whose cook went on, so
+# the pin was left to a hand. publish.yml's cook job, past its wait, dispatches this workflow; it waits on, asks engine
+# for the pin when the verdict lands, and hands itself on again until its last hop (6 x 100 minutes, about 10 hours).
+# A refusal ends it red. Kit-owned (repo-kit files/): edit it there, never in a shard repo. By hand:
+#   gh workflow run publish-cook.yml -R project-wildshard/__REPO__ -f slug=<slug> -f channel=staging -f hash=<hash> \
+#     -f upload_id=<upload id>
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: The slug the upload holds
+        type: string
+        required: true
+      channel:
+        description: The publish channel
+        type: choice
+        options: [staging, prod]
+        default: staging
+      hash:
+        description: The uploaded shard file's sha256
+        type: string
+        required: true
+      upload_id:
+        description: The accepted upload's id (empty when it was live at commit)
+        type: string
+        default: ''
+      hop:
+        description: Which hand-off this is (the last, 6, refuses at its deadline)
+        type: number
+        default: 1
+
+permissions:
+  contents: read
+  actions: write
+
+# One wait per upload.
+concurrency:
+  group: publish-cook-${{ inputs.slug }}-${{ inputs.hash }}
+  cancel-in-progress: false
+
+jobs:
+  cook:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    environment: ${{ inputs.channel }}
+    env:
+      SLUG: ${{ inputs.slug }}
+      CHANNEL: ${{ inputs.channel }}
+      HASH: ${{ inputs.hash }}
+      UPLOAD_ID: ${{ inputs.upload_id }}
+      HOP: ${{ inputs.hop }}
+      NIGHTLY_APP_CLIENT_ID: ${{ secrets.NIGHTLY_APP_CLIENT_ID }}
+      PUBLISH_COOK_HANDOFF: ${{ inputs.hop < 6 && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            /scripts/
+            /package.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+      - name: Wait for the cook's verdict and staging's revision
+        id: report
+        run: node scripts/publish-shard.mjs cook "$SLUG" "$CHANNEL" "$HASH" "$UPLOAD_ID"
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: nightly
+        if: env.NIGHTLY_APP_CLIENT_ID != '' && steps.report.outputs.revision != ''
+        with:
+          client-id: ${{ env.NIGHTLY_APP_CLIENT_ID }}
+          private-key: ${{ secrets.NIGHTLY_APP_PRIVATE_KEY }}
+          owner: project-wildshard
+          repositories: engine
+          permission-contents: write
+      - name: Ask engine for the pin bump
+        if: steps.nightly.outputs.token != ''
+        env:
+          GH_TOKEN: ${{ steps.nightly.outputs.token }}
+          REVISION: ${{ steps.report.outputs.revision }}
+        run: |
+          gh api repos/project-wildshard/engine/dispatches -f event_type=shard-published \
+            -F "client_payload[slug]=$SLUG" -F "client_payload[revision]=$REVISION" \
+            -F "client_payload[hash]=$HASH" -F "client_payload[channel]=$CHANNEL"
+          echo "engine shard-pin dispatched for $SLUG rev $REVISION (hop $HOP)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Wait on in a fresh run
+        if: steps.report.outputs.handoff == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run publish-cook.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f slug="$SLUG" -f channel="$CHANNEL" -f hash="$HASH" -f upload_id="$UPLOAD_ID" -f hop="$((HOP + 1))"
+          echo "the cook goes on in publish-cook.yml (hop $((HOP + 1)))" >> "$GITHUB_STEP_SUMMARY"

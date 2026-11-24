@@ -1,0 +1,1 @@
+QA-11-23-b row 48 (J505), from repo-kit 1c7dc578: a stalled upload waits, and past its wait the publish cook job hands the upload to publish-cook.yml, which asks engine for the pin when the verdict lands (up to six hops, about 10 hours).
