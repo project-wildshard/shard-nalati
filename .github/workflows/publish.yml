@@ -284,7 +284,9 @@ jobs:
         run: |
           test -n "$WILDSHARD_API_KEY" || { echo '::error::no WILDSHARD_API_KEY org secret reaches this repo'; exit 1; }
           set -o pipefail
-          pnpm exec wildshard upload "tmp/publish/$SLUG.shardfile" --channel "$CHANNEL" --version "$VERSION" --no-wait 2>&1 | tee tmp/publish/upload.log
+          # FAST-RELEASE FR-A6: bytes the catalogue already holds under another version are a green no-op, not a red run.
+          pnpm exec wildshard upload "tmp/publish/$SLUG.shardfile" --channel "$CHANNEL" --version "$VERSION" --no-wait 2>&1 | tee tmp/publish/upload.log ||
+            node scripts/publish-shard.mjs unchanged tmp/publish/upload.log
       - name: Accepted upload, or committed revision and grid line
         id: report
         run: node scripts/publish-shard.mjs summary "$SLUG" "$CHANNEL" tmp/publish/upload.log "tmp/publish/$SLUG.shardfile"

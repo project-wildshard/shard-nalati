@@ -192,21 +192,22 @@ async function gate() {
       const row = latest.workflow_runs.find((run) => run.conclusion !== 'cancelled' && run.conclusion !== 'skipped');
       if (row) ring2.push({ ...row, name: flow.name });
     }
-    return gateVerdict({ ref, sha, mainSha: main.sha, ci: runs.workflow_runs, ring2, rehearse: process.env.PUBLISH_REHEARSE === 'true' });
+    const judged = gateVerdict({ ref, sha, mainSha: main.sha, ci: runs.workflow_runs, ring2, rehearse: process.env.PUBLISH_REHEARSE === 'true' });
+    return { ...judged, ring2: ring2.length };
   };
   // FR-A3: wait on this SHA's queued or running ci instead of asking for a second dispatch.
   const deadline = Date.now() + minutes('PUBLISH_GATE_WAIT_MINUTES', 30);
   let verdict = await judge();
   while (verdict.wait.length && Date.now() < deadline) {
     console.log(`gate: waiting: ${verdict.wait.join('; ')}`);
-    await sleep(30_000);
+    await sleep(Number(process.env.PUBLISH_GATE_POLL_SECONDS ?? 30) * 1000);
     verdict = await judge();
   }
   if (verdict.wait.length) verdict = { ...verdict, refuse: verdict.wait.map((line) => `${line} past the gate's wait: dispatch again when it is green`) };
   for (const line of verdict.warn) console.log(`::warning::rehearsal, not a refusal: ${line}`);
   const sdk = sdkPinProblem(JSON.parse(readFileSync('package.json', 'utf8')));
   if (verdict.refuse.length || sdk) throw new Refusal([...verdict.refuse, ...(sdk ? [sdk] : [])].join('; '));
-  summary(`gate: ${sha.slice(0, 10)} is ${ref.replace('refs/heads/', '')}'s tip, its ci is green, ${ring2.length} ring-2 workflow(s) green on main`);
+  summary(`gate: ${sha.slice(0, 10)} is ${ref.replace('refs/heads/', '')}'s tip, its ci is green, ${verdict.ring2} ring-2 workflow(s) green on main`);
 }
 
 /** Build the way this repo builds: `build:shards` into out/, else `wildshard build .` into public/shardfiles/. */
@@ -262,8 +263,31 @@ function record(slug, version, revision, hash, channel, commit) {
   output('tag', publishedTag(revision, slug, taken, commit));
 }
 
+/**
+ * FAST-RELEASE FR-A6 (J505): the API's 409 "these bytes are already <slug> <version>" means nothing new to publish (Pine
+ * 11-24 10:42, Nine Dragon 20:58 ended red on it after a full build). The slug and version that hold them, or undefined.
+ */
+export function sameBytes(log) {
+  const match = /these bytes are already (\S+) (\d+\.\d+\.\d+)/u.exec(log);
+  return match ? { slug: match[1], version: match[2] } : undefined;
+}
+
+/** FR-A6: the upload step's fallback: exit 0 when the refusal was only "these bytes are already", else stay red. */
+function unchanged(logFile) {
+  const held = sameBytes(readFileSync(logFile, 'utf8'));
+  if (!held) throw new Refusal('the upload failed (above)');
+  console.log(`::notice::unchanged: these bytes are already ${held.slug} ${held.version}; nothing new to publish`);
+}
+
 function report(slug, channel, logFile, shardFile) {
-  const parsed = uploadLines(readFileSync(logFile, 'utf8'));
+  const log = readFileSync(logFile, 'utf8');
+  const parsed = uploadLines(log);
+  const held = !parsed.committed && !parsed.queued ? sameBytes(log) : undefined;
+  if (held) {
+    // FR-A6: no new revision, so no hash output: the cook, pin and record jobs skip.
+    summary(`### ${slug} on ${channel}: unchanged\n\nThese bytes are already ${held.slug} ${held.version}; nothing new to publish.`);
+    return;
+  }
   const hash = parsed.hash ?? (shardFile ? createHash('sha256').update(readFileSync(shardFile)).digest('hex') : undefined);
   if (parsed.queued && parsed.uploadId && hash) {
     // A6: the API accepted the upload and the cook runs on (Pine's take 45 to 52 minutes); this job ends green here and
@@ -342,8 +366,9 @@ async function main(argv) {
   if (command === 'record' && rest.length === 6) return record(...rest);
   if (command === 'preparation') return preparation();
   if (command === 'summary' && (rest.length === 3 || rest.length === 4)) return report(...rest);
+  if (command === 'unchanged' && rest.length === 1) return unchanged(rest[0]);
   if (command === 'cook' && (rest.length === 3 || rest.length === 4)) return cook(rest[0], rest[1], rest[2], rest[3] || undefined);
-  throw new Refusal('usage: publish-shard.mjs gate | preparation | build [slug] | version <slug> <repo|X.Y.Z|auto> | record <slug> <version> <revision> <hash> <channel> <commit> | summary <slug> <channel> <log> [shard file] | cook <slug> <channel> <hash> [upload id]');
+  throw new Refusal('usage: publish-shard.mjs gate | preparation | build [slug] | version <slug> <repo|X.Y.Z|auto> | record <slug> <version> <revision> <hash> <channel> <commit> | summary <slug> <channel> <log> [shard file] | unchanged <log> | cook <slug> <channel> <hash> [upload id]');
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
