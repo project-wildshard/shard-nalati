@@ -205,9 +205,9 @@ jobs:
         run: node --experimental-transform-types --test test/ci/aqbars-journey.test.mjs
       - if: github.event_name != 'push'
         run: pnpm test:shards
-      - name: Admit complete CI21 ports against the candidate engine
-        if: inputs.engine != '' || github.event.client_payload.engine != ''
-        run: pnpm check:ci21-candidate
+      # QA-FEEDBACK-2026-11-23-b row 41: CI21 candidate admission runs in the ci21-source job, which seals the pinned
+      # producer's product.json first (dispatch with ci21_source: true). Run here it had no product and failed every
+      # Ring 3 candidate (ENOENT tmp/ci21-source/product.json, run 45335395949).
       - name: Admit the complete publishable product
         if: github.event_name != 'push'
         run: node --test test/ci/package-products.test.mjs
