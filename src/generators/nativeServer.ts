@@ -70,7 +70,8 @@ function nalatiNativeAssemblyPlan(nativeBake: NonNullable<NativeAssemblyPlan['ba
       owners: { file: 'sim/population-metadata.json' }, seal: { file: 'combat/room-entry.json', path: ['room'] } },
     collision: { resolution: nativeBake.resolution }, entries: { walk: { lanes: 23, walk: 40, start: 249, maxTicks: 800 } },
     boot: { file: 'server/boot.json' },
-    features: [{ host: 'collision' }, { host: 'day.declared', clock: { file: 'world/forest-weather.json', path: ['sky', 'clock'] } }, { host: 'riding.roster' },
+    // FORMAT-PRUNE FP16d: the day is the forest weather's sky clock (world/forest-weather.json sky.clock), which the engine stands
+    features: [{ host: 'collision' }, { host: 'riding.roster' },
       { host: 'riding.trample', id: 'nalati.trample', radius: 0.55, strength: 1, speedLimit: 30 }, { host: 'riding.environment', wind: { x: -0.8, z: 0.6, strength: 0.5 }, flatten: 0.85 },
       { host: 'riding.groups', rows: { file: 'server/groups.json' } },
       { host: 'riding.elites', rows: { file: 'server/elites.json' }, strikes: { file: 'server/elite-strikes.json' }, projected: 2, conditions: NALATI_ELITE_CONDITIONS },
