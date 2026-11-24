@@ -121,6 +121,14 @@ jobs:
           else
             pnpm install --frozen-lockfile --config.ci=false
           fi
+      # QA-11-23-b row 44 (J505): SDK 0.4.30 wrote a format staging's cook (v0.1.79) could not read, and the cook
+      # refused two uploads about 30 minutes into each run. Before the build, refuse when a cook this channel
+      # reaches can't read the format the installed SDK writes, naming the engine it needs.
+      - name: Refuse a format the channel's cook can't read
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          PUBLISH_REHEARSE: ${{ inputs.rehearse }}
+        run: node scripts/publish-preflight.mjs "${{ inputs.channel }}"
       # As each shard repo's ci.yml does: build:shards first (its
       # publish-public step lays out public/assets), then check.
       # The key names the C library: a basisu built on ubuntu-26.04 (glibc
