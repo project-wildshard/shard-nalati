@@ -33,17 +33,11 @@ test(`${owner.slug}: source-owned maps declare their program and defining raster
   for (const name of ['mapScenes', 'mapRaster']) assert.ok(raster.has(sdkFile(`bake/${name}.ts`)), `Missing defining ${name}`);
 });
 
-if (owner.slug === 'nine-dragon-stack') test('Nine retains every extra map source root across package relocation', () => {
-  // These authored addresses predate the split. Retain their logical input
-  // identities and verify the defining files in the installed owner package.
-  for (const name of ['mapAssembly', 'mapScenes', 'mapRaster', 'groundMap']) {
-    assert.ok(settings.inputs.includes(`../../sharddev/bake/${name}.ts`));
-    assert.ok(existsSync(sdkFile(`bake/${name}.ts`)));
-  }
-  assert.ok(settings.inputs.includes('../../sharddev/kit/geometryPack.ts'));
+// FORMAT-PRUNE FP50 (SHARD-COMPAT SA10): map inputs stay in the shard source. The pre-split
+// `../../sharddev/*` addresses left it; the defining files live in the installed SDK, which the
+// raster test above already checks.
+test(`${owner.slug}: map inputs stay in the shard source`, () => {
+  assert.deepEqual(settings.inputs.filter(input => input.startsWith('../')), []);
+  for (const name of ['mapAssembly', 'mapScenes', 'mapRaster', 'groundMap']) assert.ok(existsSync(sdkFile(`bake/${name}.ts`)));
   assert.ok(existsSync(sdkFile('kit/geometryPack.ts')));
-  assert.ok(settings.inputs.includes('../../commons/bake/portableMath.ts'));
-  assert.ok(existsSync(resolve(sdk, 'src/commons/bake/portableMath.ts')));
-  assert.equal(mapFile, resolve(source, 'data/map.json'));
-  assert.ok(!settings.inputs.includes('../../../scripts/map-painter.mjs'));
 });

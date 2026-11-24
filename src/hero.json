@@ -1,12 +1,11 @@
 {
-  "content": "cc4b0428a4179d86cd64dcdab849f7cecaaaf635990262ec061073fbb566ee8f",
-  "captured": "2026-11-23T18:01:02.403Z",
-  "base": "auto re-stamp: curated art unchanged, content moved (wildshard build)",
+  "content": "b470616e4648d560f1007e8a701ca29d5950dfcc1c30094f66fe6614aa980efc",
+  "captured": "2026-11-24T11:57:03.467Z",
+  "base": "stamp-existing: the hero files already in the shard, adopted without a capture",
   "card": {
     "thumbs/nalati-grasslands.jpg": "37c5aebda197767bfa4a60f998d213c3d535d2f8b51b948e6f95a77fa161e854",
     "thumbs/nalati-grasslands-portrait.jpg": "f13d7e0f60ca5baab187834c5f087d175aa73d5df51be7934b2f44bcecac1db3",
     "thumbs/nalati-grasslands-landscape.jpg": "4633b23433ff7f15373b73c3eb255769ca5ab435f3cc885b0cb19452885825a8"
   },
-  "curated": true,
-  "look": "92496f14c95bf7db4dda440ee652848198a7386bbaa8d9cb68de36b79f9492d6"
+  "curated": true
 }
