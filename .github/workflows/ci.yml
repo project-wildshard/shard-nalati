@@ -39,7 +39,7 @@ jobs:
     name: ${{ inputs.ci21_source && 'product (not requested)' || 'check' }}
     if: inputs.ci21_source != true
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch') && 40 || 15 }} # QA-11-23-b row 41: a Ring 3 candidate runs every check (25 min in 45331629702)
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
