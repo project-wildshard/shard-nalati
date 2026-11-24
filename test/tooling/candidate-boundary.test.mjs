@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
+import { createRequire } from 'node:module';
 import { checkTestBoundary } from '../../scripts/check-test-boundary.mjs';
 
 function fixture(run) {
@@ -20,7 +21,9 @@ test('an explicitly held source import requires the candidate engine verdict', (
   assert(checkTestBoundary(root).candidateOnly > 0);
   assert.throws(() => checkTestBoundary(root, { candidate: true }), /engine does not export/u);
 }));
-test('a candidate run admits actual public installed imports', () => fixture((root, put) => {
+// SI8c: the shard depends on no engine; only a CI21 candidate run installs one, so this admission runs there.
+const engineInstalled = (() => { try { createRequire(import.meta.url).resolve('@wildshard/engine/package.json'); return true; } catch { return false; } })();
+test('a candidate run admits actual public installed imports', { skip: !engineInstalled && 'no candidate engine installed' }, () => fixture((root, put) => {
   put('test/ci21-candidate/held.test.ts', "import '@wildshard/engine/core/rng';");
   assert.doesNotThrow(() => checkTestBoundary(root, { candidate: true }));
 }));

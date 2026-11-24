@@ -17,7 +17,8 @@ import { enginePackagePath } from '@wildshard/sdk/headless';
 const {readServerPackBook,serverPackFile}=await import('@wildshard/sdk/headless/game/shardfile/serverPack');
 const {loadHeadlessFolder}=await import('@wildshard/sdk/headless/host/headlessFolder');
 const {openWorldAdapter}=await import('@wildshard/sdk/internal/engine/host/openWorld');
-const {outputDescriptor,serverReadsFile}=await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { outputDescriptor } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { serverReadsFile } = await import('@wildshard/format/serverReads');
 const {loadRapier}=await import('@wildshard/sdk/headless/physics/rapier');
 const require=createRequire(import.meta.url);
 

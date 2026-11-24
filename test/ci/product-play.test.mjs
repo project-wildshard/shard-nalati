@@ -11,7 +11,8 @@ const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headle
 const { openWorldAdapter } = await import('@wildshard/sdk/internal/engine/host/openWorld');
 const { HeadlessSimulation } = await import('@wildshard/sdk/headless/host/headless');
 const { folderHeadlessSections } = await import('@wildshard/sdk/headless/host/headlessSections');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { outputDescriptor } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { serverReadsFile } = await import('@wildshard/format/serverReads');
 const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
 const { manifestFolders, builtShardFolders } = await import('@wildshard/sdk/headless/scripts/shard-outputs.mjs');
 import { engineRequire } from '@wildshard/sdk/headless';
