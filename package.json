@@ -41,15 +41,15 @@
     "check:bin-pins": "node kit/scripts/bin-pins.mjs"
   },
   "dependencies": {
-    "@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-    "@wildshard/sdk": "0.4.29",
+    "@wildshard/format": "npm:@wildshard/shard-format@0.74.1",
+    "@wildshard/sdk": "0.4.30",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0",
-    "@wildshard/cli": "0.4.29",
-    "@wildshard/kit": "0.4.29",
-    "@wildshard/dev": "0.4.29",
-    "@wildshard/build": "0.4.29"
+    "@wildshard/cli": "0.4.30",
+    "@wildshard/kit": "0.4.30",
+    "@wildshard/dev": "0.4.30",
+    "@wildshard/build": "0.4.30"
   },
   "devDependencies": {
     "@types/node": "24.3.1",
@@ -148,16 +148,17 @@
     "overrides": {
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
-      "@wildshard/sdk>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-      "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-      "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-      "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.71.0",
-      "@wildshard/kit>@wildshard/shard-format": "0.71.0",
-      "@wildshard/build": "0.4.29",
-      "@wildshard/upload": "0.4.29",
-      "@wildshard/sdk": "0.4.29",
-      "@wildshard/kit": "0.4.29",
-      "@wildshard/dev": "0.4.29"
+      "@wildshard/sdk>@wildshard/format": "npm:@wildshard/shard-format@0.74.1",
+      "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.74.1",
+      "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.74.1",
+      "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.74.1",
+      "@wildshard/kit>@wildshard/shard-format": "0.74.1",
+      "@wildshard/build": "0.4.30",
+      "@wildshard/upload": "0.4.30",
+      "@wildshard/sdk": "0.4.30",
+      "@wildshard/kit": "0.4.30",
+      "@wildshard/dev": "0.4.30",
+      "@wildshard/format": "npm:@wildshard/shard-format@0.74.1"
     }
   },
   "binDependencies": {
