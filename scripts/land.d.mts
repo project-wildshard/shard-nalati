@@ -4,8 +4,8 @@ export const LAND_DEFAULTS: Readonly<LandConfig>;
 export const LAND_WORKFLOWS: readonly string[];
 export function loadLandConfig(root: string): LandConfig;
 export function githubSlug(remote: string): string | null;
-export function defaultMode(env: NodeJS.ProcessEnv, host: string): 'push' | 'hosted';
-export function parseArgs(argv: string[], env?: NodeJS.ProcessEnv, host?: string): { mode: 'push' | 'hosted'; pollSeconds: number; timeoutMinutes: number; appearMinutes: number; rounds: number; keep: boolean; done: boolean };
+export function defaultMode(env: NodeJS.ProcessEnv): 'push' | 'hosted';
+export function parseArgs(argv: string[], env?: NodeJS.ProcessEnv): { mode: 'push' | 'hosted'; pollSeconds: number; timeoutMinutes: number; appearMinutes: number; rounds: number; keep: boolean; done: boolean };
 export function shaVerdict(data: unknown, sha: string, workflows?: readonly string[]): { state: 'pending' | 'green' | 'red'; runs: Record<string, { id: number; status: string; conclusion: string | null; branch: string; url: string; attempt: number }>; summary: string };
 export function failedJobs(data: unknown): { blocking: string[]; nonblocking: string[] };
 export function mainPushArgs(sha: string): string[];
@@ -13,5 +13,6 @@ export function land(argv: string[], cwd?: string, env?: NodeJS.ProcessEnv): Pro
 export function flakyFiles(directory: string, jobNames: readonly string[]): string[] | null;
 export function strikePlans(book: string, file: string, now: number): string[];
 export function quarantineFile(path: string, file: string, owner: string, reason: string, now: number): boolean;
+export function pushStopCause(stdout: string, stderr: string, status: number | null): string;
 export const REF_LOCK: RegExp;
 export function tryGitLocked(cwd: string, args: string[], env: NodeJS.ProcessEnv, onRetry?: (why: string) => void): import('node:child_process').SpawnSyncReturns<string>;

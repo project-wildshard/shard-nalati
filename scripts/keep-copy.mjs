@@ -11,6 +11,7 @@ import { pathToFileURL } from 'node:url';
 const MAX_UNTRACKED_BYTES = 50 * 1024 * 1024;
 const DEFAULT_KEEP_ROOT = join(homedir(), '.cache/wildshard/session-keep');
 const RETENTION_DAYS = 14;
+const PINS_LEDGER = 'out/.pins.json';
 const RAW_PATCH = ['--binary', '--no-color', '--no-ext-diff', '--no-textconv', '--src-prefix=a/', '--dst-prefix=b/'];
 // Declared build/install outputs are regenerable. Other ignored files, including
 // tmp captures and owner metadata, must be copied or make removal fail closed.
@@ -64,15 +65,41 @@ function bytes(path, files) {
   return files.reduce((total, file) => total + lstatSync(join(path, file)).size, 0);
 }
 
+/** Pin mounts a worktree's own pins install published (engine scripts/pins.ts records them in out/.pins.json) are
+ * declared build output: the install puts them back from the content-addressed pins. A mount changed after that install
+ * (newer than the ledger) is work, and is kept. Meta QA-FEEDBACK-2026-11-24 row 48: an ended release worktree's
+ * mounts under public/assets/ (music, sfx, models ...) passed 50 MiB, so keep-copy refused every one of them.
+ * @param {string} root @returns {Set<string>} */
+export function pinMounts(root) {
+  const mounts = new Set();
+  let published, installed;
+  try {
+    const ledger = join(root, PINS_LEDGER), info = lstatSync(ledger);
+    if (!info.isFile()) return mounts;
+    installed = info.mtimeMs;
+    published = JSON.parse(readFileSync(ledger, 'utf8')).published;
+  } catch { return mounts; }
+  if (!Array.isArray(published)) return mounts;
+  for (const path of published) {
+    if (typeof path !== 'string' || !path.startsWith('public/') || path.split('/').some(part => part === '..' || part === '')) continue;
+    try {
+      const info = lstatSync(join(root, path));
+      if (info.isFile() && info.mtimeMs <= installed) mounts.add(path);
+    } catch { /* not published here: nothing to omit */ }
+  }
+  return mounts;
+}
+
 /** Include ignored evidence without walking known generated outputs or symlinks.
- * @param {string} root */
-function recoverableFiles(root) {
-  const files = new Set(text(root, ['ls-files', '--others', '--exclude-standard', '-z']).split('\0').filter(Boolean));
+ * @param {string} root @param {ReadonlySet<string>} callerFiles */
+function recoverableFiles(root, callerFiles) {
+  const regenerableFiles = new Set([...callerFiles, ...pinMounts(root)]);
+  const files = new Set(text(root, ['ls-files', '--others', '--exclude-standard', '-z']).split('\0').filter(file => file && !regenerableFiles.has(file)));
   const visit = (/** @type {string} */ file) => {
     const info = lstatSync(join(root, file));
     if (info.isDirectory()) {
       for (const name of readdirSync(join(root, file))) visit(join(file, name));
-    } else if (info.isFile() || info.isSymbolicLink()) files.add(file);
+    } else if (info.isFile() || info.isSymbolicLink()) { if (!regenerableFiles.has(file)) files.add(file); }
     else throw new Error(`keep-copy: cannot preserve ${file}; source must be kept`);
   };
   for (const file of text(root, ['ls-files', '--others', '--ignored', '--exclude-standard', '--directory', '--no-empty-directory', '-z']).split('\0').filter(Boolean))
@@ -84,10 +111,11 @@ function recoverableFiles(root) {
 
 /** Snapshot every recoverable byte before copying and again after stopping
  * writers. Status alone misses edits within an existing untracked folder.
- * @param {string} root */
-export function worktreeState(root) {
+ * Callers may omit exact regular outputs only after verifying their current bytes.
+ * @param {string} root @param {{regenerableFiles?:ReadonlySet<string>}} [options] */
+export function worktreeState(root, { regenerableFiles = new Set() } = {}) {
   const hash = createHash('sha256');
-  for (const file of recoverableFiles(root)) {
+  for (const file of recoverableFiles(root, regenerableFiles)) {
     const path = join(root, file), info = lstatSync(path);
     if (!info.isFile() && !info.isSymbolicLink()) throw new Error(`cannot snapshot ${file}`);
     hash.update(JSON.stringify([file, info.mode, info.size]));
@@ -102,14 +130,15 @@ export function worktreeState(root) {
 }
 
 /** Copy recoverable Git worktree state. It never deletes or mutates `path`.
- * @param {string} path @param {{keepRoot?: string, now?: Date}} [options] */
-export function keepCopy(path, { keepRoot = DEFAULT_KEEP_ROOT, now = new Date() } = {}) {
+ * Caller-verified regenerableFiles are exact paths, never directory prefixes.
+ * @param {string} path @param {{keepRoot?: string, now?: Date, regenerableFiles?:ReadonlySet<string>}} [options] */
+export function keepCopy(path, { keepRoot = DEFAULT_KEEP_ROOT, now = new Date(), regenerableFiles = new Set() } = {}) {
   const root = resolve(path);
   if (!existsSync(root)) throw new Error(`keep-copy: ${root} does not exist`);
   const repo = text(root, ['rev-parse', '--show-toplevel']).trim();
   const source = realpathSync(root);
   requireExternalCopy(source, physicalPath(keepRoot));
-  const files = recoverableFiles(root);
+  const files = recoverableFiles(root, regenerableFiles);
   const dir = destination(root, resolve(keepRoot), now);
   mkdirSync(dir, { recursive: true });
   requireExternalCopy(source, realpathSync(dir));

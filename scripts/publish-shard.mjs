@@ -6,7 +6,7 @@
 //   node scripts/publish-shard.mjs gate              refuse a dispatch that is not
 //                                                    main's tip, or whose main is red
 //   node scripts/publish-shard.mjs build [slug]      build, then name the product folder
-//   node scripts/publish-shard.mjs version <slug> <X.Y.Z|auto>
+//   node scripts/publish-shard.mjs version <slug> <repo|X.Y.Z|auto>
 //                                                    the version upload sends
 //   node scripts/publish-shard.mjs preparation       refuse an empty or malformed
 //                                                    PREPARATION before anything runs
@@ -23,42 +23,20 @@
 import { agentFetch as fetch } from './wildshard-agent-requests.mjs';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { appendFileSync, existsSync, readFileSync, readdirSync } from 'node:fs';
+import { appendFileSync, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { pathToFileURL } from 'node:url';
+import { chooseVersion, compareVersions, Refusal as VersionRefusal } from './publish-version.mjs';
 
 const API = process.env.WILDSHARD_API_URL || 'https://api.wildshard.io';
 const GITHUB = process.env.GITHUB_API_URL || 'https://api.github.com';
-const SEMVER = /^(\d+)\.(\d+)\.(\d+)$/u;
 const PREPARATION = /^(?:v\d+\.\d+\.\d+|server-staging-[0-9a-f]{40})$/u;
 
 class Refusal extends Error {}
 
-/** -1, 0 or 1. */
-export function compareVersions(a, b) {
-  const [x, y] = [SEMVER.exec(a), SEMVER.exec(b)];
-  if (!x || !y) throw new Refusal(`not a version X.Y.Z: ${!x ? a : b}`);
-  for (let at = 1; at <= 3; at += 1) {
-    const d = Number(x[at]) - Number(y[at]);
-    if (d !== 0) return Math.sign(d);
-  }
-  return 0;
-}
-
-/** The version upload sends: `auto` is the catalogue's patch + 1, or package.json's when higher. */
-export function nextVersion(wanted, catalogued, own) {
-  if (wanted !== 'auto') {
-    if (catalogued && compareVersions(wanted, catalogued) <= 0) throw new Refusal(`version ${wanted} is not above the catalogue's ${catalogued}`);
-    compareVersions(wanted, wanted);
-    return wanted;
-  }
-  if (!catalogued) return own && SEMVER.test(own) && own !== '0.0.0' ? own : '0.0.1';
-  const [, major, minor, patch] = SEMVER.exec(catalogued) ?? [];
-  if (major === undefined) throw new Refusal(`the catalogue's version is not X.Y.Z: ${catalogued}`);
-  const bumped = `${major}.${minor}.${Number(patch) + 1}`;
-  return own && SEMVER.test(own) && compareVersions(own, bumped) > 0 ? own : bumped;
-}
+// QA-11-23-b row 47: the version choice lives in publish-version.mjs (shard repos run it as its own step).
+export { compareVersions, nextVersion } from './publish-version.mjs';
 
 /**
  * The gate's verdict: what refuses, and what only warns. `ci` is the exact
@@ -67,17 +45,22 @@ export function nextVersion(wanted, catalogued, own) {
  */
 export function gateVerdict({ ref, sha, mainSha, ci, ring2, rehearse }) {
   const problems = [];
+  // FAST-RELEASE FR-A3 (J505): 17 of 25 gate refusals were "ci ... is still queued: dispatch again when it is green",
+  // each a second dispatch by hand. A queued or running ci for this exact SHA is something to wait on, not a refusal;
+  // gate() polls until it ends (PUBLISH_GATE_WAIT_MINUTES) and still refuses a red ci or a main that moves meanwhile.
+  const wait = [];
   if (ref !== 'refs/heads/main') problems.push(`dispatched on ${ref}: publish ships main only`);
   else if (mainSha !== sha) problems.push(`main moved to ${mainSha.slice(0, 10)} after this run started at ${sha.slice(0, 10)}: dispatch again`);
   const run = ci.find((row) => row.status === 'completed' && row.conclusion !== 'cancelled') ?? ci[0];
   if (!run) problems.push(`no ci push run for ${sha.slice(0, 10)}: main must be green before it ships`);
-  else if (run.status !== 'completed') problems.push(`ci for ${sha.slice(0, 10)} is still ${run.status}: dispatch again when it is green (${run.html_url})`);
+  else if (run.status !== 'completed') wait.push(`ci for ${sha.slice(0, 10)} is still ${run.status} (${run.html_url})`);
   else if (run.conclusion !== 'success') problems.push(`main is red: ci ${run.conclusion} for ${sha.slice(0, 10)} (${run.html_url})`);
   for (const row of ring2) {
     if (row.conclusion !== 'success') problems.push(`main is red: ${row.name} ${row.conclusion} at ${row.head_sha.slice(0, 10)} (${row.html_url})`);
   }
   const relaxed = rehearse && ref !== 'refs/heads/main';
-  return { refuse: relaxed ? [] : problems, warn: relaxed ? problems : [] };
+  if (relaxed) return { refuse: [], warn: [...problems, ...wait], wait: [] };
+  return { refuse: problems, warn: [], wait: problems.length ? [] : wait };
 }
 
 /** The oldest sdk whose `wildshard prepare` finishes with no `--base` (0.2.11 and 0.2.12 time out at 240 s). */
@@ -86,7 +69,8 @@ export const SDK_FLOOR = '0.2.13';
 /** A refusal when package.json pins an exact sdk below SDK_FLOOR; a range or a missing pin passes. */
 export function sdkPinProblem(pkg) {
   const deps = { ...pkg.devDependencies, ...pkg.dependencies };
-  for (const name of ['@wildshard/sdk', '@wildshard/sdk']) {
+  // SA7b: every shard names the sdk by its own name now; the old alias is retired vocabulary in shard repos.
+  for (const name of ['@wildshard/sdk']) {
     const spec = deps[name];
     if (typeof spec !== 'string') continue;
     const version = /^(?:npm:@wildshard\/sdk@)?(\d+\.\d+\.\d+)$/u.exec(spec)?.[1];
@@ -151,14 +135,19 @@ export function pickProduct(slugs, wanted) {
   return slugs[0];
 }
 
-/** The upload's committed line and grid lines, from its output; or the queued line of an accepted, cooking upload. */
+/**
+ * The upload's committed line and grid lines, from its output; or the queued line of an accepted, cooking upload. Both
+ * name the version the API holds the bytes as, which a re-upload of unchanged bytes (QA-11-23-b row 45) takes from the
+ * upload that holds them, not from the version asked.
+ */
 export function uploadLines(log) {
   const lines = log.split('\n').map((line) => line.trim());
   const at = lines.findIndex((line) => /^(committed|already stored): /u.test(line));
   if (at < 0) {
     const queued = lines.find((line) => /^queued: /u.test(line));
+    const match = queued && /^queued: (\S+) (\S+) for \S+ \(upload (\S+)\)$/u.exec(queued);
     const id = queued && /\(upload (\S+)\)$/u.exec(queued)?.[1];
-    return { committed: undefined, after: [], ...(queued ? { queued, uploadId: id } : {}) };
+    return { committed: undefined, after: [], ...(queued ? { queued, uploadId: id } : {}), ...(match ? { slug: match[1], version: match[2] } : {}) };
   }
   const committed = lines[at];
   const match = /^(?:committed|already stored): (\S+) (\S+) catalogue number (\d+) for (\S+) \(([0-9a-f]{64})\)/u.exec(committed);
@@ -191,18 +180,29 @@ async function gate() {
   const { GITHUB_REPOSITORY: repo, GITHUB_SHA: sha, GITHUB_REF: ref, GH_TOKEN: token } = process.env;
   if (!repo || !sha || !ref) throw new Refusal('gate needs GITHUB_REPOSITORY, GITHUB_SHA and GITHUB_REF');
   const base = `${GITHUB}/repos/${repo}`;
-  const [main, runs, workflows] = await Promise.all([
-    getJson(`${base}/commits/main`, token),
-    getJson(`${base}/actions/workflows/ci.yml/runs?head_sha=${sha}&event=push&per_page=20`, token),
-    getJson(`${base}/actions/workflows?per_page=100`, token),
-  ]);
-  const ring2 = [];
-  for (const flow of workflows.workflows.filter((row) => /\/ring-2-[^/]+\.ya?ml$/u.test(row.path))) {
-    const latest = await getJson(`${base}/actions/workflows/${flow.id}/runs?branch=main&status=completed&per_page=10`, token);
-    const row = latest.workflow_runs.find((run) => run.conclusion !== 'cancelled' && run.conclusion !== 'skipped');
-    if (row) ring2.push({ ...row, name: flow.name });
+  const judge = async () => {
+    const [main, runs, workflows] = await Promise.all([
+      getJson(`${base}/commits/main`, token),
+      getJson(`${base}/actions/workflows/ci.yml/runs?head_sha=${sha}&event=push&per_page=20`, token),
+      getJson(`${base}/actions/workflows?per_page=100`, token),
+    ]);
+    const ring2 = [];
+    for (const flow of workflows.workflows.filter((row) => /\/ring-2-[^/]+\.ya?ml$/u.test(row.path))) {
+      const latest = await getJson(`${base}/actions/workflows/${flow.id}/runs?branch=main&status=completed&per_page=10`, token);
+      const row = latest.workflow_runs.find((run) => run.conclusion !== 'cancelled' && run.conclusion !== 'skipped');
+      if (row) ring2.push({ ...row, name: flow.name });
+    }
+    return gateVerdict({ ref, sha, mainSha: main.sha, ci: runs.workflow_runs, ring2, rehearse: process.env.PUBLISH_REHEARSE === 'true' });
+  };
+  // FR-A3: wait on this SHA's queued or running ci instead of asking for a second dispatch.
+  const deadline = Date.now() + minutes('PUBLISH_GATE_WAIT_MINUTES', 30);
+  let verdict = await judge();
+  while (verdict.wait.length && Date.now() < deadline) {
+    console.log(`gate: waiting: ${verdict.wait.join('; ')}`);
+    await sleep(30_000);
+    verdict = await judge();
   }
-  const verdict = gateVerdict({ ref, sha, mainSha: main.sha, ci: runs.workflow_runs, ring2, rehearse: process.env.PUBLISH_REHEARSE === 'true' });
+  if (verdict.wait.length) verdict = { ...verdict, refuse: verdict.wait.map((line) => `${line} past the gate's wait: dispatch again when it is green`) };
   for (const line of verdict.warn) console.log(`::warning::rehearsal, not a refusal: ${line}`);
   const sdk = sdkPinProblem(JSON.parse(readFileSync('package.json', 'utf8')));
   if (verdict.refuse.length || sdk) throw new Refusal([...verdict.refuse, ...(sdk ? [sdk] : [])].join('; '));
@@ -230,10 +230,36 @@ function build(wanted) {
 }
 
 async function version(slug, wanted) {
-  const catalogue = await getJson(`${API}/api/catalogue`);
-  const row = catalogue.shards.find((shard) => shard.slug === slug);
-  const own = JSON.parse(readFileSync('package.json', 'utf8')).version;
-  output('version', nextVersion(wanted, row?.version ?? undefined, own));
+  output('version', await chooseVersion(slug, wanted, { rehearse: process.env.PUBLISH_REHEARSE === 'true' }));
+}
+
+/** CP13: published.json after a publish: one row per slug, merged into what the repo already records. */
+export function publishedRecord(existing, row) {
+  const rows = existing && typeof existing === 'object' && !Array.isArray(existing) ? existing : {};
+  const { slug, ...rest } = row;
+  return { ...rows, [slug]: rest };
+}
+
+/** CP13: the tag a published revision gets: `r<revision>`, or `<slug>-r<revision>` when `r<revision>` already names
+ * another commit (a repo that builds more than one slug). `taken` is the commit `r<revision>` names now, if any. */
+export function publishedTag(revision, slug, taken, commit) {
+  const plain = `r${revision}`;
+  return !taken || taken === commit ? plain : `${slug}-${plain}`;
+}
+
+function record(slug, version, revision, hash, channel, commit) {
+  if (!/^\d+$/u.test(revision)) throw new Refusal(`no catalogue revision to record for ${slug}: ${revision}`);
+  const file = 'published.json';
+  const existing = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : undefined;
+  const rows = publishedRecord(existing, { slug, version, revision: Number(revision), hash, channel, commit });
+  writeFileSync(file, `${JSON.stringify(rows, null, 2)}\n`);
+  let taken = '';
+  try {
+    taken = execFileSync('git', ['rev-parse', '-q', '--verify', `refs/tags/r${revision}^{commit}`], { encoding: 'utf8' }).trim();
+  } catch {
+    taken = '';
+  }
+  output('tag', publishedTag(revision, slug, taken, commit));
 }
 
 function report(slug, channel, logFile, shardFile) {
@@ -245,6 +271,7 @@ function report(slug, channel, logFile, shardFile) {
     summary(`### ${slug} on ${channel}: accepted, cooking\n\n~~~text\n${parsed.queued}\n~~~\n\nThe cook job waits for the verdict; by hand: \`pnpm exec wildshard upload status ${parsed.uploadId}\``);
     output('upload_id', parsed.uploadId);
     output('hash', hash);
+    if (parsed.version) output('version', parsed.version);
     return;
   }
   if (!parsed.committed) throw new Refusal('the upload printed no committed or queued line');
@@ -252,6 +279,7 @@ function report(slug, channel, logFile, shardFile) {
   if (parsed.revision !== undefined) {
     output('revision', String(parsed.revision));
     output('hash', parsed.hash);
+    output('version', parsed.version);
   }
 }
 
@@ -311,15 +339,16 @@ async function main(argv) {
   if (command === 'gate') return gate();
   if (command === 'build') return build(rest[0] || undefined);
   if (command === 'version' && rest.length === 2) return version(rest[0], rest[1]);
+  if (command === 'record' && rest.length === 6) return record(...rest);
   if (command === 'preparation') return preparation();
   if (command === 'summary' && (rest.length === 3 || rest.length === 4)) return report(...rest);
   if (command === 'cook' && (rest.length === 3 || rest.length === 4)) return cook(rest[0], rest[1], rest[2], rest[3] || undefined);
-  throw new Refusal('usage: publish-shard.mjs gate | preparation | build [slug] | version <slug> <X.Y.Z|auto> | summary <slug> <channel> <log> [shard file] | cook <slug> <channel> <hash> [upload id]');
+  throw new Refusal('usage: publish-shard.mjs gate | preparation | build [slug] | version <slug> <repo|X.Y.Z|auto> | record <slug> <version> <revision> <hash> <channel> <commit> | summary <slug> <channel> <log> [shard file] | cook <slug> <channel> <hash> [upload id]');
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   main(process.argv.slice(2)).catch((error) => {
-    console.log(`::error::${error instanceof Refusal ? error.message : error.stack}`);
+    console.log(`::error::${error instanceof Refusal || error instanceof VersionRefusal ? error.message : error.stack}`);
     process.exit(1);
   });
 }

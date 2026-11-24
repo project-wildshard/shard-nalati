@@ -26,7 +26,7 @@
 import {execFileSync,spawn,spawnSync} from 'node:child_process';
 import {keepCopy,worktreeState} from './keep-copy.mjs';
 import {appendFileSync,existsSync,linkSync,lstatSync,mkdirSync,mkdtempSync,readFileSync,readdirSync,realpathSync,renameSync,rmSync,writeFileSync} from 'node:fs';
-import {homedir,hostname} from 'node:os';
+import {homedir} from 'node:os';
 import {dirname,join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {canonicalRoot,followMain,withStoreUse} from './worktree.mjs';
@@ -93,6 +93,23 @@ const tryGit=(cwd,args,env=process.env)=>spawnSync('git',args,{cwd,env,encoding:
 /** A ref lock another git process holds or just moved: worktrees share refs, so two lands fetching main at once race
  * for refs/remotes/origin/main ("cannot lock ref ...: is at X but expected Y", engine run 43332891983), and any git
  * may hold packed-refs.lock for a moment. Only these are retried; every other git failure stops as before. */
+/** A refused main push's reason for its STOP receipt (J505, meta QA-11-23-b): the hook's `X`, RED, STUCK or remote
+ * rejection line (with the line after it, or the last thrown error, when it ends in a colon), else the last error,
+ * else the last line. Never empty: a bare "refused:" sent the coordinator to read the log.
+ * @param {string} stdout @param {string} stderr @param {number|null} status @returns {string} */
+export function pushStopCause(stdout,stderr,status){
+ const lines=`${stderr}\n${stdout}`.split('\n')
+  // oxlint-disable-next-line no-control-regex -- strips terminal colour codes.
+  .map(line=>line.replaceAll(/\u001B\[[0-9;]*m/gu,'').trim())
+  .filter(line=>line!==''&&!/^(?:To |hint: |error: failed to push some refs)/u.test(line));
+ const thrown=lines.findLast(line=>/^(?:[A-Z]\w*)?Error: /u.test(line));
+ const at=lines.findIndex(line=>/^X |(?:^|\s)RED(?:\s|$)|STUCK|\[(?:remote )?rejected\]/u.test(line));
+ const head=at===-1?undefined:lines[at];
+ const pick=head===undefined?thrown??lines.at(-1)
+  :head.endsWith(':')?`${head} ${thrown??lines[at+1]??''}`.trim():head;
+ return (pick===undefined||pick===''?`git push exited ${String(status)} with no output`:pick).slice(0,300);
+}
+
 export const REF_LOCK=/cannot lock ref|Unable to create '[^']*\.lock': File exists/u;
 const LOCK_WAITS_MS=[200,400,800,1600];
 /** tryGit, tried again after a short backoff while git's only complaint is a ref lock (REF_LOCK). Only for git
@@ -120,18 +137,19 @@ export function githubSlug(remote){
 
 /** Refuse anything but the known options. Any spelling of force is refused by name.
  * @param {string[]} argv */
-/** J422 (meta FLOW-SIMPLE FS6): push mode is the MacBook default, one way onto main for every row: rebase, push main
- * through the repo's ordinary pre-push, move on; no plan-branch push and no hosted wait. The Mac mini keeps the hosted
- * land for now (J422 wave 2), as does WS_LAND_MODE=hosted or --hosted.
- * @param {NodeJS.ProcessEnv} env @param {string} host */
-export function defaultMode(env,host){
+/** J422 (meta FLOW-SIMPLE FS6): push mode is the default on every host, one way onto main for every row: rebase, push
+ * main through the repo's ordinary pre-push, move on; no plan-branch push and no hosted wait. The Mac mini moved to push
+ * mode with J443. The hosted land is an explicit opt-in only (WS_LAND_MODE=hosted or --hosted); consumers no longer run
+ * CI on plan/**, so it serves the disk-land tests that pin it.
+ * @param {NodeJS.ProcessEnv} env */
+export function defaultMode(env){
  if(env.WS_LAND_MODE==='hosted'||env.WS_LAND_MODE==='push')return env.WS_LAND_MODE;
- return /mac-?mini/iu.test(host)?'hosted':'push';
+ return 'push';
 }
 
-/** @param {string[]} argv @param {NodeJS.ProcessEnv} [env] @param {string} [host] */
-export function parseArgs(argv,env=process.env,host=hostname()){
- const options={mode:defaultMode(env,host),pollSeconds:30,timeoutMinutes:60,appearMinutes:5,rounds:5,keep:false,done:false};
+/** @param {string[]} argv @param {NodeJS.ProcessEnv} [env] */
+export function parseArgs(argv,env=process.env){
+ const options={mode:defaultMode(env),pollSeconds:30,timeoutMinutes:60,appearMinutes:5,rounds:5,keep:false,done:false};
  for(const arg of argv){
   if(/^-f$|force/iu.test(arg))throw new StopError(`refused ${arg}: land never force-pushes main (J240: fast-forward only). If main moved, land rebases and retries by itself`);
   const [name,value]=arg.split('=',2);
@@ -675,13 +693,16 @@ class Landing{
   // LS3 (J258): the pre-push knows this is land's main push and of which kind (.githooks/run-checks.mjs).
   const env={...this.env,WS_LAND_MAIN_PUSH:`${carried?'carried':'exact'}:${head}`};
   if(push)Reflect.deleteProperty(env,'WS_LAND_MAIN_PUSH');
-  const result=spawnSync('git',args,{cwd:this.root,env,encoding:'utf8',stdio:['ignore','pipe','inherit']});
+  // The hook writes to stderr: keep it for the STOP receipt's cause, and still show it in the land log.
+  const result=spawnSync('git',args,{cwd:this.root,env,encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:64<<20});
+  process.stderr.write(result.stderr??'');
   if(result.status===0)return 'landed';
   // A lost race is main having moved; anything else (a red pre-push) stops.
   const now=this.fetchMain();
   if(now!==main&&!isAncestor(this.root,now,head))return 'moved';
-  this.receipt(`STOP main push of ${short(head)} refused: ${result.stdout.trim().split('\n').slice(-2).join(' ')}`);
-  throw new StopError(`main push of ${short(head)} failed and main did not move: ${result.stdout.trim()}\nA red pre-push names its failing check above; fix forward and run land again.`);
+  const cause=pushStopCause(result.stdout??'',result.stderr??'',result.status);
+  this.receipt(`STOP main push of ${short(head)} refused: ${cause}`);
+  throw new StopError(`main push of ${short(head)} failed and main did not move: ${cause}\nA red pre-push names its failing check above; fix forward and run land again.`);
  }
 
  async run(){
