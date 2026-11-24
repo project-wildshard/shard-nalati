@@ -12,11 +12,17 @@
 // installed SDK's `@wildshard/format`. A newer format minor than the cook reads refuses, naming the engine the SDK is
 // built on; a patch is compatible. When the channel's engine or format can't be read, it warns and goes on. With
 // PUBLISH_REHEARSE=true a refusal is a warning: a rehearsal never uploads.
+//
+// QA-11-23-b row 47 (J505): when it knows the slug (PUBLISH_SLUG, the dispatch's `slug`, or the one slug published.json
+// records), it also picks the version as the version step will (PUBLISH_VERSION: repo, X.Y.Z or auto) and refuses one
+// that other bytes already hold, refused uploads included, naming the next free version. The version step runs the same
+// check after the build for a repo whose slug only the build names.
 import { agentFetch as fetch } from './wildshard-agent-requests.mjs';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { chooseVersion, Refusal } from './publish-version.mjs';
 
 const ORIGINS = { staging: 'https://staging.wildshard.io', production: 'https://play.wildshard.io' };
 /** The cooks an upload on each publish channel reaches: staging moves preview and staging, prod all three. */
@@ -80,11 +86,36 @@ export async function engineFormat(build, token = process.env.GH_TOKEN) {
   return formatOf(pkg.dependencies?.['@wildshard/format']);
 }
 
+/** The slug this publish uploads, when known before the build: the dispatch's, else published.json's only one. */
+export function knownSlug(env = process.env, root = process.cwd()) {
+  if (env.PUBLISH_SLUG) return env.PUBLISH_SLUG;
+  const file = join(root, 'published.json');
+  if (!existsSync(file)) return undefined;
+  const slugs = Object.keys(JSON.parse(readFileSync(file, 'utf8')) ?? {});
+  return slugs.length === 1 ? slugs[0] : undefined;
+}
+
+/** QA-11-23-b row 47: refuse a taken version before the build; true when refused. */
+async function versionRefused(rehearse) {
+  const slug = knownSlug();
+  if (!slug) { console.log('publish-preflight: the build names the slug; the version step checks the version after it'); return false; }
+  try {
+    const version = await chooseVersion(slug, process.env.PUBLISH_VERSION || 'repo', { rehearse });
+    console.log(`publish-preflight: ${slug} ${version} is free, or holds these same sources`);
+    return false;
+  } catch (error) {
+    // A refusal stops the run (a rehearsal only warns); an API or git hiccup leaves it to the version step.
+    const stop = error instanceof Refusal && !rehearse;
+    console.log(`::${stop ? 'error' : 'warning'}::${error.message}`);
+    return stop;
+  }
+}
+
 async function main(channel) {
   if (!COOKS[channel]) { console.log(`::error::publish-preflight: unknown channel ${channel ?? '(none)'}; one of ${Object.keys(COOKS).join(', ')}`); return 1; }
-  const writer = installedWriter();
-  if (!writer.writes) { console.log(`::warning::publish-preflight: SDK ${writer.sdk} names no @wildshard/format; not checked`); return 0; }
   const rehearse = process.env.PUBLISH_REHEARSE === 'true';
+  const writer = installedWriter();
+  if (!writer.writes) { console.log(`::warning::publish-preflight: SDK ${writer.sdk} names no @wildshard/format; not checked`); return (await versionRefused(rehearse)) ? 1 : 0; }
   let refused = false;
   for (const cook of COOKS[channel]) {
     let page, reads;
@@ -101,6 +132,7 @@ async function main(channel) {
     if (problem) { console.log(`::${rehearse ? 'warning' : 'error'}::${problem}`); refused = !rehearse; }
     else console.log(`publish-preflight: ${cook}'s cook (engine v${page.clientVersion}, format ${reads}) reads SDK ${writer.sdk}'s format ${writer.writes}`);
   }
+  if (await versionRefused(rehearse)) refused = true;
   return refused ? 1 : 0;
 }
 

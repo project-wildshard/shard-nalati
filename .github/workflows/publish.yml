@@ -128,6 +128,9 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           PUBLISH_REHEARSE: ${{ inputs.rehearse }}
+          # QA-11-23-b row 47: and refuse a version other bytes hold (a refused upload's too) before the build.
+          PUBLISH_SLUG: ${{ inputs.slug }}
+          PUBLISH_VERSION: ${{ inputs.version }}
         run: node scripts/publish-preflight.mjs "${{ inputs.channel }}"
       # As each shard repo's ci.yml does: build:shards first (its
       # publish-public step lays out public/assets), then check.
@@ -153,7 +156,9 @@ jobs:
         run: pnpm exec shard-format validate "$PRODUCT"
       - name: The version upload sends
         id: version
-        run: node scripts/publish-shard.mjs version "${{ steps.product.outputs.slug }}" "${{ inputs.version }}"
+        env:
+          PUBLISH_REHEARSE: ${{ inputs.rehearse }}
+        run: node scripts/publish-version.mjs "${{ steps.product.outputs.slug }}" "${{ inputs.version }}"
       - name: Install phone WebKit for prepare
         run: |
           # sdk 0.4 (SDK-SPLIT) moved prepare and its playwright into @wildshard/dev, under @wildshard/cli; an older sdk holds it
