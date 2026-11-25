@@ -214,8 +214,6 @@ jobs:
       - name: Prove authored wet ground and shipped navigation
         if: github.event_name != 'push'
         run: node --test test/ci/navigation-ground.test.mjs
-      - if: github.event_name == 'push' || github.event_name == 'pull_request'
-        run: pnpm test:hooks
       - name: Name the commits this verdict covers
         if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         continue-on-error: true

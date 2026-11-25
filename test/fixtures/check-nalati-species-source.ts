@@ -24,5 +24,5 @@ export function checkNalatiSpeciesSource(): void {
       assert.equal(Buffer.compare(bytes,originalSpeciesOutput(pin.path)),0,pin.path);
     }
   `;
-  execFileSync(process.execPath, ['--experimental-transform-types', '--import', './scripts/bake-loader.mjs', '--input-type=module', '--eval', source]);
+  execFileSync(process.execPath, ['--experimental-transform-types', '--import', './src/scripts/bake-loader.mjs', '--input-type=module', '--eval', source]);
 }

@@ -626,7 +626,7 @@
       "sourcePath": "test/nalati-chapter-binding.test.ts",
       "sourceBlob": "4a04da26640bb123b1918e4f71ec9b6b8c6dadcf",
       "targetPath": "test/ci21-candidate/nalati-chapter-binding.test.ts",
-      "targetBlob": "4a04da26640bb123b1918e4f71ec9b6b8c6dadcf",
+      "targetBlob": "f52316843d822e387ba4b3b2a37828bddc460cca",
       "originalTests": [
         "native chapter polling owns its encounters and refuses a forged closed-room continuation"
       ],
@@ -968,7 +968,7 @@
     },
     {
       "targetPath": "test/fixtures/check-nalati-species-source.ts",
-      "targetBlob": "da0354a8d472ec05b6d970627a81e12755fffb5f"
+      "targetBlob": "1306badac131279faff8f965fad7859c7ff16057"
     },
     {
       "targetPath": "test/fixtures/geometry-cache-author-observation.ts",
@@ -1636,7 +1636,7 @@
     },
     {
       "targetPath": "test/fixtures/native-program.ts",
-      "targetBlob": "4fcbc0625286db0a8596100b7fd83601e85d272e"
+      "targetBlob": "0d1ff35d6ae32813f44ab1e90ebe1aa4bd7b200b"
     },
     {
       "targetPath": "test/fixtures/original-script-order.ts",

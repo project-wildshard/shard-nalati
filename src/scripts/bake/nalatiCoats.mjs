@@ -1,6 +1,6 @@
 // Nalati's coat pages in plain Node, for scripts/bake-coats.mjs: the painter (src/generators/coats.ts)
 // over the committed rigged hulls, with the shipping species rows' palettes and tints. No page, renderer or registry.
-//   node --import ./scripts/bake-loader.mjs src/scripts/bake/nalatiCoats.mjs <phone|desktop> <out.json>
+//   node --import ./src/scripts/bake-loader.mjs src/scripts/bake/nalatiCoats.mjs <phone|desktop> <out.json>
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';

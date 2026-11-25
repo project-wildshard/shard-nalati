@@ -29,7 +29,7 @@
   },
   "driftwood-isle/island": {
    "about": "Driftwood's spawn cove: terrain tiles, ~60-72 prototypes, 16.7 k placements, Cycles AO + bounce lightmaps (DRIFTWOOD-REMASTER X2, E52)",
-   "pre": ["node --experimental-transform-types --no-warnings --import ./scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk driftwood-isle $CACHE"],
+   "pre": ["node --experimental-transform-types --no-warnings --import ./src/scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk driftwood-isle $CACHE"],
    "script": "src/shards/driftwood-isle/blender/build_island.py",
    "args": ["$CACHE", "$BUILD"],
    "sources": ["src/shards/driftwood-isle/blender/assets.py", "src/shards/driftwood-isle/blender/export.mjs", "src/shards/driftwood-isle/blender/post.sh", "scripts/blender/lib/export-scene.mjs"],
@@ -48,7 +48,7 @@
   },
   "pine-hollow/area-export": {
    "about": "Pine Hollow's half of the island export (PH-0.3): area.bin, splat.bin, scene.json in the cache. Its Blender build is PINE-HOLLOW-REMASTER wave 2 (PH-U17), so it writes nothing to the repo",
-   "pre": ["node --experimental-transform-types --no-warnings --import ./scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk pine-hollow $CACHE"],
+   "pre": ["node --experimental-transform-types --no-warnings --import ./src/scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk pine-hollow $CACHE"],
    "script": null,
    "sources": ["src/shards/pine-hollow/blender/export.mjs", "scripts/blender/lib/export-scene.mjs"],
    "inputs": ["src/static/assets/baked/pine-hollow/terrain.bin"],
@@ -101,7 +101,7 @@
   },
   "pine-hollow/cave": {
    "about": "The Den's bear cave: the interior + the hood over its first metres, fitted to the baked heights round the mouth (PH-B2)",
-   "pre": ["node --experimental-transform-types --no-warnings --import ./scripts/bake-loader.mjs src/shards/pine-hollow/blender/crags/export-cave.mjs $BUILD/cave-in.json"],
+   "pre": ["node --experimental-transform-types --no-warnings --import ./src/scripts/bake-loader.mjs src/shards/pine-hollow/blender/crags/export-cave.mjs $BUILD/cave-in.json"],
    "script": "src/shards/pine-hollow/blender/crags/build_cave.py",
    "args": ["$BUILD/cave-in.json", "$BUILD"],
    "sources": ["src/shards/pine-hollow/blender/crags/rocklib.py", "src/shards/pine-hollow/blender/crags/export-cave.mjs"],
@@ -143,7 +143,7 @@
   "nine-dragon-stack/fp-rig": {
    "about": "The Nine Dragon first-person arms: hand, gauntlet and guard parts (Blender), rigged with 16 clips into fp-rig.glb by the viewmodel lab's bake (lab P8 round 13, E169); its rig-bake step ran in the deleted dev lab (E357 F7); a rebuild needs a new bake path",
    "manual": "the rig bake ran in the deleted viewmodel lab page, and fp-rig.glb is the only complete copy: src/shards/nine-dragon-stack/blender/viewmodel/README.md says how to re-derive it",
-   "check": "node --import ./scripts/bake-loader.mjs src/shards/nine-dragon-stack/blender/viewmodel/rig/check-clips.mjs",
+   "check": "node --import ./src/scripts/bake-loader.mjs src/shards/nine-dragon-stack/blender/viewmodel/rig/check-clips.mjs",
    "script": "src/shards/nine-dragon-stack/blender/viewmodel/hand.py",
    "sources": [
     "src/shards/nine-dragon-stack/blender/viewmodel/hand_lib.py", "src/shards/nine-dragon-stack/blender/viewmodel/hand_model.py", "src/shards/nine-dragon-stack/blender/viewmodel/hand_parts.py",
