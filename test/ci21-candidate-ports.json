@@ -330,12 +330,11 @@
       "sourcePath": "test/nalati-king-pose.test.ts",
       "sourceBlob": "c01a321d861edeb5529c19684016343ba9a9cd96",
       "targetPath": "test/ci21-candidate/nalati-king-pose.test.ts",
-      "targetBlob": "a928a8608df5766bbf3b1f0c407e25bed157c4b8",
+      "targetBlob": "33668e5e6954aea31bfde4705cca9e3312cd9f54",
       "originalTests": [
         "King pose rows retain every joint through the full fight and its reset",
         "species channels drive the original joints without writing actor memory",
-        "balbal decisions rise, strike once, return and sink on the bounded guest tick",
-        "packed species bodies lend owned indexed geometry for every family"
+        "balbal decisions rise, strike once, return and sink on the bounded guest tick"
       ],
       "fixturePath": "test/fixtures/nalati-king-pose.ts",
       "fixtureBlob": "3387c4bea6fc555c3dd90efbd3054e5624a4f682",
@@ -963,10 +962,6 @@
       "targetBlob": "4b5d0ed287f8ed76fa451a0dc0c0bd2ba2d8508e"
     },
     {
-      "targetPath": "test/fake/nalatiSpecies.ts",
-      "targetBlob": "e9b550523c66349c85f34b5f7a0ce78609f64f9a"
-    },
-    {
       "targetPath": "test/fixtures/check-nalati-species-source.ts",
       "targetBlob": "1306badac131279faff8f965fad7859c7ff16057"
     },
@@ -1543,10 +1538,6 @@
       "targetBlob": "9b06c6b5e793ffafa383eb91ba6b0d0352476627"
     },
     {
-      "targetPath": "test/fixtures/nalati-species-world.ts",
-      "targetBlob": "6152fd91d62552ebee8bf6aed7af6fb9566849bd"
-    },
-    {
       "targetPath": "test/fixtures/nalati-specimens-original.json",
       "targetBlob": "267c154ab44c8f229e3de834a7ed7643105340bf"
     },
@@ -1951,7 +1942,6 @@
     "test/ci21-candidate/nalati-wolf-howl-verbs.test.ts",
     "test/ci21-candidate/net-titan-saddle.test.ts",
     "test/fake/bossArena.ts",
-    "test/fake/nalatiSpecies.ts",
     "test/fixtures/builtProduct.ts",
     "test/fixtures/headless-worker.ts",
     "test/fixtures/headless/chapterHandoff.ts",
@@ -2029,7 +2019,6 @@
     "test/fixtures/nalati-shardfile-inputs.ts",
     "test/fixtures/nalati-shardfile-source.ts",
     "test/fixtures/nalati-spear.ts",
-    "test/fixtures/nalati-species-world.ts",
     "test/fixtures/nalati-specimens.ts",
     "test/fixtures/nalati-titan-native.ts",
     "test/fixtures/nalati-titan.ts",

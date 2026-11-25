@@ -4,6 +4,6 @@ test('the released-engine proof fixtures load through public package imports',as
   await Promise.all([
     import('./fixtures/nalati-admission-loan'),
     import('./fixtures/nalati-creature-view-native'),
-    import('./fixtures/nalatiShapes'),import('./fixtures/nalati-species-world'),
+    import('./fixtures/nalatiShapes'),
   ]);
 });

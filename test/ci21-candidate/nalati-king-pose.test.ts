@@ -12,15 +12,7 @@ import { Bone, Vector3 } from 'three';
 import { setTerrainHeight } from '@wildshard/sdk/headless/world/terrainHeight';
 import { expect, test } from 'vitest';
 import type { AnimalRigContext } from '@wildshard/sdk/internal/engine/entities/animalRig';
-import { Rng } from '@wildshard/format/seededRng';
-import { nalatiSpeciesCatalogue } from '../fake/nalatiSpecies';
 import { animateKing } from '../fixtures/nalati-king-pose';
-import { legacyDouble } from '@wildshard/sdk/headless/test/FakeGame';
-import type { Animal } from '@wildshard/sdk/internal/engine/entities/AnimalView';
-import type { RigAnimCtx } from '@wildshard/sdk/internal/engine/entities/species/registry';
-import { installNalatiSpeciesFixture } from '../fixtures/nalati-species-world';
-
-await installNalatiSpeciesFixture();
 
 const speciesRows=parse(object({poses:record(string(),NumericPoseSchema),program:ReturnProgramSchema}),
   originalSpeciesJson('species.json'));
@@ -38,30 +30,27 @@ function transforms(c: AnimalRigContext): number[] { return Object.values(c.bone
 
 test('King pose rows retain every joint through the full fight and its reset', () => {
   let ground=0;setTerrainHeight(() => ground);
-  // the King's frame is his packed look's channel frame
-  const animateGoldenKing = nalatiSpeciesCatalogue().looks.find(look => look.kind === 'golden-king')?.animate;
-  if (animateGoldenKing === undefined) throw new Error('Missing Golden King frame');
+  // the King's frame is his packed look's channel frame (FORMAT-PRUNE FP20: the engine's packed species catalogue,
+  // which drew the same frame, is gone, so the native frame meets the frozen pose oracle directly)
   const packed=parsePackedCreatureLooks(parse(object({looks:unknown()}),originalSpeciesJson('species.json')).looks);
   const frame=packed.frames.king;if(frame===undefined)throw new Error('Missing admitted King frame');
   const nativeFrame=creatureFrame(frame,()=>ground);
-  const actual = context(), native=context(), expected = context();
+  const native=context(), expected = context();
   for (const pose of [0, 1, 2]) for (const act of [0, 1, 2, 3, 4]) for (const strike of [0, 1, 2, 3])
     for (const attack of [-1, 0, .2, .55, .62, .72, .78, .88, 1]) for (const deathT of [-1, 0, .4, 1]) {
       ground=strike===0?-0:strike*3;
-      for (const c of [actual, native, expected]) {
+      for (const c of [native, expected]) {
         Object.assign(c.mem, { pose, act, strike, floorY: 140, rise: .43, lift: .12, kneel: act === 3 ? 1 : 0,
           raise: act === 2 ? 1 : 0, cape: act === 4 ? .001 : 1, crown: strike === 3 ? 0 : 1 });
         c.attack = attack; c.deathT = deathT; c.alive = deathT < 0;
         c.t += .037; c.phase = (c.phase + .117) % 1; c.speed = Math.sin(c.t) * 2.4;
       }
-      animateKing(expected); animateGoldenKing(legacyDouble<RigAnimCtx>({ ...actual, animal: legacyDouble<Animal>(actual.animal) }));
-      nativeFrame(native);expect(transforms(native)).toEqual(transforms(actual));
-      expect(native.mem).toEqual(actual.mem);expect(native.animal.yOffset).toBe(actual.animal.yOffset);
+      animateKing(expected); nativeFrame(native);
       const wanted = transforms(expected);
-      transforms(actual).forEach((value, i) => expect(value, `${pose}/${act}/${strike}/${attack}/${deathT} scalar ${i}`).toBeCloseTo(wanted[i] ?? Number.NaN, 12));
-      expect(actual.animal.yOffset).toBe(expected.animal.yOffset);
-      for (const key of ['floorS', 'kneelS', 'raiseS', 'deadT']) expect(actual.mem[key]).toBe(expected.mem[key]);
-      expect(Object.keys(actual.mem).filter(key=>key.startsWith('king'))).toEqual([]);
+      transforms(native).forEach((value, i) => expect(value, `${pose}/${act}/${strike}/${attack}/${deathT} scalar ${i}`).toBeCloseTo(wanted[i] ?? Number.NaN, 12));
+      expect(native.animal.yOffset).toBe(expected.animal.yOffset);
+      for (const key of ['floorS', 'kneelS', 'raiseS', 'deadT']) expect(native.mem[key]).toBe(expected.mem[key]);
+      expect(Object.keys(native.mem).filter(key=>key.startsWith('king'))).toEqual([]);
     }
 });
 
@@ -117,22 +106,4 @@ test('balbal decisions rise, strike once, return and sink on the bounded guest t
   };
   expect(damage({ rise: .2 })).toBe(.25); expect(damage({ range: 5 })).toBe(.5);
   expect(damage({ piercing: 1, crack: 1, open: 1 })).toBe(3.125);scope.dispose();
-});
-
-test('packed species bodies lend owned indexed geometry for every family', () => {
-  for (const look of nalatiSpeciesCatalogue().looks) {
-    const row = nalatiSpeciesCatalogue().rows.find(candidate => candidate.kind === look.kind), variant = row?.variants[0], build = look.build;
-    if (variant === undefined) throw new Error('Missing species variant');
-    const first = build(variant, new Rng(1)), second = build(variant, new Rng(1));
-    expect(first.bones.length).toBeGreaterThan(0);
-    const parts = [...first.furParts, ...first.hardParts, ...first.eyeParts], copies = [...second.furParts, ...second.hardParts, ...second.eyeParts];
-    expect(parts.length).toBeGreaterThan(0);
-    for (const [i, part] of parts.entries()) {
-      expect(part).not.toBe(copies[i]);
-      const positions = part.getAttribute('position'); expect(positions.count).toBeGreaterThan(0);
-      const indices = part.index; if (indices === null) throw new Error('Missing body indices');
-      expect(Array.from(indices.array).every(index => index < positions.count)).toBe(true);
-      part.dispose(); copies[i]?.dispose();
-    }
-  }
 });
