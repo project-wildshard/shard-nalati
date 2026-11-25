@@ -210,21 +210,26 @@ async function gate() {
   summary(`gate: ${sha.slice(0, 10)} is ${ref.replace('refs/heads/', '')}'s tip, its ci is green, ${verdict.ring2} ring-2 workflow(s) green on main`);
 }
 
-/** Build the way this repo builds: `build:shards` into out/, else `wildshard build .` into public/shardfiles/. */
+/** The first of `roots` holding product folders (`<slug>/shard.json`), with their slugs; `list` reads one root. */
+export function productRoot(roots, list) {
+  for (const root of roots) {
+    const slugs = list(root);
+    if (slugs.length > 0) return { root, slugs };
+  }
+  return { root: roots[0], slugs: [] };
+}
+
+/** Build the way this repo builds: `build:shards` into out/, else `wildshard build .`, which writes out/<slug> from sdk
+ * 0.5.0 on and public/shardfiles/<slug> before it (sdk A7: a 0.5.0 repo has no public/). */
 function build(wanted) {
   const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
   const run = (cmd, args) => execFileSync(cmd, args, { stdio: 'inherit' });
-  let root;
-  if (pkg.scripts?.['build:shards']) {
-    run('pnpm', ['build:shards']);
-    root = 'out';
-  } else {
-    run('pnpm', ['exec', 'wildshard', 'build', '.']);
-    root = 'public/shardfiles';
-  }
-  const slugs = existsSync(root)
-    ? readdirSync(root, { withFileTypes: true }).filter((row) => row.isDirectory() && existsSync(join(root, row.name, 'shard.json'))).map((row) => row.name).sort()
-    : [];
+  const shards = Boolean(pkg.scripts?.['build:shards']);
+  if (shards) run('pnpm', ['build:shards']);
+  else run('pnpm', ['exec', 'wildshard', 'build', '.']);
+  const { root, slugs } = productRoot(shards ? ['out'] : ['out', 'public/shardfiles'], (dir) => existsSync(dir)
+    ? readdirSync(dir, { withFileTypes: true }).filter((row) => row.isDirectory() && existsSync(join(dir, row.name, 'shard.json'))).map((row) => row.name).sort()
+    : []);
   const slug = pickProduct(slugs, wanted);
   output('slug', slug);
   output('product', join(root, slug));

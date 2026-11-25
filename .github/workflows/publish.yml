@@ -56,7 +56,11 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    # FAST-RELEASE FR-A13: prepare's phone WebKit has no GPU on ubuntu-24.04. A heavy zone enters in 210 to 260 s there
+    # (Nalati; Driftwood never passed) against 40 to 64 s on macos-15, and 25 of the 29 240 s timeouts (11-16 to 11-25)
+    # ran on Linux. Such a repo sets its PREPARE_RUNNER variable to macos-15; the rest keep ubuntu-24.04, which never
+    # queues (FR-A7: a 17-plot wave queued 4 to 65 min on hosted macOS).
+    runs-on: ${{ vars.PREPARE_RUNNER || 'ubuntu-24.04' }}
     # FR-A3: the gate waits up to 30 minutes for this commit's ci, then the slowest green build (open plots) is 43.
     timeout-minutes: 80
     env:
@@ -115,8 +119,10 @@ jobs:
       - name: Install the pinned, or the named candidate, sdk graph
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
-            test -f scripts/select-candidate.mjs || { echo '::error::this repo has no scripts/select-candidate.mjs: publish its pins'; exit 1; }
-            node scripts/select-candidate.mjs
+            # The repo's own script: scripts/, or src/scripts/ in a lean repo (D31).
+            pick=scripts/select-candidate.mjs; [ -f "$pick" ] || pick=src/scripts/select-candidate.mjs
+            test -f "$pick" || { echo '::error::this repo has no scripts/select-candidate.mjs (src/scripts/ when lean): publish its pins'; exit 1; }
+            node "$pick"
             pnpm install --no-frozen-lockfile --config.ci=false
           else
             pnpm install --frozen-lockfile --config.ci=false
@@ -145,13 +151,21 @@ jobs:
           path: ~/.cache/wildshard/basis
           key: basis-${{ runner.os }}-${{ runner.arch }}-glibc${{ steps.libc.outputs.libc }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: basis-${{ runner.os }}-${{ runner.arch }}-glibc${{ steps.libc.outputs.libc }}-
-      # As each shard repo's ci.yml does: build:shards first (its
-      # publish-public step lays out public/assets), then check.
+      # As each shard repo's ci.yml does: build first (build:shards when
+      # the repo has it, into out/), then check.
       - name: Build, and name the product
         id: product
         run: node scripts/publish-shard.mjs build "${{ inputs.slug }}"
       - name: Check the shard source as an author would
         run: pnpm exec wildshard check . tmp/publish/check
+      # Folded from shard-showcase (lean-layout L6): a repo with shard-format
+      # proves the built product fits the offline phone memory limit.
+      - name: Check the offline phone memory limit
+        env:
+          PRODUCT: ${{ steps.product.outputs.product }}
+        run: |
+          if [ -x node_modules/.bin/shard-format ]; then pnpm exec shard-format validate "$PRODUCT"
+          else echo '::notice::no shard-format in this repo: the phone memory limit is unchecked'; fi
       - name: The version upload sends
         id: version
         env:
@@ -263,7 +277,8 @@ jobs:
       - name: Install the same graph the build used
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
-            node scripts/select-candidate.mjs
+            pick=scripts/select-candidate.mjs; [ -f "$pick" ] || pick=src/scripts/select-candidate.mjs
+            node "$pick"
             pnpm install --no-frozen-lockfile --config.ci=false
           else
             pnpm install --frozen-lockfile --config.ci=false
@@ -320,6 +335,7 @@ jobs:
           persist-credentials: false
           sparse-checkout: |
             /scripts/
+            /src/scripts/
             /package.json
           sparse-checkout-cone-mode: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0

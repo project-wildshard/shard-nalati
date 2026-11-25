@@ -92,9 +92,29 @@ export async function engineFormat(build, token = process.env.GH_TOKEN) {
 export function knownSlug(env = process.env, root = process.cwd()) {
   if (env.PUBLISH_SLUG) return env.PUBLISH_SLUG;
   const file = join(root, 'published.json');
-  if (!existsSync(file)) return undefined;
-  const slugs = Object.keys(JSON.parse(readFileSync(file, 'utf8')) ?? {});
-  return slugs.length === 1 ? slugs[0] : undefined;
+  if (existsSync(file)) {
+    const slugs = Object.keys(JSON.parse(readFileSync(file, 'utf8')) ?? {});
+    if (slugs.length === 1) return slugs[0];
+  }
+  // FAST-RELEASE FR-A4 (11-25): a one-product repo's discovery source names its slug, so a repo that never published
+  // back (Pine, Nine, Nalati, Driftwood) is still checked before the build
+  const manifest = join(root, 'src/manifest.json');
+  if (!existsSync(manifest)) return undefined;
+  try {
+    const slug = JSON.parse(readFileSync(manifest, 'utf8'))?.slug;
+    return typeof slug === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(slug) ? slug : undefined;
+  } catch { return undefined; }
+}
+
+/**
+ * FAST-RELEASE FR-A4 (11-25): `repo` publishes package.json's version, and a shard repo still on the template's 0.0.0
+ * refused at the version step after a full build (Pine, Nine, Nalati and Driftwood's staging republishes on v0.1.89).
+ * That refusal needs no slug: it runs before the build whatever the repo builds. Undefined when the version can go on.
+ */
+export function ownVersionProblem(wanted, own) {
+  if ((wanted || 'repo') !== 'repo') return undefined;
+  if (typeof own === 'string' && /^\d+\.\d+\.\d+$/u.test(own) && own !== '0.0.0') return undefined;
+  return `package.json declares no shard version X.Y.Z (${own ?? 'none'}): set "version" above the catalogue's (the API's newest for the slug plus one), commit it and publish again, or dispatch with -f version=auto (CP13, refused before the build, FAST-RELEASE FR-A4)`;
 }
 
 /**
@@ -122,6 +142,9 @@ export function heroProblem({ slug, hero, row, version }) {
 
 /** QA-11-23-b row 47: refuse a taken version before the build; FR-A5: and an unchanged hero. True when refused. */
 async function versionRefused(rehearse) {
+  const own = existsSync('package.json') ? JSON.parse(readFileSync('package.json', 'utf8')).version : undefined;
+  const ownProblem = ownVersionProblem(process.env.PUBLISH_VERSION, own);
+  if (ownProblem) { console.log(`::${rehearse ? 'warning' : 'error'}::${ownProblem}`); return !rehearse; }
   const slug = knownSlug();
   if (!slug) { console.log('publish-preflight: the build names the slug; the version step checks the version after it'); return false; }
   try {
