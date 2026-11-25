@@ -9,7 +9,7 @@ import { jsonBytes } from '@wildshard/sdk/headless/scripts/bake-output.mjs';
 import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import original from './fixtures/nalati-decorative.json' with { type: 'json' };
 
-const terrain = readFileSync('public/assets/baked/nalati-grasslands/terrain.bin');
+const terrain = readFileSync('src/static/assets/baked/nalati-grasslands/terrain.bin');
 
 test('native ground and byte adapters retain both complete original decorative wires', () => {
   const before = Uint8Array.from(terrain);

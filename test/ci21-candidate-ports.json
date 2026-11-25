@@ -41,7 +41,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "49759ec4b2213af0553f57f8a7e64fd8f88b9b3a"
+          "targetBlob": "e9193b6541922690c9a0e07343bc3ca3909502d6"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -53,11 +53,11 @@
         },
         {
           "targetPath": "test/fixtures/nalati-cover.ts",
-          "targetBlob": "0cd852ae75b44a63e98d7d13360d2b29f35c7339"
+          "targetBlob": "80fe01ead385de68d9ced8cdc6e02d7d2c6d7296"
         },
         {
           "targetPath": "test/fixtures/nalati-crags.ts",
-          "targetBlob": "1b7cbf257851bdfb952f5165a44c65825e88044d"
+          "targetBlob": "d7291f8b60221931e08ae4b0e67780563cb1a13e"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.json",
@@ -114,7 +114,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "49759ec4b2213af0553f57f8a7e64fd8f88b9b3a"
+          "targetBlob": "e9193b6541922690c9a0e07343bc3ca3909502d6"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -126,11 +126,11 @@
         },
         {
           "targetPath": "test/fixtures/nalati-cover.ts",
-          "targetBlob": "0cd852ae75b44a63e98d7d13360d2b29f35c7339"
+          "targetBlob": "80fe01ead385de68d9ced8cdc6e02d7d2c6d7296"
         },
         {
           "targetPath": "test/fixtures/nalati-crags.ts",
-          "targetBlob": "1b7cbf257851bdfb952f5165a44c65825e88044d"
+          "targetBlob": "d7291f8b60221931e08ae4b0e67780563cb1a13e"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.json",
@@ -204,7 +204,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "49759ec4b2213af0553f57f8a7e64fd8f88b9b3a"
+          "targetBlob": "e9193b6541922690c9a0e07343bc3ca3909502d6"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -216,11 +216,11 @@
         },
         {
           "targetPath": "test/fixtures/nalati-cover.ts",
-          "targetBlob": "0cd852ae75b44a63e98d7d13360d2b29f35c7339"
+          "targetBlob": "80fe01ead385de68d9ced8cdc6e02d7d2c6d7296"
         },
         {
           "targetPath": "test/fixtures/nalati-crags.ts",
-          "targetBlob": "1b7cbf257851bdfb952f5165a44c65825e88044d"
+          "targetBlob": "d7291f8b60221931e08ae4b0e67780563cb1a13e"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.json",
@@ -273,7 +273,7 @@
         },
         {
           "targetPath": "test/fixtures/nalati-decorative.ts",
-          "targetBlob": "49759ec4b2213af0553f57f8a7e64fd8f88b9b3a"
+          "targetBlob": "e9193b6541922690c9a0e07343bc3ca3909502d6"
         },
         {
           "targetPath": "test/fixtures/nalati-poi-paint-original.ts",
@@ -304,13 +304,13 @@
       "sourcePath": "test/held-bow-product.test.ts",
       "sourceBlob": "8644d00a7045d8cae9abbd8d483980bb7337ec7b",
       "targetPath": "test/ci21-candidate/held-bow-product.test.ts",
-      "targetBlob": "f39d95460a145097929052be330e12b2923b4bdd",
+      "targetBlob": "dc518575e93a2ba8da3f91919c0d7c5882365f54",
       "originalTests": [
         "the named bow retains the original bytes, pool channels and borrowed arrays",
         "actual named admission rejects malformed bow and pool bytes",
         "the product input recorder sees the raw bow and its existing producer"
       ],
-      "fixturePath": "public/assets/nalati/baked/recurve-pool.json",
+      "fixturePath": "src/static/assets/nalati/baked/recurve-pool.json",
       "fixtureBlob": "d51c3a43677323a7cb9717bee1a640f1c31cd878",
       "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11."
     },
@@ -1072,11 +1072,11 @@
     },
     {
       "targetPath": "test/fixtures/nalati-cover-files.json",
-      "targetBlob": "4766549d96f99a30d5bb72db877c6f7b2a2814be"
+      "targetBlob": "fe7b768612df64f73bca3021a342c3a6aa524feb"
     },
     {
       "targetPath": "test/fixtures/nalati-cover.ts",
-      "targetBlob": "0cd852ae75b44a63e98d7d13360d2b29f35c7339"
+      "targetBlob": "80fe01ead385de68d9ced8cdc6e02d7d2c6d7296"
     },
     {
       "targetPath": "test/fixtures/nalati-crag-bake.json",
@@ -1088,7 +1088,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-crags.ts",
-      "targetBlob": "1b7cbf257851bdfb952f5165a44c65825e88044d"
+      "targetBlob": "d7291f8b60221931e08ae4b0e67780563cb1a13e"
     },
     {
       "targetPath": "test/fixtures/nalati-creature-view-native.ts",
@@ -1096,7 +1096,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-current-held.ts",
-      "targetBlob": "343b166481f991697e1ae1c031dd8b1cd2d36f4a"
+      "targetBlob": "c501e9ded842514b640a10b00db6e28bb49efe5c"
     },
     {
       "targetPath": "test/fixtures/nalati-decorative.json",
@@ -1104,7 +1104,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-decorative.ts",
-      "targetBlob": "49759ec4b2213af0553f57f8a7e64fd8f88b9b3a"
+      "targetBlob": "e9193b6541922690c9a0e07343bc3ca3909502d6"
     },
     {
       "targetPath": "test/fixtures/nalati-dressing-geos.json",
@@ -1168,7 +1168,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-grass-bake.ts",
-      "targetBlob": "4b6c74dadb97e9c700faf7611c07ad9864e06271"
+      "targetBlob": "77bdf04deb8d9cf8e247d0eea31b01555ce66180"
     },
     {
       "targetPath": "test/fixtures/nalati-group-inputs.ts",
@@ -1240,7 +1240,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-native-assembly-compile.mjs",
-      "targetBlob": "276ac4520a4835f8cc8f3ec1b32075b645737a6f"
+      "targetBlob": "0e18dad4727fcc0641ef22dd2fd2fa30381dc530"
     },
     {
       "targetPath": "test/fixtures/nalati-native-assembly-inputs.ts",
@@ -1248,7 +1248,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-native-assembly.ts",
-      "targetBlob": "18b6d307a5c03298c65c015263a09f29ae9e9868"
+      "targetBlob": "428754e26eca594cdb7cf820560c28667da46415"
     },
     {
       "targetPath": "test/fixtures/nalati-native-boot-compile.mjs",
@@ -1276,11 +1276,11 @@
     },
     {
       "targetPath": "test/fixtures/nalati-native-place-files.ts",
-      "targetBlob": "7088b17f08d5bd3a15f5ab2d1716ccdce478958c"
+      "targetBlob": "fe7b4bc963078f9a5181935f5a0e5a8740e9483d"
     },
     {
       "targetPath": "test/fixtures/nalati-native-places-compile.mjs",
-      "targetBlob": "cb1704278644cb1cfb71833765f4d40499676728"
+      "targetBlob": "8ac1b09a385c5c022cc4b821dbd30f2fc67e345a"
     },
     {
       "targetPath": "test/fixtures/nalati-native-program.ts",
@@ -1296,7 +1296,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-original-place-binary.ts",
-      "targetBlob": "cf147154c229ff619c2f9c6180b3b2ae8e92118d"
+      "targetBlob": "c04f287a45352878abc6cc390585f9f051aa0c52"
     },
     {
       "targetPath": "test/fixtures/nalati-original-render-blob.ts",
@@ -1312,11 +1312,11 @@
     },
     {
       "targetPath": "test/fixtures/nalati-output-cache.ts",
-      "targetBlob": "3fd2b10403506b279e474dfbc6b54d025dda4d45"
+      "targetBlob": "3c6fda3145c82e82d73bddd42e9e679dc9b628fd"
     },
     {
       "targetPath": "test/fixtures/nalati-output-original.ts",
-      "targetBlob": "e6edb0f1192502ccd11b54270915d1263e05f272"
+      "targetBlob": "983ad3b0991aa3f2552f54df6b4136403c6a4b6b"
     },
     {
       "targetPath": "test/fixtures/nalati-owned-models.ts",
@@ -1328,7 +1328,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-painted-models.ts",
-      "targetBlob": "b8dba06ea129d07bc4ca5fa4b6bdc2dcf7a72bae"
+      "targetBlob": "518fc6a9c6e8dd3fe6c2f61fd45af307979d929f"
     },
     {
       "targetPath": "test/fixtures/nalati-painter-inputs.json",
@@ -1356,7 +1356,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-place-wires.json",
-      "targetBlob": "78726c5d158da04249ccc95495c7d9c8af711474"
+      "targetBlob": "13a145c72f18d4e34e39d1631d59db2d978e0baa"
     },
     {
       "targetPath": "test/fixtures/nalati-places-original.json",
@@ -1400,7 +1400,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-project.ts",
-      "targetBlob": "3ccc156b501b82c258ec43e5630b18bd3d7adedc"
+      "targetBlob": "e53d32fb2daaba5d6d3862e5e108b6efb870ec23"
     },
     {
       "targetPath": "test/fixtures/nalati-query-terrain-original.json",
@@ -1420,7 +1420,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-render-i3.ts",
-      "targetBlob": "8405b12175c9c4b8f24a9add2aceb08623a5f3d3"
+      "targetBlob": "eb69143276e5994f148c6fdcd8b3bb6f9cf2c577"
     },
     {
       "targetPath": "test/fixtures/nalati-render-l1/ground-l1-0-0.bin",
@@ -1540,7 +1540,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-species-files.json",
-      "targetBlob": "17924d4f6b5bb91a750ddd69699b1745dffa61a0"
+      "targetBlob": "9b06c6b5e793ffafa383eb91ba6b0d0352476627"
     },
     {
       "targetPath": "test/fixtures/nalati-species-world.ts",
@@ -1656,7 +1656,7 @@
     },
     {
       "targetPath": "test/fixtures/prepare-nalati-original-species.ts",
-      "targetBlob": "9b9cf72b625e5f30c9194bf593a11953e061e30e"
+      "targetBlob": "c07dcf3b71e3ac392233497378b3f9d4d3f41bfa"
     },
     {
       "targetPath": "test/fixtures/productFile.ts",
@@ -1688,7 +1688,7 @@
     },
     {
       "targetPath": "test/fixtures/builtProduct.ts",
-      "targetBlob": "f136b3fcc86686207fdd09c1f61b4343f1cefc74"
+      "targetBlob": "f1bc41dc52853aeef41078e87b7706b96b9ee890"
     },
     {
       "targetPath": "test/fixtures/headless-worker.ts",
@@ -1884,7 +1884,7 @@
     },
     {
       "targetPath": "test/proof/nalati-grasslands/nativeAssets.ts",
-      "targetBlob": "d6f4ea7803a8053be64359cd5652f05263ede50f"
+      "targetBlob": "e29d72c9fe90ac782526a19840060265e09fd46f"
     },
     {
       "targetPath": "test/proof/nalati-grasslands/taming.ts",

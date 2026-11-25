@@ -17,7 +17,7 @@ function isGeometry(value: unknown): value is THREE.BufferGeometry { return valu
 interface FrozenFigure { readonly attributes: Readonly<Record<string, string>>; readonly index: string; readonly bones: readonly string[]; readonly inverses: readonly (readonly number[])[]; readonly poses: Readonly<Record<string, readonly (readonly number[])[]>> }
 const cases: Readonly<Record<string, FrozenFigure>> = FROZEN.cases;
 const skins = new Map((await nalatiPeopleBlobs({ cached: (step, generate) => Promise.resolve(generate(new Map((step.inputs ?? [])
-  .map(url => [url, new Uint8Array(readFileSync(`public${url}`))])))) })).map(blob => [blob.file.name ?? '', blob.bytes]));
+  .map(url => [url, new Uint8Array(readFileSync(`src/static${url}`))])))) })).map(blob => [blob.file.name ?? '', blob.bytes]));
 
 for (const phone of [false, true]) for (const selection of [keys, ...keys.map(key => [key])]) {
   const name = selection.length === 1 ? selection[0] : 'camp';

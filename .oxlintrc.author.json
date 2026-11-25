@@ -271,5 +271,5 @@
       "rules": { "import/unambiguous": "off" } // ambient module declarations have no import/export by design
     }
   ],
-  "ignorePatterns": ["**/*.generated.*", "test/fixtures/*", "!test/fixtures/nalati-original-species.ts", ".tsc-layers/", "dist/", "dist-native/", "ios/", "android/", ".native-build/", "node_modules/", "public/", "progress/", "art/", "sources/", "docs/"]
+  "ignorePatterns": ["**/*.generated.*", "test/fixtures/*", "!test/fixtures/nalati-original-species.ts", ".tsc-layers/", "dist/", "dist-native/", "ios/", "android/", ".native-build/", "node_modules/", "src/static/", "progress/", "art/", "sources/", "docs/"]
 }

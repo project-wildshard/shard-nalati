@@ -5,7 +5,7 @@
     "sha256": "d4f23028e23211324f5855c4b22804313e632c302ef8c699973a5af00124948e"
   },
   {
-    "path": "public/assets/nalati/baked/bodies-e726016c96012cee10c1b352bca450cccda2dc387410a11732a26edab74235b6.bin",
+    "path": "src/static/assets/nalati/baked/bodies-e726016c96012cee10c1b352bca450cccda2dc387410a11732a26edab74235b6.bin",
     "bytes": 2584317,
     "sha256": "e726016c96012cee10c1b352bca450cccda2dc387410a11732a26edab74235b6"
   },

@@ -16,7 +16,7 @@ export const coldOutputFixture = await (async () => {
   const context = (): ProjectGenerationContext => {
     const ctx = createProjectGeneration(resolve('src'), 'a'.repeat(64), new Map(), cache,
       [{ prefix: '/src/shards/nalati-grasslands/', directory: resolve('src') },
-        { prefix: '/assets/', directory: resolve('public/assets') }]);
+        { prefix: '/assets/', directory: resolve('src/static/assets') }]);
     return { ...ctx, cached: (step: Parameters<typeof ctx.cached>[0], make: Parameters<typeof ctx.cached>[1]) => {
       requested.push(...(step.inputs ?? [])); steps.push(step.id);
       return ctx.cached(step, inputs => { constructions.set(step.id, (constructions.get(step.id) ?? 0) + 1); return make(inputs); }).then(files => {

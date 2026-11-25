@@ -48,7 +48,7 @@ interface Metadata {
 
 /** The pre-I3 render metadata, built once from the committed terrain (the same exact construction the source pins hold). */
 export const EXACT_RENDER_METADATA: Uint8Array = await (async () => {
-  const built = await nalatiRenderTileSources(new Uint8Array(readFileSync('public/assets/baked/nalati-grasslands/terrain.bin')), 'exact');
+  const built = await nalatiRenderTileSources(new Uint8Array(readFileSync('src/static/assets/baked/nalati-grasslands/terrain.bin')), 'exact');
   const bytes = built.files.get('data/renderTiles.json');
   if (bytes === undefined) throw new Error('Missing pre-I3 Nalati render metadata');
   return bytes;

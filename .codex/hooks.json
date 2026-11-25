@@ -13,6 +13,12 @@
             "command": "node \"$(git rev-parse --show-toplevel)/.agents/hooks/session-cleanup.mjs\"",
             "timeout": 10,
             "statusMessage": "Stopping processes left by ended sessions"
+          },
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.agents/hooks/wildshard-status.sh\"",
+            "timeout": 10,
+            "statusMessage": "Checking for a pending sdk migration"
           }
         ]
       }

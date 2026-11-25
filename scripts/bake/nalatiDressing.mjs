@@ -18,7 +18,7 @@ export async function prepareNalatiDressing(forestMask, scalarBlocks) {
       if (definition.scalarBlocks === undefined) throw new Error('Missing predecessor scalar intake');
       definition.scalarBlocks.prepare(scalarBlocks);
     }
-    await prepareNativeTerrain(definition, { root, bytes: readFileSync(resolve(root, 'public/assets/baked/nalati-grasslands/terrain.bin')) });
+    await prepareNativeTerrain(definition, { root, bytes: readFileSync(resolve(root, 'src/static/assets/baked/nalati-grasslands/terrain.bin')) });
     const { default: NALATI_GRASS_LAYOUT } = await import('../../src/data/grassFieldLayout.json', { with: { type: 'json' } });
     const { RIVER } = await import('../../src/generators/terrainRecipe.ts');
     const [{ bakeForestPlacements }, { SPRUCE_SPECS }, { bakeNalatiDressingSource }] = await Promise.all([

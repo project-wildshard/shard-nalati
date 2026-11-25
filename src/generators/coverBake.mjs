@@ -10,13 +10,13 @@ import { bakeDressing } from './dressingGeometryRows.ts';
 import { bakeModelPaint } from './modelPaint.mjs';
 import sites from '../data/ambientSites.json' with { type: 'json' };
 
-/** The authored boulder models the cover paints (committed under public/), by name and tier. */
+/** The authored boulder models the cover paints (committed under src/static/), by name and tier. */
 const ROCKS = {
   'boulder-1': { desktop: '/assets/nalati/models/boulder-1.glb', phone: '/assets/nalati/models/boulder-1.phone.glb' },
   'boulder-2': { desktop: '/assets/nalati/models/boulder-2.glb', phone: '/assets/nalati/models/boulder-2.phone.glb' },
   'boulder-3': { desktop: '/assets/nalati/models/boulder-3.glb', phone: '/assets/nalati/models/boulder-3.phone.glb' },
 };
-/** The boulders' atlases (committed under public/: the painted models' own WebP images, checked against them here). */
+/** The boulders' atlases (committed under src/static/: the painted models' own WebP images, checked against them here). */
 const ATLASES = { 'boulder-1': '/assets/nalati/baked/cover-boulder-1.webp', 'boulder-2': '/assets/nalati/baked/cover-boulder-2.webp',
   'boulder-3': '/assets/nalati/baked/cover-boulder-3.webp' };
 /** The flocks' sizes (the Explorer's specimen counts read them too). */

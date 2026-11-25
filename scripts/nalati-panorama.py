@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """nalati-panorama.py — the round-6 360° sky panorama → the shipped WebP strips for the look-v2 sky dome.
 
-  python3 scripts/nalati-panorama.py            # writes public/assets/nalati/panorama.webp (+ .phone.webp)
+  python3 scripts/nalati-panorama.py            # writes src/static/assets/nalati/panorama.webp (+ .phone.webp)
 
 Source: art/nalati-grasslands/round-6-panorama/panorama-5530x1024.jpg (x = compass azimuth, 0 = north; README there).
 Two things happen before the encode:
@@ -29,7 +29,7 @@ from PIL import Image
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SRC = os.path.join(ROOT, 'art/nalati-grasslands/round-6-panorama/panorama-5530x1024.jpg')
-OUT = os.path.join(ROOT, 'public/assets/nalati')
+OUT = os.path.join(ROOT, 'src/static/assets/nalati')
 PANO_PAD = 16         # px of wrap copied onto each side of the written strips (sky.ts PANO_PAD_PX)
 SEAM_W = 90          # px each side the gain ramp spans
 ROW_BLUR = 24        # rows: the per-row ratio is smoothed this much (a seam's step varies slowly with height)

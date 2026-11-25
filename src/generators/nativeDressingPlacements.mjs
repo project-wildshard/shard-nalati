@@ -9,7 +9,7 @@ export function nativeNalatiDressingPlacements(read, geography) {
     if (step.id === 'geography' && geography !== undefined) return Promise.resolve(geography);
     const inputs = new Map();
     for (const name of step.inputs ?? []) {
-      if (name === terrain) inputs.set(name, read(`public${name}`));
+      if (name === terrain) inputs.set(name, read(`src/static${name}`));
       else throw new Error('Unknown native dressing input');
     }
     return Promise.resolve(make(inputs));

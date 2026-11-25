@@ -19,7 +19,7 @@ const WOLF = { back: rgb(palette.back), side: rgb(palette.side), cream: rgb(pale
 /**
  * Build-time only (SHARD-PLATFORM M3, Nalati's species bodies bake): the canid's lofts (the steppe wolf, the camp's collie,
  * the Kokbori), moved from `species/wolf.ts`. `generators/bodies.ts` builds every canid variant here and
- * `scripts/bake-nalati-bodies.mjs` writes them to `public/assets/nalati/baked/bodies.bin`; the page only reads the bake
+ * `scripts/bake-nalati-bodies.mjs` writes them to `src/static/assets/nalati/baked/bodies.bin`; the page only reads the bake
  * (`species/bodies.ts`).
  */
 function canidPaint(v: VariantDef): Paint {

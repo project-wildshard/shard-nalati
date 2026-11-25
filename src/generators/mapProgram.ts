@@ -26,17 +26,17 @@ export async function nalatiMapPixels(inputs: ReadonlyMap<string, Uint8Array>): 
   }
   // the pure producers name repository paths; the bank holds build-input names
   const repo = (path: string): Uint8Array => {
-    const name = path.startsWith('public/') ? path.slice('public'.length) : path.startsWith(SHARD) ? path.slice(SHARD.length) : path;
+    const name = path.startsWith('src/static/') ? path.slice('src/static'.length) : path.startsWith(SHARD) ? path.slice(SHARD.length) : path;
     const bytes = inputs.get(name);
     if (bytes === undefined) throw new Error(`Undeclared Nalati map input ${path}`);
     return bytes;
   };
-  const files = await nalatiMapFiles(repo), terrain = nalatiTerrainScene(repo('public/assets/baked/nalati-grasslands/terrain.bin'));
+  const files = await nalatiMapFiles(repo), terrain = nalatiTerrainScene(repo('src/static/assets/baked/nalati-grasslands/terrain.bin'));
   const sources = new Map<string, Uint8Array>(files);
   for (const blob of terrain) sources.set(`assets/world-terrain/${(blob.file.name ?? '').split('/').at(-1)?.replace('.glb', '') ?? ''}.generated.glb`, blob.bytes);
   const read = (file: string): Uint8Array => sources.get(file) ?? repo(`${SHARD}${file}`);
   const json = (file: string): unknown => JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(read(file)));
-  return (await rasterSceneMap(settings, { input: read, bytes: read, json, model: url => repo(`public${url}`) })).pixels;
+  return (await rasterSceneMap(settings, { input: read, bytes: read, json, model: url => repo(`src/static${url}`) })).pixels;
 }
 
 /** GR6: the map lattice through the build cache (the source-owned map, published by the SDK as the shard file map). */

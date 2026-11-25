@@ -12,14 +12,14 @@ function files(root,prefix=''){
 }
 const hash=path=>createHash('sha256').update(readFileSync(path)).digest('hex');
 // The pinned builder exports this verified generated-map product file as a public alias.
-const productAliases=new Set(['public/assets/nalati-grasslands/map/top.webp']);
+const productAliases=new Set(['src/static/assets/nalati-grasslands/map/top.webp']);
 const directory='tmp/ci21-source';mkdirSync(directory,{recursive:true});
 function inputs(){
- const git=spawnSync('git',['ls-files','-z','--','src','public'],{encoding:'utf8'});assert.equal(git.status,0,git.stderr);
+ const git=spawnSync('git',['ls-files','-z','--','src'],{encoding:'utf8'});assert.equal(git.status,0,git.stderr);
  const paths=git.stdout.split('\0').filter(Boolean).sort();
  // publish-public copies only this tracked tree to its generated public aliases.
- const aliases=new Map(paths.filter(path=>path.startsWith('src/assets/public/')).map(path=>[path.replace('src/assets/public/','public/assets/nalati-grasslands/'),path]));
- const actual=[...files('src'),...files('public')].sort();
+ const aliases=new Map(paths.filter(path=>path.startsWith('src/assets/public/')).map(path=>[path.replace('src/assets/public/','src/static/assets/nalati-grasslands/'),path]));
+ const actual=[...files('src')].sort();
  assert.deepEqual(actual.filter(path=>!aliases.has(path)&&!productAliases.has(path)),paths,'Producer source inventory differs');
  for(const [alias,source] of aliases)if(actual.includes(alias))assert.equal(hash(alias),hash(source),'Generated public alias differs from its tracked source');
  return paths.map(path=>({path,sha256:hash(path)}));

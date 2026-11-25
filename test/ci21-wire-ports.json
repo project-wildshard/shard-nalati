@@ -113,7 +113,7 @@
         "individual original file loans are detached and unknown names refuse"
       ],
       "fixturePath": "test/fixtures/nalati-species-files.json",
-      "fixtureBlob": "17924d4f6b5bb91a750ddd69699b1745dffa61a0",
+      "fixtureBlob": "9b06c6b5e793ffafa383eb91ba6b0d0352476627",
       "fixtureSourceRepository": "project-wildshard/shard-nalati",
       "fixtureSourceRevision": "aa2a7d1153588897c87d4bad724f6f47e6909972",
       "observationHelper": {
@@ -127,7 +127,7 @@
       },
       "preparationHelper": {
         "targetPath": "test/fixtures/prepare-nalati-original-species.ts",
-        "targetBlob": "9b9cf72b625e5f30c9194bf593a11953e061e30e"
+        "targetBlob": "c07dcf3b71e3ac392233497378b3f9d4d3f41bfa"
       },
       "changes": "Every original assertion retained in Happy DOM20.14.5. Cold source cache and loan source cache are independently constructed. Both tests loan from one memoized private map; removing slice fails case2. Cold cache cleans in finally, shared loan cache/memo clean afterAll. Original30s case cap,14s per compiler child (two cold builds fit inside28s plus assertions). Existing Ring2 only: hosted x64 run43845352388 timed out both cold source constructions at the newly introduced9s child fence; Mac mini cold constructions take3.6s each. Full five files/8.34MB and both independent real compilers retained; no production budget or other case cap changes.",
       "compilerSupport": [
@@ -145,19 +145,19 @@
         "concurrent first readers publish only the complete original bank"
       ],
       "fixturePath": "test/fixtures/nalati-place-wires.json",
-      "fixtureBlob": "78726c5d158da04249ccc95495c7d9c8af711474",
+      "fixtureBlob": "13a145c72f18d4e34e39d1631d59db2d978e0baa",
       "observationHelper": {
         "sourcePath": "test/fixtures/nalati-native-place-files.ts",
         "sourceRepository": "project-wildshard/shard-nalati",
         "sourceRevision": "020c7a7ecefea0c0e128df9f972df81bb580f0f6",
         "sourceBlob": "4624d9be45fdde06ad4aa31c0c5d0b5653aaca2e",
         "targetPath": "test/fixtures/nalati-native-place-files.ts",
-        "targetBlob": "7088b17f08d5bd3a15f5ab2d1716ccdce478958c",
+        "targetBlob": "fe7b4bc963078f9a5181935f5a0e5a8740e9483d",
         "changes": "Missing monorepo native-program dependency replaced with one fresh actual source build at module load, public bake-loader/native realm,14s child fence, complete8file inventory and unchanged full places/specimens pins. V8 transports exact bytes, private disk output removed in finally, caller always receives slice loans. No cache fallback, synthetic fixture or producer changes. Shared nativePlaceFile consumers pay the same cold source cost once per importing realm; no persistent source cache remains."
       },
       "preparationHelper": {
         "targetPath": "test/fixtures/nalati-native-places-compile.mjs",
-        "targetBlob": "cb1704278644cb1cfb71833765f4d40499676728"
+        "targetBlob": "8ac1b09a385c5c022cc4b821dbd30f2fc67e345a"
       },
       "compilerSupport": [
         "test/fixtures/nalati-native-place-files.ts",
@@ -166,8 +166,8 @@
       "changes": "Every original assertion/title retained. Source fixture prepares once cold per test realm and checks complete original binary pins (11,547,006places bytes +2,342,425specimens). Source construction is independent of the three original cold/warm/corrupt/concurrent cache admissions. No producer call occurs on warm or corrupt original-cache reads. Actual3cases/file4.20s; existing30s case cap retained,14s child. No original engine removal before verified destination land. J186 Ring2 fixture reason: fresh full14MB native geography/placement source at collection time, which is outside case timeout. Prior species9s hosted failure makes a9s new fence unqualified. Use the already proven14s original-source child fence; no production or existing case budget changes, no faster source cache or fallback.",
       "cacheHelper": {
         "targetPath": "test/fixtures/nalati-original-place-binary.ts",
-        "targetBlob": "cf147154c229ff619c2f9c6180b3b2ae8e92118d",
-        "sourceBlob": "cf147154c229ff619c2f9c6180b3b2ae8e92118d",
+        "targetBlob": "c04f287a45352878abc6cc390585f9f051aa0c52",
+        "sourceBlob": "c04f287a45352878abc6cc390585f9f051aa0c52",
         "changes": "Unchanged actual original-cache implementation. Retention now binds its exact Git blob as well as compiler admission."
       }
     },
@@ -175,7 +175,7 @@
       "sourcePath": "test/nalati-decorative-native.test.ts",
       "sourceBlob": "8545b3e37f31d80cf32175947bb7455b3e268023",
       "targetPath": "test/nalati-decorative-native.test.ts",
-      "targetBlob": "5535ce034d610db11450eb9fba180d9a05877444",
+      "targetBlob": "9566e699897b992cb61e3e1bacc26832526a6f30",
       "originalTests": [
         "native ground and byte adapters retain both complete original decorative wires",
         "separate placement calls own their nested results and reject malformed terrain"

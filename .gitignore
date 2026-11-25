@@ -17,7 +17,5 @@ blob-report/
 out/
 tmp/
 .cache/
-/public/assets/nalati-grasslands/map/top.webp
-/public/assets/nalati-grasslands/entry-reads.json
 /src/discovery.generated.ts
 /.owner

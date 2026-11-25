@@ -9,7 +9,7 @@ import { prepareSpecies } from '../../src/generators/output';
 
 const cache = mkdtempSync(resolve('tmp/nalati-current-held-'));
 const base = createProjectGeneration(resolve('src'), 'c'.repeat(64), new Map(), cache,
-  [{ prefix: '/assets/nalati/baked/', directory: resolve('public/assets/nalati/baked') }]);
+  [{ prefix: '/assets/nalati/baked/', directory: resolve('src/static/assets/nalati/baked') }]);
 export const currentHeldInputs: string[] = [];
 const context = { ...base, cached: (step: Parameters<typeof base.cached>[0], make: Parameters<typeof base.cached>[1]) => {
   currentHeldInputs.push(...(step.inputs ?? [])); return base.cached(step, make);

@@ -4,7 +4,7 @@ import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration'
 const LATTICE = '/assets/baked/nalati-grasslands/terrain.bin';
 
 /**
- * G384: Nalati's original 256² WSTR lattice (public/assets/baked/nalati-grasslands/terrain.bin, header + heights + splat and
+ * G384: Nalati's original 256² WSTR lattice (src/static/assets/baked/nalati-grasslands/terrain.bin, header + heights + splat and
  * no placement tail) as the shardfile's query-only terrain, re-encoded without resampling (`bakeQueryTerrain`: no render
  * tiles, the native bilinear law at its 0.6 m normal epsilon, no datum). The trusted runtime keeps rendering and collision.
  */

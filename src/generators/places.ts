@@ -1103,7 +1103,7 @@ export function bakeNalatiPlaces(ground: Ground, specimenScope: SpecimenScope = 
   return { places, specimens: { rows: specimens, bin: join(specimenBlocks) }, dressing: bakeDressing() };
 }
 
-/** the bake over the page's baked terrain grid (public/assets/baked/nalati-grasslands/terrain.bin), as the page samples it */
+/** the bake over the page's baked terrain grid (src/static/assets/baked/nalati-grasslands/terrain.bin), as the page samples it */
 export function bakeNalatiPlacesOnTerrain(terrain: ArrayBuffer, specimenScope: SpecimenScope = nativeSpecimenScope, dressing?: { readonly plan: DressPlan; readonly clutter: ClutterSpots }, phase: 'i3' | 'exact' = 'exact'): ReturnType<typeof bakeNalatiPlaces> {
   const source = readNativeTerrain(new Uint8Array(terrain));
   const trail = TERRAIN.trailDistance;

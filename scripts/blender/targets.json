@@ -33,16 +33,16 @@
    "script": "src/shards/driftwood-isle/blender/build_island.py",
    "args": ["$CACHE", "$BUILD"],
    "sources": ["src/shards/driftwood-isle/blender/assets.py", "src/shards/driftwood-isle/blender/export.mjs", "src/shards/driftwood-isle/blender/post.sh", "scripts/blender/lib/export-scene.mjs"],
-   "inputs": ["public/assets/baked/driftwood-isle/terrain.bin", "public/assets/models/driftwood-hero/", "public/assets/models/driftwood-cc0/"],
+   "inputs": ["src/static/assets/baked/driftwood-isle/terrain.bin", "src/static/assets/models/driftwood-hero/", "src/static/assets/models/driftwood-cc0/"],
    "lock": true,
    "build": ["island.glb", "placements.bin", "island.json", "lm-ao.png", "lm-bounce.png"],
-   "meshopt": [["island.glb", "public/assets/models/driftwood-blender/island.glb"]],
-   "copy": [["placements.bin", "public/assets/models/driftwood-blender/placements.bin"], ["island.json", "public/assets/models/driftwood-blender/island.json"]],
+   "meshopt": [["island.glb", "src/static/assets/models/driftwood-blender/island.glb"]],
+   "copy": [["placements.bin", "src/static/assets/models/driftwood-blender/placements.bin"], ["island.json", "src/static/assets/models/driftwood-blender/island.json"]],
    "post": "src/shards/driftwood-isle/blender/post.sh",
    "outputs": [
-    "public/assets/models/driftwood-blender/island.glb", "public/assets/models/driftwood-blender/placements.bin", "public/assets/models/driftwood-blender/island.json",
-    "public/assets/models/driftwood-blender/lm-ao.webp", "public/assets/models/driftwood-blender/lm-ao.phone.webp",
-    "public/assets/models/driftwood-blender/lm-bounce.webp", "public/assets/models/driftwood-blender/lm-bounce.phone.webp"
+    "src/static/assets/models/driftwood-blender/island.glb", "src/static/assets/models/driftwood-blender/placements.bin", "src/static/assets/models/driftwood-blender/island.json",
+    "src/static/assets/models/driftwood-blender/lm-ao.webp", "src/static/assets/models/driftwood-blender/lm-ao.phone.webp",
+    "src/static/assets/models/driftwood-blender/lm-bounce.webp", "src/static/assets/models/driftwood-blender/lm-bounce.phone.webp"
    ],
    "feeds": ["src/shards/driftwood-isle/generators/bakedCove.ts", "src/game/client/shardfile/bakedTiles.ts"]
   },
@@ -51,7 +51,7 @@
    "pre": ["node --experimental-transform-types --no-warnings --import ./scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk pine-hollow $CACHE"],
    "script": null,
    "sources": ["src/shards/pine-hollow/blender/export.mjs", "scripts/blender/lib/export-scene.mjs"],
-   "inputs": ["public/assets/baked/pine-hollow/terrain.bin"],
+   "inputs": ["src/static/assets/baked/pine-hollow/terrain.bin"],
    "lock": false,
    "outputs": [],
    "feeds": []
@@ -61,17 +61,17 @@
    "script": "src/shards/pine-hollow/blender/trees/build_trees.py",
    "args": ["$BUILD"],
    "sources": ["src/shards/pine-hollow/blender/trees/treegen.py", "src/shards/pine-hollow/blender/trees/barkgen.py", "scripts/blender/lib/glb.py", "src/shards/pine-hollow/blender/trees/post.sh"],
-   "inputs": ["public/assets/tex/pine_tree_01/", "public/assets/tex/pine_bark/"],
+   "inputs": ["src/static/assets/tex/pine_tree_01/", "src/static/assets/tex/pine_bark/"],
    "lock": true,
    "build": ["trees.glb", "trees.json"],
-   "meshopt": [["trees.glb", "public/assets/models/pine-hollow-trees/trees.glb"]],
-   "copy": [["trees.json", "public/assets/models/pine-hollow-trees/trees.json"]],
+   "meshopt": [["trees.glb", "src/static/assets/models/pine-hollow-trees/trees.glb"]],
+   "copy": [["trees.json", "src/static/assets/models/pine-hollow-trees/trees.json"]],
    "post": "src/shards/pine-hollow/blender/trees/post.sh",
    "outputs": [
-    "public/assets/models/pine-hollow-trees/trees.glb", "public/assets/models/pine-hollow-trees/trees.json",
-    "public/assets/models/pine-hollow-trees/cards-albedo.png", "public/assets/models/pine-hollow-trees/impostor-albedo.png",
-    "public/assets/models/pine-hollow-trees/cards-normal.jpg", "public/assets/models/pine-hollow-trees/cards-arm.jpg", "public/assets/models/pine-hollow-trees/impostor-normal.jpg",
-    "public/assets/tex/fir_bark/", "public/assets/tex/metasequoia_bark/", "public/assets/tex/birch_bark/", "public/assets/tex/bark_willow_02/"
+    "src/static/assets/models/pine-hollow-trees/trees.glb", "src/static/assets/models/pine-hollow-trees/trees.json",
+    "src/static/assets/models/pine-hollow-trees/cards-albedo.png", "src/static/assets/models/pine-hollow-trees/impostor-albedo.png",
+    "src/static/assets/models/pine-hollow-trees/cards-normal.jpg", "src/static/assets/models/pine-hollow-trees/cards-arm.jpg", "src/static/assets/models/pine-hollow-trees/impostor-normal.jpg",
+    "src/static/assets/tex/fir_bark/", "src/static/assets/tex/metasequoia_bark/", "src/static/assets/tex/birch_bark/", "src/static/assets/tex/bark_willow_02/"
    ],
    "feeds": ["src/engine/client/world/forest/treeSet.ts", "src/engine/client/world/TreeFactory.ts"]
   },
@@ -82,9 +82,9 @@
    "sources": ["src/shards/pine-hollow/blender/crags/rocklib.py"],
    "lock": true,
    "build": ["crags.glb", "crags.json"],
-   "meshopt": [["crags.glb", "public/assets/models/pine-hollow-crags/crags.glb"]],
-   "copy": [["crags.json", "public/assets/models/pine-hollow-crags/crags.json"]],
-   "outputs": ["public/assets/models/pine-hollow-crags/crags.glb", "public/assets/models/pine-hollow-crags/crags.json"],
+   "meshopt": [["crags.glb", "src/static/assets/models/pine-hollow-crags/crags.glb"]],
+   "copy": [["crags.json", "src/static/assets/models/pine-hollow-crags/crags.json"]],
+   "outputs": ["src/static/assets/models/pine-hollow-crags/crags.glb", "src/static/assets/models/pine-hollow-crags/crags.json"],
    "feeds": ["src/shards/pine-hollow/generators/bake-crag-scenes.mjs"]
   },
   "pine-hollow/crags-b": {
@@ -94,9 +94,9 @@
    "sources": ["src/shards/pine-hollow/blender/crags/rocklib.py"],
    "lock": true,
    "build": ["crags-b.glb", "crags-b.json"],
-   "meshopt": [["crags-b.glb", "public/assets/models/pine-hollow-crags/crags-b.glb"]],
-   "copy": [["crags-b.json", "public/assets/models/pine-hollow-crags/crags-b.json"]],
-   "outputs": ["public/assets/models/pine-hollow-crags/crags-b.glb", "public/assets/models/pine-hollow-crags/crags-b.json"],
+   "meshopt": [["crags-b.glb", "src/static/assets/models/pine-hollow-crags/crags-b.glb"]],
+   "copy": [["crags-b.json", "src/static/assets/models/pine-hollow-crags/crags-b.json"]],
+   "outputs": ["src/static/assets/models/pine-hollow-crags/crags-b.glb", "src/static/assets/models/pine-hollow-crags/crags-b.json"],
    "feeds": ["src/shards/pine-hollow/generators/bake-crag-scenes.mjs"]
   },
   "pine-hollow/cave": {
@@ -105,12 +105,12 @@
    "script": "src/shards/pine-hollow/blender/crags/build_cave.py",
    "args": ["$BUILD/cave-in.json", "$BUILD"],
    "sources": ["src/shards/pine-hollow/blender/crags/rocklib.py", "src/shards/pine-hollow/blender/crags/export-cave.mjs"],
-   "inputs": ["public/assets/baked/pine-hollow/terrain.bin", "public/assets/models/pine-hollow-hero/cave-arch/cave-arch.glb"],
+   "inputs": ["src/static/assets/baked/pine-hollow/terrain.bin", "src/static/assets/models/pine-hollow-hero/cave-arch/cave-arch.glb"],
    "lock": true,
    "build": ["cave.glb", "cave.json"],
-   "meshopt": [["cave.glb", "public/assets/models/pine-hollow-crags/cave.glb"]],
-   "copy": [["cave.json", "public/assets/models/pine-hollow-crags/cave.json"]],
-   "outputs": ["public/assets/models/pine-hollow-crags/cave.glb", "public/assets/models/pine-hollow-crags/cave.json"],
+   "meshopt": [["cave.glb", "src/static/assets/models/pine-hollow-crags/cave.glb"]],
+   "copy": [["cave.json", "src/static/assets/models/pine-hollow-crags/cave.json"]],
+   "outputs": ["src/static/assets/models/pine-hollow-crags/cave.glb", "src/static/assets/models/pine-hollow-crags/cave.json"],
    "feeds": ["src/shards/pine-hollow/generators/bake-crag-scenes.mjs"]
   },
   "pine-hollow/lever-rifle": {
@@ -119,11 +119,11 @@
    "script": "src/shards/pine-hollow/blender/weapons/lever_rifle.py",
    "args": ["$BUILD", "--wood=$SHARED/weapons-src/walnut_veneer_02_diff_2k.jpg"],
    "sources": [],
-   "inputs": ["public/assets/hdri/kloofendal_48d_partly_cloudy_puresky_2k.hdr"],
+   "inputs": ["src/static/assets/hdri/kloofendal_48d_partly_cloudy_puresky_2k.hdr"],
    "lock": true,
    "build": ["hi/lever-rifle.glb", "lo/lever-rifle.glb"],
-   "meshopt": [["hi/lever-rifle.glb", "public/assets/pine-hollow/weapons/lever-rifle.glb"], ["lo/lever-rifle.glb", "public/assets/pine-hollow/weapons/lever-rifle.phone.glb"]],
-   "outputs": ["public/assets/pine-hollow/weapons/lever-rifle.glb", "public/assets/pine-hollow/weapons/lever-rifle.phone.glb"],
+   "meshopt": [["hi/lever-rifle.glb", "src/static/assets/pine-hollow/weapons/lever-rifle.glb"], ["lo/lever-rifle.glb", "src/static/assets/pine-hollow/weapons/lever-rifle.phone.glb"]],
+   "outputs": ["src/static/assets/pine-hollow/weapons/lever-rifle.glb", "src/static/assets/pine-hollow/weapons/lever-rifle.phone.glb"],
    "feeds": ["src/shards/pine-hollow/data/heldGear.json"]
   },
   "pine-hollow/skinning-knife": {
@@ -132,12 +132,12 @@
    "script": "src/shards/pine-hollow/blender/weapons/skinning_knife.py",
    "args": ["$BUILD", "--wood=$SHARED/weapons-src/walnut_veneer_02_diff_2k.jpg"],
    "sources": ["src/shards/pine-hollow/blender/weapons/knife-post.sh"],
-   "inputs": ["public/assets/hdri/kloofendal_48d_partly_cloudy_puresky_2k.hdr"],
+   "inputs": ["src/static/assets/hdri/kloofendal_48d_partly_cloudy_puresky_2k.hdr"],
    "lock": true,
    "build": ["hi/skinning-knife.glb", "lo/skinning-knife.glb", "hi/skinning-knife.json", "lo/skinning-knife.json"],
-   "meshopt": [["hi/skinning-knife.glb", "public/assets/pine-hollow/weapons/skinning-knife.glb"], ["lo/skinning-knife.glb", "public/assets/pine-hollow/weapons/skinning-knife.phone.glb"]],
+   "meshopt": [["hi/skinning-knife.glb", "src/static/assets/pine-hollow/weapons/skinning-knife.glb"], ["lo/skinning-knife.glb", "src/static/assets/pine-hollow/weapons/skinning-knife.phone.glb"]],
    "post": "src/shards/pine-hollow/blender/weapons/knife-post.sh",
-   "outputs": ["public/assets/pine-hollow/weapons/skinning-knife.glb", "public/assets/pine-hollow/weapons/skinning-knife.phone.glb", "public/assets/pine-hollow/weapons/skinning-knife.json"],
+   "outputs": ["src/static/assets/pine-hollow/weapons/skinning-knife.glb", "src/static/assets/pine-hollow/weapons/skinning-knife.phone.glb", "src/static/assets/pine-hollow/weapons/skinning-knife.json"],
    "feeds": ["src/shards/pine-hollow/data/heldGear.json"]
   },
   "nine-dragon-stack/fp-rig": {
@@ -156,11 +156,11 @@
    "inputs": ["src/game/client/systems/viewmodel/armRig.ts"],
    "lock": true,
    "outputs": [
-    "public/assets/nine-dragon/viewmodel/fp-rig.glb",
-    "public/assets/nine-dragon/viewmodel/hand-r-maps.webp", "public/assets/nine-dragon/viewmodel/hand-r-nrm.webp",
-    "public/assets/nine-dragon/viewmodel/arm-r-maps.webp", "public/assets/nine-dragon/viewmodel/arm-r-nrm.webp",
-    "public/assets/nine-dragon/viewmodel/fist-l-maps.webp", "public/assets/nine-dragon/viewmodel/fist-l-nrm.webp",
-    "public/assets/nine-dragon/viewmodel/gauntlet-maps.webp", "public/assets/nine-dragon/viewmodel/gauntlet-nrm.webp"
+    "src/static/assets/nine-dragon/viewmodel/fp-rig.glb",
+    "src/static/assets/nine-dragon/viewmodel/hand-r-maps.webp", "src/static/assets/nine-dragon/viewmodel/hand-r-nrm.webp",
+    "src/static/assets/nine-dragon/viewmodel/arm-r-maps.webp", "src/static/assets/nine-dragon/viewmodel/arm-r-nrm.webp",
+    "src/static/assets/nine-dragon/viewmodel/fist-l-maps.webp", "src/static/assets/nine-dragon/viewmodel/fist-l-nrm.webp",
+    "src/static/assets/nine-dragon/viewmodel/gauntlet-maps.webp", "src/static/assets/nine-dragon/viewmodel/gauntlet-nrm.webp"
    ],
    "feeds": ["src/shards/nine-dragon-stack/generators/heldView.ts"]
   },
@@ -170,21 +170,21 @@
    "script": "src/shards/driftwood-isle/blender/fp-arms/arms.py",
    "args": ["$BUILD/bind.json", "$BUILD"],
    "sources": ["src/shards/driftwood-isle/blender/fp-arms/skeleton.mjs", "src/shards/driftwood-isle/blender/fp-arms/bake.mjs", "src/shards/driftwood-isle/blender/fp-arms/gate.mjs", "src/shards/driftwood-isle/blender/fp-arms/preview.py"],
-   "inputs": ["public/assets/nine-dragon/viewmodel/fp-rig.glb", "src/game/client/systems/viewmodel/armRig.ts"],
+   "inputs": ["src/static/assets/nine-dragon/viewmodel/fp-rig.glb", "src/game/client/systems/viewmodel/armRig.ts"],
    "lock": false,
    "build": ["fp-arms.raw.glb", "gate.json"],
-   "meshopt": [["fp-arms.raw.glb", "public/assets/models/driftwood-fp/fp-arms.glb"]],
-   "outputs": ["public/assets/models/driftwood-fp/fp-arms.glb"],
+   "meshopt": [["fp-arms.raw.glb", "src/static/assets/models/driftwood-fp/fp-arms.glb"]],
+   "outputs": ["src/static/assets/models/driftwood-fp/fp-arms.glb"],
    "feeds": ["src/shards/driftwood-isle/data/heldArms.json", "src/game/client/systems/viewmodel/rigArms.ts"]
   },
   "far-reach/roc": {
    "about": "Sky Reach's Storm Roc repair (E392/E399 council round 13): Hunyuan3D-2's eagle (art/far-reach/round-27-roc) with its loose second-head lump deleted, its open edges filled, the claw shapes painted on its tail fan painted out and its beak and toes pushed to gold; then meshopt + a 1024 WebP map (art/far-reach/round-31-roc-fix)",
-   "manual": "the source is Hunyuan3D-2's output after finish.sh (~/ml/img2mesh/work/roc-eagle/roc-eagle.raw.glb), which is not committed: run repair.py on it, then gltf-transform optimize <out> public/assets/far-reach/models/roc-hd/roc-hd.glb --compress meshopt --texture-compress webp --texture-size 1024 --simplify false --instance false",
-   "check": "blender -b --factory-startup -noaudio --python-exit-code 1 -P src/shards/far-reach/blender/roc/repair.py -- --check public/assets/far-reach/models/roc-hd/roc-hd.glb",
+   "manual": "the source is Hunyuan3D-2's output after finish.sh (~/ml/img2mesh/work/roc-eagle/roc-eagle.raw.glb), which is not committed: run repair.py on it, then gltf-transform optimize <out> src/static/assets/far-reach/models/roc-hd/roc-hd.glb --compress meshopt --texture-compress webp --texture-size 1024 --simplify false --instance false",
+   "check": "blender -b --factory-startup -noaudio --python-exit-code 1 -P src/shards/far-reach/blender/roc/repair.py -- --check src/static/assets/far-reach/models/roc-hd/roc-hd.glb",
    "script": "src/shards/far-reach/blender/roc/repair.py",
    "inputs": [],
    "lock": false,
-   "outputs": ["public/assets/far-reach/models/roc-hd/roc-hd.glb"],
+   "outputs": ["src/static/assets/far-reach/models/roc-hd/roc-hd.glb"],
    "feeds": ["src/shards/far-reach/generators/creatures.ts"]
   },
   "blender-template": {
@@ -236,8 +236,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["lanterns.glb", "stalls.glb", "houses.glb", "bridges.glb", "strings.glb", "props.glb", "canal.glb", "trees.glb", "figures.glb"],
-   "copy": [["lanterns.glb", "public/assets/open-plots/kit/lanterns.glb"], ["stalls.glb", "public/assets/open-plots/kit/stalls.glb"], ["houses.glb", "public/assets/open-plots/kit/houses.glb"], ["bridges.glb", "public/assets/open-plots/kit/bridges.glb"], ["strings.glb", "public/assets/open-plots/kit/strings.glb"], ["props.glb", "public/assets/open-plots/kit/props.glb"], ["canal.glb", "public/assets/open-plots/kit/canal.glb"], ["trees.glb", "public/assets/open-plots/kit/trees.glb"], ["figures.glb", "public/assets/open-plots/kit/figures.glb"]],
-   "outputs": ["public/assets/open-plots/kit/lanterns.glb", "public/assets/open-plots/kit/stalls.glb", "public/assets/open-plots/kit/houses.glb", "public/assets/open-plots/kit/bridges.glb", "public/assets/open-plots/kit/strings.glb", "public/assets/open-plots/kit/props.glb", "public/assets/open-plots/kit/canal.glb", "public/assets/open-plots/kit/trees.glb", "public/assets/open-plots/kit/figures.glb"],
+   "copy": [["lanterns.glb", "src/static/assets/open-plots/kit/lanterns.glb"], ["stalls.glb", "src/static/assets/open-plots/kit/stalls.glb"], ["houses.glb", "src/static/assets/open-plots/kit/houses.glb"], ["bridges.glb", "src/static/assets/open-plots/kit/bridges.glb"], ["strings.glb", "src/static/assets/open-plots/kit/strings.glb"], ["props.glb", "src/static/assets/open-plots/kit/props.glb"], ["canal.glb", "src/static/assets/open-plots/kit/canal.glb"], ["trees.glb", "src/static/assets/open-plots/kit/trees.glb"], ["figures.glb", "src/static/assets/open-plots/kit/figures.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/lanterns.glb", "src/static/assets/open-plots/kit/stalls.glb", "src/static/assets/open-plots/kit/houses.glb", "src/static/assets/open-plots/kit/bridges.glb", "src/static/assets/open-plots/kit/strings.glb", "src/static/assets/open-plots/kit/props.glb", "src/static/assets/open-plots/kit/canal.glb", "src/static/assets/open-plots/kit/trees.glb", "src/static/assets/open-plots/kit/figures.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/bayou": {
@@ -248,8 +248,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["stilts.glb", "marsh.glb"],
-   "copy": [["stilts.glb", "public/assets/open-plots/kit/stilts.glb"], ["marsh.glb", "public/assets/open-plots/kit/marsh.glb"]],
-   "outputs": ["public/assets/open-plots/kit/stilts.glb", "public/assets/open-plots/kit/marsh.glb"],
+   "copy": [["stilts.glb", "src/static/assets/open-plots/kit/stilts.glb"], ["marsh.glb", "src/static/assets/open-plots/kit/marsh.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/stilts.glb", "src/static/assets/open-plots/kit/marsh.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/cypress": {
@@ -260,8 +260,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb", "hooks.json"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/lantern-bayou/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/lantern-bayou/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/lantern-bayou/landmark.glb", "public/assets/open-plots/lantern-bayou/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/lantern-bayou/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/lantern-bayou/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/lantern-bayou/landmark.glb", "src/static/assets/open-plots/lantern-bayou/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/peak": {
@@ -283,8 +283,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/jungle-ziggurat/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/jungle-ziggurat/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/jungle-ziggurat/landmark.glb", "public/assets/open-plots/jungle-ziggurat/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/jungle-ziggurat/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/jungle-ziggurat/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/jungle-ziggurat/landmark.glb", "src/static/assets/open-plots/jungle-ziggurat/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/gateway": {
@@ -295,8 +295,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/desert-ruin/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/desert-ruin/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/desert-ruin/landmark.glb", "public/assets/open-plots/desert-ruin/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/desert-ruin/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/desert-ruin/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/desert-ruin/landmark.glb", "src/static/assets/open-plots/desert-ruin/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/stars": {
@@ -307,8 +307,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["stars.glb"],
-   "copy": [["stars.glb", "public/assets/open-plots/kit/stars.glb"]],
-   "outputs": ["public/assets/open-plots/kit/stars.glb"],
+   "copy": [["stars.glb", "src/static/assets/open-plots/kit/stars.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/stars.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/clockwork": {
@@ -319,8 +319,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["clockwork.glb"],
-   "copy": [["clockwork.glb", "public/assets/open-plots/kit/clockwork.glb"]],
-   "outputs": ["public/assets/open-plots/kit/clockwork.glb"],
+   "copy": [["clockwork.glb", "src/static/assets/open-plots/kit/clockwork.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/clockwork.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/harbour": {
@@ -331,8 +331,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["harbour.glb"],
-   "copy": [["harbour.glb", "public/assets/open-plots/kit/harbour.glb"]],
-   "outputs": ["public/assets/open-plots/kit/harbour.glb"],
+   "copy": [["harbour.glb", "src/static/assets/open-plots/kit/harbour.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/harbour.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/skeleton": {
@@ -343,8 +343,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/fossil-badlands/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/fossil-badlands/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/fossil-badlands/landmark.glb", "public/assets/open-plots/fossil-badlands/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/fossil-badlands/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/fossil-badlands/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/fossil-badlands/landmark.glb", "src/static/assets/open-plots/fossil-badlands/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/airship": {
@@ -355,8 +355,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/sky-harbor/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/sky-harbor/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/sky-harbor/landmark.glb", "public/assets/open-plots/sky-harbor/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/sky-harbor/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/sky-harbor/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/sky-harbor/landmark.glb", "src/static/assets/open-plots/sky-harbor/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/skyport": {
@@ -367,8 +367,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["skyport.glb"],
-   "copy": [["skyport.glb", "public/assets/open-plots/kit/skyport.glb"]],
-   "outputs": ["public/assets/open-plots/kit/skyport.glb"],
+   "copy": [["skyport.glb", "src/static/assets/open-plots/kit/skyport.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/skyport.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/crystal": {
@@ -379,8 +379,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/thin-ice/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/thin-ice/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/thin-ice/landmark.glb", "public/assets/open-plots/thin-ice/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/thin-ice/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/thin-ice/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/thin-ice/landmark.glb", "src/static/assets/open-plots/thin-ice/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/polar": {
@@ -391,8 +391,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["polar.glb"],
-   "copy": [["polar.glb", "public/assets/open-plots/kit/polar.glb"]],
-   "outputs": ["public/assets/open-plots/kit/polar.glb"],
+   "copy": [["polar.glb", "src/static/assets/open-plots/kit/polar.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/polar.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/racetower": {
@@ -403,8 +403,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/sky-race/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/sky-race/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/sky-race/landmark.glb", "public/assets/open-plots/sky-race/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/sky-race/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/sky-race/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/sky-race/landmark.glb", "src/static/assets/open-plots/sky-race/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/race": {
@@ -415,8 +415,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["race.glb"],
-   "copy": [["race.glb", "public/assets/open-plots/kit/race.glb"]],
-   "outputs": ["public/assets/open-plots/kit/race.glb"],
+   "copy": [["race.glb", "src/static/assets/open-plots/kit/race.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/race.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/obelisk": {
@@ -427,8 +427,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/showcase-template/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/showcase-template/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/showcase-template/landmark.glb", "public/assets/open-plots/showcase-template/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/showcase-template/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/showcase-template/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/showcase-template/landmark.glb", "src/static/assets/open-plots/showcase-template/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/dig": {
@@ -439,8 +439,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["dig.glb"],
-   "copy": [["dig.glb", "public/assets/open-plots/kit/dig.glb"]],
-   "outputs": ["public/assets/open-plots/kit/dig.glb"],
+   "copy": [["dig.glb", "src/static/assets/open-plots/kit/dig.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/dig.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/fair": {
@@ -451,8 +451,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["fair.glb"],
-   "copy": [["fair.glb", "public/assets/open-plots/kit/fair.glb"]],
-   "outputs": ["public/assets/open-plots/kit/fair.glb"],
+   "copy": [["fair.glb", "src/static/assets/open-plots/kit/fair.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/fair.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/observatory": {
@@ -463,8 +463,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/starfall-observatory/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/starfall-observatory/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/starfall-observatory/landmark.glb", "public/assets/open-plots/starfall-observatory/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/starfall-observatory/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/starfall-observatory/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/starfall-observatory/landmark.glb", "src/static/assets/open-plots/starfall-observatory/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/clocktower": {
@@ -475,8 +475,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/clockwork-canyon/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/clockwork-canyon/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/clockwork-canyon/landmark.glb", "public/assets/open-plots/clockwork-canyon/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/clockwork-canyon/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/clockwork-canyon/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/clockwork-canyon/landmark.glb", "src/static/assets/open-plots/clockwork-canyon/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/monolith": {
@@ -487,8 +487,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/alien-plain/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/alien-plain/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/alien-plain/landmark.glb", "public/assets/open-plots/alien-plain/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/alien-plain/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/alien-plain/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/alien-plain/landmark.glb", "src/static/assets/open-plots/alien-plain/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/alien": {
@@ -499,8 +499,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["alien.glb"],
-   "copy": [["alien.glb", "public/assets/open-plots/kit/alien.glb"]],
-   "outputs": ["public/assets/open-plots/kit/alien.glb"],
+   "copy": [["alien.glb", "src/static/assets/open-plots/kit/alien.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/alien.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/lighthouse": {
@@ -511,8 +511,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/saltwind-lighthouse/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/saltwind-lighthouse/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/saltwind-lighthouse/landmark.glb", "public/assets/open-plots/saltwind-lighthouse/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/saltwind-lighthouse/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/saltwind-lighthouse/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/saltwind-lighthouse/landmark.glb", "src/static/assets/open-plots/saltwind-lighthouse/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/ferris": {
@@ -523,8 +523,8 @@
    "inputs": [],
    "lock": false,
    "build": ["landmark.glb", "landmark-far.glb"],
-   "meshopt": [["landmark.glb", "public/assets/open-plots/patchwork-fairground/landmark.glb"], ["landmark-far.glb", "public/assets/open-plots/patchwork-fairground/landmark-far.glb"]],
-   "outputs": ["public/assets/open-plots/patchwork-fairground/landmark.glb", "public/assets/open-plots/patchwork-fairground/landmark-far.glb"],
+   "meshopt": [["landmark.glb", "src/static/assets/open-plots/patchwork-fairground/landmark.glb"], ["landmark-far.glb", "src/static/assets/open-plots/patchwork-fairground/landmark-far.glb"]],
+   "outputs": ["src/static/assets/open-plots/patchwork-fairground/landmark.glb", "src/static/assets/open-plots/patchwork-fairground/landmark-far.glb"],
    "feeds": ["src/shards/open-plots/generators/tiledPlot.mjs"]
   },
   "open-plots/lagoon": {
@@ -535,8 +535,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["huts.glb", "palms.glb", "reef.glb"],
-   "copy": [["huts.glb", "public/assets/open-plots/kit/huts.glb"], ["palms.glb", "public/assets/open-plots/kit/palms.glb"], ["reef.glb", "public/assets/open-plots/kit/reef.glb"]],
-   "outputs": ["public/assets/open-plots/kit/huts.glb", "public/assets/open-plots/kit/palms.glb", "public/assets/open-plots/kit/reef.glb"],
+   "copy": [["huts.glb", "src/static/assets/open-plots/kit/huts.glb"], ["palms.glb", "src/static/assets/open-plots/kit/palms.glb"], ["reef.glb", "src/static/assets/open-plots/kit/reef.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/huts.glb", "src/static/assets/open-plots/kit/palms.glb", "src/static/assets/open-plots/kit/reef.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/hero": {
@@ -547,8 +547,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["hero.glb", "hero-lod1.glb"],
-   "copy": [["hero.glb", "public/assets/open-plots/kit/hero.glb"], ["hero-lod1.glb", "public/assets/open-plots/kit/hero-lod1.glb"]],
-   "outputs": ["public/assets/open-plots/kit/hero.glb", "public/assets/open-plots/kit/hero-lod1.glb"],
+   "copy": [["hero.glb", "src/static/assets/open-plots/kit/hero.glb"], ["hero-lod1.glb", "src/static/assets/open-plots/kit/hero-lod1.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/hero.glb", "src/static/assets/open-plots/kit/hero-lod1.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/frost": {
@@ -559,8 +559,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["lodges.glb", "pines.glb", "lift.glb"],
-   "copy": [["lodges.glb", "public/assets/open-plots/kit/lodges.glb"], ["pines.glb", "public/assets/open-plots/kit/pines.glb"], ["lift.glb", "public/assets/open-plots/kit/lift.glb"]],
-   "outputs": ["public/assets/open-plots/kit/lodges.glb", "public/assets/open-plots/kit/pines.glb", "public/assets/open-plots/kit/lift.glb"],
+   "copy": [["lodges.glb", "src/static/assets/open-plots/kit/lodges.glb"], ["pines.glb", "src/static/assets/open-plots/kit/pines.glb"], ["lift.glb", "src/static/assets/open-plots/kit/lift.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/lodges.glb", "src/static/assets/open-plots/kit/pines.glb", "src/static/assets/open-plots/kit/lift.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/ruins": {
@@ -571,8 +571,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["ruins.glb", "rubble.glb"],
-   "copy": [["ruins.glb", "public/assets/open-plots/kit/ruins.glb"], ["rubble.glb", "public/assets/open-plots/kit/rubble.glb"]],
-   "outputs": ["public/assets/open-plots/kit/ruins.glb", "public/assets/open-plots/kit/rubble.glb"],
+   "copy": [["ruins.glb", "src/static/assets/open-plots/kit/ruins.glb"], ["rubble.glb", "src/static/assets/open-plots/kit/rubble.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/ruins.glb", "src/static/assets/open-plots/kit/rubble.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   },
   "open-plots/forge": {
@@ -583,8 +583,8 @@
    "inputs": ["src/shards/open-plots/data/trim.json"],
    "lock": false,
    "build": ["forges.glb", "ore.glb"],
-   "copy": [["forges.glb", "public/assets/open-plots/kit/forges.glb"], ["ore.glb", "public/assets/open-plots/kit/ore.glb"]],
-   "outputs": ["public/assets/open-plots/kit/forges.glb", "public/assets/open-plots/kit/ore.glb"],
+   "copy": [["forges.glb", "src/static/assets/open-plots/kit/forges.glb"], ["ore.glb", "src/static/assets/open-plots/kit/ore.glb"]],
+   "outputs": ["src/static/assets/open-plots/kit/forges.glb", "src/static/assets/open-plots/kit/ore.glb"],
    "feeds": ["src/shards/open-plots/generators/kitGlb.mjs"]
   }
  }

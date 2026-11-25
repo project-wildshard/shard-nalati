@@ -8,13 +8,13 @@ const [source, files] = await Promise.all([
   import('./nalati-native-assembly-inputs.ts'),
   import('../../src/generators/placesProgram.ts').then(({ nalatiPlacesProgram }) => {
     const inputs = new Map([
-      ['/assets/baked/nalati-grasslands/terrain.bin', readFileSync('public/assets/baked/nalati-grasslands/terrain.bin')],
+      ['/assets/baked/nalati-grasslands/terrain.bin', readFileSync('src/static/assets/baked/nalati-grasslands/terrain.bin')],
     ]);
     return nalatiPlacesProgram({ cached: (_step, make) => Promise.resolve(make(inputs)) }, 'exact');
   }),
 ]);
 for (const name of ['places', 'specimens']) {
-  const pin = pins.find(row => row.path === `public/assets/nalati/baked/${name}.bin`), bytes = files.get(`${name}.bin`);
+  const pin = pins.find(row => row.path === `src/static/assets/nalati/baked/${name}.bin`), bytes = files.get(`${name}.bin`);
   if (pin === undefined || bytes === undefined || bytes.byteLength !== pin.bytes || hashImmutableBytes(bytes) !== pin.hash)
     throw new Error(`Original native ${name} binary differs`);
 }

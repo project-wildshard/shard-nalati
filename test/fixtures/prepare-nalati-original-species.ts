@@ -21,7 +21,7 @@ const inputSchema = v.object({
   strike: v.unknown(), kingPose: v.object({ programs: v.unknown(), group: v.string() }),
 });
 const files = await nalatiSpeciesProgram({ compileDecisionRows: compileDecisionScripts, compileReturnProjection: compileReturnProjectionV2, cached: (step, make) => {
-  const inputs = new Map(step.inputs?.map(name => [name, Uint8Array.from(readFileSync(name.startsWith('/') ? `public${name}` : `src/${name}`))]));
+  const inputs = new Map(step.inputs?.map(name => [name, Uint8Array.from(readFileSync(name.startsWith('/') ? `src/static${name}` : `src/${name}`))]));
   return Promise.resolve(make(inputs));
 } }, input => {
   if (!v.is(inputSchema, input)) throw new Error('Invalid original species fixture inputs');

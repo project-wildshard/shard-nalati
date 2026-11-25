@@ -313,7 +313,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BEFORE: ${{ startsWith(github.ref, 'refs/heads/plan/') && 'main' || github.event.before }}
         run: |
-          watched='^(\.github/workflows/(ci|ring-2-content)\.yml$|\.github/actions/|src/|test/|scripts/|public/|lint/|package\.json$|pnpm-lock\.yaml$|pnpm-workspace\.yaml$|tsconfig[^/]*\.json$|vitest\.config\.[^/]*$|\.npmrc$|\.gitattributes$|\.oxlintrc\.author\.json$)'
+          watched='^(\.github/workflows/(ci|ring-2-content)\.yml$|\.github/actions/|src/|test/|scripts/|lint/|package\.json$|pnpm-lock\.yaml$|pnpm-workspace\.yaml$|tsconfig[^/]*\.json$|vitest\.config\.[^/]*$|\.npmrc$|\.gitattributes$|\.oxlintrc\.author\.json$)'
           play=true
           if [ -n "$BEFORE" ] && [ "$BEFORE" != 0000000000000000000000000000000000000000 ] &&
             files=$(gh api "repos/$GITHUB_REPOSITORY/compare/$BEFORE...$GITHUB_SHA" --jq '.files[].filename') &&

@@ -37,7 +37,7 @@ one version.
 **Install size.** A fresh `new` repo installs about 580 MB into `node_modules` (`du -sh`, cli 0.4.11 with engine
 0.1.44, measured 2026-11-18). pnpm hard-links it from its global store, so a second repo on the same sdk adds little.
 The largest parts are binaryen, the script compiler (two copies, about 200 MB), the engine (about 50 MB), then
-TypeScript, three, kit, happy-dom, sharp and rolldown (12 to 23 MB each). The first build adds about 20 MB in `public/`.
+TypeScript, three, kit, happy-dom, sharp and rolldown (12 to 23 MB each). The first build adds about 20 MB in `out/`.
 
 Run `wildshard memory <folder>` on a built shard folder to measure its phone-tier boot with the installed engine.
 The command prints the process peak, the phone estimate and the verdict. It exits 1 above the 1.5 GB phone limit.
@@ -68,8 +68,8 @@ repo's one `src/shards/<slug>/`).
 | 2 | Walk it | `wildshard dev .` | Works. The first run fetches engine's dev client once. See "Walking your shard" below |
 | 3 | Check | `wildshard check .` | Works: lint, build, validate, prove and the report card, one verdict |
 | 4 | Hero | `wildshard hero . --base <url>` | Works, with `wildshard dev .` running: `<url>` is the one it prints. See "The hero" below |
-| 5 | Prepare | `wildshard prepare public/shardfiles/my-shard`, then `wildshard build public/shardfiles/my-shard` | The first run fetches engine's preparation client once. See "Uploading" below |
-| 6 | Upload to staging | `wildshard upload public/shardfiles/my-shard.shardfile --channel staging --version 0.0.1` | Works only for the Wildshard team today: it needs the team's creator key. See "Uploading" below |
+| 5 | Prepare | `wildshard prepare out/my-shard`, then `wildshard build out/my-shard` | The first run fetches engine's preparation client once. See "Uploading" below |
+| 6 | Upload to staging | `wildshard upload out/my-shard.shardfile --channel staging --version 0.0.1` | Works only for the Wildshard team today: it needs the team's creator key. See "Uploading" below |
 | 7 | Upload to production | the same with `--channel prod` and a higher version | The same. Try staging first |
 | 8 | Share | `https://staging.wildshard.io/slug/my-shard` | **Not built yet (SA36, SA37).** See section 5 |
 
@@ -82,8 +82,8 @@ with `rule`, `fix` and `guide`) for agents and scripts.
 
 | Verb | What it is for |
 |---|---|
-| `wildshard new <dir> [slug] [--template scene] [--empty]` | Start a shard repo in a folder that does not exist yet, its shard source at `src/`. The slug is the folder's name unless you give one. It copies Mossgate Hollow as one three.js scene module (`--template scene`, the default: `src/generators/world.ts` is the world, `play.ts` what the player uses in it, `quests.ts` and `gameplay.ts` its quests, talks and rack, `src/proof.json` the tape `check` plays, and `wildshard watch .` shows each save); any other template refuses before writing, and `--template sdk` and `--template blender` are retired (below). `--empty` writes a bare shard source instead of the reference world |
-| `wildshard update [dir] [--pins[=<version>]]` | Rewrite this guide and the four `wildshard` skills from the installed sdk. `--pins` first moves the repo to a newer sdk release (npm's latest, or `--pins=<version>`), installs it and applies its codemods, and runs `check` after (section 7) |
+| `wildshard new <dir> [slug] [--template scene] [--empty]` | Start a shard repo in a folder that does not exist yet, its shard source at `src/`. The slug is the folder's name unless you give one. It copies Mossgate Hollow as one three.js scene module (`--template scene`, the default: `src/generators/world.ts` is the world, `play.ts` what the player uses in it, `quests.ts` and `gameplay.ts` its quests, talks and rack, `src/proof.json` the tape `check` plays, and `wildshard watch .` shows each save); any other template refuses before writing, and `--template sdk` and `--template blender` are retired (below). `--empty` writes a bare scene instead of the reference world: `src/generators/world.ts` with a blue sky, flat green ground, a hemisphere light, a sun and the spawn |
+| `wildshard update [dir] [--guide <path>] [--pins[=<version>]]` | Rewrite this guide (at `--guide`'s path, which `package.json` remembers) and the four `wildshard` skills from the installed sdk. `--pins` first moves the repo to a newer sdk release (npm's latest, or `--pins=<version>`), installs it and applies its codemods, and runs `check` after (section 7) |
 | `wildshard dev <source>` | Serve the shard source on localhost and rebuild on every save (section 4). The first run fetches engine's dev client once ("Walking your shard") |
 | `wildshard watch <source>` | For a shard written as a three.js scene (`@wildshard/sdk/scene/shard`): serve it once, then swap each edited part into the running page in about a second, no reload. A look, ground or spawn edit still reloads. A repo `new` made runs it as `pnpm watch` |
 | `wildshard check <source> [folder] [--json]` | The loop's check: lint, build, validate, prove, report card, verdict |
@@ -95,7 +95,7 @@ with `rule`, `fix` and `guide`) for agents and scripts.
 | `wildshard whoami` | Say which account key upload would send (from `WILDSHARD_API_KEY` or the key file), show its first characters, and print its account's email and how many slugs it owns (`--server` or `WILDSHARD_API_URL`) |
 | `wildshard grid [--channel staging\|prod\|preview]` | Print the world grid on a channel: each taken cell and its shard, then the free cells. No key needed (section 5) |
 | `wildshard delete <slug> [--yes]` | Delete your shard from the catalogue, every channel and the grid, after you type its slug (see "Deleting a shard") |
-| `wildshard build <source>` | Build alone: bake the shard source into `public/shardfiles/<slug>/` and write `public/shardfiles/<slug>.shardfile`. `wildshard build <folder>` writes the shard file of a built folder (after `prepare`) |
+| `wildshard build <source>` | Build alone: bake the shard source into `out/<slug>/` and write `out/<slug>.shardfile`. `wildshard build <folder>` writes the shard file of a built folder (after `prepare`) |
 | `wildshard prepare <folder> [--base <url>]` | Record the built folder in phone WebKit against engine's preparation client (or the exact engine preview `--base` names), which turns a draft into the uploadable form (see "Uploading") |
 | `wildshard validate <source \| folder>` | Shard-format's checks and the static budgets, alone; `check` runs the headless budget run |
 | `wildshard prove <source> <proof.json>` | Play a proof tape headlessly and print what happened ("Proof tapes" below) |
@@ -312,15 +312,16 @@ before every upload:
 
 1. **Hero.** A new version needs a new hero (J306). After your last change to the world, capture one
    (`wildshard hero . --base <url>`, "The hero" above). Done when `hero.json` and the three card images are rewritten.
-2. **Commit.** Upload names the commit the bytes came from and refuses uncommitted changes to tracked files. The first
-   time: `git init`, then commit (the `.gitignore` `new` wrote keeps `public/shardfiles/` and `node_modules/` out).
-   Every time: commit everything, the hero included. Done when `git status` is clean.
-3. **Check.** `wildshard check .` builds the shard file. It is a **draft** (`sdk: "0.2"`): check prints a
-   `shardfile-draft` warning, and upload and the API refuse a draft. Done at `check pass`.
-4. **Prepare.** `wildshard prepare public/shardfiles/<slug>` records the draft in phone WebKit and turns it into the
+2. **Check.** `wildshard check .` builds the shard file. It is a **draft** (`sdk: "0.2"`): check prints a
+   `shardfile-draft` warning, and upload and the API refuse a draft. After a new hero, check also records the built
+   world's `look` in `hero.json`, so commit after it, not before. Done at `check pass`.
+3. **Commit.** Upload names the commit the bytes came from and refuses uncommitted changes to tracked files. The first
+   time: `git init`, then commit (the `.gitignore` `new` wrote keeps the build output and `node_modules/` out).
+   Every time: commit everything, the hero and `hero.json` included. Done when `git status` is clean.
+4. **Prepare.** `wildshard prepare out/<slug>` records the draft in phone WebKit and turns it into the
    uploadable form (`sdk: "0.3"`). It serves engine's preparation client around the draft itself, fetched once from
    engine's release at the SDK's engine pin (about 310 MB, kept in `~/.cache/wildshard/dev-client`), so no engine
-   checkout is needed. Then `wildshard build public/shardfiles/<slug>` writes the prepared shard file. Done when
+   checkout is needed. Then `wildshard build out/<slug>` writes the prepared shard file. Done when
    prepare prints `{"slug":…,"programs":…}` and build prints the shard file line.
 5. **Account.** Set `WILDSHARD_API_URL=https://api.wildshard.io` (or pass `--server`). Upload needs only your
    **account key**, which says whose shard it is: the first upload of a slug makes it yours, and nobody else's key can
@@ -335,7 +336,7 @@ before every upload:
    `version` from the repo's `package.json` (`new` writes `0.0.1`; raise it before each upload), or pass `--version`:
 
 ```sh
-wildshard upload public/shardfiles/my-shard.shardfile --channel staging --version 0.0.1
+wildshard upload out/my-shard.shardfile --channel staging --version 0.0.1
 ```
 
 Upload checks the shard file as the API will, checks the hero, signs, compresses and sends it, then prints the
@@ -394,6 +395,7 @@ A project made by `wildshard new` is a repo with one shard source at `src/`. Ins
 | `sources/` | Programs that made a committed asset (the Template's Warden skin); build never runs them | No: the asset does |
 | `behaviour/` | AssemblyScript (`.as`) scripts and `hooks.json`. Build compiles them to Wasm | The compiled Wasm |
 | `assets/` | Source assets, named by their SHA-256 | The ones the shard uses, by hash |
+| `static/` | Files the shard mounts, under the names it reads: a file named `/<path>` is `static/<path>` (`static/assets/<slug>/`, `static/programs/`) | The ones its `mounts.json` lists, under those names |
 | `look/` | Recorded entry reads for the build | No |
 | `data/card.json` | The card and discovery fields: name, `card` images, `shardfile` path | The card, as data |
 | `hero.json` | The hero stamp (`wildshard hero` writes it) | No |
@@ -411,7 +413,7 @@ At the repo root, around `src/`:
 | `.claude/skills/wildshard*/SKILL.md` | The `wildshard` skill (SA14): the loop's order for Claude Code, pointing into this guide; and its siblings (SA27): `wildshard-mockup-to-model` (a picture to a model), `wildshard-goldens` (refresh the hero and proof tape), `wildshard-upgrade` (move to a newer sdk). `wildshard update` rewrites them: never edit them | No |
 | `.agents/skills/wildshard*` | Links to the four `.claude/skills/` folders, so Codex lists the same skills | No |
 | `AGENTS.md`, `CLAUDE.md` | For agents: read this guide first; the skills are in `.claude/skills/`. `CLAUDE.md` is `@AGENTS.md`, so Claude Code reads the same file. Yours to change: `update` keeps your edits | No |
-| `public/shardfiles/` | Build output: the built folder and `<slug>.shardfile`. Never edit; never commit | It is the shard file |
+| `out/` | Build output: the built folder and `<slug>.shardfile`. Never edit; never commit | It is the shard file |
 
 **The card is `src/data/card.json`.** It names the shard (slug, name, status, card art) and is its one home: `new`
 writes it, build reads it, and hero capture writes the captured slots into it.
@@ -432,7 +434,8 @@ build supplies: `shared(i)` and `player(i)` read state fields in their declared 
 `src/data/`, ...); a repo with several keeps `src/shards/<slug>/`. Commands take the repo (`.`) and find the shard
 source at `src/`, or at the one `src/shards/<slug>/` a repo holds; in a repo with several, name the shard source
 (`src/shards/<slug>`). The slug is `data/card.json`'s, whatever the repo folder is called. A `src/` source builds
-into the repo's `public/shardfiles/`; a `src/shards/<slug>/` source into its own folder's. SA24 moves the existing
+into the repo's `out/`; a `src/shards/<slug>/` source into its own folder's. Either keeps the files it mounts in
+its own `static/` (sdk 0.5.0: no repo `public/`). SA24 moves the existing
 single-shard repos to `src/`.
 
 **Blender makes models, not shards (J341).** A shard is TypeScript three.js scene source: `shard.config.ts`, its
@@ -1001,7 +1004,7 @@ guide names them and points at what prints them:
   assets, `shard.config.ts` and `data/card.json` all take the same path.
 - **A failed rebuild keeps the last good build** on the page and prints the refusal in the terminal and the browser
   console. Fix it and save again.
-- **Not watched:** `node_modules/`, `.git/`, `dist/`, `public/` and `.worktrees/`. After `pnpm install` or an sdk
+- **Not watched:** `node_modules/`, `.git/`, `dist/`, `out/`, `public/` and `.worktrees/`. After `pnpm install` or an sdk
   update, stop `dev` and start it again.
 - **Not made by `dev`:** a shard file to upload. `dev` builds a private copy for the page. Run `wildshard check .`
   for the shard file, and capture the hero again before you upload a changed world.
@@ -1083,6 +1086,23 @@ import is the version it pins, and refuses naming both before anything else runs
 
 A verb got arguments or flags it does not take. `wildshard <verb> --help` prints what it takes.
 
+#### migration-pending
+
+The installed sdk has a migration this repo has not run: a breaking
+release (0.5.0, 0.6.0, ...) changed how a shard repo is laid out or
+written, and nothing has moved this one yet, for example because the sdk
+was installed by hand (`pnpm add @wildshard/sdk@0.5.0`). `dev`, `watch`,
+`build`, `check` and `upload` refuse before doing anything and name each
+pending migration, its title and its own GUIDE.md heading.
+`package.json` `"wildshard": { "migrated": "<v>" }` records the sdk a
+repo was last migrated to; a repo with no stamp is asked only whether it
+is still in an old layout. Run `pnpm exec wildshard migrate`, do each
+manual step it prints, then `wildshard check .`. An agent reads
+`node_modules/@wildshard/sdk/skills/wildshard-upgrade/SKILL.md` (the
+installed sdk's copy) and follows it. `wildshard status` prints the
+installed sdk, the stamp and what is pending; `wildshard status --brief`
+prints one line when something is, and nothing otherwise.
+
 ### New
 
 #### new-target
@@ -1111,34 +1131,34 @@ TypeScript three.js scene source, and Blender makes the `.glb` models it loads (
 
 #### update-pins-no-git
 
-`wildshard update --pins` edits `package.json`, `pnpm-lock.yaml` and, through its codemods, your shard source, so it
-runs only in a git repo whose `package.json` is committed: `git diff` afterwards is how you see what it changed. It
-refused before it changed anything. Put the shard repo in git and commit it (`git init`, `git add .`, `git commit`),
-then run `wildshard update --pins` again.
+`wildshard upgrade` (and its alias `update --pins`) edits `package.json`, `pnpm-lock.yaml` and, through its
+codemods, your shard source, so it runs only in a git repo whose `package.json` is committed: `git diff` afterwards is
+how you see what it changed. It refused before it changed anything. Put the shard repo in git and commit it (`git
+init`, `git add .`, `git commit`), then run `wildshard upgrade` again.
 
 #### update-pins-dirty
 
-The shard repo has uncommitted or untracked changes (the refusal names the first few). `update --pins` refuses them so
-its edits never mix with yours. It refused before it changed anything. Commit or stash your changes (`git stash -u`),
-then run `wildshard update --pins` again. Ignored files, such as `node_modules/` and build output, do not count.
+The shard repo has uncommitted or untracked changes (the refusal names the first few). `upgrade` refuses them so its
+edits never mix with yours. It refused before it changed anything. Commit or stash your changes (`git stash -u`), then
+run `wildshard upgrade` again. Ignored files, such as `node_modules/` and build output, do not count.
 
 #### update-pins
 
-`wildshard update --pins` stopped. The line above says why. If it stopped before its codemods were done, it has
-already put `package.json` and `pnpm-lock.yaml` back and installed the old sdk again (it says `back on
-@wildshard/sdk <old>`), so after the fix run `wildshard update --pins` again; `git diff` shows any edit a codemod made
+`wildshard upgrade` (or `update --pins`) stopped. The line above says why. If it stopped before its codemods were
+done, it has already put `package.json` and `pnpm-lock.yaml` back and installed the old sdk again (it says `back on
+@wildshard/sdk <old>`), so after the fix run `wildshard upgrade` again; `git diff` shows any edit a codemod made
 before it stopped.
 
 - `npm has no @wildshard/sdk@<version>`, `npm gave no version` or `pnpm view ... failed`: name a version npm lists
   (`pnpm view @wildshard/sdk versions`), or check your network.
 - `moves forward only`: the repo is already on a newer sdk than the one you named. To go back, edit the pins in
   `package.json` by hand and run `pnpm install`.
-- `names <manager> as its package manager`: `--pins` installs with pnpm; set `packageManager` to the
+- `names <manager> as its package manager`: `upgrade` installs with pnpm; set `packageManager` to the
   `pnpm@...` that `new` writes, or move the pins by hand as the `wildshard-upgrade` skill says.
-- `git not found`: `--pins` reads `git status` before it starts; install git.
+- `git not found`: `upgrade` reads `git status` before it starts; install git.
 - `cannot tell which sdk ... is on`: pin `@wildshard/sdk` to a version, not `link:` or `file:`.
 - `pins @wildshard/sdk <a> but has <b> installed`: run `pnpm install` and `wildshard check .` on the pins you have,
-  then `--pins` again.
+  then `upgrade` again.
 - `pnpm install failed`, `pnpm installed ...` or `pins three ...`: the install did not give the versions the release
   names. Read pnpm's output above it.
 - `codemod <version>.mjs failed`: the release's codemod could not change your shard source. Report the message with
@@ -1146,6 +1166,31 @@ before it stopped.
 - `its wildshard update failed`: the pins moved; run `pnpm exec wildshard update`, then `wildshard check .`.
 - `check failed`: the pins moved and the install worked, but the shard source does not pass on the new sdk. Fix each
   refusal check printed above it, then run `wildshard check .` again.
+
+#### migrate-no-git
+
+`wildshard migrate` runs the installed sdk's migrations on your shard source, so it runs only in a git repo whose
+`package.json` is committed: `git diff` afterwards is how you see what it changed. It refused before it changed
+anything. Put the shard repo in git and commit it (`git init`, `git add .`, `git commit`), then run `wildshard
+migrate` again.
+
+#### migrate-dirty
+
+The shard repo has uncommitted or untracked changes (the refusal names the first few). `migrate` refuses them so its
+edits never mix with yours. It refused before it changed anything. Commit or stash your changes (`git stash -u`), then
+run `wildshard migrate` again. Ignored files, such as `node_modules/` and build output, do not count. A repo already
+migrated to the installed sdk, with nothing pending, is never refused: a second `migrate` says `nothing to migrate`.
+
+#### migrate
+
+`wildshard migrate` stopped. The line above says why.
+
+- `migration <version>.mjs failed`: that migration could not change your shard source. Nothing after it ran and the
+  stamp is unchanged; `git diff` shows what it changed before it stopped. Put those edits back with git and report
+  the message with the sdk version, or fix the cause it names and run `migrate` again.
+- `has no @wildshard/sdk installed`: `migrate` reads the migrations of the sdk in the repo's own `node_modules`. Run
+  `pnpm install`, then `migrate` again.
+- `is not a shard repo`: run it in the repo `wildshard new` made, or name it: `wildshard migrate my-shard`.
 
 #### update-refused
 
@@ -1473,7 +1518,7 @@ Upload checks all of these before a byte is sent.
 
 #### upload-shardfile-missing
 
-The path is not a shard file. Pass the one build wrote: `public/shardfiles/<slug>.shardfile`.
+The path is not a shard file. Pass the one build wrote: `out/<slug>.shardfile`.
 
 #### upload-channel
 
@@ -1508,6 +1553,8 @@ Upload could not find the sdk, engine or shard-format version to send. Install t
 
 The API refused, or a check no rule above names. The message says what it wants: a format refusal means check and
 prepare again; a server refusal (409 or 422) names the field, the version or the hero.
+Bytes the API already holds as another version are not refused: upload says so and carries on with the upload
+that holds them, so a republish of unchanged bytes still waits for that upload's verdict.
 
 ### Account
 
@@ -1575,8 +1622,8 @@ without one skips lint and says so.
 
 #### pin-not-sdk
 
-Your SDK chooses the shard format and the engine: a shard repo lists `@wildshard/format` (and `@wildshard/engine`
-while its tests import it) at exactly the versions the SDK pins. `wildshard update --pins` moves them with the SDK in
+Your SDK chooses the shard format and the engine: a shard repo lists `@wildshard/format` at exactly the version the
+SDK pins, and never lists `@wildshard/engine` (the SDK brings the engine it runs; SHARD-COMPAT SI8). `wildshard update --pins` moves them with the SDK in
 one command. A new format or engine release changes nothing in your repo until you update the SDK.
 
 #### lint-not-run
@@ -1783,48 +1830,135 @@ Get engine services from `ShardContext`.
 
 Code the headless simulation imports must not render.
 
-## 7. `wildshard update`
+## 7. Upgrading and migrations
 
-`wildshard update` (or `wildshard update <dir>`) rewrites this guide and the four `wildshard` skills in
-`.claude/skills/` from the installed sdk, and prints each file it wrote. Run it after you move to a newer sdk; the
-`wildshard-upgrade` skill walks the whole move. It touches nothing else: your shard source, `package.json`, README and
-every other file stay as they are. It adds the `.agents/skills/` links, `AGENTS.md` and `CLAUDE.md` only if one is
-missing, and it leaves an `AGENTS.md` or `CLAUDE.md` you changed and says so (`left AGENTS.md: you changed it`). So
-keep your own notes for agents in `AGENTS.md`, never in this guide or a skill: `update` rewrites those. Done when it
-prints `already up to date` or the files it wrote, and `git status` shows only `GUIDE.md`, `.claude/skills/` and any
-agent file it added.
+**Versions.** All six packages share one version. On 0.x, a patch
+(`0.4.x`) never breaks a shard repo. Every break bumps the minor
+(`0.5.0`, `0.6.0`, ...) and ships, in the same release, a **migration**:
+a script that moves your repo to the new layout or API, plus a
+`migrate-<version>` heading below saying what changed and what to check
+after. What a script cannot change safely it prints as a manual step,
+naming the file and what to do.
 
-To move to a newer sdk, run the newest CLI once, whatever sdk the repo is on now:
+**Move to a newer sdk** with one command, whatever sdk the repo is on
+now:
 
 ```sh
-pnpm --package=@wildshard/sdk@latest dlx wildshard update --pins
+pnpm dlx @wildshard/cli upgrade            # npm's latest
+pnpm dlx @wildshard/cli upgrade 0.5.0      # one release
 ```
 
-An older installed CLI cannot do the move: 0.2.4 and earlier refuse the flag, and 0.2.5 refuses a repo that lists
-the sdk as `@wildshard/sharddev` or by a GitHub pin. Once the repo is on the newest sdk, `pnpm exec wildshard
-update --pins` works too.
+Once installed, `pnpm exec wildshard upgrade [version]` does the same;
+`wildshard update --pins[=<version>]` is its old name and still works.
+`upgrade` refuses to start unless `git status` is clean
+(`update-pins-dirty`). In order, it:
 
-`wildshard update --pins` moves the repo to a newer sdk release first: npm's latest, or the one you name with
-`--pins=<version>` (`--pins=0.2.5`). In order, it:
+1. moves every pin `package.json` lists to what the release names: the
+   sdk and the cli to the release, `@wildshard/format`, `three` and
+   `@types/three` to the exact specs it pins, each `pnpm.overrides`
+   entry for one of those with it, and `engines.node`. The sdk keeps the
+   name and form the repo lists it with (`@wildshard/sdk` or
+   `@wildshard/sharddev`; an exact version, an `npm:` alias, or a GitHub
+   pin, moved to the release's tag);
+2. runs `pnpm install`, and refuses if pnpm did not install that sdk
+   (and `three`);
+3. runs `wildshard migrate` (below);
+4. runs `wildshard check .`.
 
-1. reads the release from npm (`pnpm view`) and refuses one older than the repo's sdk;
-2. moves every pin `package.json` lists to what that release names: the sdk to the release, `@wildshard/format`,
-   `@wildshard/engine` and `three` to the exact specs it pins, each `pnpm.overrides` entry for one of those packages
-   with it, and `engines.node` to the Node it needs. The sdk keeps the name and form the repo lists it with:
-   `@wildshard/sdk` or `@wildshard/sharddev`; an exact version, an `npm:@wildshard/sdk@<version>` alias, or a GitHub
-   pin, which moves to the commit the release's `v<version>` tag names (or to that tag, if it named a tag). It changes
-   nothing else in the file and prints each move;
-3. runs `pnpm install`, and refuses if pnpm did not install that sdk and, when the repo lists `three`, that `three`;
-4. applies the release's codemods: each `codemods/<version>.mjs` the new sdk ships, for every version above the old
-   sdk and up to the new one, oldest first. A codemod edits your shard source for a change that would otherwise
-   break it, and prints what it changed;
-5. runs the new sdk's own `wildshard update`, which rewrites this guide and the skills as above;
-6. runs the new sdk's `wildshard check .`.
+If step 2 or 3 fails, it puts `package.json` and `pnpm-lock.yaml` back
+and installs the old sdk again. Done when its last line reads
+`on @wildshard/sdk <version>, check pass`. Commit everything it changed
+together. A refusal is `update-pins` (section 6).
 
-If step 3 or 4 fails, it puts `package.json` and `pnpm-lock.yaml` back and installs the old sdk again. It refuses to
-start unless `git status` is clean (`update-pins-dirty`, `update-pins-no-git`): a codemod edits your files. Done when
-its last line reads `on @wildshard/sdk <version>, check pass`. Commit `package.json`, `pnpm-lock.yaml`, the guide,
-the skills and any codemod edit together. A refusal is `update-pins` (section 6).
+**`wildshard migrate [dir]`** brings the repo up to the sdk *installed*
+in its `node_modules`, however it got there (`upgrade`, a hand
+`pnpm add @wildshard/sdk@0.5.0`, a lockfile bump). It refuses a dirty
+tree, then:
+
+1. rewrites this guide and the four skills from the installed sdk (as
+   `wildshard update` does), so an agent reads the new instructions
+   first;
+2. runs each pending migration, oldest first, and prints what it moved;
+3. writes the stamp;
+4. prints **Manual steps**: each edit no script can make safely. Do each
+   one, then run `wildshard check .`.
+
+It is safe to run again: a migration that has run reports nothing. A
+refusal is `migrate-dirty`, `migrate-no-git` or `migrate` (section 6).
+
+**The stamp.** `package.json` `"wildshard": { "migrated": "<version>" }`
+is the sdk the source was last migrated to, not its pin. Only `new` and
+`migrate` write it. A migration is pending when it is newer than the
+stamp and no newer than the installed sdk, or when its own check finds
+the repo still in the old layout (a repo with no stamp relies on that
+check alone). `wildshard status` prints the installed sdk, the stamp and
+each pending migration; `wildshard status --brief` prints one line when
+one is pending and nothing otherwise. `new` and `update` register
+`status --brief` as a SessionStart hook for Claude Code and Codex
+(`.claude/settings.json` and `.codex/hooks.json`, or
+`.agents/hooks.local.json` in a repo whose hooks come from
+`pnpm agents:sync`), so an agent knows at the start of a session.
+
+**The refusal.** While a migration is pending, `dev`, `watch`, `build`,
+`check` and `upload` stop before doing anything and print the block
+`migration-pending` (section 6) describes. Run
+`pnpm exec wildshard migrate`.
+
+**`wildshard update [dir]`** rewrites this guide and the four
+`wildshard` skills in `.claude/skills/` from the installed sdk, adds the
+SessionStart hook, and prints each file it wrote. It touches nothing
+else: your shard source, `package.json`, README and every other file
+stay as they are. It adds the `.agents/skills/` links, `AGENTS.md` and
+`CLAUDE.md` only if one is missing, and leaves an `AGENTS.md` or
+`CLAUDE.md` you changed (`left AGENTS.md: you changed it`). Keep your
+own notes for agents in `AGENTS.md`, never in this guide or a skill:
+`update` rewrites those.
+
+In a repo on repo-kit's agent-sync (it has `.agents/hooks.json`),
+`update` writes the skills as real folders in `.agents/skills/`, never
+touches `.claude/skills/` or `.claude/settings.json`, and puts the hook
+in `.agents/hooks.local.json`; run `pnpm agents:sync` after it to link
+the skills for Claude Code. `update --guide docs/GUIDE.md` keeps this
+guide there instead of at the root and records the path in
+`package.json` (`"wildshard": { "guide": "docs/GUIDE.md" }`), so later
+`update`, `upgrade` and `migrate` runs write it there too.
+
+### Migrations
+
+#### migrate-0-5-0
+
+Shard assets move from `public/` into `src/static/`. A file the shard
+mounts as `/<path>` now lives at `<source>/static/<path>`
+(`src/static/...`, or `src/shards/<slug>/static/...` in a multi-shard
+repo). Nothing is renamed: every name the shard mounts stays the same,
+so its files come out byte-identical. The migration:
+
+- moves `<source>/assets/public/` to `<source>/static/assets/<slug>/`
+  (the slug `publish-public.mjs` copied it to);
+- moves each committed file `public/<path>` to `<source>/static/<path>`
+  (`public/programs/<slug>.json` to `src/static/programs/`); git sees
+  renames, so history follows;
+- deletes what git ignores under `public/` (the copies
+  `publish-public.mjs` made, `map/top.webp`, `public/shardfiles/`),
+  then `public/` itself;
+- deletes `scripts/publish-public.mjs` and its `build:shards` prefix,
+  the `--ignore-pattern 'public/**'` lint flags, the `public/` lines in
+  `.gitignore` (it adds `out/`) and `public/` in `ci.yml`'s watched
+  paths; a `.gitattributes` row for `public/` names `src/static/`;
+- rewrites a map input (`data/map.json` `inputs`) that named a moved
+  file, so the map's input hash changes (the map image does not); an
+  input naming a path that was never in the repo stays as written.
+
+It refuses, changing nothing, when a copy differs from its source (copy
+your edit into `<source>/assets/public/`, or delete the copy), when
+`public/` holds files git neither tracks nor ignores, and when a repo
+with several shard sources has committed `public/` files (move each
+into its source's `static/` by hand). Its manual steps name each line
+outside `src/` that still names `public/assets`, `public/programs`,
+`public/shardfiles`, `assets/public` or `publish-public`: a script, a
+test fixture or a workflow comment to point at `src/static/` or `out/`.
+Check after: `public/` is gone, and `wildshard check .` passes with the
+same shard file hash as before.
 
 ## 8. Primitives
 
@@ -1975,6 +2109,12 @@ An open sea with waves. **Switched on:** a `sea` water row in `world/water`. **U
 ### `water.field`
 
 Ponds and wet ground across a field. **Switched on:** a water field in `world/field`. **Used by:** Nalati. **Row:** OF40.
+
+### `quest`
+
+A quest's native hosts (chapters, kill steps, body scripts and the composition), in install order. **Switched on:** a
+`hosts` row in `server/quest`. **Used by:** none yet; Driftwood and Pine move to it (FP16b, FP16c).
+**Row:** FP16.
 
 ### `grapple`
 

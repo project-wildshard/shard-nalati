@@ -52,7 +52,7 @@ test('source-owned specimens keep the publisher handoffs retired', () => {
 
 // GR6: the map is a source program; without the specimen composer's camp catalogue it refuses
 test('the map program refuses an omitted specimen composer input', async () => {
-  const bank = new Map(NALATI_MAP_INPUTS.map(name => [name, new Uint8Array(readFileSync(name.startsWith('/') ? `public${name}` : `${project}${name}`))]));
+  const bank = new Map(NALATI_MAP_INPUTS.map(name => [name, new Uint8Array(readFileSync(name.startsWith('/') ? `src/static${name}` : `${project}${name}`))]));
   bank.delete('data/campCatalogue.json');
   await expect(nalatiMapPixels(bank)).rejects.toThrow('Undeclared Nalati map input');
 });

@@ -63,7 +63,7 @@ test('cooked eagle and balbal looks preserve the authored wings, stone and joint
         entries[id] = { file: row.file, triangles: geometry.getIndices().getCount() / 3, joints: joints.length };
         if (kind === 'eagle') {
           const suffix = tier === 'phone' ? '.phone' : '';
-          const original = (await readRigDocument(readFileSync(`public/assets/nalati/models/eagle${suffix}.rigged.glb`))).getRoot();
+          const original = (await readRigDocument(readFileSync(`src/static/assets/nalati/models/eagle${suffix}.rigged.glb`))).getRoot();
           const authored = primitive(original);
           for (const channel of ['POSITION', 'NORMAL', 'TEXCOORD_0', 'JOINTS_0', 'WEIGHTS_0']) {
             equalChannel(geometry.getAttribute(channel).getArray(), authored.getAttribute(channel).getArray(), `${tier} eagle ${channel}`);

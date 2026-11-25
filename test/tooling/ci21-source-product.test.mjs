@@ -20,16 +20,16 @@ test('source-runtime product loans refuse changed source, changed bytes and fore
   writeFileSync('out/nalati-grasslands/shard.json','changed bytes');assert.throws(()=>builtProduct('nalati-grasslands'),/product bytes differ/u);writeFileSync('out/nalati-grasslands/shard.json','actual immutable product');
   writeFileSync('src/untracked.ts','untracked producer input');assert.throws(()=>builtProduct('nalati-grasslands'),/source inventory differs/u);rmSync('src/untracked.ts');
   writeFileSync('out/nalati-grasslands/unlisted.bin','unlisted output');assert.throws(()=>builtProduct('nalati-grasslands'),/product inventory differs/u);rmSync('out/nalati-grasslands/unlisted.bin');
-  mkdirSync('src/assets/public',{recursive:true});mkdirSync('public/assets/nalati-grasslands',{recursive:true});
-  writeFileSync('src/assets/public/alias.bin','tracked alias source');writeFileSync('public/assets/nalati-grasslands/alias.bin','tracked alias source');
+  mkdirSync('src/assets/public',{recursive:true});mkdirSync('src/static/assets/nalati-grasslands',{recursive:true});
+  writeFileSync('src/assets/public/alias.bin','tracked alias source');writeFileSync('src/static/assets/nalati-grasslands/alias.bin','tracked alias source');
   receipt.inputs.push({path:'src/assets/public/alias.bin',sha256:hash('src/assets/public/alias.bin')});save();
   assert.equal(builtProduct('nalati-grasslands'),'out/nalati-grasslands');
-  writeFileSync('public/assets/nalati-grasslands/alias.bin','changed alias');assert.throws(()=>builtProduct('nalati-grasslands'),/Generated public alias differs/u);
-  rmSync('public/assets/nalati-grasslands/alias.bin');
-  mkdirSync('public/assets/nalati-grasslands/map',{recursive:true});writeFileSync('public/assets/nalati-grasslands/map/top.webp','actual immutable product');
+  writeFileSync('src/static/assets/nalati-grasslands/alias.bin','changed alias');assert.throws(()=>builtProduct('nalati-grasslands'),/Generated public alias differs/u);
+  rmSync('src/static/assets/nalati-grasslands/alias.bin');
+  mkdirSync('src/static/assets/nalati-grasslands/map',{recursive:true});writeFileSync('src/static/assets/nalati-grasslands/map/top.webp','actual immutable product');
   assert.equal(builtProduct('nalati-grasslands'),'out/nalati-grasslands');
-  writeFileSync('public/assets/nalati-grasslands/map/top.webp','unsealed generated map');assert.throws(()=>builtProduct('nalati-grasslands'),/Generated map alias differs/u);
-  rmSync('public/assets/nalati-grasslands/map/top.webp');
+  writeFileSync('src/static/assets/nalati-grasslands/map/top.webp','unsealed generated map');assert.throws(()=>builtProduct('nalati-grasslands'),/Generated map alias differs/u);
+  rmSync('src/static/assets/nalati-grasslands/map/top.webp');
   receipt.files.push({path:'../foreign.json',sha256:'a'.repeat(64)});save();assert.throws(()=>builtProduct('nalati-grasslands'),/Foreign producer output/u);
  }finally{process.chdir(previous);rmSync(root,{recursive:true,force:true});}
 });

@@ -1,7 +1,7 @@
 import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { buildDressingWire } from './dressingWire';
 
-/** Own the original native dressing geometry and metadata; no public/source file is read or published. */
+/** Own the original native dressing geometry and metadata; no src/static/source file is read or published. */
 export async function nalatiDressingProgram(ctx: Pick<ProjectGenerationContext, 'cached'>): Promise<ReadonlyMap<string, Uint8Array>> {
   const files = await ctx.cached({ id: 'dressing-geometry', native: true, inputs: [] }, () => {
     const made = buildDressingWire();

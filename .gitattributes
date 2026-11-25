@@ -1,2 +1,2 @@
-public/** -whitespace
+src/static/** -whitespace
 src/**/*.json -whitespace

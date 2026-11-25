@@ -28,7 +28,7 @@ try {
   }
   if (files.size !== expected.length) throw new Error('Original native place inventory differs');
   for (const name of ['places', 'specimens']) {
-    const pin = pins.find(row => row.path === `public/assets/nalati/baked/${name}.bin`), bytes = files.get(`${name}.bin`);
+    const pin = pins.find(row => row.path === `src/static/assets/nalati/baked/${name}.bin`), bytes = files.get(`${name}.bin`);
     if (pin === undefined || bytes === undefined || bytes.length !== pin.bytes || hashImmutableBytes(bytes) !== pin.hash)
       throw new Error(`Original native ${name} binary differs`);
   }
