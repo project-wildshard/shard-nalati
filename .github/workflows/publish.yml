@@ -123,6 +123,8 @@ jobs:
             pick=scripts/select-candidate.mjs; [ -f "$pick" ] || pick=src/scripts/select-candidate.mjs
             test -f "$pick" || { echo '::error::this repo has no scripts/select-candidate.mjs (src/scripts/ when lean): publish its pins'; exit 1; }
             node "$pick"
+            # FAST-RELEASE FR-A23: a sharddev candidate packs its commit and swaps every SDK package to it.
+            node scripts/publish-candidate.mjs
             pnpm install --no-frozen-lockfile --config.ci=false
           else
             pnpm install --frozen-lockfile --config.ci=false
@@ -279,6 +281,8 @@ jobs:
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
             pick=scripts/select-candidate.mjs; [ -f "$pick" ] || pick=src/scripts/select-candidate.mjs
             node "$pick"
+            # FAST-RELEASE FR-A23: a sharddev candidate packs its commit and swaps every SDK package to it.
+            node scripts/publish-candidate.mjs
             pnpm install --no-frozen-lockfile --config.ci=false
           else
             pnpm install --frozen-lockfile --config.ci=false
