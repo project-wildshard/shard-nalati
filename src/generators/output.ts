@@ -140,7 +140,7 @@ const cloudSpecimen = { name: 'storm-titan', pose: { rise: 1, bend: 0, kneel: 0,
 // post graph, then the painted world's fog, air, ground, grass and the panorama / key light / capture world rows
 const lookRows = postChainRows(), painted = NALATI_PAINTED;
 const postLook = (grassRows: NalatiGrass['rows']) => ({ ...lookRows.postGraph, painted: { fog: { ...painted.fog, ...lookRows.paintedFog, lut: lookRows.fogLut }, air: painted.air,
-  ground: 'ground' in painted ? painted.ground : null, tiles: campMaterials, capture: captureRows, grass: { rows: grassRows, cards: painted.cards },
+  ground: 'ground' in painted ? painted.ground : null, tiles: campMaterials, capture: captureRows, grass: { rows: grassRows },
   world: { rows: 'world' in painted ? painted.world : null, panorama: 'panorama' in painted ? painted.panorama : null, key: 'key' in painted ? painted.key : null,
     ridge: PANO_RIDGE_V, ...lookRows.world } } });
 // the shape book (carvings, trophies, arena parts, ghost riders, painted places): its fixed draws, read by the world

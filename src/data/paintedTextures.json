@@ -49,11 +49,6 @@
     "desktop": "/assets/nalati/panorama.webp",
     "phone": "/assets/nalati/panorama.phone.webp"
   },
-  "cards": {
-    "url": "/assets/nalati/cards.webp",
-    "phoneUrl": "/assets/nalati/cards.phone.webp",
-    "name": "nalati-cards"
-  },
   "zenith": {
     "desktop": [
       0.05629749129431427,

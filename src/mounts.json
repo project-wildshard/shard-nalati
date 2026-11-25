@@ -3,8 +3,6 @@
  "outputs": {
   "nalati-grasslands": [
    "/assets/baked/common/cloud-field.bin",
-   "/assets/gpu/nalati/cards-7ecab075.ktx2",
-   "/assets/gpu/nalati/cards.phone-7a6243af.ktx2",
    "/assets/gpu/nalati/models/balbal-cb303eb6.glb",
    "/assets/gpu/nalati/models/balbal.phone-50749fab.glb",
    "/assets/gpu/nalati/models/boulder-1-6296d74d.glb",
@@ -97,8 +95,6 @@
    "/assets/nalati/baked/geometry.bin",
    "/assets/nalati/baked/recurve-pool.json",
    "/assets/nalati/baked/voxel-ao.bin",
-   "/assets/nalati/cards.phone.webp",
-   "/assets/nalati/cards.webp",
    "/assets/nalati/models/coats/horse-saddled.horse.camp-black.coat.phone.webp",
    "/assets/nalati/models/coats/horse-saddled.horse.camp-black.coat.webp",
    "/assets/nalati/models/coats/horse-saddled.horse.tulpar.coat.phone.webp",
