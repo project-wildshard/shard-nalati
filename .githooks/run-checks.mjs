@@ -10,7 +10,8 @@
 //           checkout neither refuse the push nor leak into it.
 //   both:   .githooks/pinned-links.mjs first (commit warns, push refuses;
 //           SKIP_CHECK does not skip it).
-// The hooks only check; `pnpm lint:fix` / `pnpm format` fix.
+// The hooks only check; `pnpm fix` fixes (D33's verb; a repo without it
+// yet, `pnpm lint:fix` / `pnpm format`).
 // Bypass a lane: SKIP_CHECK=1 (last resort; CI still runs it).
 import { spawn, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
@@ -45,10 +46,12 @@ if (!guardPinnedLinks(root, lane)) process.exit(1);
 // FAST-RELEASE FR2 (meta docs/plans/FAST-RELEASE-PLAN.md): a release-only push (a tag on a commit origin has, a
 // stamp-only release branch over origin/main, a stamp-only merge-back, a release branch delete) sends no new code, so
 // the push lane has nothing to gate; SDK 0.4.32 spent about 6 min on each. A repo opts in with its own
-// scripts/release-reuse.mjs (sharddev's names the manifests its release stamps); its release ci still proves the
+// scripts/release-reuse.mjs, src/scripts/release-reuse.mjs in a lean repo (sharddev's names the manifests its release
+// stamps); its release ci still proves the
 // exact SHA, and main's ci runs the merge.
-if (lane === 'push' && existsSync(join(root, 'scripts/release-reuse.mjs'))) {
-  const { releaseOnlyPush } = await import(pathToFileURL(join(root, 'scripts/release-reuse.mjs')).href);
+const reuse = ['scripts/release-reuse.mjs', 'src/scripts/release-reuse.mjs'].map((path) => join(root, path)).find((path) => existsSync(path));
+if (lane === 'push' && reuse) {
+  const { releaseOnlyPush } = await import(pathToFileURL(reuse).href);
   /** @type {{ ok: boolean, reason: string }} */ let verdict = { ok: false, reason: '' };
   try {
     verdict = releaseOnlyPush(root, process.env.WS_PUSH_REFS ?? '');
@@ -129,6 +132,18 @@ if (manifest.binDependencies !== undefined) {
     process.exit(tools.status || 1);
   }
 }
+// Meta QA 11-25 row 49 (J505): a shard push whose hero is older than its content is refused here, before main ci's
+// build does it (.githooks/hero-fresh.mjs, shard repos only). Bypass: SKIP_HERO=1.
+const heroFresh = join(root, '.githooks/hero-fresh.mjs');
+if (lane === 'push' && existsSync(heroFresh) && process.env.SKIP_HERO !== '1') {
+  const { sdkRestamp, staleHeroes } = await import(pathToFileURL(heroFresh).href);
+  const stale = staleHeroes(pkgDir, sdkRestamp(pkgDir, env));
+  if (stale.length) {
+    console.error(`\n  X push blocked: a stale hero would fail main ci's build:\n${stale.map((line) => `    ${line}`).join('\n')}\n    SKIP_HERO=1 is a last resort (J381).\n`);
+    copy?.remove();
+    process.exit(1);
+  }
+}
 const run = ({ name, args }) => new Promise((done) => {
   const child = spawn('pnpm', ['run', '--silent', ...args], { cwd: pkgDir, env });
   let output = '';
@@ -146,7 +161,8 @@ copy?.remove();
 const failed = results.filter((result) => result.code !== 0);
 for (const { name, output } of failed) console.error(`\n  X pnpm ${name} failed:\n${output.trim().replace(/^/gm, '    ')}`);
 if (failed.length) {
-  const fix = lane === 'commit' ? ' (pnpm lint:fix / pnpm format fix most of it)' : '';
+  const fixer = scripts.fix ? 'pnpm fix fixes' : 'pnpm lint:fix / pnpm format fix';
+  const fix = lane === 'commit' ? ` (${fixer} most of it)` : '';
   console.error(`\n  ${lane} blocked. Fix it${fix}; SKIP_CHECK=1 is a last resort.\n`);
   process.exit(1);
 }
