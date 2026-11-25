@@ -31,3 +31,6 @@ Fixups found by running the tools:
   `three` paths make oxlint misread namespace imports.
 - `src/bake/bake-nalati-poi-contacts.mjs`, `src/bake/bake-nalati-sign-atlases.mjs` import tooling from `src/scripts/`. The
   SDK's build-code list predates it, so `no-runtime-in-build` is off there.
+
+Step 3: `agent-sync --from` on the lean layout re-points the kit skills
+at `src/scripts/.kit/`.
