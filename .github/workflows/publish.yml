@@ -357,6 +357,14 @@ jobs:
           owner: project-wildshard
           repositories: engine
           permission-contents: write
+      # Meta QA 11-25 row 61: shard repos hold no nightly key (by design), so the request above is skipped; say so.
+      - name: Say who pins this revision
+        if: steps.nightly.outputs.token == '' && steps.report.outputs.revision != ''
+        env:
+          REVISION: ${{ steps.report.outputs.revision }}
+        run: |
+          echo "::notice::no nightly app key here: engine's shard-sweep.yml starts the pin for $SLUG r$REVISION within 20 minutes"
+          echo "engine's shard-sweep starts the pin for $SLUG r$REVISION (this repo holds no nightly key)" >> "$GITHUB_STEP_SUMMARY"
       - name: Ask engine for the pin bump
         if: steps.nightly.outputs.token != ''
         env:
@@ -410,9 +418,14 @@ jobs:
           tag=$(sed -n 's/^tag=//p' "$GITHUB_OUTPUT" | tail -1)
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Meta QA 11-25 row 61: GITHUB_TOKEN may not push a tag onto a commit whose workflows differ from main's (a
+          # kit sync mid-run, Pine r18). published.json still lands; engine's shard-sweep.yml tags it with the nightly app.
           if ! git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
             git tag "$tag" "$BUILT"
-            git push origin "refs/tags/$tag"
+            if ! git push origin "refs/tags/$tag"; then
+              echo "::notice::tag $tag was refused here; engine's shard-sweep.yml tags it from published.json"
+              echo "tag $tag: refused to this token; engine's shard-sweep tags it" >> "$GITHUB_STEP_SUMMARY"
+            fi
           fi
           git add published.json
           if git diff --cached --quiet; then
