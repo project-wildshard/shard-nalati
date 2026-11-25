@@ -182,7 +182,7 @@
       ],
       "fixturePath": "test/fixtures/nalati-decorative.json",
       "fixtureBlob": "4a19fa3532a876b4d3a388401663090b0744e62e",
-      "changes": "Only defining owner imports rewritten: local src/generators, public SDK terrain/portableMath, format immutable, public engine src/scripts/bake-output.mjs. All original assertions and complete original wire pin unchanged. Direct actual source generator and terrain adapter cross-compare, full original length/hash, untouched input bytes, separate/nested result ownership, post-mutation repeat and malformed terrain refusal remain. Actual source closure now admitted to real compiler via explicit pinned @types/three0.186.0 dev dependency; no copied producer, fake type/any/ignore or new helper. Whole2case file758ms locally. No original engine removal before verified destination land."
+      "changes": "Only defining owner imports rewritten: local src/generators, public SDK terrain/portableMath, format immutable, public engine scripts/bake-output.mjs. All original assertions and complete original wire pin unchanged. Direct actual source generator and terrain adapter cross-compare, full original length/hash, untouched input bytes, separate/nested result ownership, post-mutation repeat and malformed terrain refusal remain. Actual source closure now admitted to real compiler via explicit pinned @types/three0.186.0 dev dependency; no copied producer, fake type/any/ignore or new helper. Whole2case file758ms locally. No original engine removal before verified destination land."
     },
     {
       "sourcePath": "test/nalati-place-runtime-source.test.ts",

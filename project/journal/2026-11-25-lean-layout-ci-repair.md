@@ -13,3 +13,4 @@ paths. sharddev-55 saw main red and asked for a look. Fixes:
 - `test/candidate-boundary.test.mjs` is the pre-move file with only its own import re-pointed: the mover had re-pointed relative paths inside its fixture strings, which describe a temp tree
 - `./scripts/bake-loader.mjs` and `./scripts/sim-node-loader.mjs` in bake commands, `scripts/blender/targets.json`, fixtures and a ci21 test now name `./src/scripts/`
 - `test/ci21-candidate-ports.json`: targetBlob re-pinned for the files those path edits changed
+- `test/ci21-wire-ports.json`: "public engine scripts/bake-output.mjs" names engine's path, so the mover's re-point is undone
