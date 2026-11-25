@@ -11,6 +11,6 @@ test('no workflow names a fixed default engine commit', () => {
   for (const file of ['ci.yml']) {
     const path = resolve(ROOT, '.github/workflows', file);
     if (!existsSync(path)) continue;
-    assert.doesNotMatch(readFileSync(path, 'utf8'), /inputs\.engine \|\| '[0-9a-f]{40}'/u, `${file}: default the candidate to scripts/installed-engine.mjs`);
+    assert.doesNotMatch(readFileSync(path, 'utf8'), /inputs\.engine \|\| '[0-9a-f]{40}'/u, `${file}: default the candidate to src/scripts/installed-engine.mjs`);
   }
 });

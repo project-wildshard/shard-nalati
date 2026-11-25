@@ -67,20 +67,20 @@ jobs:
       - name: Install the declared producer graph
         run: pnpm install --frozen-lockfile --config.ci=false
       - name: Record the actual pinned producer
-        run: node scripts/assert-candidate-engine.mjs --producer
+        run: node src/scripts/assert-candidate-engine.mjs --producer
       - name: Build actual authored Nalati products
         run: pnpm build:shards
       - name: Select the exact runtime repair
         env:
           CANDIDATE_ENGINE: ${{ env.NALATI_ENGINE_CANDIDATE }}
-        run: node scripts/select-candidate.mjs
+        run: node src/scripts/select-candidate.mjs
       - name: Install the candidate runtime graph
         run: pnpm install --no-frozen-lockfile --config.ci=false
       - name: Verify the actual installed immutable engine
         id: runtime
-        run: node scripts/assert-candidate-engine.mjs
+        run: node src/scripts/assert-candidate-engine.mjs
       - name: Check installed exports and the cleared queue
-        run: node scripts/check-test-boundary.mjs --rewards
+        run: node src/scripts/check-test-boundary.mjs --rewards
       - name: Earn the goat, Titan rewards and exact continuations
         run: node --experimental-transform-types --import @wildshard/sdk/headless/scripts/sim-node-loader.mjs --test test/reward-candidate/mounted-rewards.test.mjs
       - name: Earn the King reward and native continuations

@@ -1,0 +1,3 @@
+# The shard source has never been formatted: the old format:check
+# covered kit/ only. Opt a folder in by removing it here.
+src/**

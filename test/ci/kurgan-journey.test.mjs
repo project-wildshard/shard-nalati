@@ -2,7 +2,7 @@
 // spawn to the real kurgan portal. The room's player reaches the chamber
 // and its genuine intro checkpoint admits and resumes. The King's fight
 // remains open: after a death/retry its native body resets below the room
-// floor on engine 0.1.18 (scripts/probe-kurgan.mjs).
+// floor on engine 0.1.18 (src/scripts/probe-kurgan.mjs).
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { boot, rider } from './journey-rider.mjs';

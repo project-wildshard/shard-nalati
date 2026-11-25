@@ -6,7 +6,7 @@ import { test } from 'node:test';
 
 const root = 'src';
 const commands = [
-  ['crag bank', 'scripts/bake-nalati-crags.mjs'],
+  ['crag bank', 'src/scripts/bake-nalati-crags.mjs'],
   ['POI contact banks', `${root}/bake/bake-nalati-poi-contacts.mjs`, '--rebake-contacts'],
 ];
 

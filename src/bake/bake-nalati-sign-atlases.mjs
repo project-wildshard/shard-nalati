@@ -1,13 +1,13 @@
-import { KEYCHAIN_ARGS } from '../../scripts/chromium-keychain.mjs';
+import { KEYCHAIN_ARGS } from '../scripts/.kit/chromium-keychain.mjs';
 // A standalone asset tool (GR6, D2: it needs a browser), outside the generation scheduler; its three outputs are committed
 // authored inputs. Run it by hand through browser-lane.sh when the sign text changes: it keeps the exact canvas raster,
 // with no runtime canvas or font dependency.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { chromium, devices } from "../../scripts/browser-playwright.mjs";
+import { chromium, devices } from "../scripts/browser-playwright.mjs";
 import { paintSignAtlas } from '../generators/signLettering.ts';
 import { nalatiRoadSignSites } from '../generators/roadSigns.ts';
-import { byteWriter, outputHash, jsonBytes } from '../../scripts/bake-output.mjs';
+import { byteWriter, outputHash, jsonBytes } from '../scripts/bake-output.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const read = file => JSON.parse(readFileSync(resolve(root, 'src/data', file), 'utf8'));

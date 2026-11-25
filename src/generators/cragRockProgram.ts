@@ -14,6 +14,6 @@ export async function nalatiCragRockProgram(ctx: Pick<ProjectGenerationContext, 
   if (lattice === undefined || committed === undefined) throw new Error('Missing Nalati crag inputs');
   const made = nalatiCragRock(lattice);
   if (made.bin.length !== committed.length || made.bin.some((value, i) => value !== committed[i]))
-    throw new Error('Committed crags.bin differs from the crag construction: run scripts/bake-nalati-crags.mjs');
+    throw new Error('Committed crags.bin differs from the crag construction: run src/scripts/bake-nalati-crags.mjs');
   return made.rows;
 }

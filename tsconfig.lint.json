@@ -1,0 +1,5 @@
+{
+  // The shard lint's resolver config (oxlint --tsconfig). The root tsconfig.json maps three to
+  // @types/three for tsc, and oxlint's import(namespace) misreads namespace imports through it.
+  "compilerOptions": { "module": "esnext", "moduleResolution": "bundler" }
+}

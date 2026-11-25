@@ -8,7 +8,7 @@ import { bakeModelPaint } from '../generators/modelPaint.mjs';
 import { fitRock } from '../generators/fittedRock.ts';
 import { hullCandidates, hullAt } from '../generators/solid.ts';
 import { nativeNalatiDressingPlacements } from '../generators/nativeDressingPlacements.mjs';
-import { byteWriter, jsonBytes } from '../../scripts/bake-output.mjs';
+import { byteWriter, jsonBytes } from '../scripts/bake-output.mjs';
 
 if (!process.argv.includes('--rebake-contacts')) throw new Error('Contact authoring requires --rebake-contacts');
 const root = resolve(import.meta.dirname, '../..');

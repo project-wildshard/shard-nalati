@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { defineConfig } from 'vitest/config';
-import { viteTmpRoot } from './scripts/vite-tmp.mjs';
+import { viteTmpRoot } from './src/scripts/.kit/vite-tmp.mjs';
 import { enginePackagePath } from '@wildshard/sdk/headless';
 
 const engine = path.dirname(enginePackagePath);

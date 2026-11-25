@@ -83,12 +83,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PREPARATION: ${{ inputs.preparation }}
-        run: node scripts/publish-shard.mjs preparation
+        run: node src/scripts/.kit/publish-shard.mjs preparation
       - name: Refuse anything but main's green tip
         env:
           GH_TOKEN: ${{ github.token }}
           PUBLISH_REHEARSE: ${{ inputs.rehearse }}
-        run: node scripts/publish-shard.mjs gate
+        run: node src/scripts/.kit/publish-shard.mjs gate
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
         with:
           package_json_file: package.json
@@ -124,7 +124,7 @@ jobs:
             test -f "$pick" || { echo '::error::this repo has no scripts/select-candidate.mjs (src/scripts/ when lean): publish its pins'; exit 1; }
             node "$pick"
             # FAST-RELEASE FR-A23: a sharddev candidate packs its commit and swaps every SDK package to it.
-            node scripts/publish-candidate.mjs
+            node src/scripts/.kit/publish-candidate.mjs
             pnpm install --no-frozen-lockfile --config.ci=false
           else
             pnpm install --frozen-lockfile --config.ci=false
@@ -139,7 +139,7 @@ jobs:
           # QA-11-23-b row 47: and refuse a version other bytes hold (a refused upload's too) before the build.
           PUBLISH_SLUG: ${{ inputs.slug }}
           PUBLISH_VERSION: ${{ inputs.version }}
-        run: node scripts/publish-preflight.mjs "${{ inputs.channel }}"
+        run: node src/scripts/.kit/publish-preflight.mjs "${{ inputs.channel }}"
       # The phone atlases' Basis encoder is built once per host and cached
       # (S12f3). Its key names the C library: a basisu built on a newer
       # runner image (ubuntu-26.04, glibc 2.43) fails on an older one
@@ -157,7 +157,7 @@ jobs:
       # the repo has it, into out/), then check.
       - name: Build, and name the product
         id: product
-        run: node scripts/publish-shard.mjs build "${{ inputs.slug }}"
+        run: node src/scripts/.kit/publish-shard.mjs build "${{ inputs.slug }}"
       - name: Check the shard source as an author would
         run: pnpm exec wildshard check . tmp/publish/check
       # Folded from shard-showcase (lean-layout L6): a repo with shard-format
@@ -172,7 +172,7 @@ jobs:
         id: version
         env:
           PUBLISH_REHEARSE: ${{ inputs.rehearse }}
-        run: node scripts/publish-version.mjs "${{ steps.product.outputs.slug }}" "${{ inputs.version }}"
+        run: node src/scripts/.kit/publish-version.mjs "${{ steps.product.outputs.slug }}" "${{ inputs.version }}"
       - name: Install phone WebKit for prepare
         run: |
           # Prepare uses the directly installed dev package or CLI's dev package.
@@ -282,7 +282,7 @@ jobs:
             pick=scripts/select-candidate.mjs; [ -f "$pick" ] || pick=src/scripts/select-candidate.mjs
             node "$pick"
             # FAST-RELEASE FR-A23: a sharddev candidate packs its commit and swaps every SDK package to it.
-            node scripts/publish-candidate.mjs
+            node src/scripts/.kit/publish-candidate.mjs
             pnpm install --no-frozen-lockfile --config.ci=false
           else
             pnpm install --frozen-lockfile --config.ci=false
@@ -295,7 +295,7 @@ jobs:
       # masks them, and nothing here prints them or the account's email.
       - name: Upload
         env:
-          NODE_OPTIONS: --import=${{ github.workspace }}/scripts/wildshard-agent-fetch.mjs
+          NODE_OPTIONS: --import=${{ github.workspace }}/src/scripts/.kit/wildshard-agent-fetch.mjs
           WS_LANE_NAME: ci-publish
           WILDSHARD_API_URL: https://api.wildshard.io
           WILDSHARD_API_KEY: ${{ secrets.WILDSHARD_API_KEY }}
@@ -305,10 +305,10 @@ jobs:
           set -o pipefail
           # FAST-RELEASE FR-A6: bytes the catalogue already holds under another version are a green no-op, not a red run.
           pnpm exec wildshard upload "tmp/publish/$SLUG.shardfile" --channel "$CHANNEL" --version "$VERSION" --no-wait 2>&1 | tee tmp/publish/upload.log ||
-            node scripts/publish-shard.mjs unchanged tmp/publish/upload.log
+            node src/scripts/.kit/publish-shard.mjs unchanged tmp/publish/upload.log
       - name: Accepted upload, or committed revision and grid line
         id: report
-        run: node scripts/publish-shard.mjs summary "$SLUG" "$CHANNEL" tmp/publish/upload.log "tmp/publish/$SLUG.shardfile"
+        run: node src/scripts/.kit/publish-shard.mjs summary "$SLUG" "$CHANNEL" tmp/publish/upload.log "tmp/publish/$SLUG.shardfile"
 
   # A6 (build-max 2026-11-20): Pine's cook takes 45 to 52 minutes, past the upload job's limit, which cancelled runs
   # whose cook succeeded. This job reads the API's upload status, needs no API key, and only then asks engine for the pin.
@@ -347,7 +347,7 @@ jobs:
           node-version-file: package.json
       - name: Wait for the cook's verdict and staging's revision
         id: report
-        run: node scripts/publish-shard.mjs cook "$SLUG" "$CHANNEL" "$HASH" "$UPLOAD_ID"
+        run: node src/scripts/.kit/publish-shard.mjs cook "$SLUG" "$CHANNEL" "$HASH" "$UPLOAD_ID"
       - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         id: nightly
         if: env.NIGHTLY_APP_CLIENT_ID != '' && steps.report.outputs.revision != ''
@@ -406,7 +406,7 @@ jobs:
       - name: Tag the built commit and commit published.json
         id: record
         run: |
-          node scripts/publish-shard.mjs record "$SLUG" "$VERSION" "$REVISION" "$HASH" "$CHANNEL" "$BUILT"
+          node src/scripts/.kit/publish-shard.mjs record "$SLUG" "$VERSION" "$REVISION" "$HASH" "$CHANNEL" "$BUILT"
           tag=$(sed -n 's/^tag=//p' "$GITHUB_OUTPUT" | tail -1)
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

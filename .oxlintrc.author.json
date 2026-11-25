@@ -146,7 +146,7 @@
     },
     {
       // Node-side tooling: build scripts, the Vite configs and plugin, the Vercel functions in api/, the drafts site's tools.
-      "files": ["scripts/**", "src/generators/**/*.mjs", "src/bake/**/*.mjs", "src/blender/**/*.mjs", "vite/**", "vite.config.ts", "vitest.config.ts", "api/**", "api-tests/**", "lint/**", "drafts/tools/**", "drafts/test/**", "drafts/vite.config.ts", "admin/tools/**", "admin/test/**", "admin/vite.config.ts"],
+      "files": ["src/scripts/**", "src/generators/**/*.mjs", "src/bake/**/*.mjs", "src/blender/**/*.mjs", "vite/**", "vite.config.ts", "vitest.config.ts", "api/**", "api-tests/**", "lint/**", "drafts/tools/**", "drafts/test/**", "drafts/vite.config.ts", "admin/tools/**", "admin/test/**", "admin/vite.config.ts"],
       "env": { "node": true },
       "rules": {
         "import/no-nodejs-modules": "off", // these run under node
@@ -154,10 +154,10 @@
       }
     },
     {
-      // G348 (Jake): the bakes are generic for any shard; a slug branch anywhere in scripts/bake is refused. Each shard
+      // G348 (Jake): the bakes are generic for any shard; a slug branch anywhere in src/scripts/bake is refused. Each shard
       // declares its own far look / grid / parts, ground and tree stand-ins in data/placeholder.ts and its mover modules
       // in data/moverBake.ts; the bakers are the SDK's.
-      "files": ["scripts/bake/**"],
+      "files": ["src/scripts/bake/**"],
       "rules": { "wildshard/no-shard-branch": "error" }
     },
     {
@@ -269,7 +269,13 @@
     {
       "files": ["**/*.d.ts"],
       "rules": { "import/unambiguous": "off" } // ambient module declarations have no import/export by design
+    },
+    {
+      // Build code that imports the repo's tooling from src/scripts/ (lean layout, D31): the
+      // SDK's BUILD list predates src/scripts/ and reads it as play code.
+      "files": ["src/bake/bake-nalati-poi-contacts.mjs","src/bake/bake-nalati-sign-atlases.mjs"],
+      "rules": { "wildshard/no-runtime-in-build": "off" }
     }
   ],
-  "ignorePatterns": ["**/*.generated.*", "test/fixtures/*", "!test/fixtures/nalati-original-species.ts", ".tsc-layers/", "dist/", "dist-native/", "ios/", "android/", ".native-build/", "node_modules/", "src/static/", "progress/", "art/", "sources/", "docs/"]
+  "ignorePatterns": ["src/scripts/**", "src/test/.kit/**", "**/*.generated.*", "test/fixtures/*", "!test/fixtures/nalati-original-species.ts", ".tsc-layers/", "dist/", "dist-native/", "ios/", "android/", ".native-build/", "node_modules/", "src/static/", "progress/", "art/", "sources/", "docs/"]
 }

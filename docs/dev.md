@@ -22,7 +22,7 @@ Run from the repo root.
 - `pnpm lint:fix` / `pnpm format`: the hooks only check; these fix.
 - `node kit/cli/main.ts --help`: the CLI without installing it.
 - `pnpm md:wrap`: rewraps Markdown prose to ~72 columns.
-- `kit/scripts/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
+- `src/scripts/.kit/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
 
 The explicit CI-only route proof runs after a real build:
 

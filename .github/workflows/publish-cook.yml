@@ -80,7 +80,7 @@ jobs:
           node-version-file: package.json
       - name: Wait for the cook's verdict and staging's revision
         id: report
-        run: node scripts/publish-shard.mjs cook "$SLUG" "$CHANNEL" "$HASH" "$UPLOAD_ID"
+        run: node src/scripts/.kit/publish-shard.mjs cook "$SLUG" "$CHANNEL" "$HASH" "$UPLOAD_ID"
       - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         id: nightly
         if: env.NIGHTLY_APP_CLIENT_ID != '' && steps.report.outputs.revision != ''
@@ -137,11 +137,11 @@ jobs:
       - name: Tag the built commit and commit published.json
         id: record
         run: |
-          if ! grep -q "command === 'record'" scripts/publish-shard.mjs; then
+          if ! grep -q "command === 'record'" src/scripts/.kit/publish-shard.mjs; then
             echo "this repo's publish-shard.mjs records nothing; skipped" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          node scripts/publish-shard.mjs record "$SLUG" "$VERSION" "$REVISION" "$HASH" "$CHANNEL" "$BUILT"
+          node src/scripts/.kit/publish-shard.mjs record "$SLUG" "$VERSION" "$REVISION" "$HASH" "$CHANNEL" "$BUILT"
           tag=$(sed -n 's/^tag=//p' "$GITHUB_OUTPUT" | tail -1)
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

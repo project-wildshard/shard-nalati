@@ -9,7 +9,7 @@ import { runNativeRecorder, type RecorderTask } from '@wildshard/sdk/headless/sc
 
 const memos = new Map<string, InputHashMemo>();
 const MAX_BYTES = 1 << 26;
-const LOADER = 'scripts/bake-loader.mjs';
+const LOADER = 'src/scripts/bake-loader.mjs';
 
 /** Share completed construction, never a test result. The existing native cache
  * binds exact input bytes, tool/host identity and every output hash, coalesces
@@ -29,7 +29,7 @@ export function nativeProgramJob(spec: NativeProgramSpec): {
   memos.set(root, memo);
   // Data-only proof constructors need no app identity or discovery-table preload.
   // The stricter simulation loader still fences its renderer admission rules.
-  const loader = spec.loader === 'simulation' ? 'scripts/sim-node-loader.mjs' : LOADER;
+  const loader = spec.loader === 'simulation' ? 'src/scripts/sim-node-loader.mjs' : LOADER;
   const inventory = (): string[] => [...new Set([spec.script, LOADER, loader, ...spec.inputs.flatMap(path => memo.paths(path, true))])].sort();
   const paths = inventory(), inputs = bakeInputHashes(root, paths, memo);
   const command = [process.execPath, ...(spec.transformTypes === true ? ['--experimental-transform-types'] : []), '--import', `./${loader}`, '--', spec.script];
