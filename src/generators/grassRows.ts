@@ -88,15 +88,17 @@ const RINGS: RingCfg[] = phone
   ? [{ T: 4, G: 8, s: 0.085, w: 0.047, seg: 3 }, { T: 8, G: 12, s: 0.2, w: 0.1, seg: 2 }, { T: 16, G: 14, s: 0.45, w: 0.2, seg: 1 }]
   : [{ T: 4, G: 8, s: 0.06, w: 0.034, seg: 3 }, { T: 8, G: 14, s: 0.15, w: 0.08, seg: 3 }, { T: 16, G: 18, s: 0.34, w: 0.16, seg: 2 }];
 const FLOWERS = phone ? { T: 8, G: 10, s: 0.3 } : { T: 8, G: 14, s: 0.22 };
-/** the near field (0 – ~3 m): painted card clumps (GRASS_CARDS), 3 crossed quads each, on the SDK tile field (`across` 2 m
- *  tiles round the camera's, so the cards reach past NEAR[1] every way); the blades thin out under them */
+/** the near field (0 – ~3 m) was painted card clumps (GRASS_CARDS), 3 crossed quads each, on the SDK tile field. QA 11-24
+ *  row 54 (J510: no flat image stands in for a 3D object): the cards no longer draw (grassView.json `cardsHeight` is under
+ *  any eye height) and the inner ring's real blades stay full to the camera instead of thinning under them. The engine
+ *  still requires the card scene; dropping it and its texture is an engine follow-up. */
 const CARDS = phone ? { T: 2, across: 5, s: 0.2 } : { T: 2, across: 5, s: 0.17 };
 /** where the cards hand over to the blades (m from the camera): cards full inside NEAR[0], gone past NEAR[1] */
 const NEAR = [2.3, 3.4] as const;
 
 
 
-  const blades = RINGS.map((cfg, index) => { const half = cfg.G * cfg.T / 2; return bladeTile(Math.round(cfg.T / cfg.s), cfg, index === RINGS.length - 1 ? [half * .6,half * .95] : [1e4,1e4], index === 0 ? [NEAR[0],NEAR[1],.4] : [-1,0,1]); });
+  const blades = RINGS.map((cfg, index) => { const half = cfg.G * cfg.T / 2; return bladeTile(Math.round(cfg.T / cfg.s), cfg, index === RINGS.length - 1 ? [half * .6,half * .95] : [1e4,1e4], [-1,0,1]); });
   const cfg = FLOWERS, half = cfg.G * cfg.T / 2;
   const flowers = flowerTile(Math.round(cfg.T / cfg.s), cfg.s, [half * .6,half * .96], [NEAR[0]-.4,NEAR[1]-.2,0]);
   const per = Math.round(CARDS.T / CARDS.s), cards = tileFieldGeometry({ across: CARDS.across, layers: 0, seed: 0x4a1a, grid: per, card: CLUMP }, per * per);

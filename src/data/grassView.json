@@ -14,7 +14,7 @@
     "speedLimit": 30,
     "strength": 1
   },
-  "cardsHeight": 6,
+  "cardsHeight": 0.01,
   "ringHeight": 0.9,
   "gainFalloff": [
     0.18,
