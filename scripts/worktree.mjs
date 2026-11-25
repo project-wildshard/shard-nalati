@@ -9,7 +9,7 @@
 //      writes the rest; `git status` must then be clean and the hooks live, or setup takes its worktree back;
 //   3. `pnpm install --frozen-lockfile --offline`: pnpm's store, cloned, not downloaded;
 //   4. `pnpm pins` when the repo has that script (shard products from ~/.cache/wildshard/pins);
-//   5. names the herdr pane (inside herdr only) and prints the land steps.
+//   5. labels the hc terminal (inside hc only) and prints the land steps.
 // Before step 1 adds anything, meta REPO-DISK DK9 (Q41): it refuses when the repo's volume has under MIN_FREE_GIB
 // free or the repo already has MAX_WORKTREES live worktrees under .worktrees/, and names the oldest parked one.
 // WS_WORKTREE_FREE_GIB stands in for the measured free GiB (tests); setting it is a deliberate override.
@@ -402,9 +402,9 @@ export function worktreeNew(argv,cwd=process.cwd(),env=process.env){
  const childEnv=Object.fromEntries(Object.entries(env).filter(([key])=>!key.startsWith('GIT_')));
  if(options.install&&existsSync(manifest))timed('install',()=>withStoreUse(env,'worktree install',()=>run(tree,'pnpm',['install','--frozen-lockfile','--offline'],childEnv)));
  if(options.pins&&scripts.pins!==undefined)timed('pins',()=>run(tree,'pnpm',['--silent','pins'],childEnv));
- if(options.herdr&&env.HERDR_ENV==='1'&&env.HERDR_PANE_ID!==undefined&&env.HERDR_PANE_ID!==''){
-  const named=spawnSync('herdr',['pane','rename',env.HERDR_PANE_ID,`${basename(canonical)} ${branch}`],{encoding:'utf8'});
-  if(named.status!==0)process.stderr.write(`worktree: herdr pane not renamed (${named.error?.message??named.stderr.trim()})\n`);
+ if(options.herdr&&env.HC_TERMINAL_ID!==undefined&&env.HC_TERMINAL_ID!==''){
+  const named=spawnSync('hc',['label',env.HC_TERMINAL_ID,`goal=${basename(canonical)} ${branch}`],{encoding:'utf8'});
+  if(named.status!==0)process.stderr.write(`worktree: hc terminal not labelled (${named.error?.message??named.stderr.trim()})\n`);
  }
  // LAND-SIMPLIFY LS2: local readers use main's last measured test seconds; refresh a missing or day-old table in the
  // background (scripts/test-timings.mjs fetch). It never holds up the worktree, and a failure only leaves the defaults.

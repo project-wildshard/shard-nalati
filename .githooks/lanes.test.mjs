@@ -78,6 +78,13 @@ describe('check lanes', () => {
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /pnpm lint failed:[\s\S]*no-any: a\.ts:1[\s\S]*pnpm lint:fix/);
   });
+  test('a repo with the fix verb is told to run it (D33)', () => {
+    const box = sandbox();
+    toolchain(box, { ...pass, fix: 'true', lint: 'node -e "process.exit(1)"' });
+    const result = box.commit({ 'src/a.ts': 'export {};\n' }, MSG);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /commit blocked\. Fix it \(pnpm fix fixes most of it\)/);
+  });
   test('commits with no code or JSON skip the lane', () => {
     const box = sandbox();
     toolchain(box, { ...pass, lint: 'node -e "process.exit(1)"', typecheck: 'node -e "process.exit(1)"' });
