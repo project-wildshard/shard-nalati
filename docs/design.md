@@ -25,4 +25,4 @@ Only the scaffold exists:
 ## Coming with the import
 
 - `src/`
-- `public/assets/nalati-grasslands/`
+- `src/static/assets/nalati-grasslands/`

@@ -27,6 +27,9 @@
     "wildshard/no-generated-import": "error",
     "wildshard/no-generated-json-import": "error",
     "wildshard/no-base64": "error",
+    // three 0.186's module re-exports its classes with `export *` from three.core.js, which oxlint 1.89's import/namespace
+    // does not follow (866 false "not found in imported namespace" on `THREE.Color` and the like); TypeScript checks these names.
+    "import/namespace": "off",
     // ── kept on, but configured ──────────────────────────────────────────────────────────────────
     "typescript/no-explicit-any": "error",
     "typescript/no-non-null-assertion": "error",
