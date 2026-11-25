@@ -1,0 +1,9 @@
+{
+  "nalati-grasslands": {
+    "version": "0.0.9",
+    "revision": 10,
+    "hash": "b730599048b8a4a2797b3b2ad3a36d90c40870650a3002ca416a5fa09ad9b718",
+    "channel": "staging",
+    "commit": "bbacd02c3f3f5432928b3e1489c89745a1799a5b"
+  }
+}
