@@ -27,7 +27,7 @@ import sys
 import numpy as np
 from PIL import Image
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 SRC = os.path.join(ROOT, 'art/nalati-grasslands/round-6-panorama/panorama-5530x1024.jpg')
 OUT = os.path.join(ROOT, 'src/static/assets/nalati')
 PANO_PAD = 16         # px of wrap copied onto each side of the written strips (sky.ts PANO_PAD_PX)
