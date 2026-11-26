@@ -12,7 +12,8 @@
 //   .agents/hooks.json        kit-owned hook spec: [{ event, tools?, script,
 //                             args?, status?, timeout? }]; tools is "shell"
 //                             (Claude and Codex Bash) or "edit" (Claude
-//                             Edit|Write|MultiEdit, Codex apply_patch)
+//                             Edit|Write|MultiEdit|NotebookEdit, Codex
+//                             apply_patch)
 //   .agents/hooks.local.json  optional, the repo's own hooks, same shape
 //   .agents/hooks/            the scripts both tools run (lib/payload.mjs
 //                             reads either tool's stdin)
@@ -50,7 +51,8 @@ export const CLAUDE_SKILLS = '.claude/skills';
 /** What a spec's `tools` becomes in each tool's matcher (recorded payloads: .agents/hooks/test/fixtures/). */
 export const MATCHERS = {
   shell: { claude: 'Bash', codex: 'Bash' },
-  edit: { claude: 'Edit|Write|MultiEdit', codex: 'apply_patch' },
+  // NotebookEdit too (meta QA 11-25 rows 106 and 108): an edit guard must see every Claude tool that writes a file.
+  edit: { claude: 'Edit|Write|MultiEdit|NotebookEdit', codex: 'apply_patch' },
 };
 const TOOL_EVENTS = new Set(['PreToolUse', 'PostToolUse']);
 const RUNNERS = { '.sh': 'bash', '.mjs': 'node', '.js': 'node', '.py': 'python3' };
@@ -110,8 +112,9 @@ function readSpec(root, path, required) {
     if (!EVENTS.claude.has(event) || !EVENTS.codex.has(event)) problems.push(`${at} event ${JSON.stringify(event)} is not one both tools fire`);
     if (TOOL_EVENTS.has(event) && !Object.hasOwn(MATCHERS, tools)) problems.push(`${at} needs "tools": "shell" or "edit"`);
     if (!TOOL_EVENTS.has(event) && tools !== undefined) problems.push(`${at} ${event} takes no "tools"`);
-    if (typeof script !== 'string' || isAbsolute(script) || script.split('/').includes('..') || !/^(?:\.agents\/hooks|scripts)\/[\w./-]+$/.test(script)) {
-      problems.push(`${at} script must be a path under .agents/hooks/ or scripts/`);
+    if (typeof script !== 'string' || isAbsolute(script) || script.split('/').includes('..') || !/^(?:\.agents\/hooks|(?:src\/)?scripts)\/[\w./-]+$/.test(script)) {
+      // a lean repo's scripts live in src/scripts/ (D31), the old layout's in the root folder
+      problems.push(`${at} script must be a path under .agents/hooks/ or the repo's scripts folder`);
     } else if (!RUNNERS[script.slice(script.lastIndexOf('.'))]) {
       problems.push(`${at} script must end in ${Object.keys(RUNNERS).join(', ')}`);
     } else if (!existsSync(join(root, script)) || !statSync(join(root, script)).isFile()) {

@@ -22,8 +22,9 @@ export function checkTestBoundary(directory = '.', { candidate = false, rewards 
   }
   walk(resolve(root, 'src')); walk(resolve(root, 'test'));
   const checked = new Set(files);
-  // Outside importers may execute a test helper even when it is not a test root.
-  walk(resolve(root, 'scripts')); walk(resolve(root, '.githooks'));
+  // Outside importers may execute a test helper even when it is not a test root (the tools are src/scripts/ since the
+  // lean move, walked with src/ above).
+  walk(resolve(root, '.githooks'));
   for (const file of files) {
     const source = ts.createSourceFile(file, readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true), edges = [];
     function visit(node) {

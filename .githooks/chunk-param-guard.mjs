@@ -2,14 +2,15 @@
 // of engine's own guard (engine runs that one in lint:game and takes no copy of this): the push lane (run-checks.mjs)
 // refuses a URL-shaped `chunk` coming back in a repo's tracked text:
 //   (a) a query pair: `chunk=` right after `?`, `&`, a quote, a backtick or a parenthesis;
-//   (b) a params call: `.get`, `.set`, `.has`, `.delete` or `.append` of the string `'chunk'`.
+//   (b) a params call: `.get`, `.set`, `.has`, `.delete` or `.append` of the string `'chunk'`;
+//   (c) a params object: a `chunk` key in the object literal handed to `new URLSearchParams({…})` or `Object.entries({…})`
+//       (engine MAIN RED 45762609780: a tool built its address from one, and (a) and (b) read zero).
 // The music sting (`music.sting('chunk')`), Rollup's `type === 'chunk'` and `--chunk=` flags match neither.
 // History stays unread: project/, leftover/, budgets/calibration-reports/ and CHANGELOG.md.
 // The repo's own baseline, `.githooks/chunk-param-guard.baseline.json` (never stamped), holds the files that still carry
 // one while the plan's rows move them, with counts. It may only shrink: a new file, or more than its count, is refused;
-// fewer asks for `--prune`. Until M3 moves the shared skill and the tools (CP18 to CP20), a repo with no baseline is
-// report-only: its hits print and the push passes (`MISSING_BASELINE`). Recording one (`--write`) enforces it; after M3,
-// no baseline turns into an empty one, enforced everywhere.
+// fewer asks for `--prune`. A repo with no baseline is enforced as an empty one (`MISSING_BASELINE`): M3 moved the
+// shared skill and the tools (CP18 to CP20), and CP24 found no hit left in any stamped repo but sharddev's baselined ones.
 //   node .githooks/chunk-param-guard.mjs [--write | --prune]   (exit 1 when refused)
 // Bypass in the push lane: SKIP_CHUNK_GUARD=1 (J381).
 import { execFileSync } from 'node:child_process';
@@ -20,15 +21,16 @@ import { pathToFileURL } from 'node:url';
 export const BASELINE = '.githooks/chunk-param-guard.baseline.json';
 const SELF = new Set(['.githooks/chunk-param-guard.mjs', BASELINE, 'src/test/.kit/chunk-param-guard.test.mjs']);
 const SKIP = ['project/', 'leftover/', 'budgets/calibration-reports/', 'node_modules/'];
-/** 'report' until CHUNK-PARAM-REMOVAL M3 closes, then 'enforce': what a repo with no baseline gets. */
-export const MISSING_BASELINE = 'report';
+/** What a repo with no baseline gets: 'enforce' since CHUNK-PARAM-REMOVAL CP24 (was 'report' until M3 closed). */
+export const MISSING_BASELINE = 'enforce';
 const TEXT = /\.(?:[cm]?[jt]sx?|mts|json|html|md|sh|py|ya?ml|txt|css)$/u;
 const PAIR = /[?&'"`(]chunk=/gu;
 const CALL = /\.(?:get|set|has|delete|append)\(\s*['"`]chunk['"`]/gu;
+const PARAMS = /(?:URLSearchParams|Object\.entries)\(\s*\{[^}]*?\bchunk\s*:/gu;
 
 /** How many URL-shaped `chunk` reads and writes a text carries. @param {string} text */
 export function chunkParamCount(text) {
-  return (text.match(PAIR)?.length ?? 0) + (text.match(CALL)?.length ?? 0);
+  return (text.match(PAIR)?.length ?? 0) + (text.match(CALL)?.length ?? 0) + (text.match(PARAMS)?.length ?? 0);
 }
 
 /** Every file in scope that carries one, with its count. @param {{ paths: string[], read: (path: string) => string }} input */

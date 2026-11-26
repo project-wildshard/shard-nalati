@@ -10,10 +10,10 @@
 //   (d) path: a literal joined to that anchored root (`join(ROOT, 'art/x')`, `resolve(ROOT, flag('cameras', 'art/x'))`)
 //       whose first folder the repo has exists; a ROOT from process.cwd() or a flag is the caller's tree, not judged (outputs under tmp/, progress/, out/, dist/ are not read, nor a path the
 //       script checks with existsSync first or makes with mkdirSync).
-//   (e) moved (meta QA 11-25 row 91): a lean repo (src/scripts/, no tracked scripts/) still names a folder the lean
+//   (e) moved (meta QA 11-25 row 91): a lean repo (src/scripts/) still names a folder the lean
 //       move left (`scripts`, `kit/scripts`, `test/tooling`) where the new place holds it: a written path (`'scripts/x'`,
 //       a `node -e` source's `./scripts/x`, `"$REPO/scripts/x"`, `${root}/scripts/x`), a join part on any base
-//       (`join(root, 'scripts', file)`, `ROOT / 'scripts' / name`), a regex (`/^scripts\//`), a Python or shell
+//       (`join(root, 'src', 'scripts', '.kit', file)`, `ROOT / 'scripts' / name`), a regex (`/^scripts\//`), a Python or shell
 //       climb counted from the old depth, a workflow's sparse checkout or `paths:`, a package.json script; and a
 //       `pnpm <x:y>` in shell, a workflow or package.json whose script the package no longer has. Every code file is
 //       read (.py, .sh and tests too, .agents/ aside), with .github/workflows/ and package.json. A root climbed from a
@@ -21,14 +21,17 @@
 //       `path.resolve(__dirname, '..')`, `new URL('../', import.meta.url)`, `$(dirname "$0")/..`, a `cd` there,
 //       `Path(__file__).parent.parent`, `os.path.dirname(os.path.dirname(__file__))`, a folder variable climbed again)
 //       is counted against the file's real depth: a root-named one (`toolsRoot`, `REPO`, a `cd`) must reach the repo
-//       or package root, and an unnamed or other one may not stop at src/.
+//       or package root, and an unnamed or other one may not stop at src/. A file still tracked under a moved folder
+//       (meta QA 11-25 row 119: seven shards kept `scripts/blender/`) is a stray finding of its own; it never turns the
+//       moved check off, and a path it holds at the old place is not judged.
 // Code inside strings is not this file's code: a template literal (nested ones too) and a quoted string that can't be a
 // module name (a `node -e` source, a worker body) are blanked first. A line that names a file the build writes beside
 // the script says so in a comment, `// script-paths: <why>`, and is not judged. A missing target the repo's .gitignore
 // covers is a build output (a `*.generated.ts`, a copied wasm), so a fresh checkout and a built one get one verdict.
 // Findings are lines (`<file>: <check> <what>`). The repo's own baseline, `.githooks/script-paths.baseline.json` (never
-// stamped), lists the ones it still carries; it may only shrink. A repo with no baseline is report-only: its findings
-// print and the push passes, until `--write` records them.
+// stamped), lists the ones it still carries, each as `{ "finding": "<line>", "why": "<why the fix is not this repo's>" }`
+// (meta QA 11-25 row 119); an entry with no why holds nothing. It may only shrink. A repo with no baseline is
+// report-only: its findings print and the push passes, until `--write` records them (each with an empty why to fill).
 //   node .githooks/script-paths.mjs [--write | --prune]   (exit 1 when refused)
 // Bypass in the push lane: SKIP_SCRIPT_PATHS=1 (J381).
 import { execFileSync } from 'node:child_process';
@@ -202,7 +205,7 @@ const ABOVE = /^\s*(?:\/\/|\/\*|#)\s*script-paths:/iu;
 const FOLDER = String.raw`(?:kit\/scripts|test\/tooling|scripts)`; // script-paths: the moved folders themselves
 /** A path naming a moved folder, rooted at the line's start, a quote, a space or a variable (`$REPO/`, `${root}/`). */
 const MOVED_PATH = new RegExp(String.raw`(^|[^\w.@/$\\-]|\$\{?\w+\}?\/|\}\/|\)\/)((?:\.{1,2}\/)*)(${FOLDER}(?:\/[\w.@*-]+)*)(\/?)(?![\w@*-])`, 'gmu');
-/** A quoted folder part of a join (`join(root, 'scripts', file)`, `ROOT / 'scripts' / name`). */
+/** A quoted folder part of a join (`join(root, 'src', 'scripts', '.kit', file)`, `ROOT / 'scripts' / name`). */
 const PART = /(['"])(scripts|tooling)\1/gu;
 /** The text before a quoted part that is still inside a path call's parentheses. */
 const PATH_CALL = /\b(?:join|resolve|resolvePath|pathResolve|Path|mkdirSync|existsSync|readdirSync|rmSync|cpSync)\((?:[^()]|\([^()]*\))*$/u;
@@ -424,11 +427,11 @@ function hashless(text) {
 }
 
 /**
- * Meta QA 11-25 row 91: every place a lean repo still names a folder the lean move left (`scripts/`, `kit/scripts/`,
- * `test/tooling/`) where the moved folder now holds it. Row 82's checks judged only imports and joins on an anchored
+ * Meta QA 11-25 row 91: every place a lean repo still names a folder the lean move left (`scripts/`, `src/scripts/.kit/`,
+ * `src/test/.kit/`) where the moved folder now holds it. Row 82's checks judged only imports and joins on an anchored
  * uppercase ROOT in scripts/ .mjs files, so these went through: a join on a clone or a lowercase root
- * (`join(checkout, 'scripts', 'online-rig.mjs')`, `join(root, 'scripts', file)`), a temp checkout's folder
- * (`mkdirSync(join(producer, 'scripts'))`, `(self.root / 'scripts').mkdir()`), a tool list's `'kit/scripts/asks.mjs'`,
+ * (`join(checkout, 'scripts', 'online-rig.mjs')`, `join(root, 'src', 'scripts', '.kit', file)`), a temp checkout's folder
+ * (`mkdirSync(join(producer, 'src', 'scripts', '.kit'))`, `(self.root / 'scripts').mkdir()`), a tool list's `'src/scripts/.kit/asks.mjs'`,
  * a `node -e` source's `'./scripts/x.mjs'`, a shell `"$REPO/scripts/x.py"`, a template's `${root}/scripts/x.mjs`, a
  * regex's `/^scripts\//`, a Python or shell climb counted from the old depth, a workflow's sparse checkout or `paths:`
  * filter, and package.json scripts. Code files anywhere (tests and fixtures too), .github/workflows and package.json
@@ -438,9 +441,16 @@ function hashless(text) {
  * @returns {string[]}
  */
 export function movedFindings({ paths, read, exists }) {
-  const moves = LEAN_MOVES.filter(([from, to]) => !paths.some((path) => path.startsWith(`${from}/`)) && exists(to));
+  // Meta QA 11-25 row 119: the move counts wherever its new place exists. A file still tracked at the old place is a
+  // stray, flagged on its own; it used to turn the whole move off (nine-dragon's `node scripts/preview-server.mjs`).
+  const moves = LEAN_MOVES.filter(([, to]) => exists(to));
   /** @type {string[]} */
   const findings = [];
+  // one finding per entry directly under the moved folder (`scripts/blender/` holds open-plots' 36 Blender files)
+  for (const [from, to] of moves) {
+    const strays = new Set(paths.filter((path) => path.startsWith(`${from}/`)).map((path) => path.slice(0, path.indexOf('/', from.length + 1) + 1) || path));
+    for (const stray of [...strays].sort()) findings.push(`${stray}: stray in ${from}/ (${to}/ is the lean home: move it under src/, or baseline why it stays)`);
+  }
   /** A finding when `path` is under a moved folder and only the new place holds it. */
   const judge = (/** @type {string} */ file, /** @type {string} */ path, /** @type {string} */ written) => {
     const move = moves.find(([from]) => path === from || path.startsWith(`${from}/`));
@@ -474,7 +484,7 @@ export function movedFindings({ paths, read, exists }) {
     return manifests.get(dir) ?? null;
   };
   for (const file of [...paths].sort()) {
-    // .agents/ is synced from meta into every repo, lean or not: its kit/scripts/ and scripts/ fallbacks are on purpose
+    // .agents/ is synced from meta into every repo, lean or not: its src/scripts/.kit/ and scripts/ fallbacks are on purpose
     if (SKIP.some((prefix) => file.startsWith(prefix)) || file.startsWith('.agents/')) continue;
     const manifest = file === 'package.json' || file.endsWith('/package.json'), workflow = WORKFLOW.test(file);
     if (!manifest && !workflow && !CODE_FILE.test(file)) continue;
@@ -498,7 +508,7 @@ export function movedFindings({ paths, read, exists }) {
       return MARKED.test(lines[line] ?? '') || (!manifest && ABOVE.test(lines[line - 1] ?? ''));
     };
     // a root climbed from the script's own folder, counted against its real depth (QA 11-25 rows 91 and 118):
-    // judged in every src/scripts/ and src/test/ file, even where a stray scripts/ file keeps that move from counting
+    // judged in every src/scripts/ and src/test/ file
     if (!manifest && !workflow && LEAN_MOVES.some(([, to]) => file.startsWith(`${to}/`))) {
       for (const climb of climbs(file, raw, text)) {
         if (marked(climb.at)) continue;
@@ -527,7 +537,7 @@ export function movedFindings({ paths, read, exists }) {
       if (scripts !== null && !(name in scripts) && !marked(match.index)) findings.push(`${file}: moved pnpm ${name} (no such script in ${packageDir(file) === '.' ? '' : `${packageDir(file)}/`}package.json)`);
     }
     if (workflow || manifest) continue;
-    // a folder joined as a part: join(root, 'scripts', file), ROOT / 'scripts' / name, (root / 'scripts').mkdir()
+    // a folder joined as a part: join(root, 'src', 'scripts', '.kit', file), ROOT / 'scripts' / name, (root / 'scripts').mkdir()
     for (const match of text.matchAll(PART)) {
       const at = match.index, before = text.slice(Math.max(0, at - 80), at), after = text.slice(at + match[0].length);
       // only a part of a path call (join, resolve, Path, mkdirSync…) or a Python `/`: never a key, a member, a type or `in`
@@ -569,28 +579,47 @@ export function scriptPathsVerdict(root) {
   const read = (/** @type {string} */ path) => readFileSync(join(root, path), 'utf8'), exists = (/** @type {string} */ path) => existsSync(join(root, path));
   const found = [...scriptPathFindings({ paths, read, exists, ignored }), ...movedFindings({ paths, read, exists })];
   const file = join(root, BASELINE), recorded = existsSync(file);
-  /** @type {string[]} */
-  const baseline = recorded ? JSON.parse(readFileSync(file, 'utf8')).findings ?? [] : [];
-  return { found, baseline, enforced: recorded, ...judge(found, baseline) };
+  const entries = recorded ? entriesOf(JSON.parse(readFileSync(file, 'utf8'))) : [];
+  const baseline = entries.filter((entry) => entry.why.trim() !== '').map((entry) => entry.finding);
+  const unexplained = entries.filter((entry) => entry.why.trim() === '' && found.includes(entry.finding)).map((entry) => entry.finding);
+  return { found, baseline, entries, unexplained, enforced: recorded, ...judge(found, baseline) };
+}
+
+/**
+ * The baseline's entries, `{ finding, why }` (meta QA 11-25 row 119). A bare string, as row 82 wrote them, is an entry
+ * with no why, which holds nothing.
+ * @param {{ findings?: unknown[] }} json
+ * @returns {{ finding: string, why: string }[]}
+ */
+export function entriesOf(json) {
+  return (json.findings ?? []).flatMap((entry) => {
+    if (typeof entry === 'string') return [{ finding: entry, why: '' }];
+    if (typeof entry !== 'object' || entry === null || !('finding' in entry) || typeof entry.finding !== 'string') return [];
+    return [{ finding: entry.finding, why: 'why' in entry && typeof entry.why === 'string' ? entry.why : '' }];
+  });
 }
 
 /** The refusal's text. @param {string[]} added */
 export function refusal(added) {
-  return `script-paths (meta QA 11-25 row 82): a script points where nothing is; fix the path, or declare the package:\n${added.map((line) => `  ${line}`).join('\n')}`;
+  return `script-paths (meta QA 11-25 row 82): a script points where nothing is; fix the path, or declare the package (only a fix that is not this repo's goes in ${BASELINE}, with its why):\n${added.map((line) => `  ${line}`).join('\n')}`;
 }
 
 if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const root = execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
-  const { found, baseline, enforced, added, shrunk } = scriptPathsVerdict(root);
+  const { found, entries, unexplained, enforced, added, shrunk } = scriptPathsVerdict(root);
   const write = process.argv.includes('--write');
   if (write || process.argv.includes('--prune')) {
-    const findings = write ? found : baseline.filter((line) => found.includes(line));
+    const why = new Map(entries.map((entry) => [entry.finding, entry.why]));
+    const kept = write ? found : entries.map((entry) => entry.finding).filter((line) => found.includes(line));
+    const findings = kept.map((finding) => ({ finding, why: why.get(finding) ?? '' }));
     mkdirSync(dirname(join(root, BASELINE)), { recursive: true });
-    writeFileSync(join(root, BASELINE), `${JSON.stringify({ about: 'meta QA 11-25 row 82: script paths that point where nothing is, still carried; shrink only (node .githooks/script-paths.mjs --prune).', findings }, null, 1)}\n`);
-    console.log(`script-paths: baseline written, ${findings.length} finding(s)`);
+    writeFileSync(join(root, BASELINE), `${JSON.stringify({ about: 'meta QA 11-25 rows 82 and 119: script paths that point where nothing is, still carried, each with why its fix is not this repo\'s; shrink only (node .githooks/script-paths.mjs --prune).', findings }, null, 1)}\n`);
+    const empty = findings.filter((entry) => entry.why.trim() === '').length;
+    console.log(`script-paths: baseline written, ${findings.length} finding(s)${empty > 0 ? `; ${empty} need a why before they hold` : ''}`);
   } else if (shrunk.length > 0) {
     console.log(`script-paths: ${shrunk.length} baselined finding(s) are gone; run node .githooks/script-paths.mjs --prune and commit it`);
   }
+  if (unexplained.length > 0 && !write) console.error(`script-paths: ${unexplained.length} baseline entr${unexplained.length === 1 ? 'y holds' : 'ies hold'} nothing until it says why`);
   if (added.length > 0 && !write && enforced) {
     console.error(refusal(added));
     process.exitCode = 1;

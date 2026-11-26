@@ -637,14 +637,15 @@ export const scriptOf = (command) => invocation(command).script;
 
 /**
  * A matcher as the set of tools it covers, in one vocabulary per tool pair: Claude's `Edit` and `Write`
- * together (with or without MultiEdit) equal Codex's `apply_patch`; either alone, or NotebookEdit, does not.
+ * together (with or without MultiEdit and NotebookEdit) equal Codex's `apply_patch`; either alone, or NotebookEdit
+ * alone, does not.
  */
 export function normalizeMatcher(matcher, tool = 'claude', event = '') {
   if (matcher === undefined || matcher === null || matcher === '' || matcher === '*' || matcher === '.*') return '*';
   const tools = new Set(String(matcher).replace(/^\^\(?|\)?\$$/g, '').split('|').map((name) => name.replace(/^\^|\$$/g, '').trim()).filter(Boolean));
   if (tool === 'codex' && tools.delete('apply_patch')) tools.add('edit');
   if (tool === 'claude' && tools.has('Edit') && tools.has('Write')) {
-    for (const name of ['Edit', 'Write', 'MultiEdit']) tools.delete(name);
+    for (const name of ['Edit', 'Write', 'MultiEdit', 'NotebookEdit']) tools.delete(name);
     tools.add('edit');
   }
   const names = [...tools].sort();

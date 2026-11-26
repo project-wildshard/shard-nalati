@@ -176,10 +176,10 @@ try:
         # GS4 (G798): a named input of a committed gen:source table regenerates that table, which joins the commit,
         # so an input never lands without its output. It runs before the hook, before the installed hooks.
         regenerated = []
-        if os.path.isfile("scripts/gen-source.mjs"):
+        if os.path.isfile("src/scripts/gen-source.mjs"):
             source_started = time.monotonic()
             source_tree = git("write-tree", env=candidate_env).decode().strip()
-            stage = subprocess.run(["node", "scripts/committed-source-tables.mjs", "--tree=" + source_tree,
+            stage = subprocess.run(["node", "src/scripts/committed-source-tables.mjs", "--tree=" + source_tree,
                 *["--changed=" + name for name in paths]], env=base_env, capture_output=True, text=True)
             lines = [row for row in stage.stdout.splitlines() if row.startswith("gen:source texts ")]
             if stage.returncode or not lines:
