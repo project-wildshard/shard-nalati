@@ -5,6 +5,7 @@ import { KEYCHAIN_ARGS } from './.kit/chromium-keychain.mjs';
 //
 //   node src/scripts/nalati-boot-check.mjs [--url=http://127.0.0.1:5188] [--out=<dir>] [--shards=nalati-grasslands,driftwood-isle,pine-hollow] [--touch]
 import { readShards } from './shards.mjs';
+import { enterZone } from '@wildshard/sdk/headless/scripts/zone-entry.mjs'; // CHUNK-PARAM-REMOVAL CP20 (J522): no zone in any address
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
 
@@ -28,7 +29,7 @@ try {
     page.on('pageerror', (e) => errors.push(e.message.slice(0, 200)));
     page.on('console', (m) => { if (m.type() === 'error') errors.push(`console: ${m.text().slice(0, 200)}`); });
     const t0 = Date.now();
-    await page.goto(`${URL_BASE}/?chunk=${shard}&mute=1&nolock=1&skipintro=1${TOUCH ? '&touch=1&tier=phone' : ''}`, { waitUntil: 'domcontentloaded' });
+    await enterZone(page, { zone: shard, base: URL_BASE, flags: `mute=1&nolock=1&skipintro=1${TOUCH ? '&touch=1&tier=phone' : ''}`, waitUntil: 'domcontentloaded' });
     let ok = true;
     try {
       await page.waitForFunction(() => Boolean(window.__wildshard?.world), undefined, { timeout: 240000, polling: 1000 });

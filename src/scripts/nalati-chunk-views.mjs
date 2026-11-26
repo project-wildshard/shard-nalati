@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { KEYCHAIN_ARGS } from './.kit/chromium-keychain.mjs';
+import { enterZone } from '@wildshard/sdk/headless/scripts/zone-entry.mjs'; // CHUNK-PARAM-REMOVAL CP20 (J522): no zone in any address
 // nalati-chunk-views.mjs — the whole Nalati chunk from god-mode cameras (+ a few first-person views), for the
 // world-redesign mockup round (docs/tasks/asks/N9.md). Free camera through window.__wildshard?.world (like nalati-camp9.mjs),
 // desktop tier 1600×900, HUD hidden, clock frozen, clear weather.
@@ -62,7 +63,7 @@ const browser = await chromium.launch({ args: [...KEYCHAIN_ARGS, '--mute-audio',
 try {
   const page = await (await browser.newContext({ viewport: SIZE, deviceScaleFactor: DPR })).newPage();
   const errors = []; page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
-  await page.goto(`${URL_BASE}/?chunk=nalati-grasslands&mute=1&nolock=1&skipintro=1&weather=clear&clock=0&perf=0&tier=${TIER}${EXTRA ? `&${EXTRA}` : ''}`, { waitUntil: 'domcontentloaded' });
+  await enterZone(page, { zone: 'nalati-grasslands', base: URL_BASE, alone: true, flags: `mute=1&nolock=1&skipintro=1&weather=clear&clock=0&perf=0&tier=${TIER}${EXTRA ? `&${EXTRA}` : ''}`, waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => Boolean(window.__wildshard?.world && window.__weather), undefined, { timeout: 300000, polling: 1000 });
   await page.addStyleTag({ content: 'body *{visibility:hidden!important} canvas{visibility:visible!important}' }); // main's HUD is not all under #hud any more: only the canvas shows
   await page.evaluate(() => {

@@ -5,7 +5,7 @@
 // right after the four outer walls, counted by `pieces[0]` (`forest`). The page plants its forest
 // at boot (engine `placeForest` over the product's forest rows, `Forest.colliderDescs` builds the capsules). When the
 // page's planting moves, the frozen rows drift and room players walk through the page's trees. This reads the page's
-// own trees from a served engine build (headless Chromium, `?chunk=nalati-grasslands`) and rewrites those rows so the
+// own trees from a served engine build (headless Chromium, the zone alone through enterZone) and rewrites those rows so the
 // room's capsules are the page's, one for one (engine `trunkCapsule`, f32 like every other solid row).
 //
 // `trees` and `tops` are the population habitat (herds, weather shelter): one [x, z, r] and one top height per page tree,
@@ -23,6 +23,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium, devices } from "./browser-playwright.mjs";
 import { KEYCHAIN_ARGS } from './.kit/chromium-keychain.mjs';
+import { enterZone } from '@wildshard/sdk/headless/scripts/zone-entry.mjs'; // CHUNK-PARAM-REMOVAL CP20 (J522): no zone in any address
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const FILE = resolve(ROOT, 'src/data/physicsRows.json');
@@ -82,7 +83,7 @@ async function capture(base, timeout) {
   const browser = await chromium.launch({ headless: true, args: [...KEYCHAIN_ARGS, '--use-angle=metal', '--ignore-gpu-blocklist', '--mute-audio'] });
   try {
     const context = await browser.newContext({ ...devices['iPhone 16 Pro'] }), page = await context.newPage();
-    await page.goto(`${base}/?chunk=nalati-grasslands&tier=phone&skipintro=1&nolock=1&sw=0&mute=1`, { waitUntil: 'commit', timeout });
+    await enterZone(page, { zone: 'nalati-grasslands', base, flags: 'tier=phone&skipintro=1&nolock=1&sw=0&mute=1', alone: true, waitUntil: 'commit', timeout });
     await page.waitForFunction(() => {
       const failure = document.querySelector('.ws-load-error');
       if (failure !== null) throw new Error(failure.textContent);
