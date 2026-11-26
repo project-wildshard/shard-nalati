@@ -17,7 +17,7 @@ const expected = ['places.bin', 'places.json', 'specimens.bin', 'placeSpecimens.
 const files = new Map<string, Uint8Array<ArrayBuffer>>();
 try {
   const output = resolve(root, 'files.v8');
-  execFileSync(process.execPath, ['--experimental-transform-types', '--import',
+  execFileSync(process.execPath, ['--import',
     import.meta.resolve('@wildshard/sdk/headless/scripts/bake-loader.mjs'), 'test/fixtures/nalati-native-places-compile.mjs', output],
   { timeout: 25_000, stdio: ['ignore', 'pipe', 'pipe'] });
   const raw: unknown = deserialize(readFileSync(output));

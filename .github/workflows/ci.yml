@@ -157,7 +157,7 @@ jobs:
       - name: Keep the cleared queue and public imports honest
         run: node src/scripts/check-test-boundary.mjs
       - name: Native collider bytes and owned recovery
-        run: node --import @wildshard/sdk/headless/scripts/sim-node-loader.mjs --experimental-transform-types --test test/ci/native-collider.test.mjs
+        run: node --import @wildshard/sdk/headless/scripts/sim-node-loader.mjs --test test/ci/native-collider.test.mjs
       # The key names the C library: a basisu built on ubuntu-26.04 (glibc
       # 2.43) fails on ubuntu-24.04 (2.39), so caches never mix (repo-kit c9bbdb2).
       - name: Name the C library the Basis encoder links against
@@ -193,16 +193,16 @@ jobs:
         run: pnpm exec wildshard check . tmp/ci/check
       - name: Walk the owned 1800-tick authored route
         if: github.event_name != 'push'
-        run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
+        run: node --test test/ci/owned-journey.test.mjs
       - name: Tame the plains stallion on real inputs
         if: github.event_name != 'push'
-        run: node --experimental-transform-types --test test/ci/taming-journey.test.mjs
+        run: node --test test/ci/taming-journey.test.mjs
       - name: Hide in the feather grass and be seen by the herd
         if: github.event_name != 'push'
-        run: node --experimental-transform-types --test test/ci/stealth-journey.test.mjs
+        run: node --test test/ci/stealth-journey.test.mjs
       - name: Fell Aqbars in her lair on real inputs
         if: github.event_name != 'push'
-        run: node --experimental-transform-types --test test/ci/aqbars-journey.test.mjs
+        run: node --test test/ci/aqbars-journey.test.mjs
       - if: github.event_name != 'push'
         run: pnpm test:shards
       # QA-FEEDBACK-2026-11-23-b row 41: CI21 candidate admission runs in the ci21-source job, which seals the pinned
@@ -367,13 +367,13 @@ jobs:
            node --test test/ci/cook-play.test.mjs > "$RUNNER_TEMP/cook.log" 2>&1 || code=$?
            echo "$code" > "$RUNNER_TEMP/cook.exit") &
       - name: Walk the owned 1800-tick authored route
-        run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
+        run: node --test test/ci/owned-journey.test.mjs
       - name: Tame the plains stallion on real inputs
-        run: node --experimental-transform-types --test test/ci/taming-journey.test.mjs
+        run: node --test test/ci/taming-journey.test.mjs
       - name: Hide in the feather grass and be seen by the herd
-        run: node --experimental-transform-types --test test/ci/stealth-journey.test.mjs
+        run: node --test test/ci/stealth-journey.test.mjs
       - name: Fell Aqbars in her lair on real inputs
-        run: node --experimental-transform-types --test test/ci/aqbars-journey.test.mjs
+        run: node --test test/ci/aqbars-journey.test.mjs
       - run: pnpm test:shards
       - name: Admit the complete publishable product
         run: node --test test/ci/bump-only.test.mjs test/ci/package-products.test.mjs
@@ -557,7 +557,7 @@ jobs:
         run: |
           test -n "$CANDIDATE_ENGINE"
           node src/scripts/assert-candidate-engine.mjs
-          node --experimental-transform-types --test test/ci21-case-inventory.test.mjs test/ci21-source-product.test.mjs test/ci21-owned-collision.test.mjs
+          node --test test/ci21-case-inventory.test.mjs test/ci21-source-product.test.mjs test/ci21-owned-collision.test.mjs
           pnpm check:ci21-candidate --reporter=default --reporter=json --outputFile=tmp/ci21-source/report.json
       - name: Retain actual source identity and complete case results
         if: always()

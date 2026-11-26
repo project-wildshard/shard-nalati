@@ -29,7 +29,7 @@
   },
   "driftwood-isle/island": {
    "about": "Driftwood's spawn cove: terrain tiles, ~60-72 prototypes, 16.7 k placements, Cycles AO + bounce lightmaps (DRIFTWOOD-REMASTER X2, E52)",
-   "pre": ["node --experimental-transform-types --no-warnings --import ./src/scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk driftwood-isle $CACHE"],
+   "pre": ["node --no-warnings --import ./src/scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk driftwood-isle $CACHE"],
    "script": "src/shards/driftwood-isle/blender/build_island.py",
    "args": ["$CACHE", "$BUILD"],
    "sources": ["src/shards/driftwood-isle/blender/assets.py", "src/shards/driftwood-isle/blender/export.mjs", "src/shards/driftwood-isle/blender/post.sh", "scripts/blender/lib/export-scene.mjs"],
@@ -48,7 +48,7 @@
   },
   "pine-hollow/area-export": {
    "about": "Pine Hollow's half of the island export (PH-0.3): area.bin, splat.bin, scene.json in the cache. Its Blender build is PINE-HOLLOW-REMASTER wave 2 (PH-U17), so it writes nothing to the repo",
-   "pre": ["node --experimental-transform-types --no-warnings --import ./src/scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk pine-hollow $CACHE"],
+   "pre": ["node --no-warnings --import ./src/scripts/bake-loader.mjs scripts/blender/lib/export-scene.mjs --chunk pine-hollow $CACHE"],
    "script": null,
    "sources": ["src/shards/pine-hollow/blender/export.mjs", "scripts/blender/lib/export-scene.mjs"],
    "inputs": ["src/static/assets/baked/pine-hollow/terrain.bin"],
@@ -101,7 +101,7 @@
   },
   "pine-hollow/cave": {
    "about": "The Den's bear cave: the interior + the hood over its first metres, fitted to the baked heights round the mouth (PH-B2)",
-   "pre": ["node --experimental-transform-types --no-warnings --import ./src/scripts/bake-loader.mjs src/shards/pine-hollow/blender/crags/export-cave.mjs $BUILD/cave-in.json"],
+   "pre": ["node --no-warnings --import ./src/scripts/bake-loader.mjs src/shards/pine-hollow/blender/crags/export-cave.mjs $BUILD/cave-in.json"],
    "script": "src/shards/pine-hollow/blender/crags/build_cave.py",
    "args": ["$BUILD/cave-in.json", "$BUILD"],
    "sources": ["src/shards/pine-hollow/blender/crags/rocklib.py", "src/shards/pine-hollow/blender/crags/export-cave.mjs"],

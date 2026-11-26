@@ -11,7 +11,7 @@
 // every body and fails on any byte that differs from the committed rows and binary. The lofts' Math.sin / hypot are
 // byte-exact where the bake was made (macOS), so elsewhere --check says so and passes. test/shards/nalati-grasslands/
 // bodies-bake.test.ts rebakes a representative pair of bodies and proves the page reads every one back bit-exact.
-// Usage: node --experimental-transform-types --import ./src/scripts/bake-loader.mjs src/generators/bake-nalati-bodies.mjs [--check]
+// Usage: node --import ./src/scripts/bake-loader.mjs src/generators/bake-nalati-bodies.mjs [--check]
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';

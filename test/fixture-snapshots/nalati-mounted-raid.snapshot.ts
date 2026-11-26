@@ -6,7 +6,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { expect, test } from 'vitest';
 
-const child = spawnSync(process.execPath, ['--experimental-transform-types', '--import',
+const child = spawnSync(process.execPath, ['--import',
   pathToFileURL(resolve('src/scripts/sim-node-loader.mjs')).href,
   resolve('test/fixtures/headless/nalati-mounted-raid-snapshot.ts')], { encoding: 'utf8', timeout: 175_000 });
 console.info(child.stdout);

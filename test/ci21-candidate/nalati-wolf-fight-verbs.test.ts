@@ -6,7 +6,7 @@ import {resolve} from 'node:path';
 import {expect,test} from 'vitest';
 
 test('real bow inputs kill a natural raider and replay the complete flock defense',()=>{
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/nalati-wolf-fight-run.ts')],{encoding:'utf8',timeout:175_000});
   expect(child.status,child.stdout+child.stderr+String(child.error??'')+(child.signal??'')).toBe(0);expect(child.stdout).toContain('"story":"native-wolf-fight"');
 },180_000);

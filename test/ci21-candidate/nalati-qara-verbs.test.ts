@@ -14,7 +14,7 @@ let nightHash:string|undefined,unlockHash:string|undefined,patrolHash:string|und
 afterAll(()=>{rmSync(directory,{recursive:true,force:true});});
 function run(stage:'night'|'patrol'|'bow'|'victory',input:string,output:string,hash?:string):string{
   const started=performance.now();
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/nalati-qara-run.ts'),stage,input,output,...(hash===undefined?[]:[hash])],{encoding:'utf8',timeout:175_000});
   expect(child.error,child.stdout+child.stderr).toBeUndefined();
   expect(child.status,child.stdout+child.stderr).toBe(0);

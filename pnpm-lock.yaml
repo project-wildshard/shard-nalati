@@ -7,17 +7,17 @@ settings:
 overrides:
   binaryen: npm:@pre-bundled/binaryen@132.0.0-patch-1
   assemblyscript>binaryen: npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1
-  '@wildshard/sdk>@wildshard/format': npm:@wildshard/shard-format@0.79.2
-  '@wildshard/build>@wildshard/format': npm:@wildshard/shard-format@0.79.2
-  '@wildshard/dev>@wildshard/format': npm:@wildshard/shard-format@0.79.2
-  '@wildshard/upload>@wildshard/format': npm:@wildshard/shard-format@0.79.2
-  '@wildshard/kit>@wildshard/shard-format': 0.79.2
-  '@wildshard/build': 0.6.1
-  '@wildshard/upload': 0.6.1
-  '@wildshard/sdk': 0.6.1
-  '@wildshard/kit': 0.6.1
-  '@wildshard/dev': 0.6.1
-  '@wildshard/format': npm:@wildshard/shard-format@0.79.2
+  '@wildshard/sdk>@wildshard/format': npm:@wildshard/shard-format@0.79.3
+  '@wildshard/build>@wildshard/format': npm:@wildshard/shard-format@0.79.3
+  '@wildshard/dev>@wildshard/format': npm:@wildshard/shard-format@0.79.3
+  '@wildshard/upload>@wildshard/format': npm:@wildshard/shard-format@0.79.3
+  '@wildshard/kit>@wildshard/shard-format': 0.79.3
+  '@wildshard/build': 0.7.0
+  '@wildshard/upload': 0.7.0
+  '@wildshard/sdk': 0.7.0
+  '@wildshard/kit': 0.7.0
+  '@wildshard/dev': 0.7.0
+  '@wildshard/format': npm:@wildshard/shard-format@0.79.3
 
 packageExtensionsChecksum: sha256-2iR/tyewmKRF8HKl4DUgPzXpMtk7WkFFvrGnilKna/k=
 
@@ -26,23 +26,23 @@ importers:
   .:
     dependencies:
       '@wildshard/build':
-        specifier: 0.6.1
-        version: 0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
+        specifier: 0.7.0
+        version: 0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
       '@wildshard/cli':
-        specifier: 0.6.1
-        version: 0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)
+        specifier: 0.7.0
+        version: 0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)
       '@wildshard/dev':
-        specifier: 0.6.1
-        version: 0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)
+        specifier: 0.7.0
+        version: 0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)
       '@wildshard/format':
-        specifier: npm:@wildshard/shard-format@0.79.2
-        version: '@wildshard/shard-format@0.79.2(typescript@6.0.3)'
+        specifier: npm:@wildshard/shard-format@0.79.3
+        version: '@wildshard/shard-format@0.79.3(typescript@6.0.3)'
       '@wildshard/kit':
-        specifier: 0.6.1
-        version: 0.6.1(@wildshard/sdk@0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
+        specifier: 0.7.0
+        version: 0.7.0(@wildshard/sdk@0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
       '@wildshard/sdk':
-        specifier: 0.6.1
-        version: 0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
+        specifier: 0.7.0
+        version: 0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
       playwright:
         specifier: 1.65.0
         version: 1.65.0
@@ -606,28 +606,28 @@ packages:
   '@vitest/spy@5.0.1':
     resolution: {integrity: sha512-rbto/mF/SGERxEgYOek7Xm6B9b+y+mVoo+f4b2LymYO8zM1b7uB5nHuhVMTP2hxdzgxvGiZYGxGIaMvL5y180Q==}
 
-  '@wildshard/build@0.6.1':
-    resolution: {integrity: sha512-lflyTIwZ83U0C9eK2cmhGWxhPabKilLeYUGgSCGMmTWOUZF75B3Mv18cuoQviQ2vNrsIzpsVsnFJK7qGD+WtMQ==}
-    engines: {node: '>=24.18.0 <25'}
+  '@wildshard/build@0.7.0':
+    resolution: {integrity: sha512-fCjV27vFuOdqgxxM+UTsgbujcGO84woP9gHOzA3Ruwm811GJ1sPWHLL3+TZXR9wnHxQTBUlL43hhJprokmKBVw==}
+    engines: {node: '>=24.18.0 <27'}
     hasBin: true
     peerDependencies:
       three: 0.186.0
 
-  '@wildshard/cli@0.6.1':
-    resolution: {integrity: sha512-u1pWQ0jNbhj8nFVfT3cGeg4UFxTovWuuqMU4TX1OMIGO5HYcBfNkaSeza4sJtbW+yVLjkmbgMhF2iqS8JW5ylw==}
-    engines: {node: '>=24.18.0 <25'}
+  '@wildshard/cli@0.7.0':
+    resolution: {integrity: sha512-qVX2egj8MTx+Vs3EO2m+L0azwLFERhG/AxzSWB+SDEosrfi6Pe0nXvTwFwIffhq+VZhrgJGIH2ESjyXkG1AtDA==}
+    engines: {node: '>=24.18.0 <27'}
     hasBin: true
 
-  '@wildshard/dev@0.6.1':
-    resolution: {integrity: sha512-fFGm8S4Gyh/tExWkENFbj6tplfV1VzYnX3Aik6/s8JINCjLg10vlfhU1W0wIT+8sPag3mrT9l9wjlHeRLdOBqA==}
-    engines: {node: '>=24.18.0 <25'}
+  '@wildshard/dev@0.7.0':
+    resolution: {integrity: sha512-jCXkO8MkDIJutX8XiBA57BL2Nobm9CZl5ef3mS+SjudXWTmUB9bJMq/DFeNU77qOj8qOvS6iE3IsmYV+CSoMqw==}
+    engines: {node: '>=24.18.0 <27'}
     hasBin: true
     peerDependencies:
       three: 0.186.0
 
-  '@wildshard/engine@0.1.84-next.805deb1b':
-    resolution: {integrity: sha512-a4DBUSmHkn4V7UViTa1eExGTZze42MgbzIZLmQ6ZmUzm94yVku6pXg7dxngBVWQMmwTbKg9Y27XRFwtYEeCiuw==}
-    engines: {node: '>=24.18.0'}
+  '@wildshard/engine@0.1.93-next.4daadc70':
+    resolution: {integrity: sha512-RG3g5NfNj7UA2CTqaGl1NnAc4luMRmar09dC6y0SdgwuV0hzapVIlU5p6L/PJ5wq4eGEJpYi48UGYe3ScyByrg==}
+    engines: {node: '>=24.18.0 <27'}
     hasBin: true
     peerDependencies:
       '@types/three': '*'
@@ -645,14 +645,14 @@ packages:
     bundledDependencies:
       - '@wildshard/format'
 
-  '@wildshard/kit@0.6.1':
-    resolution: {integrity: sha512-1+b3+yttPHM4+6MTj0fxkern/hGf58ERB/r3410E9iiBieXiKiJPSOKITujBS7WWSPVNRJo8MRaNdAqcbQU1kQ==}
+  '@wildshard/kit@0.7.0':
+    resolution: {integrity: sha512-v9jOVgey+7lBialngB8TbCSnJt48VUAMYmf5+7DiVnUbQotXY8leNsYO2sHqoeSOfy0ezrQOTlpUHI6vzv63iA==}
     peerDependencies:
-      '@wildshard/sdk': 0.6.1
+      '@wildshard/sdk': 0.7.0
 
-  '@wildshard/sdk@0.6.1':
-    resolution: {integrity: sha512-TAvB2nxhF8gwSzzv293CadZG/rHN4r0KoH2OVnbv49zQX75e2lgZhpfLlWVC51U3OYW0fkxUHbIbriTo7+rClg==}
-    engines: {node: '>=24.18.0 <25'}
+  '@wildshard/sdk@0.7.0':
+    resolution: {integrity: sha512-WzVRAhlVAIWyUoEpWMrm9jnEGthKFN62dffPiaRDRH+rFqPaQt8SpeI/ceI+gDyo6oFR74hL05RJI+XHgJePgw==}
+    engines: {node: '>=24.18.0 <27'}
     peerDependencies:
       '@wildshard/engine': '*'
       three: 0.186.0
@@ -660,14 +660,14 @@ packages:
       '@wildshard/engine':
         optional: true
 
-  '@wildshard/shard-format@0.79.2':
-    resolution: {integrity: sha512-CXpvC8rTvRQ/KAg0pG7XGbhHbOK6/hgxsfp2OsXiP/aWFbZf9oPHFkqZ4LLy5kQkBhk5/xe4pA/uql/iAiw5Iw==}
-    engines: {node: '>=24.18.0 <25'}
+  '@wildshard/shard-format@0.79.3':
+    resolution: {integrity: sha512-4uI9ysCaFXjQJt7MmYXrEcH1VHjJrrh/IXd3aUf1g5mRnKdMYjjlMa8rVJT888AD4AQf3rFF+ipia+3AVSUOZg==}
+    engines: {node: '>=24.18.0 <27'}
     hasBin: true
 
-  '@wildshard/upload@0.6.1':
-    resolution: {integrity: sha512-CyihkjMbysFw4OSXezLGMr07wXuYDyyEZjeAgMzGSuHZLRLBYujEBIiBe+29ygdE3UQ6nZlk/f55Mvi0+oUfEQ==}
-    engines: {node: '>=24.18.0 <25'}
+  '@wildshard/upload@0.7.0':
+    resolution: {integrity: sha512-r+Rfau7VaR5Vn3GN3oX5EDSsqcd8m4IUsrAhrXXm6GFWsB8wdedU0nxnC3HfSAu8ZbQn9+8NjOXd202vIq5qHA==}
+    engines: {node: '>=24.18.0 <27'}
 
   '@wildshard/wire@1.5.0':
     resolution: {integrity: sha512-YIeHAS7mWQZ9NHwnyYZOrqfDRFN5bq+7vXVXD1Ei1UCkBrwy/Aj3Kyvs0JnWZ3fQbM3l1eRL/hVr7Dl7XEACGg==}
@@ -1722,7 +1722,7 @@ snapshots:
 
   '@vitest/spy@5.0.1': {}
 
-  '@wildshard/build@0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)':
+  '@wildshard/build@0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)':
     dependencies:
       '@gltf-transform/core': 4.5.0
       '@gltf-transform/extensions': 4.5.0
@@ -1730,10 +1730,10 @@ snapshots:
       '@types/three': 0.186.0
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@6.0.3))
-      '@wildshard/format': '@wildshard/shard-format@0.79.2(typescript@6.0.3)'
-      '@wildshard/kit': 0.6.1(@wildshard/sdk@0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
-      '@wildshard/sdk': 0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
-      '@wildshard/upload': 0.6.1(typescript@6.0.3)
+      '@wildshard/format': '@wildshard/shard-format@0.79.3(typescript@6.0.3)'
+      '@wildshard/kit': 0.7.0(@wildshard/sdk@0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
+      '@wildshard/sdk': 0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
+      '@wildshard/upload': 0.7.0(typescript@6.0.3)
       ajv: 6.15.0
       assemblyscript: 0.28.20
       binaryen: '@pre-bundled/binaryen@132.0.0-patch-1'
@@ -1750,11 +1750,11 @@ snapshots:
       - typescript
       - vite-plus
 
-  '@wildshard/cli@0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)':
+  '@wildshard/cli@0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)':
     dependencies:
-      '@wildshard/build': 0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
-      '@wildshard/dev': 0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)
-      '@wildshard/upload': 0.6.1(typescript@6.0.3)
+      '@wildshard/build': 0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
+      '@wildshard/dev': 0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)
+      '@wildshard/upload': 0.7.0(typescript@6.0.3)
     transitivePeerDependencies:
       - '@types/node'
       - '@vitejs/devtools'
@@ -1778,7 +1778,7 @@ snapshots:
       - vite-plus
       - yaml
 
-  '@wildshard/dev@0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)':
+  '@wildshard/dev@0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3)':
     dependencies:
       '@dimforge/rapier3d-simd': 0.21.0
       '@electric-sql/pglite': 0.5.15
@@ -1797,12 +1797,12 @@ snapshots:
       '@loaders.gl/textures': 4.5.3(@loaders.gl/core@4.5.3)
       '@types/three': 0.186.0
       '@typescript/typescript6': 6.0.2
-      '@wildshard/build': 0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
-      '@wildshard/engine': 0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2))
-      '@wildshard/format': '@wildshard/shard-format@0.79.2(typescript@6.0.3)'
-      '@wildshard/kit': 0.6.1(@wildshard/sdk@0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
-      '@wildshard/sdk': 0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
-      '@wildshard/upload': 0.6.1(typescript@6.0.3)
+      '@wildshard/build': 0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
+      '@wildshard/engine': 0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2))
+      '@wildshard/format': '@wildshard/shard-format@0.79.3(typescript@6.0.3)'
+      '@wildshard/kit': 0.7.0(@wildshard/sdk@0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
+      '@wildshard/sdk': 0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
+      '@wildshard/upload': 0.7.0(typescript@6.0.3)
       esbuild: 0.28.2
       fflate: 0.8.3
       happy-dom: 21.0.4
@@ -1837,7 +1837,7 @@ snapshots:
       - vite-plus
       - yaml
 
-  '@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2))':
+  '@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2))':
     dependencies:
       '@dimforge/rapier3d-simd': 0.21.0
       '@hono/node-server': 2.1.8(hono@4.13.19)
@@ -1871,17 +1871,17 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@wildshard/kit@0.6.1(@wildshard/sdk@0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)':
+  '@wildshard/kit@0.7.0(@wildshard/sdk@0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)':
     dependencies:
       '@types/three': 0.186.0
-      '@wildshard/sdk': 0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
-      '@wildshard/shard-format': 0.79.2(typescript@6.0.3)
+      '@wildshard/sdk': 0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)
+      '@wildshard/shard-format': 0.79.3(typescript@6.0.3)
       three: 0.186.0
       valibot: 1.5.0(typescript@6.0.3)
     transitivePeerDependencies:
       - typescript
 
-  '@wildshard/sdk@0.6.1(@types/node@24.3.1)(@wildshard/engine@0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)':
+  '@wildshard/sdk@0.7.0(@types/node@24.3.1)(@wildshard/engine@0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2)))(three@0.186.0)(typescript@6.0.3)':
     dependencies:
       '@gltf-transform/core': 4.5.0
       '@gltf-transform/extensions': 4.5.0
@@ -1889,9 +1889,9 @@ snapshots:
       '@types/three': 0.186.0
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@6.0.3))
-      '@wildshard/format': '@wildshard/shard-format@0.79.2(typescript@6.0.3)'
-      '@wildshard/kit': 0.6.1(@wildshard/sdk@0.6.1(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
-      '@wildshard/upload': 0.6.1(typescript@6.0.3)
+      '@wildshard/format': '@wildshard/shard-format@0.79.3(typescript@6.0.3)'
+      '@wildshard/kit': 0.7.0(@wildshard/sdk@0.7.0(@types/node@24.3.1)(three@0.186.0)(typescript@6.0.3))(typescript@6.0.3)
+      '@wildshard/upload': 0.7.0(typescript@6.0.3)
       ajv: 6.15.0
       assemblyscript: 0.28.20
       binaryen: '@pre-bundled/binaryen@132.0.0-patch-1'
@@ -1904,14 +1904,14 @@ snapshots:
       three: 0.186.0
       valibot: 1.5.0(typescript@6.0.3)
     optionalDependencies:
-      '@wildshard/engine': 0.1.84-next.805deb1b(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2))
+      '@wildshard/engine': 0.1.93-next.4daadc70(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(playwright@1.65.0)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1)(esbuild@0.28.2))
     transitivePeerDependencies:
       - '@types/node'
       - oxlint-tsgolint
       - typescript
       - vite-plus
 
-  '@wildshard/shard-format@0.79.2(typescript@6.0.3)':
+  '@wildshard/shard-format@0.79.3(typescript@6.0.3)':
     dependencies:
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@6.0.3))
       meshoptimizer: 1.2.0
@@ -1919,9 +1919,9 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@wildshard/upload@0.6.1(typescript@6.0.3)':
+  '@wildshard/upload@0.7.0(typescript@6.0.3)':
     dependencies:
-      '@wildshard/format': '@wildshard/shard-format@0.79.2(typescript@6.0.3)'
+      '@wildshard/format': '@wildshard/shard-format@0.79.3(typescript@6.0.3)'
       valibot: 1.5.0(typescript@6.0.3)
     transitivePeerDependencies:
       - typescript

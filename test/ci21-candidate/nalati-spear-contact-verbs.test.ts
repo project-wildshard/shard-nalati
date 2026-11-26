@@ -7,7 +7,7 @@ import {expect,test} from 'vitest';
 
 const mode='thrust';
 test(`real ${mode} inputs strike a natural raider and replay its native state`,()=>{
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/nalati-polearm-contact-run.ts'),mode],{encoding:'utf8',timeout:175_000});
   expect(child.status,child.stdout+child.stderr+String(child.error??'')+(child.signal??'')).toBe(0);expect(child.stdout).toContain(`"story":"native-polearm-${mode}"`);
 },180_000);

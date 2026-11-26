@@ -12,7 +12,7 @@ const commands = [
 
 function bake(script, args) {
   const result = spawnSync(process.execPath, [
-    '--experimental-transform-types', '--no-warnings', '--import', '@wildshard/sdk/headless/scripts/bake-loader.mjs',
+    '--no-warnings', '--import', '@wildshard/sdk/headless/scripts/bake-loader.mjs',
     script, ...args,
   ], { encoding: 'utf8', timeout: 30_000 });
   assert.ifError(result.error);

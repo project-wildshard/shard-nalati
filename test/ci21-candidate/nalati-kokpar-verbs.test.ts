@@ -6,7 +6,7 @@ import {resolve} from 'node:path';
 import {expect,test} from 'vitest';
 
 test('Nalati borrowed-horse Kokpar earns and replays its real delivery checkpoint',()=>{
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/nalati-kokpar-run.ts')],{encoding:'utf8',timeout:150_000});
   expect(child.status,child.stdout+child.stderr+String(child.error??'')+(child.signal??'')).toBe(0);
   expect(child.stdout).toContain('"story":"kokpar"');

@@ -32,7 +32,7 @@ export function nativeProgramJob(spec: NativeProgramSpec): {
   const loader = spec.loader === 'simulation' ? 'src/scripts/sim-node-loader.mjs' : LOADER;
   const inventory = (): string[] => [...new Set([spec.script, LOADER, loader, ...spec.inputs.flatMap(path => memo.paths(path, true))])].sort();
   const paths = inventory(), inputs = bakeInputHashes(root, paths, memo);
-  const command = [process.execPath, ...(spec.transformTypes === true ? ['--experimental-transform-types'] : []), '--import', `./${loader}`, '--', spec.script];
+  const command = [process.execPath, '--import', `./${loader}`, '--', spec.script];
   return { root, memo, paths, inventory, job: {
     id: `fixture-${spec.id}`, inputs, command, outputs: ['fixture.json'], platform: 'native',
     tools: { cwd: memo.root, nodeOptions: process.env.NODE_OPTIONS ?? '' },

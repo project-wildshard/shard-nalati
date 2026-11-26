@@ -11,7 +11,7 @@ const names = ['species.json', 'bodies.bin', 'boot.json', 'held-weapons.wasm', '
 const metadata = pins[0];
 if (metadata === undefined || pins.length !== names.length) throw new Error('Missing original species file inventory');
 const original = metadata;
-const compiler = ['--experimental-transform-types', '--import',
+const compiler = ['--import',
   import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
   'test/fixtures/prepare-nalati-original-species.ts'];
 

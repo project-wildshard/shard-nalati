@@ -16,7 +16,7 @@ let plainsHash:string|undefined,approachHash:string|undefined,bondHash:string|un
 afterAll(()=>{rmSync(directory,{recursive:true});});
 function run(stage:'plains'|'approach'|'bond'|'goat'|'return'|'home'|'carving-road'|'carving-arrival'|'carvings'|'king-entry'|'king-phase-one'|'king-phase-two'|'king-victory',output:string,input?:string,hash?:string):string {
   const started=performance.now();
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/nalati-chapter-one-run.ts'),stage,output,...(input===undefined?[]:[input]),...(hash===undefined?[]:[hash])],{encoding:'utf8',timeout:420_000});
   const outcome=child.stdout+child.stderr+JSON.stringify({error:child.error?.message,signal:child.signal,elapsedMs:performance.now()-started});
   expect(child.error,outcome).toBeUndefined();expect(child.signal,outcome).toBeNull();expect(child.status,outcome).toBe(0);

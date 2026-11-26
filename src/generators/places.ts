@@ -68,8 +68,11 @@ export class NalatiSet {
   /** the kit the painters paint into now (`into` moves it: a dressing prop is a kit of its own, finished on its own) */
   private current: PaintKit | null;
 
+  readonly c: PaintCtx;
+
   /** `paintKit`: the place's kit (null: a place of generated models only, or one whose props each bring a kit: `into`) */
-  constructor(paintKit: PaintKit | null, readonly c: PaintCtx) {
+  constructor(paintKit: PaintKit | null, c: PaintCtx) {
+    this.c = c;
     this.current = paintKit;
     let none: PaintKit | null = null;
     const self = (): PaintKit | null => this.current;
@@ -1978,7 +1981,8 @@ function kurganFabric(supplyCarving: (variant: number, seed: number) => THREE.Bu
     declare heap: THREE.Mesh;
     declare sandMesh: THREE.Mesh;
     readonly sandLight = new Float32Array((SAND_N + 1) * (SAND_N + 1) * 3);
-    constructor(private readonly carve: (variant: number, seed: number) => THREE.BufferGeometry) {}
+    private readonly carve: (variant: number, seed: number) => THREE.BufferGeometry;
+    constructor(carve: (variant: number, seed: number) => THREE.BufferGeometry) { this.carve = carve; }
     build(): [string, THREE.BufferGeometry][] {
       const kit = new PaintKit(0xb0551), rng = kit.rng;
       const steps = this.chamberSteps(kit, rng);
