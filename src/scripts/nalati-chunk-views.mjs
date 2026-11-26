@@ -2,7 +2,7 @@
 import { KEYCHAIN_ARGS } from './.kit/chromium-keychain.mjs';
 import { enterZone } from '@wildshard/sdk/headless/scripts/zone-entry.mjs'; // CHUNK-PARAM-REMOVAL CP20 (J522): no zone in any address
 // nalati-chunk-views.mjs — the whole Nalati chunk from god-mode cameras (+ a few first-person views), for the
-// world-redesign mockup round (docs/tasks/asks/N9.md). Free camera through window.__wildshard?.world (like nalati-camp9.mjs),
+// world-redesign mockup round (docs/tasks/asks/N9.md). Free camera through window.__wildshard?.world,
 // desktop tier 1600×900, HUD hidden, clock frozen, clear weather.
 //
 //   node src/scripts/nalati-chunk-views.mjs --out=art/nalati-grasslands/round-7-world-redesign [--url=http://127.0.0.1:5193]
@@ -14,7 +14,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
 
 const { chromium } = await import("./browser-playwright.mjs");
-const ROOT = resolvePath(new URL('..', import.meta.url).pathname);
+const ROOT = resolvePath(new URL('../..', import.meta.url).pathname);
 const argv = process.argv.slice(2);
 const flag = (n, d) => { const a = argv.find((x) => x.startsWith(`--${n}=`)); return a ? a.slice(n.length + 3) : d; };
 const OUT = resolvePath(ROOT, flag('out', 'art/nalati-grasslands/round-7-world-redesign'));

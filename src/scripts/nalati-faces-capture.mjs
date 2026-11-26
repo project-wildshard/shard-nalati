@@ -13,10 +13,11 @@ import { KEYCHAIN_ARGS } from './.kit/chromium-keychain.mjs';
 // One headless Chromium on Metal (--mute-audio, mute=1), closed at the end.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
-import { debugSettings } from './debug-settings.mjs';
+import { debugSettings } from '@wildshard/sdk/headless/scripts/debug-settings.mjs';
+import { enterZone } from '@wildshard/sdk/headless/scripts/zone-entry.mjs';
 
 const { chromium } = await import("./browser-playwright.mjs");
-const ROOT = resolvePath(new URL('..', import.meta.url).pathname);
+const ROOT = resolvePath(new URL('../..', import.meta.url).pathname);
 const argv = process.argv.slice(2);
 const flag = (n, d) => { const a = argv.find((x) => x.startsWith(`--${n}=`)); return a ? a.slice(n.length + 3) : d; };
 const URL_BASE = flag('url', 'http://127.0.0.1:5311');
@@ -36,8 +37,8 @@ try {
     const page = await ctx.newPage();
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message.slice(0, 200)));
-    const q = ['chunk=nalati-grasslands', 'touch=1', 'tier=phone', 'skipintro=1', 'nolock=1', 'mute=1', 'time=13', 'clock=0', 'weather=clear'].join('&');
-    await page.goto(`${URL_BASE}/?${q}`, { waitUntil: 'domcontentloaded' });
+    // CHUNK-PARAM-REMOVAL CP20 (J522): no zone in any address; the zone is entered the way a player taps it
+    await enterZone(page, { zone: 'nalati-grasslands', base: URL_BASE, flags: 'touch=1&tier=phone&skipintro=1&nolock=1&mute=1&time=13&clock=0&weather=clear', waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => Boolean(window.__wildshard?.world && window.__nalatiQuest?.people), undefined, { timeout: 300000, polling: 1000 });
     // the generated figures replace the procedural batch once loaded
     await page.waitForFunction(() => window.__nalatiQuest.people.group.children.some((o) => o.name === 'nalati-camp-people-gen'), undefined, { timeout: 180000, polling: 1000 })

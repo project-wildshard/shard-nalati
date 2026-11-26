@@ -8,7 +8,7 @@ import { createRequire } from 'node:module';
 import { realpathSync } from 'node:fs';
 import { resolve as resolvePath, join } from 'node:path';
 
-const ROOT = resolvePath(new URL('..', import.meta.url).pathname);
+const ROOT = resolvePath(new URL('../..', import.meta.url).pathname);
 const req = createRequire(realpathSync(join(ROOT, 'node_modules/@gltf-transform/cli/package.json')));
 const { NodeIO } = req('@gltf-transform/core');
 const { ALL_EXTENSIONS } = req('@gltf-transform/extensions');

@@ -28,7 +28,7 @@ import { execFileSync } from 'node:child_process';
 import { resolve as resolvePath, join } from 'node:path';
 import { homedir } from 'node:os';
 
-const ROOT = resolvePath(new URL('..', import.meta.url).pathname);
+const ROOT = resolvePath(new URL('../..', import.meta.url).pathname);
 const req = createRequire(realpathSync(join(ROOT, 'node_modules/@gltf-transform/cli/package.json')));
 const { NodeIO } = req('@gltf-transform/core');
 const { ALL_EXTENSIONS, EXTMeshoptCompression } = req('@gltf-transform/extensions');

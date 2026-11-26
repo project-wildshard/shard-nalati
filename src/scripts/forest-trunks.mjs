@@ -25,7 +25,7 @@ import { chromium, devices } from "./browser-playwright.mjs";
 import { KEYCHAIN_ARGS } from './.kit/chromium-keychain.mjs';
 import { enterZone } from '@wildshard/sdk/headless/scripts/zone-entry.mjs'; // CHUNK-PARAM-REMOVAL CP20 (J522): no zone in any address
 
-const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const ROOT = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const FILE = resolve(ROOT, 'src/data/physicsRows.json');
 /** The bake's first four solids are the outer walls; the forest's capsules follow them (`pieces[0]` is `forest`). */
 const FIRST_TRUNK = 4;

@@ -26,7 +26,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const ROOT = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const FILE = resolve(ROOT, 'src/data/physicsRows.json');
 const flag = (name, fallback) => process.argv.find(arg => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback;
 /** The bake's first four solids are the outer walls (src/scripts/forest-trunks.mjs). */
