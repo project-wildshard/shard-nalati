@@ -1,7 +1,8 @@
 {
   "looks": [
     "nalati-grass-blades",
-    "nalati-grass-flowers"
+    "nalati-grass-flowers",
+    "nalati-grass-near-flowers"
   ],
   "half": 250,
   "heightSize": 512,
@@ -13,6 +14,7 @@
     "speedLimit": 30,
     "strength": 1
   },
+  "cardsHeight": 6,
   "ringHeight": 0.9,
   "gainFalloff": [
     0.18,

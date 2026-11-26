@@ -1,5 +1,5 @@
 // GR6: Nalati's grass at build time (the retired nalati-grass job's construction): the height, mask, field and ground
-// lattices and both tiers' blade, flower and card scenes as owned bytes, and the rows that name them. Pure: the caller
+// lattices and both tiers' blade, flower and near-flower scenes as owned bytes, and the rows that name them. Pure: the caller
 // supplies the native lattice and the dressing placements (the cover the grass keeps out of).
 import { DataUtils } from 'three';
 import { smoothstep } from '@wildshard/sdk/noise';
@@ -72,7 +72,8 @@ const encodeRows = phone => {
     const byteOffset=Math.ceil(length/4)*4;length=byteOffset+bytes.byteLength;
     return {file,byteOffset};
   });
-  const scenes=Object.fromEntries(Object.entries(rows.scenes).map(([key, scene]) => [key, encode(new TextEncoder().encode(JSON.stringify(scene)),`${tier}-${key}`)]));
+  // the format's near-field slot (`cards`) holds Nalati's real 3D flowers (QA 11-24 row 71): its file says so
+  const scenes=Object.fromEntries(Object.entries(rows.scenes).map(([key, scene]) => [key, encode(new TextEncoder().encode(JSON.stringify(scene)),`${tier}-${key === 'cards' ? 'near-flowers' : key}`)]));
   return { ...rows, scenes, channels:{file} };
 };
 const rows={view,height:encode(height,'height'),mask:encode(mask,'mask'),field:encode(fd,'field'),ground:encode(gd,'ground'),phone:encodeRows(true),desktop:encodeRows(false)};
