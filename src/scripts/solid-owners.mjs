@@ -17,6 +17,10 @@
 // piece's surface, or, given `--page`, the material of the page collider of the same shape within 1 m (engine
 // test/side-parity.page.json: the page's own per-collider surfaces, such as the bridge's planks and the dungeon's metal).
 // A layout that doesn't add up, or a page collider whose owner names another piece, fails the run.
+// The page's choices that differ from the piece's surface (the hay pile's grass, the bridge's planks, the dungeon's metal
+// and stone) are kept in src/data/solid-materials.json, written by a --page run, so a run without the page writes the
+// same rows (meta QA 11-25 row 87: a plain run had put the pieces' wood back). test/solid-owners.test.ts fails when the
+// rows and this tool drift apart.
 //
 //   node src/scripts/solid-owners.mjs [--page=<side-parity.page.json>]          # write owner + material into physicsRows.json
 //   node src/scripts/solid-owners.mjs [--page=<side-parity.page.json>] --check  # exit 1 when they drifted
@@ -28,6 +32,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const FILE = resolve(ROOT, 'src/data/physicsRows.json');
+const CHOICES = resolve(ROOT, 'src/data/solid-materials.json');
 const flag = (name, fallback) => process.argv.find(arg => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback;
 /** The bake's first four solids are the outer walls (src/scripts/forest-trunks.mjs). */
 const WALLS = 4;
@@ -96,6 +101,32 @@ export function withPageMaterials(rows, names, boxes, page) {
   return { names: out, matched: taken.size };
 }
 
+const CHOICES_ABOUT = "The page's per-collider materials where they differ from the piece's surface, by solid index (written by src/scripts/solid-owners.mjs --page; meta QA 11-25 row 87).";
+
+/** The page's choices that differ from the layout's surfaces, by solid index. */
+export function pageChoices(layout, names) {
+  const choices = {};
+  for (const [index, name] of names.entries()) if (name.material !== layout[index].material) choices[String(index)] = { owner: name.owner, material: name.material };
+  return choices;
+}
+
+/** The layout's names with the recorded page choices; a choice whose owner the layout no longer puts there fails. */
+export function withChoices(layout, choices) {
+  const out = layout.slice();
+  for (const [key, { owner, material }] of Object.entries(choices)) {
+    const index = Number(key);
+    if (out[index]?.owner !== owner) throw new Error(`solid-owners: solid #${index} is ${out[index]?.owner}; the recorded page choice names ${owner}`);
+    out[index] = { ...out[index], material };
+  }
+  return out;
+}
+
+/** The rows this tool writes, from the capture's layout and the recorded page choices. */
+export function expectedSolids(rows, choices) {
+  const names = withChoices(layoutNames(rows), choices);
+  return rows.solids.map((solid, index) => namedSolid(solid, names[index]));
+}
+
 /** A bake solid with its owner and material. The reader stays `piece` provenance (format nativePhysics): the row keeps its
  *  `body` (the arena seal is found by it) and names its piece as `ownerId`; engine 0.1.18 reads the material only. */
 export function namedSolid({ ownerId: _ownerId, material: _material, ...solid }, name) {
@@ -104,7 +135,8 @@ export function namedSolid({ ownerId: _ownerId, material: _material, ...solid },
 
 if (process.argv[1] !== undefined && resolve(process.argv[1]) === import.meta.filename) {
   const rows = JSON.parse(readFileSync(FILE, 'utf8'));
-  let names = layoutNames(rows);
+  const layout = layoutNames(rows);
+  let names = withChoices(layout, JSON.parse(readFileSync(CHOICES, 'utf8')).materials);
   const pageFile = flag('page', '');
   if (pageFile !== '') {
     const page = JSON.parse(readFileSync(resolve(pageFile), 'utf8')).shards['nalati-grasslands']
@@ -117,8 +149,9 @@ if (process.argv[1] !== undefined && resolve(process.argv[1]) === import.meta.fi
       const bytes = blobs.get(file);
       return new Float32Array(bytes.buffer.slice(bytes.byteOffset + byteOffset, bytes.byteOffset + byteOffset + byteLength));
     };
-    const result = withPageMaterials(rows, names, rows.solids.map(solid => solidBox(solid, points(solid))), page);
+    const result = withPageMaterials(rows, layout, rows.solids.map(solid => solidBox(solid, points(solid))), page);
     names = result.names;
+    if (!process.argv.includes('--check')) writeFileSync(CHOICES, `${JSON.stringify({ about: CHOICES_ABOUT, materials: pageChoices(layout, names) }, null, 1)}\n`);
     console.error(`solid-owners: ${result.matched} of ${page.length} page colliders checked against the layout`);
   }
   const solids = rows.solids.map((solid, index) => namedSolid(solid, names[index]));

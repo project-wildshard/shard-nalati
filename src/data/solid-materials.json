@@ -1,0 +1,45 @@
+{
+ "about": "The page's per-collider materials where they differ from the piece's surface, by solid index (written by src/scripts/solid-owners.mjs --page; meta QA 11-25 row 87).",
+ "materials": {
+  "855": {
+   "owner": "piece:nalati-grasslands/hay-pile",
+   "material": "grass"
+  },
+  "899": {
+   "owner": "piece:nalati-grasslands/kunes-bridge",
+   "material": "planks"
+  },
+  "900": {
+   "owner": "piece:nalati-grasslands/kunes-bridge",
+   "material": "planks"
+  },
+  "901": {
+   "owner": "piece:nalati-grasslands/kunes-bridge",
+   "material": "planks"
+  },
+  "2547": {
+   "owner": "piece:nalati-kurgan-dungeon",
+   "material": "stone"
+  },
+  "2548": {
+   "owner": "piece:nalati-kurgan-dungeon",
+   "material": "metal"
+  },
+  "2549": {
+   "owner": "piece:nalati-kurgan-dungeon",
+   "material": "metal"
+  },
+  "2550": {
+   "owner": "piece:nalati-kurgan-dungeon",
+   "material": "metal"
+  },
+  "2551": {
+   "owner": "piece:nalati-kurgan-dungeon",
+   "material": "metal"
+  },
+  "2560": {
+   "owner": "piece:nalati-kurgan-dungeon",
+   "material": "stone"
+  }
+ }
+}
