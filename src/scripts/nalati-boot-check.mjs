@@ -3,8 +3,7 @@ import { KEYCHAIN_ARGS } from './.kit/chromium-keychain.mjs';
 // nalati-boot-check.mjs — boot each shard headless (muted), wait for the world, report page errors + a screenshot each.
 // For the Nalati ⇄ main merges (project/archive/2026-09-24-nalati-merge.md): every shard must still boot clean after a merge.
 //
-//   node src/scripts/nalati-boot-check.mjs [--url=http://127.0.0.1:5188] [--out=<dir>] [--shards=nalati-grasslands,driftwood-isle,pine-hollow] [--touch]
-import { readShards } from './shards.mjs';
+//   node src/scripts/nalati-boot-check.mjs [--url=http://127.0.0.1:5188] [--out=<dir>] [--shards=nalati-grasslands] (default: this repo's zone) [--touch]
 import { enterZone } from '@wildshard/sdk/headless/scripts/zone-entry.mjs'; // CHUNK-PARAM-REMOVAL CP20 (J522): no zone in any address
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
@@ -14,8 +13,8 @@ const argv = process.argv.slice(2);
 const flag = (n, d) => { const a = argv.find((x) => x.startsWith(`--${n}=`)); return a ? a.slice(n.length + 3) : d; };
 const URL_BASE = flag('url', 'http://127.0.0.1:5188');
 const OUT = resolvePath(flag('out', 'progress/nalati-merge'));
-const manifests = await readShards();
-const SHARDS = flag('shards', manifests.filter((m) => m.status === 'live' || m.status === 'earlyAccess').map((m) => m.slug).join(',')).split(',');
+// The engine's shard list (scripts/shards.mjs) never came across in the repo split; a shard repo checks its own zone.
+const SHARDS = flag('shards', 'nalati-grasslands').split(',');
 const TOUCH = argv.includes('--touch');
 mkdirSync(OUT, { recursive: true });
 
