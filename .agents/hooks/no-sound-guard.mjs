@@ -10,11 +10,15 @@
 //   - agent-browser `--args` / `AGENT_BROWSER_ARGS` that replace the config's `--mute-audio` and lack it;
 //   - `open` of a game page (localhost or *.wildshard.io) in a desktop browser;
 //   - `afplay` and `say`.
-// Text inside quotes, and read-only command words (grep, cat, git …), never count. Scripts run by name (node x.mjs)
-// are not read here: engine's shared browser launcher mutes the page itself when the agent marker is set.
+//   - a script run by name (node, bash, sh, pnpm, npx, tsx) in a repo whose kit browser marker does not silence pages
+//     (meta QA 11-25 row 140): a shard's browser-playwright.mjs launches through `.kit/wildshard-browser-marker.mjs`,
+//     and a stamp from before `silencePage` let headless WebKit play game audio. Restamp repo-kit to clear it.
+// Text inside quotes, and read-only command words (grep, cat, git …), never count. A script run by name is trusted to
+// launch through its repo's marker (engine's own, or the kit's), so only the marker itself is read here.
 // Escape hatch (J381): ALLOW_AGENT_SOUND=1 in the command, only on Jake's word. Bad input prints nothing and exits 0: a
 // hook must never break a session.
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { readPayload } from './lib/payload.mjs';
 
@@ -85,6 +89,66 @@ export function makesSound(command) {
   return null;
 }
 
+/** Where a repo's browser-playwright.mjs lives (shards: src/scripts; older layouts: scripts). */
+const LAUNCHERS = ['src/scripts', 'scripts'];
+const RUNNERS = /^(?:node|bash|sh|zsh|pnpm|npm|npx|tsx|bun)$/u;
+
+/** The repo root above a folder (the first with .git), or null. @param {string} from @returns {string | null} */
+function repoOf(from) {
+  for (let dir = resolve(from); ; dir = dirname(dir)) {
+    if (existsSync(join(dir, '.git'))) return dir;
+    if (dirname(dir) === dir) return null;
+  }
+}
+
+/** The kit marker a repo's browser-playwright.mjs launches through when it lacks the page silence, or null. Engine
+ *  launches through its own marker (src/scripts/browser-actor-marker.mjs), so its kit copy is never read.
+ *  @param {string | null} root @returns {string | null} */
+function unsilencedMarker(root) {
+  if (root === null) return null;
+  for (const base of LAUNCHERS) {
+    try {
+      const launcher = join(root, base, 'browser-playwright.mjs');
+      if (!existsSync(launcher) || !readFileSync(launcher, 'utf8').includes('wildshard-browser-marker')) continue;
+      for (const path of [join(root, base, '.kit', 'wildshard-browser-marker.mjs'), join(root, base, 'wildshard-browser-marker.mjs')]) {
+        if (existsSync(path) && !readFileSync(path, 'utf8').includes('silencePage')) return path;
+      }
+    } catch { /* unreadable: no verdict */ }
+  }
+  return null;
+}
+
+/**
+ * Why a script this command runs would launch an unsilenced browser: its repo's kit marker predates silencePage.
+ * `cd` inside the command moves the folder the scripts resolve against.
+ * @param {string} command @param {string} cwd @returns {string | null}
+ */
+export function staleSilence(command, cwd) {
+  if (!cwd || /(?:^|\s)ALLOW_AGENT_SOUND=1(?:\s|$)/u.test(command)) return null;
+  const { bare, quoted } = unquote(command);
+  let dir = cwd;
+  for (const raw of bare.split(/&&|\|\||[;&|\n]|\$\(|[(`]/u)) {
+    const head = raw.trim();
+    if (!head) continue;
+    const prefix = PREFIX.exec(head)?.[0] ?? '';
+    const [first = '', ...rest] = head.slice(prefix.length).split(/\s+/u).map((word) => requote(word, quoted));
+    if (first === 'cd') {
+      const to = rest[0];
+      if (to !== undefined && !to.startsWith('-')) dir = resolve(dir, to.replace(/^~(?=\/|$)/u, process.env['HOME'] ?? '~'));
+      continue;
+    }
+    if (!RUNNERS.test(first.split('/').pop() ?? '')) continue;
+    const script = rest.find((word) => /\.(?:m?js|ts|sh)$/u.test(word));
+    const roots = new Set([repoOf(dir), script === undefined ? null : repoOf(dirname(resolve(dir, script)))]);
+    for (const root of roots) {
+      if (root === null || root.endsWith('/repo-kit')) continue; // the kit's own source and its stamp tool
+      const stale = unsilencedMarker(root);
+      if (stale !== null) return `${stale} does not silence pages (a stamp from before silencePage): restamp repo-kit into this repo first`;
+    }
+  }
+  return null;
+}
+
 /** The refusal text: what happened, the way through, and the escape hatch. @param {string} reason */
 export function refusal(reason) {
   return [
@@ -106,8 +170,8 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   }
   let reason = null;
   try {
-    const { tool, command } = readPayload(raw);
-    reason = tool === 'shell' ? makesSound(command) : null;
+    const { tool, command, cwd } = readPayload(raw);
+    reason = tool === 'shell' ? makesSound(command) ?? staleSilence(command, cwd) : null;
   } catch {
     reason = null;
   }
