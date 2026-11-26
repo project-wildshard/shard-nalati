@@ -51,7 +51,7 @@ jobs:
           package_json_file: package.json
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
           cache: pnpm
           cache-dependency-path: |
             pnpm-lock.yaml
@@ -251,7 +251,7 @@ jobs:
           package_json_file: package.json
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
           cache: pnpm
           cache-dependency-path: |
             pnpm-lock.yaml
@@ -415,7 +415,7 @@ jobs:
           package_json_file: package.json
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
           cache: pnpm
           cache-dependency-path: |
             pnpm-lock.yaml
@@ -485,7 +485,7 @@ jobs:
           package_json_file: package.json
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
           cache: pnpm
           cache-dependency-path: |
             pnpm-lock.yaml

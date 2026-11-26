@@ -76,7 +76,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
       # A6 (build-max 2026-11-20): an empty preparation fell back to the sdk's pinned engine client, and v0.1.54's
       # stalled phone WebKit 240 s on both runners. The dispatch names the client; empty stops here, in seconds.
       - name: Refuse an empty or malformed preparation
@@ -94,7 +94,7 @@ jobs:
           package_json_file: package.json
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
           cache: pnpm
           cache-dependency-path: |
             pnpm-lock.yaml
@@ -254,7 +254,7 @@ jobs:
           package_json_file: package.json
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
           cache: pnpm
           cache-dependency-path: |
             pnpm-lock.yaml
@@ -344,7 +344,7 @@ jobs:
           sparse-checkout-cone-mode: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
       - name: Wait for the cook's verdict and staging's revision
         id: report
         run: node src/scripts/.kit/publish-shard.mjs cook "$SLUG" "$CHANNEL" "$HASH" "$UPLOAD_ID"
@@ -410,7 +410,7 @@ jobs:
           fetch-tags: true
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: package.json
+          node-version-file: .node-version
       - name: Tag the built commit and commit published.json
         id: record
         run: |
