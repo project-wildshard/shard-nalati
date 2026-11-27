@@ -31,8 +31,13 @@ export class NalatiCreatureView {
   private dt=0;
   private quiet=false;
   private readonly columns:number;
-  constructor(private readonly bytes:Uint8Array,input:unknown,private readonly owner:Scope,
-    private readonly animals:()=>readonly AnimalSim[],private readonly ground:(x:number,z:number)=>number) {
+  private readonly bytes:Uint8Array;
+  private readonly owner:Scope;
+  private readonly animals:()=>readonly AnimalSim[];
+  private readonly ground:(x:number,z:number)=>number;
+  constructor(bytes:Uint8Array,input:unknown,owner:Scope,
+    animals:()=>readonly AnimalSim[],ground:(x:number,z:number)=>number) {
+    this.bytes=bytes;this.owner=owner;this.animals=animals;this.ground=ground;
     const rows=this.rows=v.parse(ViewProgramSchema,input);
     if(rows.budget.pages!==1||rows.transforms.length>0||rows.arrays!==undefined||rows.batches!==undefined
       ||rows.pools.length>2||rows.pools.some(pool=>!pool.group.startsWith('species:'))

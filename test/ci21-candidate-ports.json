@@ -1087,7 +1087,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-creature-view-native.ts",
-      "targetBlob": "21f0882f25dba1a32a08bdc76b195c026a3a6af3"
+      "targetBlob": "465f44e905bd04dbbbe1c4de3318496f701b86c7"
     },
     {
       "targetPath": "test/fixtures/nalati-current-held.ts",
@@ -1195,7 +1195,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-king-continuation.ts",
-      "targetBlob": "6613ca425d716371115512a9dde687d60b64fc90"
+      "targetBlob": "68c07f88e6480bbc824c1b3e59fa23e03205fd9f"
     },
     {
       "targetPath": "test/fixtures/nalati-king-data.ts",
@@ -1563,7 +1563,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-taming-pose.ts",
-      "targetBlob": "be359fa3c83440c722fa522e65a95decc4d5e04a"
+      "targetBlob": "dd27a65e7fd4c4995d12a558cf91eddb045c58c5"
     },
     {
       "targetPath": "test/fixtures/nalati-terrain.ts",

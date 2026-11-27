@@ -46,7 +46,10 @@ export class KingContinuation<B extends PhasedBossBody> {
   private readonly boss:BossBrain;
   private readonly recipe:string;
   private calmWas=false;private locked=false;private slow=false;private seal=false;
-  constructor(private readonly rows:KingContinuationRows,private readonly ports:KingContinuationPorts<B>,program:ConstructorParameters<typeof ArenaPortalLaw>[0]) {
+  private readonly rows:KingContinuationRows;
+  private readonly ports:KingContinuationPorts<B>;
+  constructor(rows:KingContinuationRows,ports:KingContinuationPorts<B>,program:ConstructorParameters<typeof ArenaPortalLaw>[0]) {
+    this.rows=rows;this.ports=ports;
     this.live();
     if(ports.boss.player.position!==ports.player.position)throw new Error('King must borrow the actual entered player');
     this.recipe=createHash('sha256').update(JSON.stringify({room:rows.room,entrance:rows.entrance,profile:rows.profile,definition:rows.encounter.definition,portal:rows.encounter.portal},

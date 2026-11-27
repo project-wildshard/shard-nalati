@@ -32,7 +32,11 @@ export class NalatiTamingHorsePose {
   private readonly jointPose: QuadrupedRigPose;
   private readonly context: AnimalRigContext;
   private readonly clock = { bodyY: 0, alive: true, deathT: -1, deathSide: 1, speed: 0, legAbd: new Float32Array(4) };
-  constructor(private readonly actor: AnimalSim, private readonly wind: () => { readonly x: number; readonly z: number; readonly strength: number }) {
+  private readonly actor: AnimalSim;
+  private readonly wind: () => { readonly x: number; readonly z: number; readonly strength: number };
+  constructor(actor: AnimalSim, wind: () => { readonly x: number; readonly z: number; readonly strength: number }) {
+    this.actor = actor;
+    this.wind = wind;
     const variant = HORSE_SPECIES.variants.find(a => a.id === actor.variant);
     if (variant === undefined) throw new Error('Missing actual taming horse variant');
     const row = rows.bodies.find(b => b.key === bodyKey('horse', variant));
