@@ -13,17 +13,17 @@ export interface NalatiSpecimenRows<Catalogue extends readonly CatalogueRow[], P
 /** Compose detached specimen declarations from caller-owned packed metadata, without file publication. */
 export function nalatiSpecimenRows<Catalogue extends readonly CatalogueRow[], Packed extends object>(catalogue: Catalogue, materials: Readonly<Record<string, Asset['material']>>, packed: Packed): NalatiSpecimenRows<Catalogue, Packed> {
   const rows = { catalogue: structuredClone(catalogue), materials: structuredClone(materials),
-    packed: { ...structuredClone(packed), bin: '/assets/nalati/baked/specimens.bin' } };
+    packed: { ...structuredClone(packed), bin: '/assets/nalati-grasslands/baked/specimens.bin' } };
   const assets: Record<string, Asset> = {};
   for (const row of rows.catalogue) if (row.source.kind === 'asset') {
     if (row.source.asset === undefined) throw new Error(`Missing original Nalati asset ${row.key}`);
     assets[row.key] = row.source.asset;
   }
   const painted = [
-    { name: 'boulder-1', url: '/assets/nalati/baked/painted-models/boulder-1.glb', phoneUrl: '/assets/nalati/baked/painted-models/boulder-1.phone.glb' },
-    { name: 'boulder-2', url: '/assets/nalati/baked/painted-models/boulder-2.glb', phoneUrl: '/assets/nalati/baked/painted-models/boulder-2.phone.glb' },
-    { name: 'boulder-3', url: '/assets/nalati/baked/painted-models/boulder-3.glb', phoneUrl: '/assets/nalati/baked/painted-models/boulder-3.phone.glb' },
-    { name: 'balbal', url: '/assets/nalati/baked/painted-models/balbal.glb', phoneUrl: '/assets/nalati/baked/painted-models/balbal.phone.glb' },
+    { name: 'boulder-1', url: '/assets/nalati-grasslands/baked/painted-models/boulder-1.glb', phoneUrl: '/assets/nalati-grasslands/baked/painted-models/boulder-1.phone.glb' },
+    { name: 'boulder-2', url: '/assets/nalati-grasslands/baked/painted-models/boulder-2.glb', phoneUrl: '/assets/nalati-grasslands/baked/painted-models/boulder-2.phone.glb' },
+    { name: 'boulder-3', url: '/assets/nalati-grasslands/baked/painted-models/boulder-3.glb', phoneUrl: '/assets/nalati-grasslands/baked/painted-models/boulder-3.phone.glb' },
+    { name: 'balbal', url: '/assets/nalati-grasslands/baked/painted-models/balbal.glb', phoneUrl: '/assets/nalati-grasslands/baked/painted-models/balbal.phone.glb' },
   ];
   for (const { name, url, phoneUrl } of painted) {
     const rim = name === 'balbal' ? .35 : .3;

@@ -271,7 +271,7 @@ export async function prepareSpecies(ctx: ProjectGenerationContext): Promise<{
 
 /** The grass at build time over the native lattice and the dressing placements it keeps out of (GR6). */
 async function nalatiGrassProgram(ctx: ProjectGenerationContext): Promise<NalatiGrass> {
-  const lattice = '/assets/baked/nalati-grasslands/terrain.bin';
+  const lattice = '/assets/nalati-grasslands/baked/terrain.bin';
   const files = await ctx.cached({ id: 'grass-lattice', inputs: [lattice] }, inputs => {
     const bytes = inputs.get(lattice); if (bytes === undefined || bytes.length === 0) throw new Error('Missing Nalati native lattice');
     return new Map([['lattice.bin', bytes]]);
@@ -281,7 +281,7 @@ async function nalatiGrassProgram(ctx: ProjectGenerationContext): Promise<Nalati
 }
 /** The recurve's held-bow page, baked beside its pool GLB; a declared input of the build (SA6), shipped as it is. */
 async function nalatiBowPage(ctx: ProjectGenerationContext): Promise<unknown> {
-  const page = '/assets/nalati/baked/recurve-pool.json';
+  const page = '/assets/nalati-grasslands/baked/recurve-pool.json';
   const files = await ctx.cached({ id: 'recurve-bow-page', inputs: [page] }, inputs => {
     const bytes = inputs.get(page); if (bytes === undefined || bytes.length === 0) throw new Error('Missing Nalati recurve bow page');
     return new Map([['bow-page.json', bytes]]);

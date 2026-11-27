@@ -1,6 +1,6 @@
 [
   {
-    "path": "src/static/assets/nalati/baked/places.bin",
+    "path": "src/static/assets/nalati-grasslands/baked/places.bin",
     "bytes": 11547006,
     "hash": "0e2ab3cedcd64ee9827e78a3534fd3a16e7eb861a42e23613f1b825adfbd40ea"
   },
@@ -10,7 +10,7 @@
     "hash": "fbe66ce2b4050879276a2878bb8de2ede6171625b8b1bf1b13431e8031d75384"
   },
   {
-    "path": "src/static/assets/nalati/baked/specimens.bin",
+    "path": "src/static/assets/nalati-grasslands/baked/specimens.bin",
     "bytes": 2342425,
     "hash": "6af939b53c6390c9460c009b73693a56b733278bc7e6b03d46a4bb8fac488394"
   },

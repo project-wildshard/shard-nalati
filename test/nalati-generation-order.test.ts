@@ -16,7 +16,7 @@ it('retires public painted publication while cover and map use defining authored
  expect(readFileSync('src/generators/coverBake.mjs','utf8')).toContain("from './modelPaint.mjs'");
  expect(readFileSync('src/generators/mapAssembly.mjs','utf8')).toContain("from './modelPaintProgram.ts'");
  expect(originals).toHaveLength(43);
- for(const pin of originals)expect(existsSync(`src/static/assets/nalati/baked/painted-models/${pin.file}`),pin.file).toBe(false);
+ for(const pin of originals)expect(existsSync(`src/static/assets/nalati-grasslands/baked/painted-models/${pin.file}`),pin.file).toBe(false);
 });
 
 it('owns grass keep-outs through the build-time native placements',()=>{

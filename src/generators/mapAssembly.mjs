@@ -58,7 +58,7 @@ function ownedModelReader(source) {
   const models = new Map();
   return async row => {
     const path = typeof row.url === 'string' ? row.url : row.url?.file;
-    const prefix = typeof row.url === 'string' ? '/assets/nalati/baked/painted-models/' : 'models/painted/';
+    const prefix = typeof row.url === 'string' ? '/assets/nalati-grasslands/baked/painted-models/' : 'models/painted/';
     if (typeof path !== 'string') throw new Error('Map model requires a declared source');
     if (!path.startsWith(prefix)) {
       if (typeof row.url !== 'string') throw new Error('Map model requires its painted file');
@@ -95,7 +95,7 @@ export function readNalatiMapScalar(source, directory) {
  * The raw words never cross a compressed public or prepared-runtime handoff. */
 async function nativeMapPlaces(paint, geography, source) {
   // the native construction of bake-nalati-painted.mjs, over the supplied terrain bytes (that tool reads the file)
-  const lattice = source('src/static/assets/baked/nalati-grasslands/terrain.bin'), terrain = lattice.slice().buffer;
+  const lattice = source('src/static/assets/nalati-grasslands/baked/terrain.bin'), terrain = lattice.slice().buffer;
   const dressing = await bakeNalatiDressingSource(prepareNalatiDressingInputs({ terrain: new Uint8Array(terrain), scalarBlocks: geography,
     forest: 'continuous', phone: false }));
   // the map draws the original place geometry (I3's byte normals look the same; the baked map stays)
@@ -118,7 +118,7 @@ export async function nalatiMapAssembly(source) {
   const assembly = new MapAssembly(), { prepared, bytes, specimens } = await nativeMapPlaces(fixed, geographyFiles, source);
   const placements = await nativeNalatiDressingPlacements(file => source(file), geographyFiles);
   const asset = ownedModelReader(source);
-  const terrain = readNativeTerrain(source('src/static/assets/baked/nalati-grasslands/terrain.bin')), native = terrain.grid;
+  const terrain = readNativeTerrain(source('src/static/assets/nalati-grasslands/baked/terrain.bin')), native = terrain.grid;
   const ground = terrain.heightAt, cloth = [];
   const actor = key => { const row = fixed.rows.find(candidate => candidate.key === key); if (row === undefined) throw new Error(`Missing map paint ${key}`); const lane = paintFiles.get(row.file); if (lane === undefined) throw new Error(`Missing owned map paint ${row.file}`); return mapGeometry(lane, 0, row.geometry); };
   const names = [...prepared.view.sequence.map(step => step.name), 'outcrops', 'dressing-statics', 'dressing-clutter'];
@@ -162,9 +162,9 @@ export async function nalatiMapAssembly(source) {
     assembly.add(`dressing:${name}`, geometry, list.map(pose));
   }
   // the crag bank: both tiers' lane-shuffled blocks in one deflate stream
-  const cragRows = nalatiCragRock(source('src/static/assets/baked/nalati-grasslands/terrain.bin')).rows, crags = cragRows.desktop;
+  const cragRows = nalatiCragRock(source('src/static/assets/nalati-grasslands/baked/terrain.bin')).rows, crags = cragRows.desktop;
   const cragWords = Math.max(...['phone', 'desktop'].flatMap(tier => cragRows[tier].meshes.map(mesh => mesh.offset + bakedGeometryBytes(mesh.row))));
-  const cragLanes = decodeBuildDeflate(source('src/static/assets/nalati/baked/crags.bin'), cragWords), cragBytes = new Uint8Array(cragLanes.length);
+  const cragLanes = decodeBuildDeflate(source('src/static/assets/nalati-grasslands/baked/crags.bin'), cragWords), cragBytes = new Uint8Array(cragLanes.length);
   for (let b = 0, n = cragLanes.length / 4; b < 4; b++) for (let i = 0; i < n; i++) cragBytes[i * 4 + b] = cragLanes[b * n + i];
   for (const mesh of crags.meshes) assembly.add(mesh.key, mapGeometry(cragBytes, mesh.offset, mesh.row));
   // The engine's pure forest placer reads exactly the same native samples and

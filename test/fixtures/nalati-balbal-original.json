@@ -47,8 +47,8 @@
             "source": {
               "kind": "asset",
               "asset": {
-                "url": "/assets/nalati/baked/painted-models/balbal.glb",
-                "phoneUrl": "/assets/nalati/baked/painted-models/balbal.phone.glb",
+                "url": "/assets/nalati-grasslands/baked/painted-models/balbal.glb",
+                "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/balbal.phone.glb",
                 "material": {
                   "id": "nalati-model:balbal|near|0.35|0.8||ffffff",
                   "family": "painterly",
@@ -157,8 +157,8 @@
     }
   ],
   "generated": {
-    "url": "/assets/nalati/baked/painted-models/balbal.glb",
-    "phoneUrl": "/assets/nalati/baked/painted-models/balbal.phone.glb",
+    "url": "/assets/nalati-grasslands/baked/painted-models/balbal.glb",
+    "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/balbal.phone.glb",
     "geometrySlot": 0,
     "materialSlot": 0,
     "retainedAttribute": "_paint_clone",

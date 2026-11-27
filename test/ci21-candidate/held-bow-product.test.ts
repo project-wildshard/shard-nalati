@@ -9,7 +9,7 @@ import { resolve } from 'node:path';
 import process from 'node:process';
 import { captureFolderInputs } from '@wildshard/sdk/headless/scripts/shardfile-inputs.mjs';
 import { build } from '@wildshard/dev/scripts/shardfile-vite.mjs';
-import recurve from '../../src/static/assets/nalati/baked/recurve-pool.json' with { type:'json' };
+import recurve from '../../src/static/assets/nalati-grasslands/baked/recurve-pool.json' with { type:'json' };
 import { HeldBowFileSchema, HeldBowDefinitionSchema } from '@wildshard/format/weaponProfiles';
 import { bindHeldBow } from '@wildshard/sdk/internal/engine/game/weapons/heldLauncher';
 import { registeredJsonSchema } from '@wildshard/sdk/internal/engine/host/formatJsonSchema';
@@ -24,7 +24,7 @@ const schema=registeredJsonSchema('weapons/bow-page.json');
 
 test('the named bow retains the original bytes, pool channels and borrowed arrays',async()=>{
   const bytes=encode(recurve),named=nameBlob('weapons/bow-page.json','json',bytes,{jsonSchema:schema});
-  expect(bytes).toEqual(new Uint8Array(readFileSync(new URL('../../src/static/assets/nalati/baked/recurve-pool.json',import.meta.url))));
+  expect(bytes).toEqual(new Uint8Array(readFileSync(new URL('../../src/static/assets/nalati-grasslands/baked/recurve-pool.json',import.meta.url))));
   expect(named.bytes).toEqual(bytes);
   if(named.file.jsonSchema===undefined)throw new Error('Missing named bow admission');
   const source=emptyShardfile({slug:'bow-fixture',name:'Bow fixture',author:'Fixture',revision:1,seed:1});
@@ -69,7 +69,7 @@ test('actual named admission rejects malformed bow and pool bytes',async()=>{
 
 
 test('the product input recorder sees the raw bow and its existing producer',async()=>{
-  const source='src/static/assets/nalati/baked/recurve-pool.json',root=process.cwd();
+  const source='src/static/assets/nalati-grasslands/baked/recurve-pool.json',root=process.cwd();
   const dir=mkdtempSync(resolve('tmp/held-bow-input-')),entry=resolve(dir,'entry.mjs'),receipt=resolve(dir,'inputs.json');
   writeFileSync(entry,`import rows from ${JSON.stringify(resolve(source))} with {type:'json'};export const bow=rows;`);
   try {

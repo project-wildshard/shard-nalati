@@ -46,8 +46,8 @@
     ]
   },
   "panorama": {
-    "desktop": "/assets/nalati/panorama.webp",
-    "phone": "/assets/nalati/panorama.phone.webp"
+    "desktop": "/assets/nalati-grasslands/panorama.webp",
+    "phone": "/assets/nalati-grasslands/panorama.phone.webp"
   },
   "zenith": {
     "desktop": [

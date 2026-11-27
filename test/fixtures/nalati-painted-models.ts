@@ -12,7 +12,7 @@ export async function originalPaintedModel(file: string): Promise<Uint8Array> {
   if (pin === undefined || name === undefined) throw new Error('Missing original painted model pin');
   let pending = prepared.get(file);
   if (pending === undefined) {
-    pending = bakeModelPaint(readFileSync(`src/static/assets/nalati/models/${file}`), name);
+    pending = bakeModelPaint(readFileSync(`src/static/assets/nalati-grasslands/models/${file}`), name);
     prepared.set(file, pending);
   }
   const bytes = await pending;

@@ -1,6 +1,6 @@
 # Nalati sourced assets: credits
 
-Third-party 3D assets under `public/assets/nalati/sourced/`. Every one is **CC0 1.0** (public domain, no
+Third-party 3D assets under `public/assets/nalati-grasslands/sourced/`. Every one is **CC0 1.0** (public domain, no
 attribution required, credited here anyway) or **CC-BY 3.0** (attribution required, the text is in the last
 section). Sourced 2026-09-23 for the Nalati look pass. The user approved CC0 / CC-BY on 2026-09-23 (ask N8).
 

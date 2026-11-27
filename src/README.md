@@ -20,7 +20,7 @@ Golden King in his kurgan and the Storm Titan. Third card on the title deck.
 | `tiers` | the composer's MSAA: phone 2, desktop 4 |
 | `hud` | the minimap's day badge |
 | `debugOptions` | the engine rows `clockSpeed`, `balbals`, `ghosts` |
-| `assetGlobs`, `ktx2` | `src/static/assets/nalati/**` and its KTX2, music, SFX and title folders; `ktx2.generated.ts`, with the phone's ASTC 6×6 overlay read off `src/static/assets/nalati/astc6/` |
+| `assetGlobs`, `ktx2` | `src/static/assets/nalati-grasslands/**` and its KTX2, music, SFX and title folders; `ktx2.generated.ts`, with the phone's ASTC 6×6 overlay read off `src/static/assets/nalati-grasslands/astc6/` |
 
 ## Its custom code, and why
 

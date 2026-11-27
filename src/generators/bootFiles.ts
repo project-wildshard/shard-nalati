@@ -10,7 +10,7 @@ export const nalatiGpuTable = (astc: Aliases): { phone: Aliases; desktop: Aliase
 export interface NalatiBootAssets { coats: string; bodies?: string }
 export function nalatiBootAssets(bodyFile?: string): NalatiBootAssets {
   if (bodyFile !== undefined && !/^\/assets\/nalati\/baked\/bodies-[a-f0-9]{64}\.bin$/u.test(bodyFile)) throw new Error('Invalid declared species body locator');
-  return { coats: '/assets/nalati/models/coats/', ...(bodyFile === undefined ? {} : { bodies: bodyFile }) };
+  return { coats: '/assets/nalati-grasslands/models/coats/', ...(bodyFile === undefined ? {} : { bodies: bodyFile }) };
 }
 
 /** the baked creature coats (species/rigs.ts nalatiCoatUrl; the rigs adopt them as they load): their desktop names, in order */

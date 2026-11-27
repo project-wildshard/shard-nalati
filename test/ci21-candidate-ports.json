@@ -310,7 +310,7 @@
         "actual named admission rejects malformed bow and pool bytes",
         "the product input recorder sees the raw bow and its existing producer"
       ],
-      "fixturePath": "src/static/assets/nalati/baked/recurve-pool.json",
+      "fixturePath": "src/static/assets/nalati-grasslands/baked/recurve-pool.json",
       "fixtureBlob": "d51c3a43677323a7cb9717bee1a640f1c31cd878",
       "changes": "Whole original cases and assertions retained; imports use real public engine/SDK entries and the same owner fixtures. Real strict compiler and typed lint; no source removal/default admission before C11."
     },

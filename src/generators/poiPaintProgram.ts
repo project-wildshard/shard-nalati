@@ -5,8 +5,8 @@ import contacts from '../data/poiContacts.json' with { type: 'json' };
 import { bakeModelPaint } from './modelPaint.mjs';
 import { nalatiPoiPaintSources, POI_PAINT_MODELS } from './poiPaintSources';
 
-const terrain = '/assets/baked/nalati-grasslands/terrain.bin';
-const modelPrefix = '/assets/nalati/models/';
+const terrain = '/assets/nalati-grasslands/baked/terrain.bin';
+const modelPrefix = '/assets/nalati-grasslands/models/';
 function signBoards(input: unknown): readonly Board[] {
   const record = (value: unknown): Record<string, unknown> => {
     if (value === null || typeof value !== 'object' || Array.isArray(value)) throw new Error('Invalid POI sign declaration');

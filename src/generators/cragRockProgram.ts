@@ -1,7 +1,7 @@
 import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { nalatiCragRock, type NalatiCragRows } from './cragRockRows';
 
-const LATTICE = '/assets/baked/nalati-grasslands/terrain.bin', BANK = '/assets/nalati/baked/crags.bin';
+const LATTICE = '/assets/nalati-grasslands/baked/terrain.bin', BANK = '/assets/nalati-grasslands/baked/crags.bin';
 
 /** The crag rows at build time over the lattice, after checking the committed bank is this construction's bytes. */
 export async function nalatiCragRockProgram(ctx: Pick<ProjectGenerationContext, 'cached'>): Promise<NalatiCragRows> {

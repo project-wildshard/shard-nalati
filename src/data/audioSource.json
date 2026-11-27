@@ -3622,7 +3622,7 @@
     "synthLead": "pluck",
     "minFade": 6,
     "source": {
-      "dir": "/assets/music/nalati/",
+      "dir": "/assets/nalati-grasslands/music/nalati/",
       "manifestKey": "nalati"
     },
     "sets": {},

@@ -9,7 +9,7 @@ const atlas = (selection, phone) => ({
   url: `models/people/${selection.length === 1 ? selection[0] : 'camp'}.glb`,
   name: 'nalati-camp-people-gen', skeleton: 'npc.figures.v1', columns: 3, rows: 2,
   cell: phone ? 256 : 512, rim: 0.35, bands: 0.8,
-  sources: selection.map(id => `/assets/nalati/models/people/${frames[id].file}.gen${phone ? '.phone' : ''}.glb`),
+  sources: selection.map(id => `/assets/nalati-grasslands/models/people/${frames[id].file}.gen${phone ? '.phone' : ''}.glb`),
   joints: selection.flatMap(id => ['root', 'head', 'arm'].map(part => `${id}-${part}`)),
 });
 

@@ -18,7 +18,7 @@ const horsePalette = { coat: rgb(horseRows.palette.coat), belly: rgb(horseRows.p
 /**
  * Build-time only (SHARD-PLATFORM M3, Nalati's species bodies bake): the wild steppe horse's painterly lofts, moved from
  * `species/horse.ts`. `generators/bodies.ts` builds every horse-family variant here and `scripts/bake-nalati-bodies.mjs`
- * writes them to `src/static/assets/nalati/baked/bodies.bin`; the page only reads the bake (`species/bodies.ts`).
+ * writes them to `src/static/assets/nalati-grasslands/baked/bodies.bin`; the page only reads the bake (`species/bodies.ts`).
  */
 function horsePaint(v: VariantDef): Paint {
   const P = paletteColors(horsePalette, v.tint);

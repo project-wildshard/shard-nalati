@@ -8,7 +8,7 @@ import { nalatiNativePlaceParts } from './placeParts';
 import { prepareNalatiDressingInputs } from './dressingInputs';
 import { bakeNalatiDressingSource } from './dressingSource';
 
-const terrain = '/assets/baked/nalati-grasslands/terrain.bin';
+const terrain = '/assets/nalati-grasslands/baked/terrain.bin';
 const partNames = ['actor:balbal:0:2977', 'actor:balbal:1:2977', 'actor:goat'];
 const names = ['places.bin', 'places.json', 'specimens.bin', 'placeSpecimens.json', 'placeParts.json', ...partNames.map(name => `${name}.bin`)];
 

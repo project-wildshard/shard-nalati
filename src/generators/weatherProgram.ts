@@ -41,7 +41,7 @@ export function nalatiWeatherChannels(lattice: Uint8Array): {
 
 /** Construct weather rows and executable from injected tracked inputs, without scheduler outputs. */
 export async function nalatiWeatherProgram(ctx: ProjectGenerationContext): Promise<NalatiWeather> {
-  const lattice = '/assets/baked/nalati-grasslands/terrain.bin';
+  const lattice = '/assets/nalati-grasslands/baked/terrain.bin';
   const files = await ctx.cached({ id: 'weather-lattice', inputs: [lattice] }, inputs => {
     const bytes = inputs.get(lattice);
     if (bytes === undefined || bytes.length === 0) throw new Error('Missing weather native lattice');

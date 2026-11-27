@@ -291,6 +291,6 @@ export function recurvePool(): { glb: Uint8Array; rows: { pool: { url: string; p
     poses: POSES,
     styles: { recurve: 'paintRecurve', golden: 'paintGolden', 'sky-wolf': 'paintSkyWolf' },
   };
-  return { glb, rows: { pool: { url: '/assets/nalati/baked/recurve-pool.glb', parts: [...parts.keys()],
+  return { glb, rows: { pool: { url: '/assets/nalati-grasslands/baked/recurve-pool.glb', parts: [...parts.keys()],
     channels: CHANNELS.map(c => ({ name: c.name, source: `_${c.semantic.slice(1).toLowerCase()}`, width: 3, parts: [PARTS.stave] })) }, bow, base: recurveBase() } };
 }

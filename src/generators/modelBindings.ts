@@ -1,7 +1,7 @@
 import { MODEL_FILES } from './modelPaint.mjs';
 import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 
-const publicPrefix = '/assets/nalati/baked/painted-models/';
+const publicPrefix = '/assets/nalati-grasslands/baked/painted-models/';
 const paintedPrefix = 'models/painted/';
 /** Equal atlas bytes have one logical shard file name, so shared images never create forbidden content aliases. */
 export function nalatiPaintedAtlasFile(bytes: Uint8Array): string { return `${paintedPrefix}atlas-${hashImmutableBytes(bytes)}.ktx2`; }

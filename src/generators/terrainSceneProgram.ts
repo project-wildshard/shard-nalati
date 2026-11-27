@@ -7,7 +7,7 @@ import { bakeWaterStrips } from './waterStrips';
 import { RIVER } from './terrainRecipe';
 import { MELT_STREAM } from './layout';
 
-const LATTICE = '/assets/baked/nalati-grasslands/terrain.bin';
+const LATTICE = '/assets/nalati-grasslands/baked/terrain.bin';
 
 /**
  * GR6: Nalati's native terrain draws at build time (the retired nalati-terrain-scene job's bytes): the painted ground and

@@ -1,7 +1,7 @@
 {
   "rows": {
     "pool": {
-      "url": "/assets/nalati/baked/recurve-pool.glb",
+      "url": "/assets/nalati-grasslands/baked/recurve-pool.glb",
       "parts": [
         "recurve-stave",
         "recurve-right-fist",

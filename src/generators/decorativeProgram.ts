@@ -2,7 +2,7 @@ import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration'
 import { withPortableMath } from '@wildshard/sdk/math/portableMath';
 import { decorativeRows } from './decorativeInput';
 
-const terrain = '/assets/baked/nalati-grasslands/terrain.bin';
+const terrain = '/assets/nalati-grasslands/baked/terrain.bin';
 
 /** Own both original decorative profiles over the declared native terrain.
  * The source cache retains complete wire bytes, without selecting a page or publishing a handoff. */

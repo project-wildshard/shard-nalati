@@ -6,11 +6,11 @@ import { hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-place-wires.json' with { type: 'json' };
 
 const inputs = new Map([
-  ['/assets/baked/nalati-grasslands/terrain.bin', readFileSync('src/static/assets/baked/nalati-grasslands/terrain.bin')],
+  ['/assets/nalati-grasslands/baked/terrain.bin', readFileSync('src/static/assets/nalati-grasslands/baked/terrain.bin')],
 ]);
 const files = await nalatiPlacesProgram({ cached: (_step, make) => Promise.resolve(make(inputs)) }, 'exact');
 for (const name of ['places', 'specimens']) {
-  const pin = pins.find(row => row.path === `src/static/assets/nalati/baked/${name}.bin`), bytes = files.get(`${name}.bin`);
+  const pin = pins.find(row => row.path === `src/static/assets/nalati-grasslands/baked/${name}.bin`), bytes = files.get(`${name}.bin`);
   if (pin === undefined || bytes === undefined || bytes.byteLength !== pin.bytes || hashImmutableBytes(bytes) !== pin.hash)
     throw new Error(`Original native ${name} binary differs`);
 }

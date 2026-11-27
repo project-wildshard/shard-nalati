@@ -1,7 +1,7 @@
 import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { MODEL_FILES, bakeModelPaint } from './modelPaint.mjs';
 
-const inputPrefix = '/assets/nalati/models/';
+const inputPrefix = '/assets/nalati-grasslands/models/';
 
 /** Original model GLBs as owned cached bytes; a consumer may name an exact nonempty subset.
  * The selected authored input list participates in the native cache identity. */

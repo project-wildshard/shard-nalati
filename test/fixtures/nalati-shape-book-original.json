@@ -4,7 +4,7 @@
       "slot": "balbal:0:2977",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 18043980
       },
       "baked": {
@@ -39,7 +39,7 @@
       "slot": "balbal:1:2977",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 18215604
       },
       "baked": {
@@ -74,7 +74,7 @@
       "slot": "balbal:0:3112",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 18392376
       },
       "baked": {
@@ -109,7 +109,7 @@
       "slot": "balbal:0:3114",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 18563676
       },
       "baked": {
@@ -144,7 +144,7 @@
       "slot": "balbal:1:3160",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 18734976
       },
       "baked": {
@@ -179,7 +179,7 @@
       "slot": "balbal:1:3162",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 18910884
       },
       "baked": {
@@ -214,7 +214,7 @@
       "slot": "balbal:0:2983",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 19087368
       },
       "baked": {
@@ -249,7 +249,7 @@
       "slot": "balbal:1:2986",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 19258380
       },
       "baked": {
@@ -284,7 +284,7 @@
       "slot": "balbal:0:2989",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 19434936
       },
       "baked": {
@@ -319,7 +319,7 @@
       "slot": "balbal:1:2992",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 19606020
       },
       "baked": {
@@ -354,7 +354,7 @@
       "slot": "dungeon:interior",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 19781208
       },
       "baked": {
@@ -389,7 +389,7 @@
       "slot": "dungeon:lid",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 25158936
       },
       "baked": {
@@ -424,7 +424,7 @@
       "slot": "dungeon:statue:0",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 25180920
       },
       "baked": {
@@ -459,7 +459,7 @@
       "slot": "dungeon:statue:1",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 25558392
       },
       "baked": {
@@ -494,7 +494,7 @@
       "slot": "dungeon:statue:2",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 25938240
       },
       "baked": {
@@ -529,7 +529,7 @@
       "slot": "dungeon:statue:3",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26315712
       },
       "baked": {
@@ -564,7 +564,7 @@
       "slot": "dungeon:heap",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26695488
       },
       "baked": {
@@ -599,7 +599,7 @@
       "slot": "dungeon:sand",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26771520
       },
       "baked": {
@@ -646,7 +646,7 @@
       "slot": "dungeon:shaft:0",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26904056
       },
       "baked": {
@@ -681,7 +681,7 @@
       "slot": "dungeon:shaft:1",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26906232
       },
       "baked": {
@@ -716,7 +716,7 @@
       "slot": "dungeon:flames",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26908408
       },
       "baked": {
@@ -751,7 +751,7 @@
       "slot": "dungeon:ring",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26913400
       },
       "baked": {
@@ -786,7 +786,7 @@
       "slot": "dungeon:stream",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26924728
       },
       "baked": {
@@ -821,7 +821,7 @@
       "slot": "dungeon:tell",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26925848
       },
       "baked": {
@@ -856,7 +856,7 @@
       "slot": "dungeon:beam",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26926000
       },
       "baked": {
@@ -891,7 +891,7 @@
       "slot": "dungeon:line",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26927648
       },
       "baked": {
@@ -926,7 +926,7 @@
       "slot": "dungeon:dome",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26933344
       },
       "baked": {
@@ -961,7 +961,7 @@
       "slot": "dungeon:arc",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26963200
       },
       "baked": {
@@ -996,7 +996,7 @@
       "slot": "dungeon:seal",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26964672
       },
       "baked": {
@@ -1031,7 +1031,7 @@
       "slot": "goat",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26964824
       },
       "baked": {
@@ -1066,7 +1066,7 @@
       "slot": "rider",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 26979728
       },
       "baked": {
@@ -1101,7 +1101,7 @@
       "slot": "trophy:aqbars",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 27003524
       },
       "baked": {
@@ -1136,7 +1136,7 @@
       "slot": "trophy:kokbori",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 27013304
       },
       "baked": {
@@ -1171,7 +1171,7 @@
       "slot": "trophy:qyran",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 27020384
       },
       "baked": {
@@ -1206,7 +1206,7 @@
       "slot": "trophy:qara-batyr",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 27026888
       },
       "baked": {
@@ -1241,7 +1241,7 @@
       "slot": "trophy:argymaq",
       "channels": [],
       "lane": {
-        "url": "/assets/nalati/baked/places.bin",
+        "url": "/assets/nalati-grasslands/baked/places.bin",
         "offset": 27035672
       },
       "baked": {

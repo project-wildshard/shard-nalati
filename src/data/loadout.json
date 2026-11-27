@@ -8,7 +8,7 @@
     "item": "weapon.spear"
   },
   "bow": {
-    "file": "/assets/nalati/baked/recurve-pool.json",
+    "file": "/assets/nalati-grasslands/baked/recurve-pool.json",
     "item": "weapon.bow"
   },
   "initial": "bow",

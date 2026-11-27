@@ -17,5 +17,5 @@ const predecessorRow = (row: unknown): unknown => {
   return copy;
 };
 const tierRows = (tier: 'phone' | 'desktop'): unknown => ({ ...nalatiCover.rows[tier], catalogue: nalatiCover.rows[tier].catalogue.map(predecessorRow),
-  packed: { ...nalatiCover.rows[tier].packed, bin: `/assets/nalati/baked/cover-${tier}.bin` } });
+  packed: { ...nalatiCover.rows[tier].packed, bin: `/assets/nalati-grasslands/baked/cover-${tier}.bin` } });
 export const nalatiPredecessorCoverRows: unknown = { ...nalatiCover.rows, phone: tierRows('phone'), desktop: tierRows('desktop') };
