@@ -37,12 +37,12 @@
     "check:bin-pins": "node src/scripts/.kit/bin-pins.mjs"
   },
   "dependencies": {
-    "@wildshard/build": "0.9.1",
-    "@wildshard/cli": "0.9.1",
-    "@wildshard/dev": "0.9.1",
-    "@wildshard/format": "npm:@wildshard/shard-format@0.82.4",
-    "@wildshard/kit": "0.9.1",
-    "@wildshard/sdk": "0.9.1",
+    "@wildshard/build": "0.9.3",
+    "@wildshard/cli": "0.9.3",
+    "@wildshard/dev": "0.9.3",
+    "@wildshard/format": "npm:@wildshard/shard-format@0.82.8",
+    "@wildshard/kit": "0.9.3",
+    "@wildshard/sdk": "0.9.3",
     "playwright": "1.65.0",
     "three": "0.186.0",
     "valibot": "1.5.0"
@@ -144,18 +144,18 @@
     "overrides": {
       "binaryen": "npm:@pre-bundled/binaryen@132.0.0-patch-1",
       "assemblyscript>binaryen": "npm:@pre-bundled/binaryen@131.0.0-nightly.20260721-patch-1",
-      "@wildshard/sdk>@wildshard/format": "npm:@wildshard/shard-format@0.82.4",
-      "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.82.4",
-      "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.82.4",
-      "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.82.4",
-      "@wildshard/kit>@wildshard/shard-format": "0.82.4",
-      "@wildshard/build": "0.9.1",
-      "@wildshard/upload": "0.9.1",
-      "@wildshard/sdk": "0.9.1",
-      "@wildshard/kit": "0.9.1",
-      "@wildshard/dev": "0.9.1",
-      "@wildshard/format": "npm:@wildshard/shard-format@0.82.4",
-      "@wildshard/cli": "0.9.1",
+      "@wildshard/sdk>@wildshard/format": "npm:@wildshard/shard-format@0.82.8",
+      "@wildshard/build>@wildshard/format": "npm:@wildshard/shard-format@0.82.8",
+      "@wildshard/dev>@wildshard/format": "npm:@wildshard/shard-format@0.82.8",
+      "@wildshard/upload>@wildshard/format": "npm:@wildshard/shard-format@0.82.8",
+      "@wildshard/kit>@wildshard/shard-format": "0.82.8",
+      "@wildshard/build": "0.9.3",
+      "@wildshard/upload": "0.9.3",
+      "@wildshard/sdk": "0.9.3",
+      "@wildshard/kit": "0.9.3",
+      "@wildshard/dev": "0.9.3",
+      "@wildshard/format": "npm:@wildshard/shard-format@0.82.8",
+      "@wildshard/cli": "0.9.3",
       "@wildshard/engine": "0.1.100-next.922b9d45"
     }
   },
@@ -166,7 +166,7 @@
   },
   "binDependenciesInstaller": "pnpm",
   "wildshard": {
-    "migrated": "0.9.1"
+    "migrated": "0.9.3"
   },
   "binDependenciesProjectSettings": false
 }
