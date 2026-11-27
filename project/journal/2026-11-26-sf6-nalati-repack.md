@@ -44,3 +44,11 @@ Nalati was the last zone carrying `/assets/baked/common/` (the cloud field, the
 water ripples and 24 pickup bins), all engine-owned since SF11 (`public-engine.json`). sharddev
 main refuses a shard mount outside its own folder, so the folder and its boot
 inventory root go; the build stays valid (715 files).
+
+## The SDK 0.9.1 pin (SF6b, 11-27)
+
+The re-pack waited on an SDK whose lint knows a shard's own folder and whose
+format charges images at their cooked size. SDK 0.9.1 (npm next; format
+0.82.4, engine 0.1.100-next.922b9d45) is that release, so every
+`@wildshard` package and override moves to it exactly, then `wildshard
+migrate` runs the 0.9.0 and 0.9.1 steps.
