@@ -1,11 +1,12 @@
 {
-  "content": "80ccb4acebbc03a9cc8faa765b635000f418fcf043700fdf1116bb4f0cfddc14",
-  "captured": "2026-11-27T03:14:57.545Z",
+  "content": "177031b1746a6907f498c8bc9e87ea684c437bdecd5c200d37e48fc40117617a",
+  "captured": "2026-11-27T04:02:13.141Z",
   "base": "auto re-stamp: curated art unchanged, content moved (wildshard build)",
   "card": {
     "thumbs/nalati-grasslands.jpg": "37c5aebda197767bfa4a60f998d213c3d535d2f8b51b948e6f95a77fa161e854",
     "thumbs/nalati-grasslands-portrait.jpg": "f13d7e0f60ca5baab187834c5f087d175aa73d5df51be7934b2f44bcecac1db3",
     "thumbs/nalati-grasslands-landscape.jpg": "4633b23433ff7f15373b73c3eb255769ca5ab435f3cc885b0cb19452885825a8"
   },
-  "curated": true
+  "curated": true,
+  "look": "0043289bb319373946d72108b6576f874c4ad9e1022483aa237017456ef19ff8"
 }
