@@ -166,7 +166,7 @@
   },
   "binDependenciesInstaller": "pnpm",
   "wildshard": {
-    "migrated": "0.8.0"
+    "migrated": "0.9.1"
   },
   "binDependenciesProjectSettings": false
 }

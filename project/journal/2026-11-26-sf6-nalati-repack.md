@@ -52,3 +52,9 @@ format charges images at their cooked size. SDK 0.9.1 (npm next; format
 0.82.4, engine 0.1.100-next.922b9d45) is that release, so every
 `@wildshard` package and override moves to it exactly, then `wildshard
 migrate` runs the 0.9.0 and 0.9.1 steps.
+
+`wildshard migrate` ran 0.9.0 only (0.8.0 had run): `src/shard.json` now
+declares shardVersion 0.0.11, GUIDE.md synced, the stamp is 0.9.1. The
+build re-stamped the hero (curated art unchanged; the 0.9.1 stamp carries
+no `look` field), and `wildshard check .` passes: 235.6 MB shardfile,
+134.78 MB download, no refusal.
