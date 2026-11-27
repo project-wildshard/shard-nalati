@@ -625,7 +625,7 @@
       "sourcePath": "test/nalati-chapter-binding.test.ts",
       "sourceBlob": "4a04da26640bb123b1918e4f71ec9b6b8c6dadcf",
       "targetPath": "test/ci21-candidate/nalati-chapter-binding.test.ts",
-      "targetBlob": "f52316843d822e387ba4b3b2a37828bddc460cca",
+      "targetBlob": "7740cce8e09b4da664f0e9cc68eedc2155fea751",
       "originalTests": [
         "native chapter polling owns its encounters and refuses a forged closed-room continuation"
       ],
@@ -640,7 +640,7 @@
       "sourcePath": "test/nalati-chapter-one.test.ts",
       "sourceBlob": "9de24c0ef3ca98d8859b89d12272d0434555c864",
       "targetPath": "test/ci21-candidate/nalati-chapter-one.test.ts",
-      "targetBlob": "1ddd77039683bdf33bd865f21f2dc51efd703ff7",
+      "targetBlob": "222e8b35356ff0228d6ca4b4f8c4ec1b95c15dda",
       "originalTests": [
         "chapter one earns its horse-plains arrival through the real elder talk and bank walk",
         "the earned plains continuation approaches its real stallion and earns the first bucking round",
@@ -667,7 +667,7 @@
       "sourcePath": "test/nalati-flock-verbs.test.ts",
       "sourceBlob": "7ccdd3e59f50fab747e3391f847c4564a06307e5",
       "targetPath": "test/ci21-candidate/nalati-flock-verbs.test.ts",
-      "targetBlob": "7910327713a1f63eb7aaf0c9320b1e190ca2ccb2",
+      "targetBlob": "b04726f1bcd62124c1fe8d463f93916bbe90ae66",
       "originalTests": [
         "the earned pasture visit survives its ordinary raid and fresh-worker defense replay"
       ],
@@ -722,7 +722,7 @@
       "sourcePath": "test/nalati-javelin-contact-verbs.test.ts",
       "sourceBlob": "19b04efc1f340ec52b8513169aec14b51e2459d2",
       "targetPath": "test/ci21-candidate/nalati-javelin-contact-verbs.test.ts",
-      "targetBlob": "b0321782c15406112ffc720b35dc02df430c3459",
+      "targetBlob": "fcb255fbf990560a712819e9d302ec14f65958d1",
       "originalTests": [
         "real javelin inputs strike a natural raider and replay its native state"
       ],
@@ -737,7 +737,7 @@
       "sourcePath": "test/nalati-kokpar-verbs.test.ts",
       "sourceBlob": "350cd21509baa491a7275cb95718e207216bf31f",
       "targetPath": "test/ci21-candidate/nalati-kokpar-verbs.test.ts",
-      "targetBlob": "ba26a8030833ad232bce66826974f1fb2e5cbe81",
+      "targetBlob": "28c5adeb57c92e2e8af45dd7981c02f7f9e30e45",
       "originalTests": [
         "Nalati borrowed-horse Kokpar earns and replays its real delivery checkpoint"
       ],
@@ -752,7 +752,7 @@
       "sourcePath": "test/nalati-mounted-chain-verbs.test.ts",
       "sourceBlob": "147a087ca76afbdc3875c3dbeb4c3f02e5402524",
       "targetPath": "test/ci21-candidate/nalati-mounted-chain-verbs.test.ts",
-      "targetBlob": "99360514eda28d2f16f3d876174b2a3aab5479f3",
+      "targetBlob": "a8634938240e83241e3735fb92fab06d73a8e015",
       "originalTests": [
         "real mounted contacts earn a two-hit chain and restore its exact native suffix"
       ],
@@ -767,7 +767,7 @@
       "sourcePath": "test/nalati-mounted-lance-verbs.test.ts",
       "sourceBlob": "7124315323bb33f8da6abbb556f590239083299d",
       "targetPath": "test/ci21-candidate/nalati-mounted-lance-verbs.test.ts",
-      "targetBlob": "ff519d52af58a286f7a27678853085225cb6b211",
+      "targetBlob": "d32d8fff990e0ea31856a74a7145d269bff1e5aa",
       "originalTests": [
         "real mounted steering lands a lance contact and restores its exact native continuation"
       ],
@@ -782,7 +782,7 @@
       "sourcePath": "test/nalati-patrol-verbs.test.ts",
       "sourceBlob": "1c9252eafaa58b7671ddeaa3a0e07e99d0b3b077",
       "targetPath": "test/ci21-candidate/nalati-patrol-verbs.test.ts",
-      "targetBlob": "caee4a04d2901bca4a789652f1bbfe641e881ae7",
+      "targetBlob": "9e8b9cff1c86cae448994126d88f4807726f6e71",
       "originalTests": [
         "Nalati night riders appear naturally and retain an unearned captain gate after native restore"
       ],
@@ -797,7 +797,7 @@
       "sourcePath": "test/nalati-qara-verbs.test.ts",
       "sourceBlob": "3163ce865f209ba184842bd8285f71bb924f80cb",
       "targetPath": "test/ci21-candidate/nalati-qara-verbs.test.ts",
-      "targetBlob": "3d92c2f1ae950b594b60152c59a91c005dd63d4a",
+      "targetBlob": "2b996244bfd71e1004d3522a543fcb5c99997e62",
       "originalTests": [
         "camp travel and natural night earn the original checkpoint",
         "five real night kills earn the checked captain unlock",
@@ -815,7 +815,7 @@
       "sourcePath": "test/nalati-sabre-contact-verbs.test.ts",
       "sourceBlob": "d8409384ec38d1169918a77c174fdbde8c5e3e7d",
       "targetPath": "test/ci21-candidate/nalati-sabre-contact-verbs.test.ts",
-      "targetBlob": "53647553a2243146d9c0a31a249764717199e206",
+      "targetBlob": "05c3c987db060daaddbf785f68255df6e9758e0d",
       "originalTests": [
         "real sabre inputs strike a natural raider and restore the live swing without duplicate damage"
       ],
@@ -830,7 +830,7 @@
       "sourcePath": "test/nalati-spear-contact-verbs.test.ts",
       "sourceBlob": "dd454b3bf22c74aeb68854de535b7e518b414620",
       "targetPath": "test/ci21-candidate/nalati-spear-contact-verbs.test.ts",
-      "targetBlob": "2313ff7d7a1027ada85fb3e57b193fec7eaca802",
+      "targetBlob": "0be95f34d4336bd085fbad039c66c8155d8c6b5c",
       "originalTests": [
         "real thrust inputs strike a natural raider and replay its native state"
       ],
@@ -863,7 +863,7 @@
       "sourcePath": "test/nalati-titan-verbs.test.ts",
       "sourceBlob": "992bf58a4f46b05c090a359e17ab20d2b01ab9aa",
       "targetPath": "test/ci21-candidate/nalati-titan-verbs.test.ts",
-      "targetBlob": "edb26aef16d5325919b978e03764de3d29599ef1",
+      "targetBlob": "ec49d6932954e41d025552e329b388ff8a9d3f91",
       "originalTests": [
         "natural storm, real entry and borrowed mount earn the checked cairn checkpoint",
         "the exact storm checkpoint earns the checked fire phase through real combat",
@@ -887,7 +887,7 @@
       "sourcePath": "test/nalati-weapon-verbs.test.ts",
       "sourceBlob": "cdd9f9fbea4d97d2b65c31190ea67d427c0a058b",
       "targetPath": "test/ci21-candidate/nalati-weapon-verbs.test.ts",
-      "targetBlob": "f9f83825158f2b657edafa65eb5252281876a945",
+      "targetBlob": "4e5d86ebc951f0c99bb325f8036ca764c1a70a3a",
       "originalTests": [
         "real held inputs drive the bow, three-hit sabre/heavy/pass and spear/javelin laws"
       ],
@@ -902,7 +902,7 @@
       "sourcePath": "test/nalati-wolf-fight-verbs.test.ts",
       "sourceBlob": "83ee50b95e86155c0df27a0e99745b171029feb2",
       "targetPath": "test/ci21-candidate/nalati-wolf-fight-verbs.test.ts",
-      "targetBlob": "3608f04f023dea968701c3f21fd956697d73acea",
+      "targetBlob": "d881045dc0de6a309244eaedf2ce75cf8a0ff640",
       "originalTests": [
         "real bow inputs kill a natural raider and replay the complete flock defense"
       ],
@@ -917,7 +917,7 @@
       "sourcePath": "test/nalati-wolf-howl-verbs.test.ts",
       "sourceBlob": "8a7be5bf13179253247868f86945c6c49da91872",
       "targetPath": "test/ci21-candidate/nalati-wolf-howl-verbs.test.ts",
-      "targetBlob": "7ffe14ddc22e073a25c4f6ee6717d626bb7fbbe4",
+      "targetBlob": "cd4115303e7fa979076f18261ac309ebcbfb835a",
       "originalTests": [
         "an intercepted natural raid earns a living leader regroup and both native wolf messages"
       ],
@@ -963,7 +963,7 @@
     },
     {
       "targetPath": "test/fixtures/check-nalati-species-source.ts",
-      "targetBlob": "1306badac131279faff8f965fad7859c7ff16057"
+      "targetBlob": "6a7dd8f4f9ec1f27d344805da6556051ea31fb7e"
     },
     {
       "targetPath": "test/fixtures/geometry-cache-author-observation.ts",
@@ -1271,7 +1271,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-native-place-files.ts",
-      "targetBlob": "fe7b4bc963078f9a5181935f5a0e5a8740e9483d"
+      "targetBlob": "0f88c61cb2ce8dddfc513456e8c66ff072bbd4bd"
     },
     {
       "targetPath": "test/fixtures/nalati-native-places-compile.mjs",
@@ -1303,7 +1303,7 @@
     },
     {
       "targetPath": "test/fixtures/nalati-original-species.ts",
-      "targetBlob": "75445b3ee8d222f6f1cc75b24b1c9b5be56edf04"
+      "targetBlob": "a3fb75667c063c69e8b373101e5c0e2cf1dd3b7e"
     },
     {
       "targetPath": "test/fixtures/nalati-output-cache.ts",
@@ -1627,7 +1627,7 @@
     },
     {
       "targetPath": "test/fixtures/native-program.ts",
-      "targetBlob": "0d1ff35d6ae32813f44ab1e90ebe1aa4bd7b200b"
+      "targetBlob": "e6e967ce359859ca2ed66e4da59cbcda6a245679"
     },
     {
       "targetPath": "test/fixtures/original-script-order.ts",

@@ -69,7 +69,7 @@ test('the existing default variable-import observation keeps its published bound
 }));
 test('a normal external script importer keeps a shared helper on the published boundary', () => fixture((root, put) => {
   put('test/fixtures/shared.ts', "import '@wildshard/engine/__ci21_missing_export__';");
-  put('scripts/entry.mjs', "import '../test/fixtures/shared.ts';");
+  put('src/scripts/entry.mjs', "import '../../test/fixtures/shared.ts';");
   put('test/ci21-candidate/held.test.ts', "import '../fixtures/shared';");
   assert.throws(() => checkTestBoundary(root), /engine does not export/u);
 }));
