@@ -69,7 +69,7 @@ repo's one `src/shards/<slug>/`).
 | 3 | Check | `wildshard check .` | Works: lint, build, validate, prove and the report card, one verdict |
 | 4 | Hero | `wildshard hero . --base <url>` | Works, with `wildshard dev .` running: `<url>` is the one it prints. See "The hero" below |
 | 5 | Prepare | `wildshard prepare out/my-shard`, then `wildshard build out/my-shard` | The first run fetches engine's preparation client once. See "Uploading" below |
-| 6 | Upload to staging | `wildshard upload out/my-shard.shardfile --channel staging --version 0.0.1` | Works only for the Wildshard team today: it needs the team's creator key. See "Uploading" below |
+| 6 | Upload to staging | `wildshard upload out/my-shard.shardfile --channel staging --shard-version 0.0.1` | Works only for the Wildshard team today: it needs the team's creator key. See "Uploading" below |
 | 7 | Upload to production | the same with `--channel prod` and a higher version | The same. Try staging first |
 | 8 | Share | `https://staging.wildshard.io/slug/my-shard` | **Not built yet (SA36, SA37).** See section 5 |
 
@@ -333,10 +333,10 @@ before every upload:
    bytes, and the server verifies that signature. Never commit either key. Done when `wildshard whoami` prints
    `key wsk_…` and `account <your email>`.
 6. **Upload,** with a version `X.Y.Z` higher than the last one uploaded (`0.0.1` the first time). Upload reads
-   `version` from the repo's `package.json` (`new` writes `0.0.1`; raise it before each upload), or pass `--version`:
+   `version` from the repo's `package.json` (`new` writes `0.0.1`; raise it before each upload), or pass `--shard-version`:
 
 ```sh
-wildshard upload out/my-shard.shardfile --channel staging --version 0.0.1
+wildshard upload out/my-shard.shardfile --channel staging --shard-version 0.0.1
 ```
 
 Upload checks the shard file as the API will, checks the hero, signs, compresses and sends it, then prints the
@@ -1995,6 +1995,33 @@ FP20); no shard repo read it at 0.7.0. The migration:
 Its manual steps name each other file that still passes the flag (a
 workflow, a script, a test that spawns node) and each import of the
 removed re-export. Check after: `pnpm test` passes on Node 26.
+
+#### migrate-0-8-0
+
+Engine 0.1.96. From 0.8.0 the SDK runs on engine 0.1.96, whose melee
+profile has no `legacySlot` (FORMAT-PRUNE FP22e; shard-format already
+deleted `items.legacySlot`). A weapon plays as its declared item id,
+`declared.<item id>`, never a closed engine slot name such as `sword`.
+Kit's `MeleeProfile` follows: the `legacySlot` field and its `Slot`
+type parameter are gone, so `MeleeProfile<Icon, Slot, Touch>` is now
+`MeleeProfile<Icon, Touch>`. What to write instead:
+
+- drop `legacySlot` from a weapon row; its `id` (`weapon.<name>`) is
+  what it plays as;
+- write `MeleeProfile<Icon, Touch>` where you wrote three arguments;
+- a save keyed by an old slot name moves through a slot migration
+  (`equipmentSlots`), as Pine Hollow's `src/data/slotMigrations.json`.
+
+The migration:
+
+- drops each `legacySlot: '<name>',` line from code that imports
+  `@wildshard`;
+- rewrites a one-line `MeleeProfile<A, B, C>` to `MeleeProfile<A, C>`
+  in code that imports kit's melee profile.
+
+Its manual steps name each other line that still names `legacySlot`
+(a read, a `Pick`, a JSON fixture row). Check after: `pnpm test` and
+`wildshard check .` pass.
 
 ## 8. Primitives
 
