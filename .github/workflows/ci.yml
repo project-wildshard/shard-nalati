@@ -210,7 +210,7 @@ jobs:
       # Ring 3 candidate (ENOENT tmp/ci21-source/product.json, run 45335395949).
       - name: Admit the complete publishable product
         if: github.event_name != 'push'
-        run: node --test test/ci/bump-only.test.mjs test/ci/package-products.test.mjs
+        run: node --test test/ci/bump-only.test.mjs test/ci/package-products.test.mjs test/ci/ci-limits.test.mjs
       - name: Prove authored wet ground and shipped navigation
         if: github.event_name != 'push'
         run: node --test test/ci/navigation-ground.test.mjs
@@ -239,8 +239,9 @@ jobs:
   ring-2-content:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    # SF24: the images-only cook encodes every texture cold; its wait timed out at 10 min (run 46005149140).
-    timeout-minutes: 55
+    # SF24: the images-only cook encodes every texture cold; its wait timed out at 10 min (run 46005149140), and the cook
+    # measured 1845.83 s (run 46050865905). It starts about 10 min in; its test limit is 45 min (J439).
+    timeout-minutes: 70
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
@@ -377,7 +378,7 @@ jobs:
         run: node --test test/ci/aqbars-journey.test.mjs
       - run: pnpm test:shards
       - name: Admit the complete publishable product
-        run: node --test test/ci/bump-only.test.mjs test/ci/package-products.test.mjs
+        run: node --test test/ci/bump-only.test.mjs test/ci/package-products.test.mjs test/ci/ci-limits.test.mjs
       - name: Prove authored wet ground and shipped navigation
         run: node --test test/ci/navigation-ground.test.mjs
       - name: Reach the Titan cairn and refuse unearned progress
@@ -391,8 +392,8 @@ jobs:
         run: node --test test/ci/nalati-walk.test.mjs
       - name: Cook and play only served live-herd files
         if: steps.ring2.outputs.play == 'true'
-        # SF24: the images-only cook encodes every texture cold; its wait timed out at 10 min (run 46005149140).
-        timeout-minutes: 32
+        # SF24: the images-only cook encodes every texture cold; it measured 1845.83 s (run 46050865905) under a 45 min limit.
+        timeout-minutes: 47
         run: |
           until [ -f "$RUNNER_TEMP/cook.exit" ]; do sleep 2; done
           cat "$RUNNER_TEMP/cook.log"
@@ -475,7 +476,9 @@ jobs:
     # Full41-root cohort includes every long native chapter/fight replay.
     # The109-case predecessor exceeded30min after30files passed; individual
     # original case/child/input/tape fences remain unchanged.
-    timeout-minutes: 45
+    # J439: on the images-only candidate (run 46050865905) the producer build took 9 min and the originals ran 36 min,
+    # 39 of 42 files done when the 45 min limit cancelled the job; about 1.5x of the ~47 min measured.
+    timeout-minutes: 70
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:

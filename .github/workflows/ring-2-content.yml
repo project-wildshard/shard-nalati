@@ -28,8 +28,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
     # Match ci.yml's Ring 2 job envelope for setup, build and play.
-    # SF24: the images-only cook encodes every texture cold; its wait timed out at 10 min (run 46005149140).
-    timeout-minutes: 55
+    # SF24: the images-only cook encodes every texture cold; its wait timed out at 10 min (run 46005149140). The cook
+    # measured 1845.83 s (run 46050865905) and runs after the journeys here, under a 45 min limit (J439).
+    timeout-minutes: 75
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:

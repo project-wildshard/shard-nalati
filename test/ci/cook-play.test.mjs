@@ -22,7 +22,8 @@ const { serverReadsFile } = await import('@wildshard/format/serverReads');
 const {loadRapier}=await import('@wildshard/sdk/headless/physics/rapier');
 const require=createRequire(import.meta.url);
 
-test('the real cooked Nalati walks and resumes using only served server files',{timeout:1_800_000},async()=>{
+// J439: the images-only cook encodes every texture cold; CI 46050865905 measured 1845.83 s, so the limit is about 1.5x.
+test('the real cooked Nalati walks and resumes using only served server files',{timeout:2_700_000},async()=>{
  const parent=process.env.WS_PROOF_SCRATCH??tmpdir();mkdirSync(parent,{recursive:true});
  const root=mkdtempSync(join(parent,'nalati-cook-')),worlds=[];
  const previous=process.env.WILDSHARD_SPAWN_PART_CACHE;
