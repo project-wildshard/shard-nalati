@@ -15,13 +15,14 @@ const bin = resolve(sdk, 'bin/wildshard.mjs');
 const expected = builtShardFolders(process.cwd(), manifestFolders(process.cwd()));
 assert.ok(expected.length, 'This checkout must declare its products');
 assert.deepEqual(readdirSync('out', { withFileTypes: true }).filter(row => row.isDirectory() && !row.name.startsWith('.') && row.name !== 'tars').map(row => row.name).sort(), expected.map(row => row.slug).sort());
-for (const { slug } of expected) test(`${slug}: publishable tarball includes its real discovery document`, { timeout: 9_500 }, () => {
+// SF24 (J439): the images-only product packs its raw images, so the pack ran past 8 s on hosted Linux; the room moves.
+for (const { slug } of expected) test(`${slug}: publishable tarball includes its real discovery document`, { timeout: 150_000 }, () => {
   const parent = process.env.WS_PROOF_SCRATCH ?? tmpdir();
   mkdirSync(parent, { recursive: true });
   const root = mkdtempSync(join(parent, 'shard-package-'));
   try {
     const tar = join(root, `${slug}.tar`);
-    const done = spawnSync(process.execPath, [bin, 'pack', resolve('out', slug), '--out', tar], { encoding: 'utf8', timeout: 8_000 });
+    const done = spawnSync(process.execPath, [bin, 'pack', resolve('out', slug), '--out', tar], { encoding: 'utf8', timeout: 120_000 });
     assert.ifError(done.error);
     assert.equal(done.status, 0, `${done.stdout}\n${done.stderr}`);
     const files = readTar(readFileSync(tar));

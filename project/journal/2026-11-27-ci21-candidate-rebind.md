@@ -4,3 +4,6 @@
 - The URL rewrite also moves three original outputs: species.json (+33 bytes), placeRuntime and shapeBook. Re-recorded their pins in nalati-species-files.json and nalati-place-runtime-files.json (ring-2-content's red).
 - Guard: lint:ci21 now runs the candidate retention too, so the pre-commit lint refuses a stale candidate binding.
 - Then ci21-source failed on Node 26 strip-only: three CI21 fixtures (creature-view-native, king-continuation, taming-pose) used TypeScript parameter properties. They declare the fields and assign them first in the constructor now; blobs rebound. Guard: test/node-strip-only.test.ts strips every test/fixtures and test/proof file with Node's strip-only parser.
+- ci's ring-2-content on 16e868c then timed out the package-products pack at 8 s
+  (spawnSync ETIMEDOUT): the images-only product packs its raw images. The pack
+  gets 120 s and the test 150 s (J439: the room moves with the content).
