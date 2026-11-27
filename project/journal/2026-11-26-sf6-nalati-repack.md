@@ -24,3 +24,7 @@ the images-only refusal (SF6c).
 - The shardfile now holds no KTX2 and no GLB with `KHR_texture_basisu`: 235.8 MB, 716 files.
 - Still WebP: 53 mounted images and 28 mounted GLBs' images. The cook encodes PNG and JPEG only (J525), so those ship as WebP with no cooked KTX2 until they move to PNG.
 - `cards-7ecab075` is engine's own public file: nothing in Nalati names it since format 0.79 dropped the near cards.
+
+## Version
+
+The re-pack publishes as 0.0.11: codex-r2api republishes today's Nalati as 0.0.10 for the R2 layout's staging tour.
