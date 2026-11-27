@@ -37,3 +37,10 @@ deleted. The coat table keeps only each tier's coat image names, which is all
 riggedHulls.ts reads, and the manifest drops its `gpu/` glob.
 Since engine's SF19 (cook 1.8.0) the cook encodes WebP as it does PNG, so the
 53 WebP images and the 28 GLBs' WebP get cooked KTX2 too.
+
+## The engine's common files leave Nalati (SF11)
+
+Nalati was the last zone carrying `/assets/baked/common/` (the cloud field, the
+water ripples and 24 pickup bins), all engine-owned since SF11 (`public-engine.json`). sharddev
+main refuses a shard mount outside its own folder, so the folder and its boot
+inventory root go; the build stays valid (715 files).
