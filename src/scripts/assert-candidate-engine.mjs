@@ -6,6 +6,7 @@ import {mkdirSync,readFileSync,realpathSync,writeFileSync} from 'node:fs';
 import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import { enginePackageUrl, enginePin, engineRoot } from '@wildshard/sdk/headless';
+import { lockedEngineSource } from './candidate-engine-source.mjs';
 const engine=process.env.NALATI_ENGINE_CANDIDATE;
 assert.match(engine??'',/^[a-f0-9]{40}$/u,'An exact candidate engine is required');
 const listed=spawnSync('pnpm',['list','@wildshard/engine','--depth','0','--json'],{encoding:'utf8'});
@@ -18,8 +19,11 @@ const installed=producer?{version:enginePin,path:engineRoot,resolved:`npm:${engi
 if(producer){
  // J475/FS28: npm next carries an exact prerelease, 0.1.54-next.<sha>, before the tag.
  assert.match(enginePin,/^\d+\.\d+\.\d+(?:-next\.[0-9a-f]{7,40})?$/u,'Producer uses its exact released pin');
-}else assert.equal(installed.resolved,`https://codeload.github.com/project-wildshard/engine/tar.gz/${engine}`);
+}
+// pnpm 10 lists no `resolved` for a git dependency; the lockfile's resolution names the candidate then (CI 46047262385).
+const resolved=producer?installed.resolved:installed.resolved??lockedEngineSource(readFileSync('pnpm-lock.yaml','utf8'));
+if(!producer)assert.equal(resolved,`https://codeload.github.com/project-wildshard/engine/tar.gz/${engine}`);
 assert.equal(realpathSync(installed.path),realpathSync(dirname(fileURLToPath(enginePackageUrl))));
-const result={complete:true,engine:producer?installed.version:engine,resolved:installed.resolved,version:installed.version};
+const result={complete:true,engine:producer?installed.version:engine,resolved,version:installed.version};
 const directory=process.env.NALATI_JOURNEY_DIR??'tmp/nalati-journeys';mkdirSync(directory,{recursive:true});
 writeFileSync(join(directory,producer?'producer.json':'runtime.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
