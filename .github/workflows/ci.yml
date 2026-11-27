@@ -239,7 +239,8 @@ jobs:
   ring-2-content:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    # SF24: the images-only cook encodes every texture cold; its wait timed out at 10 min (run 46005149140).
+    timeout-minutes: 55
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
@@ -390,7 +391,8 @@ jobs:
         run: node --test test/ci/nalati-walk.test.mjs
       - name: Cook and play only served live-herd files
         if: steps.ring2.outputs.play == 'true'
-        timeout-minutes: 10
+        # SF24: the images-only cook encodes every texture cold; its wait timed out at 10 min (run 46005149140).
+        timeout-minutes: 32
         run: |
           until [ -f "$RUNNER_TEMP/cook.exit" ]; do sleep 2; done
           cat "$RUNNER_TEMP/cook.log"
