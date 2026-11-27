@@ -3,7 +3,6 @@ import { assetCost } from '@wildshard/sdk/assets';
 import { hullCreature, type HullCreature, type HullLook } from '@wildshard/sdk/bake/hullLook';
 import { authorFormatRows } from '@wildshard/sdk/formatJsonSchema';
 import { creatureSkin } from '@wildshard/sdk/scene/creature';
-import { bakeRawColourPixels } from '@wildshard/sdk/bake/rawTexture';
 import { readSourceModel } from '@wildshard/sdk/bake/skinned';
 import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { species as readSpecies } from '@wildshard/sdk/species';
@@ -96,9 +95,17 @@ async function hullAtlas(rig: Uint8Array): Promise<Uint8Array> {
   return base.image;
 }
 
-async function bakeQuadrupedTier(kind: Quadruped, tier: Tier, ctx: Pick<ProjectGenerationContext, 'readImagePixels'>, inputs: ReadonlyMap<string, Uint8Array>,
+type Pixels = Pick<ProjectGenerationContext, 'readImagePixels' | 'writeImagePixels'>;
+
+/** SF6 (J525): a creature's colour map as a PNG of its pixels; the cook makes its KTX2. */
+async function colourPng(ctx: Pixels, bytes: Uint8Array): Promise<Uint8Array> {
+  if (ctx.writeImagePixels === undefined) throw new Error('Nalati creature maps need the host PNG writer');
+  return ctx.writeImagePixels(await ctx.readImagePixels(bytes));
+}
+
+async function bakeQuadrupedTier(kind: Quadruped, tier: Tier, ctx: Pixels, inputs: ReadonlyMap<string, Uint8Array>,
   { species, material }: Recipe): Promise<HullCreature> {
-  const colour = async (bytes: Uint8Array): Promise<Uint8Array> => bakeRawColourPixels(await ctx.readImagePixels(bytes));
+  const colour = (bytes: Uint8Array): Promise<Uint8Array> => colourPng(ctx, bytes);
   const authored = new Map<string, { rig: Uint8Array; maps: HullLook['maps'] }>();
   const variants: Record<string, NonNullable<HullLook['variants']>[string]> = {};
   let first: { rig: Uint8Array; maps: HullLook['maps'] } | undefined;
@@ -121,10 +128,10 @@ async function bakeQuadrupedTier(kind: Quadruped, tier: Tier, ctx: Pick<ProjectG
 
 const encode = (value: unknown): Uint8Array => new TextEncoder().encode(JSON.stringify(value));
 
-async function bakeCustomTier(kind: Custom, tier: Tier, ctx: Pick<ProjectGenerationContext, 'readImagePixels'>,
+async function bakeCustomTier(kind: Custom, tier: Tier, ctx: Pixels,
   inputs: ReadonlyMap<string, Uint8Array>, { species, material }: Recipe): Promise<BakedTier> {
   const own = ownRig(kind) ? await originalRig(sourceBytes(inputs, nalatiRigFile(kind === 'golden-king' ? hullOf(kind, 'king') : kind, tier)), kind === 'eagle') : undefined;
-  const colour = own === undefined ? undefined : await bakeRawColourPixels(await ctx.readImagePixels(own.atlas));
+  const colour = own === undefined ? undefined : await colourPng(ctx, own.atlas);
   // the hull book drew only the eagle two-sided
   const variants = bodySpecies(kind).variants.map(variant => {
     const rig = own?.rig ?? balbalRig(variant);
@@ -145,7 +152,7 @@ async function bakeCustomTier(kind: Custom, tier: Tier, ctx: Pick<ProjectGenerat
 }
 
 const header = 'data/creature-look.json';
-async function bakeCreature(kind: Kind, ctx: Pick<ProjectGenerationContext, 'readImagePixels'>, inputs: ReadonlyMap<string, Uint8Array>,
+async function bakeCreature(kind: Kind, ctx: Pixels, inputs: ReadonlyMap<string, Uint8Array>,
   recipe: Recipe): Promise<ReadonlyMap<string, Uint8Array>> {
   const bake = (tier: Tier) => isQuadruped(kind) ? bakeQuadrupedTier(kind, tier, ctx, inputs, recipe) : bakeCustomTier(kind, tier, ctx, inputs, recipe);
   const phone = await bake('phone'), desktop = kind === 'balbal' ? phone : await bake('desktop');
@@ -161,7 +168,7 @@ async function bakeCreature(kind: Kind, ctx: Pick<ProjectGenerationContext, 'rea
   const table = (tier: BakedTier): string => {
     if (tier.files === undefined) throw new Error(`Creature tier has no variant table: ${kind}`);
     for (const bytes of tier.files.glbs) store(bytes, 'glb');
-    for (const bytes of tier.files.textures) store(bytes, 'ktx2');
+    for (const bytes of tier.files.textures) store(bytes, 'image');
     const skins = tier.files.skins.map(bytes => {
       const { row, binding } = parseSkinFile(bytes);
       return store(bytes, 'json', skinFileDependencies(row, binding));
@@ -188,7 +195,7 @@ async function bakeCreature(kind: Kind, ctx: Pick<ProjectGenerationContext, 'rea
 }
 
 /** Cook both authored rigs and coats so each tier can fetch only its own variant table. */
-async function declaredLook(kind: Kind, ctx: Pick<ProjectGenerationContext, 'cached' | 'asset' | 'readImagePixels'>): Promise<CreatureLookRows> {
+async function declaredLook(kind: Kind, ctx: Pick<ProjectGenerationContext, 'cached' | 'asset' | 'readImagePixels' | 'writeImagePixels'>): Promise<CreatureLookRows> {
   const recipe = creatureSpecies(kind), tiers: readonly Tier[] = ['phone', 'desktop'];
   const inputs: string[] = [];
   for (const tier of tiers) {
@@ -208,7 +215,7 @@ async function declaredLook(kind: Kind, ctx: Pick<ProjectGenerationContext, 'cac
   return JSON.parse(new TextDecoder().decode(sourceBytes(rows, header))) as CreatureLookRows;
 }
 
-export async function declaredCreatureLooks(ctx: Pick<ProjectGenerationContext, 'cached' | 'asset' | 'readImagePixels'>): Promise<CreatureLookRows> {
+export async function declaredCreatureLooks(ctx: Pick<ProjectGenerationContext, 'cached' | 'asset' | 'readImagePixels' | 'writeImagePixels'>): Promise<CreatureLookRows> {
   const wolf = await declaredLook('wolf', ctx), horse = await declaredLook('horse', ctx);
   const ride = ecology.modes.ride.find((row: { readonly id: string }) => row.id === 'ride');
   if (ride === undefined) throw new Error('Missing authored horse gaits');

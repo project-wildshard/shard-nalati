@@ -407,16 +407,17 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<Nala
   const parts = await nalatiModelPartsProgram(ctx, nalatiPaintedModelNames(documents.map(row => row.rows)));
   const modelFiles = new Map<string, NamedBlob>();
   for (const [file, bytes] of parts) {
-    if (file.endsWith('.ktx2')) {
+    if (file.endsWith('.png')) {
+      // SF6: the PNG's IHDR extent (big-endian at 16 and 20); its resident cost is the cooked RGBA mip chain's
       const header = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
-      let width = header.getUint32(20, true), height = header.getUint32(24, true), gpu = 0;
+      let width = header.getUint32(16), height = header.getUint32(20), gpu = 0;
       for (;;) {
         gpu += width * height * 4;
         if (width === 1 && height === 1) break;
         width = Math.max(1, Math.floor(width / 2)); height = Math.max(1, Math.floor(height / 2));
       }
       const name = nalatiPaintedAtlasFile(bytes);
-      modelFiles.set(name, nameBlob(name, 'ktx2', bytes, { gpu }));
+      modelFiles.set(name, nameBlob(name, 'image', bytes, { gpu }));
     } else {
       const name = nalatiPaintedGeometryFile(file, bytes); modelFiles.set(name, nameBlob(name, 'glb', bytes));
     }

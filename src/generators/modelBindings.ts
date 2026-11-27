@@ -4,7 +4,7 @@ import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 const publicPrefix = '/assets/nalati-grasslands/baked/painted-models/';
 const paintedPrefix = 'models/painted/';
 /** Equal atlas bytes have one logical shard file name, so shared images never create forbidden content aliases. */
-export function nalatiPaintedAtlasFile(bytes: Uint8Array): string { return `${paintedPrefix}atlas-${hashImmutableBytes(bytes)}.ktx2`; }
+export function nalatiPaintedAtlasFile(bytes: Uint8Array): string { return `${paintedPrefix}atlas-${hashImmutableBytes(bytes)}.png`; }
 
 /** Near tier geometry may be identical after stripping its atlas; retain the existing untextured far names. */
 export function nalatiPaintedGeometryFile(name: string, bytes: Uint8Array): string {
@@ -45,7 +45,7 @@ export function nalatiPaintedBindings(input: unknown, files: ReadonlyMap<string,
     if (geometry === undefined) throw new Error(`Missing owned Nalati model geometry: ${name}`);
     out[sourceKey] = { file: nalatiPaintedGeometryFile(name, geometry), bytes: geometry.byteLength };
     if (!name.endsWith('.far.glb')) {
-      const texture = name.replace(/\.glb$/u, '.ktx2'), atlas = files.get(texture);
+      const texture = name.replace(/\.glb$/u, '.png'), atlas = files.get(texture);
       if (atlas === undefined) throw new Error(`Missing owned Nalati model atlas: ${texture}`);
       if (out[atlasKey] !== undefined) throw new Error('Nalati painted model already declares an atlas');
       out[atlasKey] = { file: nalatiPaintedAtlasFile(atlas), bytes: atlas.byteLength,

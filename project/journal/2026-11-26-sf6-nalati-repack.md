@@ -15,3 +15,12 @@ The art move put the baked and GPU trees under
 overlapped and the SDK refused them. Two roots now: the zone's own
 folder and engine's `/assets/baked/common/`. The build then runs to
 the images-only refusal (SF6c).
+
+## SF6c: images only
+
+- Creature colour maps and coats are PNGs of their pixels (`writeImagePixels`), stored as `image` files.
+- The painted models' atlases are PNGs named `atlas-<hash>.png`, kind `image`, for desktop and phone; the build no longer needs the Basis encoder.
+- `ktx2.generated.ts` is empty and the 66 `gpu/` mounts (38 KTX2, 28 GLB twins holding KTX2) are dropped; the files stay on disk until SF6g (Jake's word on the SF6f board).
+- The shardfile now holds no KTX2 and no GLB with `KHR_texture_basisu`: 235.8 MB, 716 files.
+- Still WebP: 53 mounted images and 28 mounted GLBs' images. The cook encodes PNG and JPEG only (J525), so those ship as WebP with no cooked KTX2 until they move to PNG.
+- `cards-7ecab075` is engine's own public file: nothing in Nalati names it since format 0.79 dropped the near cards.
