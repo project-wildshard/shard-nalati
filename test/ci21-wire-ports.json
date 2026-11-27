@@ -113,7 +113,7 @@
         "individual original file loans are detached and unknown names refuse"
       ],
       "fixturePath": "test/fixtures/nalati-species-files.json",
-      "fixtureBlob": "d94fece6a33ff15b13a5fd83168dc9d4aa0e3b55",
+      "fixtureBlob": "a446008720dfed4163554729bef18eac95c9ff41",
       "fixtureSourceRepository": "project-wildshard/shard-nalati",
       "fixtureSourceRevision": "aa2a7d1153588897c87d4bad724f6f47e6909972",
       "observationHelper": {
@@ -196,7 +196,7 @@
         "the preparation source bundles as one config-safe chunk"
       ],
       "fixturePath": "test/fixtures/nalati-place-runtime-files.json",
-      "fixtureBlob": "44a10e909c74f0bdaae109cb22e555bd75c2b2a9",
+      "fixtureBlob": "aefc4c6e93069eb42367adf093822320815ca9d3",
       "observationHelper": {
         "sourceRepository": "project-wildshard/shard-nalati",
         "sourceRevision": "020c7a7ecefea0c0e128df9f972df81bb580f0f6",
