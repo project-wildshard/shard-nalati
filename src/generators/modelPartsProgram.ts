@@ -4,7 +4,7 @@ import { bakeRawColourPixels } from '@wildshard/sdk/bake/rawTexture';
 import { MODEL_FILES, bakeModelPaint } from './modelPaint.mjs';
 import { nalatiModelSourceParts } from './modelSourceParts';
 
-const inputPrefix = '/assets/nalati/models/';
+const inputPrefix = '/assets/nalati-grasslands/models/';
 /** S4 on Nalati: a phone model's atlas is UASTC with its mip chain, half the raw RGBA's wire. S12f3: the build encodes it
  *  from the phone model's own paint with the host's checked Basis encoder, so no hand-made atlas sits in source.
  *  UASTC, not raw 6×6: a shard file blob has no image route, so a phone-tier GPU with no ASTC must still transcode it. */

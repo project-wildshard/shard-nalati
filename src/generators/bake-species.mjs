@@ -29,7 +29,7 @@ export async function nalatiSpeciesSource(readSource) {
   } }, input => {
     if (!inputSchema.accepts(input)) throw new Error('Invalid species CLI source metadata');
     return input;
-  }, input => authorFormatRows('speciesBookRows.CreatureGuestSchema', input), hash => `/assets/nalati/baked/bodies-${hash}.bin`);
+  }, input => authorFormatRows('speciesBookRows.CreatureGuestSchema', input), hash => `/assets/nalati-grasslands/baked/bodies-${hash}.bin`);
   const metadata = files.get('species.json');
   if (metadata === undefined) throw new Error('Missing source species metadata');
   const species = JSON.parse(new TextDecoder().decode(metadata));

@@ -8,7 +8,7 @@ import { reinsCardBinary } from './reinsCard';
 /** the flock's sheep: the painted model (generators/bake-model-paint.mjs) in the painted creatures' material */
 const SHEEP = { key: 'sheep', model: { id: 'nalati-grasslands/sheep', name: 'Fat-tailed sheep', file: 'src/shards/nalati-grasslands/generators/coverSpecimens.ts',
   category: 'creatures', pipeline: ['trellis', 'code'], surface: 'flesh', defaults: {} }, source: { kind: 'asset', asset: {
-  url: '/assets/nalati/baked/painted-models/sheep.glb', phoneUrl: '/assets/nalati/baked/painted-models/sheep.phone.glb', geometrySlot: 0, materialSlot: 0,
+  url: '/assets/nalati-grasslands/baked/painted-models/sheep.glb', phoneUrl: '/assets/nalati-grasslands/baked/painted-models/sheep.phone.glb', geometrySlot: 0, materialSlot: 0,
   material: { id: 'nalati-model:sheep|near|0.35|0.8||ffffff', family: 'painterly', rim: 0.35, bands: 0.8, floor: 0.2 } } } };
 
 /** The Explorer admits the prepared ambient cards, the baked reins card and the sheep without a shard builder module; the

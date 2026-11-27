@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
-const TERRAIN = resolve(root, 'src/static/assets/baked/nalati-grasslands/terrain.bin');
+const TERRAIN = resolve(root, 'src/static/assets/nalati-grasslands/baked/terrain.bin');
 
 /** The raw binary from its shipped lanes (every 4-byte word's first bytes, then its second …). */
 export function unshuffle(lanes) {

@@ -12,7 +12,7 @@ const LOOPS = ['steppe-wind', 'steppe-larks', 'steppe-night', 'river', 'meltwate
 export const NALATI_AUDIO = parseAudioData({ patches,scene,synth:NALATI_PHRASES, cues: [], ambience: null, score: 'default',
   music: { setPlayback: { scene: { zone: 'grass', night: false, storm: false, boss: null }, stateMode: false, waitForBank: false },
     setCatalogue: { inventory: 'base', priority: true, bootSynth: false, titleStings: true, baseSamples: true, cueOverlay: true }, id: 'score.nalati', base: 'steppe-grass', slots: ['steppe-grass', 'steppe-sky', 'steppe-snow', 'steppe-night', 'steppe-storm', 'steppe-king'], bootSlots: ['title', 'steppe-grass'],
-    synthLead: 'pluck', minFade: 6, source: { dir: '/assets/music/nalati/', manifestKey: 'nalati' }, sets: {}, selectMode: 'all', selection: [
+    synthLead: 'pluck', minFade: 6, source: { dir: '/assets/nalati-grasslands/music/nalati/', manifestKey: 'nalati' }, sets: {}, selectMode: 'all', selection: [
       { slots: ['steppe-king'], when: [{ field: 'boss', op: 'equals', value: 'king' }] },
       { slots: ['steppe-storm'], when: [{ field: 'storm', op: 'equals', value: true }] },
       { slots: ['steppe-night'], when: [{ field: 'night', op: 'equals', value: true }] },

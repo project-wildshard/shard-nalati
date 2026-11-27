@@ -1,6 +1,6 @@
 import { nalatiDressingPlacementProgram } from './dressingPlacementProgram.ts';
 
-const terrain = '/assets/baked/nalati-grasslands/terrain.bin';
+const terrain = '/assets/nalati-grasslands/baked/terrain.bin';
 
 /** Node authors supply the physical read; this pure binding names only the defining producer's terrain/scalars.
  * @param {(name: string) => Uint8Array} read @param {ReadonlyMap<string, Uint8Array>} [geography] */

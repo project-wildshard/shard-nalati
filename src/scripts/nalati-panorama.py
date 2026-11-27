@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """nalati-panorama.py — the round-6 360° sky panorama → the shipped WebP strips for the look-v2 sky dome.
 
-  python3 src/scripts/nalati-panorama.py            # writes src/static/assets/nalati/panorama.webp (+ .phone.webp)
+  python3 src/scripts/nalati-panorama.py            # writes src/static/assets/nalati-grasslands/panorama.webp (+ .phone.webp)
 
 Source: art/nalati-grasslands/round-6-panorama/panorama-5530x1024.jpg (x = compass azimuth, 0 = north; README there).
 Two things happen before the encode:

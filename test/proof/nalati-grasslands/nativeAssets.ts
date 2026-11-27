@@ -11,7 +11,7 @@ const read = (path: string): Uint8Array => new Uint8Array(readFileSync(new URL(p
 export function nalatiDeclaredAssets(source: Pick<Shardfile, 'navigation' | 'terrain'>): Map<string, Uint8Array> {
   const result = new Map(source.navigation === null ? [] : [[source.navigation.file, read(`src/assets/navigation-${source.navigation.file}`)]]);
   if (source.terrain?.sampling !== undefined) {
-    const sampling = nalatiQueryTerrain(read('src/static/assets/baked/nalati-grasslands/terrain.bin')).assets.get(source.terrain.sampling.file);
+    const sampling = nalatiQueryTerrain(read('src/static/assets/nalati-grasslands/baked/terrain.bin')).assets.get(source.terrain.sampling.file);
     if (sampling === undefined) throw new Error('Nalati query terrain differs from its declared sampling file');
     result.set(source.terrain.sampling.file, sampling);
   }

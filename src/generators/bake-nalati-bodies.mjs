@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // A standalone asset tool (GR6, D2-style: the lofts are byte-exact only on macOS, so the Linux shard build cannot
-// rebuild them): run it by hand when a body changes. src/static/assets/nalati/baked/bodies.bin and data/bodies.json are
+// rebuild them): run it by hand when a body changes. src/static/assets/nalati-grasslands/baked/bodies.bin and data/bodies.json are
 // committed authored inputs; `--check` reports a stale pair.
 // SHARD-PLATFORM M3 (Nalati's 80/20, the species bodies bake): the horse-family and canid lofts built offline. The generator
 // (src/generators/bodies.ts) runs here only and writes every body's attribute and index bytes, its
-// 4-byte words' bytes in four lanes and zlib-compressed, to src/static/assets/nalati/baked/bodies.bin and its rows (the binary's
+// 4-byte words' bytes in four lanes and zlib-compressed, to src/static/assets/nalati-grasslands/baked/bodies.bin and its rows (the binary's
 // hash and size, each body's bones, dims and geometry layout) to src/data/bodies.json, which the
 // page reads (the hull book's packed bodies, game/looks/speciesBook `SpeciesCatalogue.preload`).
 // The stale gate: `--check` (bake-check.mjs's node baker `nalati-bodies`, cached on its inputs at the push gate) rebakes
@@ -42,7 +42,7 @@ function unshuffleBodyLanes(lanes) {
 }
 
 if (import.meta.main) {
-  const out = resolve(root, 'src/static/assets/nalati/baked'), rowsPath = resolve(root, 'src/data/bodies.json');
+  const out = resolve(root, 'src/static/assets/nalati-grasslands/baked'), rowsPath = resolve(root, 'src/data/bodies.json');
   if (process.argv.includes('--check')) {
     if (process.platform !== 'darwin') { console.info('bake-nalati-bodies: --check skipped (the lofts are byte-exact on macOS, where the bake is made)'); process.exit(0); }
     const { rows, bin } = bakeBodyRows();

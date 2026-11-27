@@ -26,7 +26,7 @@ for (const tier of ['phone', 'desktop']) {
     ['boulder-tall', 'boulder-2', [0.9, 0.95, 0.9], placementRows('boulder').filter((_, i) => i % 3 === 2)],
     ['slab', 'boulder-3', [1.45, 0.5, 0.95], placementRows('slab')],
   ]) {
-    const authored = readFileSync(resolve(root, `src/static/assets/nalati/models/${file}${tier === 'phone' ? '.phone' : ''}.glb`));
+    const authored = readFileSync(resolve(root, `src/static/assets/nalati-grasslands/models/${file}${tier === 'phone' ? '.phone' : ''}.glb`));
     const source = await readSourceModel(await bakeModelPaint(authored, file));
     const mesh = source.gltf.scene.children.find(child => child instanceof THREE.Mesh);
     if (mesh === undefined) throw new Error(`Missing prepared rock ${file}`);

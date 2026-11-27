@@ -44,7 +44,7 @@ const paint=read('data/poiPaint.json');
 // G600 L8: the prepared shapes as fixed draw rows (game/models/fixedDraws): the actors' blocks in the place bake, the
 // painted ones in named binary blocks. The sign lettering's atlases are scene-dressing rows of their own (game/looks/lettering).
 const sources=paint.rows.map(({file,name})=>({name,kind:'bin',source:file}));
-const shapeBook={draws:[...rows.filter(row=>row.name.startsWith('actor:')).flatMap(row=>row.meshes.slice(0,1).map(mesh=>({slot:row.name.slice(6),channels:[],lane:{url:'/assets/nalati/baked/places.bin',offset:mesh.offset},baked:mesh.geometry}))),...paint.rows.map(({key,geometry},index)=>({slot:key,channels:[],file:sources[index].name,baked:geometry}))],sources};
+const shapeBook={draws:[...rows.filter(row=>row.name.startsWith('actor:')).flatMap(row=>row.meshes.slice(0,1).map(mesh=>({slot:row.name.slice(6),channels:[],lane:{url:'/assets/nalati-grasslands/baked/places.bin',offset:mesh.offset},baked:mesh.geometry}))),...paint.rows.map(({key,geometry},index)=>({slot:key,channels:[],file:sources[index].name,baked:geometry}))],sources};
 return {floors,runtime:{places:{...places,rows},dressing:{...dressing,rows:shapes},view:{...view,smoke}},metrics,capture,shapeBook};
 }
 

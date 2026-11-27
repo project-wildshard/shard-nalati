@@ -40,7 +40,7 @@ const hull = (row: ColliderDesc): NalatiCragTier['hulls'][number] => {
 
 /**
  * GR6: Nalati's crag rock over the native lattice, both tiers (the retired nalati-crags job's construction): `rows` as its
- * readers parse them, and `bin`, the shapes' lane-shuffled level-9 deflate bank committed at src/static/assets/nalati/baked/
+ * readers parse them, and `bin`, the shapes' lane-shuffled level-9 deflate bank committed at src/static/assets/nalati-grasslands/baked/
  * crags.bin (rewritten by hand with src/scripts/bake-nalati-crags.mjs when the crags change).
  */
 export function nalatiCragRock(terrain: Uint8Array): { rows: NalatiCragRows; bin: Uint8Array } {

@@ -10,7 +10,7 @@ import ceilings from '../data/budgetCeilings.json' with { type: 'json' };
 import declared from '../data/bootInventory.json' with { type: 'json' };
 
 /** The retained terrain the diagnostic eyes stand on. */
-const TERRAIN_URL = '/assets/baked/nalati-grasslands/terrain.bin';
+const TERRAIN_URL = '/assets/nalati-grasslands/baked/terrain.bin';
 
 /** GR6: Nalati's boot declaration as program discovery, as the retired nalati-boot-metadata bake wrote it into
  *  boot/declaration.generated.ts and boot/explore.generated.json: the budgets, navigation, capture poses, the declared

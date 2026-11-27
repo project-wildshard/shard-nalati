@@ -2,7 +2,7 @@ import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration'
 import { nameBlob, type NamedBlob } from '@wildshard/sdk/blobs';
 
 const sources = {
-  crags: { file: 'crags.bin', input: '/assets/nalati/baked/crags.bin' },
+  crags: { file: 'crags.bin', input: '/assets/nalati-grasslands/baked/crags.bin' },
 };
 
 /** Admit the original compressed scene bake bytes directly, without a second source-tree copy. */

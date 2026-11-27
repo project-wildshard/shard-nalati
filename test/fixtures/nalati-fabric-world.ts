@@ -10,6 +10,6 @@ import { originalPlaceBinary } from './nalati-original-place-binary';
 export async function installWorldFixture(): Promise<void> {
   installWorldRegistry();
   if (!SHAPES.ready) await SHAPES.load(new Map([...SHAPE_BYTES,
-    ['/assets/nalati/baked/places.bin', unshuffleLanes(new Uint8Array(inflateSync(await originalPlaceBinary())))],
+    ['/assets/nalati-grasslands/baked/places.bin', unshuffleLanes(new Uint8Array(inflateSync(await originalPlaceBinary())))],
   ]));
 }

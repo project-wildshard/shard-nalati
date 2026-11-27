@@ -4,7 +4,7 @@ import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration'
 import { decodeBuildDeflate } from '@wildshard/sdk/bake/byteCodec';
 import type { prepareNalatiSpecies, NalatiSpeciesSourceInputs } from './speciesPreparation';
 
-const body = '/assets/nalati/baked/bodies.bin';
+const body = '/assets/nalati-grasslands/baked/bodies.bin';
 const metadata = ['data/bodies.json'];
 // Preserve the complete authored AS inventory: the existing compiler charges all source lines.
 const authored = [

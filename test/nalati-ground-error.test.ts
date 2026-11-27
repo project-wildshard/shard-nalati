@@ -6,7 +6,7 @@ import { bakeNalatiGround, nalatiGroundSource } from '../src/generators/nalatiGr
 import { readSourceModel } from '@wildshard/sdk/bake/skinned';
 
 test('Nalati ground error bounds every actual Float64-to-Float32 position conversion', async () => {
-  const source = nalatiGroundSource(new Uint8Array(readFileSync('src/static/assets/baked/nalati-grasslands/terrain.bin')));
+  const source = nalatiGroundSource(new Uint8Array(readFileSync('src/static/assets/nalati-grasslands/baked/terrain.bin')));
   const tiles = bakeNalatiGround(source), isMesh = (node: unknown): node is Mesh => node instanceof Mesh;
   let rounded = 0, exact = 0;
   for (const row of tiles) {

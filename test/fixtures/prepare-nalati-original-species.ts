@@ -26,7 +26,7 @@ const files = await nalatiSpeciesProgram({ compileDecisionRows: compileDecisionS
 } }, input => {
   if (!v.is(inputSchema, input)) throw new Error('Invalid original species fixture inputs');
   return input;
-}, input => v.parse(CreatureGuestSchema, input), hash => `/assets/nalati/baked/bodies-${hash}.bin`);
+}, input => v.parse(CreatureGuestSchema, input), hash => `/assets/nalati-grasslands/baked/bodies-${hash}.bin`);
 // No generated species output is read, even when every original is still on disk.
 for (const [index, pin] of pins.entries()) {
   const name = names[index], bytes = name === undefined ? undefined : files.get(name);

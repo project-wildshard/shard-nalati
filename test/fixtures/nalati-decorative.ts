@@ -4,4 +4,4 @@ import { withPortableMath } from '@wildshard/sdk/math/portableMath';
 import { decorativeRows } from '../../src/generators/decorativeInput';
 
 /** Complete native profiles; no retired generated scene or decorative metadata is read. */
-export const nalatiDecorative: ReturnType<typeof decorativeRows> = withPortableMath(() => decorativeRows(readFileSync('src/static/assets/baked/nalati-grasslands/terrain.bin')));
+export const nalatiDecorative: ReturnType<typeof decorativeRows> = withPortableMath(() => decorativeRows(readFileSync('src/static/assets/nalati-grasslands/baked/terrain.bin')));

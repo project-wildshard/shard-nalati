@@ -1,6 +1,6 @@
 {
   "name": "@wildshard/shard-nalati",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "description": "Nalati Grasslands: a Wildshard shard.",
   "type": "module",

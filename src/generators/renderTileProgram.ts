@@ -2,7 +2,7 @@ import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { nalatiRenderTileSources } from './renderTileSources';
 
-const terrain = '/assets/baked/nalati-grasslands/terrain.bin';
+const terrain = '/assets/nalati-grasslands/baked/terrain.bin';
 const header = 'data/renderTiles.json';
 const pairs = [0, 1, 2, 3].flatMap(z => [0, 1].map(x =>
   `assets/world-terrain/ground-l1-${x}-${z}.generated.glb`));

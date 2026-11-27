@@ -11,7 +11,7 @@
 //     object (crimson cape + gold armour) keeps its separate colours.
 //   - a soft toe lift on the darkest L after the match.
 // Every step is blended by a per-model strength. Unused atlas texels get the same per-pixel map (no seams at gutters).
-// Output: src/static/assets/nalati/models/<name>.glb (1024² WebP) + <name>.phone.glb (512² WebP), meshopt, via the
+// Output: src/static/assets/nalati-grasslands/models/<name>.glb (1024² WebP) + <name>.phone.glb (512² WebP), meshopt, via the
 // gltf-transform CLI; spruce's impostor card gets the same per-pixel map.
 //
 //   node src/scripts/nalati-models-color.mjs                    # every model
@@ -41,7 +41,7 @@ const flag = (n, d) => { const a = argv.find((x) => x.startsWith(`--${n}=`)); re
 const only = flag('only', '').split(',').filter(Boolean);
 const M = join(homedir(), 'ml/img2mesh');
 const tilde = (p) => p.replace(/^~/, homedir());
-const OUT = tilde(flag('out', join(ROOT, 'src/static/assets/nalati/models')));
+const OUT = tilde(flag('out', join(ROOT, 'src/static/assets/nalati-grasslands/models')));
 const SRC_T = flag('src', ''), REF_T = flag('ref', '');
 mkdirSync(OUT, { recursive: true });
 const TMP = flag('tmp', '/tmp/nalati-color');

@@ -72,10 +72,10 @@
   },
   "debugOptions": [],
   "assetGlobs": [
-    "public/assets/nalati/**",
-    "public/assets/gpu/nalati/**",
-    "public/assets/music/nalati/**",
-    "public/assets/sfx/nalati-grasslands/**",
+    "public/assets/nalati-grasslands/**",
+    "public/assets/nalati-grasslands/gpu/**",
+    "public/assets/nalati-grasslands/music/nalati/**",
+    "public/assets/nalati-grasslands/sfx/nalati-grasslands/**",
     "public/assets/title/nalati-grasslands-portrait.jpg",
     "public/assets/nalati-grasslands/map/**"
   ],
@@ -102,10 +102,10 @@
   "weapon": "custom",
   "assets": {
     "groundLayers": [
-      "leafy_grass",
-      "stony_dirt_path",
-      "rock_ground",
-      "forest_ground_04"
+      "/assets/nalati-grasslands/tex/leafy_grass",
+      "/assets/nalati-grasslands/tex/stony_dirt_path",
+      "/assets/nalati-grasslands/tex/rock_ground",
+      "/assets/nalati-grasslands/tex/forest_ground_04"
     ],
     "groundTints": [
       [
@@ -129,11 +129,11 @@
         0.95
       ]
     ],
-    "slabRock": "rock_ground"
+    "slabRock": "/assets/nalati-grasslands/tex/rock_ground"
   },
   "spawns": [],
   "sky": {
-    "hdri": "kloofendal_48d_partly_cloudy_puresky",
+    "hdri": "/assets/nalati-grasslands/hdri/kloofendal_48d_partly_cloudy_puresky",
     "painted": {
       "zenith": [
         0.1,

@@ -903,8 +903,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/cauldron.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/cauldron.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/cauldron.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/cauldron.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -934,8 +934,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/chest.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/chest.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/chest.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/chest.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -967,8 +967,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/firewood.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/firewood.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/firewood.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/firewood.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1001,8 +1001,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/kumis-churn.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/kumis-churn.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/kumis-churn.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/kumis-churn.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1032,8 +1032,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/saddle.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/saddle.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/saddle.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/saddle.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1063,8 +1063,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/eagle.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/eagle.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/eagle.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/eagle.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1094,8 +1094,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/watchtower.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/watchtower.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/watchtower.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/watchtower.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1127,8 +1127,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/horse-saddled.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/horse-saddled.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/horse-saddled.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/horse-saddled.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1160,8 +1160,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/kokpar-rider.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/kokpar-rider.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/kokpar-rider.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/kokpar-rider.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1261,7 +1261,7 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/horse-wild.far.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/horse-wild.far.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1293,8 +1293,8 @@
       "source": {
         "kind": "asset",
         "asset": {
-          "url": "/assets/nalati/baked/painted-models/snow-lotus.glb",
-          "phoneUrl": "/assets/nalati/baked/painted-models/snow-lotus.phone.glb",
+          "url": "/assets/nalati-grasslands/baked/painted-models/snow-lotus.glb",
+          "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/snow-lotus.phone.glb",
           "geometrySlot": 0,
           "materialSlot": 0,
           "retainedAttribute": "_paint_clone",
@@ -1326,8 +1326,8 @@
       "rim": 0.3,
       "bands": 0.8,
       "texture": {
-        "url": "/assets/nalati/tex/meadow.webp",
-        "phoneUrl": "/assets/nalati/tex/meadow.phone.webp",
+        "url": "/assets/nalati-grasslands/tex/meadow.webp",
+        "phoneUrl": "/assets/nalati-grasslands/tex/meadow.phone.webp",
         "name": "nalati-meadow"
       }
     },
@@ -1337,8 +1337,8 @@
       "rim": 0.3,
       "bands": 0.8,
       "texture": {
-        "url": "/assets/nalati/tex/path.webp",
-        "phoneUrl": "/assets/nalati/tex/path.phone.webp",
+        "url": "/assets/nalati-grasslands/tex/path.webp",
+        "phoneUrl": "/assets/nalati-grasslands/tex/path.phone.webp",
         "name": "nalati-path"
       }
     },
@@ -1348,8 +1348,8 @@
       "rim": 0.3,
       "bands": 0.8,
       "texture": {
-        "url": "/assets/nalati/tex/gravel.webp",
-        "phoneUrl": "/assets/nalati/tex/gravel.phone.webp",
+        "url": "/assets/nalati-grasslands/tex/gravel.webp",
+        "phoneUrl": "/assets/nalati-grasslands/tex/gravel.phone.webp",
         "name": "nalati-gravel"
       }
     },
@@ -1359,8 +1359,8 @@
       "rim": 0.3,
       "bands": 0.8,
       "texture": {
-        "url": "/assets/nalati/tex/rock.webp",
-        "phoneUrl": "/assets/nalati/tex/rock.phone.webp",
+        "url": "/assets/nalati-grasslands/tex/rock.webp",
+        "phoneUrl": "/assets/nalati-grasslands/tex/rock.phone.webp",
         "name": "nalati-rock"
       }
     },
@@ -1370,8 +1370,8 @@
       "rim": 0.3,
       "bands": 0.8,
       "texture": {
-        "url": "/assets/nalati/tex/snow.webp",
-        "phoneUrl": "/assets/nalati/tex/snow.phone.webp",
+        "url": "/assets/nalati-grasslands/tex/snow.webp",
+        "phoneUrl": "/assets/nalati-grasslands/tex/snow.phone.webp",
         "name": "nalati-snow"
       }
     },
@@ -1381,8 +1381,8 @@
       "rim": 0.3,
       "bands": 0.8,
       "texture": {
-        "url": "/assets/nalati/tex/bark.webp",
-        "phoneUrl": "/assets/nalati/tex/bark.phone.webp",
+        "url": "/assets/nalati-grasslands/tex/bark.webp",
+        "phoneUrl": "/assets/nalati-grasslands/tex/bark.phone.webp",
         "name": "nalati-bark"
       }
     },
@@ -1392,15 +1392,15 @@
       "rim": 0.3,
       "bands": 0.8,
       "texture": {
-        "url": "/assets/nalati/tex/felt.webp",
-        "phoneUrl": "/assets/nalati/tex/felt.phone.webp",
+        "url": "/assets/nalati-grasslands/tex/felt.webp",
+        "phoneUrl": "/assets/nalati-grasslands/tex/felt.phone.webp",
         "name": "nalati-felt"
       }
     }
   },
   "packed": {
     "notice": "DO NOT EDIT: regenerate with generators/bake-nalati-places.mjs (Node canonical).",
-    "bin": "/assets/nalati/baked/specimens.bin",
+    "bin": "/assets/nalati-grasslands/baked/specimens.bin",
     "bytes": 5545128,
     "rows": [
       {
@@ -4321,8 +4321,8 @@
   },
   "assets": {
     "kazan": {
-      "url": "/assets/nalati/baked/painted-models/cauldron.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/cauldron.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/cauldron.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/cauldron.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4337,8 +4337,8 @@
       }
     },
     "chest": {
-      "url": "/assets/nalati/baked/painted-models/chest.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/chest.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/chest.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/chest.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4353,8 +4353,8 @@
       }
     },
     "firewood": {
-      "url": "/assets/nalati/baked/painted-models/firewood.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/firewood.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/firewood.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/firewood.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4369,8 +4369,8 @@
       }
     },
     "kumisChurn": {
-      "url": "/assets/nalati/baked/painted-models/kumis-churn.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/kumis-churn.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/kumis-churn.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/kumis-churn.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4385,8 +4385,8 @@
       }
     },
     "groundSaddle": {
-      "url": "/assets/nalati/baked/painted-models/saddle.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/saddle.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/saddle.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/saddle.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4401,8 +4401,8 @@
       }
     },
     "perchedEagle": {
-      "url": "/assets/nalati/baked/painted-models/eagle.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/eagle.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/eagle.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/eagle.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4417,8 +4417,8 @@
       }
     },
     "watchtower": {
-      "url": "/assets/nalati/baked/painted-models/watchtower.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/watchtower.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/watchtower.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/watchtower.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4435,8 +4435,8 @@
       }
     },
     "saddledHorse": {
-      "url": "/assets/nalati/baked/painted-models/horse-saddled.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/horse-saddled.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/horse-saddled.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/horse-saddled.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4453,8 +4453,8 @@
       }
     },
     "kokparRider": {
-      "url": "/assets/nalati/baked/painted-models/kokpar-rider.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/kokpar-rider.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/kokpar-rider.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/kokpar-rider.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4471,7 +4471,7 @@
       }
     },
     "herdHorse": {
-      "url": "/assets/nalati/baked/painted-models/horse-wild.far.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/horse-wild.far.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4488,8 +4488,8 @@
       }
     },
     "snowLotus": {
-      "url": "/assets/nalati/baked/painted-models/snow-lotus.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/snow-lotus.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/snow-lotus.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/snow-lotus.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4506,8 +4506,8 @@
       }
     },
     "boulder-1": {
-      "url": "/assets/nalati/baked/painted-models/boulder-1.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/boulder-1.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/boulder-1.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/boulder-1.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4520,8 +4520,8 @@
       }
     },
     "boulder-2": {
-      "url": "/assets/nalati/baked/painted-models/boulder-2.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/boulder-2.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/boulder-2.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/boulder-2.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4534,8 +4534,8 @@
       }
     },
     "boulder-3": {
-      "url": "/assets/nalati/baked/painted-models/boulder-3.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/boulder-3.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/boulder-3.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/boulder-3.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4548,8 +4548,8 @@
       }
     },
     "balbal": {
-      "url": "/assets/nalati/baked/painted-models/balbal.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/balbal.phone.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/balbal.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/balbal.phone.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",
@@ -4562,8 +4562,8 @@
       }
     },
     "kokparRiderFar": {
-      "url": "/assets/nalati/baked/painted-models/kokpar-rider.far.glb",
-      "phoneUrl": "/assets/nalati/baked/painted-models/kokpar-rider.far.glb",
+      "url": "/assets/nalati-grasslands/baked/painted-models/kokpar-rider.far.glb",
+      "phoneUrl": "/assets/nalati-grasslands/baked/painted-models/kokpar-rider.far.glb",
       "geometrySlot": 0,
       "materialSlot": 0,
       "retainedAttribute": "_paint_clone",

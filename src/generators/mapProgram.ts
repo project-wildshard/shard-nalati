@@ -7,13 +7,13 @@ import settings from '../data/map.json' with { type: 'json' };
 /** Every committed input the map reads (the pure map producer's and the painter's models), as build inputs: public files
  *  by URL, the shard's own files by project path. */
 export const NALATI_MAP_INPUTS: readonly string[] = [
-  '/assets/baked/nalati-grasslands/terrain.bin', '/assets/nalati/baked/crags.bin', '/assets/nalati/models/balbal.glb',
-  '/assets/nalati/models/boulder-1.glb', '/assets/nalati/models/boulder-1.phone.glb', '/assets/nalati/models/boulder-2.glb',
-  '/assets/nalati/models/boulder-2.phone.glb', '/assets/nalati/models/boulder-3.glb', '/assets/nalati/models/boulder-3.phone.glb',
-  '/assets/nalati/models/cauldron.glb', '/assets/nalati/models/chest.glb', '/assets/nalati/models/eagle.glb',
-  '/assets/nalati/models/firewood.glb', '/assets/nalati/models/horse-saddled.glb', '/assets/nalati/models/horse-wild.far.glb',
-  '/assets/nalati/models/kokpar-rider.glb', '/assets/nalati/models/kumis-churn.glb', '/assets/nalati/models/saddle.glb',
-  '/assets/nalati/models/snow-lotus.glb', '/assets/nalati/models/watchtower.glb',
+  '/assets/nalati-grasslands/baked/terrain.bin', '/assets/nalati-grasslands/baked/crags.bin', '/assets/nalati-grasslands/models/balbal.glb',
+  '/assets/nalati-grasslands/models/boulder-1.glb', '/assets/nalati-grasslands/models/boulder-1.phone.glb', '/assets/nalati-grasslands/models/boulder-2.glb',
+  '/assets/nalati-grasslands/models/boulder-2.phone.glb', '/assets/nalati-grasslands/models/boulder-3.glb', '/assets/nalati-grasslands/models/boulder-3.phone.glb',
+  '/assets/nalati-grasslands/models/cauldron.glb', '/assets/nalati-grasslands/models/chest.glb', '/assets/nalati-grasslands/models/eagle.glb',
+  '/assets/nalati-grasslands/models/firewood.glb', '/assets/nalati-grasslands/models/horse-saddled.glb', '/assets/nalati-grasslands/models/horse-wild.far.glb',
+  '/assets/nalati-grasslands/models/kokpar-rider.glb', '/assets/nalati-grasslands/models/kumis-churn.glb', '/assets/nalati-grasslands/models/saddle.glb',
+  '/assets/nalati-grasslands/models/snow-lotus.glb', '/assets/nalati-grasslands/models/watchtower.glb',
   'data/campCatalogue.json', 'data/campMaterials.json', 'data/discovery.json', 'data/modelMetrics.json',
 ];
 const SHARD = 'src/shards/nalati-grasslands/';
@@ -31,7 +31,7 @@ export async function nalatiMapPixels(inputs: ReadonlyMap<string, Uint8Array>): 
     if (bytes === undefined) throw new Error(`Undeclared Nalati map input ${path}`);
     return bytes;
   };
-  const files = await nalatiMapFiles(repo), terrain = nalatiTerrainScene(repo('src/static/assets/baked/nalati-grasslands/terrain.bin'));
+  const files = await nalatiMapFiles(repo), terrain = nalatiTerrainScene(repo('src/static/assets/nalati-grasslands/baked/terrain.bin'));
   const sources = new Map<string, Uint8Array>(files);
   for (const blob of terrain) sources.set(`assets/world-terrain/${(blob.file.name ?? '').split('/').at(-1)?.replace('.glb', '') ?? ''}.generated.glb`, blob.bytes);
   const read = (file: string): Uint8Array => sources.get(file) ?? repo(`${SHARD}${file}`);

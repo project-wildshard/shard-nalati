@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { hashImmutableBytes } from '@wildshard/format/immutable';
 import pins from './nalati-place-wires.json' with { type: 'json' };
 
-const pin = pins.find(row => row.path === 'src/static/assets/nalati/baked/places.bin');
+const pin = pins.find(row => row.path === 'src/static/assets/nalati-grasslands/baked/places.bin');
 if (pin === undefined) throw new Error('Missing original Places binary pin');
 const original = pin;
 function checked(bytes: Uint8Array): Uint8Array {

@@ -3,7 +3,7 @@ import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration'
 import { prepareNalatiDressingInputs } from './dressingInputs';
 import { bakeNalatiDressingSource } from './dressingSource';
 
-const terrain = '/assets/baked/nalati-grasslands/terrain.bin';
+const terrain = '/assets/nalati-grasslands/baked/terrain.bin';
 const groups = ['boulder', 'slab', 'stone', 'juniper', 'rose', 'willow', 'lupin', 'daisy', 'reed', 'logs', 'stumps', 'ovoos', 'poles', 'fences', 'gates', 'drifts', 'colliders', 'clutter'] as const;
 const names = groups.map(group => `dressing-${group}.json`);
 
