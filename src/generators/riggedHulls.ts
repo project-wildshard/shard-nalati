@@ -12,7 +12,7 @@ export function nalatiCoatUrl(hull: string, kind: string, variant: string): stri
 
 /** Keep the painterly atlas/AO, sheet wings and exact authored coat cache keys. */
 function resources(tier: 'phone' | 'desktop'): RiggedHullUrls {
-  const keys = new Set(Object.keys(coatPages[tier]));
+  const keys = new Set<string>(coatPages[tier]);
   return { files: Object.fromEntries(rows.rigs.map(hull => [hull, nalatiRigFile(hull, tier)])),
     coats: Object.fromEntries(Object.entries(CREATURE_HULLS).flatMap(([variant, hull]) => {
       const [kind = '', id = ''] = variant.split(':'), image = nalatiCoatUrl(hull, kind, id);

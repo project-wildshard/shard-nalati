@@ -28,3 +28,12 @@ the images-only refusal (SF6c).
 ## Version
 
 The re-pack publishes as 0.0.11: codex-r2api republishes today's Nalati as 0.0.10 for the R2 layout's staging tour.
+
+## SF6g: the hand-made KTX2 are gone (J531)
+
+Jake approved the cooked look (J531: "nalati cooks look good to me"), so the
+66 hand-made GPU files under `gpu/` (38 KTX2, 28 basisu GLB twins) are
+deleted. The coat table keeps only each tier's coat image names, which is all
+riggedHulls.ts reads, and the manifest drops its `gpu/` glob.
+Since engine's SF19 (cook 1.8.0) the cook encodes WebP as it does PNG, so the
+53 WebP images and the 28 GLBs' WebP get cooked KTX2 too.

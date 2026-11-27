@@ -73,7 +73,6 @@
   "debugOptions": [],
   "assetGlobs": [
     "public/assets/nalati-grasslands/**",
-    "public/assets/nalati-grasslands/gpu/**",
     "public/assets/nalati-grasslands/music/nalati/**",
     "public/assets/nalati-grasslands/sfx/nalati-grasslands/**",
     "public/assets/title/nalati-grasslands-portrait.jpg",
