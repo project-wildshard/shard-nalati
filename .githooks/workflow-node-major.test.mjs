@@ -62,6 +62,39 @@ export function openMajor(body, major, readPin) {
   return undefined;
 }
 
+/**
+ * Meta SF24 (opus-pins, 2026-11-27): a sparse checkout that leaves out `.node-version` breaks the setup-node step that
+ * reads it ("The specified node version file ... does not exist"), which failed every publish's cook job. The lines of
+ * the setup-node steps that read `.node-version` while their job's sparse checkout leaves it out.
+ * @param {string} text a workflow @returns {number[]}
+ */
+export function sparseMissingPin(text) {
+  const lines = text.split('\n');
+  /** @type {number[]} */
+  const missing = [];
+  for (const step of setupNodeSteps(text)) {
+    if (withValue(step.body, 'node-version-file') !== PIN_FILE) continue;
+    /** @type {string[] | undefined} */
+    let sparse;
+    for (let at = step.line - 2; at >= 0; at -= 1) {
+      const row = lines[at] ?? '';
+      if (/^ {2}[\w-]+:\s*$/u.test(row) || /^(?:jobs|runs):/u.test(row)) break;
+      if (/^\s*sparse-checkout:\s*\|/u.test(row)) {
+        const indent = row.length - row.trimStart().length;
+        sparse = [];
+        for (let next = at + 1; next < lines.length; next += 1) {
+          const item = lines[next] ?? '';
+          if (item.trim() !== '' && item.length - item.trimStart().length <= indent) break;
+          if (item.trim() !== '') sparse.push(item.trim());
+        }
+        break;
+      }
+    }
+    if (sparse !== undefined && !sparse.includes(`/${PIN_FILE}`) && !sparse.includes(PIN_FILE)) missing.push(step.line);
+  }
+  return missing;
+}
+
 /** The repo's workflow files and local actions, from `root`. @param {string} root */
 export function workflowFiles(root) {
   /** @type {string[]} */
@@ -92,6 +125,9 @@ export function nodeMajorFindings(root) {
   for (const step of steps) {
     const why = openMajor(step.body, major, read);
     if (why !== undefined) findings.push(`${step.file}:${step.line} ${why}`);
+  }
+  for (const file of workflowFiles(root)) {
+    for (const line of sparseMissingPin(readFileSync(join(root, file), 'utf8'))) findings.push(`${file}:${line} reads ${PIN_FILE}, but its job's sparse checkout leaves it out`);
   }
   const range = existsSync(join(root, 'package.json')) ? JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))?.engines?.node : undefined;
   const [, low, high] = /^>=(\d+)\.\d+\.\d+ <(\d+)$/u.exec(String(range ?? '')) ?? [];

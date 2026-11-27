@@ -338,6 +338,7 @@ jobs:
         with:
           persist-credentials: false
           sparse-checkout: |
+            /.node-version
             /scripts/
             /src/scripts/
             /package.json
