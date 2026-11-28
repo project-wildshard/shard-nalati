@@ -43,16 +43,25 @@ export { compareVersions, nextVersion } from './publish-version.mjs';
  * SHA's `ci` push runs, newest first; `ring2` the newest finished run of each
  * ring-2 workflow on main.
  */
-export function gateVerdict({ ref, sha, mainSha, ci, ring2, rehearse }) {
+export function gateVerdict({ ref, sha, mainSha, ci, ring2, rehearse, moved, appearing = false }) {
   const problems = [];
   // FAST-RELEASE FR-A3 (J505): 17 of 25 gate refusals were "ci ... is still queued: dispatch again when it is green",
   // each a second dispatch by hand. A queued or running ci for this exact SHA is something to wait on, not a refusal;
-  // gate() polls until it ends (PUBLISH_GATE_WAIT_MINUTES) and still refuses a red ci or a main that moves meanwhile.
+  // gate() polls until it ends (the repo's own ci budget, QA 11-26 row 64) and still refuses a red ci or a main that
+  // moves meanwhile.
   const wait = [];
   if (ref !== 'refs/heads/main') problems.push(`dispatched on ${ref}: publish ships main only`);
-  else if (mainSha !== sha) problems.push(`main moved to ${mainSha.slice(0, 10)} after this run started at ${sha.slice(0, 10)}: dispatch again`);
+  // QA 11-26 row 56: in a repo publishing several slugs, every finished publish commits published.json to main, and
+  // each queued dispatch behind it refused. Main ahead of this SHA by publish bookkeeping only (`moved`, from
+  // bookkeepingOnly) builds the same bytes, so it ships; any other change still refuses.
+  else if (mainSha !== sha && moved?.bookkeeping !== true) {
+    const what = moved?.files?.length ? ` (${moved.files.slice(0, 3).join(', ')}${moved.files.length > 3 ? ', …' : ''})` : '';
+    problems.push(`main moved to ${mainSha.slice(0, 10)} after this run started at ${sha.slice(0, 10)}${what}: dispatch again`);
+  }
   const run = ci.find((row) => row.status === 'completed' && row.conclusion !== 'cancelled') ?? ci[0];
-  if (!run) problems.push(`no ci push run for ${sha.slice(0, 10)}: main must be green before it ships`);
+  // Row 64: a dispatch right after its push can start before GitHub lists that push's ci run.
+  if (!run && appearing) wait.push(`no ci push run for ${sha.slice(0, 10)} yet`);
+  else if (!run) problems.push(`no ci push run for ${sha.slice(0, 10)}: main must be green before it ships`);
   else if (run.status !== 'completed') wait.push(`ci for ${sha.slice(0, 10)} is still ${run.status} (${run.html_url})`);
   else if (run.conclusion !== 'success') problems.push(`main is red: ci ${run.conclusion} for ${sha.slice(0, 10)} (${run.html_url})`);
   for (const row of ring2) {
@@ -61,6 +70,91 @@ export function gateVerdict({ ref, sha, mainSha, ci, ring2, rehearse }) {
   const relaxed = rehearse && ref !== 'refs/heads/main';
   if (relaxed) return { refuse: [], warn: [...problems, ...wait], wait: [] };
   return { refuse: problems, warn: [], wait: problems.length ? [] : wait };
+}
+
+/** The files publish's record jobs (publish.yml, publish-cook.yml) commit to main, and nothing a build reads. */
+export const BOOKKEEPING = Object.freeze(['published.json']);
+
+/**
+ * QA 11-26 row 56: GitHub's compare of this run's SHA to main's tip (`compare/<sha>...<main>`). Bookkeeping when main
+ * only adds commits (`ahead`) and every file they change is publish bookkeeping; anything else (a diverged main, a
+ * source change, a truncated file list) is not.
+ */
+export function bookkeepingOnly(compare) {
+  const files = (compare?.files ?? []).map((row) => String(row.filename));
+  const listed = Array.isArray(compare?.files) && files.length < 300;
+  return { bookkeeping: compare?.status === 'ahead' && listed && files.every((file) => BOOKKEEPING.includes(file)), files };
+}
+
+/** GitHub's job limit when a job names none. */
+const JOB_DEFAULT_MINUTES = 360;
+
+/**
+ * QA 11-26 row 64: the longest a ci run of this repo may take, from its own ci.yml: each job's timeout-minutes (the
+ * larger number of an expression such as `dispatch && 40 || 15`), chained through `needs:`. Nalati's publish hit the
+ * old flat 30-minute wait while its exact ci (CI21 45 minutes, Ring 2 55) was still running. Undefined when the file
+ * names no jobs.
+ */
+export function ciBudgetMinutes(yaml) {
+  const jobs = new Map();
+  let inJobs = false, job;
+  for (const line of yaml.split('\n')) {
+    if (/^\S/u.test(line)) { inJobs = /^jobs:\s*(?:#.*)?$/u.test(line); job = undefined; continue; }
+    if (!inJobs) continue;
+    const name = /^ {2}([\w-]+):\s*(?:#.*)?$/u.exec(line)?.[1];
+    if (name) { job = { timeout: JOB_DEFAULT_MINUTES, needs: [] }; jobs.set(name, job); continue; }
+    if (!job) continue;
+    const timeout = /^ {4}timeout-minutes:\s*(.+)$/u.exec(line)?.[1];
+    if (timeout !== undefined) {
+      const numbers = [...timeout.replace(/#.*$/u, '').matchAll(/\d+/gu)].map((match) => Number(match[0]));
+      if (numbers.length) job.timeout = Math.max(...numbers);
+    }
+    const needs = /^ {4}needs:\s*(.+)$/u.exec(line)?.[1];
+    if (needs !== undefined) job.needs = needs.replace(/#.*$/u, '').replace(/[[\]]/gu, '').split(',').map((part) => part.trim()).filter(Boolean);
+  }
+  if (jobs.size === 0) return undefined;
+  const memo = new Map();
+  const chain = (name, seen) => {
+    if (memo.has(name)) return memo.get(name);
+    const row = jobs.get(name);
+    if (!row || seen.has(name)) return 0;
+    const before = Math.max(0, ...row.needs.map((need) => chain(need, new Set([...seen, name]))));
+    memo.set(name, row.timeout + before);
+    return row.timeout + before;
+  };
+  return Math.max(...[...jobs.keys()].map((name) => chain(name, new Set())));
+}
+
+/** Room for a hosted runner to pick a ci job up. */
+export const GATE_QUEUE_MINUTES = 10;
+/** The gate's longest wait: publish.yml's build job limit (150) less the slowest green build (open plots, 43) and setup. */
+export const GATE_MAX_MINUTES = 100;
+/** A ci run GitHub has not listed yet is waited on this long, then refused. */
+export const GATE_APPEAR_MINUTES = 3;
+
+/** How long the gate waits on this SHA's ci: PUBLISH_GATE_WAIT_MINUTES when set, else the repo's ci budget plus queue
+ * room, never under the old flat 30 (a small repo's ci may queue) and at most GATE_MAX_MINUTES; 30 when the budget
+ * can't be read. */
+export function gateWaitMinutes(env, yaml) {
+  if (env.PUBLISH_GATE_WAIT_MINUTES !== undefined && env.PUBLISH_GATE_WAIT_MINUTES !== '') return Number(env.PUBLISH_GATE_WAIT_MINUTES);
+  const budget = yaml === undefined ? undefined : ciBudgetMinutes(yaml);
+  return budget === undefined ? 30 : Math.min(Math.max(budget + GATE_QUEUE_MINUTES, 30), GATE_MAX_MINUTES);
+}
+
+/**
+ * Judge, and while the verdict says wait, poll until it doesn't or the wait runs out; a wait left at the end refuses.
+ * `judge(appearing)` is told whether a ci run not listed yet may still appear.
+ */
+export async function waitForGate({ judge, waitMinutes, pollMs, now = Date.now, pause = sleep, log = console.log }) {
+  const started = now(), deadline = started + waitMinutes * 60_000, appearUntil = started + GATE_APPEAR_MINUTES * 60_000;
+  let verdict = await judge(now() < Math.min(appearUntil, deadline));
+  while (verdict.wait.length && now() < deadline) {
+    log(`gate: waiting (${Math.round((now() - started) / 60_000)} of ${waitMinutes} min): ${verdict.wait.join('; ')}`);
+    await pause(pollMs);
+    verdict = await judge(now() < Math.min(appearUntil, deadline));
+  }
+  if (verdict.wait.length) verdict = { ...verdict, refuse: verdict.wait.map((line) => `${line} past the gate's ${waitMinutes}-minute wait: dispatch again when it is green`) };
+  return verdict;
 }
 
 /** The oldest sdk whose `wildshard prepare` finishes with no `--base` (0.2.11 and 0.2.12 time out at 240 s). */
@@ -180,34 +274,35 @@ async function gate() {
   const { GITHUB_REPOSITORY: repo, GITHUB_SHA: sha, GITHUB_REF: ref, GH_TOKEN: token } = process.env;
   if (!repo || !sha || !ref) throw new Refusal('gate needs GITHUB_REPOSITORY, GITHUB_SHA and GITHUB_REF');
   const base = `${GITHUB}/repos/${repo}`;
-  const judge = async () => {
+  let moved;
+  const judge = async (appearing) => {
     const [main, runs, workflows] = await Promise.all([
       getJson(`${base}/commits/main`, token),
       getJson(`${base}/actions/workflows/ci.yml/runs?head_sha=${sha}&event=push&per_page=20`, token),
       getJson(`${base}/actions/workflows?per_page=100`, token),
     ]);
+    // Row 56: what main holds past this SHA, read once per tip.
+    if (main.sha !== sha && moved?.tip !== main.sha) moved = { tip: main.sha, ...bookkeepingOnly(await getJson(`${base}/compare/${sha}...${main.sha}`, token)) };
     const ring2 = [];
     for (const flow of workflows.workflows.filter((row) => /\/ring-2-[^/]+\.ya?ml$/u.test(row.path))) {
       const latest = await getJson(`${base}/actions/workflows/${flow.id}/runs?branch=main&status=completed&per_page=10`, token);
       const row = latest.workflow_runs.find((run) => run.conclusion !== 'cancelled' && run.conclusion !== 'skipped');
       if (row) ring2.push({ ...row, name: flow.name });
     }
-    const judged = gateVerdict({ ref, sha, mainSha: main.sha, ci: runs.workflow_runs, ring2, rehearse: process.env.PUBLISH_REHEARSE === 'true' });
-    return { ...judged, ring2: ring2.length };
+    const judged = gateVerdict({ ref, sha, mainSha: main.sha, ci: runs.workflow_runs, ring2, rehearse: process.env.PUBLISH_REHEARSE === 'true',
+      moved: main.sha === sha ? undefined : moved, appearing });
+    return { ...judged, ring2: ring2.length, mainSha: main.sha };
   };
-  // FR-A3: wait on this SHA's queued or running ci instead of asking for a second dispatch.
-  const deadline = Date.now() + minutes('PUBLISH_GATE_WAIT_MINUTES', 30);
-  let verdict = await judge();
-  while (verdict.wait.length && Date.now() < deadline) {
-    console.log(`gate: waiting: ${verdict.wait.join('; ')}`);
-    await sleep(Number(process.env.PUBLISH_GATE_POLL_SECONDS ?? 30) * 1000);
-    verdict = await judge();
-  }
-  if (verdict.wait.length) verdict = { ...verdict, refuse: verdict.wait.map((line) => `${line} past the gate's wait: dispatch again when it is green`) };
+  // FR-A3: wait on this SHA's queued or running ci instead of asking for a second dispatch; row 64: through the repo's
+  // whole ci budget (its ci.yml), not a flat 30 minutes.
+  const flow = existsSync('.github/workflows/ci.yml') ? readFileSync('.github/workflows/ci.yml', 'utf8') : undefined;
+  const verdict = await waitForGate({ judge, waitMinutes: gateWaitMinutes(process.env, flow), pollMs: Number(process.env.PUBLISH_GATE_POLL_SECONDS ?? 30) * 1000 });
   for (const line of verdict.warn) console.log(`::warning::rehearsal, not a refusal: ${line}`);
   const sdk = sdkPinProblem(JSON.parse(readFileSync('package.json', 'utf8')));
   if (verdict.refuse.length || sdk) throw new Refusal([...verdict.refuse, ...(sdk ? [sdk] : [])].join('; '));
-  summary(`gate: ${sha.slice(0, 10)} is ${ref.replace('refs/heads/', '')}'s tip, its ci is green, ${verdict.ring2} ring-2 workflow(s) green on main`);
+  const tip = verdict.mainSha === sha ? `is ${ref.replace('refs/heads/', '')}'s tip`
+    : `is main's tip but for publish bookkeeping (${BOOKKEEPING.join(', ')}) up to ${String(verdict.mainSha).slice(0, 10)}`;
+  summary(`gate: ${sha.slice(0, 10)} ${tip}, its ci is green, ${verdict.ring2} ring-2 workflow(s) green on main`);
 }
 
 /** The first of `roots` holding product folders (`<slug>/shard.json`), with their slugs; `list` reads one root. */
